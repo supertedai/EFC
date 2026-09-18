@@ -1,25 +1,25 @@
-"""Synlighet: hva av atlaset skal ut på GitHub Pages — og hva skal ikke.
+"""Visibility: what of the atlas goes out to GitHub Pages — and what does not.
 
-Målt 2026-09-17 mot origin/main: `docs/efc-atlas/atlas.html` (generert fra
-`schema/regime_nodes.jsonld` via `data.mjs`) ligger LIVE på
-supertedai.github.io/EFC/efc-atlas/atlas.html og inneholder HELE atlaset:
+Measured 2026-09-17 against origin/main: `docs/efc-atlas/atlas.html` (generated
+from `schema/regime_nodes.jsonld` via `data.mjs`) sits LIVE at
+supertedai.github.io/EFC/efc-atlas/atlas.html and contains the WHOLE atlas:
 
     efc.selv.atlas, efc.selv.skjema, efc.selv.paradigme_tid,
-    efc.selv.paradigme_masse        ← atlasets selvreferanse
+    efc.selv.paradigme_masse        <- the atlas's self-reference
     batteri.celle/.lading/.buffer/.inverter
-      der measure.measurer sier rett ut «LiFePO4-BMS (privat anlegg)»
-    «victron» fem ganger
+      where measure.measurer says outright "LiFePO4-BMS (privat anlegg)"
+    "victron" five times
 
-Det er ikke en hypotetisk risiko. Det laa ute da dette ble maalt.
+This is not a hypothetical risk. It was live when this was measured.
 
-Atlaset skal fortsatt vaere ETT atlas — kryssdomenet er hele poenget, og
-`obs.fsigma8` gir bare mening sammen med `efc.selv.skjema`. Det er
-PUBLISERINGEN som skal filtrere, ikke kartet som skal deles.
+The atlas must still be ONE atlas — the cross-domain is the whole point, and
+`obs.fsigma8` only makes sense together with `efc.selv.skjema`. It is the
+PUBLICATION that must filter, not the map that must be split.
 
-Derfor baerer hver node `synlighet` (offentlig | intern), og generatoren
-skriver bare de offentlige til data.mjs. Filteret skal vaere DEKLARERT per
-node — ikke en skjult regel i generatoren — fordi en node som forsvinner
-uten at noen ser hvorfor, er samme feilklasse som alt annet her.
+Therefore every node carries `synlighet` (offentlig | intern), and the
+generator writes only the public ones to data.mjs. The filter must be DECLARED
+per node — not a hidden rule in the generator — because a node that disappears
+without anyone seeing why is the same error class as everything else here.
 """
 import json
 import re
@@ -31,8 +31,8 @@ JSONLD = ROT / "schema" / "regime_nodes.jsonld"
 SKJEMA = ROT / "schema" / "regime_node.schema.json"
 DATA_MJS = ROT / "docs" / "efc-atlas" / "atlas" / "data.mjs"
 
-#: Regel 16: et offentlig artefakt bærer feltkoder, tidsstempel og
-#: snapshot-markør — aldri site-identitet eller privat kontekst.
+#: Rule 16: a public artefact carries field codes, timestamps and a snapshot
+#: marker — never site identity or private context.
 FORBUDT_I_OFFENTLIG = [
     "privat anlegg",
     "morten",
@@ -51,36 +51,37 @@ def _noder():
 class TestAtlasSynlighet(unittest.TestCase):
 
     def test_alle_noder_har_synlighet(self):
-        """Uten feltet kan en node havne i public ved uhell — og en node
-        som mangler feltet er ikke «sannsynligvis offentlig»."""
+        """Without the field a node can land in public by accident — and a node
+        missing the field is not "probably public"."""
         mangler = [n["id"] for n in _noder()
                    if n.get("synlighet") not in ("offentlig", "intern")]
         self.assertEqual(mangler, [],
-                         f"noder uten gyldig synlighet: {mangler}")
+                         f"nodes without valid visibility: {mangler}")
 
     def test_skjemaet_deklarerer_synlighet(self):
-        """Et felt som ikke staar i skjemaet finnes ikke — `additionalProperties:
-        false` avviser det, og da er hele mekanismen en illusjon."""
+        """A field that is not in the schema does not exist —
+        `additionalProperties: false` rejects it, and then the whole
+        mechanism is an illusion."""
         s = json.loads(SKJEMA.read_text(encoding="utf-8"))
         props = s["$defs"]["RegimeNode"]["properties"]
         self.assertIn("synlighet", props,
-                      "synlighet mangler i RegimeNode-skjemaet")
+                      "synlighet is missing from the RegimeNode schema")
         enum = props["synlighet"].get("enum", [])
         self.assertEqual(sorted(enum), ["intern", "offentlig"])
 
     def test_generatoren_skriver_ikke_interne_noder(self):
-        """data.mjs er filen Pages faktisk serverer."""
+        """data.mjs is the file Pages actually serves."""
         interne = [n["id"] for n in _noder()
                    if n.get("synlighet") == "intern"]
-        self.assertTrue(interne, "ingen interne noder — filteret er uten "
-                                 "virkning og testen beviser ingenting")
+        self.assertTrue(interne, "no internal nodes — the filter has no "
+                                 "effect and the test proves nothing")
         data = DATA_MJS.read_text(encoding="utf-8")
         lekkasje = [i for i in interne if i in data]
         self.assertEqual(lekkasje, [],
-                         f"interne noder staar i data.mjs: {lekkasje}")
+                         f"internal nodes are in data.mjs: {lekkasje}")
 
     def test_ingen_offentlig_node_baerer_privat_identitet(self):
-        """Regel 16, håndhevet. Denne fanger ogsaa eksisterende brudd."""
+        """Rule 16, enforced. This one also catches existing violations."""
         brudd = []
         for n in _noder():
             if n.get("synlighet") != "offentlig":
@@ -90,22 +91,23 @@ class TestAtlasSynlighet(unittest.TestCase):
                 if f in t:
                     brudd.append((n["id"], f))
         self.assertEqual(brudd, [],
-                         f"offentlige noder med privat identitet: {brudd}")
+                         f"public nodes with a private identity: {brudd}")
 
     def test_interne_noder_er_ikke_med_i_kapitlene(self):
-        """Filtreringen skal skje FOER kapitlene bygges — en intern node som
-        fortsatt teller i et kapittel avslorer seg i reveal-lista."""
+        """The filtering must happen BEFORE the chapters are built — an
+        internal node still counted in a chapter gives itself away in the
+        reveal list."""
         interne = {n["id"] for n in _noder()
                    if n.get("synlighet") == "intern"}
         data = DATA_MJS.read_text(encoding="utf-8")
         for i in sorted(interne):
             self.assertNotIn(f'"{i}"', data,
-                             f"{i} staar i data.mjs")
+                             f"{i} is in data.mjs")
 
     def test_offentlig_visning_teller_det_som_faktisk_publiseres(self):
-        """SYSTEM.md sa «82 nodes» mens data.mjs hadde 73. Et hardkodet tall
-        som blir staaende lenger enn kilden sin lyver — og røper i tillegg
-        at noe er holdt tilbake, som er det motsatte av poenget."""
+        """SYSTEM.md said "82 nodes" while data.mjs had 73. A hardcoded number
+        that outlives its source lies — and additionally reveals that something
+        was held back, which is the opposite of the point."""
         offentlige = sum(1 for n in _noder()
                          if n.get("synlighet") == "offentlig")
         tekst = (ROT / "docs" / "efc-atlas" / "SYSTEM.md").read_text(
@@ -113,7 +115,7 @@ class TestAtlasSynlighet(unittest.TestCase):
         tall = {int(m) for m in re.findall(r"(\d+) nodes", tekst)}
         self.assertEqual(
             tall, {offentlige},
-            f"SYSTEM.md oppgir {sorted(tall)} noder; publisert er "
+            f"SYSTEM.md states {sorted(tall)} nodes; published is "
             f"{offentlige}")
 
 

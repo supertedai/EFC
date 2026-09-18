@@ -1,22 +1,22 @@
-"""Tester for EnerFlytEngine — samfunnet som energiflyt (L-052).
+"""Tests for EnerFlytEngine — society as energy flow (L-052).
 
-Mortens prinsipp (f): «hele samfunnet er en stor energyflyt diagram i
-alle akser». SIR-motoren modellerer epidemiologiens fraksjonsfluks;
-EnerFlytEngine modellerer ENERGI-fluksen:
+Morten's principle (f): "the whole of society is one big energy-flow
+diagram along all axes". The SIR engine models the fraction flux of
+epidemiology; EnerFlytEngine models the ENERGY flux:
 
-    dS/dt = P - C - L    (produksjon - forbruk - tap)
+    dS/dt = P - C - L    (production - consumption - loss)
 
-Bufferen S er holding: overflod når P > C + L, knapphet når
-forbruket tømmer bufferen under terskelen. Release = krisen
-(rasjonering/omfordeling).
+The buffer S is holding: abundance when P > C + L, scarcity when
+consumption drains the buffer below the threshold. Release = the crisis
+(rationing/redistribution).
 
-Disiplin fra motorenes review-runder:
-- fraksjonsinvariant: per-kapita-normalisering skal ikke endre
-  regimet
-- ærlighet: dette er ÉN akse av samfunnet — penger, oppmerksomhet
-  og tillit er andre valutaer med eksplisitt IKKE-konservering
-- ingen krise-prediksjon: modellen sier når bufferen KRYSSER
-  terskelen, ikke når krisen inntreffer
+Discipline from the engines' review rounds:
+- fraction invariant: per-capita normalisation must not change the
+  regime
+- honesty: this is ONE axis of society — money, attention and trust are
+  other currencies with explicitly NOT-conserving flows
+- no crisis prediction: the model says when the buffer CROSSES the
+  threshold, not when the crisis happens
 """
 from __future__ import annotations
 
@@ -31,11 +31,11 @@ from efc_inference.engine.enerflyt import EnerFlytEngine
 ATLAS = Path("schema/regime_nodes.jsonld")
 
 BASE = {
-    "produksjon": 100.0,     # P — enheter energi/tid
+    "produksjon": 100.0,     # P — energy units/time
     "forbruk": 90.0,         # C
     "tap": 5.0,              # L
-    "buffer": 500.0,         # S0 — startbeholdningen
-    "terskel": 50.0,         # knapphetsgrensen
+    "buffer": 500.0,         # S0 — the initial stock
+    "terskel": 50.0,         # the scarcity threshold
 }
 
 
@@ -60,21 +60,21 @@ def test_knapphet_naar_forbruket_toemmer_bufferen():
 
 
 def test_fraksjonsinvariant_per_kapita():
-    """Samme flyt per kapita = samme regime — normaliseringen er en
-    skala, ikke en fysikk-endring."""
+    """Same flow per capita = same regime — the normalisation is a
+    scale, not a change of physics."""
     e = EnerFlytEngine()
-    stor = e.vurder(BASE)
+    large = e.vurder(BASE)
     per_kapita = dict(BASE, produksjon=1.0, forbruk=0.9, tap=0.05,
                       buffer=5.0, terskel=0.5)
-    liten = e.vurder(per_kapita)
-    assert stor["regime"] == liten["regime"] == "overflod"
-    assert stor["dS_dt"] / BASE["buffer"] == pytest.approx(
-        liten["dS_dt"] / per_kapita["buffer"])
+    small = e.vurder(per_kapita)
+    assert large["regime"] == small["regime"] == "overflod"
+    assert large["dS_dt"] / BASE["buffer"] == pytest.approx(
+        small["dS_dt"] / per_kapita["buffer"])
 
 
 def test_negativ_drift_med_tomt_lager_gir_nan():
-    """Review-mønsteret fra økonomi-motoren: negativ drift med tomt
-    lager er ikke stille klipping — det er NaN."""
+    """The review pattern from the economy engine: negative drift with an
+    empty store is not silent clipping — it is NaN."""
     p = dict(BASE, buffer=0.0, forbruk=120.0)
     u = EnerFlytEngine().vurder(p)
     assert math.isnan(u["buffer_etter"]), u
@@ -83,19 +83,19 @@ def test_negativ_drift_med_tomt_lager_gir_nan():
 def test_ingen_krise_prediksjon_deklarert():
     e = EnerFlytEngine()
     n = e.regime_node(BASE)
-    hel = json.dumps(n, ensure_ascii=False)
-    assert "Predikerer IKKE" in hel
+    blob = json.dumps(n, ensure_ascii=False)
+    assert "Predikerer IKKE" in blob
 
 
 def test_er_merket_idealisert():
     n = EnerFlytEngine().regime_node(BASE)
-    hel = json.dumps(n, ensure_ascii=False)
-    assert "idealiser" in hel
+    blob = json.dumps(n, ensure_ascii=False)
+    assert "idealiser" in blob
 
 
 def test_en_akse_av_mange_deklarert():
-    """Motoren skal si at energi er ÉN akse — andre valutaer er
-    eksplisitt ikke-konserverte."""
+    """The engine must state that energy is ONE axis — other currencies
+    are explicitly not conserving."""
     n = EnerFlytEngine().regime_node(BASE)
-    tekst = json.dumps(n["ontology"], ensure_ascii=False)
-    assert "penger" in tekst and "tillit" in tekst
+    text = json.dumps(n["ontology"], ensure_ascii=False)
+    assert "penger" in text and "tillit" in text

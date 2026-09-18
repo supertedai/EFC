@@ -82,8 +82,9 @@ import sys
 from pathlib import Path
 from urllib.parse import quote
 
-# Søskenmodulen ligger ved siden av denne fila, og verktøyet lastes både som
-# script og via importlib fra testene — da er ikke katalogen på sys.path.
+# The sibling module sits next to this file, and the tool is loaded both as a
+# script and via importlib from the tests — then the directory is not on
+# sys.path.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _repo_tre import filer as _tre_filer  # noqa: E402
 
@@ -110,11 +111,12 @@ def served_id(rel: str) -> str:
 
 
 def _files(root: Path, suffixes):
-    """Filene verktøyet svarer på: git-treet, ikke arbeidsstreet.
+    """The files the tool answers for: the git tree, not the working tree.
 
-    Leste tidligere disken med `root.rglob("*")`. I hovedklonen fant den
-    `.worktrees/` — gitignorert, men på disk — og `check()` ble rød lokalt og
-    grønn i CI, som kloner rent. Se `_repo_tre.py` (kanban t_12494ba1).
+    Previously read the disk with `root.rglob("*")`. In the main clone it
+    found `.worktrees/` — gitignored, but on disk — and `check()` went red
+    locally and green in CI, which clones clean. See `_repo_tre.py` (kanban
+    t_12494ba1).
     """
     return _tre_filer(root, suffixes=set(suffixes), skip_dirs=SKIP_DIRS,
                       skip_files=SKIP_FILES)

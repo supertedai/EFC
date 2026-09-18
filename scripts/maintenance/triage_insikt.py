@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""triage_insikt.py — fase 1-triage for innsiktskandidater.
+"""triage_insikt.py — phase 1 triage for insight candidates.
 
-Validerer mot schemas/insight-candidate.schema.json og klassifiserer
-lav / middels / høy med OBLIGATORISK begrunnelse fra feltene (kan
-overstyres av verifier). Ingen numerisk score i fase 1 — scoren
-kalibreres mot faktiske beslutninger når det finnes 20+ kandidater.
+Validates against schemas/insight-candidate.schema.json and classifies
+lav / middels / høy with a MANDATORY justification from the fields (can be
+overridden by the verifier). No numeric score in phase 1 — the score is
+calibrated against actual decisions once 20+ candidates exist.
 
-Bruk: python3 scripts/maintenance/triage_insikt.py <kandidat.yaml>
-Exit: 0 = gyldig kandidat (triage skrevet), 1 = ugyldig (needs-rework).
+Usage: python3 scripts/maintenance/triage_insikt.py <candidate.yaml>
+Exit: 0 = valid candidate (triage written), 1 = invalid (needs-rework).
 """
 from __future__ import annotations
 
@@ -24,12 +24,12 @@ TRIGGERE = {
     "hoy": [
         ("claim_type", "prediction"),
         ("claim_type", "correction"),
-        ("falsification_test", None),          # testbar → alvorlig kandidat
-        ("counterevidence", None),             # motbevis vurdert → moden kandidat
+        ("falsification_test", None),  # testable -> a serious candidate
+        ("counterevidence", None),     # counterevidence -> mature candidate
     ],
     "middels": [
         ("claim_type", "observation"),
-        ("source_refs", 2),                    # ≥2 uavhengige kilder
+        ("source_refs", 2),                    # ≥2 independent sources
     ],
 }
 
@@ -41,7 +41,7 @@ def triage(k: dict) -> tuple[str, list[str]]:
         if verdi is None:
             if k.get(felt):
                 hoy += 1
-                grunner.append(f"{felt} er satt")
+                grunner.append(f"{felt} is set")
         elif k.get(felt) == verdi:
             hoy += 1
             grunner.append(f"claim_type={verdi}")
@@ -52,7 +52,7 @@ def triage(k: dict) -> tuple[str, list[str]]:
         if verdi is None:
             if k.get(felt):
                 middels += 1
-                grunner.append(f"{felt} er satt")
+                grunner.append(f"{felt} is set")
         elif isinstance(verdi, int):
             if len(k.get(felt) or []) >= verdi:
                 middels += 1
@@ -62,30 +62,30 @@ def triage(k: dict) -> tuple[str, list[str]]:
             grunner.append(f"{felt}={verdi}")
     if middels >= 1 or hoy >= 1:
         return "middels", grunner
-    grunner.append("ingen høy/middels-triggere truffet")
+    grunner.append("no høy/middels triggers hit")
     return "lav", grunner
 
 
 def hoved() -> int:
     if len(sys.argv) != 2:
-        print("bruk: triage_insikt.py <kandidat.yaml>", file=sys.stderr)
+        print("usage: triage_insikt.py <kandidate.yaml>", file=sys.stderr)
         return 2
     sti = Path(sys.argv[1])
     import yaml
     k = yaml.safe_load(sti.read_text(encoding="utf-8")) or {}
     if not isinstance(k, dict):
-        print(json.dumps({"status": "needs-rework", "grunn": "kandidaten er ikke et YAML-objekt"},
+        print(json.dumps({"status": "needs-rework", "grunn": "the candidate is not a YAML object"},
                          ensure_ascii=False, indent=1))
         return 1
-    # content_hash-kontroll: ALLTID — manglende hash er needs-rework, ikke et
-    # valgfritt tillegg. Kanonisk form: scripts/maintenance/kanon_hash.py (v1),
-    # den ene delte spesifikasjonen for generator og verifier.
+    # content_hash check: ALWAYS — a missing hash is needs-rework, not an
+    # optional addition. Canonical form: scripts/maintenance/kanon_hash.py (v1),
+    # the one shared specification for generator and verifier.
     sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
     from kanon_hash import kanon_hash
     lagret = k.get("content_hash")
     if not isinstance(lagret, str):
         print(json.dumps({"status": "needs-rework",
-                          "grunn": "content_hash mangler eller er ugyldig"},
+                          "grunn": "content_hash is missing or invalid"},
                          ensure_ascii=False, indent=1))
         return 1
     kopi = dict(k)
@@ -93,13 +93,13 @@ def hoved() -> int:
     beregnet = kanon_hash(kopi)
     if beregnet != lagret:
         print(json.dumps({"status": "needs-rework",
-                          "grunn": "content_hash stemmer ikke med innholdet"},
+                          "grunn": "content_hash does not match the content"},
                          ensure_ascii=False, indent=1))
         return 1
     try:
         import jsonschema
     except ImportError:
-        print("jsonschema mangler — kjør `uv sync`", file=sys.stderr)
+        print("jsonschema is missing — run `uv sync`", file=sys.stderr)
         return 2
     try:
         jsonschema.validate(k, json.loads(SKJEMA.read_text(encoding="utf-8")))

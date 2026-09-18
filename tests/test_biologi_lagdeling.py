@@ -1,18 +1,19 @@
-"""BIOLOGIEN: skill fysiologien fra analogien.
+"""THE BIOLOGY: separate the physiology from the analogy.
 
-Maalt 2026-09-18: alle 12 `homo.*`-noder bar IDENTISK epistemisk signatur —
-`paradigme / hypotese / minoritet / proxy`. Det er feil for de fleste:
+Measured 2026-09-18: all 12 `homo.*` nodes carried an IDENTICAL epistemic
+signature — `paradigme / hypotese / minoritet / proxy`. That is wrong for
+most of them:
 
-  homo.hjerte_syklus er ikke en EFC-hypotese. Det er kardiologi.
-  homo.metabolisme er biokjemi. homo.immunologi er Janeway/Matzinger.
-  homo.sovn_vaaken er Borbely. homo.okologi er Scheffer.
+  homo.hjerte_syklus is not an EFC hypothesis. It is cardiology.
+  homo.metabolisme is biochemistry. homo.immunologi is Janeway/Matzinger.
+  homo.sovn_vaaken is Borbely. homo.okologi is Scheffer.
 
-Nodene SIER det selv i `ontology.source`: «<fag> (standard);
-analogi-merkingen er atlasets egen». Det er to lag, og de skal ha hver
-sin epistemiske status.
+The nodes SAY so themselves in `ontology.source`: "<discipline> (standard);
+the analogy marking is the atlas's own". There are two layers, and they
+must each have their own epistemic status.
 
-En node som sier «hypotese» om Krebs-syklusen gjor atlaset mer
-revolusjonert enn det er — den farligste retningen aa ta feil i.
+A node that says "hypotese" about the Krebs cycle makes the atlas more
+revolutionary than it is — the most dangerous direction to be wrong in.
 """
 from __future__ import annotations
 
@@ -32,43 +33,43 @@ def noder() -> list[dict]:
 
 
 def test_biologien_har_ikke_identisk_signatur(noder: list[dict]) -> None:
-    """Tolv like signaturer var feilen. De skal naa skille seg."""
+    """Twelve identical signatures were the error. They must now differ."""
     sig = {(n["perspektiv"], n["epistemikk"]["sannhetsstatus"]) for n in noder}
-    assert len(sig) > 1, f"alle biologinoder har fortsatt samme signatur: {sig}"
+    assert len(sig) > 1, f"all biology nodes still have the same signature: {sig}"
 
 
 def test_larebok_fysiologi_er_stottet(noder: list[dict]) -> None:
-    """Kardiologi, biokjemi og immunologi er etablert kunnskap, ikke vaar."""
+    """Cardiology, biochemistry and immunology are established knowledge, not ours."""
     for nid in ("homo.hjerte_syklus", "homo.metabolisme", "homo.immunologi",
                 "homo.genregulering", "homo.cellesyklus", "homo.sovn_vaaken",
                 "homo.okologi", "homo.aksjonspotensial", "homo.feber_regime"):
         n = next(x for x in noder if x["id"] == nid)
         assert n["epistemikk"]["sannhetsstatus"] == "stottet", (
-            f"{nid}: fysiologien er etablert, ikke en hypotese")
+            f"{nid}: the physiology is established, not a hypothesis")
         assert n["epistemikk"]["konsensusstatus"] == "institusjonell", nid
 
 
 def test_analogien_er_fortsatt_vaar(noder: list[dict]) -> None:
-    """Aa rette fysiologien maa IKKE gjore EFC-analogien til etablert."""
+    """Correcting the physiology must NOT make the EFC analogy established."""
     for n in noder:
         if not n.get("analogi"):
             continue
         a = n["analogi"]
         assert "avbildning" in a and "bryter_der" in a, (
-            f"{n['id']}: analogien mangler avbildning eller bryter_der")
+            f"{n['id']}: the analogy lacks avbildning or bryter_der")
 
 
 def test_fluksprosessen_er_fortsatt_paradigme(noder: list[dict]) -> None:
-    """Homo Fluxus selv — R, refleksjonskoeffisienten — ER vaar ramme."""
+    """Homo Fluxus itself — R, the reflection coefficient — IS our framework."""
     n = next(x for x in noder if x["id"] == "homo.fluxus")
     assert n["perspektiv"] == "paradigme"
     assert n["epistemikk"]["sannhetsstatus"] == "hypotese"
 
 
 def test_ingen_analogi_uten_lagdeling(noder: list[dict]) -> None:
-    """Har noden en analogi, skal lagdelingen staa skriftlig."""
+    """If the node has an analogy, the layering must be in writing."""
     for n in noder:
         if n.get("analogi"):
-            assert "lagdeling" in n, f"{n['id']}: analogi uten lagdeling"
+            assert "lagdeling" in n, f"{n['id']}: analogy without lagdeling"
             assert n["lagdeling"]["fysiologi"]["status"] == "akademia"
             assert n["lagdeling"]["analogi"]["status"] == "paradigme"

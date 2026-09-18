@@ -1,17 +1,18 @@
-"""Prediksjon og oppgjør i atlaset — kontrakten speiles fra bussen.
+"""Prediction and settlement in the atlas — the contract mirrors the bus.
 
-Målt 2026-09-17 på NATS-bussen (emne kosmos.kosmologi.prediksjon.efc-fs8,
-seq 31058): prediksjonskontrakten finnes ALLEREDE, komplett, med forseglet
-DOI, SHA256, frys, kriterium, toleranseregel og arbiter-status.
+Measured 2026-09-17 on the NATS bus (subject
+kosmos.kosmologi.prediksjon.efc-fs8, seq 31058): the prediction contract
+already exists, complete, with sealed DOI, SHA256, freeze, criterion,
+tolerance rule and arbiter status.
 
-Atlaset har null noder som bærer den. Problemet er ikke at oppgjøret
-mangler — det er at bussen gjør opp og kartet ikke ser det. Vær-domenet
-hadde 77 112 oppgjørsmeldinger med forventet/utfall/avvik mens atlaset
-hadde null.
+The atlas has zero nodes carrying it. The problem is not that the
+settlement is missing — it is that the bus settles and the map does not
+see it. The weather domain had 77 112 settlement messages with
+expected/outcome/deviation while the atlas had zero.
 
-Derfor speiles kontrakten her, ikke oppfunnet på nytt. Fixturen under er
-den målte meldingen, felt for felt — en test som bare sjekker «feltet
-finnes» ville ikke skilt en ekte speiling fra en oppdiktet.
+That is why the contract is mirrored here, not invented anew. The fixture
+below is the measured message, field for field — a test that only checks
+"the field exists" would not tell a real mirroring from a fabricated one.
 """
 import json
 import unittest
@@ -34,26 +35,27 @@ def _noder():
 
 
 def _node_ved_id(node_id: str):
-    """Hent en node VED ID — ikke «den foerste som tilfeldigvis baerer X».
+    """Fetch a node BY ID — not "the first one that happens to carry X".
 
-    Maalt av orchestrator 2026-09-17: tre tester i denne fila fant maalet
-    sitt med `next(n for n in _noder() if n.get("prediction"))`. Med en ny
-    prediction-baerer plassert FOERST i nodearrayet falt alle tre; den samme
-    noden plassert SIST ga 6 passed. Bare POSISJONEN skilte.
+    Measured by the orchestrator 2026-09-17: three tests in this file found
+    their target with `next(n for n in _noder() if n.get("prediction"))`. With
+    a new prediction carrier placed FIRST in the node array all three fell;
+    the same node placed LAST gave 6 passed. Only the POSITION differed.
 
-    Det betyr at testene paastod «den forseglede kontrakten er speilet» og
-    maalte «den foerste noden som tilfeldigvis baerer en prediction». Det er
-    samme feilklasse som resten av huset verner mot: instrumentet svarer paa
-    et nabospoersmaal.
+    That means the tests claimed "the sealed contract is mirrored" and
+    measured "the first node that happens to carry a prediction". It is the
+    same error class the rest of the house guards against: the instrument
+    answers a neighbouring question.
 
-    Pinneren er noedvendig FOER en andre prediction-baerer finnes — etterpaa
-    er feilen usynlig, fordi den foerste noden da er den riktige av slump.
+    The pin is necessary BEFORE a second prediction carrier exists —
+    afterwards the error is invisible, because the first node is then the
+    right one by chance.
     """
     for n in _noder():
         if n.get("id") == node_id:
             return n
     raise AssertionError(
-        f"noden `{node_id}` finnes ikke — testen maaler feil atlas")
+        f"the node `{node_id}` does not exist — the test measures the wrong atlas")
 
 
 class TestPrediksjonOgOppgjoer(unittest.TestCase):
@@ -61,29 +63,29 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
     def test_skjemaet_deklarerer_prediction_og_settlement(self):
         for navn in ("prediction", "settlement"):
             p = _prop(navn)
-            self.assertTrue(p, f"{navn} mangler i RegimeNode")
+            self.assertTrue(p, f"{navn} is missing from RegimeNode")
             self.assertEqual(p.get("type"), "object")
             self.assertFalse(p.get("additionalProperties", True),
-                             f"{navn} maa lukke sine egne felt")
+                             f"{navn} must close its own fields")
 
     def test_correlation_er_nokkelen_paa_begge_sider(self):
-        """Uten en felles, stabil noekkel er koblingen mellom prediksjon og
-        oppgjoer en påstand om at noen husker hva som hoerte sammen."""
+        """Without a shared, stable key the link between prediction and
+        settlement is a claim that someone remembers what belonged together."""
         for navn in ("prediction", "settlement"):
             self.assertIn("correlation", _prop(navn).get("required", []),
-                          f"correlation mangler i required for {navn}")
+                          f"correlation is missing from required for {navn}")
 
     def test_den_forseglede_prediksjonen_staar_paa_growth_noden(self):
-        """Speilingen: noden skal bære den målte kontrakten, ikke en fri
-        tekst som ligner."""
+        """The mirroring: the node must carry the measured contract, not a free
+        text that resembles it."""
         fixture = json.loads(FIXTUR.read_text(encoding="utf-8"))["hoder"]
         node = _node_ved_id("efc.growth_engine")
         self.assertIsNotNone(node.get("prediction"),
-                             "efc.growth_engine bærer ingen prediction")
+                             "efc.growth_engine carries no prediction")
         p = node["prediction"]
         for felt in ("observable", "sealed_doi", "sealing_sha256",
                      "criterion", "tolerance_rule", "correlation"):
-            self.assertIn(felt, p, f"{felt} mangler i nodens prediction")
+            self.assertIn(felt, p, f"{felt} is missing from the node's prediction")
         self.assertEqual(p["observable"], fixture["observabel"])
         self.assertEqual(p["sealed_doi"], fixture["forseglet_doi"])
         self.assertEqual(p["sealing_sha256"], fixture["forsegling_sha256"])
@@ -91,9 +93,9 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         self.assertEqual(p["tolerance_rule"], fixture["toleranse_regel"])
 
     def test_expected_er_speilet_ikke_avskrevet(self):
-        """`forventet` sendes som JSON-kodet streng paa bussen. Speilingen
-        skal baere TALLENE — sammenlign parset, saa en avskrift med feil
-        tall feller."""
+        """`forventet` is sent as a JSON-encoded string on the bus. The mirroring
+        must carry the NUMBERS — compare parsed, so that a transcription with
+        the wrong numbers falls."""
         fixture = json.loads(FIXTUR.read_text(encoding="utf-8"))["hoder"]
         ventet = json.loads(fixture["forventet"])
         node = _node_ved_id("efc.growth_engine")
@@ -104,8 +106,8 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         self.assertEqual(faktisk["fsigma8_efc"], 0.43)
 
     def test_arbiter_status_er_med(self):
-        """At arbiteren venter er en DEL av prediksjonens tilstand —
-        uten den ser en uavgjort prediksjon ut som en avgjort."""
+        """That the arbiter waits is PART of the prediction's state —
+        without it an undecided prediction looks like a decided one."""
         fixture = json.loads(FIXTUR.read_text(encoding="utf-8"))["hoder"]
         node = _node_ved_id("efc.growth_engine")
         p = node["prediction"]
@@ -119,7 +121,7 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
                                   "$ref": "#/$defs/RegimeNode"})
         feil = [(n["id"], e.message[:80])
                 for n in _noder() for e in v.iter_errors(n)]
-        self.assertEqual(feil, [], f"valideringsfeil: {feil[:3]}")
+        self.assertEqual(feil, [], f"validation errors: {feil[:3]}")
 
 
 if __name__ == "__main__":
@@ -127,38 +129,38 @@ if __name__ == "__main__":
 
 
 class TestSloeyfaErLukketDerDenErMaalt(unittest.TestCase):
-    """En node som SPEILER en maalt sloeyfe maa baere BEGGE sider.
+    """A node that MIRRORS a measured loop must carry BOTH sides.
 
-    Uavhengig review av #484 fant at `settlement` kunne fjernes fra
-    `verden.vaer` uten at en eneste test reagerte (50 passed paa mutanten).
-    Sjekjemaet kan ikke hjelpe: `settlement` er valgfritt, og det MAА vaere
-    valgfritt — `efc.growth_engine` baerer en prediction som venter paa DESI
-    DR2 og skal IKKE ha et oppgjoer.
+    Independent review of #484 found that `settlement` could be removed from
+    `verden.vaer` without a single test reacting (50 passed on the mutant).
+    The schema cannot help: `settlement` is optional, and it MUST be
+    optional — `efc.growth_engine` carries a prediction waiting for DESI
+    DR2 and must NOT have a settlement.
 
-    Men naar en node foerst speiler en maalt sloeyfe, er de to sidene ett
-    objekt. Da er det ikke et skjemasporsmaal, det er en invariant.
+    But once a node mirrors a measured loop, the two sides are one object.
+    Then it is not a schema question, it is an invariant.
     """
 
     def test_verden_vaer_baerer_begge_sider(self):
         n = _node_ved_id("verden.vaer")
-        self.assertIn("prediction", n, "verden.vaer mistet prediksjonen")
+        self.assertIn("prediction", n, "verden.vaer lost the prediction")
         self.assertIn("settlement", n,
-                      "verden.vaer speiler en maalt sloeyfe — oppgjoeret er "
-                      "ikke valgfritt naar sloeyfa faktisk har loept")
+                      "verden.vaer mirrors a measured loop — the settlement is "
+                      "not optional once the loop has actually run")
 
     def test_de_to_sidene_deler_korrelasjon(self):
-        """Uten felles noekkel er de to objektene loesrevne, ikke en sloeyfe."""
+        """Without a shared key the two objects are detached, not a loop."""
         n = _node_ved_id("verden.vaer")
         self.assertEqual(n["prediction"]["correlation"],
                          n["settlement"]["correlation"],
-                         "prediksjon og oppgjoer peker ikke paa samme maaling")
+                         "prediction and settlement do not point at the same measurement")
 
     def test_oppgjoeret_baerer_et_faktisk_utfall(self):
-        """Et settlement uten utfall er en paastand om at noe ble maalt."""
+        """A settlement without an outcome is a claim that something was measured."""
         n = _node_ved_id("verden.vaer")
         s = n["settlement"]
         for felt in ("outcome", "outcome_source", "deviation"):
-            self.assertTrue(s.get(felt), f"oppgjoeret mangler {felt}")
+            self.assertTrue(s.get(felt), f"the settlement is missing {felt}")
         self.assertNotEqual(s["outcome"], n["prediction"]["expected"],
-                            "utfall og forventning er identiske — da er det "
-                            "ikke maalt, det er speilet to ganger")
+                            "outcome and expectation are identical — then it is not "
+                            "measured, it is mirrored twice")

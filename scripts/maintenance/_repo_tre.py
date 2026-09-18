@@ -1,21 +1,23 @@
-"""Hvilke filer er repoet? Ett svar, ikke tre.
+"""Which files are the repo? One answer, not three.
 
-Målt 2026-09-17 (kanban t_12494ba1): tre instrumenter svarte hver for seg ved å
-vandre over disken — `Path(".").rglob("*")`, `root.rglob("*")`, `os.walk(root)`.
-I hovedklonen traff de `.worktrees/`: gitignorert (.gitignore), men til stede
-på disken. Tre tester som var grønne i CI ble røde lokalt av den — «privat
-adresse lekker», «legacy binding», «$id er ikke den tjente identifikatoren» —
-fordi instrumentet leste arbeidsstreet og ikke kilden.
+Measured 2026-09-17 (kanban t_12494ba1): three instruments answered each for
+itself by walking the disk — `Path(".").rglob("*")`, `root.rglob("*")`,
+`os.walk(root)`. In the main clone they hit `.worktrees/`: gitignored
+(.gitignore), but present on disk. Three tests that were green in CI went red
+locally because of it — "private address leaks", "legacy binding", "$id is not
+the served identifier" — because the instrument read the worktree and not the
+source.
 
-Regelen her: i et git-tre er svaret `git ls-files -z`, altså det som faktisk
-publiseres, og det er likt i alle kloner. Er treet ikke et git-tre (en rigg i
-en temp-katalog, en `git archive`-eksport), leses disken, og de ignorerte
-katalogene hoppes over ved navn.
+The rule here: in a git tree the answer is `git ls-files -z`, i.e. what is
+actually published, and it is the same in all clones. If the tree is not a
+git tree (a rig in a temp directory, a `git archive` export), the disk is
+read, and the ignored directories are skipped by name.
 
-Bare indeksen leses, ikke `--others`: et svar som «ingen privat adresse i
-treet» eller «én binding» skal gjelde det som er lagt inn i git, ellers
-avhenger svaret av hva som tilfeldigvis ligger ulagt i arbeidsstreet.
-Konsekvensen er at en NY fil må `git add`-es før verktøyet ser den.
+Only the index is read, not `--others`: an answer such as "no private address
+in the tree" or "one binding" must hold for what has been added to git,
+otherwise the answer depends on what happens to lie unadded in the worktree.
+The consequence is that a NEW file must be `git add`-ed before the tool sees
+it.
 """
 from __future__ import annotations
 
@@ -23,20 +25,20 @@ import os
 import subprocess
 from pathlib import Path, PurePosixPath
 
-# Kataloger som aldri er en del av repoet, uansett hvordan treet leses.
-# `.worktrees/` er den målte: arbeidsflater under repoet, ignorert av git, men
-# fullt synlige for en diskvandring.
+# Directories that are never part of the repo, however the tree is read.
+# `.worktrees/` is the measured one: work surfaces under the repo, ignored
+# by git, but fully visible to a disk walk.
 IGNORERTE_KATALOGER = frozenset({
     ".git", ".worktrees", "node_modules", "__pycache__", ".venv", "venv",
 })
 
 
 def git_indeks(root: Path) -> list[str] | None:
-    """Sporede stier, relative til `root`, eller None.
+    """Tracked paths, relative to `root`, or None.
 
-    None betyr «dette er ikke et git-tre jeg kan lese» — ikke «tomt tre» — og
-    er det som skiller de to kildene til svar. `-z` fordi en sti med mellomrom
-    eller en ikke-ASCII bokstav er en sti, og tekstmodus kvoterer begge.
+    None means "this is not a git tree I can read" — not "empty tree" — and
+    that is what separates the two sources of an answer. `-z` because a path
+    with a space or a non-ASCII letter is a path, and text mode quotes both.
     """
     try:
         ut = subprocess.run(["git", "-C", str(root), "ls-files", "-z"],
@@ -46,16 +48,16 @@ def git_indeks(root: Path) -> list[str] | None:
     if ut.returncode != 0:
         return None
     stier = [p for p in ut.stdout.decode("utf-8", "surrogateescape").split("\0") if p]
-    # TOM LISTE ER ET SVAR — ikke «ingen indeks».
+    # AN EMPTY LIST IS AN ANSWER — not "no index".
     #
-    # Foerste utgave returnerte `stier or None`. Da ble et gyldig, tomt
-    # git-tre behandlet som «ikke et git-tre», `filer()` falt tilbake til
-    # diskvandring, og USPOREDE filer ble lest — i strid med premisset om at
-    # git-treet er autoritativt. Reprodusert i review 2026-09-17:
-    # `git init` + én usporet fil med privat innhold ble returnert.
+    # The first edition returned `stier or None`. A valid, empty git tree
+    # was then treated as "not a git tree", `filer()` fell back to a disk
+    # walk, and UNTRACKED files were read — against the premise that the
+    # git tree is authoritative. Reproduced in review 2026-09-17:
+    # `git init` + one untracked file with private content was returned.
     #
-    # Docstringen over sa allerede at None betyr «ikke et git-tre jeg kan
-    # lese» og ikke «tomt tre». Koden gjorde det motsatte av det den sa.
+    # The docstring above already said that None means "not a git tree I can
+    # read" and not "empty tree". The code did the opposite of what it said.
     return stier
 
 
@@ -69,12 +71,13 @@ def _fra_disk(root: Path, ignorerte: frozenset) -> list[str]:
 
 
 def filer(root: Path, suffixes=None, skip_dirs=(), skip_files=()) -> list[Path]:
-    """Filene i treet, sortert på relativ sti.
+    """The files in the tree, sorted by relative path.
 
-    `suffixes` er en mengde endelser (None = alle), `skip_dirs` og
-    `skip_files` er verktøyets egne unntak — de ignorerte katalogene over
-    gjelder alltid i tillegg. Filer som står i indeksen, men er slettet fra
-    disken, hoppes over: denne funksjonen svarer med filer som kan leses.
+    `suffixes` is a set of endings (None = all), `skip_dirs` and
+    `skip_files` are the tool's own exceptions — the ignored directories
+    above always apply in addition. Files that are in the index but deleted
+    from the disk are skipped: this function answers with files that can be
+    read.
     """
     root = Path(root)
     ignorerte = IGNORERTE_KATALOGER | set(skip_dirs)

@@ -1,11 +1,11 @@
-"""Tester for OrbitalEngine — Kepler og baneregimer (L-037).
+"""Tests for OrbitalEngine — Kepler and orbital regimes (L-037).
 
-Banemekanikk er den mest testbare EFC-motoren: prediksjoner på kjente
-objekter med kjente tall. Motoren koder baneregimene som EFC-former:
-bundet bane = holding (negativ spesifikk energi), unbundet = release,
-resonans = periodelåsing, og Hill-sfæren/Lagrange-punktene som
-potensialbuffere. IDEALISERT tolegeme-mekanikk — den er IKKE en
-N-kroppsimulator, og det skal stå i selvbeskrivelsen.
+Orbital mechanics is the most testable EFC engine: predictions about
+known objects with known numbers. The engine encodes the orbital regimes
+as EFC forms: bound orbit = holding (negative specific energy), unbound =
+release, resonance = period locking, and the Hill sphere/Lagrange points
+as potential buffers. IDEALISED two-body mechanics — it is NOT an N-body
+simulator, and that must stand in the self-description.
 """
 from __future__ import annotations
 
@@ -14,17 +14,17 @@ import pytest
 
 from efc_inference.engine.orbital import OrbitalEngine
 
-# Jord-måne-systemet (SI): G, M_jord, a_måne, e_måne
+# The Earth-Moon system (SI): G, M_earth, a_moon, e_moon
 PARAMS = {
     "G": 6.67430e-11,          # m^3/(kg s^2)
-    "M_sentral": 5.9722e24,    # kg — jorden
-    "a": 3.844e8,              # m — månens store halvakse
-    "e": 0.0549,               # månens eksentrisitet
-    "m_objekt": 7.342e22,      # kg — månen
+    "M_sentral": 5.9722e24,    # kg — the Earth
+    "a": 3.844e8,              # m — the Moon's semi-major axis
+    "e": 0.0549,               # the Moon's eccentricity
+    "m_objekt": 7.342e22,      # kg — the Moon
 }
 
-# Forventede verdier (månen, kjente tall):
-# T = 2π sqrt(a^3/(G M)) med M = M_sentral + m_objekt
+# Expected values (the Moon, known numbers):
+# T = 2π sqrt(a^3/(G M)) with M = M_sentral + m_objekt
 M_TOT = PARAMS["M_sentral"] + PARAMS["m_objekt"]
 T_FORVENTET = 2 * np.pi * np.sqrt(PARAMS["a"] ** 3 / (PARAMS["G"] * M_TOT))
 
@@ -36,14 +36,14 @@ def test_kepler_periode_maten():
 
 
 def test_periode_maten_er_siderisk_riktig():
-    """Månens sideriske omløpstid skal være ~27.3 døgn."""
+    """The Moon's sidereal orbital period must be ~27.3 days."""
     e = OrbitalEngine()
     t_dogn = e.periode(PARAMS) / 86400.0
     assert 27.0 < t_dogn < 28.0
 
 
 def test_vis_viva_hastighet():
-    """Vis-viva: v^2 = GM(2/r - 1/a) — ved r=a i sirkelbanen er
+    """Vis-viva: v^2 = GM(2/r - 1/a) — at r=a in the circular orbit,
     v = sqrt(GM/a)."""
     e = OrbitalEngine()
     v_sirkel = e.hastighet(PARAMS, PARAMS["a"])
@@ -52,20 +52,20 @@ def test_vis_viva_hastighet():
 
 
 def test_spesifikk_energi_skiller_holding_og_release():
-    """Negativ spesifikk energi = bundet (holding); positiv = ubundet
-    (release). Unnslipningshastigheten gir nøyaktig null."""
+    """Negative specific energy = bound (holding); positive = unbound
+    (release). The escape velocity gives exactly zero."""
     e = OrbitalEngine()
     eps_bundet = e.spesifikk_energi(PARAMS, PARAMS["a"])
-    assert eps_bundet < 0  # månen er bundet — holding
-    # Unnslipning: v = sqrt(2GM/r) -> eps = 0
+    assert eps_bundet < 0  # the Moon is bound — holding
+    # Escape: v = sqrt(2GM/r) -> eps = 0
     v_esc = np.sqrt(2 * PARAMS["G"] * M_TOT / PARAMS["a"])
     eps_esc = 0.5 * v_esc ** 2 - PARAMS["G"] * M_TOT / PARAMS["a"]
     assert abs(eps_esc) < 1e-6
 
 
 def test_hill_sfaere_er_bufferen():
-    """Hill-sfæren er månebanens buffer mot jorden: r_H = a (m/(3M))^(1/3).
-    Innenfor holder den seg; utenfor bryter bindingen."""
+    """The Hill sphere is the lunar orbit's buffer against the Earth:
+    r_H = a (m/(3M))^(1/3). Inside it holds; outside the binding breaks."""
     e = OrbitalEngine()
     r_h = e.hill_sfaere(PARAMS)
     forventet = PARAMS["a"] * (PARAMS["m_objekt"]
@@ -74,19 +74,19 @@ def test_hill_sfaere_er_bufferen():
 
 
 def test_compute_rapporterer_regime_per_bane():
-    """compute() skal gi regime-status: bundet (holding, eps<0) for
-    a>0, ubundet (release, eps>0) for hyperbolsk a<0."""
+    """compute() must give regime status: bound (holding, eps<0) for a>0,
+    unbound (release, eps>0) for hyperbolic a<0."""
     e = OrbitalEngine()
     koord = np.array([[PARAMS["a"], PARAMS["e"]],
-                      [-1.0e9, 0.9]])  # hyperbolsk — negativ a
+                      [-1.0e9, 0.9]])  # hyperbolic — negative a
     ut = e.compute(PARAMS, koord)
     assert ut.shape == (2,)
-    assert ut[0] < 0  # bundet = negativ energi = holding
-    assert ut[1] > 0  # ubundet = positiv energi = release
+    assert ut[0] < 0  # bound = negative energy = holding
+    assert ut[1] > 0  # unbound = positive energy = release
 
 
 def test_compute_haandterer_ugyldige_parametre():
-    """Ugyldige parametre skal gi NaN, ikke KeyError."""
+    """Invalid parameters must give NaN, not KeyError."""
     e = OrbitalEngine()
     ut = e.compute({"G": 6.67430e-11}, np.array([[3.844e8, 0.05]]))
     assert np.all(np.isnan(ut))
@@ -103,10 +103,10 @@ def test_regime_node_selvbeskrivelse():
 
 
 def test_resonans_forhold_oppdages():
-    """3:2-resonans (f.eks. Neptun-Pluto) skal gjenkjennes som
-    periodelåsing — holding i fase."""
+    """A 3:2 resonance (e.g. Neptune-Pluto) must be recognised as period
+    locking — holding in phase."""
     e = OrbitalEngine()
-    forhold = e.resonans_forhold(3.0, 2.0)  # perioder i 3:2
+    forhold = e.resonans_forhold(3.0, 2.0)  # periods in 3:2
     assert abs(forhold - 3.0 / 2.0) < 1e-9
 
 

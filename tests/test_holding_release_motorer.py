@@ -1,26 +1,26 @@
-"""Tester for holding->release-motorene: sol-flare, jordskjelv og transient (L-026/L-028/L-036).
+"""Tests for the holding->release engines: solar flare, quake, transient (L-026/L-028/L-036).
 
-Alle tre motorer koder den samme formen: energi/spenning/masse lades
-langsomt i en buffer, og utloses plutselig naar en terskel krysses — det
-samme monsteret som ble funnet i recon-en av kosmos.sol (GOES-flares),
-kosmos.jord (USGS-skjelv) og kosmos.transienter (ALeRCE/ZTF-hendelser).
-Motorene er REGIME-MOTORER: de beregner formens observabler
-(oppladningstid, utlost energi/moment, klasse) fra fysikalske parametre
-— de pastar ikke prediksjonskraft for enkelthendelser.
+All three engines encode the same shape: energy/stress/mass charges
+slowly in a buffer, and is released abruptly when a threshold is crossed — the
+same pattern that was found in the recon of kosmos.sol (GOES flares),
+kosmos.jord (USGS quakes) and kosmos.transienter (ALeRCE/ZTF events).
+The engines are REGIME ENGINES: they compute the shape's observables
+(charging time, released energy/moment, class) from physical parameters
+— they do not claim predictive power for single events.
 
-Disiplin: modellene er idealiserte (Avallon-stil magnetisk buffer;
-elastic-rebound/Burridge-Knopoff-stil forkastningslading; kollaps-buffer
-med G*M^2/R). Det skal sta i motorens egen beskrivelse, og utlosning skal
-vaere TERSKELSTYRT — ikke tidsstyrt. Alle tre holder ogsaa SAMME
-fail-closed-kontrakt for inngangen: bufferen lades fra null, saa negativ
-eller ikke-endelig inngang er utenfor vinduet og gir NaN — aldri
-«holding» og aldri en utlosning (L-036/PR #501-formen).
+Discipline: the models are idealized (Avallon-style magnetic buffer;
+elastic-rebound/Burridge-Knopoff-style fault loading; collapse buffer
+with G*M^2/R). It shall stand in the engine's own description, and release shall
+be THRESHOLD-DRIVEN — not time-driven. All three also hold the SAME
+fail-closed contract for the input: the buffer charges from zero, so negative
+or non-finite input is outside the window and gives NaN — never
+"holding" and never a release (the L-036/PR #501 shape).
 
-Transient-motoren (L-036) har LANDET atlas-kobling: noden
-efc.transient_engine staar i schema/regime_nodes.jsonld med de tre
-ANALOGOUS_TO-relasjonene. Vakten som gjorde utsettelsen maskinelt synlig
-er byttet mot bro-testen nedenfor, som holder motorens regime_node() og
-atlas-noden maskinelt sammen.
+The transient engine (L-036) has LANDED atlas coupling: the node
+efc.transient_engine stands in schema/regime_nodes.jsonld with the three
+ANALOGOUS_TO relations. The guard that made the postponement machine-visible
+was replaced by the bridge test below, which holds the engine's regime_node() and
+the atlas node together mechanically.
 """
 from __future__ import annotations
 
@@ -44,14 +44,14 @@ _SKJEMA = Path(__file__).resolve().parents[1] / "schema" / "regime_node.schema.j
 
 
 # ----------------------------------------------------------------------
-# Sol-flare-motoren
+# The solar-flare engine
 # ----------------------------------------------------------------------
 
 SOLFLARE_PARAMS = {
-    "mu_0": 1.25663706212e-6,   # N/A^2 — vakumpermeabilitet
-    "b_crit": 0.3,              # T — kritisk feltstyrke for utlosning
-    "oppladningsrate": 1.0e-6,  # T/s — dB/dt i aktivt omraade
-    "volum": 1.0e21,            # m^3 — aktivt omraade-volum
+    "mu_0": 1.25663706212e-6,   # N/A^2 — vacuum permeability
+    "b_crit": 0.3,              # T — critical field strength for release
+    "oppladningsrate": 1.0e-6,  # T/s — dB/dt in the active region
+    "volum": 1.0e21,            # m^3 — active-region volume
 }
 
 
@@ -72,7 +72,7 @@ def test_solarflare_utlost_energi_fra_magnetisk_buffer():
 
 
 def test_solarflare_goes_klasse_monoton():
-    """Hoyere utlost energi -> minst like hoy GOES-klasse (A<B<C<M<X)."""
+    """Higher released energy -> at least as high a GOES class (A<B<C<M<X)."""
     e = SolarFlareEngine()
     klasser = [e.goes_klasse(e.utlost_energi(
         {**SOLFLARE_PARAMS, "b_crit": b})) for b in (0.1, 0.2, 0.3, 0.5)]
@@ -81,8 +81,8 @@ def test_solarflare_goes_klasse_monoton():
 
 
 def test_solarflare_goes_anker_1e22_j_er_m():
-    """Kalibreringsankeret: 1e22 J ~ M-klasse (typisk M-flare-energi).
-    Proxeyens dokumentasjon og kode skal stemme."""
+    """The calibration anchor: 1e22 J ~ M class (typical M-flare energy).
+    Proxey's documentation and code shall agree."""
     e = SolarFlareEngine()
     assert e.goes_klasse(1e22) == "M"
     assert e.goes_klasse(1e23) == "X"
@@ -91,13 +91,13 @@ def test_solarflare_goes_anker_1e22_j_er_m():
 
 
 def test_solarflare_holdingsfase_for_terskel():
-    """For B < b_crit er bufferen i holding: ingen utlosning, energien
-    bygges. compute() skal rapportere holding, ikke utlosning."""
+    """For B < b_crit the buffer is in holding: no release, the energy
+    builds up. compute() shall report holding, not release."""
     e = SolarFlareEngine()
     params = dict(SOLFLARE_PARAMS)
     out = e.compute(params, np.array([0.1]))  # B = 0.1 T < 0.3 T
     assert out.shape == (1,)
-    # Ingen utlosning: utlost energi = 0
+    # No release: released energy = 0
     assert out[0] == 0.0
 
 
@@ -112,13 +112,13 @@ def test_solarflare_regime_node_selvbeskrivelse():
 
 
 def test_solarflare_fail_closed_paa_ugyldig_feltstyrke():
-    """Ugyldig feltstyrke er utenfor vinduet — aldri «holding» og aldri
-    en exception.
+    """Invalid field strength is outside the window — never "holding" and never
+    an exception.
 
-    Maalt for denne kontrakten (origin/main = afdc620f):
-    compute([-1, nan, inf, -inf]) -> [0.0, 0.0, inf, 0.0] — motoren
-    svarte «bufferen holder» paa NaN og -inf, og slapp en uendelig
-    energi for +inf.
+    Measured for this contract (origin/main = afdc620f):
+    compute([-1, nan, inf, -inf]) -> [0.0, 0.0, inf, 0.0] — the engine
+    answered "the buffer holds" for NaN and -inf, and released an infinite
+    energy for +inf.
     """
     e = SolarFlareEngine()
     ugyldig = np.array([-1.0, -SOLFLARE_PARAMS["b_crit"], np.nan,
@@ -128,27 +128,27 @@ def test_solarflare_fail_closed_paa_ugyldig_feltstyrke():
 
 
 def test_solarflare_hjelperen_har_samme_fail_closed_kontrakt():
-    """magnetisk_energi() er samme KLASSE hjelper som transient-motorens
-    bindingsenergi(): B^2 gjorde energien POSITIV ogsaa for negativ B, saa
-    en direkte kallende part fikk et tall der compute() gir NaN.
-    Kontrakten skal ha EEN kilde, ikke en per kall.
+    """magnetisk_energi() is the same CLASS of helper as the transient engine's
+    bindingsenergi(): B^2 made the energy POSITIVE also for negative B, so
+    a directly calling party got a number where compute() gives NaN.
+    The contract shall have ONE source, not one per call.
     """
     e = SolarFlareEngine()
     ugyldig = np.array([-1.0, np.nan, np.inf, -np.inf])
     energi = e.magnetisk_energi(SOLFLARE_PARAMS, ugyldig)
     assert np.all(np.isnan(energi)), energi
-    # Gyldig inngang er UENDRET: E = B^2/(2 mu_0) * V ved terskelen.
+    # Valid input is UNCHANGED: E = B^2/(2 mu_0) * V at the threshold.
     assert np.isclose(e.magnetisk_energi(SOLFLARE_PARAMS, np.array([0.3]))[0],
                       e.utlost_energi(SOLFLARE_PARAMS))
-    # ...og NaN-settet til hjelperen og til compute() er det SAMME.
+    # ...and the NaN set of the helper and of compute() is the SAME.
     miks = np.array([-1.0, np.nan, np.inf, -np.inf, 0.0, 0.1, 0.3, 0.9])
     assert np.array_equal(np.isnan(e.magnetisk_energi(SOLFLARE_PARAMS, miks)),
                           np.isnan(e.compute(SOLFLARE_PARAMS, miks)))
 
 
 def test_solarflare_validity_deklarerer_ugyldig_inngang():
-    """Vinduet er motorens egen paastand. Staar kontrakten ikke der, er
-    den stille — samme feilklasse som «NaN -> holding» var maalt som."""
+    """The window is the engine's own claim. If the contract does not stand there, it
+    is silent — the same error class that "NaN -> holding" was measured as."""
     v = SolarFlareEngine().regime_node(SOLFLARE_PARAMS)["regime"]["validity"]
     assert "utenfor vinduet" in v
     assert "NaN" in v
@@ -156,14 +156,14 @@ def test_solarflare_validity_deklarerer_ugyldig_inngang():
 
 
 # ----------------------------------------------------------------------
-# Jordskjelv-motoren
+# The earthquake engine
 # ----------------------------------------------------------------------
 
 JORDSKJELV_PARAMS = {
-    "skjaermodul": 3.0e10,       # Pa — skjaermodul (jordskorpen)
-    "lade_rate": 1.0e4,          # Pa/aar — spenningsakkumulering
-    "terskel": 3.0e6,            # Pa — spenningsfall ved utlosning
-    "areal": 1.0e8,              # m^2 — bruddflate
+    "skjaermodul": 3.0e10,       # Pa — shear modulus (the Earth's crust)
+    "lade_rate": 1.0e4,          # Pa/year — stress accumulation
+    "terskel": 3.0e6,            # Pa — stress drop at release
+    "areal": 1.0e8,              # m^2 — rupture area
 }
 
 
@@ -177,7 +177,7 @@ def test_jordskjelv_gjentakelsestid():
 def test_jordskjelv_moment_og_magnitude():
     e = JordskjelvEngine()
     m0 = e.seismisk_moment(JORDSKJELV_PARAMS)
-    # M0 = mu * A * D med D = terskel / mu
+    # M0 = mu * A * D with D = terskel / mu
     forventet = (JORDSKJELV_PARAMS["skjaermodul"] * JORDSKJELV_PARAMS["areal"]
                  * (JORDSKJELV_PARAMS["terskel"] / JORDSKJELV_PARAMS["skjaermodul"]))
     assert np.isclose(m0, forventet)
@@ -188,7 +188,7 @@ def test_jordskjelv_moment_og_magnitude():
 
 def test_jordskjelv_holdingsfase_for_akkumulering():
     e = JordskjelvEngine()
-    # Spenning under terskel: holding — momentet bygges, utlosning er 0
+    # Stress below threshold: holding — the moment builds up, release is 0
     out = e.compute(JORDSKJELV_PARAMS, np.array([1.0e6]))  # 1 MPa < 3 MPa
     assert out.shape == (1,)
     assert out[0] == 0.0
@@ -196,9 +196,9 @@ def test_jordskjelv_holdingsfase_for_akkumulering():
 
 def test_jordskjelv_utlosning_over_terskel():
     e = JordskjelvEngine()
-    out = e.compute(JORDSKJELV_PARAMS, np.array([3.2e6]))  # over terskel
+    out = e.compute(JORDSKJELV_PARAMS, np.array([3.2e6]))  # above threshold
     assert out.shape == (1,)
-    assert out[0] > 0.0  # momentet slippes
+    assert out[0] > 0.0  # the moment is released
 
 
 def test_jordskjelv_regime_node_selvbeskrivelse():
@@ -212,13 +212,13 @@ def test_jordskjelv_regime_node_selvbeskrivelse():
 
 
 def test_jordskjelv_fail_closed_paa_ugyldig_spenning():
-    """Ugyldig spenning er utenfor vinduet — aldri «holding» og aldri
-    en exception.
+    """Invalid stress is outside the window — never "holding" and never
+    an exception.
 
-    Maalt for denne kontrakten (origin/main = afdc620f):
-    compute([-1, nan, inf, -inf]) -> [0.0, 0.0, 3e14, 0.0] — motoren
-    svarte «bufferen holder» paa NaN og -inf, og slapp hele momentet
-    for +inf. Gyldige punkter skal vaere UENDRET.
+    Measured for this contract (origin/main = afdc620f):
+    compute([-1, nan, inf, -inf]) -> [0.0, 0.0, 3e14, 0.0] — the engine
+    answered "the buffer holds" for NaN and -inf, and released the whole moment
+    for +inf. Valid points shall be UNCHANGED.
     """
     e = JordskjelvEngine()
     ugyldig = np.array([-1.0, -JORDSKJELV_PARAMS["terskel"], np.nan,
@@ -230,7 +230,7 @@ def test_jordskjelv_fail_closed_paa_ugyldig_spenning():
 
 
 def test_jordskjelv_validity_deklarerer_ugyldig_inngang():
-    """Vinduet er motorens egen paastand — kontrakten skal staa der."""
+    """The window is the engine's own claim — the contract shall stand there."""
     v = JordskjelvEngine().regime_node(
         JORDSKJELV_PARAMS)["regime"]["validity"]
     assert "utenfor vinduet" in v
@@ -239,22 +239,22 @@ def test_jordskjelv_validity_deklarerer_ugyldig_inngang():
 
 
 # ----------------------------------------------------------------------
-# Transient-motoren (stjernedod)
+# The transient engine (stellar death)
 # ----------------------------------------------------------------------
 
 TRANS_PARAMS = {
-    "G": 6.67430e-11,           # m^3 kg^-1 s^-2 — gravitasjonskonstanten
-    "terskelmasse": 2.785e30,   # kg — stabilitetsgrensen (Chandrasekhar-stil, MODELLPARAMETER)
-    "radius": 1.0e4,            # m — kjerneradius ved kollaps
-    "vekstrate": 6.3e19,        # kg/s — massetilvekst (oppladningen)
-    "stigningstid_dager": 20.0,  # dager — rask stigning i lettkurven
-    "haletid_dager": 40.0,      # dager — eksponensiell hale
-    "stigningseksponent": 2.0,  # formparameter for stigningen
+    "G": 6.67430e-11,           # m^3 kg^-1 s^-2 — the gravitational constant
+    "terskelmasse": 2.785e30,   # kg — the stability limit (Chandrasekhar-style, MODEL PARAMETER)
+    "radius": 1.0e4,            # m — core radius at collapse
+    "vekstrate": 6.3e19,        # kg/s — mass accretion (the charging)
+    "stigningstid_dager": 20.0,  # days — fast rise in the light curve
+    "haletid_dager": 40.0,      # days — exponential tail
+    "stigningseksponent": 2.0,  # shape parameter for the rise
 }
 
 
 def test_transient_bindingsenergi_skalerer_med_masse_kvadrert():
-    """E_bind = G*M^2/R — og den skalerer som M^2 (4x masse -> 4x energi)."""
+    """E_bind = G*M^2/R — and it scales as M^2 (4x mass -> 4x energy)."""
     e = TransientEngine()
     m = TRANS_PARAMS["terskelmasse"]
     forventet = (TRANS_PARAMS["G"] * m ** 2 / TRANS_PARAMS["radius"])
@@ -264,7 +264,7 @@ def test_transient_bindingsenergi_skalerer_med_masse_kvadrert():
 
 
 def test_transient_utlost_energi_ved_terskelen():
-    """Utlost energi VED terskelen = G*terskelmasse^2/R."""
+    """Released energy AT the threshold = G*terskelmasse^2/R."""
     e = TransientEngine()
     m = TRANS_PARAMS["terskelmasse"]
     forventet = TRANS_PARAMS["G"] * m ** 2 / TRANS_PARAMS["radius"]
@@ -273,7 +273,7 @@ def test_transient_utlost_energi_ved_terskelen():
 
 
 def test_transient_holdetid_fra_vekstrate():
-    """Holdetiden = terskelmasse / vekstrate (sekunder), positiv og endelig."""
+    """The hold time = terskelmasse / vekstrate (seconds), positive and finite."""
     e = TransientEngine()
     t = e.holdetid(TRANS_PARAMS)
     assert np.isclose(t, TRANS_PARAMS["terskelmasse"] / TRANS_PARAMS["vekstrate"])
@@ -281,7 +281,7 @@ def test_transient_holdetid_fra_vekstrate():
 
 
 def test_transient_holdingsfase_under_terskel():
-    """Under stabilitetsgrensen holder kjernen: ingen utlosning (0)."""
+    """Below the stability limit the core holds: no release (0)."""
     e = TransientEngine()
     out = e.compute(TRANS_PARAMS, np.array([0.5 * TRANS_PARAMS["terskelmasse"]]))
     assert out.shape == (1,)
@@ -289,11 +289,11 @@ def test_transient_holdingsfase_under_terskel():
 
 
 def test_transient_utlosning_bruker_den_lokale_massen():
-    """Konvensjonen skal vaere eksplisitt og testet: compute() bruker den
-    LOKALE massen (energien skalerer med M^2), mens utlost_energi(params)
-    er energien VED terskelen — samme konvensjon som solar_flare.compute().
-    En implementasjon som returnerer den deklarerte terskelenergien for en
-    masse OVER terskelen skal falle her."""
+    """The convention shall be explicit and tested: compute() uses the
+    LOCAL mass (the energy scales with M^2), while utlost_energi(params)
+    is the energy AT the threshold — the same convention as solar_flare.compute().
+    An implementation that returns the declared threshold energy for a
+    mass ABOVE the threshold shall fail here."""
     e = TransientEngine()
     m = TRANS_PARAMS["terskelmasse"]
     ved_terskel = e.compute(TRANS_PARAMS, np.array([m]))[0]
@@ -305,19 +305,19 @@ def test_transient_utlosning_bruker_den_lokale_massen():
 
 
 def test_transient_lettkurve_peak_ved_stigningstiden():
-    """Formen: (t/t_stig)^alpha under stigningstiden, exp(-(t-t_stig)/t_hale)
-    etter — kontinuerlig med maksimum 1.0 i t = stigningstid_dager."""
+    """The shape: (t/t_stig)^alpha during the rise time, exp(-(t-t_stig)/t_hale)
+    after — continuous with a maximum of 1.0 at t = stigningstid_dager."""
     e = TransientEngine()
     t_stig = TRANS_PARAMS["stigningstid_dager"]
     t_hale = TRANS_PARAMS["haletid_dager"]
     assert np.isclose(e.lettkurve(TRANS_PARAMS, np.array([t_stig]))[0], 1.0)
     assert np.isclose(e.lettkurve(TRANS_PARAMS, np.array([0.0]))[0], 0.0)
-    # stigningen er rask og monoton: alpha = 2 -> (t/t_stig)^2
+    # the rise is fast and monotonic: alpha = 2 -> (t/t_stig)^2
     assert np.isclose(e.lettkurve(TRANS_PARAMS, np.array([t_stig / 2]))[0], 0.25)
-    # halen er eksponensiell med t_hale som tidsskala
+    # the tail is exponential with t_hale as the time scale
     assert np.isclose(e.lettkurve(TRANS_PARAMS, np.array([t_stig + t_hale]))[0],
                       np.exp(-1.0))
-    # monoton stigning foran kneet, monoton hale etter (to punkter hver vei)
+    # monotonic rise before the knee, monotonic tail after (two points each way)
     stig = e.lettkurve(TRANS_PARAMS, np.array([0.2, 0.5, 0.9]) * t_stig)
     hale = e.lettkurve(TRANS_PARAMS, np.array([1.0, 2.0, 5.0]) * t_stig)
     assert list(stig) == sorted(stig)
@@ -325,10 +325,10 @@ def test_transient_lettkurve_peak_ved_stigningstiden():
 
 
 def test_transient_lettkurve_enhet_er_dager_ikke_sekunder():
-    """Enhetsfolsom logikk: formen tar DAGER (parameteren heter _dager).
-    Fixturen er laget slik at en feil enhet gaar til MOTSATT konklusjon:
-    100 dager = t_stig + 2*t_hale skal gi exp(-2) ~ 0.135, mens en
-    implementasjon som leser parameteren som sekunder gir exp(-1.7e5) ~ 0.
+    """Unit-sensitive logic: the shape takes DAYS (the parameter is named _dager).
+    The fixture is built so that a wrong unit goes to the OPPOSITE conclusion:
+    100 days = t_stig + 2*t_hale shall give exp(-2) ~ 0.135, while an
+    implementation that reads the parameter as seconds gives exp(-1.7e5) ~ 0.
     """
     e = TransientEngine()
     t_stig = TRANS_PARAMS["stigningstid_dager"]
@@ -336,13 +336,13 @@ def test_transient_lettkurve_enhet_er_dager_ikke_sekunder():
     v = e.lettkurve(TRANS_PARAMS, np.array([t_stig + 2 * t_hale]))[0]
     assert v > 0.1
     assert np.isclose(v, np.exp(-2.0))
-    # ...og langt ute paa halen skal den fortsatt vaere > 0, men < 1e-6
+    # ...and far out on the tail it shall still be > 0, but < 1e-6
     langt = e.lettkurve(TRANS_PARAMS, np.array([t_stig + 20 * t_hale]))[0]
     assert 0.0 < langt < 1e-6
 
 
 def test_transient_fail_closed_paa_ugyldig_inngang():
-    """Ugyldig inngang gir NaN — aldri en gjetning og aldri en exception."""
+    """Invalid input gives NaN — never a guess and never an exception."""
     e = TransientEngine()
     ut = e.compute(TRANS_PARAMS, np.array([-1.0, np.nan, TRANS_PARAMS["terskelmasse"]]))
     assert np.isnan(ut[0]) and np.isnan(ut[1]) and ut[2] > 0
@@ -355,34 +355,34 @@ def test_transient_fail_closed_paa_ugyldig_inngang():
 
 
 def test_transient_bindingsenergi_holder_samme_fail_closed_kontrakt():
-    """Hjelperen skal ikke gjore kvadreringen om til et gyldig svar.
+    """The helper shall not turn the squaring into a valid answer.
 
-    compute() maskerer negativ og ikke-endelig masse til NaN, men
-    bindingsenergi() regnet E = G*M^2/R direkte — og M^2 gjorde energien
-    POSITIV for negativ masse. En som kalte hjelperen direkte (eller
-    utlost_energi-veien) fikk dermed et svar der motoren ellers gir NaN.
-    Flagget av copilot-reviewen paa PR #435; kontrakten skal ha EEN kilde.
+    compute() masks negative and non-finite mass to NaN, but
+    bindingsenergi() computed E = G*M^2/R directly — and M^2 made the energy
+    POSITIVE for negative mass. Someone calling the helper directly (or
+    the utlost_energi path) therefore got an answer where the engine otherwise gives NaN.
+    Flagged by the copilot review on PR #435; the contract shall have ONE source.
     """
     e = TransientEngine()
     m = TRANS_PARAMS["terskelmasse"]
     ugyldig = np.array([-1.0, -m, np.nan, np.inf, -np.inf])
     ut = e.bindingsenergi(TRANS_PARAMS, ugyldig)
     assert np.all(np.isnan(ut)), ut
-    # Gyldig masse er uendret: E = G*M^2/R.
+    # Valid mass is unchanged: E = G*M^2/R.
     assert np.isclose(e.bindingsenergi(TRANS_PARAMS, np.array([m]))[0],
                       TRANS_PARAMS["G"] * m ** 2 / TRANS_PARAMS["radius"])
-    # ...og utlost_energi() er UPAVIRKET — den kalles med den deklarerte
-    # terskelmassen, som er positiv.
+    # ...and utlost_energi() is UNAFFECTED — it is called with the declared
+    # threshold mass, which is positive.
     assert np.isclose(e.utlost_energi(TRANS_PARAMS),
                       TRANS_PARAMS["G"] * m ** 2 / TRANS_PARAMS["radius"])
     assert e.utlost_energi(TRANS_PARAMS) > 0
 
 
 def test_transient_massekontrakten_har_een_kilde():
-    """NaN-settet til hjelperen og til compute() skal vaere det SAMME.
+    """The NaN set of the helper and of compute() shall be the SAME.
 
-    Ellers finnes kontrakten i to utgaver, og den ene kan drive fra den
-    andre uten at noen test sier fra.
+    Otherwise the contract exists in two versions, and one can drift from the
+    other without any test saying so.
     """
     e = TransientEngine()
     m = TRANS_PARAMS["terskelmasse"]
@@ -401,19 +401,19 @@ def test_transient_regime_node_selvbeskrivelse():
     assert node["regime"]["law_form"].strip()
     tekst = json.dumps(node, ensure_ascii=False)
     assert "IDEALISERT" in tekst
-    # De tre andre holding->release-endepunktene skal vaere navngitt.
+    # The three other holding->release endpoints shall be named.
     for endepunkt in ("homo.aksjonspotensial", "efc.solar_flare_engine",
                       "efc.jordskjelv_engine"):
         assert endepunkt in tekst, endepunkt
     assert "ANALOGOUS_TO" in tekst
-    # Scoping: motoren koder kollaps-grenen, ikke hendelsesstrommen.
+    # Scoping: the engine encodes the collapse branch, not the event stream.
     assert "kosmos.transienter" in tekst
     assert "hendelsesstr" in tekst.lower() or "ikke ett regime" in tekst.lower()
 
 
 def test_transient_regime_node_er_gyldig_etter_skjemaet():
     if jsonschema is None:
-        pytest.skip("jsonschema ikke installert")
+        pytest.skip("jsonschema not installed")
     skjema = json.loads(_SKJEMA.read_text(encoding="utf-8"))
     node = TransientEngine().regime_node(TRANS_PARAMS)
     feil = sorted(jsonschema.Draft202012Validator(
@@ -423,8 +423,8 @@ def test_transient_regime_node_er_gyldig_etter_skjemaet():
 
 
 def test_transient_validity_deriveres_fra_parametrene():
-    """Selvbeskrivelsen skal baere de EFFEKTIVE parametrene — ikke
-    hardkodede kanoniske tall (review-familien fra victron/vann)."""
+    """The self-description shall carry the EFFECTIVE parameters — not
+    hardcoded canonical numbers (the review family from victron/vann)."""
     e = TransientEngine()
     node = e.regime_node(TRANS_PARAMS)
     tekst = node["regime"]["validity"] + " " + node["regime"]["law_form"]
@@ -444,15 +444,15 @@ def test_transient_validity_deriveres_fra_parametrene():
         alt["terskelmasse"] / alt["vekstrate"]) in alt_tekst
     for kanonisk in ("2.785e+30", "10000.0", "6.3e+19", "20.0", "40.0"):
         assert kanonisk not in alt_tekst, kanonisk
-    # ...og de kanoniske tallene SKAL staa i den kanoniske teksten.
+    # ...and the canonical numbers SHALL stand in the canonical text.
     for kanonisk in ("2.785e+30", "10000.0", "20.0", "40.0"):
         assert kanonisk in tekst, kanonisk
 
 
 def test_transient_atlas_node_bro_test():
-    """Atlas-noden er lagt inn (epistemikk v2, PR #444 r1) — vakten er
-    byttet mot bro-testen: motorens regime_node() skal stemme maskinelt
-    med atlas-noden, og ANALOGOUS_TO-relasjonene skal finnes.
+    """The atlas node has been inserted (epistemics v2, PR #444 r1) — the guard has
+    been replaced by the bridge test: the engine's regime_node() shall agree mechanically
+    with the atlas node, and the ANALOGOUS_TO relations shall be present.
     """
     atlas = json.loads(_ATLAS.read_text(encoding="utf-8"))
     noder = {n["id"]: n for n in atlas["nodes"]}
@@ -461,14 +461,14 @@ def test_transient_atlas_node_bro_test():
     atlasnode = noder["efc.transient_engine"]
     for felt in ("id", "regime", "phase", "perspektiv"):
         assert motornode[felt] == atlasnode[felt], felt
-    # Kortets krav, eksplisitt: validity og law_form er FELT-identiske
-    # med regime_node() (maskinelt), ikke prosa-like.
+    # The card's requirement, explicitly: validity and law_form are FIELD-identical
+    # with regime_node() (mechanically), not prose-like.
     assert atlasnode["regime"]["validity"] == motornode["regime"]["validity"]
     assert atlasnode["regime"]["law_form"] == motornode["regime"]["law_form"]
-    # Stipulasjonene skal speile motoren (review-krav: ingen tom maske)
+    # The stipulations shall mirror the engine (review requirement: no empty mask)
     assert atlasnode["stipulasjoner"]["motor"] == "transient"
     assert atlasnode["stipulasjoner"]["terskler"]
-    # ANALOGOUS_TO-relasjonene
+    # The ANALOGOUS_TO relations
     objekter = {r["object"] for r in atlas.get("relations", [])
                 if r.get("subject") == "efc.transient_engine"
                 and r.get("predicate") == "ANALOGOUS_TO"}
@@ -478,13 +478,13 @@ def test_transient_atlas_node_bro_test():
 
 
 # ----------------------------------------------------------------------
-# Felles disiplin
+# Shared discipline
 # ----------------------------------------------------------------------
 
 
 def test_alle_tre_motorene_er_idealisert_merket():
-    """Motorene skal SELV si at de er idealiserte regime-modeller —
-    ikke prediksjonsverktoy for enkelthendelser."""
+    """The engines shall THEMSELVES say that they are idealized regime models —
+    not prediction tools for single events."""
     for e, params in ((SolarFlareEngine(), SOLFLARE_PARAMS),
                       (JordskjelvEngine(), JORDSKJELV_PARAMS),
                       (TransientEngine(), TRANS_PARAMS)):
@@ -494,8 +494,8 @@ def test_alle_tre_motorene_er_idealisert_merket():
 
 
 def test_alle_tre_motorene_er_terskelstyrte_ikke_tidsstyrte():
-    """Samme form i tre domener: under terskelen skjer INGENTING, over
-    terskelen slippes bufferen. Tid alene utloser ingenting."""
+    """The same shape in three domains: below the threshold NOTHING happens, above
+    the threshold the buffer is released. Time alone releases nothing."""
     solar = SolarFlareEngine()
     assert solar.compute(SOLFLARE_PARAMS, np.array([0.29]))[0] == 0.0
     assert solar.compute(SOLFLARE_PARAMS, np.array([0.31]))[0] > 0.0
@@ -511,11 +511,11 @@ def test_alle_tre_motorene_er_terskelstyrte_ikke_tidsstyrte():
 
 
 def test_alle_tre_motorene_deler_fail_closed_kontrakten():
-    """Samme form OGSAA for ugyldig inngang: de tre bufferne lades fra
-    null, saa negativ eller ikke-endelig inngang er utenfor vinduet i
-    alle tre. Maalt for kontrakten: sol og jord svarte 0.0 («holding»)
-    paa NaN, mens transient svarte NaN — én form, to svar. Naa er svaret
-    NaN i alle tre, med samme predikat.
+    """The same shape ALSO for invalid input: the three buffers charge from
+    zero, so negative or non-finite input is outside the window in
+    all three. Measured for the contract: sol and jord answered 0.0 ("holding")
+    for NaN, while transient answered NaN — one shape, two answers. Now the answer is
+    NaN in all three, with the same predicate.
     """
     ugyldig = np.array([-1.0, np.nan, np.inf, -np.inf])
     for e, params in ((SolarFlareEngine(), SOLFLARE_PARAMS),
@@ -526,13 +526,13 @@ def test_alle_tre_motorene_deler_fail_closed_kontrakten():
 
 
 def test_sol_og_jord_atlasnodene_folger_motorenes_validity():
-    """Feltene motoren EIER — regime.validity og regime.law_form — skal
-    vaere FELT-identiske ogsaa for sol- og jordskjelv-noden.
+    """The fields the engine OWNS — regime.validity and regime.law_form — shall
+    be FIELD-identical also for the solar and earthquake node.
 
-    Bro-testen for transient-noden finnes fra for; disse to er ikke i
-    BROER i efc_bro_synk.py, saa uten denne testen kunne teksten drive
-    fra motoren i det stille (drift-klassen efc_bro_synk.py ble skrevet
-    for: motoren ble skjerpet, atlaset ble ikke regenerert).
+    The bridge test for the transient node already exists; these two are not in
+    BROER in efc_bro_synk.py, so without this test the text could drift
+    from the engine in silence (the drift class efc_bro_synk.py was written
+    for: the engine was tightened, the atlas was not regenerated).
     """
     atlas = json.loads(_ATLAS.read_text(encoding="utf-8"))
     noder = {n["id"]: n for n in atlas["nodes"]}

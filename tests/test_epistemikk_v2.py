@@ -1,22 +1,22 @@
-"""Tester for epistemikk v2 — de strukturelle lukningene.
+"""Tests for epistemikk v2 — the structural closures.
 
-Basert på tre uavhengige linser (Claude Opus 5 second opinion +
-deknings-gransking + gap-gransking, 2026-09-17). Hvert hull lukkes
-som en VALIDERBAR INVARIANT, ikke som fritekst:
+Based on three independent lenses (Claude Opus 5 second opinion +
+coverage audit + gap audit, 2026-09-17). Every gap is closed
+as a VERIFIABLE INVARIANT, not as free text:
 
-1. Selvanvendelse: atlaset og skjemaet skal være noder i atlaset —
-   `efc.selv.atlas` og `efc.selv.skjema` finnes, og
-   `efc.selv.paradigme_tid` m.fl. gjør (d) til noder.
-2. Stipulasjons-eksplisitthet: motorenes terskler skal kunne
-   deklareres i noden med `stipulert_av_oss: true` — og en node kan
-   referere motoren som holder terskelen.
-3. Falsifiseringsbetingelse: hver node kan bære `ville_falsifisere`
-   og `revisjon` (logg over endrede terskler/antakelser).
-4. Observatøren i systemet: `observer.er_del_av_systemet` er
-   OBLIGATORISK og skal være true for alle noder — vi er
-   måleinstrumentet, ikke en gud utenfor.
-5. Analogi vs kausalitet: `analogi` med `bryter_der` (disanalogi)
-   er obligatorisk når noden erklærer analogi.
+1. Self-application: the atlas and the schema must be nodes in the atlas —
+   `efc.selv.atlas` and `efc.selv.skjema` exist, and
+   `efc.selv.paradigme_tid` et al. turn (d) into nodes.
+2. Stipulation explicitness: the engines' thresholds must be able to be
+   declared in the node with `stipulert_av_oss: true` — and a node can
+   refer to the engine that holds the threshold.
+3. Falsification condition: every node can carry `ville_falsifisere`
+   and `revisjon` (log of changed thresholds/assumptions).
+4. The observer in the system: `observer.er_del_av_systemet` is
+   MANDATORY and must be true for all nodes — we are
+   the measuring instrument, not a god outside.
+5. Analogy vs causality: `analogi` with `bryter_der` (disanalogy)
+   is mandatory when the node declares an analogy.
 """
 from __future__ import annotations
 
@@ -38,7 +38,7 @@ def _skjema() -> dict:
 
 
 def test_selvanvendelse_nodene_finnes():
-    """Atlaset, skjemaet og grunnparadigmene er noder i atlaset."""
+    """The atlas, the schema and the base paradigms are nodes in the atlas."""
     atlas = _atlas()
     noder = {n["id"] for n in atlas["nodes"]}
     for krevd in ("efc.selv.atlas", "efc.selv.skjema",
@@ -50,9 +50,9 @@ def test_observer_er_del_av_systemet_obligatorisk():
     skjema = _skjema()
     obs = skjema["$defs"]["RegimeNode"]["properties"]["observer"]
     assert "er_del_av_systemet" in obs.get("required", []), \
-        "observer.er_del_av_systemet må være required"
+        "observer.er_del_av_systemet must be required"
     assert obs["properties"]["er_del_av_systemet"].get("const") is True, \
-        "er_del_av_systemet skal være konst sann — vi er instrumentet"
+        "er_del_av_systemet must be const true — we are the instrument"
 
 
 def test_alle_noder_sier_observeren_er_i_systemet():
@@ -69,27 +69,27 @@ def test_stipulasjonsfeltet_finnes():
 
 
 def test_selv_nodene_er_agnostiske_eller_paradigme():
-    """efc.selv.*-nodene er vår rammes egne — paradigme; de er ikke
-    konsensus og ikke akademia."""
+    """The efc.selv.* nodes are our own framework's — paradigm; they are not
+    consensus and not academia."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("efc.selv."):
             assert n["perspektiv"] in ("paradigme", "agnostikk"), n["id"]
 
 
 def test_ingen_node_uten_terskel_deklarasjon():
-    """Review-krav (PR #444 r1): stipulasjoner.terskler skal være
-    fylt med verdi/kilde ELLER eksplisitt deklarasjon — aldri tom
-    maske."""
+    """Review requirement (PR #444 r1): stipulasjoner.terskler must be
+    filled with a value/source OR an explicit declaration — never an empty
+    mask."""
     for n in _atlas()["nodes"]:
         terskler = n["stipulasjoner"]["terskler"]
         assert terskler, (
-            f"{n['id']}: tom terskelliste — populer eller deklarer "
-            f"eksplisitt at noden ikke har terskler")
+            f"{n['id']}: empty threshold list — populate it or declare "
+            f"explicitly that the node has no thresholds")
 
 
 def test_motor_nodene_har_motor_referanse():
-    """efc.*-motornodene skal peke på motoren som holder terskelen."""
+    """The efc.* engine nodes must point at the engine that holds the threshold."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("efc.") and "_engine" in n["id"]:
             assert n["stipulasjoner"].get("motor"), (
-                f"{n['id']}: mangler motor-referanse i stipulasjoner")
+                f"{n['id']}: missing engine reference in stipulasjoner")

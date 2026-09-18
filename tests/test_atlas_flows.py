@@ -1,12 +1,12 @@
-"""FLOWS maa kunne TEGNES — ikke bare defineres.
+"""FLOWS must be DRAWABLE — not merely defined.
 
-Maalt 2026-09-17 (kort t_508e0c03): hopPath() i template.html slo opp
-`sceneNodes.find(n=>n.id===h.from)` mens FLOWS-hoppene baerer KODER
-(«HA -> KL»). Resultatet var at ALLE endepunkter var uopploeste og
-flytenes linjer var dod kode.
+Measured 2026-09-17 (card t_508e0c03): hopPath() in template.html looked up
+`sceneNodes.find(n=>n.id===h.from)` while the FLOWS hops carry CODES
+(«HA -> KL»). The result was that ALL endpoints were unresolved and the
+flow lines were dead code.
 
-Roten er navnerommet: nodene har `id`, hoppene har `code`, og oppslaget
-kjente bare ett av dem.
+The root is the namespace: the nodes have `id`, the hops have `code`, and the
+lookup knew only one of them.
 """
 from __future__ import annotations
 
@@ -28,29 +28,29 @@ def template() -> str:
 
 
 def test_byId_kjenner_baade_id_og_kode(template: str) -> None:
-    """Oppslaget maa romme BEGGE navnerom — ellers er halve atlaset usynlig."""
+    """The lookup must span BOTH namespaces — otherwise half the atlas is invisible."""
     assert "NODES.flatMap(n=>[[n.id,n],[n.code,n]])" in template, (
-        "byId bygges fortsatt bare paa id — hoppene baerer koder")
+        "byId is still built on id alone — the hops carry codes")
 
 
 def test_hopPath_slaar_opp_i_begge_navnerom(template: str) -> None:
     m = re.search(r"function hopPath\(h\)\{(.*?)\n\}", template, re.S)
-    assert m, "fant ikke hopPath"
+    assert m, "did not find hopPath"
     kropp = m.group(1)
     assert "n.code" in kropp, (
-        "hopPath slår fortsatt bare opp i id-navnerommet")
-    assert "return null" in kropp, "hopPath skal fortsatt feile hoeyt"
+        "hopPath still looks up only in the id namespace")
+    assert "return null" in kropp, "hopPath must still fail loudly"
 
 
 def test_alle_hopp_loeser_seg_i_dataene() -> None:
-    """Den ekte proven: hvert endepunkt i FLOWS maa finnes som node."""
+    """The real proof: every endpoint in FLOWS must exist as a node."""
     if not DATA.exists():
-        pytest.skip("data.mjs mangler")
+        pytest.skip("data.mjs is missing")
     src = DATA.read_text(encoding="utf-8")
     noder = json.loads(re.search(r"export const NODES\s*=\s*(\[.*?\]);", src, re.S).group(1))
     flows = json.loads(re.search(r"export const FLOWS\s*=\s*(\[.*?\]);", src, re.S).group(1))
     nokler = {n["code"] for n in noder} | {n["id"] for n in noder}
     uopploest = [(h[0], h[1]) for f in flows for h in (f.get("hops") or [])
                  if h[0] not in nokler or h[1] not in nokler]
-    assert not uopploest, f"uopploeste hopp-endepunkter: {uopploest[:6]}"
-    assert sum(len(f.get("hops") or []) for f in flows) > 0, "ingen hopp aa teste"
+    assert not uopploest, f"unresolved hop endpoints: {uopploest[:6]}"
+    assert sum(len(f.get("hops") or []) for f in flows) > 0, "no hops to test"

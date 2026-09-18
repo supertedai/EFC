@@ -1,23 +1,24 @@
-"""Emne-kontrakten for arbiterens dom: produsent og konsument skal peke
-på SAMME emne — og det emnet skal fanges av en strøm.
+"""The subject contract for the arbiter's verdict: producer and consumer
+must point at the SAME subject — and that subject must be caught by a
+stream.
 
-Målt 2026-09-17: koden var splittet mot seg selv.
+Measured 2026-09-17: the code was split against itself.
 
     payload()["emne"]            "kosmos.kosmologi.utfall.efc-fs8-arbiter"
-    OPPGJOER_EMNE (publiserer)   "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter"
+    OPPGJOER_EMNE (publishes)    "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter"
     nats-koblingskart.md         "...utfall..."
 
-To halvdeler, hver med sin test, som passerte fordi hver test bare så sin
-egen side. Ingen test bandt dem sammen — derfor kunne de drifte.
+Two halves, each with its own test, which passed because each test only
+saw its own side. No test tied them together — so they could drift.
 
-OG DET AVGJØRENDE: `utfall` fanges av INGEN strøm. De fem strømmene fanger
-`observasjon, prediksjon, oppgjoer, tilstand, hendelse, diskusjon`. Et emne
-uten et fanget lag-ord får `+OK` fra serveren og forsvinner sporløst —
-ingen feil, ingen logg (husets byggeregel 26).
+AND THE DECISIVE PART: `utfall` is caught by NO stream. The five streams
+catch `observasjon, prediksjon, oppgjoer, tilstand, hendelse, diskusjon`.
+A subject without a caught layer word gets `+OK` from the server and
+vanishes without a trace — no error, no log (house build rule 26).
 
-Arbiteren er latent nå (`arbiter: "nei"`, venter på DESI DR2), men den
-feller dommen hele valideringskjeden venter på. Feilen ville rammet i
-stillhet i oktober.
+The arbiter is latent now (`arbiter: "nei"`, waiting for DESI DR2), but it
+delivers the verdict the whole validation chain waits for. The bug would
+have struck silently in October.
 """
 import importlib.util
 import sys
@@ -27,15 +28,16 @@ from pathlib import Path
 ROT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROT))
 
-# Lag-ordene strømmene FAKTISK fanger. Målt mot JetStream 2026-09-17:
+# The layer words the streams ACTUALLY catch. Measured against JetStream
+# 2026-09-17:
 #   VERDEN_OBS        observasjon
 #   VERDEN_TILSTAND   tilstand
 #   VERDEN_TOLKET     hendelse, diskusjon
 #   VERDEN_PROGNOSE   prediksjon, oppgjoer
 #   OPUS_SELV         prediksjon, oppgjoer, tilstand, hendelse
-# Endres strømmene, skal denne lista oppdateres MED en ny måling — ikke
-# ved å gjette. Testen under feiler hvis et emne bruker et ord som ikke
-# står her.
+# If the streams change, this list must be updated WITH a new measurement
+# — not by guessing. The test below fails if a subject uses a word that
+# is not listed here.
 FANGEDE_LAG = {"observasjon", "prediksjon", "oppgjoer", "tilstand",
                "hendelse", "diskusjon"}
 
@@ -45,24 +47,24 @@ def _les_konstant(sti: Path, navn: str) -> str:
     for linje in tekst.splitlines():
         if linje.startswith(f"{navn} = "):
             return linje.split("=", 1)[1].strip().strip('"').strip("'")
-    raise AssertionError(f"{navn} ikke funnet i {sti}")
+    raise AssertionError(f"{navn} not found in {sti}")
 
 
 class TestArbiterEmneKontrakt(unittest.TestCase):
 
     def test_konsumentens_emne_fanges_av_en_stroem(self):
-        """Den harde proven: et lag-ord strømmene faktisk fanger."""
+        """The hard proof: a layer word the streams actually catch."""
         emne = _les_konstant(
             ROT / "scripts" / "maintenance" / "arbiter_vakt_kjoer.py",
             "OPPGJOER_EMNE")
         lag = emne.split(".")[2]
         self.assertIn(lag, FANGEDE_LAG,
-                      f"«{lag}» fanges av ingen strøm — meldingen ville "
-                      f"fått +OK og forsvunnet sporløst")
+                      f"'{lag}' is caught by no stream — the message would "
+                      f"get +OK and vanish without a trace")
 
     def test_payloadens_emne_er_samme_som_konsumentens(self):
-        """Feltet `emne` inne i payloaden sier hvor meldingen hører hjemme.
-        Sier det noe annet enn den faktiske publiseringen, lyver payloaden."""
+        """The `emne` field inside the payload says where the message belongs.
+        If it differs from the actual publication, the payload lies."""
         konsument = _les_konstant(
             ROT / "scripts" / "maintenance" / "arbiter_vakt_kjoer.py",
             "OPPGJOER_EMNE")
@@ -72,21 +74,20 @@ class TestArbiterEmneKontrakt(unittest.TestCase):
             emner = {linje.split('"')[3]
                      for linje in tekst.splitlines()
                      if '"emne":' in linje and '"' in linje}
-            self.assertTrue(emner, f"ingen emne-linje i {modul}")
+            self.assertTrue(emner, f"no emne line in {modul}")
             for e in emner:
                 self.assertEqual(
                     e, konsument,
-                    f"{modul} peker på {e}, konsumenten publiserer til "
-                    f"{konsument} — de to halvdelene har driftet fra "
-                    f"hverandre")
+                    f"{modul} points at {e}, the consumer publishes to "
+                    f"{konsument} — the two halves have drifted apart")
 
     def test_dokumentasjonen_nevner_ikke_det_ufangede_emnet(self):
-        """Koblingskartet er kontrakten eksterne lesere bruker."""
+        """The coupling map is the contract external readers use."""
         kart = (ROT / "docs" / "nats-koblingskart.md").read_text(
             encoding="utf-8")
         self.assertNotIn(
             "kosmos.kosmologi.utfall.efc-fs8-arbiter", kart,
-            "kartet dokumenterer et emne ingen strøm fanger")
+            "the map documents a subject no stream catches")
 
 
 if __name__ == "__main__":

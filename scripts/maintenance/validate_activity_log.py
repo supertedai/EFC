@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-"""validate_activity_log.py — fase 1-kontroll av logs/activity.jsonl.
+"""validate_activity_log.py — phase 1 check of logs/activity.jsonl.
 
-Append-only er en git-egenskap, ikke en fil-egenskap: CI kjører med
---base origin/main og krever at diffen på logs/ BARE er innsettinger
-(sjekkes i CI-steget, ikke her — her valideres linjene). Dette skriptet
-sjekker per linje: gyldig JSON, obligatoriske felter, unik event_id,
-gyldig ISO-8601-tid, kjent action, rolle innenfor enum.
+Append-only is a git property, not a file property: CI runs with
+--base origin/main and requires that the diff on logs/ is ONLY insertions
+(checked in the CI step, not here — here the lines are validated). This script
+checks per line: valid JSON, required fields, unique event_id, valid ISO-8601
+time, known action, role within the enum.
 
-Statusordene (t_882cfca): `statusord` er en VALGFRI liste med verdier fra
-{maskinelt kontrollert, eksternt verifisert, faglig godkjent}. De tre ordene
-er gjensidig uavhengige — ingen av dem impliserer de to andre, og vakten
-legger aldri til eller krever et ord som ikke står i posten. Den ene regelen
-som håndheves: «faglig godkjent» kan bare stå på en post med role=menneske,
-fordi faglig godkjenning ikke kan delegeres til en etikett (avgjørelsen
-2026-09-17, §«Tre statusord som aldri må blandes»). Å skrive «maskinelt
-kontrollert» er prosesskontroll og kan gjøres av en profil; å skrive
-«faglig godkjent» er menneskets.
+The status words (t_882cfca): `statusord` is an OPTIONAL list with values from
+{maskinelt kontrollert, eksternt verifisert, faglig godkjent}. The three words
+are mutually independent — none of them implies the other two, and the guard
+never adds or requires a word that is not in the post. The one rule enforced:
+"faglig godkjent" can only stand on a post with role=menneske, because
+professional approval cannot be delegated to a label (the decision 2026-09-17,
+section "Three status words that must never be mixed"). Writing "maskinelt
+kontrollert" is process control and can be done by a profile; writing
+"faglig godkjent" is the human's.
 
-Bruk: python3 scripts/maintenance/validate_activity_log.py [--json]
-Exit: 0 = OK, 1 = feil.
+Usage: python3 scripts/maintenance/validate_activity_log.py [--json]
+Exit: 0 = OK, 1 = error.
 """
 from __future__ import annotations
 
@@ -45,11 +45,11 @@ PLIKT = ["event_id", "occurred_at", "action", "role", "kanban_card",
 
 
 def sjekk_statusord(e: dict, nr: int) -> list[dict]:
-    """Statusordene er gjensidig uavhengige.
+    """The status words are mutually independent.
 
-    Denne funksjonen legger ALDRI til et ord og krever ALDRI et ord som ikke
-    står i posten — den avviser bare ukjente verdier, duplikater, tom liste,
-    og «faglig godkjent» på en post som ikke er menneskets.
+    This function NEVER adds a word and NEVER requires a word that is not in
+    the post — it only rejects unknown values, duplicates, an empty list, and
+    "faglig godkjent" on a post that is not the human's.
     """
     feil: list[dict] = []
     if "statusord" not in e:
@@ -57,7 +57,7 @@ def sjekk_statusord(e: dict, nr: int) -> list[dict]:
     v = e["statusord"]
     if not isinstance(v, list) or not v:
         return [{"type": "bad_statusord", "linje": nr,
-                 "msg": "statusord må være en ikke-tom liste"}]
+                 "msg": "statusord must be a non-empty list"}]
     sett: set[str] = set()
     for ord_ in v:
         if ord_ not in STATUSORD:
@@ -106,7 +106,7 @@ def hoved() -> int:
     if a.json:
         print(json.dumps({"feil": feil}, ensure_ascii=False, indent=1))
     else:
-        print(f"activity-log: {len(feil)} feil")
+        print(f"activity-log: {len(feil)} errors")
         for f in feil[:20]:
             print("  ", f)
     return 1 if feil else 0

@@ -1,9 +1,10 @@
-"""Tester for oppgjør-publiseringen i arbiter-vakt-kjøreren (L-016).
+"""Tests for the settlement publication in the arbiter watch runner (L-016).
 
-Når en FAKTISK dom felles (PASS/FAIL), skal utfallet publiseres på
-bussen som oppgjort prediksjon (kosmos.kosmologi.oppgjoer.efc-fs8-arbiter).
-VENTER-diagnoser publiseres ALDRI — en ikke-dom er ikke et oppgjør.
-Transporten injiseres; ingen test treffer bussen.
+When an ACTUAL verdict is reached (PASS/FAIL), the outcome must be
+published on the bus as a settled prediction
+(kosmos.kosmologi.oppgjoer.efc-fs8-arbiter). VENTER diagnoses are NEVER
+published — a non-verdict is not a settlement.
+The transport is injected; no test touches the bus.
 """
 from __future__ import annotations
 
@@ -54,7 +55,7 @@ def test_fail_publiseres_som_oppgjoer(tmp_path):
 
 
 def test_venter_publiseres_aldri(tmp_path):
-    """Baseline-meldingen gir VENTER — ingen oppgjør-publikasjon."""
+    """The baseline message yields VENTER — no settlement publication."""
     baseline = {
         "hoder": {"tracer": "QSO", "survey": "DESI DR1",
                   "observabel": "fsigma8", "kilde": "efc-sealed-baseline",
@@ -69,7 +70,7 @@ def test_venter_publiseres_aldri(tmp_path):
                       publiserte.append((emne, payload)) or "ok")
     assert r["dom"]["status"] == "VENTER"
     assert publiserte == []
-    assert "ingen dom" in r["publiseringsstatus"]
+    assert "no verdict" in r["publiseringsstatus"]
 
 
 def test_artefakt_skrives_uansett(tmp_path):
@@ -81,37 +82,37 @@ def test_artefakt_skrives_uansett(tmp_path):
 
 
 def test_transport_med_krasj_stopper_ikke_artefakten(tmp_path):
-    """En transport som KASTRER unntak skal ikke stoppe kjøringen —
-    dommen er felt, artefakten skrives, feilen rapporteres."""
+    """A transport that RAISES must not stop the run —
+    the verdict is reached, the artifact is written, the error is reported."""
     def krasjende_transport(emne, payload):
-        raise RuntimeError("nettet falt ut")
+        raise RuntimeError("the network went down")
 
     r = kjoerer.kjoer(_dr2_melding(fs8=0.430, sigma=0.030),
                       artefakt_sti=str(tmp_path / "dom.json"),
                       publiser=krasjende_transport)
     assert r["dom"]["status"] == "PASS"
-    assert "publiseringsfeil" in r["publiseringsstatus"]
+    assert "publish error" in r["publiseringsstatus"]
     artefakt = json.loads((tmp_path / "dom.json").read_text())
     assert artefakt["rapport"]["dom"]["status"] == "PASS"
 
 
 def test_transport_feilstatus_stopper_ikke_artefakten(tmp_path):
-    """En transport som returnerer en feilstatus (ikke kaster) —
-    artefakten skrives likevel, statusen rapporteres ærlig."""
+    """A transport that returns an error status (rather than raising) —
+    the artifact is still written, the status is reported honestly."""
     r = kjoerer.kjoer(_dr2_melding(fs8=0.430, sigma=0.030),
                       artefakt_sti=str(tmp_path / "dom.json"),
-                      publiser=lambda emne, payload: "nettverksfeil: tidsavbrudd")
+                      publiser=lambda emne, payload: "network error: timeout")
     assert r["dom"]["status"] == "PASS"
-    assert r["publiseringsstatus"] == "nettverksfeil: tidsavbrudd"
+    assert r["publiseringsstatus"] == "network error: timeout"
     assert (tmp_path / "dom.json").exists()
 
 
 def test_ugyldig_nats_produsent_gir_status_uten_krasj(monkeypatch):
-    """Ugyldig NATS_PRODUSENT-form (ikke-tall port, manglende deler)
-    skal gi en statusstreng — aldri ValueError."""
-    for url in ("nats://u:p@vert:ikke-port",
-                "nats://u:p@vert",
-                "ikke-en-url"):
+    """An invalid NATS_PRODUSENT shape (non-numeric port, missing parts)
+    must give a status string — never a ValueError."""
+    for url in ("nats://u:p@host:not-a-port",
+                "nats://u:p@host",
+                "not-a-url"):
         monkeypatch.setenv("NATS_PRODUSENT", url)
         status = kjoerer.publiser_best_effort(
             "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter", "{}")

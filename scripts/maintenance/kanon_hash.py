@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
-"""kanon_hash.py — DEN ene kanoniske hash-funksjonen for EFC-artefakter.
+"""kanon_hash.py — THE one canonical hash function for EFC artefacts.
 
-Låsen (design §0, ærlighetsregel 2): generator og verifier MÅ dele denne
-formen. Spesifikasjonen:
-- inndata: Python-objekt (dict/list/str/int/float/bool/None) lastet fra
-  YAML/JSON, UTEN content_hash-feltet
-- serialisering: json.dumps(obj, sort_keys=True, ensure_ascii=False,
-  separators=(",", ":")) — kompakte separatorer, ingen mellomrom-drift
-- Unicode: teksten normaliseres til NFC FØR hashing (macOS NFD-dritt skal
-  ikke gi hash-kollisjoner på tvers av maskiner)
-- tall: JSON-tall som de er (ingen trailing-zeros-normalisering — Python
-  og JavaScript leser dem likt via json)
-- resultat: "sha256:" + hexdigest
+The lock (design §0, honesty rule 2): generator and verifier MUST share
+this shape. The specification:
+- input: Python object (dict/list/str/int/float/bool/None) loaded from
+  YAML/JSON, WITHOUT the content_hash field
+- serialisation: json.dumps(obj, sort_keys=True, ensure_ascii=False,
+  separators=(",", ":")) — compact separators, no whitespace drift
+- Unicode: the text is normalised to NFC BEFORE hashing (macOS NFD junk
+  must not give hash collisions across machines)
+- numbers: JSON numbers as they are (no trailing-zeros normalisation —
+  Python and JavaScript read them alike through json)
+- result: "sha256:" + hexdigest
 
-Endringer her er en schema-ENDring: bump versjonen og kjør verifier-bench
-før deploy. Ingen eksisterende artefakter bærer hasher fra noen eldre
-form — pipelinen er ny, så v1 gjelder fra dag én og ingen migrering
-trengs. Første artefakt som bærer en v1-hash, låser formen for alle.
+Changes here are a schema CHANGE: bump the version and run verifier-bench
+before deploy. No existing artefacts carry hashes from any older shape —
+the pipeline is new, so v1 applies from day one and no migration is
+needed. The first artefact that carries a v1 hash locks the shape for
+everyone.
 """
 from __future__ import annotations
 
@@ -28,7 +29,7 @@ VERSJON = "1"
 
 
 def kanon_hash(obj) -> str:
-    """sha256 over den kanoniske serialiseringen av obj (uten content_hash)."""
+    """sha256 over the canonical serialisation of obj (without content_hash)."""
     normalisert = _nfc(obj)
     serialisert = json.dumps(normalisert, sort_keys=True, ensure_ascii=False,
                              separators=(",", ":"))
@@ -50,7 +51,7 @@ if __name__ == "__main__":
     import yaml
     sti = sys.argv[1] if len(sys.argv) > 1 else None
     if not sti:
-        print("bruk: kanon_hash.py <fil.yaml|fil.json>", file=sys.stderr)
+        print("usage: kanon_hash.py <file.yaml|file.json>", file=sys.stderr)
         raise SystemExit(2)
     tekst = open(sti, encoding="utf-8").read()
     obj = yaml.safe_load(tekst) if sti.endswith((".yaml", ".yml")) else json.loads(tekst)

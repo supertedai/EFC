@@ -1,5 +1,5 @@
-"""Tester for GridMikroEngine — formlene MOT papirenes publiserte
-resultater (DOI-ene er kilden)."""
+"""Tests for GridMikroEngine — the formulas AGAINST the papers' published
+results (the DOIs are the source)."""
 from __future__ import annotations
 
 import math
@@ -53,8 +53,8 @@ def test_regime_skifte_ved_rho_crit():
 
 
 def test_regime_ugyldige_innganger_gir_ugyldig():
-    """Review-krav PR #458 r1: NaN/negative innganger skal gi
-    'ugyldig', ikke falle gjennom til 'mettet'."""
+    """Review requirement PR #458 r1: NaN/negative inputs shall give
+    'ugyldig', not fall through to 'mettet'."""
     e = GridMikroEngine()
     assert e.regime({**P, "rho": float("nan")}) == "ugyldig"
     assert e.regime({**P, "rho_crit": float("nan")}) == "ugyldig"

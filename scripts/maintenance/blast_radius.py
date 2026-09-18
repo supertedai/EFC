@@ -1,56 +1,56 @@
 #!/usr/bin/env python3
-"""blast_radius.py — maskinelt beregnet blast-radius for en diff (fase 1).
+"""blast_radius.py — mechanically computed blast radius for a diff (phase 1).
 
-BR = F × E × P × I. Alle faktorene er 1–4 og ALDRI lavere enn 1, slik at
-«ukjent» ikke kan maskere risiko som «liten».
+BR = F × E × P × I. All the factors are 1–4 and NEVER lower than 1, so that
+"unknown" cannot mask risk as "liten".
 
-  F  berørte filer fra git-diffen   1 = én fil → 4 = >20 filer eller ukjent diff
-  E  eierregisteret                 1 = én verifisert eier → 4 = ukjent eier
-                                    eller ≥4 eiere
-  P  offentlig overflate            1 = intern → 4 = tillitsgrense
+  F  touched files from the git diff 1 = one file → 4 = >20 files or an unknown diff
+  E  the ownership register         1 = one verified owner → 4 = unknown owner
+                                    or ≥4 owners
+  P  public surface                 1 = internal → 4 = trust boundary
                                     (api/**, auth/**, integrations/**, shared/**)
-  I  irreversibilitet               1 = intern og git-reversibel → 4 = gate,
-                                    scheduler, credential eller destruktivt
+  I  irreversibility                1 = internal and git-reversible → 4 = gate,
+                                    scheduler, credential or destructive
 
-Eierskapet (governance/ownership-register.json, «0 filer uten eier») gjør F
-og E beregnbare i dag; P og I kommer fra diff-klassifiseringen under.
+The ownership (governance/ownership-register.json, "0 files without an owner") makes F
+and E computable today; P and I come from the diff classification below.
 
-Terskler — klasse → krav:
+Thresholds — class -> requirement:
 
-  1–3    liten        kan lande automatisk
-  4–7    material     uavhengig reviewer + rollbackplan + readback
-  8–15   høy          2 uavhengige kontroller (eller reviewer + verifier), ADR
-  16–31  kritisk      eiersign-off + canary + MENNESKEGATE
-  32+    blokkerende  freeze/quarantine; bare mennesket kan beslutte
+  1–3    liten        can land automatically
+  4–7    material     independent reviewer + rollback plan + readback
+  8–15   høy          2 independent controls (or reviewer + verifier), ADR
+  16–31  kritisk      owner sign-off + canary + HUMAN GATE
+  32+    blokkerende  freeze/quarantine; only the human can decide
 
-En KRITISK TRIGGER overstyrer den numeriske scoren. Triggerne er:
-privilegium (credential/hemmelighet), produksjon (figshare/** og
-docs/public/** — det som er publisert ut av huset), destruktiv
-(migrering/sletting), gate-endring (.github/**, governance/**, *gate*.py,
-scheduler-skriptene) og ukjent grenseflate (fil uten eier i registeret). De
-fire første gjør endringen BLOKKERENDE; ukjent grenseflate gjør den kritisk.
+A CRITICAL TRIGGER overrides the numerical score. The triggers are:
+privilegium (credential/secret), produksjon (figshare/** and
+docs/public/** — what has been published out of the house), destruktiv
+(migration/deletion), gate-endring (.github/**, governance/**, *gate*.py,
+the scheduler scripts) and ukjent-grenseflate (file without an owner in the register). The
+first four make the change BLOCKING; ukjent-grenseflate makes it kritisk.
 
-Hvorfor produksjon ikke er «alt under public/»: public/** og docs/** er
-versjonert innhold som kan rettes i neste commit. figshare/** er en
-deponering med DOI, og docs/public/** er det leseren faktisk ser. Det er de
-to flatene som ikke kan trekkes tilbake med en commit — derfor er det de
-som fyrer triggeren.
+Why produksjon is not "everything under public/": public/** and docs/** are
+versioned content that can be corrected in the next commit. figshare/** is a
+deposit with a DOI, and docs/public/** is what the reader actually sees. Those are the
+two surfaces that cannot be withdrawn with a commit — that is why they are the
+ones that fire the trigger.
 
-Bruk:
+Usage:
   python3 scripts/maintenance/blast_radius.py --diff origin/main
   python3 scripts/maintenance/blast_radius.py --diff "$BASE" --json
   python3 scripts/maintenance/blast_radius.py --diff origin/main --gate
 
-Change-id (korrelasjonsnøkkelen mot risikoregisteret): --change-id hvis gitt,
-ellers et kanban-/PR-id funnet i grennavnet (t_<hex>, pr<nummer>), ellers
-«<base-sha>..<head-sha>». Gaten slår opp risikopostene med samme
-source_change_id og krever en MENNESKELIG godkjent beslutning per gate-post:
-én godkjent post dekker IKKE en annen post som fortsatt står «venter».
+Change id (the correlation key against the risk register): --change-id if given,
+otherwise a kanban/PR id found in the branch name (t_<hex>, pr<number>), otherwise
+"<base-sha>..<head-sha>". The gate looks up the risk entries with the same
+source_change_id and requires a HUMAN-approved decision per gate entry:
+one approved entry does NOT cover another entry that still stands "venter".
 
-Exit: 0 = rapport (uten --gate), 1 = --gate avviste endringen, 2 = verktøyfeil
-(ukjent ref, manglende/ugyldig eierregister, ugyldig risikoregister). En TOM
-diff er F=1 og «liten»; et FEILENDE git-kall er exit 2 — aldri «ingen
-endringer».
+Exit: 0 = report (without --gate), 1 = --gate rejected the change, 2 = tool error
+(unknown ref, missing/invalid ownership register, invalid risk register). An EMPTY
+diff is F=1 and "liten"; a FAILING git call is exit 2 — never "no
+changes".
 """
 from __future__ import annotations
 
@@ -68,11 +68,11 @@ RISIKOREGISTER = "governance/risiko/risiko-register.jsonl"
 
 
 class VerktoyFeil(Exception):
-    """Feil som gjør målingen ugyldig — aldri «ingen risiko»."""
+    """Errors that make the measurement invalid — never "no risk"."""
 
 
-# --- regelverk -----------------------------------------------------------
-# Høyeste treff vinner. Alle stier er relative til repo-roten.
+# --- rule set ------------------------------------------------------------
+# The highest hit wins. All paths are relative to the repo root.
 
 P_REGLER: list[tuple[int, tuple[str, ...]]] = [
     (4, ("api/**", "auth/**", "integrations/**", "shared/**")),
@@ -85,25 +85,25 @@ P_REGLER: list[tuple[int, tuple[str, ...]]] = [
 
 I_REGLER: list[tuple[int, tuple[str, ...]]] = [
     (4, (
-        # gate og scheduler — endringen flytter en beslutningsgrense
+        # gate and scheduler — the change moves a decision boundary
         ".github/**", "governance/**", "*gate*.py",
         "scripts/maintenance/vedlikeholdsrunde.py",
         "scripts/maintenance/efc_inntak.py",
         "scripts/maintenance/efc_release_publisher.py",
         "scripts/maintenance/efc_seal_manifest.py",
-        # credential/hemmelighet. Disse navnene er FORBUDT av
-        # validate_repo.py — et treff her betyr at et forbudt navn likevel
-        # er lagt inn, og da skal triggeren fyre, ikke tie.
+        # credential/secret. These names are FORBIDDEN by
+        # validate_repo.py — a hit here means that a forbidden name all the same
+        # has been inserted, and then the trigger shall fire, not stay silent.
         ".env*", "*.env", "*secret*", "*credential*", "*.pem", "*.key",
-        # destruktivt/publisering — kan ikke trekkes tilbake med en commit
+        # destructive/publication — cannot be withdrawn with a commit
         "*migrat*", "*delete*", "figshare/**",
     )),
     (3, ("schema/**", "schemas/**", "*.schema.json", "logs/**",
          "docs/validation-ledger/**", ".seal-manifest.json")),
     (2, ("public/**", "docs/**", "evidence/**", "data/**",
-         # auth/ er PROVENIENS (ORCID/forfatterskap) i dette repoet, ikke en
-         # credential-store — derfor I=2 og ikke I=4. Det motsatte ville vært
-         # å lese mappenavnet i stedet for innholdet.
+         # auth/ is PROVENANCE (ORCID/authorship) in this repo, not a
+         # credential store — therefore I=2 and not I=4. The opposite would have
+         # been to read the directory name instead of the content.
          "auth/**")),
 ]
 
@@ -118,7 +118,7 @@ TRIGGER_REGLER: list[tuple[str, tuple[str, ...]]] = [
                       "scripts/maintenance/efc_release_publisher.py")),
 ]
 
-# Triggere som gjør endringen blokkerende (alt annet er «minst kritisk»).
+# Triggers that make the change blocking (everything else is "at least kritisk").
 BLOKKERENDE_TRIGGERE = ("privilegium", "produksjon", "destruktiv", "gate-endring")
 
 KLASSE_KRAV = {
@@ -150,7 +150,7 @@ def _maks(regler: list[tuple[int, tuple[str, ...]]], filer: list[str]) -> int:
 
 
 def f_faktor(antall_filer: int) -> int:
-    """1 fil = 1, 2–3 = 2, 4–20 = 3, >20 = 4. Tom diff = 1 (ingen berøring)."""
+    """1 file = 1, 2–3 = 2, 4–20 = 3, >20 = 4. Empty diff = 1 (no touch)."""
     if antall_filer <= 1:
         return 1
     if antall_filer <= 3:
@@ -161,7 +161,7 @@ def f_faktor(antall_filer: int) -> int:
 
 
 def e_faktor(eiere: list[str], ukjent_eier: bool) -> int:
-    """Ukjent eier = 4. Ellers antall distinkte eiere (≥4 = 4)."""
+    """Unknown owner = 4. Otherwise the number of distinct owners (>=4 = 4)."""
     if ukjent_eier:
         return 4
     antall = len({e for e in eiere if e})
@@ -195,7 +195,7 @@ def score(f: int, e: int, p: int, i: int) -> int:
 
 
 def klasse(br: int, triggerliste: list[str]) -> str:
-    """Triggerne overstyrer scoren — aldri motsatt vei."""
+    """The triggers override the score — never the other way."""
     if br >= 32 or any(t in BLOKKERENDE_TRIGGERE for t in triggerliste):
         return "blokkerende"
     if br >= 16 or triggerliste:
@@ -208,7 +208,7 @@ def klasse(br: int, triggerliste: list[str]) -> str:
 
 
 def registerklasse(klasse_: str) -> str:
-    """Blast-klassenivået mappet til registerets grønn|gul|rød."""
+    """The blast class level mapped to the register's grønn|gul|rød."""
     return REGISTERKLASSE[klasse_]
 
 
@@ -220,16 +220,16 @@ def _git(rot: Path, *args: str) -> subprocess.CompletedProcess:
 
 
 def endrede_filer(base: str, rot: Path) -> list[str]:
-    """Filer endret mot `base` — pluss utrackede filer, slik at en kjøring
-    før commit måler det samme som CI måler etter.
+    """Files changed against `base` — plus untracked files, so that a run
+    before commit measures the same as CI measures after.
 
-    INGEN diff-filter: en SLETTET fil er den mest irreversible endringen av
-    alle, og en `--diff-filter=d` ville gjort den usynlig for scoreren.
+    NO diff filter: a DELETED file is the most irreversible change of
+    all, and a `--diff-filter=d` would make it invisible to the scorer.
     """
     r = _git(rot, "diff", "--name-only", "-z", base)
     if r.returncode != 0:
         raise VerktoyFeil(
-            f"git diff mot «{base}» feilet: {r.stderr.decode('utf-8', 'replace').strip()[:200]}")
+            f"git diff vs «{base}» failed: {r.stderr.decode('utf-8', 'replace').strip()[:200]}")
     filer = [s for s in r.stdout.decode("utf-8", errors="replace").split("\0") if s]
     u = _git(rot, "ls-files", "--others", "--exclude-standard", "-z")
     if u.returncode == 0:
@@ -240,7 +240,7 @@ def endrede_filer(base: str, rot: Path) -> list[str]:
 def _rev(rot: Path, ref: str) -> str:
     r = _git(rot, "rev-parse", ref)
     if r.returncode != 0:
-        raise VerktoyFeil(f"ukjent ref «{ref}»: {r.stderr.decode('utf-8', 'replace').strip()[:200]}")
+        raise VerktoyFeil(f"unknown ref «{ref}»: {r.stderr.decode('utf-8', 'replace').strip()[:200]}")
     return r.stdout.decode().strip()
 
 
@@ -258,19 +258,19 @@ def finn_change_id(rot: Path, base: str, eksplisitt: str | None) -> str:
     return f"{_rev(rot, base)[:12]}..{_rev(rot, 'HEAD')[:12]}"
 
 
-# --- eierregister --------------------------------------------------------
+# --- ownership register --------------------------------------------------
 
 def les_eierregister(sti: Path) -> dict:
     if not sti.is_file():
-        raise VerktoyFeil(f"eierregisteret mangler: {sti}")
+        raise VerktoyFeil(f"the ownership register is missing: {sti}")
     try:
         return json.loads(sti.read_text(encoding="utf-8"))
     except json.JSONDecodeError as ex:
-        raise VerktoyFeil(f"eierregisteret er ugyldig JSON: {ex}") from ex
+        raise VerktoyFeil(f"the ownership register is invalid JSON: {ex}") from ex
 
 
 def eiere_og_komponenter(filer: list[str], register: dict) -> tuple[list[str], list[str], bool]:
-    """Returnerer (eiere, komponent-id-er, ukjent_eier)."""
+    """Returns (owners, component ids, unknown owner)."""
     komponenter = register.get("components") or []
     eiere: list[str] = []
     ider: list[str] = []
@@ -288,11 +288,11 @@ def eiere_og_komponenter(filer: list[str], register: dict) -> tuple[list[str], l
     return eiere, sorted(set(ider)), ukjent
 
 
-# --- risikoregisteret (gate-oppslag) -------------------------------------
+# --- the risk register (gate lookup) -------------------------------------
 
 def les_poster(sti: Path) -> list[dict]:
     if not sti.is_file():
-        raise VerktoyFeil(f"risikoregisteret mangler: {sti}")
+        raise VerktoyFeil(f"the risk register is missing: {sti}")
     poster = []
     for nr, linje in enumerate(sti.read_text(encoding="utf-8").splitlines(), 1):
         if not linje.strip():
@@ -300,16 +300,16 @@ def les_poster(sti: Path) -> list[dict]:
         try:
             poster.append(json.loads(linje))
         except json.JSONDecodeError as ex:
-            raise VerktoyFeil(f"ugyldig JSON i {sti} linje {nr}: {ex}") from ex
+            raise VerktoyFeil(f"invalid JSON in {sti} line {nr}: {ex}") from ex
     return poster
 
 
 def slaa_opp_gate(poster: list[dict], change_id: str) -> dict:
-    """Gaten for en change-id er oppfylt når HVER gate-post (gate_required=true)
-    for change-id-en er godkjent av mennesket — ingen står «venter» og ingen er
-    «avslått». Beslutningen er per post: én godkjent post dekker IKKE en annen
-    post som fortsatt venter. Gaten slipper først gjennom når alle er avgjort
-    og minst én er godkjent.
+    """The gate for a change id is satisfied when EVERY gate entry (gate_required=true)
+    for the change id is approved by the human ("menneske") — none stands "venter"
+    and none is "avslått". The decision is per entry: one approved entry does NOT
+    cover another entry that still waits. The gate only lets through once all are
+    decided and at least one is approved.
     """
     mine = [p for p in poster if p.get("source_change_id") == change_id]
     gate_poster = [p for p in mine if p.get("gate_required") is True]
@@ -330,7 +330,7 @@ def slaa_opp_gate(poster: list[dict], change_id: str) -> dict:
     }
 
 
-# --- hovedflyt -----------------------------------------------------------
+# --- main flow -----------------------------------------------------------
 
 def regn_ut(base: str, rot: Path, eierregister: Path, risikoregister: Path,
             change_id: str | None) -> dict:
@@ -382,12 +382,12 @@ def regn_ut(base: str, rot: Path, eierregister: Path, risikoregister: Path,
 def hoved() -> int:
     p = argparse.ArgumentParser(description="Blast-radius = F × E × P × I")
     p.add_argument("--diff", required=True, metavar="BASE",
-                   help="git-ref å måle mot (f.eks. origin/main eller en SHA)")
+                   help="git ref to measure against (e.g. origin/main or a SHA)")
     p.add_argument("--json", action="store_true")
     p.add_argument("--gate", action="store_true",
-                   help="avvis (exit 1) kritisk/blokkerende uten menneskelig godkjent beslutning")
+                   help="reject (exit 1) kritisk/blokkerende without a human-approved decision")
     p.add_argument("--change-id", default=None)
-    p.add_argument("--rot", default=None, help="repo-rot (standard: scriptets forelder³)")
+    p.add_argument("--rot", default=None, help="repo root (default: the script's parent³)")
     p.add_argument("--eierregister", default=None)
     p.add_argument("--risikoregister", default=None)
     a = p.parse_args()
@@ -398,13 +398,13 @@ def hoved() -> int:
         ut = regn_ut(a.diff, rot, eierregister, risikoregister, a.change_id)
     except VerktoyFeil as ex:
         if a.json:
-            # JSON på stdout også ved verktøyfeil: vedlikeholdsrunden leser
-            # «feil»-lista og lager et funn av den — en måling som ikke
-            # kunne gjøres er ikke «ingen risiko».
+            # JSON on stdout also on a tool error: the maintenance round reads
+            # the "feil" list and makes a finding of it — a measurement that could
+            # not be made is not "no risk".
             print(json.dumps({"feil": [{"type": "tool_error", "msg": str(ex)}]},
                              ensure_ascii=False, indent=1))
         else:
-            print(f"blast-radius: verktøyfeil — {ex}", file=sys.stderr)
+            print(f"blast-radius: tool error — {ex}", file=sys.stderr)
         return 2
     if a.json:
         print(json.dumps(ut, ensure_ascii=False, indent=1))
@@ -412,18 +412,18 @@ def hoved() -> int:
         fa = ut["faktorer"]
         print(f"blast-radius: {ut['score']} (F={fa['F']} × E={fa['E']} × "
               f"P={fa['P']} × I={fa['I']})")
-        print(f"  klasse: {ut['klasse']} — {ut['krav']}")
-        print(f"  triggere: {', '.join(ut['triggere']) or 'ingen'}")
-        print(f"  filer: {ut['antall_filer']} | eiere: {', '.join(ut['eiere']) or '—'}")
+        print(f"  class: {ut['klasse']} — {ut['krav']}")
+        print(f"  triggers: {', '.join(ut['triggere']) or 'none'}")
+        print(f"  files: {ut['antall_filer']} | owners: {', '.join(ut['eiere']) or '—'}")
         if ut["ukjent_eier"]:
-            print("  UKJENT EIER: endringen rører filer uten komponent i eierregisteret")
+            print("  UNKNOWN OWNER: change touches files no component owns in the register")
         print(f"  change-id: {ut['change_id']}")
-        print(f"  gate: {'oppfylt' if ut['gate']['oppfylt'] else 'ikke oppfylt'}"
-              f" (risikopost: {ut['gate']['risk_id'] or 'ingen'})")
+        print(f"  gate: {'satisfied' if ut['gate']['oppfylt'] else 'not satisfied'}"
+              f" (risk entry: {ut['gate']['risk_id'] or 'none'})")
     if a.gate and ut["klasse"] in ("kritisk", "blokkerende") and not ut["gate"]["oppfylt"]:
         if not a.json:
-            print(f"GATE: {ut['klasse']} endring uten menneskelig godkjent beslutning "
-                  f"for change-id {ut['change_id']} — avvist", file=sys.stderr)
+            print(f"GATE: {ut['klasse']} change without a human-approved decision "
+                  f"for change-id {ut['change_id']} — rejected", file=sys.stderr)
         return 1
     return 0
 

@@ -1,17 +1,17 @@
-"""Tester for perspektiv-aksen — den epistemiske merkingen av hele
-systemet (Mortens krav 2026-09-17).
+"""Tests for the perspective axis — the epistemic labelling of the
+whole system (Morten's requirement 2026-09-17).
 
-Fire akser:
-    paradigme  = vår egen ramme (EFC-motorer, atlas-kartlegginger)
-    konsensus  = det rådende verdensbildet (ΛCDM, observasjons-målinger)
-    akademia   = etablert kunnskapsbase (Kepler, SIR, Minsky, IAPWS,
-                 fysiologi — publiserte modeller og metoder)
-    agnostikk  = det åpne/ukjente (mikrofysikk, bevissthet)
+Four axes:
+    paradigme  = our own frame (EFC engines, atlas mappings)
+    konsensus  = the prevailing world view (ΛCDM, observational data)
+    akademia   = established knowledge base (Kepler, SIR, Minsky, IAPWS,
+                 physiology — published models and methods)
+    agnostikk  = the open/unknown (microphysics, consciousness)
 
-Disiplinen: hver atlas-node og hver motors regime_node() skal
-deklarere ETT perspektiv. Skjemaet validerer at feltet finnes og er
-innenfor de fire verdiene. En node uten perspektiv er en påstand
-uten epistemisk hjemsted — det skal ikke finnes.
+The discipline: every atlas node and every engine's regime_node() must
+declare ONE perspective. The schema validates that the field exists and
+is one of the four values. A node without a perspective is a claim
+without an epistemic home — it must not exist.
 """
 from __future__ import annotations
 
@@ -39,13 +39,13 @@ def test_skjemaet_har_perspektiv_feltet():
     skjema = json.loads(SKJEMA.read_text(encoding="utf-8"))
     node = skjema["$defs"]["RegimeNode"]
     assert "perspektiv" in node["properties"], \
-        "RegimeNode-skjemaet mangler perspektiv-feltet"
+        "the RegimeNode schema is missing the perspektiv field"
     enum = node["properties"]["perspektiv"].get("enum", [])
     assert set(enum) == set(PERSPEKTIV), enum
-    # Review-krav (PR #442 r1): feltet skal være OBLIGATORISK — en node
-    # uten perspektiv er en påstand uten epistemisk hjemsted.
+    # Review requirement (PR #442 r1): the field must be MANDATORY —
+    # a node without a perspective is a claim without an epistemic home.
     assert "perspektiv" in node.get("required", []), \
-        "perspektiv må være required for at umerkede noder feiler"
+        "perspektiv must be required so that unlabelled nodes fail"
 
 
 def test_alle_atlas_noder_har_gyldig_perspektiv():
@@ -56,28 +56,28 @@ def test_alle_atlas_noder_har_gyldig_perspektiv():
 
 
 def test_observasjons_noder_er_konsensus():
-    """obs.*-nodene er MÅLINGER av verden — konsensus."""
+    """The obs.* nodes are MEASUREMENTS of the world — consensus."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("obs."):
             assert n["perspektiv"] == "konsensus", n["id"]
 
 
 def test_motor_noder_er_paradigme():
-    """efc.*-motornodene er VÅR ramme — paradigme."""
+    """The efc.* engine nodes are OUR frame — paradigm."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("efc.") and n["id"] != "efc.l0":
             assert n["perspektiv"] == "paradigme", n["id"]
 
 
 def test_h2o_fysikk_noder_er_akademia():
-    """h2o.*-nodene er etablert termodynamikk (IAPWS) — akademia."""
+    """The h2o.* nodes are established thermodynamics (IAPWS) — academia."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("h2o."):
             assert n["perspektiv"] == "akademia", n["id"]
 
 
 def test_alle_motorer_deklarerer_perspektiv():
-    """Hver motors regime_node() skal bære perspektiv-feltet."""
+    """Every engine's regime_node() must carry the perspektiv field."""
     import importlib
     motorer = ["water", "victron", "rotation", "hubble", "growth",
                "lensing", "cluster", "solar_flare", "jordskjelv",
@@ -89,8 +89,8 @@ def test_alle_motorer_deklarerer_perspektiv():
                   if isinstance(k, type)
                   and hasattr(k, "regime_node")
                   and k.__module__ == mod.__name__][0]
-        # kall regime_node med tomme params — feltet skal finnes
-        # uavhengig av parameterverdier
+        # call regime_node with empty params — the field must exist
+        # independently of parameter values
         import inspect
         kilde = inspect.getsource(klasse.regime_node)
         assert '"perspektiv"' in kilde or "'perspektiv'" in kilde, navn

@@ -1,18 +1,20 @@
-"""Tester for P1/P2 cross-probe-estimatoren (validation-ledger physics_test
+"""Tests for the P1/P2 cross-probe estimator (validation-ledger physics_test
 «EFC P1/P2 cross-probe test against DES-Y6 vs KiDS-Legacy S8 bifurcation»).
 
-Testen er «Approved», men estimatoren sto som «Planned». Estimatoren skal
-svare på ÉN ting: hva blir S8-ekvivalenten av de forseglede P1/P2-verdiene
-ved K0 = 2.0, og hvor langt fra hvert av de to surveynas S8 ligger den.
+The test is "Approved", but the estimator stood as "Planned". The
+estimator must answer ONE thing: what is the S8 equivalent of the sealed
+P1/P2 values at K0 = 2.0, and how far is it from each of the two surveys'
+S8.
 
-Disiplinen testene håndhever:
-  * alt lastes fra repo-lokale filer — ingen nettverkshenting, ingen
-    oppdiktede tall (ankerne er sporbare til kildefila eller til
-    ledger-oppføringen de kommer fra);
-  * hvert bein rapporteres SEPARAT (linsing og vekst slås ikke sammen);
-  * avvik mellom den forseglede påstanden og referanseimplementasjonen
-    rapporteres åpent — de skjules ikke;
-  * manglende kilde gir VENTER, aldri en dom på data man ikke har.
+The discipline the tests enforce:
+  * everything is loaded from repo-local files — no network fetching, no
+    invented numbers (the anchors are traceable to the source file or to
+    the ledger entry they come from);
+  * each leg is reported SEPARATELY (lensing and growth are not merged);
+  * discrepancies between the sealed claim and the reference
+    implementation are reported openly — they are not hidden;
+  * a missing source gives WAITING, never a verdict on data you do not
+    have.
 """
 from __future__ import annotations
 
@@ -28,7 +30,7 @@ ROT = Path(__file__).resolve().parents[1]
 
 
 # ----------------------------------------------------------------------
-# 1. Kildene: finnes, er repo-lokale, og bærer de forseglede verdiene
+# 1. The sources: they exist, are repo-local, and carry the sealed values
 # ----------------------------------------------------------------------
 def test_kildefilene_er_repo_lokale_og_bærer_de_forseglede_verdiene():
     ankere = cp.last_ankere(ROT)
@@ -36,9 +38,9 @@ def test_kildefilene_er_repo_lokale_og_bærer_de_forseglede_verdiene():
     assert ankere["des_y6_wcdm"]["s8"] == pytest.approx(0.782)
     assert ankere["kids_legacy_wright"]["s8"] == pytest.approx(0.815)
     for navn, a in ankere.items():
-        assert a["kilde"], navn          # ingen anker uten kilde
+        assert a["kilde"], navn          # no anchor without a source
         assert a["pluss"] > 0 and a["minus"] > 0, navn
-    # Ankerne skal kunne pekes paa, ikke bare finnes
+    # The anchors must be pointable, not merely present
     assert "p1_p2_cross_probe" in ankere["des_y6_wcdm"]["kilde"]
     assert "2503.19441" in ankere["kids_legacy_wright"]["kilde"]
 
@@ -55,20 +57,20 @@ def test_p1_p2_og_k0_scanen_lastes_fra_repoet():
 
 
 def test_des_y6_wcdm_konstanten_stemmer_med_ledgeroppfoeringen():
-    """Anti-drift: DES Y6 wCDM-tallene skal være de samme som ledger-
-    oppfoeringen for denne testen oppgir — ikke husket, ikke gjettet."""
+    """Anti-drift: the DES Y6 wCDM numbers must be the same as the ledger
+    entry for this test states — not remembered, not guessed."""
     ledger = json.loads(
         (ROT / "docs/validation-ledger/data/tests.json").read_text("utf-8"))
     poster = ledger["categories"]["physics_test"] if isinstance(
         ledger, dict) and "categories" in ledger else None
-    if poster is None:  # fallback: flat liste
+    if poster is None:  # fallback: flat list
         poster = ledger.get("tests", [])
     funnet = [p for p in poster
               if p.get("test_id", "") and "p1_p2_cross_probe" in p["test_id"]]
-    assert funnet, "ledgeroppføringen for P1/P2 cross-probe finnes ikke"
+    assert funnet, "the ledger entry for the P1/P2 cross-probe does not exist"
     tekst = funnet[0]["data_source"]
     m = re.search(r"S8 = ([\d.]+) \+([\d.]+)/-([\d.]+)", tekst)
-    assert m, f"fant ikke DES Y6-tallene i ledgerens data_source: {tekst}"
+    assert m, f"did not find the DES Y6 numbers in the ledger's data_source: {tekst}"
     a = cp.last_ankere(ROT)["des_y6_wcdm"]
     assert a["s8"] == pytest.approx(float(m.group(1)))
     assert a["pluss"] == pytest.approx(float(m.group(2)))
@@ -79,12 +81,12 @@ def test_ingen_nettverkshenting_i_modulen():
     kilde = Path(cp.__file__).read_text("utf-8")
     for forbudt in ("requests", "urllib", "http://", "https://api",
                     "socket"):
-        assert forbudt not in kilde, f"nettverksavhengighet: {forbudt}"
+        assert forbudt not in kilde, f"network dependency: {forbudt}"
 
 
 # ----------------------------------------------------------------------
-# 2. Motoren: Sigma_eff(z; K0) hentes fra den forseglede
-#    referanseimplementasjonen — ikke reimplementert her
+# 2. The engine: Sigma_eff(z; K0) is taken from the sealed
+#    reference implementation — not reimplemented here
 # ----------------------------------------------------------------------
 def test_sigma_eff_kommer_fra_den_forseglede_referanseimplementasjonen():
     motor = cp.last_motor(ROT)
@@ -95,7 +97,7 @@ def test_sigma_eff_kommer_fra_den_forseglede_referanseimplementasjonen():
 def test_sigma_eff_avtar_med_z_og_er_naer_1_ved_K0_store():
     sig_lav_z = cp.sigma_eff(0.1, 2.0, ROT)
     sig_hoy_z = cp.sigma_eff(0.9, 2.0, ROT)
-    assert sig_lav_z > sig_hoy_z, "Sigma_eff skal avta med z"
+    assert sig_lav_z > sig_hoy_z, "Sigma_eff must decrease with z"
 
 
 def test_lavere_K0_gir_sterkere_demping():
@@ -105,12 +107,12 @@ def test_lavere_K0_gir_sterkere_demping():
 
 
 # ----------------------------------------------------------------------
-# 3. S8-ekvivalenten: definisjonen er arvet fra repoet, ikke oppfunnet
+# 3. The S8 equivalent: the definition is inherited from the repo, not invented
 # ----------------------------------------------------------------------
 def test_s8_er_CMB_baseline_ganger_Sigma():
-    """P3 i efc_des_y6_validation definerer forholdet
-    S8_lens/S8_CMB = Sigma (0.95 <-> 0.95). Estimatoren bruker samme
-    kobling: S8_ekvivalent = S8_CMB * Sigma."""
+    """P3 in efc_des_y6_validation defines the relation
+    S8_lens/S8_CMB = Sigma (0.95 <-> 0.95). The estimator uses the same
+    coupling: S8_equivalent = S8_CMB * Sigma."""
     sig = cp.sigma_eff(0.44, 2.0, ROT)
     bein = cp.s8_ekvivalent(0.44, 2.0, modus="lensing_sigma", rot=ROT)
     assert bein["s8"] == pytest.approx(0.836 * sig, rel=1e-9)
@@ -121,7 +123,7 @@ def test_s8_er_CMB_baseline_ganger_Sigma():
 def test_vekstbeinet_bruker_forseglet_P2_og_er_et_eget_bein():
     bein = cp.s8_ekvivalent(0.7, 2.0, modus="vekst", rot=ROT)
     assert bein["s8"] == pytest.approx(0.836 * (0.430 / 0.449), rel=1e-9)
-    assert "forutsetning" in bein          # amplitudeproxy — deklarert
+    assert "forutsetning" in bein          # amplitude proxy — declared
     assert bein["s8"] != pytest.approx(
         cp.s8_ekvivalent(0.44, 2.0, modus="lensing_sigma", rot=ROT)["s8"])
 
@@ -134,7 +136,7 @@ def test_alle_beina_baerer_sigma_og_kilde():
 
 
 # ----------------------------------------------------------------------
-# 4. Avstand og kategori — regelen er eksplisitt og testbar
+# 4. Distance and category — the rule is explicit and testable
 # ----------------------------------------------------------------------
 def test_avstand_velger_riktig_sigma_retning():
     ankere = cp.last_ankere(ROT)
@@ -148,8 +150,8 @@ def test_avstand_velger_riktig_sigma_retning():
 
 
 def test_kategoriene_fra_ledgeren():
-    """(i) mellom de to WL-surveyene = MIDBAND, (ii) over KiDS = CMB-end,
-    (iii) under DES Y6 = DES-Y6-territoriet."""
+    """(i) between the two WL surveys = MIDBAND, (ii) above KiDS = CMB end,
+    (iii) below DES Y6 = DES-Y6 territory."""
     ankere = cp.last_ankere(ROT)
     des, kids = ankere["des_y6_wcdm"]["s8"], ankere["kids_legacy_wright"]["s8"]
     midt = 0.5 * (des + kids)
@@ -167,10 +169,10 @@ def test_kategori_er_monoton():
 
 
 # ----------------------------------------------------------------------
-# 5. Dommen: begge bein, begge sjekkene, ærlige avvik
+# 5. The verdict: both legs, both checks, honest discrepancies
 # ----------------------------------------------------------------------
 def test_vurder_er_treverdig_og_venter_uten_kilde():
-    dom = cp.vurder(K0=2.0, rot=ROT / "finnes-ikke")
+    dom = cp.vurder(K0=2.0, rot=ROT / "no-such-dir")
     assert dom["status"] == "VENTER"
     assert dom["arsak"]
 
@@ -187,7 +189,7 @@ def test_vurder_rapporterer_motstandarden_og_begge_sjekkene():
         assert "sjekk_kids_innen_0015" in bein, navn
         assert "sjekk_des_min_1p5_sigma" in bein, navn
         assert isinstance(bein["sjekk_kids_innen_0015"], bool), navn
-    # Ledgerens kvantitative forventning og dens falsifikasjonsvindu
+    # The ledger's quantitative expectation and its falsification window
     assert "forventning_innfridd" in dom
     assert "falsifikasjonsvindu" in dom
 
@@ -199,17 +201,17 @@ def test_ingen_skjult_sammenslaing_av_beina():
 
 
 def test_motoravvikene_rapporteres_og_skjules_ikke():
-    """Referanseimplementasjonen reproduserer ikke den forseglede
-    påstanden på alle punkter. Det er et funn, ikke en fotnote."""
+    """The reference implementation does not reproduce the sealed claim on
+    all points. That is a finding, not a footnote."""
     avvik = cp.motor_avvik(ROT)
     typer = {a["type"] for a in avvik}
-    assert "crossover" in typer           # forseglet z=0.44 vs motoren
-    assert "k0_scan_bredde" in typer      # papir ~0.87 vs motoren
-    assert "p2_fsigma8" in typer          # forseglet 0.430 vs motoren
+    assert "crossover" in typer           # sealed z=0.44 vs the engine
+    assert "k0_scan_bredde" in typer      # paper ~0.87 vs the engine
+    assert "p2_fsigma8" in typer          # sealed 0.430 vs the engine
     for a in avvik:
         assert a["forseglet"] is not None, a["type"]
-        # Enten en maalt motorverdi, eller en eksplisitt status paa at
-        # motoren ikke gir noen — aldri stillhet.
+        # Either a measured engine value, or an explicit status that the
+        # engine gives none — never silence.
         assert a["motor"] is not None or a.get("motor_status"), a["type"]
     xover = [a for a in avvik if a["type"] == "crossover"][0]
     assert xover["motor_status"] in ("funnet", "ingen_fortegnssendring")
@@ -227,7 +229,7 @@ def test_folsomhet_over_z_eff_rapporteres():
 
 
 # ----------------------------------------------------------------------
-# 6. Determinisme og CLI
+# 6. Determinism and CLI
 # ----------------------------------------------------------------------
 def test_determinisme():
     a = json.dumps(cp.vurder(K0=2.0, rot=ROT), sort_keys=True)

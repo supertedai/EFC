@@ -1,7 +1,8 @@
-"""Tester for gap_nats_bro — analysene mot fastlagte meldingsformer.
+"""Tests for gap_nats_bro — the analyses against fixed message shapes.
 
-Formene er de konnektorene publiserer (Hetzner PR #1006), som igjen
-er maalt mot ekte kilde-svar (NOAA 200, GBIF 108 042, VHP 400/403).
+The shapes are the ones the connectors publish (Hetzner PR #1006),
+which in turn are measured against real source responses (NOAA 200,
+GBIF 108 042, VHP 400/403).
 """
 from __future__ import annotations
 
@@ -62,8 +63,8 @@ def test_bro_runde_uten_melding_er_aarlig():
 
 
 def test_legit_parser_gyldig_nats_url():
-    """Regresjonstest: nats://user:pass@host:4222 maa parses
-    (over-escaped \\d var review-funn i baade Hetzner og EFC)."""
+    """Regression test: nats://user:pass@host:4222 must parse
+    (over-escaped \\d was a review finding in both Hetzner and EFC)."""
     from efc_inference.bridge import gap_nats_bro
     import tempfile, os
     with tempfile.NamedTemporaryFile(mode="w", suffix=".env",
@@ -73,9 +74,9 @@ def test_legit_parser_gyldig_nats_url():
     gammel = gap_nats_bro.LEGITIMASJON
     gap_nats_bro.LEGITIMASJON = navn
     try:
-        b, pw, vert, port, feil = gap_nats_bro._legit()
+        b, pw, host, port, feil = gap_nats_bro._legit()
         assert feil == ""
-        assert (b, vert, port) == ("bruker", "10.0.0.1", 4222)
+        assert (b, host, port) == ("bruker", "10.0.0.1", 4222)
     finally:
         os.unlink(navn)
         gap_nats_bro.LEGITIMASJON = gammel

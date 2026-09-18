@@ -1,18 +1,19 @@
-"""ØYENE: en node skal ikke stå alene uten at det er et VALG.
+"""THE ORPHANS: a node must not stand alone unless that is a CHOICE.
 
-Maalt 2026-09-18 (kort t_7dd41524): 13 av 113 noder hadde NULL koblinger.
-`_koblinger()` finner sju slag — forelder, barn, samme_domene, deler_analogi,
-samme_motor, samme_kilde, deler_proxy_ledd — og disse tretten matchet ingen.
+Measured 2026-09-18 (card t_7dd41524): 13 of 113 nodes had NULL links.
+`_koblinger()` finds seven kinds — forelder, barn, samme_domene,
+deler_analogi, samme_motor, samme_kilde, deler_proxy_ledd — and these
+thirteen matched none of them.
 
-Det er ikke tilfeldige noder. Det er h2o-fasene, lys.sol,
-kjemi.periodesystemet, efc.l0/l2/l3, og fire instrument-noder som er alene
-i sitt eget buss-domene.
+They are not random nodes. They are the h2o phases, lys.sol,
+kjemi.periodesystemet, efc.l0/l2/l3, and four instrument nodes that are
+alone in their own bus domain.
 
-To utfall er gyldige:
-  KOBLET     — noden har faatt den koblingen den faktisk horer til
-  BEGRUNNET  — noden er aerlig alene, og sier hvorfor i `stipulasjoner`
+Two outcomes are valid:
+  KOBLET     — the node has the link it actually belongs to
+  BEGRUNNET  — the node is honestly alone, and says why in `stipulasjoner`
 
-Det som ikke er gyldig er aa staa tom.
+What is not valid is standing empty.
 """
 from __future__ import annotations
 
@@ -38,7 +39,7 @@ def _ett_hopp(atlas: dict, nid: str) -> int:
 
 
 def test_ingen_node_staar_uten_kobling_eller_grunn(atlas: dict) -> None:
-    """Kjernen: hver node skal enten ha en nabo eller si hvorfor den ikke har det."""
+    """The core: every node must either have a neighbour or say why it has none."""
     uten = []
     for n in atlas["noder"]:
         if _ett_hopp(atlas, n["id"]) > 0:
@@ -47,36 +48,36 @@ def test_ingen_node_staar_uten_kobling_eller_grunn(atlas: dict) -> None:
         if not s.get("alene_status"):
             uten.append(n["id"])
     assert not uten, (
-        f"{len(uten)} node(r) staar alene UTEN grunn: {uten[:8]}")
+        f"{len(uten)} node(s) stand alone WITHOUT a reason: {uten[:8]}")
 
 
 def test_h2o_fasene_henger_sammen(atlas: dict) -> None:
-    """Fasekartet er ETT kart — ikke fem lause noder."""
+    """The phase map is ONE map — not five loose nodes."""
     for nid in ("h2o.solid", "h2o.gas", "h2o.supercritical", "h2o.liquid"):
         n = next(x for x in atlas["noder"] if x["id"] == nid)
         f = (n.get("nivaa") or {}).get("forelder")
-        assert f, f"{nid} har ingen forelder i fasekartet"
+        assert f, f"{nid} has no parent in the phase map"
 
 
 def test_lys_er_forutsetningen_for_dispersjon(atlas: dict) -> None:
-    """Rettningen skal vaere fysisk: dispersjon FORUTSETTER lys, ikke omvendt."""
+    """The direction must be physical: dispersion PRESUPPOSES light, not the other way."""
     d = next(x for x in atlas["noder"] if x["id"] == "optikk.dispersjon")
     assert (d.get("nivaa") or {}).get("forelder") == "lys.sol", (
-        "optikk.dispersjon skal ha lys.sol som forelder — lyset er forutsetningen")
+        "optikk.dispersjon must have lys.sol as parent — the light is the presupposition")
 
 
 def test_efc_lagene_henger_i_en_kjede(atlas: dict) -> None:
-    """L0 -> L1 -> L2 -> L3 er en sekvens, ikke fire lause regimer."""
+    """L0 -> L1 -> L2 -> L3 is a sequence, not four loose regimes."""
     for nid, forventet in (("efc.l2", "efc.l1"), ("efc.l3", "efc.l2"),
                            ("efc.l1", "efc.l0")):
         n = next(x for x in atlas["noder"] if x["id"] == nid)
         assert (n.get("nivaa") or {}).get("forelder") == forventet, (
-            f"{nid} skal ha {forventet} som forelder")
+            f"{nid} must have {forventet} as parent")
 
 
 def test_alene_status_sier_noe(atlas: dict) -> None:
-    """«alene» er et svar; en tom streng er en utelatelse."""
+    """'alene' is an answer; an empty string is an omission."""
     for n in atlas["noder"]:
         v = (n.get("stipulasjoner") or {}).get("alene_status")
         if v is not None:
-            assert v.strip(), f"{n['id']}.alene_status er tom"
+            assert v.strip(), f"{n['id']}.alene_status is empty"

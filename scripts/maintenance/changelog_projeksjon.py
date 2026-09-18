@@ -141,7 +141,7 @@ def _hent_commits(siden: str) -> list[dict]:
 
 
 def _finnes(ref: str) -> bool:
-    """Returner om *ref* peker paa en commit i dette repoet."""
+    """Return whether *ref* points at a commit in this repo."""
     if not ref:
         return False
     r = subprocess.run(["git", "rev-parse", "--verify", f"{ref}^{{commit}}"],
@@ -150,7 +150,7 @@ def _finnes(ref: str) -> bool:
 
 
 def _los_opp_startpunkt(start: str) -> str:
-    """Behold gyldig projeksjonsstart; reparer foreldede squash-SHA-er."""
+    """Keep a valid projection start; repair stale squash SHAs."""
     if _finnes(start):
         return start
     if _finnes("origin/main"):

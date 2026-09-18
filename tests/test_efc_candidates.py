@@ -96,8 +96,8 @@ class Rigg(unittest.TestCase):
         self.assertFalse(self.mod.whole_word("CL", "CLASS v3.2.0"))
         self.assertFalse(self.mod.whole_word("S0", "S01 is different"))
         self.assertTrue(self.mod.whole_word("Alpha Lock", "the Alpha Lock, a constraint"))
-        self.assertFalse(self.mod.whole_word("lock", "blålock er ikke en lås"),
-                         "the boundary is \\w, so a Norwegian note does not produce a hit")
+        self.assertFalse(self.mod.whole_word("lock", "a blalock is a deadlock"),
+                         "the boundary is \\w, so a substring is not a word")
         self.assertFalse(self.mod.whole_word("sol", "solår"))
 
     def test_latin_til_gresk_roerer_ikke_andre_ord(self):
@@ -128,8 +128,8 @@ class Rigg(unittest.TestCase):
         self.assertEqual(len(alle["definition_candidates"]), alle["definition_candidates_total"])
 
     def test_limit_naar_ogsaa_menneskemodus(self):
-        """Review runde 2: --all og --limit naadde bare --json, mens
-        utskriften skrev «--all for the rest» paa hver kjoering."""
+        """Review round 2: --all and --limit only reached --json, while the
+        output wrote "--all for the rest" on every run."""
         self._tre()
         d = self.mod.draft(self.tmp, "Alpha Lock", limit=0)
         smal = self.mod.render(d, limit=1)
@@ -147,10 +147,10 @@ class Rigg(unittest.TestCase):
                          "a tool must not cite itself as a source about the thing it reports on")
 
     def test_tie_break_er_kasus_ufoelsom_paa_stien(self):
-        """Review runde 3: en sti er ikke prosa. Kasus-sensitiv matching ga
-        bonusen til RCMP og L0 men ikke til `regime` i
-        EFC-Regime-Transition-Framework, som da tapte definisjonen sin til et
-        retorisk spørsmål."""
+        """Review round 3: a path is not prose. Case-sensitive matching gave
+        the bonus to RCMP and L0 but not to `regime` in
+        EFC-Regime-Transition-Framework, which then lost its definition to a
+        rhetorical question."""
         self.assertGreater(self.mod.score("The alpha lock is a constraint on the grid layer.", "alpha lock",
                                           "docs/papers/efc/Alpha-Lock/README.md", "alpha lock"),
                            self.mod.score("The alpha lock is a constraint on the grid layer.", "alpha lock",

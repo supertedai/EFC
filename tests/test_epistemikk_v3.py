@@ -1,18 +1,18 @@
-"""Tester for epistemikk v3 — ortogonaliteten og analogi-disiplinen.
+"""Tests for epistemics v3 — orthogonality and analogy discipline.
 
-De to gjenværende strukturelle hullene fra tre-linsers-granskingen:
+The two remaining structural gaps from the three-lens review:
 
-1. EPISTEMIKK-ORTOGONALITET (Claudes skarpeste kritikk): perspektiv-
-   feltet blander «hvem står vi i» med «hvor sann er påstanden».
-   Konsensus er et SOSIALT fenomen — sannhetsstatus og konsensus-
-   status skal være ADSKILTE akser, og det skal stå eksplisitt at
-   konsensus ikke er sannhet.
-2. ANALOGI-DISIPLIN: noder som erklærer ANALOGOUS_TO-relasjoner
-   skal bære analogi-feltet med eksplisitt avbildning OG disanalogi
-   (hvor brekker analogien) — ellers herdes analogi til ontologi.
+1. EPISTEMICS ORTHOGONALITY (Claude's sharpest criticism): the perspektiv
+   field mixes "who we stand in" with "how true is the claim".
+   Consensus is a SOCIAL phenomenon — truth status and consensus
+   status shall be SEPARATE axes, and it shall stand explicitly that
+   consensus is not truth.
+2. ANALOGY DISCIPLINE: nodes that declare ANALOGOUS_TO relations
+   shall carry the analogi field with an explicit mapping AND a disanalogy
+   (where the analogy breaks) — otherwise the analogy hardens into ontology.
 
-Begge er required i RegimeNode — ingen node uten epistemisk
-regnskap.
+Both are required in RegimeNode — no node without epistemic
+accounting.
 """
 from __future__ import annotations
 
@@ -47,7 +47,7 @@ def test_epistemikk_feltet_finnes_og_er_required():
 def test_konsensus_er_ikke_sannhet_er_konst():
     epi = _skjema()["$defs"]["RegimeNode"]["properties"]["epistemikk"]
     assert epi["properties"]["konsensus_er_ikke_sannhet"].get(
-        "const") is True, "konsensus_er_ikke_sannhet skal være konst sann"
+        "const") is True, "konsensus_er_ikke_sannhet shall be const true"
 
 
 def test_alle_noder_har_epistemikk():
@@ -57,43 +57,43 @@ def test_alle_noder_har_epistemikk():
 
 
 def test_konsensus_noder_har_sosial_mekanisme():
-    """Noder merket konsensus skal beskrive den sosiale mekanismen —
-    ikke bare stå med etiketten."""
+    """Nodes marked konsensus shall describe the social mechanism —
+    not just stand with the label."""
     for n in _atlas()["nodes"]:
         if n["perspektiv"] == "konsensus":
             assert n["epistemikk"]["sosial_mekanisme"], (
-                f"{n['id']}: konsensus-node uten sosial mekanisme")
+                f"{n['id']}: konsensus node without a social mechanism")
 
 
 def test_analogiske_noder_har_disanalogi():
-    """ANALOGOUS_TO-relasjonen krever analogi-feltet med BÅDE avbildning
-    og disanalogi (review-krav: begge er obligatoriske)."""
+    """The ANALOGOUS_TO relation requires the analogi field with BOTH a mapping
+    and a disanalogy (review requirement: both are mandatory)."""
     atlas = _atlas()
     analogiske = {r["subject"] for r in atlas.get("relations", [])
                   if r.get("predicate") == "ANALOGOUS_TO"}
     for n in atlas["nodes"]:
         if n["id"] in analogiske:
             assert "analogi" in n, (
-                f"{n['id']}: ANALOGOUS_TO uten analogi-felt")
+                f"{n['id']}: ANALOGOUS_TO without an analogi field")
             assert n["analogi"]["avbildning"], (
-                f"{n['id']}: avbildningen mangler")
+                f"{n['id']}: the mapping is missing")
             assert n["analogi"]["bryter_der"], (
-                f"{n['id']}: disanalogi mangler — analogien er udisiplinert")
+                f"{n['id']}: the disanalogy is missing — the analogy is undisciplined")
 
 
 def test_analogi_feltene_er_required_i_skjema():
-    """analogi.required skal kreve begge feltene (review-krav PR #445 r1)."""
+    """analogi.required shall require both fields (review requirement PR #445 r1)."""
     analogi = _skjema()["$defs"]["RegimeNode"]["properties"]["analogi"]
     assert set(analogi.get("required", [])) == {"avbildning", "bryter_der"}
 
 
 def test_konsensus_mekanismer_er_individualiserte():
-    """Ingen to konsensus-noder skal dele sosial_mekanisme-tekst —
-    malbasert fylling er en falsk sporbarhet (review-krav)."""
+    """No two konsensus nodes shall share sosial_mekanisme text —
+    template-based filling is a false traceability (review requirement)."""
     tekster = [n["epistemikk"]["sosial_mekanisme"] for n in _atlas()["nodes"]
                if n["perspektiv"] == "konsensus"]
     assert len(tekster) == len(set(tekster)), (
-        "dupliserte sosial_mekanisme-tekster blant konsensus-nodene")
+        "duplicate sosial_mekanisme texts among the konsensus nodes")
 
 
 def test_epistemikk_statusene_er_gyldige_enum():
