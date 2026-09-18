@@ -418,7 +418,8 @@
         },
         "ville_falsifisere": {
           "type": "string",
-          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand."
+          "minLength": 1,
+          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand. Ett av tre svar som gjør at noden har tatt stilling til om den kan felles: dette, `falsifiserbarhet` (kriteriet finnes, terskelen gjør det ikke ennå) eller `stipulasjoner.ikke_falsifiserbar_grunn`. At ett av dem FINNES holdes av testene (`test_atlas_avgjorelse.py`, `test_atlas_motsigelse.py`) — men en tom streng er ikke et svar her."
         },
         "open_questions": {
           "type": "array",

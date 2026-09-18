@@ -11,6 +11,13 @@ Maalt 2026-09-17: 0 av 74 offentlige noder bar en falsifikator. Men «0 av
 En instrument-node har ingen falsifikator fordi den ikke paastaar noe.
 Den maaler. Den kan vaere feilkalibrert, men det er en annen feil.
 
+Klassene under er siden 2026-09-18 skrevet inn i nodene selv, som
+`stipulasjoner.ikke_falsifiserbar_grunn` — samme sted som `buss_status` og
+`motor_status` (kort t_c11ffa45). Denne filen sier hvilke prefikser som
+ikke er vaare paastander; den maaler ikke at noen har svart. Dekningen
+(113 av 113) maales i `test_atlas_falsifiserbarhet_dekning.py`, og at
+grunnen er nodens EGEN maales i `test_atlas_avgjorelse.py`.
+
 De 27 `efc.*`-nodene er de som paastaar noe EFC-spesifikt. Alle 27 bar
 `sannhetsstatus: hypotese` — og en hypotese uten falsifikator har ikke
 sagt hva den utelukker. Denne filen holder skillet. Uten den smelter
