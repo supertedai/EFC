@@ -47,6 +47,23 @@ def ekte_repo() -> Path:
 
 
 class TestOppslagetSvarer:
+    def test_eierens_spoersmaal_loser_riktig_akse(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "hva maaler", ref="HEAD")
+        assert svar["akse"] == "measure.target"
+        assert svar["antall"] == len(atlas_lesing.roter_akse(
+            atlas_lesing.les_atlas(ekte_repo, ref="HEAD"), "measure.target"))
+        assert svar["hull"] is False
+
+    def test_hvem_maaler_loser_measurer_akse(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "hvem maaler", ref="HEAD")
+        assert svar["akse"] == "measure.measurer"
+        assert svar["antall"] > 0
+
+    def test_ukjent_spoersmaalsform_er_fortsatt_et_hull(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "hvilken drage maaler", ref="HEAD")
+        assert svar["akse"] is None
+        assert svar["hull"] is True
+
     def test_kjent_emne_gir_treff(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
         assert svar["antall"] > 0, "h2o skal finnes i atlaset"
