@@ -6,27 +6,27 @@ document can only see that the words exist, not what they mean. A mutant that
 flipped the rule to «read from the working copy» passed three document tests.
 The meaning must therefore live in a function that can be run and mutated against.
 
-The background, measured 2026-09-17: the atlas exists in several working copies
-that do not show the same map. One working tree showed 72 nodes while
-origin/main had 82; another clone sat on a later merged PR branch; a
+The background, measured 2026-09-17: the atlas exists in several working
+copies that do not show the same map. One working tree showed 72 nodes while
+origin/main had 82; another clone stood on a later merged PR branch; a
 maintenance worktree lacked `perspektiv` on all 45 nodes.
 
-    A copy that answers reads as a live atlas.
+    A copy that answers reads like a living atlas.
 
-Same failure mode as 2026-09-16 (atlas sync against components that did not
-run) and 2026-09-14 (memory available but not steering).
+The same failure mode as 2026-09-16 (atlas sync against components that were
+not running) and 2026-09-14 (memory available, but not steering).
 
-NOTE on freshness: `origin/main` is a remote-tracking ref and can be stale.
-This module therefore does NOT fetch on its own — it reports which commit it
-read, so that a stale ref is visible in the result instead of in the reader's
-assumption. `hent=False` is the default; pass `hent=True` when the reader
-wants the freshest available.
+NOTE on freshness: `origin/main` is a remote-tracking ref and can be
+outdated. This module therefore does NOT fetch by itself — it reports which
+commit it read, so that an outdated ref is visible in the result instead of in
+the reader's assumption. `hent=False` is the default; set `hent=True` when the
+reader wants the freshest possible.
 
 THE API MAP — what the public functions take and give. Set up 2026-09-18
 after a reader (me) guessed three of them wrong from memory: `finn` was
 indexed as a list (it is a dict), `plasser` was read with a key that does not
 exist, and `kjent_hull` was called under a name that was private. None of them
-was an error in the atlas — all of them were an error in the interface.
+was an error in the atlas — all were an error in the interface.
 
     les_atlas(repo, ref)            -> dict   the whole atlas
     finn(repo, emne, ref)           -> dict   {antall, hull, for_bredt, raad, ...}
@@ -35,13 +35,28 @@ was an error in the atlas — all of them were an error in the interface.
     roter(atlas, node=, ...)        -> dict
     helhet(atlas, node_id)          -> dict   {episenter, felt, motor, ...}
     plasser(atlas, tekst)           -> dict   {status, forslag, naere_noder, ...}
+    node_verdig(plassering)         -> dict   {node_verdig, terskel, grunn}
+    skriv_inntak(atlas, tekst, fil) -> dict   the retain fragment into the queue
+    les_inntak(fil)                 -> list   the queue back; a bad line raises
+    bekreft(atlas, tekst, generator)-> dict   did it arrive, and is it visible
+    bekreft_fra_ref(repo, tekst)    -> dict   the same, read from a ref
+    inntak_status(repo, fil)        -> dict   the whole queue, one answer per row
     kjent_hull(repo, emne, ref)     -> dict | None
     naboer/hop/hop_stier/fragment   -> the coupling graph
     maaleformer/proxy_kjeder        -> what measures, via what
+    sjekk_usikkerhet(atlas, repo)   -> list[str]  every post against its own source
 
-THE RULE they all follow: an entrance that does not know SAYS so. `finn`
-answers «THE ATLAS DOES NOT KNOW» rather than giving a loose hit; `plasser`
+THE RULE they all follow: an entrance that does not know, SAYS so. `finn`
+answers THE ATLAS DOES NOT KNOW rather than giving a loose hit; `plasser`
 answers `uten_hjem` rather than guessing a domain.
+
+THE RETAIN INTAKE is the atlas's own `retain`: the session's insights are
+proposed as fragments to `plasser()`, each of them with provenance, and each
+of them with the threshold written down (see `NODE_TERSKEL`) — because
+automation that maps everything fills the atlas with noise. Whoever adds one
+confirms afterwards with `--bekreft` that the fragment arrived, and the answer
+is built by the atlas and not by the queue: the queue is the working memory,
+the atlas is the truth.
 """
 
 from __future__ import annotations
@@ -56,7 +71,7 @@ from pathlib import Path
 STANDARD_REF = "origin/main"
 
 # How many hits the CLI shows before it says «... and N more». An answer of
-# 80 lines is not read; the strongest hits are sorted first.
+# 80 lines does not get read; the strongest hits are sorted first.
 _VIS_MAKS = 15
 
 
@@ -77,8 +92,8 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
               hent: bool = False, sti: str = "schema/regime_nodes.jsonld") -> dict:
     """Read the atlas from `ref` in `repo` — never from the working tree.
 
-    Returns an object that NAMES the source it read, so that a stale or wrong
-    ref is visible in the result.
+    Returns an object that NAMES the source it read, so that an outdated or
+    wrong ref is visible in the result.
 
     Raises AtlasLesingFeil if the ref does not exist. That is deliberate: a
     silent fallback to the working tree is exactly the failure mode this
@@ -99,8 +114,8 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
             f"{ref}:{sti} in {repo} lacks 'nodes' — "
             f"keys: {sorted(data)[:8] if isinstance(data, dict) else type(data).__name__}")
     # Note: the schema is NOT read here. This function reads the atlas, and an
-    # atlas exists also without a schema (synthetic repos in tests, partial
-    # extracts). The requirements are fetched where they are used — see
+    # atlas also exists without a schema (synthetic repos in tests, partial
+    # extractions). The requirements are read where they are used — see
     # `skjema_krav()`.
     return {
         "kilde": f"git:{ref}",
@@ -117,30 +132,30 @@ def skjema_krav(atlas: dict) -> list[str]:
 
     Measured 2026-09-18: `plasser` computed this as every field in the bank
     minus seven hardcoded exceptions — and among the exceptions lay
-    `buss_domene` and `falsifiserbarhet`. A new node was thus asked for
-    `coupling.empathy_note`, but NOT for bus domain or falsifier: the two
-    fields the rest of the house rests on. A list that cannot detect that it
-    has itself become wrong is not a requirement — it is a memory.
+    `buss_domene` and `falsifiserbarhet`. A new node was therefore asked for
+    `coupling.empathy_note`, but NOT for the bus domain or the falsifier: the
+    two fields the rest of the house rests on. A list that cannot discover that
+    it has itself become wrong is not a requirement — it is a memory.
 
     Raises AtlasLesingFeil when no source exists. An empty requirement list
-    would have meant «no requirements», and that answer looks like knowledge.
+    would mean «no requirements», and that answer looks like knowledge.
     """
     if atlas.get("skjema_krav"):
         return list(atlas["skjema_krav"])
     if atlas.get("repo") and atlas.get("ref"):
-        return _schema_requirements(Path(atlas["repo"]), atlas["ref"])
+        return _skjema_krav(Path(atlas["repo"]), atlas["ref"])
     raise AtlasLesingFeil(
-        "the atlas has no source of requirements: neither 'skjema_krav', "
-        "'repo' nor 'ref' exists — so the requirements cannot be read")
+        "the atlas has no source for the requirements: neither 'skjema_krav', "
+        "'repo' nor 'ref' exists — then the requirements cannot be read")
 
 
-def _schema_requirements(repo: Path, ref: str,
+def _skjema_krav(repo: Path, ref: str,
                  sti: str = "schema/regime_node.schema.json") -> list[str]:
     """Read which fields the schema REQUIRES of a node — one place, not two.
 
     Raises AtlasLesingFeil if the schema is missing or does not declare
-    `required`. An empty list would have meant «no requirements», and that is
-    an answer that looks like knowledge.
+    `required`. An empty list would mean «no requirements», and that is an
+    answer that looks like knowledge.
     """
     raa = _git(repo, "show", f"{ref}:{sti}")
     try:
@@ -159,19 +174,197 @@ def _har_falsifikator(node: dict) -> bool:
 
     `ville_falsifisere` is the name in the schema, measured 2026-09-17. A node
     that cannot be felled by anything is a claim — and the reader must be able
-    to see the difference without reading the whole node itself.
+    to see the difference without reading the whole node.
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
 
+# ---------------------------------------------------------------------------
+# THE UNCERTAINTY LAYER — every number must be able to carry how certain it is
+#
+# ADR-086 §3.1: the field is optional, closed and additive. The source HAS
+# the information (k = 0.415 ± 0.029 stands in its own paper); the atlas lost
+# it in the transfer. The diagnosis is therefore not «get uncertainty», but
+# «stop throwing it away» — and then there is the one rule that makes the
+# layer worth anything: A VALUE ALWAYS HAS A SOURCE.
+#
+# The checker stands here and not in the schema, deliberately. The schema says
+# what a post IS; this one says whether the post HOLDS UP against its source.
+# And the C10 gate cannot require the field before it is changed with human
+# words (`t_2e60afa6`) — a requirement that cannot be made in the schema must
+# be made where it actually runs.
+# ---------------------------------------------------------------------------
+
+# The post's and the source's keys. The same three in the schema
+# ($defs/Usikkerhetspost, $defs/Usikkerhetskilde) — two lists would drift, and
+# one of them would keep quiet.
+USIKKERHETSPOST_NOKLER = ("storrelse", "verdi", "feilgrense", "kilde")
+USIKKERHETSKILDE_NOKLER = ("fil", "linje", "ordrett")
+
+_TALL_RE = re.compile(r"[0-9]+(?:\.[0-9]+)?")
+_GRENSE_RE = re.compile(r"±\s*([0-9]+(?:\.[0-9]+)?)")
+
+
+def _tall_i(tekst: str) -> list[float]:
+    return [float(t) for t in _TALL_RE.findall(tekst)]
+
+
+def _grenser_pa(tekst: str) -> list[float]:
+    """The numbers that stand right after a ± — the SOURCE's own error bounds."""
+    return [float(g) for g in _GRENSE_RE.findall(tekst)]
+
+
+def _like_tall(a: float, b: float) -> bool:
+    """0.029 written as 0.029 and as 2.9e-2 is the same bound to a human."""
+    return abs(a - b) <= 1e-9 * max(1.0, abs(a), abs(b))
+
+
+def _sporet(repo: Path, fil: str) -> bool:
+    """Is the file in the repo? An untracked «source» does not exist as a source."""
+    p = subprocess.run(["git", "-C", str(repo), "ls-files", "--error-unmatch",
+                        "--", fil], capture_output=True, text=True)
+    return p.returncode == 0
+
+
+def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]:
+    """One post against its own source file. Every way out names why."""
+    hvor = f"{node_id}/usikkerhet/{nr}"
+    if not isinstance(post, dict):
+        return [f"{hvor}: the post is not an object"]
+    if isinstance(post.get("storrelse"), str) and post["storrelse"].strip():
+        hvor = f"{hvor} «{post['storrelse']}»"
+
+    # Type guard FIRST: a missing key must not give a TypeError in the
+    # diagnosis branch — then the reader crashes exactly where it is supposed
+    # to say what is wrong.
+    mangler = [k for k in USIKKERHETSPOST_NOKLER if k not in post]
+    if mangler:
+        return [f"{hvor}: missing {', '.join(mangler)}"]
+
+    verdi, grense = post["verdi"], post["feilgrense"]
+    for navn, v in (("verdi", verdi), ("feilgrense", grense)):
+        if isinstance(v, bool) or not isinstance(v, (int, float, type(None))):
+            return [f"{hvor}: {navn} is not a number or null"]
+    kilde = post["kilde"]
+    if not isinstance(kilde, dict):
+        return [f"{hvor}: usikkerhet without a source"]
+    mangler = [k for k in USIKKERHETSKILDE_NOKLER if k not in kilde]
+    if mangler:
+        return [f"{hvor}: kilde is missing {', '.join(mangler)}"]
+
+    fil, linje, ordrett = kilde["fil"], kilde["linje"], kilde["ordrett"]
+    if not isinstance(fil, str) or not fil.strip():
+        return [f"{hvor}: kilde.fil is empty"]
+    if fil.startswith("/") or ".." in fil.split("/"):
+        return [f"{hvor}: kilde.fil must be a path in the repo, not {fil!r}"]
+    if not _sporet(repo, fil):
+        return [f"{hvor}: kilde.fil {fil} is not tracked in the repo"]
+    if isinstance(linje, bool) or not isinstance(linje, int) or linje < 1:
+        return [f"{hvor}: kilde.linje is not a positive integer"]
+    try:
+        linjer = (repo / fil).read_text(encoding="utf-8").splitlines()
+    except OSError as e:
+        return [f"{hvor}: {fil} could not be read — {e}"]
+    if linje > len(linjer):
+        return [f"{hvor}: {fil} has {len(linjer)} lines, the post points at {linje}"]
+    tekst = linjer[linje - 1]
+
+    ut: list[str] = []
+    if not isinstance(ordrett, str) or not ordrett.strip():
+        ut.append(f"{hvor}: kilde.ordrett is empty — a quotation must be readable")
+    elif ordrett not in tekst:
+        ut.append(f"{hvor}: ordrett does not stand at {fil}:{linje}: {ordrett!r}")
+
+    if isinstance(verdi, (int, float)) and not any(_like_tall(verdi, t)
+                                                  for t in _tall_i(tekst)):
+        ut.append(f"{hvor}: verdi {verdi} does not stand at {fil}:{linje}")
+
+    grenser = _grenser_pa(tekst)
+    if grense is None:
+        if grenser:
+            ut.append(f"{hvor}: the source STATES an error bound ({grenser}) at "
+                      f"{fil}:{linje} — the post says it does not")
+    elif not grenser:
+        ut.append(f"{hvor}: feilgrense {grense} is stated, but {fil}:{linje} "
+                  f"states none (no ±) — 0 and guessing are not an answer")
+    elif not any(_like_tall(grense, g) for g in grenser):
+        ut.append(f"{hvor}: feilgrense {grense} is not the one the source states "
+                  f"({grenser}) at {fil}:{linje}")
+    return ut
+
+
+def sjekk_usikkerhet(atlas: dict, repo: str | Path | None = None) -> list[str]:
+    """Every post in the uncertainty layer against ITS OWN source. Empty = clean.
+
+    Returns problems, not a verdict: every problem names the node, the post and
+    what did not match, so that the answer can be read as a correction.
+
+    The rules, all measured against the source and none against the schema:
+
+      * the post must have `storrelse` and a `kilde` with file, line and a
+        VERBATIM excerpt of the line;
+      * the file must be tracked in the repo, and the line must exist there;
+      * `verdi` must stand on the line the post points at;
+      * `feilgrense` is either a number the source states after a ± ON THAT
+        LINE, or `null` — and `null` requires that the line states none.
+
+    The last one is the whole reason `null` is an answer and 0 is not: an error
+    bound of 0 that the source does not say is a guess written as a
+    measurement. `β = 0.16 (free amplitude)` is the test case — it must stand
+    as a hole.
+
+    `repo` falls back to `atlas['repo']` (which `les_atlas` sets), and if both
+    are missing we raise: a check without sources would have answered «all
+    well» on every post, and that answer looks like knowledge.
+    """
+    sti = repo if repo is not None else atlas.get("repo")
+    if not sti:
+        raise AtlasLesingFeil(
+            "the uncertainty layer cannot be checked without a repo: neither "
+            "'repo' nor atlas['repo'] exists — then there are no sources to read")
+    repo = Path(sti)
+
+    # Both the atlas layer ('noder', from les_atlas) and the raw file
+    # ('nodes') are read. An atlas WITHOUT a node key RAISES here, and that is
+    # deliberate: a check that does not find the nodes would have answered «all
+    # well» on every post, and that answer looks like knowledge — exactly the
+    # failure mode this layer exists to prevent.
+    noder = atlas.get("noder")
+    if noder is None:
+        noder = atlas.get("nodes")
+    if noder is None:
+        raise AtlasLesingFeil(
+            "the atlas has neither 'noder' nor 'nodes' — then there are no "
+            "posts to check, and «no problems» would have been an empty answer")
+
+    ut: list[str] = []
+    for node in noder or []:
+        if not isinstance(node, dict):
+            continue
+        node_id = str(node.get("id") or "?")
+        usikkerhet = node.get("usikkerhet")
+        if usikkerhet is None:
+            continue  # OPTIONAL: a node without the layer is not a problem
+        if not isinstance(usikkerhet, dict):
+            ut.append(f"{node_id}: usikkerhet is not an object")
+            continue
+        poster = usikkerhet.get("poster")
+        if not isinstance(poster, list) or not poster:
+            ut.append(f"{node_id}: usikkerhet without poster — an empty field that looks filled")
+            continue
+        for nr, post in enumerate(poster):
+            ut.extend(_sjekk_usikkerhetspost(node_id, nr, post, repo))
+    return ut
+
 
 def _dekning(repo: Path, ref: str, hent: bool) -> dict:
-    """Read the coverage file from the SAME ref. Missing → empty answer, not an error.
+    """Read the coverage file from the SAME ref. If it is missing, the answer is
+    empty — not an error.
 
     The coverage status is a separate artefact (`schema/atlas_dekning.json`),
     not a field on the nodes. Without this the lookup reads only the nodes, and
-    must answer «don't know» about something somebody actually measured and
-    found missing.
+    must answer «does not know» about something someone has actually measured
+    and found missing.
     """
     try:
         raa = _git(repo, "show", f"{ref}:schema/atlas_dekning.json")
@@ -186,36 +379,37 @@ def _dekning(repo: Path, ref: str, hent: bool) -> dict:
 
 
 def _kjent_hull(dekning: dict, naal: str) -> dict | None:
-    """Is the topic a domain somebody has measured? Looks at the domain NAME, not the content.
+    """Is the subject a domain someone has measured? Searches the domain NAME, not
+    the content.
 
-    Only a hit on the name counts. A hit on a reason would make «known» into
-    «mentioned somewhere», and then the word loses its value.
+    Only a hit on the name counts. A hit on a begrunnelse would have made
+    «known» into «mentioned somewhere», and then the word loses its value.
     """
     if dekning.get("_mangler"):
         return None
-    needle_lower = naal.lower()
+    naal_lav = naal.lower()
     for domene, v in dekning.items():
         if not isinstance(v, dict):
             continue
-        d_lower = domene.lower()
-        if needle_lower == d_lower or needle_lower in d_lower.split("."):
+        d_lav = domene.lower()
+        if naal_lav == d_lav or naal_lav in d_lav.split("."):
             return {"domene": domene, "status": v.get("status"),
                     "noder": v.get("noder"), "begrunnelse": v.get("begrunnelse"),
                     # OPTIONAL: PR #475 puts measured message volume per
-                    # domain in the coverage file. If it is there, it is shown
-                    # — and then a hole of 190 770 can be told apart from one
-                    # of 228. If it is not, the lookup works as before; a
-                    # reference work that does not work before another PR
-                    # lands is a reference work that does not work.
+                    # domain into the coverage file. If it exists, it is shown —
+                    # and then a hole of 190 770 can be told apart from one of
+                    # 228. If it does not exist, the lookup works as before; a
+                    # reference work that does not work before another PR lands
+                    # is a reference work that does not work.
                     "meldinger": v.get("meldinger")}
     return None
 
 
-def _normalize(s: str) -> str:
-    """Hyphen, underscore and space are the same delimiter.
+def _norm(s: str) -> str:
+    """Hyphen, underscore and space are the same separator.
 
-    A reference work that cannot see that `energy-flow` and `energy flow` are
-    the same word answers «don't know» to a word it actually owns.
+    A reference work that does not see that `energy-flow` and `energy flow` are
+    the same word answers «does not know» about a word it actually owns.
     """
     return " ".join(s.lower().replace("-", " ").replace("_", " ").split())
 
@@ -223,13 +417,12 @@ def _normalize(s: str) -> str:
 def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
     """Find registered concepts without pretending they are atlas nodes.
 
-    Two things must NOT be swallowed in silence: a concept without `@id` is a
+    Two things must NOT be swallowed silently: a concept without `@id` is a
     defect in the register (not a usable hit), and invalid JSON in the PRIMARY
     concept register is an error — not «not found». A reference work that turns
-    a read error into «don't know» has answered something other than what it
-    was asked about.
-    """
-    naal = _normalize(emne)
+    a read error into «does not know» has answered something other than what it
+    was asked."""
+    naal = _norm(emne)
     funn = []
     for sti in ("docs/concepts.jsonld", "docs/ontology.jsonld"):
         try:
@@ -237,9 +430,8 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
         except json.JSONDecodeError as feil:
             raise AtlasLesingFeil(f"{sti} is not valid JSON: {feil}") from feil
         except AtlasLesingFeil:
-            # The file does not exist on this ref. That is a measured absence
-            # of an OPTIONAL register, not a defect — and it is not reported
-            # as a hit.
+            # The file does not exist on this ref. That is a measured absence of
+            # an OPTIONAL register, not a defect — and it is not reported as a hit.
             continue
         for post in data.get("@graph", []):
             kandidater = [post.get("@id"), post.get("label")]
@@ -248,12 +440,12 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
                 verdier = verdi if isinstance(verdi, list) else [verdi]
                 kandidater.extend(
                     v.get("@value") if isinstance(v, dict) else v for v in verdier)
-            if any(isinstance(v, str) and _normalize(v) == naal for v in kandidater):
+            if any(isinstance(v, str) and _norm(v) == naal for v in kandidater):
                 if not isinstance(post.get("@id"), str) or not post["@id"]:
                     raise AtlasLesingFeil(
                         f"{sti}: a concept matches «{emne}» but lacks @id — "
                         "the register is defective, and a hit without an id "
-                        "cannot be verified")
+                        "cannot be re-checked")
                 funn.append({"id": post["@id"], "kilde": sti})
     unike = {}
     for post in funn:
@@ -263,10 +455,11 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
 
 def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
          hent: bool = False) -> dict:
-    """Look up a topic in the atlas — reads from `ref`, never from the working tree.
+    """Look up a subject in the atlas — reads from `ref`, never from the working
+    tree.
 
     The difference from `les_atlas`: this one answers a QUESTION. `les_atlas`
-    gives you the whole map and lets you search; the price of that is that the
+    gives you the whole map and lets you search; the price for that is that the
     atlas is not consulted spontaneously. Measured 2026-09-17: the module had
     an exit and no entrance.
 
@@ -276,27 +469,27 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
 
     `hull: True` means «the atlas does not know» — that is an answer, not an
     error, and it can be told apart from an error because an error RAISES. A
-    reference work that cannot say «I don't know» says «no» out of ignorance.
+    reference work that cannot say «I do not know» says «no» out of ignorance.
 
     Every hit names its epistemic status, so that the reader does not have to
     read the whole node to know what is known and what is stipulated.
     """
     if not emne or not emne.strip():
         raise AtlasLesingFeil(
-            "empty topic — a lookup without a question would match everything "
-            "and thus have answered nothing")
+            "empty subject — a lookup without a question would have matched "
+            "everything and thus answered nothing")
     atlas = les_atlas(repo, ref, hent=hent, sti="schema/regime_nodes.jsonld")
     # Measured 2026-09-18: `--emne "energy-flow"` hit, `--emne "energy flow"`
     # gave 0 hits. The words Morten uses have BOTH forms, and a reference work
-    # that does not see that answers «don't know» to a word it actually owns.
-    naal = _normalize(emne)
+    # that does not see that answers «does not know» about a word it owns.
+    naal = _norm(emne)
     if not naal:
-        raise AtlasLesingFeil("empty topic after normalization")
+        raise AtlasLesingFeil("empty subject after normalisation")
     dekning = _dekning(Path(repo), ref, hent)
-    question_axis = _resolve_question_axis(atlas, emne)
-    if question_axis:
+    spoersmaalsakse = _loes_spoersmaalsakse(atlas, emne)
+    if spoersmaalsakse:
         treff = []
-        for n in roter_akse(atlas, question_axis):
+        for n in roter_akse(atlas, spoersmaalsakse):
             treff.append({
                 "trefftype": "akse",
                 "id": n.get("id"),
@@ -309,40 +502,40 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
-            "emne": emne, "akse": question_axis,
+            "emne": emne, "akse": spoersmaalsakse,
             "kilde": atlas["kilde"], "ref": ref, "commit": atlas["commit"],
             "antall": len(treff), "hull": not treff, "for_bredt": False,
             "raad": None, "kjent_hull": _kjent_hull(dekning, naal),
             "dekning_fil": "schema/atlas_dekning.json", "treff": treff,
         }
-    # `\b` counts `_` as a WORD CHARACTER. But in node ids `_` SEPARATES
-    # segments: `homo.sovn_vaaken`, `efc.solar_flare_engine`. With `\b` the
-    # word `sovn` was weakened to a substring even though it is its own segment
-    # in the id (measured in review 2026-09-17). We therefore define the word
-    # character explicitly, so that `_`, `.` and `-` are all separators — and
-    # `sol` in `solid` is still a substring.
-    _WORD_CHARS = "a-z0-9æøå"
-    word_pattern = re.compile(
-        rf"(?<![{_WORD_CHARS}])" + re.escape(naal) + rf"(?![{_WORD_CHARS}])")
+    # `\\b` counts `_` as a WORD CHARACTER. But in node ids `_` SEPARATES
+    # parts: `homo.sovn_vaaken`, `efc.solar_flare_engine`. With `\b`, `sovn`
+    # was weakened to a substring even though it is a part of its own in the id
+    # (measured in review 2026-09-17). We therefore define the word character
+    # explicitly, so that `_`, `.` and `-` are all separators — and `sol` in
+    # `solid` is still a substring.
+    _ORDTEGN = "a-z0-9æøå"
+    ordmonster = re.compile(
+        rf"(?<![{_ORDTEGN}])" + re.escape(naal) + rf"(?![{_ORDTEGN}])")
     treff = []
     for n in atlas["noder"]:
-        tekst = _normalize(json.dumps(n, ensure_ascii=False))
+        tekst = _norm(json.dumps(n, ensure_ascii=False))
         if naal not in tekst:
             continue
         # Three levels, not two. «sol» hit `batteri.lading` as a WORD — because
-        # the word stands in a text inside the node — but the node is not about
-        # the sun. And «sol» hit `h2o.solid` as a substring of «solid». Without
-        # the distinction the reader has to guess which hits are real.
-        id_text = str(n.get("id", "")).lower()
+        # the word exists in a text inside the node — but the node is not about
+        # sol. And «sol» hit `h2o.solid` as a substring of «solid». Without the
+        # distinction the reader has to guess which hits are real.
+        id_tekst = str(n.get("id", "")).lower()
         buss = str(n.get("buss_domene") or "").lower()
-        if word_pattern.search(id_text):
+        if ordmonster.search(id_tekst):
             trefftype = "id"
         elif buss and (naal == buss or naal in buss.split(".")):
-            # A node that COVERS the domain `verden.energi` is relevant to
-            # «energi» even if the word only stands in the prose. Without this
-            # `efc.enerflyt_engine` ranked as loose prose.
+            # A node that COVERS the domain `verden.energi` is relevant for
+            # «energi» even though the word only stands in the prose. Without
+            # this, `efc.enerflyt_engine` ranked as loose prose.
             trefftype = "domene"
-        elif word_pattern.search(tekst):
+        elif ordmonster.search(tekst):
             trefftype = "ord"
         else:
             trefftype = "delstreng"
@@ -357,55 +550,69 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    if not treff:
-        registrert = _navnerom(Path(repo), ref, emne)
-        if registrert:
-            treff = [{
-                "trefftype": "navnerom",
-                "id": post["id"],
-                "synlighet": None,
-                "perspektiv": None,
-                "fase": None,
-                "buss_domene": None,
-                "har_prediksjon": False,
-                "har_oppgjoer": False,
-                "har_falsifikator": False,
-                # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace
-                # hit gave a non-empty hit list, and a reader (or a downstream
-                # call) could conclude «covered». The atlas does NOT have the
-                # node — it has the concept in the namespace. The two fields say
-                # so without anyone having to read the prose.
-                "har_node": False,
-                "dekning": "navnerom_uten_node",
-                "grunn": (f"registered in {post['kilde']}, but is not a "
-                          "node in schema/regime_nodes.jsonld"),
-            } for post in registrert]
-    rank_order = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
-             "navnerom": 4}
+    # Registered concepts ALWAYS answer with the namespace hit — also when a
+    # node mentions the words.
+    #
+    # The first version added the namespace hit ONLY when no node hit, and that
+    # was a silent dependency on the content. Measured 2026-09-18
+    # (t_af77c6da): the uncertainty layer's `kilde.fil` wrote
+    # «docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/
+    # index.json» into obs.bao — and the answer to «Energy-Flow Cosmology» went
+    # from «registered concept: efc:EFC» to «word in obs.bao». The register is
+    # the atlas's answer to «do I own this concept?», and that answer must not
+    # depend on which nodes happen to cite a file.
+    registrert = _navnerom(Path(repo), ref, emne)
+    if registrert:
+        treff.extend({
+            "trefftype": "navnerom",
+            "id": post["id"],
+            "synlighet": None,
+            "perspektiv": None,
+            "fase": None,
+            "buss_domene": None,
+            "har_prediksjon": False,
+            "har_oppgjoer": False,
+            "har_falsifikator": False,
+            # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace hit
+            # gave a non-empty hit list, and a reader (or a downstream call)
+            # could conclude «covered». The atlas does NOT have the node — it
+            # has the concept in the namespace. The two fields say so without
+            # anyone having to read the prose.
+            "har_node": False,
+            "dekning": "navnerom_uten_node",
+            "grunn": (f"registered in {post['kilde']}, but is not a "
+                      "node in schema/regime_nodes.jsonld"),
+        } for post in registrert)
+    # Precision is the order: a node that CARRIES the word in the id or that
+    # COVERS the domain says more than the register does; the register says
+    # more than a loose word in a text. The namespace hit therefore stands
+    # between them — not last, which was an inheritance from when it was only
+    # a fallback.
+    _rang = {"id": 0, "domene": 1, "navnerom": 2, "ord": 3, "delstreng": 4}
     # Within the same rank: public before internal. The public ones are the
     # core of the published atlas; the internal ones are context.
-    treff.sort(key=lambda x: (rank_order[x["trefftype"]],
+    treff.sort(key=lambda x: (_rang[x["trefftype"]],
                               x["synlighet"] != "offentlig",
                               x["id"] or ""))
-    # «Too broad» rests on whether the search has anything PRECISE — not on a
+    # «Too broad» rests on whether the search has ANYTHING PRECISE — not on a
     # count.
     #
     # The first version used «>50 hits or >60 % of the atlas». Review round 4
     # measured it against real questions: sol=20, energi=25, kosmos=32, h2o=36 —
-    # all far below, instrument=82 above. No real question lay anywhere near, so
-    # the number was guessed. Worse: `efc` gives 68 hits of which 32 are
-    # PRECISE — a count threshold called that broad, which is the exact opposite.
+    # all far below, instrument=82 above. No real question lay anywhere near,
+    # so the number was guessed. Worse: `efc` gives 68 hits of which 32 are
+    # PRECISE — a count threshold called it broad, which is the exact opposite.
     #
     # The criterion is therefore: a hit is precise if it stands in the node id
     # or covers a bus domain. If there are no precise hits AND the answer does
-    # not fit the display, the search is broad — no matter how large the atlas
-    # grows.
+    # not fit in the display, the search is broad — no matter how large the
+    # atlas grows.
     presise = [t for t in treff if t["trefftype"] in ("id", "domene")]
     for_bredt = not presise and len(treff) > _VIS_MAKS
     raad = None
     if for_bredt:
         raad = (f"no precise hits — all {len(treff)} are loose prose. "
-                f"Use a more precise topic, or see the strongest below")
+                f"Use a more precise subject, or see the strongest below")
     return {
         "emne": emne,
         "akse": None,
@@ -423,7 +630,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
 
 
 # ---------------------------------------------------------------------------
-# ROTATION — seeing the structure from every angle, not just looking up a topic
+# ROTATION — seeing the structure from every angle, not just looking up a subject
 #
 # Measured 2026-09-17: the tool had four flags (`--emne`, `--ref`, `--hent`,
 # `--alle`). It could look up and list. It could NOT filter on perspective, not
@@ -431,11 +638,11 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
 # did not exist.
 # ---------------------------------------------------------------------------
 
-#: Phases in which the node MEASURES something — it has an instrument in the world.
-_MEASURING_PHASES = frozenset({"instrument", "observasjon"})
+#: Phases where the node MEASURES something — it has an instrument in the world.
+_MAALENDE_FASER = frozenset({"instrument", "observasjon"})
 
-#: Phases in which the node is DERIVED — computed, not measured.
-_DERIVED_PHASES = frozenset({"regime_engine", "computation_engine",
+#: Phases where the node is DERIVED — computed, not measured.
+_AVLEDEDE_FASER = frozenset({"regime_engine", "computation_engine",
                              "teoretisk", "stabil"})
 
 
@@ -444,7 +651,7 @@ def roter(atlas: dict, *, node: str | None = None,
           domene: str | None = None) -> list[dict]:
     """Rotate in the atlas across the fields.
 
-    One call, one angle. `node` gives the WHOLE node — all fields, not a
+    One call, one angle. `node` gives the WHOLE node — every field, not a
     selection. `KeyError` when the node does not exist: an empty answer would
     have hidden that the name was wrong.
     """
@@ -466,17 +673,17 @@ def roter(atlas: dict, *, node: str | None = None,
 def maaleformer(atlas: dict) -> dict[str, list[str]]:
     """Separate what MEASURES from what is derived.
 
-    «measures or is established» was ONE number for 47 very different nodes. It
-    does not distinguish a thermometer from a numerical solver. Here they are
+    «measures or is established» was ONE number for 47 very different nodes.
+    It does not tell a thermometer from a numerical solver. Here they are
     split.
     """
     ut: dict[str, list[str]] = {"instrument": [], "avledet": [], "ingen": []}
     for n in atlas.get("noder") or []:
         fase = n.get("phase")
         m = n.get("measure") or {}
-        if fase in _MEASURING_PHASES:
+        if fase in _MAALENDE_FASER:
             ut["instrument"].append(n["id"])
-        elif fase in _DERIVED_PHASES or fase == "regime_engine":
+        elif fase in _AVLEDEDE_FASER or fase == "regime_engine":
             ut["avledet"].append(n["id"])
         elif m.get("instrument"):
             ut["instrument"].append(n["id"])
@@ -486,11 +693,11 @@ def maaleformer(atlas: dict) -> dict[str, list[str]]:
 
 
 def proxy_kjeder(atlas: dict) -> dict[str, list[str]]:
-    """What goes via what — in every segment.
+    """What goes via what — through every link.
 
-    `measure.proxy_chain` says which segments separate the measured from the
-    concluded. A node without a chain says that it reads directly; one with
-    three segments says that three things must hold.
+    `measure.proxy_chain` says which links separate the measured from the
+    concluded. A node without a chain says it reads directly; one with three
+    links says that three things must hold.
     """
     ut: dict[str, list[str]] = {}
     for n in atlas.get("noder") or []:
@@ -502,42 +709,42 @@ def proxy_kjeder(atlas: dict) -> dict[str, list[str]]:
 
 
 # ---------------------------------------------------------------------------
-# ---------------------------------------------------------------------------
 # THE AXES — all of them, not the six I happened to build
 #
 # Measured 2026-09-17: the atlas carried 21 top-level fields, all mandatory on
 # all 86 nodes. The rotation covered six. Fifteen were invisible to the tool.
-# The solution is not twenty flags: it is to FIND the axes themselves, so that
-# an axis added tomorrow also works tomorrow.
+# The solution is not twenty flags: it is FINDING the axes yourself, so that an
+# axis added tomorrow also works tomorrow.
 # ---------------------------------------------------------------------------
 
-def _collect_paths(sti: str, v, ut: dict) -> None:
+def _bla(sti: str, v, ut: dict) -> None:
     """Walk through a node and collect every path as an axis.
 
     Both the leaf AND the parent are registered: `analogi.avbildning` is
     useful, but `analogi` is the axis — a node that HAS the isomorphism must be
-    findable on it.
+    found on it.
     """
     if isinstance(v, dict):
-        ut.setdefault(sti, []).append(f"<{len(v)} fields>")
+        ut.setdefault(sti, []).append(f"<{len(v)} felt>")
         for k, x in v.items():
-            _collect_paths(f"{sti}.{k}", x, ut)
+            _bla(f"{sti}.{k}", x, ut)
     elif isinstance(v, list):
         ut.setdefault(sti, []).extend(str(x) for x in v)
     elif v is None:
         # `None` is not a value. `str(None)` became literally «None», which is
-        # truthy — and made `nivaa.forelder` an axis with 113 nodes answering
-        # 33, with «None» as an offered value. Measured 2026-09-18.
+        # truthy — and made `nivaa.forelder` an axis with 113 nodes that
+        # answered 33, with «None» as an offered value.
+        # Measured 2026-09-18.
         return
     else:
         ut.setdefault(sti, []).append(str(v))
 
 
 def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
-    """Find ALL the axes in the atlas — also those that did not exist yesterday.
+    """Find ALL the axes in the atlas — also the ones that did not exist yesterday.
 
-    Returns `{sti: (number of nodes that have it, example values)}`.
-    Nested fields are walked with dots: `emergence.loop`,
+    Returns `{sti: (number of nodes that have it, sample values)}`.
+    Nested fields are walked with a dot: `emergence.loop`,
     `epistemikk.sannhetsstatus`.
     """
     raa: dict[str, set] = {}
@@ -545,10 +752,10 @@ def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
     for n in atlas.get("noder") or []:
         blad: dict[str, list] = {}
         for k, v in n.items():
-            _collect_paths(k, v, blad)
+            _bla(k, v, blad)
         for sti, verdier in blad.items():
             # An axis exists only if it has a VALUE. `nivaa.forelder` is `None`
-            # on 80 of 113 nodes; counting them as a value made the axis offer
+            # on 80 of 113 nodes; counting those as a value made the axis offer
             # 113 and answer with 33. Measured 2026-09-18.
             if not any(v for v in verdier):
                 continue
@@ -557,7 +764,7 @@ def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
     return {sti: (antall[sti], sorted(raa[sti])[:6]) for sti in antall}
 
 
-def _read_path(n: dict, akse: str):
+def _les_sti(n: dict, akse: str):
     """Read a dot path from a node. `None` if it does not exist."""
     v = n
     for del_ in akse.split("."):
@@ -567,11 +774,10 @@ def _read_path(n: dict, akse: str):
     return v
 
 
-#: The names MORTEN uses against the paths the atlas actually carries.
-#: Measured 2026-09-17: `isomorphisme` is `analogi`, `loop` is
-#: `emergence.loop`, and `paradigme`/`konsensus`/`akademia` are VALUES of
-#: `perspektiv` — not axes. Three different classes; without this layer
-#: they look alike.
+#: The names MORTEN uses against the paths the atlas actually carries. Measured
+#: 2026-09-17: `isomorphisme` is `analogi`, `loop` is `emergence.loop`,
+#: and `paradigme`/`konsensus`/`akademia` are VALUES of `perspektiv` —
+#: not axes. Three different classes; without this layer they look alike.
 AKSE_ALIAS: dict[str, str] = {
     "isomorphisme": "analogi",
     "isomorfi": "analogi",
@@ -608,9 +814,9 @@ AKSE_ALIAS: dict[str, str] = {
     "evidens": "epistemikk.evidensstatus",
 }
 
-# The owner's question forms are a separate name layer, not free text that is
-# to be hoped into the node prose. Normalized keys make spaces, hyphens and
-# underscores follow the same rule as the rest of the lookup.
+# The owner's question forms are their own name layer, not free text that must
+# be hoped to hit in the node prose. Normalised keys make space, hyphen and
+# underscore follow the same rule as the rest of the lookup.
 SPOERSMAAL_AKSE: dict[str, str] = {
     "hva maaler": "measure.target",
     "hva maales": "measure.target",
@@ -630,20 +836,20 @@ SPOERSMAAL_AKSE: dict[str, str] = {
 }
 
 
-def _resolve_question_axis(atlas: dict, spoersmaal: str) -> str | None:
+def _loes_spoersmaalsakse(atlas: dict, spoersmaal: str) -> str | None:
     """Resolve an explicit question form, otherwise None — never a guess."""
-    akse = SPOERSMAAL_AKSE.get(_normalize(spoersmaal))
+    akse = SPOERSMAAL_AKSE.get(_norm(spoersmaal))
     if akse and akse in akser(atlas):
         return akse
     return None
 
 
-def _resolve_axis(atlas: dict, akse: str) -> tuple[str, str | None]:
-    """Resolve a human name to (path, value). Three classes.
+def _loes_akse(atlas: dict, akse: str) -> tuple[str, str | None]:
+    """Resolve a human name to (sti, verdi). Three classes.
 
-    1. THE NAME IS THE PATH     -> (sti, None)
-    2. THE NAME IS AN ALIAS     -> (sti, None)
-    3. THE NAME IS A VALUE      -> (perspektiv, verdi)   <- third class
+    1. THE NAME IS THE PATH      -> (sti, None)
+    2. THE NAME IS AN ALIAS      -> (sti, None)
+    3. THE NAME IS A VALUE       -> (perspektiv, verdi)  <- third class
     """
     alle = akser(atlas)
     if akse in alle:
@@ -660,11 +866,11 @@ def _resolve_axis(atlas: dict, akse: str) -> tuple[str, str | None]:
 
 
 def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
-    """THE WHOLE atlas at once — what is what, where, how many.
+    """The WHOLE atlas at once — what is what, where, how many.
 
     Measured 2026-09-17: the rotation answered ONE question at a time. Morten:
     «ALL of this must be global in the atlas and you must immediately know what
-    is what, where, etc.». That is not a search — it is the state.
+    is what where etc.». That is not a search — it is the state.
     """
     alle = akser(atlas)
     noder = atlas.get("noder") or []
@@ -672,7 +878,7 @@ def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
     for sti in sorted(alle):
         telling: dict[str, int] = {}
         for n in noder:
-            v = _read_path(n, sti)
+            v = _les_sti(n, sti)
             if v is None:
                 continue
             ledd = v if isinstance(v, list) else [v]
@@ -681,8 +887,8 @@ def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
         if not telling:
             continue
         fordeling = sorted(telling.items(), key=lambda x: -x[1])
-        # only axes that SEPARATE, and only short values: free text is not a
-        # category. «Immediately» means it must be readable.
+        # only axes that SEPARATE, and only short values: a free text is not a
+        # category. «Immediately» means it has to be readable.
         if len(fordeling) < 2:
             continue
         if any(len(v) > 34 or " " in v for v, _ in fordeling[:8]):
@@ -692,17 +898,17 @@ def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
 
 
 def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
-    """Rotate around ONE axis — top-level or nested.
+    """Rotate around ONE axis — top level or nested.
 
-    `verdi=None` gives all nodes that HAVE the axis. An unknown axis fails
+    `verdi=None` gives every node that HAS the axis. An unknown axis fails
     loudly with suggestions, because an empty answer would have hidden that the
     name was wrong.
     """
     alle = akser(atlas)
     try:
-        akse, resolved_value = _resolve_axis(atlas, akse)
-        if resolved_value is not None and verdi is None:
-            verdi = resolved_value
+        akse, l_a_verdi = _loes_akse(atlas, akse)
+        if l_a_verdi is not None and verdi is None:
+            verdi = l_a_verdi
     except KeyError:
         rot = akse.split(".")[0]
         naere = sorted(a for a in alle
@@ -716,34 +922,32 @@ def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
             f"Nearby: {', '.join(naere) if naere else 'none'}")
     ut = []
     for n in atlas.get("noder") or []:
-        v = _read_path(n, akse)
-        # Empty list and empty string are not a value. `emergence.properties`
-        # is `[]` on 99 of 113 nodes; counting them made the axis answer 113
-        # where it had 99. Measured 2026-09-18.
+        v = _les_sti(n, akse)
+        # An empty list and an empty string are not a value.
+        # `emergence.properties` is `[]` on 99 of 113 nodes; counting those made
+        # the axis answer 113 where it had 99. Measured 2026-09-18.
         if v is None or (isinstance(v, (list, str, dict)) and not v):
             continue
         if verdi is None:
             ut.append(n)
             continue
-        value_strings = [str(x) for x in v] if isinstance(v, list) else [str(v)]
-        if verdi in value_strings:
+        str_v = [str(x) for x in v] if isinstance(v, list) else [str(v)]
+        if verdi in str_v:
             ut.append(n)
     return ut
 
 
 
 # ---------------------------------------------------------------------------
-# ---------------------------------------------------------------------------
-# THE COUPLINGS — 1-hop, 2-hop, 3-hop
+# KOBLINGENE — 1-hop, 2-hop, 3-hop
 #
-# Measured 2026-09-18: the tool had `--emne`, `--akse`, `--node`, `--oversikt`
-# and `--proxy`. It had NO hops. The couplings existed in the data —
-# nivaa.forelder, coupling, analogi, stipulasjoner.motor, buss_domene,
-# measure.proxy_chain — and none of them could be FOLLOWED.
-# ---------------------------------------------------------------------------
+# Measured 2026-09-18: the tool had `--emne`, `--akse`, `--node`,
+# `--oversikt` and `--proxy`. It had NO hops. The couplings existed in the
+# data — nivaa.forelder, coupling, analogi, stipulasjoner.motor,
+# buss_domene, measure.proxy_chain — and none of them could be FOLLOWED.
 # ---------------------------------------------------------------------------
 
-def _node_index(noder: list[dict]) -> dict[str, dict]:
+def _mekanisme(noder: list[dict]) -> dict[str, dict]:
     return {x["id"]: x for x in noder}
 
 
@@ -753,7 +957,7 @@ def _koblinger(n: dict, atlas: dict) -> dict[str, list[str]]:
     The coupling type is the point: «same domain» is weaker than «is parent».
     """
     noder = atlas.get("noder") or []
-    idx = _node_index(noder)
+    idx = _mekanisme(noder)
     ut: dict[str, list[str]] = {}
 
     forelder = (n.get("nivaa") or {}).get("forelder")
@@ -812,10 +1016,10 @@ def hop(atlas: dict, node_id: str, d: int = 1) -> list[str]:
         ny: set[str] = set()
         for x in front:
             try:
-                links = naboer(atlas, x)
+                kob = naboer(atlas, x)
             except KeyError:
                 continue
-            for ider in links.values():
+            for ider in kob.values():
                 ny.update(ider)
         ny -= sett
         sett |= ny
@@ -837,10 +1041,10 @@ def hop_stier(atlas: dict, node_id: str,
         ny: list[tuple[str, list[str], list[str]]] = []
         for x, sti, typer in front:
             try:
-                links = naboer(atlas, x)
+                kob = naboer(atlas, x)
             except KeyError:
                 continue
-            for type_, ider in links.items():
+            for type_, ider in kob.items():
                 for i in ider:
                     if i in sett:
                         continue
@@ -865,12 +1069,12 @@ def fragment(atlas: dict, node_id: str) -> dict:
                 "naere": [x["id"] for x in atlas.get("noder") or []
                           if rot in x["id"]][:5]}
     n = treff[0]
-    links = _koblinger(n, atlas)
+    kob = _koblinger(n, atlas)
     return {
         "finnes": True,
         "node": n,
-        "koblinger": links,
-        "ett_hopp": len({i for ider in links.values() for i in ider}),
+        "koblinger": kob,
+        "ett_hopp": len({i for ider in kob.values() for i in ider}),
         "to_hopp": len(hop(atlas, node_id, 2)),
         "tre_hopp": len(hop(atlas, node_id, 3)),
     }
@@ -920,6 +1124,17 @@ may be been being has have had its their our your his her they them we you it
 """.split())
 
 
+def _stamme(a: str, b: str, n: int = 5) -> bool:
+    """«vulkansk» and «vulkan» are one word to a human, not to ==.
+
+    Lifted out of `plasser()` 2026-09-18: the confirmation (see `bekreft`)
+    has to split on EXACTLY the same word rule as the placement. Two rules
+    for «one word» would give an answer where the fragment is carried by a
+    node the placement did not find — or the other way round.
+    """
+    return len(a) >= n and len(b) >= n and a[:n] == b[:n]
+
+
 def plasser(atlas: dict, tekst: str) -> dict:
     """Place a NEW fragment — and say what remains.
 
@@ -938,38 +1153,40 @@ def plasser(atlas: dict, tekst: str) -> dict:
     # homo.cellesyklus». A list that LOOKS like a placement suggestion but is
     # noise is the same class as the fallback that answers. The requirement is
     # therefore that the word describes something.
-    query_words = {w for w in _normalize(tekst).split()
+    ord_i = {w for w in _norm(tekst).split()
              if len(w) > 2 and w not in STOPPORD}
     noder = atlas.get("noder") or []
 
-    # which domains do the words mention?
-    domener = alle.get("buss_domene", (0, []))[1]
-    matched_domains = [d for d in domener
-                     if any(w in _normalize(d) for w in query_words)]
+    # which domains do the words name? The domains are read from the NODES,
+    # not from `akser()`. Measured 2026-09-18: `akser()` truncates the sample
+    # values to six (`sorted(raa[sti])[:6]`), and that is a DISPLAY rule — yet
+    # plasser() read it as the candidate list. Then only the first six
+    # domains alphabetically could give `hjem_funnet`, and «hav» got «ingen
+    # anelse» while `verden.hav` was in the bank. A display limit must not
+    # decide what the atlas KNOWS.
+    domener = sorted({n["buss_domene"] for n in noder if n.get("buss_domene")})
+    treff_domener = [d for d in domener
+                     if any(w in _norm(d) for w in ord_i)]
 
     # which nodes share words with the fragment? The weight is put where the
     # word ACTUALLY describes something: the target and the regime, not all
     # texts in the node.
-    def _same_stem(a: str, b: str, n: int = 5) -> bool:
-        """«vulkansk» and «vulkan» are the same word to a human, not to ==."""
-        return len(a) >= n and len(b) >= n and a[:n] == b[:n]
-
     def vekt(n: dict) -> int:
         m = n.get("measure") or {}
         r = n.get("regime") or {}
-        weighted_text = _normalize(" ".join(str(m.get(k) or "") for k in
+        tung = _norm(" ".join(str(m.get(k) or "") for k in
                               ("target", "measurer", "instrument"))
                      + " " + str(r.get("name") or "") + " " + str(r.get("validity") or ""))
-        target_words = set(weighted_text.split())
-        return sum(1 for w in query_words
-                   if w in target_words or any(_same_stem(w, x) for x in target_words))
+        ord_t = set(tung.split())
+        return sum(1 for w in ord_i
+                   if w in ord_t or any(_stamme(w, x) for x in ord_t))
 
     naere = [(vekt(n), n["id"]) for n in noder]
     naere = sorted((x for x in naere if x[0] > 0), key=lambda x: -x[0])
     naere_noder = [i for _, i in naere[:6]]
 
     forslag = []
-    for d in matched_domains:
+    for d in treff_domener:
         eiere = [n["id"] for n in noder if n.get("buss_domene") == d]
         forslag.append({"domene": d, "noder": eiere[:4],
                         "kobling": "domenet nevnes i fragmentet"})
@@ -996,7 +1213,7 @@ def plasser(atlas: dict, tekst: str) -> dict:
                         "kobling": "ingen anelse — alfabetisk visning, ikke forslag"}
                        for d in alle.get("buss_domene", (0, []))[1][:3]]
 
-    if forslag and len(matched_domains) > 0:
+    if forslag and len(treff_domener) > 0:
         status = "hjem_funnet"
         domene_visshet = "vet"
         domene_grunnlag = "explicit hit on buss_domene"
@@ -1020,23 +1237,23 @@ def plasser(atlas: dict, tekst: str) -> dict:
     # Measured 2026-09-18: `buss_domene` and `falsifiserbarhet` lay among the
     # hardcoded exceptions, so a new node was asked for `coupling.empathy_note`
     # but not for bus domain or falsifier — the two fields the rest rests on.
-    schema_requirements = skjema_krav(atlas)
+    krav_fra_skjemaet = skjema_krav(atlas)
 
     fylt = {f: sum(1 for n in noder
                    if n.get(f) not in (None, "", [], {}))
-            for f in set(schema_requirements) | set(HUSETS_KRAV)}
+            for f in set(krav_fra_skjemaet) | set(HUSETS_KRAV)}
     krav = []
-    for f in list(schema_requirements) + [x for x in HUSETS_KRAV
-                                        if x not in schema_requirements]:
+    for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
+                                        if x not in krav_fra_skjemaet]:
         klasse = FELTKLASSE.get(f, "paastand")
         post = {"felt": f,
                 "klasse": klasse,
-                "kilde": "skjema" if f in schema_requirements else "huset",
+                "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
                 "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
                 "forslag": None, "grunn": None}
         if klasse == "struktur":
-            post["forslag"], post["grunn"] = _derive_structure(
-                f, tekst, noder, matched_domains,
+            post["forslag"], post["grunn"] = _utled_struktur(
+                f, tekst, noder, treff_domener,
                 alle.get("synlighet", (0, []))[1])
         krav.append(post)
 
@@ -1059,20 +1276,20 @@ def plasser(atlas: dict, tekst: str) -> dict:
     }
 
 
-def _derive_structure(felt: str, tekst: str, noder: list,
-                    matched_domains: list, synlighet: list) -> tuple:
+def _utled_struktur(felt: str, tekst: str, noder: list,
+                    treff_domener: list, synlighet: list) -> tuple:
     """Derive a structure field — or say why it could not be derived.
 
     Never a guess presented as a value. If we cannot derive it, we say so,
     because it is exactly here a fragment turns into a fact if we stay silent.
     """
     if felt == "id":
-        if len(matched_domains) == 1:
-            query_words = [w for w in _normalize(tekst).split()
+        if len(treff_domener) == 1:
+            ord_i = [w for w in _norm(tekst).split()
                      if len(w) > 2 and w not in STOPPORD]
-            if query_words:
-                prefiks = matched_domains[0].split(".")[-1]
-                return (f"{prefiks}.{query_words[0]}",
+            if ord_i:
+                prefiks = treff_domener[0].split(".")[-1]
+                return (f"{prefiks}.{ord_i[0]}",
                         "the domain's prefix + the fragment's first content "
                         "word — a SUGGESTION, not a decision")
         return None, "without a known domain there is no id to build on"
@@ -1086,14 +1303,14 @@ def _derive_structure(felt: str, tekst: str, noder: list,
         return vanligst, (f"{verdier.count(vanligst)}/{len(verdier)} "
                           f"of the nodes in the bank")
     if felt == "buss_domene":
-        if len(matched_domains) == 1:
-            return matched_domains[0], "the fragment mentions one known domain"
-        if len(matched_domains) > 1:
-            return None, (f"ambiguous: {', '.join(matched_domains[:3])} — "
+        if len(treff_domener) == 1:
+            return treff_domener[0], "the fragment mentions one known domain"
+        if len(treff_domener) > 1:
+            return None, (f"ambiguous: {', '.join(treff_domener[:3])} — "
                           f"the choice is an assessment")
         return None, "the fragment hits no known domain"
     if felt == "sektor":
-        for d in matched_domains:
+        for d in treff_domener:
             verdier = [(n.get("maale_paradigme") or {}).get("sektor")
                        for n in noder if n.get("buss_domene") == d]
             verdier = [v for v in verdier if v]
@@ -1167,7 +1384,7 @@ def helhet(atlas: dict, node_id: str) -> dict:
 
     # THE COUPLINGS, both ways: «more hops in all directions»
     ut = _koblinger(n, atlas)
-    out_ids = {i for ider in ut.values() for i in ider}
+    ut_ider = {i for ider in ut.values() for i in ider}
     inn: dict[str, list[str]] = {}
     for x in atlas.get("noder") or []:
         if x["id"] == node_id:
@@ -1183,7 +1400,7 @@ def helhet(atlas: dict, node_id: str) -> dict:
     # CROSS-DOMAIN: which OTHER domains the node reaches via hops
     eget = n.get("buss_domene")
     kryss: list[str] = []
-    for i in out_ids | set(inn):
+    for i in ut_ider | set(inn):
         x = next((y for y in atlas["noder"] if y["id"] == i), None)
         d = (x or {}).get("buss_domene")
         if d and d != eget and d not in kryss:
@@ -1224,7 +1441,7 @@ def helhet(atlas: dict, node_id: str) -> dict:
         "nivaa": n.get("nivaa") or {},
         "koblinger": {"ut": ut, "inn": inn},
         "kryssdomene": kryss,
-        "ett_hopp": len(out_ids),
+        "ett_hopp": len(ut_ider),
         "to_hopp": len(hop(atlas, node_id, 2)),
         "tre_hopp": len(hop(atlas, node_id, 3)),
         "falsifiserbarhet": n.get("ville_falsifisere"),
@@ -1238,7 +1455,7 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
         return (f"ERROR: `{node_id}` does not exist. Nearby: "
                 f"{', '.join(h['naere']) or 'none'}")
     L: list[str] = [f"=== {h['id']} ==="]
-    L.append(f"  field/regime: {h['felt'].get('name', '?')}")
+    L.append(f"  felt/regime : {h['felt'].get('name', '?')}")
     v = h["felt"].get("validity")
     if v:
         L.append(f"  validity    : {v[:150]}")
@@ -1284,8 +1501,15 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
 
 def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
                  kilde: str = "samtale") -> dict:
-    """Append one retain fragment to the queue file, without creating a node."""
+    """Append one retain fragment to the queue file, without creating a node.
+
+    The threshold (see `node_verdig`) is written WITH the fragment. A
+    fragment that is not node-worthy stays in the queue with its reason
+    instead of being hidden, so whoever reads the queue can see what was
+    considered and why the answer was no.
+    """
     plassering = plasser(atlas, tekst)
+    dom = node_verdig(plassering)
     record = {
         "tekst": tekst,
         "tidspunkt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -1295,6 +1519,9 @@ def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
         "forslag": plassering.get("forslag", []),
         "naere_noder": plassering.get("naere_noder", []),
         "mangler": plassering.get("mangler", []),
+        "node_verdig": dom["node_verdig"],
+        "terskel": dom["terskel"],
+        "terskel_grunn": dom["grunn"],
         "kilde": kilde,
         "proveniens_kilde": kilde,
         "proveniens": {
@@ -1310,6 +1537,357 @@ def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
     return record
 
 
+def les_inntak(fil: str | Path) -> list[dict]:
+    """Read the queue back. An unreadable line RAISES — it has to be seen.
+
+    Same rule as the rest of the module: an entrance that does not know,
+    says so. A queue where half the lines are silently skipped answers «not
+    in» about a fragment that may have been there.
+    """
+    sti = Path(fil)
+    if not sti.exists():
+        return []
+    ut = []
+    for nr, linje in enumerate(sti.read_text(encoding="utf-8").splitlines(), 1):
+        if not linje.strip():
+            continue
+        try:
+            ut.append(json.loads(linje))
+        except json.JSONDecodeError as e:
+            raise ValueError(f"{sti}:{nr} is not valid JSON: {e}") from e
+    return ut
+
+
+# ---------------------------------------------------------------------------
+# THE RETAIN INTAKE — the threshold and the closed loop
+#
+# Morten, 2026-09-18, translated here along with the rest of this block: «all
+# of it goes into the atlas — the ATLAS frame uses the same methodology as
+# hindsight retain, really.» And in the same breath: «automation that maps
+# everything would fill the atlas with noise.»
+#
+# The two sentences do not contradict each other: a retain without a
+# threshold is not a retain, it is a log. The threshold therefore lives here
+# as DATA — it can be read, run and mutated against, not remembered.
+# ---------------------------------------------------------------------------
+
+#: A word shorter than this does not carry a fragment in the atlas: «aske»
+#: is a word, a glue word is not. Deliberately STRICTER than the placement
+#: (3), because the confirmation reads the WHOLE node — a wide rule there
+#: would answer «inne» to almost anything, and a confirmation that always
+#: says yes confirms nothing.
+_MIN_ORD = 4
+
+#: How large a share of the fragment words a node has to carry to count as a
+#: carrier. MEASURED 2026-09-18 against origin/main, with «minst ett ord» as
+#: the rule: «vulkanutbrudd avkjoler stratosfaeren gjennom aerosoler» got
+#: four hits — every one on «gjennom», none on vulkanutbrudd; «Bondi-Hoyle
+#: akselerasjon i mellomstjerne medium» got four hits, every one on
+#: «mellomstjerne», in h2o nodes. A confirmation that says «inne» on a glue
+#: word confirms nothing. One half separates the measured real hits
+#: (trippelpunktet for vann 2 of 2, lensing av bakgrunnsstraaling 2 of 2,
+#: SO2 flux out of monitored volcanoes 3 of 3) from the noise — and leaves
+#: «vulkansk aske i stratosfaeren» as NOT in, which is right: the volcano
+#: node does not carry the ash, it carries the VHP status list.
+NODE_ANDEL = 0.5
+
+#: The threshold for NODE-WORTHY, keyed on the placement's OWN status (not
+#: on a fresh judgement): status -> (node_verdig, grunn).
+NODE_TERSKEL: dict[str, tuple[bool, str]] = {
+    "hjem_funnet": (True,
+                    "explicit domain hit — the fragment owns a domain"),
+    "svakt": (True,
+              "two or more shared words with a named node"),
+    "uten_hjem": (False,
+                  "no domain owner — the fragment stays in the queue "
+                  "until a human chooses"),
+    "tomt": (False, "empty fragment"),
+}
+
+
+def node_verdig(plassering: dict) -> dict:
+    """The threshold: is the fragment node-worthy — and why, or why not?
+
+    The answer is ALWAYS a verdict WITH a reason, also when the verdict is
+    no. A fragment left in the queue with nobody able to see why is the same
+    error class the rest of the house exists to prevent: an absence read as
+    a choice.
+    """
+    status = plassering.get("status") or "uten_hjem"
+    dom, grunn = NODE_TERSKEL.get(
+        status, (False, f"unknown placement status «{status}» — not approved"))
+    return {"node_verdig": dom, "terskel": status, "grunn": grunn}
+
+
+def _ordlaug(tekst: str) -> set[str]:
+    """The words in a text — without the JSON punctuation.
+
+    MEASURED 2026-09-18, in a minimal bank: `json.dumps` puts a quotation
+    mark up against the value, so `{"name": "trippelpunktet for vann"}` gives
+    the word «"trippelpunktet» — and `_stamme` compares five characters, one
+    of which is that quotation mark. A fragment the atlas DOES carry was
+    reported as `ikke_inne`. In the real bank the words sat inside a
+    sentence, so the error stayed hidden until a test used a bank of its
+    own.
+    """
+    return set(re.findall(r"[^\W_]+", _norm(tekst)))
+
+
+def _ord_i(tekst: str) -> set[str]:
+    """The fragment's distinctive words — normalised like the rest of the module."""
+    return {w for w in _ordlaug(tekst) if len(w) >= _MIN_ORD}
+
+
+def _treff_i(noder: list[dict], ord_i: set[str]) -> list[dict]:
+    """Which nodes carry the fragment's words — how many, and in which fields.
+
+    The whole node is read, not only the weighted fields. A fragment can
+    land in `ontology.assumes`, in a prose field or in `regime.validity`,
+    and a confirmation that only looks at `measure` would answer `ikke_inne`
+    about a fragment that IS in. The field name is reported, so the strength
+    of the hit can be re-checked — a word does not count the same in every
+    field.
+
+    `id` is NOT read: it is the node's name, not its content. A fragment
+    that only hits a node because the name happens to share a stem with it
+    is not a fragment the atlas carries.
+
+    The share (`andel`) is how large a part of the fragment's words the node
+    carries. It is computed HERE and not in the call, because it is the same
+    measurement no matter who asks — and the verdict (see `bekreft`) reads
+    it.
+    """
+    ut = []
+    for n in noder:
+        felt: list[str] = []
+        truffet: set[str] = set()
+        for navn, verdi in n.items():
+            if navn == "id":
+                continue
+            ord_n = _ordlaug(json.dumps(verdi, ensure_ascii=False))
+            for o in ord_i:
+                if o in ord_n or any(_stamme(o, x) for x in ord_n):
+                    truffet.add(o)
+                    if navn not in felt:
+                        felt.append(navn)
+        if felt:
+            ut.append({"id": n["id"], "felt": felt, "ord": sorted(truffet),
+                       "andel": len(truffet) / len(ord_i) if ord_i else 0.0})
+    return sorted(ut, key=lambda d: -d["andel"])
+
+
+def _generator_fra(repo: str | Path, ref: str) -> dict:
+    """The generator's own tables — read from the SAME ref as the bank.
+
+    The generator is what decides whether a node becomes VISIBLE in the
+    atlas: without code and without a placement it refuses to build. That
+    validation is not repeated here — it is RUN, and it is read from the
+    same commit as the bank. Otherwise the two answer from different points
+    in time, and a fragment could stand as «visible» because the working
+    tree was further ahead than the ref.
+
+    Returns the module namespace (KODER, PLASSERING), or {} when the file is
+    not on the ref.
+    """
+    sti = "scripts/maintenance/efc_atlas_generator.py"
+    try:
+        kilde = _git(Path(repo), "show", f"{ref}:{sti}")
+    except AtlasLesingFeil:
+        return {}
+    ns: dict = {"__name__": "efc_atlas_generator_fra_ref",
+                "__file__": str(Path(repo) / sti)}
+    exec(compile(kilde, f"{ref}:{sti}", "exec"), ns)  # noqa: S102
+    return ns
+
+
+def _hvorfor_ikke_synlig(d: dict) -> str:
+    """Which link of the closed loop is missing for this node."""
+    mangler = []
+    if not d["kode"]:
+        mangler.append("no entry in KODER — the generator refuses to build")
+    if not d["plassering"]:
+        mangler.append("no entry in PLASSERING — the chapter is not selected")
+    if d["synlighet"] != "offentlig":
+        mangler.append(f"visibility: {d['synlighet'] or 'missing'}")
+    return "; ".join(mangler) or "unknown"
+
+
+def bekreft(atlas: dict, tekst: str, generator: dict, *,
+            atlas_for: dict | None = None) -> dict:
+    """Closed loop: did the fragment COME IN — and is it VISIBLE in the atlas?
+
+    The answer is built from what the atlas ITSELF says, not from the queue:
+    the queue is the working memory, the atlas is the truth. A fragment is
+    in when a node in the bank carries your words, AND the generator takes
+    it (code + placement), AND it is public. All three links are reported —
+    also when the answer is no, because a confirmation that only says «no»
+    hides which link is missing, and then whoever added the fragment knows
+    as little as before.
+
+    `atlas_for` is the bank as it was WHEN the fragment was taken in. When
+    it is given, the answer also says whether the hit is NEW since then:
+    without it, yesterday's fragment would read as «in» because of a node
+    that already existed, and the intake would be credited with something it
+    did not do.
+    """
+    ord_i = _ord_i(tekst)
+    treff = _treff_i(atlas.get("noder") or [], ord_i)
+    baerere = [t for t in treff if t["andel"] > NODE_ANDEL]
+    for_noder = ({t["id"] for t in _treff_i(atlas_for.get("noder") or [], ord_i)
+                  if t["andel"] > NODE_ANDEL}
+                 if atlas_for is not None else None)
+
+    koder = generator.get("KODER") or {}
+    plas = generator.get("PLASSERING") or {}
+    oppslag = {n["id"]: n for n in atlas.get("noder") or []}
+    detaljer = []
+    for t in baerere:
+        n = oppslag.get(t["id"]) or {}
+        kode, p = koder.get(t["id"]), plas.get(t["id"])
+        detaljer.append({
+            "id": t["id"],
+            "felt": t["felt"],
+            "ord": t["ord"],
+            "andel": t["andel"],
+            "kode": kode,
+            "plassering": list(p) if p else None,
+            "synlighet": n.get("synlighet"),
+            "synlig": bool(kode and p and n.get("synlighet") == "offentlig"),
+            "ontology_source": bool((n.get("ontology") or {}).get("source")),
+            "ny_siden_inntaket": (None if for_noder is None
+                                  else t["id"] not in for_noder),
+        })
+
+    synlige = [d for d in detaljer if d["synlig"]]
+    if synlige:
+        dom = "inne"
+        grunn = f"{len(synlige)} visible node(s) carry the words"
+    elif detaljer:
+        dom = "i_banken_ikke_synlig"
+        grunn = "; ".join(f"{d['id']}: {_hvorfor_ikke_synlig(d)}"
+                          for d in detaljer[:4])
+    else:
+        dom = "ikke_inne"
+        grunn = ("no node in the bank carries more than half of the words "
+                 f"(the rule is NODE_ANDEL = {NODE_ANDEL})")
+
+    naermest = None
+    if not detaljer and treff:
+        best = treff[0]["andel"]
+        like = [t for t in treff if t["andel"] == best]
+        naermest = {"andel": best, "ord": treff[0]["ord"],
+                    "noder": [t["id"] for t in like[:3]],
+                    "antall_paa_topp": len(like)}
+        grunn += (f". Closest: {', '.join(naermest['noder'])}"
+                  f"{' …' if len(like) > 3 else ''} with "
+                  f"{len(treff[0]['ord'])} of {len(ord_i)} words "
+                  f"({', '.join(treff[0]['ord'])})")
+
+    truffet = sorted({o for t in treff for o in t["ord"]})
+    return {
+        "tekst": tekst,
+        "dom": dom,
+        "kom_inn": bool(synlige),
+        "grunn": grunn,
+        "atlas": {"kilde": atlas.get("kilde"), "ref": atlas.get("ref"),
+                  "commit": atlas.get("commit")},
+        "ord": {"i_fragmentet": sorted(ord_i), "truffet": truffet,
+                "ikke_truffet": sorted(ord_i - set(truffet))},
+        "andel_krav": NODE_ANDEL,
+        "naermest": naermest,
+        "noder": detaljer,
+        "for": (None if atlas_for is None else {
+            "commit": atlas_for.get("commit"),
+            "noder_som_bar_ordene": sorted(for_noder or []),
+        }),
+    }
+
+
+def bekreft_fra_ref(repo: str | Path, tekst: str, *, ref: str = STANDARD_REF,
+                    hent: bool = False, at: str | None = None) -> dict:
+    """The confirmation read from a ref — bank and generator tables from ONE commit.
+
+    `at` is the commit the fragment was taken in at (from the queue). When
+    it is given, the bank is also read as it was THEN, and the answer
+    separates «came in now» from «was already there». A commit this clone
+    does not have is reported as such — it does not guess that the fragment
+    is new.
+    """
+    repo = Path(repo)
+    atlas = les_atlas(repo, ref=ref, hent=hent)
+    generator = _generator_fra(repo, ref)
+    atlas_for = None
+    if at and at != atlas.get("commit"):
+        try:
+            atlas_for = les_atlas(repo, ref=at)
+        except AtlasLesingFeil:
+            atlas_for = None
+    svar = bekreft(atlas, tekst, generator, atlas_for=atlas_for)
+    svar["for_ikke_lest"] = bool(at and atlas_for is None
+                                 and at != atlas.get("commit"))
+    return svar
+
+
+def inntak_status(repo: str | Path, fil: str | Path, *,
+                  ref: str = STANDARD_REF, hent: bool = False) -> dict:
+    """The whole queue, confirmed against a ref — one read of the bank, one answer per row."""
+    repo = Path(repo)
+    atlas = les_atlas(repo, ref=ref, hent=hent)
+    generator = _generator_fra(repo, ref)
+    atlas_for: dict[str, dict | None] = {}
+    svar = []
+    for r in les_inntak(fil):
+        commit = (r.get("proveniens") or {}).get("commit")
+        if commit and commit != atlas.get("commit"):
+            if commit not in atlas_for:
+                try:
+                    atlas_for[commit] = les_atlas(repo, ref=commit)
+                except AtlasLesingFeil:
+                    atlas_for[commit] = None
+        svar.append(bekreft(atlas, r.get("tekst", ""), generator,
+                            atlas_for=atlas_for.get(commit) if commit else None))
+    return {"fil": str(fil), "atlas": {"kilde": atlas.get("kilde"),
+                                       "ref": ref, "commit": atlas.get("commit")},
+            "antall": len(svar), "svar": svar}
+
+
+
+def bekreft_tekst(svar: dict) -> str:
+    """The confirmation as human-readable text — one form for all three entrances."""
+    a = svar.get("atlas") or {}
+    L = [f"FRAGMENT: {svar.get('tekst', '')!r}",
+         f"  atlas: {a.get('kilde')} @ {(a.get('commit') or '?')[:12]}"]
+    o = svar.get("ord") or {"truffet": [], "i_fragmentet": [], "ikke_truffet": []}
+    linje = (f"  words: hit {len(o['truffet'])} of {len(o['i_fragmentet'])} "
+             f"({', '.join(o['truffet']) or 'none'})")
+    if o.get("ikke_truffet"):
+        linje += f" — not hit: {', '.join(o['ikke_truffet'])}"
+    L.append(linje)
+    L.append(f"  {svar['dom'].upper()} — {svar['grunn']}")
+    for d in svar.get("noder") or []:
+        L.append(f"    {d['id']}  ({len(d['ord'])} av "
+                 f"{len(o['i_fragmentet'])} ord: {', '.join(d['ord'])})")
+        L.append(f"      fields: {', '.join(d['felt'][:6])}")
+        L.append(f"      code: {d['kode'] or 'MISSING'} · plassering: "
+                 f"{tuple(d['plassering']) if d['plassering'] else 'MISSING'} · "
+                 f"visibility: {d['synlighet'] or 'MISSING'}")
+        rad = (f"      ontology.source: "
+               f"{'set' if d['ontology_source'] else 'MISSING'}")
+        if d.get("ny_siden_inntaket") is not None:
+            rad += (f" · new since the intake: "
+                    f"{'yes' if d['ny_siden_inntaket'] else 'no'}")
+        L.append(rad)
+    if svar.get("for"):
+        L.append(f"  taken in at: {(svar['for']['commit'] or '?')[:12]} — "
+                 f"nodes that carried the words then: "
+                 f"{', '.join(svar['for']['noder_som_bar_ordene']) or 'none'}")
+    if svar.get("for_ikke_lest"):
+        L.append("  note: the intake commit is not in this clone — "
+                 "before/after is not decided, so the answer says nothing "
+                 "about whether the hit is new")
+    return "\n".join(L)
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -1321,8 +1899,7 @@ if __name__ == "__main__":
     p.add_argument("--hent", action="store_true", help="fetch origin first")
     p.add_argument("--alle", action="store_true", help="show all hits, not just the strongest")
     p.add_argument("--node", help="rotate around ONE node — show all fields")
-    p.add_argument("--perspektiv",
-                   help="rotate: filter on perspektiv (paradigm/consensus/academia)")
+    p.add_argument("--perspektiv", help="rotate: filter on perspektiv (paradigm/consensus/academia)")
     p.add_argument("--fase", help="rotate: filter on phase (instrument/regime_engine/...)")
     p.add_argument("--domene", help="rotate: filter on buss_domene")
     p.add_argument("--maaleform", action="store_true",
@@ -1332,11 +1909,13 @@ if __name__ == "__main__":
                    help="list ALL the axes the atlas carries — also the new ones")
     p.add_argument("--akse", help="rotate around an arbitrary axis: `sti` or `sti=verdi`")
     p.add_argument("--alt", dest="alt", help="THE WHOLE: everything about a node, in one reading")
-    p.add_argument("--plasser",
-                   help="place a NEW fragment: where does it belong, and what is missing")
+    p.add_argument("--plasser", help="place a NEW fragment: where does it belong, and what is missing")
     p.add_argument("--innta", help="take in a fragment into the retain queue (no node is created)")
     p.add_argument("--kilde", default="samtale", help="provenance source for --innta")
     p.add_argument("--inntak-fil", help="alternative JSONL file for --innta")
+    p.add_argument("--bekreft", help="closed loop: did this fragment come IN to the atlas?")
+    p.add_argument("--inntak-status", action="store_true",
+                   help="closed loop for the WHOLE intake queue")
     p.add_argument("--hop", help="N hops from a node:  or ")
     p.add_argument("--fragment", help="rotate around ONE fragment: node + all couplings")
     p.add_argument("--oversikt", action="store_true",
@@ -1349,40 +1928,67 @@ if __name__ == "__main__":
         print(helhet_tekst(atlas, a.alt))
         sys.exit(0)
 
-    # RETAIN INTAKE — append-only queue, never automatic node creation
+    # THE RETAIN INTAKE — the queue, the threshold and the closed loop.
+    # No node is created automatically: the intake PROPOSES, a human chooses.
     if a.innta:
         atlas = les_atlas(a.repo, ref=a.ref)
+        generator = _generator_fra(a.repo, a.ref)
         fil = a.inntak_fil or str(Path(a.repo) / "data" / "inntak" /
                                   "atlas_fragmenter.jsonl")
         record = skriv_inntak(atlas, a.innta, fil, kilde=a.kilde)
         print(f"FRAGMENT: {a.innta!r}  ->  {record['plasseringsstatus']}")
         print(f"  provenance: {record['kilde']}")
+        print(f"  threshold: {'NODE-WORTHY' if record['node_verdig'] else 'NOT node-worthy'}"
+              f" ({record['terskel']}) — {record['terskel_grunn']}")
         print(f"  written to: {fil}")
-        if record["plasseringsstatus"] == "uten_hjem":
-            print("  queue: uten_hjem — human assessment required")
+        if record["node_verdig"]:
+            print("  queue: fragment proposal — no node is created automatically")
         else:
-            print("  queue: fragment suggestion — no node created")
+            print("  queue: stays there — a human has to decide")
+        # The closed loop, at once: the same read that wrote the fragment.
+        print(bekreft_tekst(bekreft(atlas, a.innta, generator)))
+        sys.exit(0)
+
+    # THE CLOSED LOOP — did the fragment come in?
+    if a.bekreft:
+        print(bekreft_tekst(bekreft_fra_ref(a.repo, a.bekreft, ref=a.ref,
+                                            hent=a.hent)))
+        sys.exit(0)
+
+    if a.inntak_status:
+        fil = a.inntak_fil or str(Path(a.repo) / "data" / "inntak" /
+                                  "atlas_fragmenter.jsonl")
+        s = inntak_status(a.repo, fil, ref=a.ref, hent=a.hent)
+        print(f"THE QUEUE: {s['fil']} — {s['antall']} fragment(s)")
+        print(f"  atlas: {s['atlas']['kilde']} @ "
+              f"{(s['atlas']['commit'] or '?')[:12]}")
+        if not s["antall"]:
+            print("  empty — nothing has been taken in here")
+        for x in s["svar"]:
+            print(bekreft_tekst(x))
+        print(f"  {sum(1 for x in s['svar'] if x['kom_inn'])} inne av "
+              f"{s['antall']}")
         sys.exit(0)
 
     # THE ENTRANCE — place a new fragment
     if a.plasser:
         atlas = les_atlas(a.repo, ref=a.ref)
-        placement = plasser(atlas, a.plasser)
-        print(f"FRAGMENT: {a.plasser!r}  ->  {placement['status']}")
-        print(f"  domain certainty: {placement.get('domene_visshet', 'ukjent')} "
-              f"({placement.get('domene_grunnlag', 'ukjent grunnlag')})")
-        for f in placement["forslag"][:4]:
+        p_ = plasser(atlas, a.plasser)
+        print(f"FRAGMENT: {a.plasser!r}  ->  {p_['status']}")
+        print(f"  domain certainty: {p_.get('domene_visshet', 'unknown')} "
+              f"({p_.get('domene_grunnlag', 'unknown basis')})")
+        for f in p_["forslag"][:4]:
             print(f"  domain {f['domene']:26} {f['kobling']}")
             if f["noder"]:
                 print(f"    neighbours: {', '.join(f['noder'])}")
-        if placement.get("naere_noder"):
-            print(f"  near nodes: {', '.join(placement['naere_noder'][:4])}")
-        o = placement.get("oppsummering") or {}
-        print(f"  must fill in {len(placement['mangler'])} fields to become a node: "
+        if p_.get("naere_noder"):
+            print(f"  near nodes: {', '.join(p_['naere_noder'][:4])}")
+        o = p_.get("oppsummering") or {}
+        print(f"  must fill in {len(p_['mangler'])} fields to become a node: "
               f"{o.get('struktur', 0)} struktur (derived), "
               f"{o.get('vurdering', 0)} vurdering (proposed), "
               f"{o.get('paastand', 0)} paastand (required explicitly)")
-        for k in placement.get("krav", []):
+        for k in p_.get("krav", []):
             merke = "SCHEMA" if k["kilde"] == "skjema" else "HOUSE "
             if k.get("forslag"):
                 print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
@@ -1395,7 +2001,7 @@ if __name__ == "__main__":
                       f"filled {k['fylt_i_banken']} in the bank")
         sys.exit(0)
 
-    # THE COUPLINGS — 1-hop, 2-hop, 3-hop
+    # KOBLINGENE — 1-hop, 2-hop, 3-hop
     if a.hop or a.fragment:
         atlas = les_atlas(a.repo, ref=a.ref)
         if a.fragment:
@@ -1446,7 +2052,7 @@ if __name__ == "__main__":
             navn, _, verdi = a.akse.partition("=")
             try:
                 treff = roter_akse(atlas, navn, verdi or None)
-                sti, lv = _resolve_axis(atlas, navn)
+                sti, lv = _loes_akse(atlas, navn)
                 if lv is not None and not verdi:
                     verdi = lv
             except KeyError as e:
@@ -1456,7 +2062,7 @@ if __name__ == "__main__":
                   + (f"={verdi}" if verdi else "")
                   + (f"  ({sti})" if sti != navn else ""))
             for n in treff:
-                v = _read_path(n, sti)
+                v = _les_sti(n, sti)
                 print(f"  {n['id']:34} {str(v)[:60]}")
                 klarhet = (n.get("maale_paradigme") or {}).get("klarhetsfunksjon")
                 if klarhet:
@@ -1486,9 +2092,9 @@ if __name__ == "__main__":
                 print(f"{form:12} ({len(ider)}): {', '.join(ider[:6])}"
                       f"{' ...' if len(ider) > 6 else ''}")
         elif a.proxy:
-            proxy_chains = proxy_kjeder(atlas)
-            print(f"{len(proxy_chains)} nodes with a proxy chain:")
-            for nid, ledd in sorted(proxy_chains.items()):
+            kj = proxy_kjeder(atlas)
+            print(f"{len(kj)} nodes with a proxy chain:")
+            for nid, ledd in sorted(kj.items()):
                 print(f"  {nid}: {' -> '.join(ledd)}")
         else:
             treff = roter(atlas, perspektiv=a.perspektiv, fase=a.fase, domene=a.domene)
@@ -1503,9 +2109,9 @@ if __name__ == "__main__":
 
     if a.emne:
         s = finn(a.repo, a.emne, ref=a.ref, hent=a.hent)
-        axis_info = f" via axis {s['akse']}" if s.get("akse") else ""
+        akseinfo = f" via akse {s['akse']}" if s.get("akse") else ""
         print(f"{s['kilde']} @ {s['commit'][:8]} — {s['antall']} hit(s) on "
-              f"«{s['emne']}»{axis_info}")
+              f"«{s['emne']}»{akseinfo}")
         if s["hull"]:
             kh = s["kjent_hull"]
             if kh:
@@ -1529,18 +2135,18 @@ if __name__ == "__main__":
         # how many lie below — the reader can ask for all with --alle.
         viste = s["treff"] if a.alle else s["treff"][:_VIS_MAKS]
         for t in viste:
-            tags = []
+            merker = []
             if t["har_falsifikator"]:
-                tags.append("can be felled")
+                merker.append("can be felled")
             if t["har_prediksjon"]:
-                tags.append("has prediction")
+                merker.append("has prediction")
             if t["har_oppgjoer"]:
-                tags.append("is settled")
+                merker.append("is settled")
             if t["buss_domene"]:
-                tags.append(f"buss:{t['buss_domene']}")
+                merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
             print(f"  {t['id']:<34} {t['synlighet'] or '?':<9} "
-                  f"{t['perspektiv'] or '':<10} {' · '.join(tags)}{tt}")
+                  f"{t['perspektiv'] or '':<10} {' · '.join(merker)}{tt}")
             if t["trefftype"] == "navnerom":
                 print(f"    reason: {t['grunn']}")
         if not a.alle and s["antall"] > _VIS_MAKS:

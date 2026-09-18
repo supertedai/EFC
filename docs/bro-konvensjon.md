@@ -45,7 +45,7 @@ SAME as the atlas — and when the two diverge, the engine is corrected:
 | `epistemikk.*`, `perspektiv` | truth, evidence and consensus status are epistemic claims about the node |
 | `ontology.source` | the source the placement rests on |
 | `maale_paradigme.alternativer` | which frames were PASSED OVER |
-| `buss_domene`, `ville_falsifisere`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | curated: what the node does not say, what would take it down, which analogy it stands in, and a sealed prediction |
+| `buss_domene`, `ville_falsifisere`, `stipulasjoner.ikke_falsifiserbar_grunn`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | curated: what the node does not say, what would take it down, why it cannot be struck down, which analogy it stands in, and a sealed prediction |
 
 **Two exceptions from equality**, both in `DELMENGDE`: `ontology.assumes` and
 `maale_paradigme.alternativer` are lists where the atlas must be able to carry more than

@@ -237,6 +237,80 @@ unsatisfiable — measured 2026-09-17 on
 activity-log/`change_id` route in PR #430), never an edited or translated
 entry: the changelog is a projection, not a second truth source.
 
+## The repo-wide language gate (`efc_spraakvakt.py`, card t_537ab101)
+
+The language rule (Morten 2026-09-17) had one enforcement point in CI until
+this card: the newest 30 entries of
+`docs/validation-ledger/data/changelog.json`, checked by an inline step inside
+`efc-changelog-sync.yml`. Nothing read `docs/validation-ledger/**`,
+`docs/public/**`, `public/**`, `scripts/**` or `tests/**`; a Norwegian commit
+subject was caught only once it had been projected into the changelog, and only
+while it sat inside that 30-entry window.
+
+`efc_spraakvakt.py` adds the missing enforcement, in three modes:
+
+| Mode | What it reads | Measured against | Window |
+|------|---------------|------------------|--------|
+| `--skann` (default) | file content in the guarded paths | the committed record | none |
+| `--skann --referanse REV` | file content in the guarded paths | revision `REV` (the base of the change) | none |
+| `--commits RANGE` | commit subjects in the range | nothing | the range |
+| `--changelog` | changelog entries, newest first | nothing | declared, default 30 |
+
+House interfaces: `--json`, a `make full-check` line, and the workflow
+`.github/workflows/efc-spraak.yml`. Exit codes: 0 clean, 1 findings, 2 could
+not measure (a measurement that could not be made is a finding, not an empty
+answer).
+
+The vocabulary is `scripts/maintenance/spraak-ord.json` — the same alternation
+the changelog step inlines. `tests/test_spraakvakt.py` fails when the two drift
+apart, so the two rules cannot disagree about what is Norwegian.
+
+**The failure rule belongs to the change, not to the branch it sits on.**
+In CI the scan runs with `--referanse origin/<base>` (a push: the previous tip),
+so it answers «did THIS change add Norwegian» and never «is the base branch
+clean». Measured on the gate's own first CI run (PR #530, 2026-09-18): without a
+reference it went red for two files the PR had never touched, because `main` had
+grown under it — the same wedged-gate condition this card was written about for
+the changelog. Debt that already sits on the base branch is *reported* on every
+run (`undeclared_growth`), never failed, and never silenced. A reference that
+cannot be read is exit 2 (could not measure) — never a fallback that blames the
+change for its base branch.
+
+**The residual is recorded, never silenced.** `spraak-baseline.json` holds the
+measured count per file (131 files, 6254 hits, measured 2026-09-18 on
+`bc3ebe98`). The gate fails when a file exceeds its recorded count, and reports
+slack when a file drops below it, so the translation work has a finish line
+instead of a number nobody checks. Regenerate after a translation lands:
+
+```
+python3 scripts/maintenance/efc_spraakvakt.py --oppdater-baseline
+```
+
+Growth is never a baseline update: a new Norwegian string fails the PR that
+adds it, which is the point of the ratchet. `--grenser` prints the declared
+limits with the measured count of what sits outside the guard.
+
+**Declared limits.** R1 reads a hyphen-adjacent match as an identifier, so a
+hyphen-joined compound is invisible — that is the rule that removes the
+measured `badge-med` false positive. R2 treats the declared uppercase labels
+MED/MEDIUM as English severity labels. The vocabulary is narrow on purpose:
+function words that collide with English are absent, and prose built only from
+them is invisible. Only the guarded paths are scanned. A file that does not
+decode as UTF-8 is skipped and counted, and fails only when its extension is a
+text format. The commit mode sees only the range it is handed.
+
+**Relationship to the changelog step.** The window in the changelog step is
+unchanged, and so is the collision recorded in card t_f610686f: a landed
+Norwegian subject inside the projection window makes that step unsatisfiable,
+because an entry is a verbatim projection and rewriting it would make the
+changelog a second source of truth. The repair stays an English source. The
+commit mode is what catches the violation before it reaches the window.
+
+**Not wired into `vedlikeholdsrunde.py`.** A violation always has a PR owner —
+CI goes red on the PR that adds it — so there is nothing for the weekly round
+to schedule; the round exists for drift nobody owns. Recorded here so the
+absence is a decision rather than an oversight.
+
 ## Proposing a concept (`efc_candidates.py`)
 
 Not a gate. `python3 scripts/maintenance/efc_candidates.py [TERM …]` reads the
