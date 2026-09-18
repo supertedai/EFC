@@ -51,8 +51,8 @@ class CellCycleEngine(EFCEngine):
     def regime_node(self, p: dict) -> dict:
         total = sum(p[k] for k in ("g1_hours", "s_hours", "g2_hours", "m_hours"))
         return {"id": "homo.cellesyklus", "synlighet": self.SYNLIGHET,
-                "phase": "regime_engine", "regime": {"name": "cellesyklus",
-                "validity": f"t i [0, {total}] timer; utenfor NaN; G0 ved checkpoint-stopp",
-                "law_form": "G1 -> S -> G2 -> M -> G1 med G1/S-, G2/M- og spindel-sjekkpunkter"},
-                "measure": {"target": "cellefase", "instrument": "flow-cytometri/FUCCI"},
-                "emergence": {"loop": "vekst -> replikasjon -> sjekk -> deling", "properties": ["G0", "checkpoint"]}}
+                "phase": "regime_engine", "regime": {"name": "The cell cycle",
+                "validity": f"t in [0, {total}] hours; NaN outside; G0 at checkpoint stop",
+                "law_form": "G1 -> S -> G2 -> M -> G1 with the G1/S, G2/M and spindle checkpoints"},
+                "measure": {"target": "cell phase", "instrument": "flow cytometry/FUCCI"},
+                "emergence": {"loop": "growth -> replication -> checkpoint -> division", "properties": ["G0", "checkpoint"]}}

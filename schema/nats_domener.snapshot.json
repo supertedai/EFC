@@ -1,9 +1,9 @@
 {
   "_proveniens": {
-    "kilde": "NATS-bussen, verden_domener (MCP) — emner og antall meldinger lest av JetStream-stroemmenes eget state.subjects",
+    "kilde": "The NATS bus, verden_domener (MCP) — subjects and message counts read from the JetStream streams' own state.subjects",
     "maalt": "2026-09-17T18:41:27Z",
     "lest_av": "faber (scripts/atlas_volum.py)",
-    "merknad": "Per-emne-tall ER tilgjengelig: `state.subjects` i STREAM.INFO bærer antall per emne. Den tidligere merknaden her sa det motsatte — den var en antakelse om NATS' overvåkings-API, ikke en måling av JetStream-API-et. Tallene her er målte, og dekningsfilens `meldinger` er summen av dem."
+    "merknad": "Per-subject counts ARE available: `state.subjects` in STREAM.INFO carries the count per subject. The earlier note here said the opposite — it was an assumption about NATS' monitoring API, not a measurement of the JetStream API. The numbers here are measured, and the coverage file's `meldinger` is their sum."
   },
   "domener": {
     "kosmos.asteroider": {

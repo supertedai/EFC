@@ -23,9 +23,9 @@ def test_dommekraft_skiller_lokal_stottet_fra_global_hypotese() -> None:
     kobling = NODE_BY_ID["opus.dommekraft"]["coupling"]
 
     assert epistemikk["sannhetsstatus"] == "hypotese"
-    assert "hver handling" in kobling["local"]
-    assert "IKKE maalt" in kobling["global"]
-    assert "hypotese" in kobling["global"]
+    assert "every action is judged on its own" in kobling["local"]
+    assert "NOT measured" in kobling["global"]
+    assert "hypothesis" in kobling["global"]
     assert epistemikk["evidensstatus"] == "proxy"
 
 

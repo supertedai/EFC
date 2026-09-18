@@ -135,14 +135,14 @@ def test_engine_carries_the_phase_nodes():
 
 # Kurvenavn i motorens deklarasjon -> h2o-nodene grensen gjelder for.
 GRENSE_TIL_NODER = {
-    "damp": ("h2o.liquid", "h2o.gas"),
-    "smelte": ("h2o.solid",),
-    "sublimasjon": ("h2o.solid",),
+    "vapour": ("h2o.liquid", "h2o.gas"),
+    "melt": ("h2o.solid",),
+    "sublimation": ("h2o.solid",),
 }
 
 # Tall med enhet («50 K», «208.566 MPa», «101325 Pa») — ikke prosa-tall.
 _TALL_MED_ENHET = re.compile(r"(\d+(?:[.,]\d+)?)\s*(K|MPa|Pa)\b")
-_GRENSE = re.compile(r"(damp|smelte|sublimasjon)\s*\[([^\]]+)\]")
+_GRENSE = re.compile(r"(vapour|melt|sublimation)\s*\[([^\]]+)\]")
 
 
 def _tall(tekst: str) -> list:

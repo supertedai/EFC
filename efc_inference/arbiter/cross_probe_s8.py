@@ -1,38 +1,39 @@
-"""P1/P2 cross-probe-estimatoren (validation-ledger physics_test
+"""P1/P2 cross-probe estimator (validation-ledger physics_test
 «EFC P1/P2 cross-probe test against DES-Y6 vs KiDS-Legacy S8 bifurcation»).
 
-Testen var «Approved» mens estimatoren sto som «Planned». Denne modulen er
-estimatoren: den regner S8-ekvivalenten av EFCs forseglede P1/P2-verdier ved
-en gitt K0 og måler avstanden til DES Y6 og KiDS Legacy — hver for seg,
-fordi 2026-tallene ikke er samme måling av samme univers.
+The test was «Approved» while the estimator stood as «Planned». This module is
+the estimator: it computes the S8 equivalent of EFC's sealed P1/P2 values at
+a given K0 and measures the distance to DES Y6 and KiDS Legacy — each on its
+own, because the 2026 numbers are not the same measurement of the same universe.
 
-FORSEGLEDE ANKERE (endres aldri her — de leses):
-  * P1 Sigma_eff(z)-crossover ved z ~ 0.44 — DOI 10.6084/m9.figshare.32037990
+SEALED ANCHORS (never changed here — they are read):
+  * P1 Sigma_eff(z) crossover at z ~ 0.44 — DOI 10.6084/m9.figshare.32037990
   * P2 f*sigma8(z=0.7) = 0.430            — DOI 10.6084/m9.figshare.32013156
-  * K0-skanen (K0 = 1.37 standard, sok 0.5-4.0) — DOI 10.6084/m9.figshare.32080059
+  * the K0 scan (K0 = 1.37 standard, search 0.5-4.0) — DOI 10.6084/m9.figshare.32080059
 
-HVA ESTIMATOREN GJOR — og ikke gjor:
-  * Den laster den forseglede referanseimplementasjonen av Sigma_eff(z; K0)
-    (docs/papers/efc/EFC_compound_paper/src/efc_compound_paper.py) og
-    BRUKER den. Fysikken reimplementeres ikke her — to kilder til samme
-    ligning er den drift ADR-002 ble skrevet mot.
-  * Den kobler Sigma til S8 med repoets egen P3-relasjon
-    (S8_lens/S8_CMB = Sigma, se docs/papers/efc/efc_des_y6_validation) og
-    leser S8_CMB fra repoets egen datafil. Ingen nye konstanter.
-  * Den feller ingen dom om RCMP. Den rapporterer hvert bein for seg —
-    linsing (Sigma_eff) og vekst (f*sigma8) — og hvilken av ledgerens tre
-    utfallskategorier hvert bein lander i:
-        (i)   MIDBAND            — mellom de to WL-surveyene
-        (ii)  CMB_KONSISTENT     — paa den CMB-konsistente enden
-        (iii) DES_Y6_KONSISTENT  — i DES-Y6-territoriet (svekker RCMP-
-                                   argumentet, jf. testens falsifikasjonsvindu)
-  * Den skjuler ikke avvik: referanseimplementasjonens standardparametre
-    reproduserer ikke alle de forseglede tallene. De avvikene rapporteres i
-    motor_avvik() og følger med i hver dom.
-  * Manglende kilde gir VENTER — aldri en dom paa data man ikke har.
+WHAT THE ESTIMATOR DOES — and does not do:
+  * It loads the sealed reference implementation of Sigma_eff(z; K0)
+    (docs/papers/efc/EFC_compound_paper/src/efc_compound_paper.py) and
+    USES it. The physics is not reimplemented here — two sources for the same
+    equation is the drift ADR-002 was written against.
+  * It couples Sigma to S8 with the repository's own P3 relation
+    (S8_lens/S8_CMB = Sigma, see docs/papers/efc/efc_des_y6_validation) and
+    reads S8_CMB from the repository's own data file. No new constants.
+  * It passes no verdict on RCMP. It reports each leg on its own —
+    lensing (Sigma_eff) and growth (f*sigma8) — and which of the ledger's three
+    outcome categories each leg lands in:
+        (i)   MIDBAND            — between the two WL surveys
+        (ii)  CMB_KONSISTENT     — at the CMB-consistent end
+        (iii) DES_Y6_KONSISTENT  — in DES-Y6 territory (weakens the RCMP
+                                   argument, cf. the test's falsification window)
+  * It does not hide deviations: the reference implementation's default
+    parameters do not reproduce all the sealed numbers. Those deviations are
+    reported in motor_avvik() and travel with every verdict.
+  * A missing source gives VENTER — never a verdict on data one does not have.
 
-Alt leses repo-lokalt. Ingen nettverkshenting, og ingenting skrives tilbake
-til repoet: CLI-en kan skrive rapporten til en sti kalleren selv oppgir.
+Everything is read repo-locally. No network fetching, and nothing is written
+back to the repository: the CLI can write the report to a path the caller
+itself gives.
 """
 from __future__ import annotations
 
@@ -50,7 +51,7 @@ import numpy as np
 from efc_inference.arbiter.sealed_fs8 import ANKER_EFC, ANKER_LCDM
 
 # ----------------------------------------------------------------------
-#  Kilder (repo-lokale stier, relativt til repo-roten)
+#  Sources (repo-local paths, relative to the repo root)
 # ----------------------------------------------------------------------
 ROT_STANDARD = Path(__file__).resolve().parents[2]
 
@@ -65,16 +66,16 @@ P1_DOI = "10.6084/m9.figshare.32037990"
 P2_DOI = "10.6084/m9.figshare.32013156"
 K0_DOI = "10.6084/m9.figshare.32080059"
 
-K0_TEST = 2.0                 # forventningen i ledgeren er formulert ved K0=2.0
-Z_EFF_STANDARD = 0.44         # den forseglede sammenligningsredskiften (P1)
-Z_EFF_FOLSOMHET = (0.30, 0.44, 0.90)   # P3-vinduet z ~ 0.3-0.9
-Z_P2 = 0.7                    # den forseglede P2-redskiften
+K0_TEST = 2.0                 # the expectation in the ledger is formulated at K0=2.0
+Z_EFF_STANDARD = 0.44         # the sealed comparison redshift (P1)
+Z_EFF_FOLSOMHET = (0.30, 0.44, 0.90)   # the P3 window z ~ 0.3-0.9
+Z_P2 = 0.7                    # the sealed P2 redshift
 
 LOKALE_MODI = ("lensing_sigma", "lensing_mu", "vekst")
 
-# Ledgerens kvantitative forventning (sitat, se tests.json for testen):
-#   «K0=2.0 skal reprodusere S8-ekvivalent innen +/-0.015 av KiDS Legacy-
-#    sentralverdi og ligge >=1.5 sigma fra DES-Y6.»
+# The ledger's quantitative expectation (quote, see tests.json for the test):
+#   «K0=2.0 shall reproduce the S8 equivalent within +/-0.015 of the KiDS
+#    Legacy central value and lie >=1.5 sigma from DES-Y6.»
 KIDS_TOLERANSE = 0.015
 DES_MIN_AVSTAND_SIGMA = 1.5
 
@@ -82,20 +83,20 @@ KATEGORIER = ("MIDBAND", "CMB_KONSISTENT", "DES_Y6_KONSISTENT")
 
 
 class Kildefeil(Exception):
-    """En repo-lokal kilde mangler eller er uleselig — ingen dom felles."""
+    """A repo-local source is missing or unreadable — no verdict is passed."""
 
 
 # ----------------------------------------------------------------------
-#  Lasting av repo-lokale kilder
+#  Loading of repo-local sources
 # ----------------------------------------------------------------------
 def _les_json(rot: Path, relativ: Path) -> dict:
     sti = rot / relativ
     if not sti.exists():
-        raise Kildefeil(f"mangler kildefil: {sti}")
+        raise Kildefeil(f"missing source file: {sti}")
     try:
         return json.loads(sti.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
-        raise Kildefeil(f"uleselig kildefil {sti}: {exc}") from exc
+        raise Kildefeil(f"unreadable source file {sti}: {exc}") from exc
 
 
 def _ledger_poster(rot: Path) -> list[dict]:
@@ -108,16 +109,17 @@ def _ledger_poster(rot: Path) -> list[dict]:
     if not poster and isinstance(data.get("tests"), list):
         poster = [p for p in data["tests"] if isinstance(p, dict)]
     if not poster:
-        raise Kildefeil(f"fant ingen testoppfoeringer i {LEDGER_TESTS}")
+        raise Kildefeil(f"found no test entries in {LEDGER_TESTS}")
     return poster
 
 
 def last_p1(rot: Optional[Path] = None) -> dict:
-    """P1: den forseglede Sigma_eff-crossoveren (DOI 32037990).
+    """P1: the sealed Sigma_eff crossover (DOI 32037990).
 
-    Crossoveren leses fra perturbationssektor-pakken og krysses mot
-    regimetransisjons-artikkelen. Er de to ikke enige, felles ingen dom —
-    to forseglede tall for samme storrelse skal ikke slaaes sammen i stillhet.
+    The crossover is read from the perturbation-sector package and cross-checked
+    against the regime-transition paper. If the two do not agree, no verdict is
+    passed — two sealed numbers for the same quantity shall not be merged in
+    silence.
     """
     rot = Path(rot or ROT_STANDARD)
     data = _les_json(rot, P1_PROFIL)
@@ -126,15 +128,15 @@ def last_p1(rot: Optional[Path] = None) -> dict:
     band = ((data.get("parameters") or {}).get("tolerance_band") or {}).get(
         "value")
     if cross is None or band is None:
-        raise Kildefeil(f"P1-verdiene mangler i {P1_PROFIL}")
+        raise Kildefeil(f"the P1 values are missing in {P1_PROFIL}")
 
     kompound = _les_json(rot, KOMPOUND_DATA).get("P1_lensing_sector") or {}
     kompound_cross = kompound.get("crossover_redshift")
     if kompound_cross is None:
-        raise Kildefeil(f"P1-crossoveren mangler i {KOMPOUND_DATA}")
+        raise Kildefeil(f"the P1 crossover is missing in {KOMPOUND_DATA}")
     if abs(float(kompound_cross) - float(cross)) > 1e-9:
         raise Kildefeil(
-            "P1-crossoveren er ulik i de to forseglede kildene: "
+            "the P1 crossover differs between the two sealed sources: "
             f"{cross} ({P1_PROFIL}) vs {kompound_cross} ({KOMPOUND_DATA})")
 
     return {
@@ -142,17 +144,18 @@ def last_p1(rot: Optional[Path] = None) -> dict:
         "crossover_uncertainty": float(kompound.get("crossover_uncertainty", 0.0)),
         "tolerance_band": float(band),
         "kilde": (f"{P1_PROFIL}#predictions.crossover_redshift (DOI {P1_DOI}); "
-                  f"krysset mot {KOMPOUND_DATA}#P1_lensing_sector"),
+                  f"cross-checked against "
+                  f"{KOMPOUND_DATA}#P1_lensing_sector"),
     }
 
 
 def last_p2(rot: Optional[Path] = None) -> dict:
-    """P2: den forseglede f*sigma8(0.7) = 0.430 (DOI 32013156)."""
+    """P2: the sealed f*sigma8(0.7) = 0.430 (DOI 32013156)."""
     rot = Path(rot or ROT_STANDARD)
     data = _les_json(rot, KOMPOUND_DATA)
     p2 = (data.get("P2_growth_sector") or {}).get("fsigma8_z07") or {}
     if "value" not in p2:
-        raise Kildefeil(f"P2-verdien mangler i {KOMPOUND_DATA}")
+        raise Kildefeil(f"the P2 value is missing in {KOMPOUND_DATA}")
     return {
         "fsigma8_z07": float(p2["value"]),
         "uncertainty": float(p2.get("uncertainty", 0.0)),
@@ -163,13 +166,13 @@ def last_p2(rot: Optional[Path] = None) -> dict:
 
 
 def last_k0(rot: Optional[Path] = None) -> dict:
-    """K0-skanen fra regimetransisjons-artikkelen (DOI 32080059)."""
+    """The K0 scan from the regime-transition paper (DOI 32080059)."""
     rot = Path(rot or ROT_STANDARD)
     data = _les_json(rot, KOMPOUND_DATA)
     k0 = (((data.get("P1_lensing_sector") or {}).get("parameters") or {})
           .get("K0") or {})
     if "value" not in k0:
-        raise Kildefeil(f"K0-skanen mangler i {KOMPOUND_DATA}")
+        raise Kildefeil(f"the K0 scan is missing in {KOMPOUND_DATA}")
     return {
         "verdi": float(k0["value"]),
         "scan_range": [float(x) for x in k0.get("scan_range", [])],
@@ -180,19 +183,19 @@ def last_k0(rot: Optional[Path] = None) -> dict:
 
 
 def last_motor(rot: Optional[Path] = None):
-    """Den forseglede referanseimplementasjonen av Sigma_eff(z; K0).
+    """The sealed reference implementation of Sigma_eff(z; K0).
 
-    Lastes fra filsti fordi den ligger i en papirpakke, ikke i en pakke.
-    Fysikken brukes som den er — den kopieres ikke hit.
+    It is loaded from a file path because it lives in a paper package, not in
+    a package. The physics is used as it is — it is not copied here.
     """
     rot = Path(rot or ROT_STANDARD)
     sti = rot / KOMPOUND_MOTOR
     if not sti.exists():
-        raise Kildefeil(f"mangler referanseimplementasjonen: {sti}")
+        raise Kildefeil(f"missing the reference implementation: {sti}")
     spec = importlib.util.spec_from_file_location(
         "efc_compound_paper_forseglet", sti)
     if spec is None or spec.loader is None:
-        raise Kildefeil(f"kan ikke laste {sti}")
+        raise Kildefeil(f"cannot load {sti}")
     modul = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(modul)
     return modul
@@ -200,10 +203,10 @@ def last_motor(rot: Optional[Path] = None):
 
 def _regex_ledger(rot: Path, moenster: str, beskrivelse: str,
                   test_id_del: Optional[str] = None):
-    """Finn et tall i ledgerens prosa — deterministisk, ikke «forste treff».
+    """Find a number in the ledger's prose — deterministic, not «first hit».
 
-    Er test_id_del gitt, leses bare oppfoeringer hvis test_id inneholder den.
-    Ankeret skal kunne pekes paa, ikke bare finnes.
+    If test_id_del is given, only entries whose test_id contains it are read.
+    The anchor shall be pointable at, not merely present.
     """
     rx = re.compile(moenster)
     treff = []
@@ -218,18 +221,19 @@ def _regex_ledger(rot: Path, moenster: str, beskrivelse: str,
             treff.append((m, test_id or None))
     if not treff:
         raise Kildefeil(
-            f"fant ikke {beskrivelse} i {LEDGER_TESTS}"
-            f"{f' (test_id inneholder {test_id_del!r})' if test_id_del else ''}"
-            " — ankeret er ikke sporbart")
+            f"found no {beskrivelse} in {LEDGER_TESTS}"
+            f"{f' (test_id contains {test_id_del!r})' if test_id_del else ''}"
+            " — the anchor is not traceable")
     return treff[0]
 
 
 def last_ankere(rot: Optional[Path] = None) -> dict:
-    """De tre S8-ankerne, hver med kilde og usymmetriske feil.
+    """The three S8 anchors, each with source and asymmetric errors.
 
-    Ankerne PARSEs fra repoets egne filer der de finnes der; der tallet bare
-    staar i prosa (ledgeroppfoeringen) leses det ut av den samme prosaen —
-    slik at en endring i ledgeren ikke kan bli stående usett her.
+    The anchors are PARSED from the repository's own files where they exist
+    there; where the number stands only in prose (the ledger entry) it is read
+    out of that same prose — so that a change in the ledger cannot remain
+    unseen here.
     """
     rot = Path(rot or ROT_STANDARD)
     data = _les_json(rot, DE_Y6_DATA)
@@ -252,7 +256,7 @@ def last_ankere(rot: Optional[Path] = None) -> dict:
         },
     }
 
-    # DES Y6 i wCDM: tallet staar i ledgeroppfoeringen for DENNE testen.
+    # DES Y6 in wCDM: the number stands in the ledger entry for THIS test.
     m, test_id = _regex_ledger(
         rot, r"S8\s*=\s*([\d.]+)\s*\+([\d.]+)/-([\d.]+)", "DES Y6 (wCDM)",
         test_id_del="p1_p2_cross_probe")
@@ -263,7 +267,7 @@ def last_ankere(rot: Optional[Path] = None) -> dict:
         "kilde": (f"{LEDGER_TESTS} ({test_id}; arXiv:2601.14559, wCDM)"),
     }
 
-    # KiDS Legacy (Wright et al. 2025): tallet staar i ledgerens S8-oppfoering.
+    # KiDS Legacy (Wright et al. 2025): the number stands in the ledger's S8 entry.
     m, test_id = _regex_ledger(
         rot, r"2503\.19441\)?:\s*S8\s*=\s*([\d.]+)\s*\(\+([\d.]+)\s*/"
              r"[\-\u2212]([\d.]+)\)", "KiDS Legacy (Wright et al. 2025)")
@@ -275,38 +279,38 @@ def last_ankere(rot: Optional[Path] = None) -> dict:
                   "cosmic shear)"),
     }
 
-    # Bifurkasjons-varianten: KiDS-Legacy + DES Y3 samlet.
+    # The bifurcation variant: KiDS-Legacy + DES Y3 jointly.
     m, test_id = _regex_ledger(
         rot, r"2503\.19442[^.]*?S8\s*=\s*([\d.]+)", "KiDS Legacy+DES Y3")
     ankere["kids_legacy_joint"] = {
         "navn": "KiDS-Legacy + DES Y3 (joint)",
         "s8": float(m.group(1)), "pluss": 0.012, "minus": 0.012,
-        "usikkerhet_merknad": ("ledgeren oppgir usikkerheten som ~0.012 "
-                               "(tilnaermet), ikke et eksakt symmetrisk par"),
+        "usikkerhet_merknad": ("the ledger states the uncertainty as ~0.012 "
+                               "(approximate), not an exact symmetric pair"),
         "kilde": f"{LEDGER_TESTS} ({test_id}; arXiv:2503.19442)",
     }
     return ankere
 
 
 # ----------------------------------------------------------------------
-#  Motoren: Sigma_eff(z; K0)
+#  The engine: Sigma_eff(z; K0)
 # ----------------------------------------------------------------------
 def sigma_eff(z: float, K0: float, rot: Optional[Path] = None) -> float:
-    """Sigma_eff(z; K0) fra den forseglede referanseimplementasjonen."""
+    """Sigma_eff(z; K0) from the sealed reference implementation."""
     motor = last_motor(rot)
     verdi = motor.sigma_eff(np.array([float(z)]), K0=float(K0))[0]
     return float(verdi)
 
 
 def mu_lensing(z: float, K0: float, rot: Optional[Path] = None) -> float:
-    """mu(z; K0) — linsing uten slip (eta=1-grenen, jf. A3/P3)."""
+    """mu(z; K0) — lensing without slip (the eta=1 branch, cf. A3/P3)."""
     motor = last_motor(rot)
     verdi = motor.mu_lensing(np.array([float(z)]), K0=float(K0))[0]
     return float(verdi)
 
 
 def crossover_z(K0: float, rot: Optional[Path] = None) -> Optional[float]:
-    """Crossoveren motoren finner for denne K0, i [0.01, 2.0]. None = ingen."""
+    """The crossover the engine finds for this K0, in [0.01, 2.0]. None = none."""
     motor = last_motor(rot)
     z_grid = np.linspace(0.01, 2.0, 2000)
     verdi = motor.find_crossover_z(z_grid, motor.sigma_eff(z_grid, K0=float(K0)))
@@ -314,12 +318,12 @@ def crossover_z(K0: float, rot: Optional[Path] = None) -> Optional[float]:
 
 
 def motor_avvik(rot: Optional[Path] = None) -> list[dict]:
-    """Avvik mellom de forseglede tallene og referanseimplementasjonen.
+    """Deviations between the sealed numbers and the reference implementation.
 
-    Dette er et funn, ikke en fotnote: standardparametrene i
-    referanseimplementasjonen reproduserer ikke den forseglede P1-crossoveren
-    eller den forseglede P2-amplituden. Estimatoren bruker motoren som den er
-    og sier hva den ikke reproduserer.
+    This is a finding, not a footnote: the default parameters in the reference
+    implementation do not reproduce the sealed P1 crossover or the sealed P2
+    amplitude. The estimator uses the engine as it is and says what it does not
+    reproduce.
     """
     rot = Path(rot or ROT_STANDARD)
     motor = last_motor(rot)
@@ -335,11 +339,11 @@ def motor_avvik(rot: Optional[Path] = None) -> list[dict]:
         "motor_status": ("funnet" if zc is not None
                          else "ingen_fortegnssendring"),
         "enhet": "z",
-        "kilde": (f"forseglet P1 (DOI {P1_DOI}, z=0.44+/-0.03) vs "
-                  f"find_crossover_z ved K0={k0['verdi']} i z i [0.01, 2.0]"),
-        "merknad": ("motoren finner ingen fortegnsendring i Sigma_eff-1 ved "
-                    "standardparametrene; den forseglede verdien ligger "
-                    "utenfor det den gir"),
+        "kilde": (f"sealed P1 (DOI {P1_DOI}, z=0.44+/-0.03) vs "
+                  f"find_crossover_z at K0={k0['verdi']} in z in [0.01, 2.0]"),
+        "merknad": ("the engine finds no sign change in Sigma_eff-1 at the "
+                    "standard parameters; the sealed value lies outside "
+                    "what it gives"),
     })
 
     K0s = np.linspace(k0["scan_range"][0], k0["scan_range"][1], 50)
@@ -353,60 +357,60 @@ def motor_avvik(rot: Optional[Path] = None) -> list[dict]:
         "motor": bredde,
         "enhet": "delta_z",
         "kilde": (f"{KOMPOUND_DATA}#P1_lensing_sector.parameters.K0."
-                  "delta_z_across_scan vs scan_K0(K0 i "
-                  f"[{k0['scan_range'][0]}, {k0['scan_range'][1]}], 50 punkter); "
-                  f"{int(gyldige.size)} av {K0s.size} K0-verdier gir crossover"),
+                  "delta_z_across_scan vs scan_K0(K0 in "
+                  f"[{k0['scan_range'][0]}, {k0['scan_range'][1]}], 50 points); "
+                  f"{int(gyldige.size)} of {K0s.size} K0 values give a crossover"),
     })
 
     try:
         fs8 = float(motor.fsigma8_prediction(z=p2["redshift"]))
         fs8_motor: Any = fs8
-    except Exception as exc:  # noqa: BLE001 — avviket skal rapporteres
-        fs8_motor = f"FEIL: {type(exc).__name__}: {exc}"
+    except Exception as exc:  # noqa: BLE001 — the deviation shall be reported
+        fs8_motor = f"ERROR: {type(exc).__name__}: {exc}"
     avvik.append({
         "type": "p2_fsigma8",
         "forseglet": p2["fsigma8_z07"],
         "motor": fs8_motor,
         "enhet": "f*sigma8",
-        "kilde": (f"forseglet P2 (DOI {P2_DOI}) vs fsigma8_prediction("
-                  f"z={p2['redshift']}) i referanseimplementasjonen"),
-        "merknad": ("den forseglede amplituden reproduseres i stedet av "
-                    "efc_inference/engine/growth.py med EFCVariantC(mu_0=0.5) "
-                    "(scripts/repro/sealed_fs8_repro.py) — en annen kodevei "
-                    "enn referanseimplementasjonen"),
+        "kilde": (f"sealed P2 (DOI {P2_DOI}) vs fsigma8_prediction("
+                  f"z={p2['redshift']}) in the reference implementation"),
+        "merknad": ("the sealed amplitude is reproduced instead by "
+                    "efc_inference/engine/growth.py with EFCVariantC(mu_0=0.5) "
+                    "(scripts/repro/sealed_fs8_repro.py) — a different code "
+                    "path than the reference implementation"),
     })
 
     try:
         kons = motor.check_mu_consistency(0.44)
         mu_motor: Any = float(kons["relative_diff_pct"])
     except Exception as exc:  # noqa: BLE001
-        mu_motor = f"FEIL: {type(exc).__name__}"
+        mu_motor = f"ERROR: {type(exc).__name__}"
     avvik.append({
         "type": "mu_konsistens_p1_p2",
         "forseglet": 11.0,
         "motor": mu_motor,
-        "enhet": "prosent",
-        "kilde": ("P1/P2 mu-konsistens ved z=0.44: artikkelen oppgir ~11 % "
+        "enhet": "percent",
+        "kilde": ("P1/P2 mu consistency at z=0.44: the paper states ~11 % "
                   "(EFC_compound_paper, cross_sector_consistency) vs "
-                  "check_mu_consistency(0.44) i referanseimplementasjonen"),
+                  "check_mu_consistency(0.44) in the reference implementation"),
     })
     return avvik
 
 
 # ----------------------------------------------------------------------
-#  S8-ekvivalenten og avstanden til hver survey
+#  The S8 equivalent and the distance to each survey
 # ----------------------------------------------------------------------
 def s8_ekvivalent(z_eff: float, K0: float, modus: str = "lensing_sigma",
                   rot: Optional[Path] = None) -> dict:
-    """S8-ekvivalenten av den forseglede P1/P2-verdien ved K0.
+    """The S8 equivalent of the sealed P1/P2 value at K0.
 
-    Linsingsbeina kobler Sigma til S8 med repoets egen P3-relasjon
-    (S8_lens/S8_CMB = Sigma). Vekstbeinet kobler den forseglede P2-amplituden
-    til S8 via forholdet til LCDM-ankeret — en amplitudeproxy, deklarert.
+    The lensing legs couple Sigma to S8 with the repository's own P3 relation
+    (S8_lens/S8_CMB = Sigma). The growth leg couples the sealed P2 amplitude
+    to S8 via the ratio to the LCDM anchor — an amplitude proxy, declared.
     """
     rot = Path(rot or ROT_STANDARD)
     if modus not in LOKALE_MODI:
-        raise ValueError(f"ukjent modus: {modus}")
+        raise ValueError(f"unknown modus: {modus}")
     ankere = last_ankere(rot)
     cmb = ankere["cmb_2026"]
     p1 = last_p1(rot)
@@ -425,26 +429,26 @@ def s8_ekvivalent(z_eff: float, K0: float, modus: str = "lensing_sigma",
             "s8": s8,
             "s8_sigma": sigma,
             "forhold_til_lcdm": forhold,
-            "kilde": (f"forseglet P2 f*sigma8(z={p2['redshift']})="
-                      f"{ANKER_EFC} (DOI {P2_DOI}) mot LCDM {ANKER_LCDM} "
-                      "(sealed_fs8) x S8_CMB fra "
+            "kilde": (f"sealed P2 f*sigma8(z={p2['redshift']})="
+                      f"{ANKER_EFC} (DOI {P2_DOI}) against LCDM {ANKER_LCDM} "
+                      "(sealed_fs8) x S8_CMB from "
                       f"{DE_Y6_DATA}#cmb_2026"),
-            "forutsetning": ("amplitudeproxy: sigma8 dempes som f*sigma8 — "
-                             "f og sigma8 dempes ikke identisk i EFC, saa "
-                             "beinet er en tilnaerming, ikke en likning"),
+            "forutsetning": ("amplitude proxy: sigma8 is damped as f*sigma8 — "
+                             "f and sigma8 are not damped identically in EFC, "
+                             "so the leg is an approximation, not an equation"),
         }
 
     if modus == "lensing_mu":
         sigma_kobling = mu_lensing(z_eff, K0, rot)
-        kobling_navn = "mu (eta=1-grenen)"
-        kilde = (f"P3/A3-relasjonen S8_lens/S8_CMB = mu (eta=1, se "
+        kobling_navn = "mu (the eta=1 branch)"
+        kilde = (f"the P3/A3 relation S8_lens/S8_CMB = mu (eta=1, see "
                  f"{DE_Y6_DATA}) x mu(z={float(z_eff):.2f}; K0={float(K0)}) "
-                 f"fra {KOMPOUND_MOTOR}")
+                 f"from {KOMPOUND_MOTOR}")
     else:
         sigma_kobling = sigma_eff(z_eff, K0, rot)
         kobling_navn = "Sigma_eff"
-        kilde = (f"P3-relasjonen S8_lens/S8_CMB = Sigma (se {DE_Y6_DATA}) x "
-                 f"Sigma_eff(z={float(z_eff):.2f}; K0={float(K0)}) fra "
+        kilde = (f"the P3 relation S8_lens/S8_CMB = Sigma (see {DE_Y6_DATA}) x "
+                 f"Sigma_eff(z={float(z_eff):.2f}; K0={float(K0)}) from "
                  f"{KOMPOUND_MOTOR}")
 
     s8 = cmb["s8"] * sigma_kobling
@@ -459,15 +463,15 @@ def s8_ekvivalent(z_eff: float, K0: float, modus: str = "lensing_sigma",
         "s8": s8,
         "s8_sigma": sigma,
         "kilde": kilde,
-        "forutsetning": ("1D-kompresjon: ett tall per survey, ikke full "
-                         f"Sigma(k,z). Usikkerheten paa Sigma er papirets "
-                         f"egen +/-{p1['tolerance_band'] * 100:.0f} %-envelope "
+        "forutsetning": ("1D compression: one number per survey, not the full "
+                         f"Sigma(k,z). The uncertainty on Sigma is the paper's "
+                         f"own +/-{p1['tolerance_band'] * 100:.0f} %-envelope "
                          "(efc_perturbation_sector#tolerance_band)"),
     }
 
 
 def avstand(s8: float, anker: dict) -> dict:
-    """Avstanden til ett anker, med riktig en-sidig sigma fortegnet."""
+    """The distance to one anchor, with the correct one-sided sigma sign."""
     delta = float(s8) - anker["s8"]
     sigma = anker["pluss"] if delta >= 0 else anker["minus"]
     return {
@@ -481,11 +485,11 @@ def avstand(s8: float, anker: dict) -> dict:
 
 
 def kategori(s8: float, ankere: dict) -> str:
-    """Ledgerens tre utfallskategorier, som monoton regel i S8.
+    """The ledger's three outcome categories, as a monotone rule in S8.
 
-    (i)   MIDBAND            — mellom DES Y6 og KiDS Legacy
-    (ii)  CMB_KONSISTENT     — paa eller over KiDS (den CMB-konsistente enden)
-    (iii) DES_Y6_KONSISTENT  — under DES Y6 (testens falsifikasjonsvindu)
+    (i)   MIDBAND            — between DES Y6 and KiDS Legacy
+    (ii)  CMB_KONSISTENT     — at or above KiDS (the CMB-consistent end)
+    (iii) DES_Y6_KONSISTENT  — below DES Y6 (the test's falsification window)
     """
     des = ankere["des_y6_wcdm"]["s8"]
     kids = ankere["kids_legacy_wright"]["s8"]
@@ -514,11 +518,11 @@ def _vurder_bein(z_eff: float, K0: float, modus: str, ankere: dict,
 
 def vurder(K0: float = K0_TEST, z_eff: Optional[float] = None,
            rot: Optional[Path] = None) -> dict:
-    """Dom-treverdig: VURDERT naar kildene finnes, ellers VENTER.
+    """Three-valued verdict: VURDERT when the sources exist, otherwise VENTER.
 
-    Hvert bein rapporteres for seg. Beina slaas ikke sammen — de svarer paa
-    ulike koblinger mellom de forseglede verdiene og S8, og et sammendrag
-    ville skjult nettopp uenigheten som er funnet.
+    Each leg is reported on its own. The legs are not merged — they answer to
+    different couplings between the sealed values and S8, and a summary would
+    hide exactly the disagreement that has been found.
     """
     rot = Path(rot or ROT_STANDARD)
     z = Z_EFF_STANDARD if z_eff is None else float(z_eff)
@@ -531,7 +535,7 @@ def vurder(K0: float = K0_TEST, z_eff: Optional[float] = None,
     except Kildefeil as exc:
         return {
             "status": "VENTER",
-            "arsak": f"repo-lokal kilde mangler eller er uleselig: {exc}",
+            "arsak": f"repo-local source is missing or unreadable: {exc}",
             "K0": float(K0),
             "z_eff": z,
         }
@@ -578,15 +582,17 @@ def vurder(K0: float = K0_TEST, z_eff: Optional[float] = None,
         "falsifikasjonsvindu": bool(i_vindu),
         "falsifikasjonsvindu_bein": i_vindu,
         "forbehold": [
-            "1D-kompresjon: ett S8-tall per survey, ikke full Sigma(k,z)-form.",
-            "Koblingen Sigma -> S8 er repoets egen P3-relasjon; den er ikke "
-            "testet mot tomografi her.",
-            "Vekstbeinet er en amplitudeproxy (sigma8 dempes som f*sigma8).",
-            "z_eff er satt til den forseglede sammenligningsredskiften 0.44 "
-            "for BEGGE surveys — likt for begge, saa sammenligningen ikke "
-            "tunese mot ett av dem. Folsomheten over z rapporteres.",
-            "Ingen dom om RCMP felles her. Estimatoren rapporterer hvor "
-            "beina lander; tolkningen er menneskets og reviewerens.",
+            "1D compression: one S8 number per survey, not the full "
+            "Sigma(k,z) form.",
+            "The Sigma -> S8 coupling is the repository's own P3 relation; it "
+            "is not tested against tomography here.",
+            "The growth leg is an amplitude proxy (sigma8 is damped as f*sigma8).",
+            "z_eff is set to the sealed comparison redshift 0.44 for BOTH "
+            "surveys — equal for both, so the comparison is not tuned against "
+            "one of them. The sensitivity over z is reported.",
+            "No verdict on RCMP is passed here. The estimator reports where "
+            "the legs land; the interpretation is the human's and the "
+            "reviewer's.",
         ],
     }
 
@@ -598,10 +604,10 @@ def hoved(argv: Optional[list[str]] = None) -> int:
     p = argparse.ArgumentParser(
         description="P1/P2 cross-probe-estimator (DES-Y6 vs KiDS-Legacy S8)")
     p.add_argument("--rot", default=str(ROT_STANDARD),
-                   help="repo-rot (standard: to nivaaer opp fra denne fila)")
+                   help="repo root (default: two levels up from this file)")
     p.add_argument("--K0", type=float, default=K0_TEST)
     p.add_argument("--z-eff", type=float, default=None)
-    p.add_argument("--ut", default=None, help="skriv JSON til fil (ellers stdout)")
+    p.add_argument("--ut", default=None, help="write JSON to file (otherwise stdout)")
     a = p.parse_args(argv)
 
     dom = vurder(K0=a.K0, z_eff=a.z_eff, rot=Path(a.rot))
