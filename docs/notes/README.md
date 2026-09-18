@@ -23,6 +23,7 @@ docs/notes/
 ├── EFC_Content_Source_Policy_v1.0.md  # Source/content policy for external news + research (2026-08-19)
 ├── EFC_native_v2_graph_spec.md   # v2 graph kernel specification
 ├── growth_bug_2026.md            # Growth ODE friction correction + reproducer audit (2026-04-19)
+├── bro-speilretning_klima-noden_t_6ec0b913.md  # Which side owns which field in an engine↔atlas bridge (2026-09-18)
 └── README.md                     # This file
 ```
 
@@ -92,6 +93,37 @@ tests anchored to Linder (2005) as an external reference, and five
 ranged absolute-value bounds in `reproduce_efc.py` that would catch a
 recurrence of the same class of error.
 | File Layout | Maps the specification onto the repository file structure under `pipelines/efc/native_v2_graph/`, listing the kernel modules (graph, fields, operators, energy, aqual, solver, observables), test scripts, configs, and the run orchestrator. |
+
+### bro-speilretning_klima-noden_t_6ec0b913.md
+
+**Full title**: Speilretningen mellom motor og atlas — og `efc.klima_engine`-noden
+**Status**: Measurement note (2026-09-18) — the fix it verifies has landed in `main` (#477, #481, #482, #504), not here
+
+Records which side owns which field when an engine's `regime_node()` and the
+atlas node carrying its name disagree, and the measurement that settles it:
+the parameter-derived fields (`regime.validity`, `regime.law_form`) are the
+engine's, the curated fields (`nivaa`, `buss_domene`, `stipulasjoner`,
+epistemics) are the atlas'. The decision itself is not restated here — it
+lives in the `efc_bro_synk.py` docstring and, in full, in
+`docs/bro-konvensjon.md` (merged, #504) with its machine-readable ownership
+table.
+
+The note corrects its own card's premise: a guard on `id`, `regime.name`,
+`phase` and `perspektiv` was proposed as the way to catch the divergence, and
+a sweep over all 20 engines measures that those four fields differ for exactly
+one node (`efc.efc_background_engine`, whose engine declares a node id that
+does not exist) — not for `efc.klima_engine`, whose divergence sat in
+`regime.validity`. That blindness is one instance of the landed convention's
+measured class-wide drift (20 engines, 20 atlas nodes, deviations in both
+directions, 111 field-level gaps on the unfixed tree). It also records the
+strongest single piece of evidence for the direction: `efc.orbital_engine`'s
+hand-written Hill radius (`1.496e+09 m`, the Earth–Sun value) against the
+`6.151e+07 m` the engine computes for the Earth–Moon parameters its node
+describes. Verification of PR #504 (796 tests, 12 maintenance gates, three
+killed mutations, red-before/green-after) is kept as a historical record; the
+residual risks from that round are closed, and the note ends on what actually
+remains — a canonical-format drift (`--sjekk` exits 1) in
+`schema/regime_nodes.jsonld`.
 
 ## How Notes Relate to the Broader EFC Programme
 
