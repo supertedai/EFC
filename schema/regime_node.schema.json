@@ -342,6 +342,11 @@
               "type": "string",
               "minLength": 1,
               "description": "Noden har ingen koblinger til andre noder. Da skal den si HVORFOR her — «alene» er et gyldig svar, et tomt felt er ikke. Maalt 2026-09-18 (t_7dd41524): 13 av 113 noder sto slik."
+            },
+            "ikke_falsifiserbar_grunn": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Skriftlig grunn naar noden ikke kan felles av en observasjon: instrument-noden ER maalingen, etablert fysikk er ikke vaar aa felle, eller selvbeskrivelsen har ingen paastand aa felle."
             }
           },
           "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",

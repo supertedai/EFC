@@ -74,7 +74,8 @@
      "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
     ],
     "motor": "efc.water_solid",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -162,7 +163,8 @@
      "se water.py — tersklene er deklarert i motorens regime_node()"
     ],
     "motor": "water",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -250,7 +252,8 @@
      "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
     ],
     "motor": "efc.water_gas",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -338,7 +341,8 @@
     ],
     "motor": "efc.water_supercritical",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "alene_status": "superkritisk fase er koblet til trippelpunktet som fasekartets referanse; ingen annen forelder er riktig"
+    "alene_status": "superkritisk fase er koblet til trippelpunktet som fasekartets referanse; ingen annen forelder er riktig",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -427,7 +431,8 @@
     ],
     "motor": "efc.water_triple_point",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "alene_status": "fasekartets referansepunkt — det er ikke UNDER noe; det er definisjonen de andre kalibreres mot"
+    "alene_status": "fasekartets referansepunkt — det er ikke UNDER noe; det er definisjonen de andre kalibreres mot",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -517,7 +522,8 @@
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
     "motor_status": "ingen motor — etablert fysikk — straalingskilden. Ikke vaar aa beregne",
-    "alene_status": "straalingskilden — forutsetning for optikk, men ikke underlagt den"
+    "alene_status": "straalingskilden — forutsetning for optikk, men ikke underlagt den",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -603,7 +609,8 @@
      "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
     ],
     "motor": "efc.water_droplet",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -692,7 +699,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — etablert fysikk — brytningsindeksen er maalt, ikke modellert av oss"
+    "motor_status": "ingen motor — etablert fysikk — brytningsindeksen er maalt, ikke modellert av oss",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -780,7 +788,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — optisk fenomen — geometrien loeper i oyet og draapen, ikke i en motor. Emergencen er fysisk, ikke beregnet"
+    "motor_status": "ingen motor — optisk fenomen — geometrien loeper i oyet og draapen, ikke i en motor. Emergencen er fysisk, ikke beregnet",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -867,7 +876,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — optisk fenomen — geometrien loeper i oyet og draapen, ikke i en motor. Emergencen er fysisk, ikke beregnet"
+    "motor_status": "ingen motor — optisk fenomen — geometrien loeper i oyet og draapen, ikke i en motor. Emergencen er fysisk, ikke beregnet",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -1395,7 +1405,8 @@
      "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
     ],
     "motor": "",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -1485,7 +1496,8 @@
      "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
     ],
     "motor": "",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -1576,7 +1588,8 @@
      "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
     ],
     "motor": "",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -1666,7 +1679,8 @@
      "tersklene er anleggsspesifikke driftsgrenser — se VictronChargeEngine"
     ],
     "motor": "",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -1757,7 +1771,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -1847,7 +1862,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -1935,7 +1951,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2022,7 +2039,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2110,7 +2128,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2198,7 +2217,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2285,7 +2305,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2371,7 +2392,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2458,7 +2480,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2547,7 +2570,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2635,7 +2659,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2723,7 +2748,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2809,7 +2835,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2897,7 +2924,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -2984,7 +3012,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -3070,7 +3099,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -3156,7 +3186,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -3245,7 +3276,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -3333,7 +3365,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -3421,7 +3454,8 @@
      "ingen — ren observasjonsnode; tersklene er produsentens (surveyens), ikke vaare"
     ],
     "motor": "",
-    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt"
+    "motor_status": "ingen motor — observasjon — lest av fra stroemmen. Noden ER maalingen; en motor ville regnet det den allerede har maalt",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "modellrelativ",
@@ -3509,7 +3543,8 @@
     "terskler": [
      "se VictronChargeEngine (batteri.lade_buffer)"
     ],
-    "motor": "victron"
+    "motor": "victron",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -4069,7 +4104,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.fluxus_engine"
+    "motor": "efc.fluxus_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -4166,7 +4202,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.homeostase_buffer_engine"
+    "motor": "efc.homeostase_buffer_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -4273,7 +4310,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.feber_regime_engine"
+    "motor": "efc.feber_regime_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -4380,7 +4418,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.aksjonspotensial_engine"
+    "motor": "efc.aksjonspotensial_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -4487,7 +4526,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.hjerte_syklus_engine"
+    "motor": "efc.hjerte_syklus_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -4594,7 +4634,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.genregulering_engine"
+    "motor": "efc.genregulering_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -4683,7 +4724,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.cellesyklus_engine"
+    "motor": "efc.cellesyklus_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -4790,7 +4832,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.metabolisme_engine"
+    "motor": "efc.metabolisme_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -5084,7 +5127,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.immunologi_engine"
+    "motor": "efc.immunologi_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -5173,7 +5217,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.sovn_vaaken_engine"
+    "motor": "efc.sovn_vaaken_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -5280,7 +5325,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.okologi_engine"
+    "motor": "efc.okologi_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -5369,7 +5415,8 @@
     "terskler": [
      "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
     ],
-    "motor": "efc.evolusjon_engine"
+    "motor": "efc.evolusjon_engine",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -7184,7 +7231,8 @@
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
     "motor_status": "ingen motor — etablert fysikk — IUPACs struktur. Ingen egen dynamikk aa kjore",
-    "alene_status": "grunnstoffenes struktur — forutsetning for h2o, men ikke et hierarki: h2o er ikke et tilfelle av periodesystemet"
+    "alene_status": "grunnstoffenes struktur — forutsetning for h2o, men ikke et hierarki: h2o er ikke et tilfelle av periodesystemet",
+    "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
    },
    "nivaa": {
     "indeks": 0,
@@ -7268,7 +7316,8 @@
      "ingen terskler — maalingsnode"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "nivaa": {
     "indeks": 0,
@@ -7353,7 +7402,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GBIF-kanalen er en egen målekanal; ingen fysisk forelder finnes i den målte verden-delen"
+    "alene_status": "GBIF-kanalen er en egen målekanal; ingen fysisk forelder finnes i den målte verden-delen",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "nivaa": {
     "indeks": 0,
@@ -7438,7 +7488,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "Vulkanstatus er en egen målekanal; ingen fysisk forelder finnes i atlasets kosmos-del"
+    "alene_status": "Vulkanstatus er en egen målekanal; ingen fysisk forelder finnes i atlasets kosmos-del",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "nivaa": {
     "indeks": 0,
@@ -7539,7 +7590,8 @@
      "ingen terskler — oppgjoeret rapporterer avviket, det setter det ikke"
     ],
     "motor": "ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16)",
-    "alene_status": "instrument-node, alene i sitt buss-domene: den leser metno, og det finnes ingen annen node i verden.vaer aa koble til"
+    "alene_status": "instrument-node, alene i sitt buss-domene: den leser metno, og det finnes ingen annen node i verden.vaer aa koble til",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "maale_paradigme": {
     "koordinater": [
@@ -7623,7 +7675,8 @@
      "MEN: terskelen er bare anvendbar der skjemaet har `avvik`; 10 827 poster har `grunnlag` i stedet og kan ikke doemmes av denne noden"
     ],
     "motor": "ingen egen motor — sloeyfa loeper i ledgeren",
-    "alene_status": "observer-node, alene i sitt buss-domene: OPUS_SELV har ingen soster i atlaset"
+    "alene_status": "observer-node, alene i sitt buss-domene: OPUS_SELV har ingen soster i atlaset",
+    "ikke_falsifiserbar_grunn": "Selvbeskrivelsen har ingen påstand å felle; noden beskriver atlasets egen vurderingsmekanisme."
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -7731,7 +7784,8 @@
      "-4.0 er JPLs terskel, ikke vaar — 40 over, 2165 under"
     ],
     "motor": "efc.orbital_engine (banemekanikk)",
-    "alene_status": "instrument-node, alene i sitt buss-domene: jpl-sentry er den eneste kilden for dette domenet"
+    "alene_status": "instrument-node, alene i sitt buss-domene: jpl-sentry er den eneste kilden for dette domenet",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8198,7 +8252,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8301,7 +8356,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8404,7 +8460,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "JPL Horizons-kanalen er en egen målekanal; månen er koblet til tidevannsmotoren, men ikke gjort til undernode av en annen datakanal"
+    "alene_status": "JPL Horizons-kanalen er en egen målekanal; månen er koblet til tidevannsmotoren, men ikke gjort til undernode av en annen datakanal",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8507,7 +8564,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8610,7 +8668,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "JPL Horizons-kanalen er koblet til orbitalmotoren; ingen ekstra hierarkisk forelder er fysisk riktig"
+    "alene_status": "JPL Horizons-kanalen er koblet til orbitalmotoren; ingen ekstra hierarkisk forelder er fysisk riktig",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8713,7 +8772,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8816,7 +8876,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8919,7 +8980,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9022,7 +9084,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9125,7 +9188,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "instrument-node bygget 2026-09-18 fra kilden — ingen soster i verden.arbeid ennaa"
+    "alene_status": "instrument-node bygget 2026-09-18 fra kilden — ingen soster i verden.arbeid ennaa",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9228,7 +9292,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9331,7 +9396,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9434,7 +9500,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9537,7 +9604,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9640,7 +9708,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9743,7 +9812,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9846,7 +9916,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9949,7 +10020,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10052,7 +10124,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10155,7 +10228,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10258,7 +10332,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10361,7 +10436,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10464,7 +10540,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10567,7 +10644,8 @@
     ],
     "motor": "",
     "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
-    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon",
+    "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
