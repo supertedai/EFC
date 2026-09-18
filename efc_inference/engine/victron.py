@@ -197,7 +197,7 @@ class VictronChargeEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
@@ -206,11 +206,14 @@ class VictronChargeEngine(EFCEngine):
                 "status": "avledet",
                 "alternativer": ["koordinatfrie formuleringer"]
             },
+            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
+            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
+            # likevel staa her fordi RegimeNode krever det — testen binder dem.
             "nivaa": {
                 "indeks": 2,
                 "forelder": "batteri.lading",
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "s",
+                "lengdeskala": "anlegg"
             },            "regime": {
                 "name": "Victron lademotor — CC/CV-kneet",
                 "validity": validity,
@@ -255,7 +258,7 @@ class VictronChargeEngine(EFCEngine):
                 "properties": ["t_knee", "v_knee", "i_knee"],
             },
             "fractal": {
-                "pattern": "kneet er samme overgangsmonster som H2Os trippelpunkt og L1->L2 — tre domener, ett monster",
+                "pattern": "kneet er samme overgangsmonster som H2Os trippelpunkt og L1->L2 — tre domener, ett monster (analogi, ikke identitet: ladning og fase er ikke samme storrelse)",
                 "note": "motoren er overgangens egen maaler.",
             },
             "coupling": {

@@ -578,11 +578,11 @@ class EFCBackgroundEngine(EFCEngine):
 
     REQUIRED_PARAMS = ["H0", "alpha", "k0", "omega_crit", "gamma0", "Omega_m"]
 
-    #: Motoren eier sin egen publiseringsflate. Denne motoren har ENNNAA
-    #: ingen node i schema/regime_nodes.jsonld (atlas-arbeid er en egen
-    #: post), og «intern» er da den aerlige beskrivelsen av tilstanden —
-    #: ikke en skjult regel, men en deklarert.
-    SYNLIGHET = "intern"
+    #: Motoren eier sin egen publiseringsflate (se base_engine). Noden ER i
+    #: atlaset (``efc.efc_background_engine``) og genereres til GitHub Pages —
+    #: «intern» var sann mens noden ikke fantes, og ble staende etter at den
+    #: kom inn. Rettet mot maalt tilstand 2026-09-18 (bro-auditen).
+    SYNLIGHET = "offentlig"
 
     @property
     def name(self) -> str:
@@ -621,7 +621,7 @@ class EFCBackgroundEngine(EFCEngine):
             f"selvkonsistente EFC-bakgrunnen: phi drives av "
             f"flyt-betingelsen (13), H av (12) og lambda er et "
             f"responsfelt (eq. 10). Boltzmann/CMB er AAPEN — "
-            f"ingen perturbaSJONER, ingen EFCLASS. Gyldig bare for "
+            f"ingen perturbasjoner, ingen EFCLASS. Gyldig bare for "
             f"rho_m < rho_crit (K divergerer, eq. 2), for z der "
             f"stråling er neglisjerbar, og med V = const valgt fordi "
             f"papiret ikke spesifiserer V(phi). Super-horisont og "
@@ -636,7 +636,7 @@ class EFCBackgroundEngine(EFCEngine):
             "-1 er den direkte variasjonen av eq. 1."
         )
         return {
-            "id": "efc.background_engine",
+            "id": "efc.efc_background_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {
@@ -652,7 +652,10 @@ class EFCBackgroundEngine(EFCEngine):
                 "motor": "efc_background"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
-                "evidensstatus": "proxy",
+                # Evidensstatus eies av ATLASET: bakgrunnsloeseren er en
+                # hypotese uten maalt evidens (SYSTEM.md: «no evidence yet»).
+                # Motoren sa «proxy» om en avledning som ikke er maalt.
+                "evidensstatus": "ingen",
                 "konsensusstatus": "minoritet",
                 "sosial_mekanisme": "vaar egen ramme — baeres av oss, "
                                      "ikke av feltet",
@@ -665,11 +668,14 @@ class EFCBackgroundEngine(EFCEngine):
                 "alternativer": ["koordinatfrie formuleringer",
                                  "anderledes normalisering av a(t)"],
             },
+            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
+            # motoren er SUBSTRATET under de andre kosmologimotorene, og
+            # nivaaet staar i atlaset — ikke i en egen kopi her.
             "nivaa": {
-                "indeks": 2,
-                "forelder": "efc.selv.paradigme_tid",
-                "tidsskala": "1/H0",
-                "lengdeskala": "horisonten c/H0",
+                "indeks": 0,
+                "forelder": None,
+                "tidsskala": "kosmisk tid",
+                "lengdeskala": "Hubbleskala",
             },
             "regime": {
                 "name": "Selvkonsistent EFC-bakgrunn (FLAT FRW)",
@@ -716,8 +722,8 @@ class EFCBackgroundEngine(EFCEngine):
                     "Lambda-liknende ledd",
                     "materie er stov som bevares separat (rho ~ a^-3)",
                 ],
-                "source": "EFC Relativistic Action (eq. 1, 2, 7-13, 47-48, "
-                          "DOI 10.6084/m9.figshare.31876324)",
+                "source": "DOI 10.6084/m9.figshare.31876324 (Magnusson, "
+                          "2025/2026)",
             },
             "observer": {
                 "bandwidth": "loeseren ser bakgrunnen — ingen "

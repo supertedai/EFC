@@ -83,6 +83,17 @@ LCDM = {
 EFC = {**LCDM, "alpha": 0.01, "gamma0": 0.05}
 
 
+def bro_kanoniske() -> dict:
+    """Kanoniske parametre for motorens ATLAS-NODE.
+
+    Én kilde for testen og bro-synken (scripts/maintenance/efc_bro_synk.py).
+    ``H0`` er med fordi ``compute()`` maaler H(z) i km/s/Mpc; ``regime_node()``
+    leser bare den dimensjonsloese kjernen, og vet at kilden er denne fila —
+    ikke et gjett paa hvilket modulnivaa-dict som er «det kanoniske».
+    """
+    return {**EFC, "H0": 70.0}
+
+
 def _lcdm_E(z, Omega_m=0.3, V0=0.7):
     """Standard flat LCDM (uten straling): E^2 = Omega_m(1+z)^3 + Omega_L."""
     z = np.asarray(z, dtype=float)
@@ -310,7 +321,7 @@ def test_ugyldig_starttilstand_gir_ingen_tall():
 def test_regime_node_er_en_gyldig_regime_node():
     """Motorens selvbeskrivelse skal validere mot RegimeNode-skjemaet."""
     node = EFCBackgroundEngine().regime_node(EFC)
-    assert node["id"] == "efc.background_engine"
+    assert node["id"] == "efc.efc_background_engine"
     if jsonschema is not None:
         s = json.loads((_REPO / "schema" / "regime_node.schema.json")
                        .read_text(encoding="utf-8"))

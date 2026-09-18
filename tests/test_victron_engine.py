@@ -50,6 +50,17 @@ def params_for(t, v, i, v_knee_tol=0.05, di_threshold=0.1,
     }
 
 
+def bro_kanoniske() -> dict:
+    """Kanoniske parametre for motorens ATLAS-NODE.
+
+    Én kilde for testen og bro-synken (scripts/maintenance/efc_bro_synk.py):
+    parametrene finnes ikke som et modulnivaa-dict her — de KONSTRUERES av
+    den syntetiske CC/CV-kurven testene selv bruker, og en synk som gjettet
+    ville maalt en annen node enn testen.
+    """
+    return params_for(*syntetisk_cccv())
+
+
 # ---------------------------------------------------------------------------
 # Klassifisering langs tiden
 # ---------------------------------------------------------------------------
