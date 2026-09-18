@@ -3,21 +3,28 @@ name: efc-testsuite
 # C14 — the WHOLE suite, collected from the repository root.
 #
 # MEASURED 2026-09-18 (card t_89eea983) on origin/main 9fd9ae4a: no CI job ran
-# the whole suite. Four workflows named TWELVE test files between them, against
-# a suite of 1161 tests, and `make full-check` runs scripts/maintenance/* — it
-# does not run pytest at all.
+# the whole suite. Five workflows ran pytest and named THIRTEEN test files
+# between them (efc-risiko 3, efc-schema 7, efc-statement-graph 1,
+# efc-changelog-sync 1, efc-page-consistency 1), against a suite of 1161 tests.
+# `make full-check` runs scripts/maintenance/* — it does not run pytest at all.
 #
-# Main is therefore RED today, in two classes, and nothing said so:
-#   1. a COLLECTION ERROR: tests/test_atlas_retain.py imports NODE_TERSKEL,
-#      bekreft and node_verdig from scripts/atlas_lesing.py, and PR #532
-#      (9fd9ae4a) merged the test file without the code it imports. pytest
-#      interrupts the whole session on a collection error, so NOT ONE of the
-#      1161 tests runs on main right now (measured: `1 error in 4.70s`,
-#      `Interrupted: 1 error during collection`).
-#   2. a FAILING TEST: tests/test_bro_konvensjon.py::
-#      test_hvert_skjema_felt_har_en_eier — the field `open_questions` is in
-#      schema/regime_node.schema.json (PR #555) with no owner in the bridge
-#      convention.
+# Main is therefore RED today, in two classes:
+#   1. a COLLECTION ERROR, and it is invisible to every existing job:
+#      tests/test_atlas_retain.py imports NODE_TERSKEL, bekreft and node_verdig
+#      from scripts/atlas_lesing.py, and PR #532 (9fd9ae4a) merged the test file
+#      without the code it imports. pytest interrupts the whole session on a
+#      collection error, so NOT ONE of the 1161 tests runs on main right now
+#      (measured on a clean checkout of origin/main: `1 error in 4.70s`,
+#      `Interrupted: 1 error during collection`). None of the thirteen named
+#      files is this one, so no job can see it.
+#   2. a FAILING TEST that only recently got a name in a command:
+#      tests/test_bro_konvensjon.py::test_hvert_skjema_felt_har_en_eier — the
+#      field `open_questions` is in schema/regime_node.schema.json (PR #555)
+#      with no owner in the bridge convention. It merged unwatched, and the
+#      file was added to the C10 command only three hours later, by #551
+#      (b77029e3, 2026-09-18T18:49Z). The efc-schema job has failed on main
+#      since — which is the point: coverage here is "whoever remembers to name
+#      the file", not "the suite runs".
 # With (1) set aside as a MEASUREMENT (never as a gate setting) the suite is
 #   1 failed, 1159 passed, 1 skipped in 50.94s
 # — that is, (1) is the only reason the suite cannot run at all, and (2) is the
