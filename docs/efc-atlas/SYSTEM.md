@@ -41,7 +41,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** ingen direkte — modellavhengig — proxy chain: inflasjonsprediksjoner -> P(k)-avtrykk i L1 -> ingen direkte observabel i L0
 
-**How it's built.** Buffer role: vakuumsvingningene er frobanken — en buffer av potensial som inflasjonen tapper. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: vakuumsvingningene er frobanken — en buffer av potensial som inflasjonen tapper. Epistemic: hypotese / proxy / minoritet. S-axis: regime S->0 · klarhet C(S) ved S->0: udifferensiert klarhet — kompresjonsgrensen (singularitet) · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 
@@ -1077,7 +1077,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** CMB-kart + galakse-survey — proxy chain: temperaturanisotropier -> P(k) -> BAO-skala -> H(z) -> polarisasjon -> optisk dybde
 
-**How it's built.** Buffer role: plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon… Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon… Epistemic: hypotese / proxy / minoritet. S-axis: regime S~0 · klarhet C(S) ved S~0: begynnende klarhet — differensieringens terskel · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 
@@ -1091,7 +1091,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** galakse-survey + svak linse (KiDS, DES, Euclid) — proxy chain: galaksefordeling -> P(k) full-shape -> roedforskyvningsromforvrengning -> fsigma8 -> skjær…
 
-**How it's built.** Buffer role: strukturen selv er en treghetsbuffer: galakser og klynger holder masse mot… Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: strukturen selv er en treghetsbuffer: galakser og klynger holder masse mot… Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · klarhet C(S) ved S>0: differensiert klarhet — refleksjonens vindu, R over R_c~0.37 gir selvmodellering · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 
@@ -1105,7 +1105,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** ingen direkte — predikert grense — proxy chain: vekstlovens asymptote -> S->1-tilstanden -> ingen maalbar proxy i dag
 
-**How it's built.** Buffer role: metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe… Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · klarhet C(S) ved S->1: mettet klarhet — altular-grensen, avtagende energitetthet · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 
@@ -1119,7 +1119,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** galakse-surveyer (DESI, eBOSS, BOSS) — proxy chain: galakse-korrelasjonsfunksjon -> BAO-topp ved ~150 Mpc -> BAO-topp -> D_H(z)/r_d…
 
-**How it's built.** Buffer role: drag-epoch fryser lydskalaen inn i plasmaet — linjalen fryses i L1 og leses i L2. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: drag-epoch fryser lydskalaen inn i plasmaet — linjalen fryses i L1 og leses i L2. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=galakse-surveyer (DESI, eBOSS, BOSS); observabel=BAO-skalaen (r_d ~ 147 Mpc comoving); teori=BAO — standardlinjalen; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1133,7 +1133,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** Planck — proxy chain: temperaturspektrum -> P(k) -> toppavstand -> theta_* og r_s(z_*) -> polarisasjon -> optisk…
 
-**How it's built.** Buffer role: rekombinasjonen fryser fotonene — signalet holdes til det slippes ved z ~ 1100. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: rekombinasjonen fryser fotonene — signalet holdes til det slippes ved z ~ 1100. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Planck; observabel=temperatur-/polarisasjonsspekteret; teori=CMB TT/EE/TE akustiske topper; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1147,7 +1147,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** Planck, ACT, SPT — proxy chain: CMB-anisotropi-fordeling -> linsingspotensial -> linsingspotensial -> P(k) ved z ~ 2
 
-**How it's built.** Buffer role: fotonenes frie ferd er bufferen — de samler masseavtrykk underveis. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: fotonenes frie ferd er bufferen — de samler masseavtrykk underveis. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Planck, ACT, SPT; observabel=linsingspotensialet; teori=CMB Lensing Reconstruction; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1161,7 +1161,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** quasar-spektroskopi — proxy chain: D/H i quasarskyer -> baryontetthet omega_b h^2 -> omega_b h^2 -> kryssjekk mot CMB
 
-**How it's built.** Buffer role: kjernereaksjonene fryser D/H ved T ~ 80 keV — et signal som aldri endres. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: kjernereaksjonene fryser D/H ved T ~ 80 keV — et signal som aldri endres. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=quasar-spektroskopi; observabel=deuterium/hydrogen-forholdet; teori=BBN lette elementer; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1175,7 +1175,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** BOSS, eBOSS, DESI — proxy chain: roedforskyvningsromforvrengning (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form
 
-**How it's built.** Buffer role: strukturen selv er bufferen — gravitasjonell respons holder masse mot… Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: strukturen selv er bufferen — gravitasjonell respons holder masse mot… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=BOSS, eBOSS, DESI; observabel=vekstraten fsigma8; teori=f-sigma-8(z) lineær vekst; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1189,7 +1189,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** KiDS, DES, HSC, Euclid — proxy chain: skjær (svak linse) -> S8 -> S8 lav vs CMB-forventning -> tension
 
-**How it's built.** Buffer role: linsebildene holder avtrykket av masse langs synslinjen — en akkumulert buffer. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: linsebildene holder avtrykket av masse langs synslinjen — en akkumulert buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=KiDS, DES, HSC, Euclid; observabel=S8 = sigma8 sqrt(omega_m/0.3); teori=S8-tension; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1203,7 +1203,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** SDSS, KiDS+BOSS — proxy chain: linse (kappa) x RSD (beta) -> E_G -> E_G -> slip mellom lys og masse
 
-**How it's built.** Buffer role: to uavhengige proxyer buffrer hverandre — krysset er mer robust enn hver del. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: to uavhengige proxyer buffrer hverandre — krysset er mer robust enn hver del. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SDSS, KiDS+BOSS; observabel=E_G-krysset; teori=E_G gravitasjonsslip-statistikk; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1217,7 +1217,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** CMB x galaksekart — proxy chain: CMB-kart x galaksefordeling -> ISW-kryss
 
-**How it's built.** Buffer role: fotonene integrerer potensialets tidsderivat over ferdselen — reisen er bufferen. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: fotonene integrerer potensialets tidsderivat over ferdselen — reisen er bufferen. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=CMB x galaksekart; observabel=ISW-signalet; teori=ISW krysskorrelasjon; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1231,7 +1231,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** ACT, DES x SPT — proxy chain: CMB x galakser -> kSZ -> kSZ -> egenhastighetsfelt
 
-**How it's built.** Buffer role: elektronene i klynger spretter fotoner doppler — plasmaet er bufferen. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: elektronene i klynger spretter fotoner doppler — plasmaet er bufferen. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=ACT, DES x SPT; observabel=kSZ-signalet; teori=kSZ egenhastigheter; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1245,7 +1245,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** Chandra, XMM, HST — proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> skaleringsrelasjoner -> masse
 
-**How it's built.** Buffer role: klyngens potensial holder gassen varm og lyset boeyd — to buffere, én masse. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: klyngens potensial holder gassen varm og lyset boeyd — to buffere, én masse. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Chandra, XMM, HST; observabel=M_500 fra flere kanaler; teori=klyngemasse-skalering; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1259,7 +1259,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** DES, SDSS, eROSITA — proxy chain: antall klynger per masse -> N(M,z) -> N(M,z) -> sigma8 og vekst
 
-**How it's built.** Buffer role: kollapsen buffrer masse i halos — tellingen er buffernes fordeling. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: kollapsen buffrer masse i halos — tellingen er buffernes fordeling. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=DES, SDSS, eROSITA; observabel=halomassetetthetsfunksjonen; teori=klyngehalo-massetetthet N(M,z); overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1273,7 +1273,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** SPARC — proxy chain: rotasjonskurver -> a_obs -> barionisk fordeling -> a_bar -> avvik -> a_obs/a_bar
 
-**How it's built.** Buffer role: galaksens potensial holder rotasjonen — dynamikken er bufferen. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: galaksens potensial holder rotasjonen — dynamikken er bufferen. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SPARC; observabel=a_obs vs a_bar; teori=Radial Acceleration Relation; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1287,7 +1287,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** HST + Chandra — proxy chain: linse (masse) vs rontgen (gass) -> offset delta-kappa
 
-**How it's built.** Buffer role: kollisjonen separerer komponentene — hendelsen er bufferen. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: kollisjonen separerer komponentene — hendelsen er bufferen. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=HST + Chandra; observabel=masse-gass-offseten; teori=Bullet-klyngen delta-kappa; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1301,7 +1301,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** HST, simuleringer — proxy chain: telte dverg-satellitter vs predikerte -> underskudd -> tette kjerner vs cusp -> profil
 
-**How it's built.** Buffer role: subhalos holdes av vertens potensial — bufferen er tidevannsstrippingen. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: subhalos holdes av vertens potensial — bufferen er tidevannsstrippingen. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=HST, simuleringer; observabel=subhalo-populasjonen; teori=manglende satellitter / TBTF / core-cusp; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1315,7 +1315,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** JWST — proxy chain: JWST-fotometri -> masse ved z>10 -> massefunksjon -> kollapstidsskala
 
-**How it's built.** Buffer role: tidlige halos er de foerste bufferne — de foerste som holdt masse. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: tidlige halos er de foerste bufferne — de foerste som holdt masse. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=JWST; observabel=galakse-massefunksjonen ved z>10; teori=tidlig massiv struktur (JWST z>10); overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1329,7 +1329,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** LIGO/Virgo — proxy chain: GW- og gammaankomst -> c_T/c innen 1e-15
 
-**How it's built.** Buffer role: 1.7-sekunders-forsinkelsen over 40 Mpc er maalingens buffer — reisen kalibrerer. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: 1.7-sekunders-forsinkelsen over 40 Mpc er maalingens buffer — reisen kalibrerer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=LIGO/Virgo; observabel=c_T fra GW170817; teori=Gravitasjonsbolgehastighet c_T; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1343,7 +1343,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** NANOGrav, EPTA — proxy chain: pulsar-timing-residualer -> Hellings-Downs-korrelasjon -> GW-bakgrunn
 
-**How it's built.** Buffer role: pulsarene ER bufferen — deres rotasjon holder fasen over aar. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: pulsarene ER bufferen — deres rotasjon holder fasen over aar. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=NANOGrav, EPTA; observabel=GW-bakgrunnen ved nHz; teori=PTA gravitasjonsbolge-bakgrunn; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1357,7 +1357,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** Planck vs SH0ES — proxy chain: CMB (LCDM-ekstrapolasjon) -> H0 ~ 67 -> cepheid/SN-stige -> H0 ~ 73 -> gap -> tension
 
-**How it's built.** Buffer role: to uavhengige maalekjeder buffrer hverandre — nettopp derfor kan ingen av dem… Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: to uavhengige maalekjeder buffrer hverandre — nettopp derfor kan ingen av dem… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Planck vs SH0ES; observabel=H0 fra to uavhengige kanaler; teori=Hubble-tension H0; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1371,7 +1371,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** DES, BAO+CMB — proxy chain: SN + BAO + CMB -> w0, wa -> w0, wa -> avvik fra -1
 
-**How it's built.** Buffer role: SN-lysets strekk over avstand er bufferen — ekspansjonshistorien er skrevet i… Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: SN-lysets strekk over avstand er bufferen — ekspansjonshistorien er skrevet i… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=DES, BAO+CMB; observabel=w(z)-parametriseringen; teori=w0-wa dynamisk moerk energi; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1385,7 +1385,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** alle kanaler — proxy chain: alle observasjoner -> omega_Lambda ~ 0.7 -> naivt teoretisk QFT-estimat -> ~120…
 
-**How it's built.** Buffer role: bakgrunnens akselerasjon er bufferen — den holder ekspansjonen oppe. Epistemic: modellrelativ / proxy / institusjonell.
+**How it's built.** Buffer role: bakgrunnens akselerasjon er bufferen — den holder ekspansjonen oppe. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=alle kanaler; observabel=vakuumenergiens stoerrelse; teori=kosmologisk konstant / vakuumenergi; overlap=True; deklarasjon=RCMP: instrument, observabel og teori har overlappende gyldighetsdomene.
 
 **Steps in execution.**
 
@@ -1399,7 +1399,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** hf1–hf5-observasjonskravene (falsifiserbare påstander i rammeverket) — proxy chain: kohrens-proxyer → R (inferens) -> R → flytobjekt/flytsubjekt (terskel)
 
-**How it's built.** Buffer role: kroppens buffere (termisk, kjemisk, nevral) holder flytmønsteret stabilt under… Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: kroppens buffere (termisk, kjemisk, nevral) holder flytmønsteret stabilt under… Epistemic: hypotese / proxy / minoritet. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1413,7 +1413,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** fysiologiske sensorer; her er noden beskrivelse, ikke sensor — proxy chain: sensor → avvik -> avvik → kompensasjonsrespons
 
-**How it's built.** Buffer role: selve bufferen: kapasitet som demper endring — den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: selve bufferen: kapasitet som demper endring — den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1427,7 +1427,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** termometer + pyrogen-markører; her beskrivelse — proxy chain: pyrogener → setpunktsskifte -> temperatur → avstand til nytt setpunkt
 
-**How it's built.** Buffer role: bufferen bytter TARGET, ikke kapasitet — det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: bufferen bytter TARGET, ikke kapasitet — det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1441,7 +1441,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** fysiologisk måling; her beskrivelse — proxy chain: ionestrømmer → V(t) -> V(t) mot V_th → spike
 
-**How it's built.** Buffer role: membranen er bufferen: gradienten lades og holdes til utløsning. Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: membranen er bufferen: gradienten lades og holdes til utløsning. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1455,7 +1455,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** fysiologisk måling; her beskrivelse — proxy chain: EKG → elektrisk syklus -> ekko → mekanisk syklus
 
-**How it's built.** Buffer role: ventriklene er bufferne: de fylles og tømmes rytmisk — aldri til null, aldri… Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: ventriklene er bufferne: de fylles og tømmes rytmisk — aldri til null, aldri… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1469,7 +1469,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** sekvensering; her beskrivelse av reguleringslogikken — proxy chain: TF-binding → uttrykk -> epigenetisk merke → terskelskifte
 
-**How it's built.** Buffer role: genomet holder reguleringsprogrammene lagret — en kapasitet som demper… Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: genomet holder reguleringsprogrammene lagret — en kapasitet som demper… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1483,7 +1483,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** laboratoriemåling; her beskrivelse — proxy chain: DNA-innhold → fase -> CDK/cyklin → sjekkpunkt-status
 
-**How it's built.** Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1497,7 +1497,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** laboratoriemåling; her beskrivelse — proxy chain: O₂-forbruk → fluks -> ATP/ADP → reguleringsstatus
 
-**How it's built.** Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper… Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1539,7 +1539,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** laboratoriemåling; her beskrivelse — proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse
 
-**How it's built.** Buffer role: hukommelsen er bufferen: den senker terskelen og gjør neste respons raskere. Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: hukommelsen er bufferen: den senker terskelen og gjør neste respons raskere. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1553,7 +1553,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** klinisk måling; her beskrivelse — proxy chain: EEG-synkroni -> stadium -> våkenhetsvarighet -> homeostatisk trykk
 
-**How it's built.** Buffer role: søvnbehovet er bufferen: det akkumuleres i våken og tømmes i søvn — hjernens… Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: søvnbehovet er bufferen: det akkumuleres i våken og tømmes i søvn — hjernens… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1567,7 +1567,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** økologisk overvåking; her beskrivelse — proxy chain: næringsstoffer -> tilstand -> dekning -> regime
 
-**How it's built.** Buffer role: økosystemets bufferevne (resiliens) demper forstyrrelser — til bufferen er brukt… Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: økosystemets bufferevne (resiliens) demper forstyrrelser — til bufferen er brukt… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1581,7 +1581,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** paleontologisk/genomisk måling; her beskrivelse — proxy chain: fossilrekke -> morfologisk rate -> molekylær avstand -> tid siden splitt
 
-**How it's built.** Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen — til… Epistemic: stottet / replikert / institusjonell.
+**How it's built.** Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen — til… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag — observatøren ser et smalt vindu.
 
 **Steps in execution.**
 
@@ -1637,7 +1637,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** ingen direkte — strukturen er avledet fra feltet, ikke maalt som struktur — proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur ->…
 
-**How it's built.** Buffer role: haloen selv er bufferen: den holder formen mens feltet varierer under. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: haloen selv er bufferen: den holder formen mens feltet varierer under. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · sektor S · klarhet C(S) ved S>0: strukturell klarhet — formen leser energiflyten i likevekt · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 
@@ -1651,7 +1651,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** aksjonen (master-spec, eq. 1) — proxy chain: aksjon -> feltligning -> J_mu -> ekspansjonshistorie -> J_mu -> Sigma (kildeledd)
 
-**How it's built.** Buffer role: F(phi) og K(rho) demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: F(phi) og K(rho) demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · sektor D · klarhet C(S) ved S>0: dynamisk klarhet — tid, rom og hastighet emergerer fra energy flow under S · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 
@@ -1665,7 +1665,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** ingen direkte — S er et felt, ikke en maaling — proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C…
 
-**How it's built.** Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen… Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · sektor C · klarhet C(S) ved S->1: mettet klarhet lokalt — propofol-EEG (Omega, kappa) måler klarhetsvariasjon i liten skala · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 

@@ -299,7 +299,8 @@ def _perspektiv_tekst(p: str | None) -> str:
 #: Tekstgrensene for det atlaset RENDERER. De staar her og ikke spredt som
 #: `[:70]` inne i `_node_rad`, fordi testen i `tests/test_atlas_lesbarhet.py`
 #: leser dem: en grense som ikke kan leses av en test kan ikke laases.
-GRENSER = {"short": 14, "one": 70, "what": 90, "how": 80, "sosial": 120}
+GRENSER = {"short": 14, "one": 70, "what": 90, "how": 80, "sosial": 120,
+           "sakse": 120}
 
 
 def klipp(tekst: str, grense: int) -> str:
@@ -315,12 +316,31 @@ def klipp(tekst: str, grense: int) -> str:
     Kutter paa naermeste ordgrense innenfor grensen og henger paa «…» naar noe
     faktisk ble borte. Ett tegn er billigere enn et svar som lyver om at det er
     komplett.
+
+    Ett tilfelle har ingen ordgrense: naar det FOERSTE ordet alene er lengre enn
+    grensen, finnes det ikke noe mellomrom aa kutte paa. Da kuttes tokenet — og
+    merkes. Det er den ene tillatte midt-i-ord-kuttingen, og den er bare mulig
+    fordi alternativet (aa kutte uten merke) er det funksjonen finnes for aa
+    hindre.
     """
     t = " ".join(str(tekst or "").split())
     if len(t) <= grense:
         return t
-    hode = t[:grense + 1].rsplit(" ", 1)[0].rstrip(" ,;:—-·")
-    return (hode or t[:grense].rstrip()) + "…"
+    if " " not in t[:grense + 1]:
+        return t[:grense].rstrip() + "…"
+    return t[:grense + 1].rsplit(" ", 1)[0].rstrip(" ,;:—-·") + "…"
+
+
+def klipp_med_status(tekst: str, grense: int) -> tuple[str, bool]:
+    """`klipp()` pluss om noe faktisk ble borte.
+
+    Punktet etter bufferrolla skal ikke staa etter et kuttemerke. Foerste
+    utgave gjettet dette ved aa se etter «…» i RESULTATET — og tok da feil for
+    en banktekst som selv slutter med «…», og bommet paa en tekst som slutter
+    med «...». Kutteren vet svaret; derfor returnerer den det.
+    """
+    kuttet = len(" ".join(str(tekst or "").split())) > grense
+    return klipp(tekst, grense), kuttet
 
 
 def kode_for(nid: str) -> str:
@@ -365,6 +385,37 @@ def kollisjoner(noder: list[dict]) -> dict[str, list[str]]:
     return {k: sorted(v) for k, v in sorted(per.items()) if len(v) > 1}
 
 
+def sakse_tekst(node: dict) -> str:
+    """S-aksen som lesbar tekst — tom streng naar den ikke er maalt.
+
+    S-aksen (regime, sektor, klarhet, EBE, RCMP) ble skrevet til data.mjs som
+    `sAxis`, men ingen av de to byggene leser den noekkelen: node-panelet viser
+    `what`/`how`/`cond`, og teksttvillingen likesaa. Rendereren er dessuten en
+    READ-ONLY kopi av skillens assets, saa den kan ikke utvides herfra. Laget
+    maa derfor uttrykkes i et felt visningene FAKTISK leser — `how` er det
+    rette: regimet og maalekjeden er hvordan noden er bygget.
+
+    Rekkefoelgen er maalerekken: regime -> sektor -> klarhet -> EBE -> RCMP.
+    """
+    mp = node.get("maale_paradigme") or {}
+    parter: list[str] = []
+    if mp.get("s_regime"):
+        parter.append(f"regime {mp['s_regime']}")
+    if mp.get("sektor"):
+        parter.append(f"sektor {mp['sektor']}")
+    if mp.get("klarhetsfunksjon"):
+        parter.append(f"klarhet {klipp(mp['klarhetsfunksjon'], GRENSER['sakse'])}")
+    if mp.get("ebe_function"):
+        parter.append(f"EBE {klipp(mp['ebe_function'], GRENSER['sakse'])}")
+    rcmp = node.get("rcmp")
+    if isinstance(rcmp, dict) and rcmp:
+        felt = [f"{k}={klipp(str(v), GRENSER['sakse'])}"
+                for k, v in rcmp.items() if v not in (None, "", [], {})]
+        if felt:
+            parter.append("RCMP " + "; ".join(felt))
+    return " · ".join(parter)
+
+
 def _node_rad(node: dict, i: int) -> dict:
     nid = node["id"]
     gr = _gruppe(nid)
@@ -401,11 +452,22 @@ def _node_rad(node: dict, i: int) -> dict:
     # og som kort merke til slutt.
     substans = klipp(maal.get("target", ""), GRENSER["one"])
     perspektiv = _perspektiv_tekst(node.get("perspektiv"))
-    bufferrolle = klipp(buf.get("role", "—"), GRENSER["how"])
+    # `role` kan mangle, vaere None eller tom. Foer ga None/"" en tom tekst, og
+    # linja ble «Buffer role: . Epistemic: …»; «—» sier at feltet ikke er
+    # utfylt, som er sant.
+    bufferrolle, bufferrolle_kuttet = klipp_med_status(
+        buf.get("role") or "—", GRENSER["how"])
     # Et kutt slutter paa «…». Da skal malens eget punktum ikke etter, ellers
     # staar det «… tolkning…. Epistemic» — et kuttemerke og et punktum som
-    # begge proever aa avslutte samme setning.
-    punktum = "" if bufferrolle.endswith("…") else "."
+    # begge proever aa avslutte samme setning. Punktet leses fra kuttets
+    # STATUS, ikke fra et tegn i resultatet: en banktekst kan selv slutte med
+    # «…», og da ville tegnet loyet.
+    punktum = "" if bufferrolle_kuttet else "."
+    # S-aksen maa staa i `how` for aa bli SETT: det er feltet begge byggene
+    # viser. Den settes bare inn naar den er maalt — 96 identiske «ikke maalt»
+    # ville vaert samme mal som spoersmaalsfanen nettopp ble ryddet for.
+    # Tomrommet meldes i stedet EN gang, som tall i META.stats.
+    sakse = sakse_tekst(node)
     return {
         "id": nid.replace(".", "-").replace("_", "-")[:40],
         "code": kode_for(nid),
@@ -419,13 +481,22 @@ def _node_rad(node: dict, i: int) -> dict:
         "ghost": gr == "ghost",
         "one": (f"{substans} · perspektiv: {perspektiv}" if substans
                 else f"perspektiv: {perspektiv}"),
+        # `what` er to merkede deler — instrumentet OG proxy-kjeden — ikke ett
+        # felt. Grensen gjelder hver del, saa hele feltet kan bli lengre enn
+        # GRENSER["what"]. Det er tilsiktet: en felles grense ville kuttet
+        # instrumentet for aa faa plass til kjeden.
         "what": f"{klipp(maal.get('instrument', ''), GRENSER['what'])} — "
                 f"proxy chain: "
                 f"{klipp(' -> '.join(maal.get('proxy_chain', [''])), GRENSER['what'])}",
         "how": f"Buffer role: {bufferrolle}{punktum} "
                f"Epistemic: {ep.get('sannhetsstatus', '—')} / "
                f"{ep.get('evidensstatus', '—')} / "
-               f"{ep.get('konsensusstatus', '—')}.",
+               f"{ep.get('konsensusstatus', '—')}."
+               # S-aksen slutter ofte med punktum selv (RCMP-deklarasjonen
+               # gjorde det: «… gyldighetsdomene.». Derfor settes hale-punktumet
+               # bare naar teksten ikke allerede avslutter seg.
+               + (f" S-axis: {sakse}"
+                  f"{'' if sakse.endswith(('.', '…')) else '.'}" if sakse else ""),
         "sAxis": {
             "regime": node.get("maale_paradigme", {}).get("s_regime"),
             "sector": node.get("maale_paradigme", {}).get("sektor"),
@@ -552,6 +623,12 @@ def hoved() -> int:
     # FLOWS: de tre bro-kjedene som dataflyt (tabellen staar oeverst i fila)
     flows = FLOWS
 
+    # S-aksen maalt paa N av M noder. Tallet staar EN gang, i headeren: et tomt
+    # felt og et felt som ikke finnes er to ulike svar, og bare ett av dem er et
+    # hull. En linje per node («ikke maalt») ville derimot vaert den samme malen
+    # som spoersmaalsfanen nettopp ble ryddet for.
+    sakse_maalt = sum(1 for n in noder if sakse_tekst(n))
+
     data = f"""// GENERERT av scripts/maintenance/efc_atlas_generator.py —
 // IKKE rediger for haand. Kilden er schema/regime_nodes.jsonld.
 export const META = {{
@@ -560,6 +637,7 @@ export const META = {{
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
   stats: [{{ k: 'Nodes', v: '{len(noder)}' }},
+          {{ k: 'S-axis', v: '{sakse_maalt} of {len(noder)} measured' }},
           {{ k: 'Perspectives', v: 'paradigm / consensus / academia' }}],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
   onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engines, NATS bridges.`,
