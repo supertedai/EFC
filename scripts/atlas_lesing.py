@@ -325,6 +325,91 @@ def proxy_kjeder(atlas: dict) -> dict[str, list[str]]:
 
 
 
+# ---------------------------------------------------------------------------
+# AKSENE — alle, ikke de seks jeg tilfeldigvis bygde
+#
+# Maalt 2026-09-17: atlaset bar 21 toppnivaa-felt, alle obligatoriske paa
+# alle 86 noder. Rotasjonen dekket seks. Femten var usynlige for verktoeyet.
+# Loesningen er ikke tjue flagg: den er aa FINNE aksene selv, saa en akse
+# som legges til i morgen ogsaa virker i morgen.
+# ---------------------------------------------------------------------------
+
+def _bla(sti: str, v, ut: dict) -> None:
+    """Gaa gjennom en node og samle hver sti som en akse.
+
+    Baade bladet OG forelderen registreres: `analogi.avbildning` er nyttig,
+    men `analogi` er aksen — en node som HAR isomorfien skal finnes paa den.
+    """
+    if isinstance(v, dict):
+        ut.setdefault(sti, []).append(f"<{len(v)} felt>")
+        for k, x in v.items():
+            _bla(f"{sti}.{k}", x, ut)
+    elif isinstance(v, list):
+        ut.setdefault(sti, []).extend(str(x) for x in v)
+    else:
+        ut.setdefault(sti, []).append(str(v))
+
+
+def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
+    """Finn ALLE aksene i atlaset — ogsaa de som ikke fantes i gaar.
+
+    Returnerer `{sti: (antall noder som har den, eksempelverdier)}`.
+    Nestede felt gaas med dot: `emergence.loop`, `epistemikk.sannhetsstatus`.
+    """
+    raa: dict[str, set] = {}
+    antall: dict[str, int] = {}
+    for n in atlas.get("noder") or []:
+        blad: dict[str, list] = {}
+        for k, v in n.items():
+            _bla(k, v, blad)
+        for sti, verdier in blad.items():
+            antall[sti] = antall.get(sti, 0) + 1
+            raa.setdefault(sti, set()).update(v for v in verdier if v)
+    return {sti: (antall[sti], sorted(raa[sti])[:6]) for sti in antall}
+
+
+def _les_sti(n: dict, akse: str):
+    """Les en dot-sti fra en node. `None` om den ikke finnes."""
+    v = n
+    for del_ in akse.split("."):
+        if not isinstance(v, dict) or del_ not in v:
+            return None
+        v = v[del_]
+    return v
+
+
+def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
+    """Roter rundt EN akse — toppnivaa eller nested.
+
+    `verdi=None` gir alle noder som HAR aksen. Ukjent akse feiler hoeyt med
+    forslag, fordi et tomt svar ville skjult at navnet var feil.
+    """
+    alle = akser(atlas)
+    if akse not in alle:
+        rot = akse.split(".")[0]
+        naere = sorted(a for a in alle
+                       if rot in a or a.split(".")[0] in akse)[:5]
+        if not naere:  # ingen likhet — vis de mest brukte
+            naere = [a for a, _ in sorted(alle.items(),
+                                          key=lambda x: -x[1][0])[:6]]
+        raise KeyError(
+            f"aksen `{akse}` finnes ikke i atlaset. "
+            f"Nærliggende: {', '.join(naere) if naere else 'ingen'}")
+    ut = []
+    for n in atlas.get("noder") or []:
+        v = _les_sti(n, akse)
+        if v is None:
+            continue
+        if verdi is None:
+            ut.append(n)
+            continue
+        str_v = [str(x) for x in v] if isinstance(v, list) else [str(v)]
+        if verdi in str_v:
+            ut.append(n)
+    return ut
+
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -342,7 +427,33 @@ if __name__ == "__main__":
     p.add_argument("--maaleform", action="store_true",
                    help="roter: skill hva som MAALER fra hva som er avledet")
     p.add_argument("--proxy", action="store_true", help="roter: vis alle proxy-kjeder")
+    p.add_argument("--akser", action="store_true",
+                   help="list ALLE aksene atlaset barer — ogsaa de nye")
+    p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
     a = p.parse_args()
+
+    # AKSENE — generisk rotasjon, ikke tjue flagg
+    if a.akser or a.akse:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        if a.akser:
+            alle = akser(atlas)
+            print(f"{len(alle)} akser i atlaset:")
+            for sti, (n, verdier) in sorted(alle.items()):
+                v = ", ".join(verdier[:4]) + (" ..." if len(verdier) > 4 else "")
+                print(f"  {sti:34} {n:3}  {v[:66]}")
+        else:
+            sti, _, verdi = a.akse.partition("=")
+            try:
+                treff = roter_akse(atlas, sti, verdi or None)
+            except KeyError as e:
+                print(f"FEIL: {e}")
+                sys.exit(1)
+            print(f"{len(treff)} noder  akse={sti}"
+                  + (f"={verdi}" if verdi else ""))
+            for n in treff:
+                v = _les_sti(n, sti)
+                print(f"  {n['id']:34} {str(v)[:60]}")
+        sys.exit(0)
 
     # ROTASJON — de fire vinklene som ikke fantes 2026-09-17
     if a.node or a.perspektiv or a.fase or a.domene or a.maaleform or a.proxy:
