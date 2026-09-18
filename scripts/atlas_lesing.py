@@ -1111,7 +1111,7 @@ FELT_REFERANSER: dict[str, tuple[int, int]] = {
     "synlighet": (8, 15), "rcmp": (7, 2), "observer": (6, 9),
     "coupling": (6, 9), "maale_paradigme": (6, 7), "buss_domene": (6, 13),
     "buffer": (5, 18), "stipulasjoner": (5, 16), "epistemikk": (5, 15),
-    "nivaa": (5, 10), "perspektiv": (4, 13), "episenter": (4, 6),
+    "nivaa": (3, 10), "perspektiv": (4, 12), "episenter": (4, 6),
     "open_questions": (4, 2), "lagdeling": (4, 2),
     "emergence": (3, 5), "fractal": (3, 4), "ville_falsifisere": (3, 8),
     "settlement": (3, 5), "falsifiserbarhet": (2, 8),
