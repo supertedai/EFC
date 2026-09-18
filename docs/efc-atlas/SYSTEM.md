@@ -1461,11 +1461,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### EE · efc.efc_background_engine _(not switched on)_
 
-**In one line.** Perspective: paradigm. bakgrunnsgeometrien H(a) og F(phi), K(rho)
+**In one line.** Perspective: paradigm. H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot
 
-**What it does.** ingen direkte — avledet og loest numerisk — proxy chain: aksjon -> feltligninger -> FRW-bakgrunn
+**What it does.** EFCBackgroundSolver (efc_inference/engine/efc_background.py) — proxy chain: parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system -> ODE-system -> tilstand (a,
 
-**How it's built.** Buffer role: F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / ingen / minoritet.
+**How it's built.** Buffer role: lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan b. Epistemic: hypotese / ingen / minoritet.
 
 **Steps in execution.**
 

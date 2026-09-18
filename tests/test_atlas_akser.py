@@ -74,9 +74,9 @@ class TestGeneriskRotasjon:
         assert len(t) == len(atlas["noder"]), "alle noder har en loekke"
 
     def test_roter_paa_isomorfismen(self, atlas: dict) -> None:
-        """«isomorphisme» — det heter `analogi` i atlaset. 13 noder."""
+        """«isomorphisme» — det heter `analogi` i atlaset. 14 noder."""
         t = atlas_lesing.roter_akse(atlas, "analogi", None)
-        assert len(t) == 13, f"analogi: {len(t)}"
+        assert len(t) == 14, f"analogi: {len(t)}"
 
     def test_roter_paa_epistemisk_status(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "epistemikk.sannhetsstatus", "hypotese")
@@ -103,7 +103,7 @@ class TestNavnelaget:
 
     def test_alias_isomorphisme_er_analogi(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "isomorphisme")
-        assert len(t) == 13, f"isomorphisme: {len(t)}"
+        assert len(t) == 14, f"isomorphisme: {len(t)}"
 
     def test_alias_loop_er_emergence_loop(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "loop")

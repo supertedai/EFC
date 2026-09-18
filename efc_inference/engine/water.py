@@ -289,7 +289,7 @@ class WaterPhaseEngine(EFCEngine):
             # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
             # likevel staa her fordi RegimeNode krever det — testen binder dem.
             "nivaa": {
-                "indeks": 1,
+                "indeks": 2,
                 "forelder": "h2o.liquid",
                 "tidsskala": "s (motortid)",
                 "lengdeskala": "makro (P-T-rom)"

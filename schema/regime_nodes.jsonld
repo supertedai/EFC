@@ -960,9 +960,10 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se WaterPhaseEngine (h2o.liquid)"
+     "0 C / 273.15 K — smeltepunktet (ved 1 atm) — fasegrense",
+     "100 C / 373.15 K — kokepunktet (ved 1 atm) — fasegrense"
     ],
-    "motor": "efc.water_phase_engine"
+    "motor": "water"
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -973,7 +974,8 @@
    },
    "maale_paradigme": {
     "koordinater": [
-     "temperatur"
+     "temperatur",
+     "trykk"
     ],
     "enheter": "motorspesifikke (SI)",
     "status": "avledet",
@@ -3529,7 +3531,7 @@
     ]
    },
    "fractal": {
-    "pattern": "kneet er ett overgangsmonster som ekkoer H2Os trippelpunkt og L1->L2 — tre domener, ett monster (analogi)",
+    "pattern": "kneet er samme overgangsmonster som H2Os trippelpunkt og L1->L2 — tre domener, ett monster (analogi, ikke identitet: ladning og fase er ikke samme storrelse)",
     "note": "motoren er overgangens egen maaler."
    },
    "coupling": {
@@ -3541,7 +3543,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se VictronChargeEngine (batteri.lade_buffer)"
+     "batteriets lade-/tømmeterskler — anleggsspesifikke — driftsgrenser"
     ],
     "motor": "victron",
     "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
@@ -3600,7 +3602,9 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
+     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "rotasjonskurver er et rent gravitasjons-maaleri",
+     "EFC-kjernen er korrekt for galakseskalaen"
     ],
     "source": "efc_core; parametrisk fallback — efc_inference/engine/rotation.py"
    },
@@ -3629,7 +3633,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se rotation.py — tersklene er deklarert i motorens regime_node()"
+     "PPN gamma=1 — ledende orden — gyldighetsgrense"
     ],
     "motor": "rotation"
    },
@@ -3692,7 +3696,9 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
+     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "bakgrunnen er homogen og isotrop",
+     "E²(a) er den riktige deformasjonen"
     ],
     "source": "EFCVariantA; efc_inference/engine/hubble.py"
    },
@@ -3722,7 +3728,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se hubble.py — tersklene er deklarert i motorens regime_node()"
+     "fσ8-målingene (Stage-III, 7 stk) — datagrunnlag"
     ],
     "motor": "hubble"
    },
@@ -3782,7 +3788,9 @@
    "ontology": {
     "assumes": [
      "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
-     "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen"
+     "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
+     "lineær perturbasjonsteori holder på fσ8-skalene",
+     "vekst-ODE-en med EFC-H(a) er riktig deformasjon"
     ],
     "source": "MVP-G1 hubble-friksjonskanal; efc_inference/engine/growth.py"
    },
@@ -3811,7 +3819,8 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se growth.py — tersklene er deklarert i motorens regime_node()"
+     "mu=0.5 (EFCVariantC) reproduserer fsigma8 ~ 0.430 — parametervalg — forseglet kriterium",
+     "mu=1.0 gir 0.4534 — kontrastpunkt"
     ],
     "motor": "growth"
    },
@@ -3890,7 +3899,9 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
+     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "svak linsing er et gyldig avbildnings-instrument",
+     "EFC-deformasjonen lar seg oversette til kappa — uverifisert"
     ],
     "source": "stub-kontrakt; efc_inference/engine/lensing.py"
    },
@@ -3901,9 +3912,7 @@
    },
    "emergence": {
     "loop": "masse -> krumning -> kappa — loopen er observert, ikke modellert her",
-    "properties": [
-     "ingen ennaa — stubben beskriver kontrakten, ikke beregningen; en stub har ingen emergente egenskaper aa vise fram"
-    ]
+    "properties": []
    },
    "fractal": {
     "pattern": "avbildning som regime — samme mønster som observasjonskjedene i atlaset (analogi)",
@@ -3918,7 +3927,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se lensing.py — tersklene er deklarert i motorens regime_node()"
+     "kappa-avbildningen — observert, ikke modellert — stubbegrense"
     ],
     "motor": "lensing"
    },
@@ -3980,7 +3989,9 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter"
+     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "halomassefunksjonen er et gyldig strukturinstrument",
+     "EFC-deformasjonen lar seg oversette til n(M,z) — uverifisert"
     ],
     "source": "stub-kontrakt; efc_inference/engine/cluster.py"
    },
@@ -3991,9 +4002,7 @@
    },
    "emergence": {
     "loop": "tetthet -> kollaps -> hoper — loopen er observert, ikke modellert her",
-    "properties": [
-     "klyngene — massefunksjonen n(M,z) er emergent fra sammenkoblingen av L1 og L2; motoren regner den, eier den ikke"
-    ]
+    "properties": []
    },
    "fractal": {
     "pattern": "telling som regime — samme mønster som observasjonskjedene i atlaset (analogi)",
@@ -4008,7 +4017,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se cluster.py — tersklene er deklarert i motorens regime_node()"
+     "telling som regime — observert, ikke modellert — stubbegrense"
     ],
     "motor": "cluster"
    },
@@ -4938,7 +4947,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se solar_flare.py — tersklene er deklarert i motorens regime_node()"
+     "GOES-bins: 1e20->B, 1e21->C, 1e22->M, 1e23->X J — klassegrenser — proxy-kjede, ikke fysikalsk lov"
     ],
     "motor": "solar_flare"
    },
@@ -5031,7 +5040,7 @@
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "se jordskjelv.py — tersklene er deklarert i motorens regime_node()"
+     "elastic-rebound-antakelsen — idealisert modell — modellgrense, ikke prediktor"
     ],
     "motor": "jordskjelv"
    },
@@ -5493,7 +5502,9 @@
     "assumes": [
      "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
      "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
-     "KANDIDAT-kobling til growth: MuKZEngine beregner mu(k,z), men injeksjonen i EFCGrowth er IKKE implementert — growth bruker cosmology.growth_source(...). Relasjonen er kartets plan, ikke kodens kobling."
+     "KANDIDAT-kobling til growth: MuKZEngine beregner mu(k,z), men injeksjonen i EFCGrowth er IKKE implementert — growth bruker cosmology.growth_source(...). Relasjonen er kartets plan, ikke kodens kobling.",
+     "aksjonen (eq. 1) og de kvasi-statiske uttrykkene (eq. 24-31) er korrekt avledet i papiret",
+     "bakgrunns-kvantitetene er gitt utenfra — modulen avleder dem ikke"
     ],
     "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — portert fra papirets src/efc_relativistic.py"
    },
@@ -6095,7 +6106,7 @@
    },
    "regime": {
     "name": "Baneregimer — Kepler og bindingsterskler",
-    "validity": "Tolegeme Kepler-regime: bundet bane (eps < 0) er HOLDING — objektet holdes i regimet; ubundet fly (eps >= 0) er RELEASE — bindingen er brutt (hyperbolske baner: negativ a gir eps > 0). IDEALISERT: ingen perturbasjoner, ingen N-kropp, ingen atmosfærisk brems. Hill-sfæren (1.496e+09 m) er den TILNÆRMEDE innflytelses-/stabilitetsgrensen mot sentralkroppen — å krysse den gjør banen ustabil, ikke nødvendigvis ubundet. Predikerer enkeltbaner, IKKE N-kroppsdynamikk.",
+    "validity": "Tolegeme Kepler-regime: bundet bane (eps < 0) er HOLDING — objektet holdes i regimet; ubundet fly (eps >= 0) er RELEASE — bindingen er brutt (hyperbolske baner: negativ a gir eps > 0). IDEALISERT: ingen perturbasjoner, ingen N-kropp, ingen atmosfærisk brems. Hill-sfæren (6.151e+07 m) er den TILNÆRMEDE innflytelses-/stabilitetsgrensen mot sentralkroppen — å krysse den gjør banen ustabil, ikke nødvendigvis ubundet. Predikerer enkeltbaner, IKKE N-kroppsdynamikk.",
     "law_form": "Kepler: T = 2π sqrt(a^3/(GM)); vis-viva: v^2 = GM(2/r - 1/a); eps = -GM/(2a); r_H = a (m/(3M))^(1/3)"
    },
    "phase": "computation_engine",
@@ -6191,7 +6202,7 @@
    },
    "regime": {
     "name": "Klimaets strålingsbalanse og regimebrytere",
-    "validity": "0D-energibalanseregime: energi inn (sol) -> buffer (hav, tau ~ 1 år) -> ut (emisjon). Is-albedo-bryteren er regimeovergangen MED TILSTANDSAVHENGIGE terskler (hysterese): fra «varm» faller systemet ved alpha_fall, fra «snøball» returnerer det først ved alpha_retur (< alpha_fall — snøballens reflektans stabiliserer den, idealisert bredde). IDEALISERT 0D-modell — IKKE en klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, ingen romlig struktur.",
+    "validity": "0D-energibalanseregime: energi inn (sol) -> buffer (hav, tau ~ 1 år) -> ut (emisjon). Is-albedo-bryteren er regimeovergangen MED TILSTANDSAVHENGIGE terskler (hysterese): fra «varm» faller systemet ved alpha_fall, fra «snøball» returnerer det først ved alpha_retur (< alpha_fall — snøballens reflektans stabiliserer den, idealisert bredde). IDEALISERT 0D-modell — IKKE en klimamodell-konkurrent: ingen sirkulasjon, ingen skyer, ingen romlig struktur. AMOC-bryteren (som kortet navngir ved siden av is-albedo) er VURDERT og BEVISST UTELATT: 0D-energibalansen har ingen sirkulasjon å slå av — AMOC krever to bokser og ferskvannspåslag, og hører hjemme i en EGEN MOTOR (eget fag, egen litteratur). Ingen AMOC-terskel er oppgitt — fordi ingen finnes.",
     "law_form": "C dT/dt = (S/4)(1-alpha) - eps sigma T^4; T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4); tau = C/(4 eps sigma T_eq^3)"
    },
    "phase": "computation_engine",
@@ -6215,7 +6226,8 @@
    "ontology": {
     "assumes": [
      "0D-approksimasjonen gjelder (globalt gjennomsnitt)",
-     "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)"
+     "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)",
+     "AMOC-bryteren er VURDERT og BEVISST UTELATT (t_9978fc90): motoren har ingen sirkulasjonsvariabel — en ferskvannsdrevet omveltningscelle krever to bokser og hører hjemme i en EGEN MOTOR, ikke i strålingsbalansen"
     ],
     "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen"
    },
@@ -7837,57 +7849,67 @@
   {
    "id": "efc.efc_background_engine",
    "regime": {
-    "name": "FRW-bakgrunn",
-    "validity": "selvkonsistent EFC-bakgrunn fra aksjonspapiret (L-033), DOI 10.6084/m9.figshare.31876324. Foerste FRW-bakgrunnsloeser i repoet — koblet til observasjon via efc.hubble_engine."
+    "name": "Selvkonsistent EFC-bakgrunn (FLAT FRW)",
+    "validity": "Bakgrunnsloeser for FLAT FRW med EFC-aksjonen (eq. 1): alpha=0.01, k0=1.0, omega_crit=1000.0, gamma0=0.05, Omega_m=0.3, V0=0.7, nonminimal_sign=+1. Dette er den FOERSTE selvkonsistente EFC-bakgrunnen: phi drives av flyt-betingelsen (13), H av (12) og lambda er et responsfelt (eq. 10). Boltzmann/CMB er AAPEN — ingen perturbasjoner, ingen EFCLASS. Gyldig bare for rho_m < rho_crit (K divergerer, eq. 2), for z der stråling er neglisjerbar, og med V = const valgt fordi papiret ikke spesifiserer V(phi). Super-horisont og ADM-stabilitet er aapent i papiret.",
+    "law_form": "3 M_Pl^2 F(phi) H^2 = rho_m + K phi_dot^2/2 + V(phi) + sigma 3 M_Pl^2 H F_dot + lambda_dot phi_dot (eq. 12); phi_ddot + 3 H phi_dot = Gamma(rho) (eq. 13); F = 1 + alpha phi; K = k0/(1 - rho/rho_crit) (eq. 2); Gamma per eq. 47 — sigma = +1 er papirets trykte form, -1 er den direkte variasjonen av eq. 1."
    },
-   "phase": "regime_engine",
+   "phase": "computation_engine",
    "measure": {
-    "target": "bakgrunnsgeometrien H(a) og F(phi), K(rho)",
-    "measurer": "den publiserte aksjonen (eq. 1)",
-    "instrument": "ingen direkte — avledet og loest numerisk",
+    "target": "H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot",
+    "measurer": "numerisk integrasjon av (12)-(13) + eq. 10",
+    "instrument": "EFCBackgroundSolver (efc_inference/engine/efc_background.py)",
     "proxy_chain": [
-     "aksjon -> feltligninger -> FRW-bakgrunn"
+     "parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system",
+     "ODE-system -> tilstand (a, E, rho_m, phi, phi_dot, lambda, lambda_dot)",
+     "tilstand -> mu_kz_inputs -> mu(k,z) (kandidat-kobling)"
     ],
-    "placement": "teorirom",
-    "compression": "hele bakgrunnshistorien -> H(a)"
+    "placement": "loesningen finnes paa et z-grid fra 0 til z_max, og stopper ved rho_crit",
+    "compression": "bakgrunn -> syv tilstandsvariabler + maalt constraint-residual"
    },
-   "episenter": "FRW-bakgrunnen — der aksjonen blir en ekspansjonshistorie",
+   "episenter": "flyt-betingelsen (13) er det som gjor dette til en EFC-bakgrunn og ikke en vilkaarlig scalar-tensor: phi har ingen fri startbevegelse uten Gamma, og lambda betaler for ledgerskapet",
    "buffer": {
-    "role": "F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi",
-    "note": "modellens, ikke motorens"
+    "role": "lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan bevege seg fritt",
+    "note": "loeseren deklarerer hva den ikke er (Boltzmann, stråling, super-horisont) i stedet for aa la E(z) se ut som en full loesning."
    },
    "ontology": {
     "assumes": [
      "aksjonen (eq. 1) er gyldig",
-     "en FRW-ansats er tilstrekkelig paa bakgrunnsnivaa"
+     "en FRW-ansats er tilstrekkelig paa bakgrunnsnivaa",
+     "aksjonen (eq. 1) og bakgrunnsligningene (12)-(13) er korrekt utledet i papiret",
+     "V(phi) = const — vaart valg, fordi papiret ikke spesifiserer potensialet og LCDM-grensen krever et Lambda-liknende ledd",
+     "materie er stov som bevares separat (rho ~ a^-3)"
     ],
     "source": "DOI 10.6084/m9.figshare.31876324 (Magnusson, 2025/2026)"
    },
    "observer": {
-    "bandwidth": "ingen instrumentvindu — bakgrunnen er avledet, ikke maalt",
+    "bandwidth": "loeseren ser bakgrunnen — ingen perturbasjoner, ingen CMB",
     "awareness": "instrument_window",
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "F(phi) og K(rho) -> H(a) -> observasjon; sloeyfa lukker seg gjennom hubble_engine",
+    "loop": "rho_m -> Gamma -> phi-dynamikk -> K phi_dot^2 og H F_dot -> H -> rho_m",
     "properties": [
-     "bakgrunnen er selve feltet egenskapene stiger fram FRA — aksjonen S er ikke en egenskap, den er grunnen til at egenskaper finnes"
+     "H(z)",
+     "phi(z)",
+     "lambda(z)"
     ]
    },
    "fractal": {
-    "pattern": "bakgrunnen er det LCDM-lignende grensetilfellet av samme aksjon",
-    "note": "skal reprodusere kjent kosmologi i grensen"
+    "pattern": "samme bakgrunnsligning holdes langs hele z-aksen — loesningen er en instans av (12)",
+    "note": "en lov, alle z."
    },
    "coupling": {
-    "local": "hver parameter virker lokalt i aksjonen",
-    "global": "H(a) bærer hele bakgrunnshistorien og er det hubble_engine leser",
-    "empathy_note": "en bakgrunn som passer er ikke et bevis — den er en forutsetning for at perturbasjonene kan testes"
+    "local": "hvert z-punkt er en tilstand paa loesningen",
+    "global": "mater mu(k,z)-modulen med bakgrunns-inngangene — COUPLED_TO efc.mu_kz_engine (kandidat: injeksjonen i growth er ikke implementert)",
+    "empathy_note": "bakgrunnen vet hva den ikke er: den er ingen Boltzmann-kode."
    },
    "perspektiv": "paradigme",
    "stipulasjoner": {
     "stipulert_av_oss": true,
     "terskler": [
-     "ingen terskler — bakgrunnsløser"
+     "rho >= rho_crit -> K divergerer — modellen er ikke definert utenfor (eq. 2), loeseren stopper der",
+     "V = const — vaart valg, ikke papirets (V(phi) er uspesifisert i kilden)",
+     "nonminimal_sign = +1 — valgt eksplisitt, forskjellen er maalt"
     ],
     "motor": "efc_background",
     "alene_status": "FRW-bakgrunnen er koblet til Hubble-motoren; beholdes som egen modellnode fordi den er forutsetningen, ikke samme regime"
@@ -7901,13 +7923,16 @@
    },
    "maale_paradigme": {
     "koordinater": [
+     "rom",
      "tid",
-     "rom"
+     "masse"
     ],
-    "enheter": "H(a) i km/s/Mpc",
+    "enheter": "dimensjonsloes (H0 = M_Pl = 1); E = H/H0 ut",
     "status": "avledet",
     "alternativer": [
-     "LCDM-bakgrunnen (den grensen EFC skal reprodusere)"
+     "LCDM-bakgrunnen (den grensen EFC skal reprodusere)",
+     "koordinatfrie formuleringer",
+     "anderledes normalisering av a(t)"
     ]
    },
    "nivaa": {

@@ -135,7 +135,7 @@ class EFCHubble(EFCEngine):
             # likevel staa her fordi RegimeNode krever det — testen binder dem.
             "nivaa": {
                 "indeks": 1,
-                "forelder": None,
+                "forelder": "efc.efc_background_engine",
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"
             },            "regime": {"name": "Hubble-motoren — ekspansjonen",
