@@ -131,7 +131,15 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
     motorer = les_motorer(repo, ref)
     snapshot = les_snapshot(repo, ref)
 
-    node_ider = {n.get("id") for n in noder}
+    # Sett-iterasjon var IKKE-deterministisk. Maalt 2026-09-18: samme kommando
+    # paa samme ref ga «31/32 naar fram · HULL klima» i to av fem kjoeringer og
+    # «32/32» i tre — forskjellen var PYTHONHASHSEED. `klima` matcher fire
+    # noder (`efc.klima_engine` MED buss-domene og tre `verden.klima_*` uten),
+    # og den foerste settet tilfeldig ga vant. En maaling som svarer ulikt paa
+    # samme spoersmaal er verre enn ingen maaling: den ser riktig ut begge
+    # ganger, og et hull som kommer og gaar blir ikke trodd naar det er ekte.
+    node_ider = sorted(str(n["id"]) for n in noder if n.get("id"))
+
     domene_til_noder: dict[str, list[str]] = {}
     for n in noder:
         b = n.get("buss_domene")
@@ -140,14 +148,28 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
             if nid:
                 domene_til_noder.setdefault(b, []).append(nid)
 
-    # node -> motor: konvensjonen er at node-id-en baerer motornavnet
-    # (`efc.water_phase_engine` -> `water`). Maalt: alle 19 motorer har en node.
+    # node -> motor. Rekkefoelgen er en REGEL naa, ikke en tilfeldighet:
+    #   1. den navngitte motornoden `efc.<motor>_engine`
+    #   2. en node der SISTE ledd er noeyaktig `<motor>` eller `<motor>_engine`
+    #   3. ellers noder som inneholder navnet
+    # Matcher flere enn én paa samme nivaa, velges den sortert foerste — og
+    # navnet meldes som FLERTYDIG i stedet for aa bli avgjort i det stille.
     motor_til_node: dict[str, str] = {}
+    motor_flertydig: dict[str, list[str]] = {}
     for m in motorer:
-        for nid in node_ider:
-            if nid and m in nid:
-                motor_til_node[m] = nid
-                break
+        kandidater = [nid for nid in node_ider
+                      if nid.split(".")[-1] in (f"{m}_engine", m)]
+        if not kandidater:
+            kandidater = [nid for nid in node_ider if nid.endswith(f".{m}")
+                          or nid.endswith(f".{m}_engine")]
+        if not kandidater:
+            kandidater = [nid for nid in node_ider if m in nid]
+        if not kandidater:
+            continue
+        presis = f"efc.{m}_engine"
+        motor_til_node[m] = presis if presis in kandidater else kandidater[0]
+        if len(kandidater) > 1:
+            motor_flertydig[m] = kandidater
 
     # emner: hvert domene i snapshotet har en liste av emner
     alle_emner: list[str] = []
@@ -178,6 +200,7 @@ def naviger(repo: str | Path, ref: str = STANDARD_REF) -> dict:
                 "buss_domener": len(snapshot)},
         "kobling": {
             "motor_til_node": motor_til_node,
+            "motor_flertydig": {k: v for k, v in sorted(motor_flertydig.items())},
             "domene_til_noder": {k: sorted(v) for k, v in sorted(domene_til_noder.items())},
         },
         "hull": {
@@ -224,3 +247,8 @@ if __name__ == "__main__":
         if hull:
             print(f"  HULL {navn} ({len(hull)}): {', '.join(str(h) for h in hull[:5])}"
                   f"{' ...' if len(hull) > 5 else ''}")
+    # Et navn som peker paa flere noder er ikke et hull — men det skal SEES,
+    # ikke avgjoeres i det stille av en tilfeldig rekkefoelge.
+    for m, kandidater in d["kobling"]["motor_flertydig"].items():
+        print(f"  FLERTYDIG motor {m}: {', '.join(kandidater)} "
+              f"(valgte {d['kobling']['motor_til_node'][m]})")
