@@ -2483,9 +2483,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot",
-    "what": "EFCBackgroundSolver (efc_inference/engine/efc_background.py) \u2014 proxy chain: parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system -> ODE-system -> tilstand (a, ",
-    "how": "Buffer role: lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan b. Epistemic: hypotese / ingen / minoritet.",
+    "one": "Perspective: paradigm. bakgrunnsgeometrien H(a) og F(phi), K(rho)",
+    "what": "ingen direkte \u2014 avledet og loest numerisk \u2014 proxy chain: aksjon -> feltligninger -> FRW-bakgrunn",
+    "how": "Buffer role: F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / ingen / minoritet.",
     "steps": [
       [
         "Perspective",
@@ -3597,7 +3597,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 103 nodes, 76 relations.",
+    "lede": "Everything at once \u2014 103 nodes, 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }
