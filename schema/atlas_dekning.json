@@ -2,10 +2,12 @@
   "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris. `meldinger` er UTLEDT som summen av de MÅLTE per-emne-tallene i schema/nats_domener.snapshot.json, og måles på nytt med `scripts/atlas_volum.py --maal` — aldri skrevet for hånd. Volumet finnes fordi et hull på 190 000 meldinger og ett på 200 ellers leses likt: `atlas_volum.py --hull` sorterer ikke_dekket etter det. `status` og `begrunnelse` er MENNESKETS stillingtagen og utledes aldri.",
   "domener": {
     "kosmos.asteroider": {
-      "status": "ikke_dekket",
+      "status": "delvis",
       "meldinger": 228,
-      "noder": [],
-      "begrunnelse": "ingen node har buss_domene for dette domenet",
+      "noder": [
+        "kosmos.asteroider"
+      ],
+      "begrunnelse": "1 node navngir domenet via buss_domene. Sloeyfa er delt: prediksjon.jpl-sentry og oppgjoer.jpl-sentry er speilet i noden, men de to meldingene deler IKKE korrelasjonsnoekkel (29075 mot 2026 RO10) — sloeyfa er Systems, ikke per objekts. observasjon.mast-caom og prediksjon.jpl-cneos er ikke eid.",
       "emner": [
         "observasjon.mast-caom",
         "oppgjoer.jpl-sentry",

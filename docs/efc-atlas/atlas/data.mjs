@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '74' },
+  stats: [{ k: 'Nodes', v: '76' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 74 nodes, 18 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 76 nodes, 19 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -2442,6 +2442,72 @@ export const NODES = [
       ]
     ],
     "cond": []
+  },
+  {
+    "id": "kosmos-asteroider",
+    "code": "KO",
+    "name": "kosmos.asteroider",
+    "short": "asteroider",
+    "group": "ghost",
+    "gx": 6.3,
+    "gy": 30.200000000000003,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": true,
+    "one": "Perspective: consensus. treffsannsynlighet og Palermo-kumulativ per objekt",
+    "what": "Sentry-listen selv; oppgjoeret leser hele listen som fasit \u2014 proxy chain: bane -> treffsannsynlighet (prediksjon) -> liste -> revidert/utelukket (oppgjoer)",
+    "how": "Buffer role: Sentry-listen er bufferen som holder risikobildet stabilt mellom revisjoner. Epistemic: stottet / proxy / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / proxy / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "JPL Sentry som konsensus-kanal"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "efc-efc-background-engine",
+    "code": "EF",
+    "name": "efc.efc_background_engine",
+    "short": "efc background",
+    "group": "ghost",
+    "gx": 8.7,
+    "gy": 30.200000000000003,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": true,
+    "one": "Perspective: paradigm. bakgrunnsgeometrien H(a) og F(phi), K(rho)",
+    "what": "ingen direkte \u2014 avledet og loest numerisk \u2014 proxy chain: aksjon -> feltligninger -> FRW-bakgrunn",
+    "how": "Buffer role: F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / ingen / minoritet.",
+    "steps": [
+      [
+        "Perspective",
+        "paradigm"
+      ],
+      [
+        "Epistemics",
+        "hypotese / ingen / minoritet"
+      ],
+      [
+        "Social mechanism",
+        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+      ]
+    ],
+    "cond": [
+      "efc.efc_background_engine: no evidence yet \u2014 hypothesis marked honestly"
+    ]
   }
 ];
 
@@ -2631,17 +2697,19 @@ export const CH = [
       "efc-tidevann-engine",
       "efc-transient-engine",
       "efc-enerflyt-engine",
-      "verden-vaer"
+      "verden-vaer",
+      "kosmos-asteroider",
+      "efc-efc-background-engine"
     ],
     "lede": "Chapter 8 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-cluster-engine, efc-enerflyt-engine, efc-growth-engine, efc-hubble-engine, efc-jordskjelv-engine, efc-klima-engine, efc-l1, efc-l2, efc-l3, efc-lensing-engine, efc-mu-kz-engine, efc-oekonomi-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-samfunn-engine, efc-solar-flare-engine, efc-tidevann-engine, efc-transient-engine, efc-water-phase-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
+    "story": "<p>Revealed: efc-cluster-engine, efc-efc-background-engine, efc-enerflyt-engine, efc-growth-engine, efc-hubble-engine, efc-jordskjelv-engine, efc-klima-engine, efc-l1, efc-l2, efc-l3, efc-lensing-engine, efc-mu-kz-engine, efc-oekonomi-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-samfunn-engine, efc-solar-flare-engine, efc-tidevann-engine, efc-transient-engine, efc-water-phase-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
     "flow": null
   },
   {
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 74 nodes, 72 relations.",
+    "lede": "Everything at once \u2014 76 nodes, 72 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }

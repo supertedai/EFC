@@ -124,14 +124,14 @@ class TestFalsifiserbarhet:
         avventer = [n for n in _offentlige()
                     if (n.get("falsifiserbarhet") or {}).get("status")
                     == "terskel_ikke_fastsatt"]
-        assert len(avventer) == 6, f"forventet 6, fikk {len(avventer)}"
+        assert len(avventer) == 7, f"forventet 7, fikk {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
             assert "IKKE fastsatt" in n["falsifiserbarhet"]["grunn"], (
                 f"{n['id']} sier ikke selv hva som mangler")
 
-    def test_tallet_er_27_av_74(self):
+    def test_tallet_er_kjent(self):
         """Tallet skal vaere kjent, ikke bare overraskende.
 
         Gikk det ned, mistet en EFC-node sin falsifikator. Gikk det opp,
@@ -142,7 +142,7 @@ class TestFalsifiserbarhet:
         avventer = sum(1 for n in off
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
-        assert len(off) == 74, f"offentlige endret: {len(off)}"
+        assert len(off) == 76, f"offentlige endret: {len(off)}"
         assert kan == 19, (
             f"kan felles: {kan} — forventet 20. 27 var feil: 2 stubber og 5 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
