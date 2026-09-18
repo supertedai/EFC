@@ -296,6 +296,33 @@ def _perspektiv_tekst(p: str | None) -> str:
             "paradigme": "paradigm"}.get(p or "", "agnostic")
 
 
+#: Tekstgrensene for det atlaset RENDERER. De staar her og ikke spredt som
+#: `[:70]` inne i `_node_rad`, fordi testen i `tests/test_atlas_lesbarhet.py`
+#: leser dem: en grense som ikke kan leses av en test kan ikke laases.
+GRENSER = {"short": 14, "one": 70, "what": 90, "how": 80, "sosial": 120}
+
+
+def klipp(tekst: str, grense: int) -> str:
+    """Kutt paa ordgrense — og SI at det er kuttet.
+
+    Maalt 2026-09-18 (origin/main f4a3e4f2): `[:70]`, `[:90]` og `[:80]` kuttet
+    midt i ord. Det ga atlaset «fase identifisert via P_sat(T) o», «rotation
+    engin» og «holder temperaturen under oppvarming . Epistemic». En avkuttet
+    streng uten merke ser ut som hele teksten og blir lest som den — samme
+    klasse som fallbacken som svarer: svaret finnes, men det svarer ikke paa
+    det det ser ut som det svarer paa.
+
+    Kutter paa naermeste ordgrense innenfor grensen og henger paa «…» naar noe
+    faktisk ble borte. Ett tegn er billigere enn et svar som lyver om at det er
+    komplett.
+    """
+    t = " ".join(str(tekst or "").split())
+    if len(t) <= grense:
+        return t
+    hode = t[:grense + 1].rsplit(" ", 1)[0].rstrip(" ,;:—-·")
+    return (hode or t[:grense].rstrip()) + "…"
+
+
 def kode_for(nid: str) -> str:
     """Nodens korte identifikator. Ingen fallback.
 
@@ -346,9 +373,19 @@ def _node_rad(node: dict, i: int) -> dict:
     ep = node.get("epistemikk", {})
     maal = node.get("measure", {})
     buf = node.get("buffer", {})
+    # Spoersmaalene her er ikke skrevet av generatoren.
+    #
+    # Maalt 2026-09-18: for hver node uten evidens la generatoren inn linjen
+    # «no evidence yet — hypothesis marked honestly». Den var IDENTISK for alle
+    # sju, den spurte ikke om noe, og den gjentok `how` («Epistemic: … ingen»)
+    # inne i spoersmaalsfanen. «7 open · 0 resolved» var dermed ett og samme
+    # ord sju ganger — fallbacken som svarer, i spoersmaalsfanen.
+    #
+    # Evidensstatusen staar der den er maalt: i `how`. Et ekte aapent
+    # spoersmaal maa komme FRA BANKEN (et felt paa noden), aldri fra
+    # generatorens penn — en generator som dikter spoersmaal lager arbeidsko
+    # av sin egen mal.
     cond = []
-    if ep.get("evidensstatus") == "ingen":
-        cond.append(f"{nid}: no evidence yet — hypothesis marked honestly")
     if node.get("stipulasjoner", {}).get("motor") in (None, "", "KANDIDAT "
         "(broen venter paa konnektor-deploy)"):
         pass
@@ -356,22 +393,36 @@ def _node_rad(node: dict, i: int) -> dict:
     if motor and motor.startswith("KANDIDAT"):
         cond.append({"q": f"{nid}: motor waits for connector deploy",
                      "to": "connector deploy (human step)"})
+    # One-lineren er det foerste brukeren leser naar de hover-er over en node.
+    # Den skal svare paa HVA tingen er. Foer aapnet den med perspektivet, og da
+    # begynte ALLE 116 nodene med samme ord («Perspective: …»): en mal som sier
+    # hvem som mener det, ikke hva det er — og som dyttet substansen bakerst,
+    # der `[:70]` kuttet den. Perspektivet er ikke borte: det staar i `steps`
+    # og som kort merke til slutt.
+    substans = klipp(maal.get("target", ""), GRENSER["one"])
+    perspektiv = _perspektiv_tekst(node.get("perspektiv"))
+    bufferrolle = klipp(buf.get("role", "—"), GRENSER["how"])
+    # Et kutt slutter paa «…». Da skal malens eget punktum ikke etter, ellers
+    # staar det «… tolkning…. Epistemic» — et kuttemerke og et punktum som
+    # begge proever aa avslutte samme setning.
+    punktum = "" if bufferrolle.endswith("…") else "."
     return {
         "id": nid.replace(".", "-").replace("_", "-")[:40],
         "code": kode_for(nid),
         "name": nid,
-        "short": navn[:14],
+        "short": klipp(navn, GRENSER["short"]),
         "group": gr,
         "gx": 1.5 + (i % 6) * 2.4,
         "gy": -1 + (i // 6) * 2.6,
         "w": 2, "d": 2, "h": 34,
         "kind": "tall" if node.get("phase") == "motor" else "box",
         "ghost": gr == "ghost",
-        "one": f"Perspective: {_perspektiv_tekst(node.get('perspektiv'))}. "
-               f"{maal.get('target', '')[:70]}",
-        "what": f"{maal.get('instrument', '')[:90]} — "
-                f"proxy chain: {' -> '.join(maal.get('proxy_chain', ['']))[:90]}",
-        "how": f"Buffer role: {buf.get('role', '—')[:80]}. "
+        "one": (f"{substans} · perspektiv: {perspektiv}" if substans
+                else f"perspektiv: {perspektiv}"),
+        "what": f"{klipp(maal.get('instrument', ''), GRENSER['what'])} — "
+                f"proxy chain: "
+                f"{klipp(' -> '.join(maal.get('proxy_chain', [''])), GRENSER['what'])}",
+        "how": f"Buffer role: {bufferrolle}{punktum} "
                f"Epistemic: {ep.get('sannhetsstatus', '—')} / "
                f"{ep.get('evidensstatus', '—')} / "
                f"{ep.get('konsensusstatus', '—')}.",
@@ -379,15 +430,19 @@ def _node_rad(node: dict, i: int) -> dict:
             "regime": node.get("maale_paradigme", {}).get("s_regime"),
             "sector": node.get("maale_paradigme", {}).get("sektor"),
             "ebe": node.get("maale_paradigme", {}).get("ebe_function"),
+            # `klarhetsfunksjon` var utfylt paa like mange noder som s_regime
+            # (19 av 126, maalt 2026-09-18) og ble IKKE lest av generatoren:
+            # S-aksen saa tommere ut i atlaset enn den er i banken.
+            "klarhet": node.get("maale_paradigme", {}).get("klarhetsfunksjon"),
             "rcmp": node.get("rcmp"),
         },
-        "steps": [["Perspective", _perspektiv_tekst(node.get("perspektiv"))],
+        "steps": [["Perspective", perspektiv],
                   ["Epistemics",
                    f"{ep.get('sannhetsstatus', '—')} / "
                    f"{ep.get('evidensstatus', '—')} / "
                    f"{ep.get('konsensusstatus', '—')}"],
                   ["Social mechanism",
-                   ep.get("sosial_mekanisme", "—")[:120]]],
+                   klipp(ep.get("sosial_mekanisme", "—"), GRENSER["sosial"])]],
         "cond": cond,
     }
 

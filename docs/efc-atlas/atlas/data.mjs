@@ -71,13 +71,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. termodynamisk fase",
-    "what": "kalibrert termometer + barometer (kalibrert mot trippelpunktcellen) \u2014 proxy chain: temperatur via termisk ekspansjon (termometer) -> trykk via membran (barometer) -> fase id",
-    "how": "Buffer role: krystallgitteret + latent varme L_f: isen holder drikken ved 0 C til siste kryst. Epistemic: stottet / replikert / institusjonell.",
+    "one": "termodynamisk fase \u00b7 perspektiv: academia",
+    "what": "kalibrert termometer + barometer (kalibrert mot trippelpunktcellen) \u2014 proxy chain: temperatur via termisk ekspansjon (termometer) -> trykk via membran (barometer) -> fase\u2026",
+    "how": "Buffer role: krystallgitteret + latent varme L_f: isen holder drikken ved 0 C til siste\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -109,13 +110,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. termodynamisk fase",
-    "what": "kalibrert termometer + barometer \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> fase identifisert via P_sat(T) o",
-    "how": "Buffer role: hoey varmekapasitet (4.18 kJ/(kg*K)): vann holder temperaturen under oppvarming . Epistemic: stottet / replikert / institusjonell.",
+    "one": "termodynamisk fase \u00b7 perspektiv: academia",
+    "what": "kalibrert termometer + barometer \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> fase identifisert via P_sat(T)\u2026",
+    "how": "Buffer role: hoey varmekapasitet (4.18 kJ/(kg*K)): vann holder temperaturen under oppvarming\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -147,13 +149,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. termodynamisk fase",
-    "what": "kalibrert termometer + barometer (evt. hygrometer for damp) \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> dampinnhold via duggpunkt (hygro",
-    "how": "Buffer role: gassens varmekapasitet og utvidelse demper lokale trykk- og temperaturgradienter. Epistemic: stottet / replikert / institusjonell.",
+    "one": "termodynamisk fase \u00b7 perspektiv: academia",
+    "what": "kalibrert termometer + barometer (evt. hygrometer for damp) \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> dampinnhold via duggpunkt\u2026",
+    "how": "Buffer role: gassens varmekapasitet og utvidelse demper lokale trykk- og\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -185,13 +188,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. termodynamisk tilstand (ikke 'fase' \u2014 grensen er borte)",
-    "what": "hoeytrykks-P-T-celle \u2014 proxy chain: temperatur via termoelement -> trykk via hoeytrykksmembran -> ingen faseobservabel \u2014 grens",
+    "one": "termodynamisk tilstand (ikke 'fase' \u2014 grensen er borte) \u00b7 perspektiv: academia",
+    "what": "hoeytrykks-P-T-celle \u2014 proxy chain: temperatur via termoelement -> trykk via hoeytrykksmembran -> ingen faseobservabel\u2026",
     "how": "Buffer role: ingen fasegrense aa holde \u2014 bufferkapasiteten er kontinuerlig, uten latent varme. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -223,13 +227,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. temperaturskalaens referansepunkt",
-    "what": "kalibrert trippelpunktcelle \u2014 ITS-90-referansen \u2014 proxy chain: trykk holdt konstant (611.657 Pa) -> temperatur avlest som celleveggens termiske likevekt ",
-    "how": "Buffer role: punktet absorberer energi uten temperaturstigning saa lenge tre faser sameksiste. Epistemic: stottet / replikert / institusjonell.",
+    "one": "temperaturskalaens referansepunkt \u00b7 perspektiv: academia",
+    "what": "kalibrert trippelpunktcelle \u2014 ITS-90-referansen \u2014 proxy chain: trykk holdt konstant (611.657 Pa) -> temperatur avlest som celleveggens termiske likevekt\u2026",
+    "how": "Buffer role: punktet absorberer energi uten temperaturstigning saa lenge tre faser\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -261,13 +266,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. elektromagnetisk straaling",
-    "what": "prisme/gitter-spektrometer \u2014 proxy chain: boelgelengde via gitter-dispersjon -> intensitet via detektor -> farge som observator-prox",
-    "how": "Buffer role: solen er en enorm energikilde med tilnaermet stabil spektralfordeling over menne. Epistemic: stottet / replikert / institusjonell.",
+    "one": "elektromagnetisk straaling \u00b7 perspektiv: academia",
+    "what": "prisme/gitter-spektrometer \u2014 proxy chain: boelgelengde via gitter-dispersjon -> intensitet via detektor -> farge som\u2026",
+    "how": "Buffer role: solen er en enorm energikilde med tilnaermet stabil spektralfordeling over\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -299,13 +305,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. draapeform og brytningsindeks",
-    "what": "hoyhastighetskamera / refraktometer \u2014 proxy chain: draapeform via overflatespenning -> brytningsindeks via refraksjon (n ~ 1.33) -> draapesto",
-    "how": "Buffer role: overflatespenningen holder draapen sfaerisk \u2014 en geometrisk buffer som demper fo. Epistemic: stottet / replikert / institusjonell.",
+    "one": "draapeform og brytningsindeks \u00b7 perspektiv: academia",
+    "what": "hoyhastighetskamera / refraktometer \u2014 proxy chain: draapeform via overflatespenning -> brytningsindeks via refraksjon (n ~ 1.33) ->\u2026",
+    "how": "Buffer role: overflatespenningen holder draapen sfaerisk \u2014 en geometrisk buffer som demper\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -337,13 +344,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. brytningsindeksen n(lambda)",
-    "what": "spektrometer + prisme \u2014 proxy chain: avboyningsvinkel via Snells lov -> n(lambda) via vinkelmaaling -> fargeseparasjon som prox",
-    "how": "Buffer role: vannets elektroniske struktur gir dispersjonen stabilitet \u2014 n(lambda) er en mate. Epistemic: stottet / replikert / institusjonell.",
+    "one": "brytningsindeksen n(lambda) \u00b7 perspektiv: academia",
+    "what": "spektrometer + prisme \u2014 proxy chain: avboyningsvinkel via Snells lov -> n(lambda) via vinkelmaaling -> fargeseparasjon som\u2026",
+    "how": "Buffer role: vannets elektroniske struktur gir dispersjonen stabilitet \u2014 n(lambda) er en\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -375,13 +383,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. buens vinkel og fargerekkefoelge",
-    "what": "retina eller CCD-sensor \u2014 proxy chain: farge via boelgelengde-dispersjon i draapen -> buevinkel via refraksjonsgeometri (~42 grad",
-    "how": "Buffer role: draapesvermen er en statistisk buffer \u2014 monsteret overlever at enkeltdraaper fal. Epistemic: stottet / replikert / institusjonell.",
+    "one": "buens vinkel og fargerekkefoelge \u00b7 perspektiv: academia",
+    "what": "retina eller CCD-sensor \u2014 proxy chain: farge via boelgelengde-dispersjon i draapen -> buevinkel via refraksjonsgeometri (~42\u2026",
+    "how": "Buffer role: draapesvermen er en statistisk buffer \u2014 monsteret overlever at enkeltdraaper\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -413,13 +422,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. buen som retnings- og fargemonster",
-    "what": "retina (S-, M- og L-kjegler) \u2014 proxy chain: fotoner -> fotoreseptorer -> S/M/L-respons -> fargeopplevelse -> retning -> buens posisjon",
-    "how": "Buffer role: oeyets adaptasjon (pupille, bleking av fotopigment) bufferer mot lysvariasjon \u2014 . Epistemic: stottet / replikert / institusjonell.",
+    "one": "buen som retnings- og fargemonster \u00b7 perspektiv: academia",
+    "what": "retina (S-, M- og L-kjegler) \u2014 proxy chain: fotoner -> fotoreseptorer -> S/M/L-respons -> fargeopplevelse -> retning -> buens posisjon\u2026",
+    "how": "Buffer role: oeyets adaptasjon (pupille, bleking av fotopigment) bufferer mot lysvariasjon\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -442,7 +452,7 @@ export const NODES = [
     "id": "efc-water-phase-engine",
     "code": "WA",
     "name": "efc.water_phase_engine",
-    "short": "water phase en",
+    "short": "water phase\u2026",
     "group": "struktur",
     "gx": 11.1,
     "gy": 1.6,
@@ -451,13 +461,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. fasegrenser P_sat(T), T_m(P), P_sub(T)",
-    "what": "WaterPhaseEngine (efc_inference/engine/water.py) \u2014 proxy chain: P_sat(T) via Watson L_v(T) -> T_m(P) via dv_melt = 1/rho_vann - 1/rho_is -> P_sub(T) via k",
-    "how": "Buffer role: gyldighetsomraadene er motorens buffer: utenfor dem svarer den NaN/unknown i ste. Epistemic: hypotese / proxy / minoritet.",
+    "one": "fasegrenser P_sat(T), T_m(P), P_sub(T) \u00b7 perspektiv: paradigm",
+    "what": "WaterPhaseEngine (efc_inference/engine/water.py) \u2014 proxy chain: P_sat(T) via Watson L_v(T) -> T_m(P) via dv_melt = 1/rho_vann - 1/rho_is -> P_sub(T) via\u2026",
+    "how": "Buffer role: gyldighetsomraadene er motorens buffer: utenfor dem svarer den NaN/unknown i\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -489,13 +500,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. urbetingelser og strukturfro",
+    "one": "urbetingelser og strukturfro \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 modellavhengig \u2014 proxy chain: inflasjonsprediksjoner -> P(k)-avtrykk i L1 -> ingen direkte observabel i L0",
     "how": "Buffer role: vakuumsvingningene er frobanken \u2014 en buffer av potensial som inflasjonen tapper. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S->0",
       "sector": null,
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S->0: udifferensiert klarhet \u2014 kompresjonsgrensen (singularitet)",
       "rcmp": null
     },
     "steps": [
@@ -527,13 +539,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. CMB-anisotropier og BAO-skala",
+    "one": "CMB-anisotropier og BAO-skala \u00b7 perspektiv: paradigm",
     "what": "CMB-kart + galakse-survey \u2014 proxy chain: temperaturanisotropier -> P(k) -> BAO-skala -> H(z) -> polarisasjon -> optisk dybde",
-    "how": "Buffer role: plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon \u2014. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S~0",
       "sector": null,
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S~0: begynnende klarhet \u2014 differensieringens terskel",
       "rcmp": null
     },
     "steps": [
@@ -565,13 +578,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. fsigma8, P(k), svak linse (S8)",
-    "what": "galakse-survey + svak linse (KiDS, DES, Euclid) \u2014 proxy chain: galaksefordeling -> P(k) full-shape -> roedforskyvningsromforvrengning -> fsigma8 -> skj\u00e6r",
-    "how": "Buffer role: strukturen selv er en treghetsbuffer: galakser og klynger holder masse mot ekspa. Epistemic: hypotese / proxy / minoritet.",
+    "one": "fsigma8, P(k), svak linse (S8) \u00b7 perspektiv: paradigm",
+    "what": "galakse-survey + svak linse (KiDS, DES, Euclid) \u2014 proxy chain: galaksefordeling -> P(k) full-shape -> roedforskyvningsromforvrengning -> fsigma8 -> skj\u00e6r\u2026",
+    "how": "Buffer role: strukturen selv er en treghetsbuffer: galakser og klynger holder masse mot\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S>0",
       "sector": null,
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S>0: differensiert klarhet \u2014 refleksjonens vindu, R over R_c~0.37 gir selvmodellering",
       "rcmp": null
     },
     "steps": [
@@ -603,13 +617,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. fjern-fremtid-tilstanden",
+    "one": "fjern-fremtid-tilstanden \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 predikert grense \u2014 proxy chain: vekstlovens asymptote -> S->1-tilstanden -> ingen maalbar proxy i dag",
-    "how": "Buffer role: metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe loep. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S->1",
       "sector": null,
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S->1: mettet klarhet \u2014 altular-grensen, avtagende energitetthet",
       "rcmp": null
     },
     "steps": [
@@ -641,13 +656,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. BAO-skalaen (r_d ~ 147 Mpc comoving)",
-    "what": "galakse-surveyer (DESI, eBOSS, BOSS) \u2014 proxy chain: galakse-korrelasjonsfunksjon -> BAO-topp ved ~150 Mpc -> BAO-topp -> D_H(z)/r_d, D_M(z)/r_",
+    "one": "BAO-skalaen (r_d ~ 147 Mpc comoving) \u00b7 perspektiv: consensus",
+    "what": "galakse-surveyer (DESI, eBOSS, BOSS) \u2014 proxy chain: galakse-korrelasjonsfunksjon -> BAO-topp ved ~150 Mpc -> BAO-topp -> D_H(z)/r_d\u2026",
     "how": "Buffer role: drag-epoch fryser lydskalaen inn i plasmaet \u2014 linjalen fryses i L1 og leses i L2. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "galakse-surveyer (DESI, eBOSS, BOSS)",
         "observabel": "BAO-skalaen (r_d ~ 147 Mpc comoving)",
@@ -667,7 +683,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "BAO-toppen ble kanonisert via SDSS/BOSS/eBOSS og DESI \u2014 store samarbeid med NSF/DOE-finansiering; survey-konkurransen og"
+        "BAO-toppen ble kanonisert via SDSS/BOSS/eBOSS og DESI \u2014 store samarbeid med NSF/DOE-finansiering; survey-konkurransen og\u2026"
       ]
     ],
     "cond": []
@@ -685,13 +701,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. temperatur-/polarisasjonsspekteret",
-    "what": "Planck \u2014 proxy chain: temperaturspektrum -> P(k) -> toppavstand -> theta_* og r_s(z_*) -> polarisasjon -> optisk",
+    "one": "temperatur-/polarisasjonsspekteret \u00b7 perspektiv: consensus",
+    "what": "Planck \u2014 proxy chain: temperaturspektrum -> P(k) -> toppavstand -> theta_* og r_s(z_*) -> polarisasjon -> optisk\u2026",
     "how": "Buffer role: rekombinasjonen fryser fotonene \u2014 signalet holdes til det slippes ved z ~ 1100. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "Planck",
         "observabel": "temperatur-/polarisasjonsspekteret",
@@ -711,7 +728,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "CMB-temperaturspekteret b\u00e6res av Planck-samarbeidets institusjonelle autoritet \u2014 resultatet ble kanonisert i l\u00e6reb\u00f8ker o"
+        "CMB-temperaturspekteret b\u00e6res av Planck-samarbeidets institusjonelle autoritet \u2014 resultatet ble kanonisert i l\u00e6reb\u00f8ker\u2026"
       ]
     ],
     "cond": []
@@ -729,13 +746,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. linsingspotensialet",
+    "one": "linsingspotensialet \u00b7 perspektiv: consensus",
     "what": "Planck, ACT, SPT \u2014 proxy chain: CMB-anisotropi-fordeling -> linsingspotensial -> linsingspotensial -> P(k) ved z ~ 2",
     "how": "Buffer role: fotonenes frie ferd er bufferen \u2014 de samler masseavtrykk underveis. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "Planck, ACT, SPT",
         "observabel": "linsingspotensialet",
@@ -755,7 +773,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Lensing-konsensusen b\u00e6res av Planck og ACT/SPT \u2014 to konkurrerende instrumentgrupper som bekrefter hverandre; avviks-funn"
+        "Lensing-konsensusen b\u00e6res av Planck og ACT/SPT \u2014 to konkurrerende instrumentgrupper som bekrefter hverandre; avviks-funn\u2026"
       ]
     ],
     "cond": []
@@ -773,13 +791,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. deuterium/hydrogen-forholdet",
+    "one": "deuterium/hydrogen-forholdet \u00b7 perspektiv: consensus",
     "what": "quasar-spektroskopi \u2014 proxy chain: D/H i quasarskyer -> baryontetthet omega_b h^2 -> omega_b h^2 -> kryssjekk mot CMB",
     "how": "Buffer role: kjernereaksjonene fryser D/H ved T ~ 80 keV \u2014 et signal som aldri endres. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "quasar-spektroskopi",
         "observabel": "deuterium/hydrogen-forholdet",
@@ -799,7 +818,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "BBN er kanonisert i l\u00e6reb\u00f8ker og b\u00e6res av den estetiske sammenhengen med CMB \u2014 \u00e5 teste den p\u00e5 nytt gir lite prestisje, s"
+        "BBN er kanonisert i l\u00e6reb\u00f8ker og b\u00e6res av den estetiske sammenhengen med CMB \u2014 \u00e5 teste den p\u00e5 nytt gir lite prestisje\u2026"
       ]
     ],
     "cond": []
@@ -817,13 +836,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. vekstraten fsigma8",
+    "one": "vekstraten fsigma8 \u00b7 perspektiv: consensus",
     "what": "BOSS, eBOSS, DESI \u2014 proxy chain: roedforskyvningsromforvrengning (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form",
-    "how": "Buffer role: strukturen selv er bufferen \u2014 gravitasjonell respons holder masse mot ekspansjon. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: strukturen selv er bufferen \u2014 gravitasjonell respons holder masse mot\u2026 Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "BOSS, eBOSS, DESI",
         "observabel": "vekstraten fsigma8",
@@ -843,7 +863,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "f\u03c38-m\u00e5lingene kommer fra store survey-samarbeid \u2014 karriereveiene ligger i samarbeidene, og systematikker publiseres sjel"
+        "f\u03c38-m\u00e5lingene kommer fra store survey-samarbeid \u2014 karriereveiene ligger i samarbeidene, og systematikker publiseres\u2026"
       ]
     ],
     "cond": []
@@ -861,13 +881,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. S8 = sigma8 sqrt(omega_m/0.3)",
+    "one": "S8 = sigma8 sqrt(omega_m/0.3) \u00b7 perspektiv: consensus",
     "what": "KiDS, DES, HSC, Euclid \u2014 proxy chain: skj\u00e6r (svak linse) -> S8 -> S8 lav vs CMB-forventning -> tension",
     "how": "Buffer role: linsebildene holder avtrykket av masse langs synslinjen \u2014 en akkumulert buffer. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "KiDS, DES, HSC, Euclid",
         "observabel": "S8 = sigma8 sqrt(omega_m/0.3)",
@@ -887,7 +908,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "S8-tensionen er omstridt MELLOM instrument-tradisjoner \u2014 to fellesskap med egne karrierer leser samme data; hvem som har"
+        "S8-tensionen er omstridt MELLOM instrument-tradisjoner \u2014 to fellesskap med egne karrierer leser samme data; hvem som har\u2026"
       ]
     ],
     "cond": []
@@ -905,13 +926,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. E_G-krysset",
+    "one": "E_G-krysset \u00b7 perspektiv: consensus",
     "what": "SDSS, KiDS+BOSS \u2014 proxy chain: linse (kappa) x RSD (beta) -> E_G -> E_G -> slip mellom lys og masse",
     "how": "Buffer role: to uavhengige proxyer buffrer hverandre \u2014 krysset er mer robust enn hver del. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "SDSS, KiDS+BOSS",
         "observabel": "E_G-krysset",
@@ -931,7 +953,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "EG-m\u00e5linger er avhengige av f\u00e5 instrumenter \u2014 narrativet b\u00e6res av en liten gruppe spesialister med h\u00f8y publiseringsmakt "
+        "EG-m\u00e5linger er avhengige av f\u00e5 instrumenter \u2014 narrativet b\u00e6res av en liten gruppe spesialister med h\u00f8y publiseringsmakt\u2026"
       ]
     ],
     "cond": []
@@ -949,13 +971,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. ISW-signalet",
+    "one": "ISW-signalet \u00b7 perspektiv: consensus",
     "what": "CMB x galaksekart \u2014 proxy chain: CMB-kart x galaksefordeling -> ISW-kryss",
     "how": "Buffer role: fotonene integrerer potensialets tidsderivat over ferdselen \u2014 reisen er bufferen. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "CMB x galaksekart",
         "observabel": "ISW-signalet",
@@ -975,7 +998,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "ISW-signalet er svakt og var lenge omstridt \u2014 konsensusen vokste med CMB-tradisjonens autoritet, ikke med nye uavhengige"
+        "ISW-signalet er svakt og var lenge omstridt \u2014 konsensusen vokste med CMB-tradisjonens autoritet, ikke med nye uavhengige\u2026"
       ]
     ],
     "cond": []
@@ -993,13 +1016,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. kSZ-signalet",
+    "one": "kSZ-signalet \u00b7 perspektiv: consensus",
     "what": "ACT, DES x SPT \u2014 proxy chain: CMB x galakser -> kSZ -> kSZ -> egenhastighetsfelt",
     "how": "Buffer role: elektronene i klynger spretter fotoner doppler \u2014 plasmaet er bufferen. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "ACT, DES x SPT",
         "observabel": "kSZ-signalet",
@@ -1037,13 +1061,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. M_500 fra flere kanaler",
+    "one": "M_500 fra flere kanaler \u00b7 perspektiv: consensus",
     "what": "Chandra, XMM, HST \u2014 proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> skaleringsrelasjoner -> masse",
     "how": "Buffer role: klyngens potensial holder gassen varm og lyset boeyd \u2014 to buffere, \u00e9n masse. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "Chandra, XMM, HST",
         "observabel": "M_500 fra flere kanaler",
@@ -1063,7 +1088,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Hopemassene avhenger av r\u00f8ntgen/svak-lensing-kalibreringer fra noen f\u00e5 store samarbeid \u2014 konsensusen arver deres interne"
+        "Hopemassene avhenger av r\u00f8ntgen/svak-lensing-kalibreringer fra noen f\u00e5 store samarbeid \u2014 konsensusen arver deres interne\u2026"
       ]
     ],
     "cond": []
@@ -1081,13 +1106,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. halomassetetthetsfunksjonen",
+    "one": "halomassetetthetsfunksjonen \u00b7 perspektiv: consensus",
     "what": "DES, SDSS, eROSITA \u2014 proxy chain: antall klynger per masse -> N(M,z) -> N(M,z) -> sigma8 og vekst",
     "how": "Buffer role: kollapsen buffrer masse i halos \u2014 tellingen er buffernes fordeling. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "DES, SDSS, eROSITA",
         "observabel": "halomassetetthetsfunksjonen",
@@ -1107,7 +1133,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Hopfunsjonen er forankret i numeriske simuleringer med egne kode-tradisjoner \u2014 konsensusen b\u00e6res av simuleringsgruppenes"
+        "Hopfunsjonen er forankret i numeriske simuleringer med egne kode-tradisjoner \u2014 konsensusen b\u00e6res av simuleringsgruppenes\u2026"
       ]
     ],
     "cond": []
@@ -1125,13 +1151,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. a_obs vs a_bar",
+    "one": "a_obs vs a_bar \u00b7 perspektiv: consensus",
     "what": "SPARC \u2014 proxy chain: rotasjonskurver -> a_obs -> barionisk fordeling -> a_bar -> avvik -> a_obs/a_bar",
     "how": "Buffer role: galaksens potensial holder rotasjonen \u2014 dynamikken er bufferen. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "SPARC",
         "observabel": "a_obs vs a_bar",
@@ -1151,7 +1178,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "RAR (radial acceleration relation) er omstridt i MOND-debatten \u2014 to fellesskap med uforenlige narrativ leser samme data;"
+        "RAR (radial acceleration relation) er omstridt i MOND-debatten \u2014 to fellesskap med uforenlige narrativ leser samme data\u2026"
       ]
     ],
     "cond": []
@@ -1169,13 +1196,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. masse-gass-offseten",
+    "one": "masse-gass-offseten \u00b7 perspektiv: consensus",
     "what": "HST + Chandra \u2014 proxy chain: linse (masse) vs rontgen (gass) -> offset delta-kappa",
     "how": "Buffer role: kollisjonen separerer komponentene \u2014 hendelsen er bufferen. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "HST + Chandra",
         "observabel": "masse-gass-offseten",
@@ -1213,13 +1241,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. subhalo-populasjonen",
+    "one": "subhalo-populasjonen \u00b7 perspektiv: consensus",
     "what": "HST, simuleringer \u2014 proxy chain: telte dverg-satellitter vs predikerte -> underskudd -> tette kjerner vs cusp -> profil",
     "how": "Buffer role: subhalos holdes av vertens potensial \u2014 bufferen er tidevannsstrippingen. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "HST, simuleringer",
         "observabel": "subhalo-populasjonen",
@@ -1239,7 +1268,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Satellittproblemet b\u00e6res av simuleringstradisjonen vs observat\u00f8rene \u2014 et kjent spenningspunkt der konsensusen skifter me"
+        "Satellittproblemet b\u00e6res av simuleringstradisjonen vs observat\u00f8rene \u2014 et kjent spenningspunkt der konsensusen skifter\u2026"
       ]
     ],
     "cond": []
@@ -1257,13 +1286,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. galakse-massefunksjonen ved z>10",
+    "one": "galakse-massefunksjonen ved z>10 \u00b7 perspektiv: consensus",
     "what": "JWST \u2014 proxy chain: JWST-fotometri -> masse ved z>10 -> massefunksjon -> kollapstidsskala",
     "how": "Buffer role: tidlige halos er de foerste bufferne \u2014 de foerste som holdt masse. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "JWST",
         "observabel": "galakse-massefunksjonen ved z>10",
@@ -1283,7 +1313,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "JWST-funnene er nye og forhandles \u00c5PENT \u2014 hvert \u00abuventet\u00bb funn gir publisitet og dermed insentiv til spenning i narrativ"
+        "JWST-funnene er nye og forhandles \u00c5PENT \u2014 hvert \u00abuventet\u00bb funn gir publisitet og dermed insentiv til spenning i\u2026"
       ]
     ],
     "cond": []
@@ -1301,13 +1331,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. c_T fra GW170817",
+    "one": "c_T fra GW170817 \u00b7 perspektiv: consensus",
     "what": "LIGO/Virgo \u2014 proxy chain: GW- og gammaankomst -> c_T/c innen 1e-15",
     "how": "Buffer role: 1.7-sekunders-forsinkelsen over 40 Mpc er maalingens buffer \u2014 reisen kalibrerer. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "LIGO/Virgo",
         "observabel": "c_T fra GW170817",
@@ -1327,7 +1358,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Gravitasjonsb\u00f8lger er en ung, raskt institusjonalisert tradisjon \u2014 LIGO/Virgo/KAGRA-samarbeidene har monopol p\u00e5 dataene "
+        "Gravitasjonsb\u00f8lger er en ung, raskt institusjonalisert tradisjon \u2014 LIGO/Virgo/KAGRA-samarbeidene har monopol p\u00e5 dataene\u2026"
       ]
     ],
     "cond": []
@@ -1345,13 +1376,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. GW-bakgrunnen ved nHz",
+    "one": "GW-bakgrunnen ved nHz \u00b7 perspektiv: consensus",
     "what": "NANOGrav, EPTA \u2014 proxy chain: pulsar-timing-residualer -> Hellings-Downs-korrelasjon -> GW-bakgrunn",
     "how": "Buffer role: pulsarene ER bufferen \u2014 deres rotasjon holder fasen over aar. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "NANOGrav, EPTA",
         "observabel": "GW-bakgrunnen ved nHz",
@@ -1371,7 +1403,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "PTA-konsensusen bygges av noen f\u00e5 store samarbeid med ti\u00e5r lange datasett \u2014 dataene er private frem til publisering, s\u00e5 "
+        "PTA-konsensusen bygges av noen f\u00e5 store samarbeid med ti\u00e5r lange datasett \u2014 dataene er private frem til publisering, s\u00e5\u2026"
       ]
     ],
     "cond": []
@@ -1389,13 +1421,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. H0 fra to uavhengige kanaler",
+    "one": "H0 fra to uavhengige kanaler \u00b7 perspektiv: consensus",
     "what": "Planck vs SH0ES \u2014 proxy chain: CMB (LCDM-ekstrapolasjon) -> H0 ~ 67 -> cepheid/SN-stige -> H0 ~ 73 -> gap -> tension",
-    "how": "Buffer role: to uavhengige maalekjeder buffrer hverandre \u2014 nettopp derfor kan ingen av dem sk. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: to uavhengige maalekjeder buffrer hverandre \u2014 nettopp derfor kan ingen av dem\u2026 Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "Planck vs SH0ES",
         "observabel": "H0 fra to uavhengige kanaler",
@@ -1415,7 +1448,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Hubble-tensionen er AKTUELT omstridt \u2014 avstandsskala vs CMB, to karriereveier; hver ny m\u00e5ling flytter narrativet, og beg"
+        "Hubble-tensionen er AKTUELT omstridt \u2014 avstandsskala vs CMB, to karriereveier; hver ny m\u00e5ling flytter narrativet, og\u2026"
       ]
     ],
     "cond": []
@@ -1433,13 +1466,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. w(z)-parametriseringen",
+    "one": "w(z)-parametriseringen \u00b7 perspektiv: consensus",
     "what": "DES, BAO+CMB \u2014 proxy chain: SN + BAO + CMB -> w0, wa -> w0, wa -> avvik fra -1",
-    "how": "Buffer role: SN-lysets strekk over avstand er bufferen \u2014 ekspansjonshistorien er skrevet i de. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: SN-lysets strekk over avstand er bufferen \u2014 ekspansjonshistorien er skrevet i\u2026 Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "DES, BAO+CMB",
         "observabel": "w(z)-parametriseringen",
@@ -1459,7 +1493,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "m\u00f8rk-energi-parametriseringen er en konsensus KONVENSJON mer enn en m\u00e5ling \u2014 narrativet b\u00e6res av survey-designenes valg "
+        "m\u00f8rk-energi-parametriseringen er en konsensus KONVENSJON mer enn en m\u00e5ling \u2014 narrativet b\u00e6res av survey-designenes valg\u2026"
       ]
     ],
     "cond": []
@@ -1477,13 +1511,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. vakuumenergiens stoerrelse",
-    "what": "alle kanaler \u2014 proxy chain: alle observasjoner -> omega_Lambda ~ 0.7 -> naivt teoretisk QFT-estimat -> ~120 stoerrelse",
+    "one": "vakuumenergiens stoerrelse \u00b7 perspektiv: consensus",
+    "what": "alle kanaler \u2014 proxy chain: alle observasjoner -> omega_Lambda ~ 0.7 -> naivt teoretisk QFT-estimat -> ~120\u2026",
     "how": "Buffer role: bakgrunnens akselerasjon er bufferen \u2014 den holder ekspansjonen oppe. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": {
         "instrument": "alle kanaler",
         "observabel": "vakuumenergiens stoerrelse",
@@ -1503,7 +1538,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "klynge-tellingens konsensus b\u00e6res av masse-kalibreringskjeden \u2014 en lang kjede av antakelser som hver for seg er konsensu"
+        "klynge-tellingens konsensus b\u00e6res av masse-kalibreringskjeden \u2014 en lang kjede av antakelser som hver for seg er\u2026"
       ]
     ],
     "cond": []
@@ -1512,7 +1547,7 @@ export const NODES = [
     "id": "efc-rotation-engine",
     "code": "RO",
     "name": "efc.rotation_engine",
-    "short": "rotation engin",
+    "short": "rotation\u2026",
     "group": "kosmos",
     "gx": 13.5,
     "gy": 12.0,
@@ -1521,13 +1556,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. v(r) \u2014 rotasjonshastighet som funksjon av radius",
+    "one": "v(r) \u2014 rotasjonshastighet som funksjon av radius \u00b7 perspektiv: paradigm",
     "what": "observasjonssiden er galaksespektre; motoren regner kurven \u2014 proxy chain: spektrallinjer -> v(r) (observasjon) -> v(r) -> EFC-parametre (inferens)",
-    "how": "Buffer role: galaksens materie-buffer holder kurven flat gjennom koplingsfeltet \u2014 tolkning, i. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: galaksens materie-buffer holder kurven flat gjennom koplingsfeltet \u2014 tolkning\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -1559,13 +1595,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. H(z) \u2014 ekspansjonsraten",
+    "one": "H(z) \u2014 ekspansjonsraten \u00b7 perspektiv: paradigm",
     "what": "observasjonssiden er BAO/kronometer; motoren regner raten \u2014 proxy chain: BAO/SNIa -> H(z) (observasjon) -> H(z) -> EFC-parametre (inferens)",
-    "how": "Buffer role: bakgrunnsenergien er bufferen som holder ekspansjonen \u2014 modellert, ikke m\u00e5lt dir. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: bakgrunnsenergien er bufferen som holder ekspansjonen \u2014 modellert, ikke m\u00e5lt\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -1597,13 +1634,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. f\u03c38(z) \u2014 vekstrate ganger amplitude",
+    "one": "f\u03c38(z) \u2014 vekstrate ganger amplitude \u00b7 perspektiv: paradigm",
     "what": "observasjonssiden er RSD/ELG/QSO; motoren regner veksten \u2014 proxy chain: RSD-m\u00e5linger -> f\u03c38 (observasjon) -> f\u03c38 -> EFC-parametre (inferens)",
-    "how": "Buffer role: strukturens materie-buffer vokser gjennom koplingsfeltet \u2014 modellert, ikke m\u00e5lt . Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: strukturens materie-buffer vokser gjennom koplingsfeltet \u2014 modellert, ikke m\u00e5lt\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -1635,13 +1673,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. kappa(theta) \u2014 konvergens som funksjon av vinkelposisjon",
+    "one": "kappa(theta) \u2014 konvergens som funksjon av vinkelposisjon \u00b7 perspektiv: paradigm",
     "what": "observasjonssiden er svak linsing; motoren regner ingenting enn\u00e5 \u2014 proxy chain: shear -> kappa (observasjon) -> kappa -> EFC-parametre (venter p\u00e5 fysikken)",
-    "how": "Buffer role: strukturens masse-buffer b\u00f8yer lyset \u2014 mekanismen er observert, motoren modeller. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: strukturens masse-buffer b\u00f8yer lyset \u2014 mekanismen er observert, motoren\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -1673,13 +1712,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. n(M,z) \u2014 halomassefunksjonen",
+    "one": "n(M,z) \u2014 halomassefunksjonen \u00b7 perspektiv: paradigm",
     "what": "observasjonssiden er hopetellinger; motoren regner ingenting enn\u00e5 \u2014 proxy chain: hopetelling -> n(M,z) (observasjon) -> n(M,z) -> EFC-parametre (venter p\u00e5 fysikken)",
     "how": "Buffer role: hopene er strukturens tetteste buffere \u2014 observert, ikke modellert her enn\u00e5. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -1711,13 +1751,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. R \u2014 den indre refleksjonskoeffisienten",
+    "one": "R \u2014 den indre refleksjonskoeffisienten \u00b7 perspektiv: paradigm",
     "what": "hf1\u2013hf5-observasjonskravene (falsifiserbare p\u00e5stander i rammeverket) \u2014 proxy chain: kohrens-proxyer \u2192 R (inferens) -> R \u2192 flytobjekt/flytsubjekt (terskel)",
-    "how": "Buffer role: kroppens buffere (termisk, kjemisk, nevral) holder flytm\u00f8nsteret stabilt under t. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: kroppens buffere (termisk, kjemisk, nevral) holder flytm\u00f8nsteret stabilt under\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1740,7 +1781,7 @@ export const NODES = [
     "id": "homo-homeostase-buffer",
     "code": "HO",
     "name": "homo.homeostase_buffer",
-    "short": "homeostase buf",
+    "short": "homeostase\u2026",
     "group": "ghost",
     "gx": 13.5,
     "gy": 14.600000000000001,
@@ -1749,13 +1790,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. avvik fra setpunkt (\u0394T, \u0394pH, \u0394glukose)",
+    "one": "avvik fra setpunkt (\u0394T, \u0394pH, \u0394glukose) \u00b7 perspektiv: academia",
     "what": "fysiologiske sensorer; her er noden beskrivelse, ikke sensor \u2014 proxy chain: sensor \u2192 avvik -> avvik \u2192 kompensasjonsrespons",
     "how": "Buffer role: selve bufferen: kapasitet som demper endring \u2014 den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1787,13 +1829,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. kroppstemperatur mot setpunkt",
+    "one": "kroppstemperatur mot setpunkt \u00b7 perspektiv: academia",
     "what": "termometer + pyrogen-mark\u00f8rer; her beskrivelse \u2014 proxy chain: pyrogener \u2192 setpunktsskifte -> temperatur \u2192 avstand til nytt setpunkt",
     "how": "Buffer role: bufferen bytter TARGET, ikke kapasitet \u2014 det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1816,7 +1859,7 @@ export const NODES = [
     "id": "homo-aksjonspotensial",
     "code": "AP",
     "name": "homo.aksjonspotensial",
-    "short": "aksjonspotensi",
+    "short": "aksjonspotensia\u2026",
     "group": "ghost",
     "gx": 3.9,
     "gy": 17.2,
@@ -1825,13 +1868,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. membranpotensialet V(t) mot terskelen",
+    "one": "membranpotensialet V(t) mot terskelen \u00b7 perspektiv: academia",
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: ionestr\u00f8mmer \u2192 V(t) -> V(t) mot V_th \u2192 spike",
     "how": "Buffer role: membranen er bufferen: gradienten lades og holdes til utl\u00f8sning. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1845,7 +1889,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "nevrofysiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av felt"
+        "nevrofysiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av\u2026"
       ]
     ],
     "cond": []
@@ -1863,13 +1907,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. slagvolum, frekvens, minuttvolum",
+    "one": "slagvolum, frekvens, minuttvolum \u00b7 perspektiv: academia",
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EKG \u2192 elektrisk syklus -> ekko \u2192 mekanisk syklus",
-    "how": "Buffer role: ventriklene er bufferne: de fylles og t\u00f8mmes rytmisk \u2014 aldri til null, aldri ove. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: ventriklene er bufferne: de fylles og t\u00f8mmes rytmisk \u2014 aldri til null, aldri\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1901,13 +1946,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. uttrykksniv\u00e5 per gen (mRNA/protein)",
+    "one": "uttrykksniv\u00e5 per gen (mRNA/protein) \u00b7 perspektiv: academia",
     "what": "sekvensering; her beskrivelse av reguleringslogikken \u2014 proxy chain: TF-binding \u2192 uttrykk -> epigenetisk merke \u2192 terskelskifte",
-    "how": "Buffer role: genomet holder reguleringsprogrammene lagret \u2014 en kapasitet som demper tilfeldig. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: genomet holder reguleringsprogrammene lagret \u2014 en kapasitet som demper\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1921,7 +1967,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "molekylaerbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen paa"
+        "molekylaerbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen\u2026"
       ]
     ],
     "cond": []
@@ -1939,13 +1985,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. fase per celle (G1/S/G2/M)",
+    "one": "fase per celle (G1/S/G2/M) \u00b7 perspektiv: academia",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: DNA-innhold \u2192 fase -> CDK/cyklin \u2192 sjekkpunkt-status",
     "how": "Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -1959,7 +2006,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "cellebiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet"
+        "cellebiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av\u2026"
       ]
     ],
     "cond": []
@@ -1977,13 +2024,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. ATP/ADP-forhold, O\u2082-forbruk, substrat-fluks",
+    "one": "ATP/ADP-forhold, O\u2082-forbruk, substrat-fluks \u00b7 perspektiv: academia",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: O\u2082-forbruk \u2192 fluks -> ATP/ADP \u2192 reguleringsstatus",
-    "how": "Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -2006,7 +2054,7 @@ export const NODES = [
     "id": "efc-solar-flare-engine",
     "code": "SF",
     "name": "efc.solar_flare_engine",
-    "short": "solar flare en",
+    "short": "solar flare\u2026",
     "group": "ghost",
     "gx": 1.5,
     "gy": 19.8,
@@ -2015,13 +2063,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. oppladningstid, utlost energi, GOES-klasse",
-    "what": "SolarFlareEngine (efc_inference/engine/solar_flare.py) \u2014 proxy chain: B -> magnetisk energi (E = B^2/(2 mu_0) * V) -> energi -> GOES-klasse (kalibreringsproxy: ",
+    "one": "oppladningstid, utlost energi, GOES-klasse \u00b7 perspektiv: paradigm",
+    "what": "SolarFlareEngine (efc_inference/engine/solar_flare.py) \u2014 proxy chain: B -> magnetisk energi (E = B^2/(2 mu_0) * V) -> energi -> GOES-klasse (kalibreringsproxy\u2026",
     "how": "Buffer role: magnetfeltet er bufferen: energien lades og holdes til terskelen krysses. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2044,7 +2093,7 @@ export const NODES = [
     "id": "efc-jordskjelv-engine",
     "code": "JS",
     "name": "efc.jordskjelv_engine",
-    "short": "jordskjelv eng",
+    "short": "jordskjelv\u2026",
     "group": "ghost",
     "gx": 3.9,
     "gy": 19.8,
@@ -2053,13 +2102,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. gjentakelsestid, seismisk moment, moment-magnitude",
+    "one": "gjentakelsestid, seismisk moment, moment-magnitude \u00b7 perspektiv: paradigm",
     "what": "JordskjelvEngine (efc_inference/engine/jordskjelv.py) \u2014 proxy chain: lade-rate -> gjentakelsestid -> spenningsfall -> slipp -> M0 -> Mw (Kanamori)",
     "how": "Buffer role: forkastningen er bufferen: spenningen lades og holdes til terskelen krysses. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2091,13 +2141,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. aktiveringsstatus, antistofftiter, hukommelsespopulasjon",
+    "one": "aktiveringsstatus, antistofftiter, hukommelsespopulasjon \u00b7 perspektiv: academia",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse",
     "how": "Buffer role: hukommelsen er bufferen: den senker terskelen og gj\u00f8r neste respons raskere. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -2111,7 +2162,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "immunologi (standard: Janeway/Matzinger) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke "
+        "immunologi (standard: Janeway/Matzinger) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke\u2026"
       ]
     ],
     "cond": []
@@ -2129,13 +2180,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. s\u00f8vnstadium (v\u00e5ken/NREM/REM), homeostatisk trykk",
+    "one": "s\u00f8vnstadium (v\u00e5ken/NREM/REM), homeostatisk trykk \u00b7 perspektiv: academia",
     "what": "klinisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EEG-synkroni -> stadium -> v\u00e5kenhetsvarighet -> homeostatisk trykk",
-    "how": "Buffer role: s\u00f8vnbehovet er bufferen: det akkumuleres i v\u00e5ken og t\u00f8mmes i s\u00f8vn \u2014 hjernens d\u00f8g. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: s\u00f8vnbehovet er bufferen: det akkumuleres i v\u00e5ken og t\u00f8mmes i s\u00f8vn \u2014 hjernens\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -2149,7 +2201,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "sovnfysiologi (standard: Borbely, Steriade) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og b"
+        "sovnfysiologi (standard: Borbely, Steriade) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og\u2026"
       ]
     ],
     "cond": []
@@ -2167,13 +2219,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. tilstandsvariabler (n\u00e6ringsstoffer, dekning, artssammensetning)",
+    "one": "tilstandsvariabler (n\u00e6ringsstoffer, dekning, artssammensetning) \u00b7 perspektiv: academia",
     "what": "\u00f8kologisk overv\u00e5king; her beskrivelse \u2014 proxy chain: n\u00e6ringsstoffer -> tilstand -> dekning -> regime",
-    "how": "Buffer role: \u00f8kosystemets bufferevne (resiliens) demper forstyrrelser \u2014 til bufferen er brukt. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: \u00f8kosystemets bufferevne (resiliens) demper forstyrrelser \u2014 til bufferen er brukt\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -2187,7 +2240,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "regime-shift-okologi (Scheffer) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen "
+        "regime-shift-okologi (Scheffer) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen\u2026"
       ]
     ],
     "cond": []
@@ -2205,13 +2258,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. endringstakt i fenotype/art (morfologiske og molekyl\u00e6re rater)",
+    "one": "endringstakt i fenotype/art (morfologiske og molekyl\u00e6re rater) \u00b7 perspektiv: academia",
     "what": "paleontologisk/genomisk m\u00e5ling; her beskrivelse \u2014 proxy chain: fossilrekke -> morfologisk rate -> molekyl\u00e6r avstand -> tid siden splitt",
-    "how": "Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen \u2014 til r. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen \u2014 til\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
       "ebe": null,
+      "klarhet": "C(S) ved S~0.5: differensiert klarhet i senuniversets biologiske mellomlag \u2014 observat\u00f8ren ser et smalt vindu.",
       "rcmp": null
     },
     "steps": [
@@ -2225,7 +2279,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "evolusjonsbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av f"
+        "evolusjonsbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av\u2026"
       ]
     ],
     "cond": []
@@ -2243,13 +2297,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. mu(k,z) \u2014 effektiv Poisson-kobling",
+    "one": "mu(k,z) \u2014 effektiv Poisson-kobling \u00b7 perspektiv: paradigm",
     "what": "MuKZEngine (efc_inference/engine/mu_kz.py) \u2014 proxy chain: bakgrunns-innganger -> eps_F, eps_K, R -> eps_F, eps_K, R -> mu (eq. 28)",
-    "how": "Buffer role: gyldighetsomraadet er modulens buffer: kvasi-statisk sub-horisont \u2014 utenfor det . Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: gyldighetsomraadet er modulens buffer: kvasi-statisk sub-horisont \u2014 utenfor det\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2281,13 +2336,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. forventet Kp, stormniv\u00e5, utladningsbane",
+    "one": "forventet Kp, stormniv\u00e5, utladningsbane \u00b7 perspektiv: paradigm",
     "what": "RomvaerEngine (efc_inference/engine/romvaer.py) \u2014 proxy chain: Bz, v -> ladestr\u00f8m (korrelasjonsproxy) -> Kp -> G-niv\u00e5 (NOAA-skalaen)",
-    "how": "Buffer role: magnetosf\u00e6ren er bufferen: den holder ladningen fra solvinden til stormen utl\u00f8se. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: magnetosf\u00e6ren er bufferen: den holder ladningen fra solvinden til stormen\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2310,7 +2366,7 @@ export const NODES = [
     "id": "efc-oekonomi-engine",
     "code": "OK",
     "name": "efc.oekonomi_engine",
-    "short": "oekonomi engin",
+    "short": "oekonomi\u2026",
     "group": "samfunn",
     "gx": 6.3,
     "gy": 22.400000000000002,
@@ -2319,13 +2375,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. finansregime (hedge/spekulativ/ponzi), gjeldsgrad-drift",
+    "one": "finansregime (hedge/spekulativ/ponzi), gjeldsgrad-drift \u00b7 perspektiv: paradigm",
     "what": "OekonomiEngine (efc_inference/engine/oekonomi.py) \u2014 proxy chain: gjeldsgrad -> regime (to terskler) -> stabile \u00e5r -> gjeldsgrad-drift (Minsky-momentet)",
-    "how": "Buffer role: de stabile \u00e5rene er bufferen: tilliten bygges opp og gjelden akkumuleres \u2014 helt . Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: de stabile \u00e5rene er bufferen: tilliten bygges opp og gjelden akkumuleres \u2014 helt\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2357,13 +2414,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. periode, hastighet, spesifikk energi, Hill-sf\u00e6re",
+    "one": "periode, hastighet, spesifikk energi, Hill-sf\u00e6re \u00b7 perspektiv: paradigm",
     "what": "OrbitalEngine (efc_inference/engine/orbital.py) \u2014 proxy chain: a, e -> T (Kepler) -> a, r -> v (vis-viva) -> eps = -GM/(2a) -> holding/release",
-    "how": "Buffer role: Hill-sf\u00e6ren er banens TILN\u00c6RMEDE stabilitetsbuffer: innenfor er sentralkroppens . Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: Hill-sf\u00e6ren er banens TILN\u00c6RMEDE stabilitetsbuffer: innenfor er sentralkroppens\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2395,13 +2453,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. likevektstemperatur, tidskonstant, regimebryter",
-    "what": "KlimaEngine (efc_inference/engine/klima.py) \u2014 proxy chain: solarkonstant + albedo -> innstr\u00e5ling -> eps sigma T^4 -> utstr\u00e5ling -> C -> bufferens tre",
-    "how": "Buffer role: havets varmekapasitet er bufferen: den demper og forsinker alle forstyrrelser \u2014 . Epistemic: hypotese / proxy / minoritet.",
+    "one": "likevektstemperatur, tidskonstant, regimebryter \u00b7 perspektiv: paradigm",
+    "what": "KlimaEngine (efc_inference/engine/klima.py) \u2014 proxy chain: solarkonstant + albedo -> innstr\u00e5ling -> eps sigma T^4 -> utstr\u00e5ling -> C -> bufferens\u2026",
+    "how": "Buffer role: havets varmekapasitet er bufferen: den demper og forsinker alle forstyrrelser\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2433,13 +2492,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. R0, utbruddsstatus, epidemi-banen",
+    "one": "R0, utbruddsstatus, epidemi-banen \u00b7 perspektiv: paradigm",
     "what": "SamfunnEngine (efc_inference/engine/samfunn.py) \u2014 proxy chain: beta, gamma -> R0 -> R0 -> utbruddsstatus (terskel 1) -> SIR-banen -> kurveformen",
-    "how": "Buffer role: reservoaret av mottagelige er bufferen: utbruddet t\u00f8mmer den, og n\u00e5r den er tom,. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: reservoaret av mottagelige er bufferen: utbruddet t\u00f8mmer den, og n\u00e5r den er tom\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2462,7 +2522,7 @@ export const NODES = [
     "id": "efc-tidevann-engine",
     "code": "TI",
     "name": "efc.tidevann_engine",
-    "short": "tidevann engin",
+    "short": "tidevann\u2026",
     "group": "kosmos",
     "gx": 1.5,
     "gy": 25.0,
@@ -2471,13 +2531,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. tidevannsakselerasjon, tidevannsh\u00f8yde, Roche-grense, fase-l\u00e5singsstatu",
-    "what": "TidevannEngine (efc_inference/engine/tidevann.py) \u2014 proxy chain: m_obj, r -> a_t (differensiell gravitasjon) -> a_t -> h (\u00e5pent-hav-proxy) -> perioder -> f",
-    "how": "Buffer role: havet er bufferen: det l\u00f8ftes og senkes i den periodiske syklusen uten \u00e5 bryte \u2014. Epistemic: hypotese / proxy / minoritet.",
+    "one": "tidevannsakselerasjon, tidevannsh\u00f8yde, Roche-grense\u2026 \u00b7 perspektiv: paradigm",
+    "what": "TidevannEngine (efc_inference/engine/tidevann.py) \u2014 proxy chain: m_obj, r -> a_t (differensiell gravitasjon) -> a_t -> h (\u00e5pent-hav-proxy) -> perioder ->\u2026",
+    "how": "Buffer role: havet er bufferen: det l\u00f8ftes og senkes i den periodiske syklusen uten \u00e5 bryte\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2500,7 +2561,7 @@ export const NODES = [
     "id": "efc-transient-engine",
     "code": "TR",
     "name": "efc.transient_engine",
-    "short": "transient engi",
+    "short": "transient\u2026",
     "group": "kosmos",
     "gx": 3.9,
     "gy": 25.0,
@@ -2509,13 +2570,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. holdetid, utlost energi, lettkurvens form",
-    "what": "TransientEngine (efc_inference/engine/transient.py) \u2014 proxy chain: kjernemasse -> bindingsenergi (E = G*M^2/R) -> bindingsenergi -> utlost energi ved stabili",
+    "one": "holdetid, utlost energi, lettkurvens form \u00b7 perspektiv: paradigm",
+    "what": "TransientEngine (efc_inference/engine/transient.py) \u2014 proxy chain: kjernemasse -> bindingsenergi (E = G*M^2/R) -> bindingsenergi -> utlost energi ved\u2026",
     "how": "Buffer role: kjernen er bufferen: massen bygges og holdes oppe til stabilitetsgrensen krysses. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2538,7 +2600,7 @@ export const NODES = [
     "id": "efc-enerflyt-engine",
     "code": "EF",
     "name": "efc.enerflyt_engine",
-    "short": "enerflyt engin",
+    "short": "enerflyt\u2026",
     "group": "samfunn",
     "gx": 6.3,
     "gy": 25.0,
@@ -2547,13 +2609,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. bufferen S og driften dS/dt = P - C - L",
-    "what": "statistikkbyraaer og nettoperatoerer \u2014 proxy chain: registrert produksjon -> forbruk -> bufferanslag \u2014 alle er regnskaps-proxyer, ikke direkte",
-    "how": "Buffer role: S er samfunnets energibuffer \u2014 holdingen som absorberer ubalansen mellom produks. Epistemic: hypotese / proxy / minoritet.",
+    "one": "bufferen S og driften dS/dt = P - C - L \u00b7 perspektiv: paradigm",
+    "what": "statistikkbyraaer og nettoperatoerer \u2014 proxy chain: registrert produksjon -> forbruk -> bufferanslag \u2014 alle er regnskaps-proxyer, ikke direkte\u2026",
+    "how": "Buffer role: S er samfunnets energibuffer \u2014 holdingen som absorberer ubalansen mellom\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2585,13 +2648,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Grid-Higgs-rammen: entropisk og strukturell teori for gravitasjon, m\u00f8r",
+    "one": "Grid-Higgs-rammen: entropisk og strukturell teori for gravitasjon\u2026 \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
     "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2608,9 +2672,7 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": [
-      "efc.grid_higgs: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "efc-gr-qft-bro",
@@ -2625,13 +2687,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Den termodynamiske broen mellom generell relativitet og kvantefeltteor",
+    "one": "Den termodynamiske broen mellom generell relativitet og\u2026 \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
     "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2648,9 +2711,7 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": [
-      "efc.gr_qft_bro: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "efc-double-slit",
@@ -2665,13 +2726,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Dobbeltspalten som grid-oppl\u00f8sningsfenomen: ontologisk utvidelse, UV-c",
+    "one": "Dobbeltspalten som grid-oppl\u00f8sningsfenomen: ontologisk utvidelse\u2026 \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
     "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2688,15 +2750,13 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": [
-      "efc.double_slit: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "efc-grid-mikrofysikk",
     "code": "GM",
     "name": "efc.grid_mikrofysikk",
-    "short": "grid mikrofysi",
+    "short": "grid\u2026",
     "group": "grid",
     "gx": 1.5,
     "gy": 27.6,
@@ -2705,13 +2765,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Fra grid-mikrofysikk til den radiale akselerasjonsrelasjonen \u2014 minimal",
+    "one": "Fra grid-mikrofysikk til den radiale akselerasjonsrelasjonen \u2014 minimal\u2026 \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
     "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2728,15 +2789,13 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": [
-      "efc.grid_mikrofysikk: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "efc-grid-mikro-engine",
     "code": "GE",
     "name": "efc.grid_mikro_engine",
-    "short": "grid mikro eng",
+    "short": "grid mikro\u2026",
     "group": "grid",
     "gx": 3.9,
     "gy": 27.6,
@@ -2745,13 +2804,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Gamma(rho) og Deff(rho)",
+    "one": "Gamma(rho) og Deff(rho) \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 mikrofysisk avledning, modellavhengig \u2014 proxy chain: tetthet -> grid-mode-okkupering -> entropi-produksjon \u2014 ren teori-kjede",
-    "how": "Buffer role: grid-modene er bufferen \u2014 okkuperte moders entropi lader opp med tettheten og me. Epistemic: hypotese / ingen / minoritet.",
+    "how": "Buffer role: grid-modene er bufferen \u2014 okkuperte moders entropi lader opp med tettheten og\u2026 Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2768,9 +2828,7 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": [
-      "efc.grid_mikro_engine: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "efc-sort-hull",
@@ -2785,13 +2843,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. sorte hull som entropisk grense i Grid-Higgs-rammen",
+    "one": "sorte hull som entropisk grense i Grid-Higgs-rammen \u00b7 perspektiv: paradigm",
     "what": "ingen direkte \u2014 teoretisk \u2014 proxy chain: DOI -> verk -> avledning",
     "how": "Buffer role: BH som entropisk buffer i grid-teorien. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2808,15 +2867,13 @@ export const NODES = [
         "vaar egen ramme"
       ]
     ],
-    "cond": [
-      "efc.sort_hull: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "kjemi-periodesystemet",
     "code": "PS",
     "name": "kjemi.periodesystemet",
-    "short": "periodesysteme",
+    "short": "periodesystemet\u2026",
     "group": "struktur",
     "gx": 8.7,
     "gy": 27.6,
@@ -2825,13 +2882,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: academia. periodesystemets struktur (118 grunnstoff)",
+    "one": "periodesystemets struktur (118 grunnstoff) \u00b7 perspektiv: academia",
     "what": "spektroskopi og kjemisk analyse \u2014 proxy chain: atomnummer -> periodisitet \u2014 konsensus-kartlegging",
     "how": "Buffer role: periodesystemet er bufferen som holder kjemien ordnet. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2863,13 +2921,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. havtemperatur",
+    "one": "havtemperatur \u00b7 perspektiv: consensus",
     "what": "boeyestasjoner (tides & currents) \u2014 proxy chain: stasjon -> temperatur -> hav-energi",
     "how": "Buffer role: havet som varmebuffer i klimaet. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2901,13 +2960,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. arts-tellinger (planteriket)",
+    "one": "arts-tellinger (planteriket) \u00b7 perspektiv: consensus",
     "what": "taksonomisk soek \u2014 proxy chain: soek -> telling -> fotavtrykk",
     "how": "Buffer role: biosfaeren som energiflyt-buffer. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2939,13 +2999,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. vulkantilstand",
+    "one": "vulkantilstand \u00b7 perspektiv: consensus",
     "what": "statusliste (alertLevel) \u2014 proxy chain: alertLevel -> aktivitet -> regime-status",
     "how": "Buffer role: vulkaner som jordas termiske buffer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -2977,13 +3038,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. temperatur, vind, trykk, skydekke og fuktighet",
-    "what": "ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding \u2014 proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per st",
+    "one": "temperatur, vind, trykk, skydekke og fuktighet \u00b7 perspektiv: consensus",
+    "what": "ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding \u2014 proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per\u2026",
     "how": "Buffer role: atmosfaeren som buffer mellom prognose og virkelighet. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3015,13 +3077,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. treffsannsynlighet og Palermo-kumulativ per objekt",
+    "one": "treffsannsynlighet og Palermo-kumulativ per objekt \u00b7 perspektiv: consensus",
     "what": "Sentry-listen selv; oppgjoeret leser hele listen som fasit \u2014 proxy chain: bane -> treffsannsynlighet (prediksjon) -> liste -> revidert/utelukket (oppgjoer)",
     "how": "Buffer role: Sentry-listen er bufferen som holder risikobildet stabilt mellom revisjoner. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3044,7 +3107,7 @@ export const NODES = [
     "id": "efc-efc-background-engine",
     "code": "EE",
     "name": "efc.efc_background_engine",
-    "short": "efc background",
+    "short": "efc background\u2026",
     "group": "ghost",
     "gx": 8.7,
     "gy": 30.200000000000003,
@@ -3053,13 +3116,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot",
-    "what": "EFCBackgroundSolver (efc_inference/engine/efc_background.py) \u2014 proxy chain: parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system -> ODE-system -> tilstand (a, ",
-    "how": "Buffer role: lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan b. Epistemic: hypotese / ingen / minoritet.",
+    "one": "H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot \u00b7 perspektiv: paradigm",
+    "what": "EFCBackgroundSolver (efc_inference/engine/efc_background.py) \u2014 proxy chain: parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system -> ODE-system -> tilstand (a\u2026",
+    "how": "Buffer role: lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan\u2026 Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3076,9 +3140,7 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": [
-      "efc.efc_background_engine: no evidence yet \u2014 hypothesis marked honestly"
-    ]
+    "cond": []
   },
   {
     "id": "efc-lag-s",
@@ -3093,13 +3155,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. strukturen som energy-flow-feltet holder oppe",
-    "what": "ingen direkte \u2014 strukturen er avledet fra feltet, ikke maalt som struktur \u2014 proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur -> rotasjonskurv",
+    "one": "strukturen som energy-flow-feltet holder oppe \u00b7 perspektiv: paradigm",
+    "what": "ingen direkte \u2014 strukturen er avledet fra feltet, ikke maalt som struktur \u2014 proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur ->\u2026",
     "how": "Buffer role: haloen selv er bufferen: den holder formen mens feltet varierer under. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S>0",
       "sector": "S",
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S>0: strukturell klarhet \u2014 formen leser energiflyten i likevekt",
       "rcmp": null
     },
     "steps": [
@@ -3131,13 +3194,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. energy-flow-feltet J_mu og dets divergens",
+    "one": "energy-flow-feltet J_mu og dets divergens \u00b7 perspektiv: paradigm",
     "what": "aksjonen (master-spec, eq. 1) \u2014 proxy chain: aksjon -> feltligning -> J_mu -> ekspansjonshistorie -> J_mu -> Sigma (kildeledd)",
     "how": "Buffer role: F(phi) og K(rho) demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S>0",
       "sector": "D",
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S>0: dynamisk klarhet \u2014 tid, rom og hastighet emergerer fra energy flow under S",
       "rcmp": null
     },
     "steps": [
@@ -3169,13 +3233,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. entropi-feltet S og dets grenser",
-    "what": "ingen direkte \u2014 S er et felt, ikke en maaling \u2014 proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C (FALSIFI",
-    "how": "Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen naa. Epistemic: hypotese / proxy / minoritet.",
+    "one": "entropi-feltet S og dets grenser \u00b7 perspektiv: paradigm",
+    "what": "ingen direkte \u2014 S er et felt, ikke en maaling \u2014 proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C\u2026",
+    "how": "Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S->1",
       "sector": "C",
       "ebe": "claim validity = f(S, L, proxy-chain)",
+      "klarhet": "C(S) ved S->1: mettet klarhet lokalt \u2014 propofol-EEG (Omega, kappa) m\u00e5ler klarhetsvariasjon i liten skala",
       "rcmp": null
     },
     "steps": [
@@ -3207,13 +3272,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "one": "varsler om transienter i sanntid, fra bakke og rom \u00b7 perspektiv: consensus",
     "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
-    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom\u2026 Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3245,13 +3311,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3283,13 +3350,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden",
+    "one": "baneposisjoner regnet fra DE441-ephemeriden \u00b7 perspektiv: consensus",
     "what": "DE441-ephemeriden; ingen instrument leste av \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon",
     "how": "Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3321,13 +3389,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "one": "varsler om transienter i sanntid, fra bakke og rom \u00b7 perspektiv: consensus",
     "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
-    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom\u2026 Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3359,13 +3428,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden",
+    "one": "baneposisjoner regnet fra DE441-ephemeriden \u00b7 perspektiv: consensus",
     "what": "DE441-ephemeriden; ingen instrument leste av \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon",
     "how": "Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3388,7 +3458,7 @@ export const NODES = [
     "id": "kosmos-roentgentransienter",
     "code": "KR",
     "name": "kosmos.roentgentransienter",
-    "short": "roentgentransi",
+    "short": "roentgentransie\u2026",
     "group": "kosmos",
     "gx": 1.5,
     "gy": 35.4,
@@ -3397,13 +3467,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "one": "varsler om transienter i sanntid, fra bakke og rom \u00b7 perspektiv: consensus",
     "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
-    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom\u2026 Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3435,13 +3506,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3473,13 +3545,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3511,13 +3584,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "one": "varsler om transienter i sanntid, fra bakke og rom \u00b7 perspektiv: consensus",
     "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
-    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom\u2026 Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3549,13 +3623,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. arbeidsmarkeds- og sosialstatistikk for Europa",
+    "one": "arbeidsmarkeds- og sosialstatistikk for Europa \u00b7 perspektiv: consensus",
     "what": "nasjonale statistikkbyr\u00e5er, harmonisert \u2014 proxy chain: nasjonal statistikk -> harmonisering -> indikator",
     "how": "Buffer role: Eurostat er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3587,13 +3662,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3625,13 +3701,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3663,13 +3740,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3701,13 +3779,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3739,13 +3818,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3777,13 +3857,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3815,13 +3896,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3853,13 +3935,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3891,13 +3974,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3929,13 +4013,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -3967,13 +4052,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4005,13 +4091,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4043,13 +4130,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4081,13 +4169,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted \u00b7 perspektiv: consensus",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4119,13 +4208,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. astronomiske observasjoner og katalogiserte kilder",
+    "one": "astronomiske observasjoner og katalogiserte kilder \u00b7 perspektiv: consensus",
     "what": "MAST CAOM observasjonskatalog \u2014 proxy chain: instrumentmetadata -> CAOM-observasjon -> katalogisert astronomisk kilde",
     "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4157,13 +4247,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. klimarelatert omtale kodet i globale nyhetsdokumenter",
+    "one": "klimarelatert omtale kodet i globale nyhetsdokumenter \u00b7 perspektiv: consensus",
     "what": "GDELT GKG-koding av dokument, tema, akt\u00f8r og sted \u2014 proxy chain: nyhetsdokument -> GKG-koder -> klimarelatert observasjon",
     "how": "Buffer role: GDELT-korpuset holder kodingen mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4186,7 +4277,7 @@ export const NODES = [
     "id": "verden-klima-worldbank",
     "code": "WB",
     "name": "verden.klima_worldbank",
-    "short": "klima worldban",
+    "short": "klima\u2026",
     "group": "samfunn",
     "gx": 8.7,
     "gy": 43.2,
@@ -4195,13 +4286,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. klima- og utviklingsindikatorer per land og \u00e5r",
+    "one": "klima- og utviklingsindikatorer per land og \u00e5r \u00b7 perspektiv: consensus",
     "what": "World Bank-indikatorenes innrapporterte og harmoniserte datasett \u2014 proxy chain: nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding",
     "how": "Buffer role: harmoniserte indikatorserier holder tilstanden mellom \u00e5rlige oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4215,7 +4307,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer klimaets institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette e"
+        "World Bank b\u00e6rer klimaets institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette\u2026"
       ]
     ],
     "cond": []
@@ -4224,7 +4316,7 @@ export const NODES = [
     "id": "verden-miljo-mikrobiom",
     "code": "MX",
     "name": "verden.miljo_mikrobiom",
-    "short": "miljo mikrobio",
+    "short": "miljo\u2026",
     "group": "samfunn",
     "gx": 11.1,
     "gy": 43.2,
@@ -4233,13 +4325,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. microbial taxa and functional profiles across sampled environments",
+    "one": "microbial taxa and functional profiles across sampled environments \u00b7 perspektiv: consensus",
     "what": "MGnify microbiome profiles \u2014 proxy chain: sample -> sequence processing -> taxonomic and functional profile -> state message",
     "how": "Buffer role: MGnify-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4271,13 +4364,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. environment-related coverage encoded in global news documents",
+    "one": "environment-related coverage encoded in global news documents \u00b7 perspektiv: consensus",
     "what": "GDELT GKG coding of documents, themes, actors and places \u2014 proxy chain: news document -> GKG codes -> environmental observation",
     "how": "Buffer role: GDELT-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4300,7 +4394,7 @@ export const NODES = [
     "id": "verden-oekonomi-worldbank",
     "code": "OX",
     "name": "verden.oekonomi_worldbank",
-    "short": "oekonomi world",
+    "short": "oekonomi\u2026",
     "group": "samfunn",
     "gx": 1.5,
     "gy": 45.800000000000004,
@@ -4309,13 +4403,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. economic indicators by country and year",
+    "one": "economic indicators by country and year \u00b7 perspektiv: consensus",
     "what": "World Bank reported and harmonized indicator datasets \u2014 proxy chain: national reporting -> harmonization -> indicator value -> state message",
     "how": "Buffer role: World Bank-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4329,7 +4424,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer \u00f8konomiens institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette"
+        "World Bank b\u00e6rer \u00f8konomiens institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette\u2026"
       ]
     ],
     "cond": []
@@ -4347,13 +4442,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. macroeconomic projections and scenario indicators",
+    "one": "macroeconomic projections and scenario indicators \u00b7 perspektiv: consensus",
     "what": "IMF DataMapper projections and macroeconomic scenarios \u2014 proxy chain: institutional projection -> DataMapper series -> forecast reading",
     "how": "Buffer role: IMF DataMapper-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4385,13 +4481,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. economic coverage encoded in global news documents",
+    "one": "economic coverage encoded in global news documents \u00b7 perspektiv: consensus",
     "what": "GDELT GKG coding of documents, themes, actors and places \u2014 proxy chain: news document -> GKG codes -> economic observation",
     "how": "Buffer role: GDELT-kilden holder m\u00e5lekontrakten mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4423,13 +4520,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. Kp-tilstand og stormniv\u00e5",
+    "one": "Kp-tilstand og stormniv\u00e5 \u00b7 perspektiv: consensus",
     "what": "SWPC Kp-m\u00e5ling \u2014 proxy chain: tilstand.swpc-kp -> instrumentavlesning -> atlasobservasjon",
     "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4461,13 +4559,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. GOES r\u00f8ntgenfluks og flareklasse",
+    "one": "GOES r\u00f8ntgenfluks og flareklasse \u00b7 perspektiv: consensus",
     "what": "GOES X-ray instrument \u2014 proxy chain: tilstand.swpc-goes-xray -> instrumentavlesning -> atlasobservasjon",
     "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4481,7 +4580,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "NOAA GOES-instrumenteringen og solfysikkens varslingsfellesskap baerer X-ray-m\u00e5lingen; observasjonen er et avgrenset vin"
+        "NOAA GOES-instrumenteringen og solfysikkens varslingsfellesskap baerer X-ray-m\u00e5lingen; observasjonen er et avgrenset\u2026"
       ]
     ],
     "cond": []
@@ -4490,7 +4589,7 @@ export const NODES = [
     "id": "kosmos-transienter-alerce",
     "code": "TA",
     "name": "kosmos.transienter_alerce",
-    "short": "transienter al",
+    "short": "transienter\u2026",
     "group": "kosmos",
     "gx": 13.5,
     "gy": 45.800000000000004,
@@ -4499,13 +4598,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. optiske transienthendelser",
+    "one": "optiske transienthendelser \u00b7 perspektiv: consensus",
     "what": "ALeRCE alert stream \u2014 proxy chain: hendelse.alerce -> instrumentavlesning -> atlasobservasjon",
     "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4528,7 +4628,7 @@ export const NODES = [
     "id": "kosmos-kosmologi-desi-bao",
     "code": "DB",
     "name": "kosmos.kosmologi_desi_bao",
-    "short": "kosmologi desi",
+    "short": "kosmologi desi\u2026",
     "group": "kosmos",
     "gx": 1.5,
     "gy": 48.4,
@@ -4537,13 +4637,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. DESI BAO-observasjoner n\u00e5r str\u00f8mmen finnes",
+    "one": "DESI BAO-observasjoner n\u00e5r str\u00f8mmen finnes \u00b7 perspektiv: consensus",
     "what": "venter p\u00e5 konnektor \u2014 proxy chain: observasjon.desi-bao -> (venter p\u00e5 str\u00f8m)",
     "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
@@ -4575,13 +4676,14 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. isbre/glasiologi-observasjoner n\u00e5r str\u00f8mmen finnes",
+    "one": "isbre/glasiologi-observasjoner n\u00e5r str\u00f8mmen finnes \u00b7 perspektiv: consensus",
     "what": "venter p\u00e5 konnektor \u2014 proxy chain: observasjon.isbre -> (venter p\u00e5 str\u00f8m)",
     "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
+      "klarhet": null,
       "rcmp": null
     },
     "steps": [
