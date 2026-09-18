@@ -47,6 +47,7 @@ REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
 from __future__ import annotations
 
 import json
+import datetime
 import re
 import subprocess
 from pathlib import Path
@@ -1012,6 +1013,34 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
     return "\n".join(L)
 
 
+def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
+                 kilde: str = "samtale") -> dict:
+    """Append ett retain-fragment til koe-filen, uten aa opprette en node."""
+    plassering = plasser(atlas, tekst)
+    record = {
+        "tekst": tekst,
+        "tidspunkt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "plasseringsstatus": plassering["status"],
+        "domene_visshet": plassering.get("domene_visshet"),
+        "domene_grunnlag": plassering.get("domene_grunnlag"),
+        "forslag": plassering.get("forslag", []),
+        "naere_noder": plassering.get("naere_noder", []),
+        "mangler": plassering.get("mangler", []),
+        "kilde": kilde,
+        "proveniens_kilde": kilde,
+        "proveniens": {
+            "kilde": kilde,
+            "atlas": atlas.get("kilde"),
+            "commit": atlas.get("commit"),
+        },
+    }
+    sti = Path(fil)
+    sti.parent.mkdir(parents=True, exist_ok=True)
+    with sti.open("a", encoding="utf-8") as ut:
+        ut.write(json.dumps(record, ensure_ascii=False) + "\n")
+    return record
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -1034,6 +1063,9 @@ if __name__ == "__main__":
     p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
     p.add_argument("--alt", dest="alt", help="HELHETEN: alt om en node, i én lesning")
     p.add_argument("--plasser", help="plasser et NYTT fragment: hvor horer det, og hva mangler")
+    p.add_argument("--innta", help="ta imot et fragment i retain-koeen (ingen node opprettes)")
+    p.add_argument("--kilde", default="samtale", help="provenienskilde for --innta")
+    p.add_argument("--inntak-fil", help="alternativ JSONL-fil for --innta")
     p.add_argument("--hop", help="N hopp fra en node:  eller ")
     p.add_argument("--fragment", help="roter rundt ETT fragment: node + alle koblinger")
     p.add_argument("--oversikt", action="store_true",
@@ -1044,6 +1076,21 @@ if __name__ == "__main__":
     if a.alt:
         atlas = les_atlas(a.repo, ref=a.ref)
         print(helhet_tekst(atlas, a.alt))
+        sys.exit(0)
+
+    # RETAIN-INNTAK — append-only koe, aldri automatisk node-oppretting
+    if a.innta:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        fil = a.inntak_fil or str(Path(a.repo) / "data" / "inntak" /
+                                  "atlas_fragmenter.jsonl")
+        record = skriv_inntak(atlas, a.innta, fil, kilde=a.kilde)
+        print(f"FRAGMENT: {a.innta!r}  ->  {record['plasseringsstatus']}")
+        print(f"  proveniens: {record['kilde']}")
+        print(f"  skrevet til: {fil}")
+        if record["plasseringsstatus"] == "uten_hjem":
+            print("  koe: uten_hjem — menneskelig vurdering kreves")
+        else:
+            print("  koe: fragment-forslag — ingen node opprettet")
         sys.exit(0)
 
     # INNGANGEN — plasser et nytt fragment
