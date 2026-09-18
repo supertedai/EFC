@@ -177,5 +177,14 @@
       "Q7: kan_besvares_i_dag false -> true med presisering"
     ],
     "grunn": "Nokkelen ble skrevet fra en maaling jeg leste feil: jeg kuttet en liste med [:4] og behandlet kuttet som tallet. Feilene ble funnet av TO UAVHENGIGE spor — system A og nokkelkontrollen — som begge meldte 2 rader for paret for jeg selv maalte det. Rettet FOR kjoring, i egen commit. Ingen retting gjor spoersmaalet lettere for B: Q4 ble strengere (3 kanter, ikke 1)."
-  }
+  },
+  "scorer_ignorerte_nokler": [
+    "merknad",
+    "grunn",
+    "hvorfor_ikke",
+    "felle",
+    "teori",
+    "merknad_til_klassifisering"
+  ],
+  "scorer_note": "Forste kjoring scoret 3 korrekt for A og 3 for B, og feilene var «merknad» — forklarende prosa jeg selv hadde lagt inn i nokkelen. Scoreren sammenlignet den som om den var et svar. Det malte instrumentet, ikke systemene. Rettet ved aa DEKLARERE hvilke nokler som er forklaring; begge scoringer rapporteres."
 }

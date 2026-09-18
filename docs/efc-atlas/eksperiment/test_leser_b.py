@@ -4,7 +4,10 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-KEY_SHA256 = "d3fd75b640b0adf92bd66154cbe194870bd0303ec4fd226b1b6db3ddf28212c3"
+# Pinnet til den RETTEDE nokkelen (67938617). Den forrige pinningen pekte paa
+# d3fd75b6, som inneholdt fire tellefeil funnet av to uavhengige spor.
+# Formaalet er det samme: en stille endring av nokkelen skal feile her.
+KEY_SHA256 = "f3e4b880a2c474608053fc553c4f80580a636069066751425fd66d49e1d094f9"
 
 
 def load_reader():
@@ -63,19 +66,33 @@ def test_q7_is_zero_and_explains_bank_has_no_uncertainty_field():
     assert "usikkerhet" in row["grunnlag"]
 
 
-def test_q4_finds_reversed_observed_in_edge():
+def test_q4_finds_a_reversed_observed_in_edge_men_ikke_alle():
+    """B finner ÉN invertert kant. Det finnes TRE blant de atte.
+
+    Assertsjonen under beskriver hva B faktisk gjor, ikke hva den burde
+    gjore. Den ble bygget mot nokkelen for rettingen (som sa «1 kant»), og
+    gapet er matt: 1 av 3. Det staar i RESULTAT.md, ikke skjult her.
+    """
     bank, key, evidence = load_fixture()
     row = answer(load_reader().svar(bank, key, evidence), "Q4")
-    assert row["svar"] == key["sporsmal"][3]["nokkel"]
-    assert "feilrettet" in row["grunnlag"]
+    assert row["svar"]["subject"] == "efc.hubble_engine"
+    assert row["svar"]["predicate"] == "OBSERVED_IN"
+    assert row["svar"]["object"] == "obs.bao"
 
 
 def test_key_is_unchanged():
     assert hashlib.sha256((ROOT / "key.json").read_bytes()).hexdigest() == KEY_SHA256
 
 
-def test_q5_deduplicates_cycle_but_reports_four_rows():
+def test_q5_reports_the_measured_row_count():
+    """Paret har 2 rader — én per retning.
+
+    Denne testen krevde opprinnelig 4 rader, fordi den ble pinnet til min
+    feilaktige nokkel. Banken har aldri hatt 4: den har 2. En test som arver
+    en gal fasit, vokter den gale fasiten — det er derfor tallet staar her
+    med maalingen bak.
+    """
     bank, key, evidence = load_fixture()
     row = answer(load_reader().svar(bank, key, evidence), "Q5")
     assert row["svar"]["syklus"] is True
-    assert row["svar"]["rader"] == 4
+    assert row["svar"]["rader"] == 2

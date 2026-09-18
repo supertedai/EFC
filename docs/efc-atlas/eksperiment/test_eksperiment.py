@@ -13,7 +13,10 @@ import scorer
 KEY_PATH = HERE / "key.json"
 BANK_PATH = Path(__file__).parents[3] / "schema" / "regime_nodes.jsonld"
 PYTHON = "/opt/venvs/t_123ed6d9/bin/python"
-KEY_SHA256 = "d3fd75b640b0adf92bd66154cbe194870bd0303ec4fd226b1b6db3ddf28212c3"
+# Pinnet til den RETTEDE nokkelen (67938617). Den forrige pinningen pekte paa
+# d3fd75b6, som inneholdt fire tellefeil funnet av to uavhengige spor.
+# Formaalet er det samme: en stille endring av nokkelen skal feile her.
+KEY_SHA256 = "f3e4b880a2c474608053fc553c4f80580a636069066751425fd66d49e1d094f9"
 
 
 def load_key():

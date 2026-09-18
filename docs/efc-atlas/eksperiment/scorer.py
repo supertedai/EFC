@@ -64,7 +64,12 @@ def score(svar: list[dict], key: dict) -> dict:
         actual = item.get("svar")
         expected = _expected(question)
         if isinstance(expected, dict):
-            comparable = {k: expected[k] for k in expected if k in expected}
+            # Forklarende noekler er ikke svar. Hva som er forklaring staar i
+            # key.json («scorer_ignorerte_nokler»), ikke gjemt her — den
+            # forste kjoringen sammenlignet «merknad» som om den var svaret.
+            ignor = set(key.get("scorer_ignorerte_nokler") or [])
+            comparable = {navn: verdi for navn, verdi in expected.items()
+                          if navn not in ignor}
             correct = _matches(actual, comparable)
         else:
             correct = _matches(actual, expected)
