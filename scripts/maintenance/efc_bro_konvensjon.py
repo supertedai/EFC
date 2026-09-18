@@ -81,6 +81,7 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/epistemikk",
     "/perspektiv",
     "/ontology/source",
+    "/ontology/proveniens",
     "/ontology/assumes",
     "/maale_paradigme/alternativer",
     "/maale_paradigme/s_regime",
