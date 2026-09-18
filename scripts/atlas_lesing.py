@@ -47,6 +47,7 @@ REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
 from __future__ import annotations
 
 import json
+import collections
 import datetime
 import re
 import subprocess
@@ -97,13 +98,59 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
         raise AtlasLesingFeil(
             f"{ref}:{sti} i {repo} mangler 'nodes' — "
             f"noekler: {sorted(data)[:8] if isinstance(data, dict) else type(data).__name__}")
+    # Merk: skjemaet leses IKKE her. Denne funksjonen leser atlaset, og et
+    # atlas finnes ogsaa uten skjema (syntetiske repoer i tester, delvise
+    # uttrekk). Kravene hentes der de brukes — se `skjema_krav()`.
     return {
         "kilde": f"git:{ref}",
         "ref": ref,
         "commit": commit,
         "sti": sti,
         "noder": data["nodes"],
+        "repo": str(repo),
     }
+
+
+def skjema_krav(atlas: dict) -> list[str]:
+    """Hvilke felt KREVER skjemaet av en node? Ett sted, ikke to.
+
+    Maalt 2026-09-18: `plasser` regnet dette ut som alle felt i banken minus
+    sju hardkodede unntak — og blant unntakene laa `buss_domene` og
+    `falsifiserbarhet`. En ny node ble altsaa bedt om `coupling.empathy_note`,
+    men IKKE om buss-domene eller falsifikator: de to feltene resten av huset
+    hviler paa. En liste som ikke kan oppdage at den selv har blitt feil er
+    ikke et krav — den er et minne.
+
+    Reiser AtlasLesingFeil naar ingen kilde finnes. En tom kravliste ville
+    betydd «ingen krav», og det svaret ser ut som kunnskap.
+    """
+    if atlas.get("skjema_krav"):
+        return list(atlas["skjema_krav"])
+    if atlas.get("repo") and atlas.get("ref"):
+        return _skjema_krav(Path(atlas["repo"]), atlas["ref"])
+    raise AtlasLesingFeil(
+        "atlaset har ingen kravkilde: verken 'skjema_krav', 'repo' eller "
+        "'ref' finnes — da kan kravene ikke leses")
+
+
+def _skjema_krav(repo: Path, ref: str,
+                 sti: str = "schema/regime_node.schema.json") -> list[str]:
+    """Les hvilke felt skjemaet KREVER av en node — ett sted, ikke to.
+
+    Reiser AtlasLesingFeil hvis skjemaet mangler eller ikke deklarerer
+    `required`. En tom liste ville betydd «ingen krav», og det er et svar
+    som ser ut som kunnskap.
+    """
+    raa = _git(repo, "show", f"{ref}:{sti}")
+    try:
+        skjema = json.loads(raa)
+    except json.JSONDecodeError as e:
+        raise AtlasLesingFeil(f"{ref}:{sti} er ikke gyldig JSON: {e}") from e
+    krav = ((skjema.get("$defs") or {}).get("RegimeNode") or {}).get("required")
+    if not krav:
+        raise AtlasLesingFeil(
+            f"{ref}:{sti} deklarerer ingen required-liste for RegimeNode")
+    return list(krav)
 
 
 def _har_falsifikator(node: dict) -> bool:
@@ -816,6 +863,32 @@ def fragment(atlas: dict, node_id: str) -> dict:
     }
 
 
+#: Hva slags svar et felt krever av den som plasserer noe nytt.
+#: Avklart med Morten 2026-09-18, etter et innspill som ville gjort `--plasser`
+#: om til «struktur beregnes, vurderinger foreslaas, paastander kreves».
+#:
+#:   struktur  — utledbar fra fragmentets plass i kjeden. Fylles, med grunn.
+#:   vurdering — beregnbar som kandidat, men semantikken maa godkjennes.
+#:   paastand  — kan ikke utledes av noe. Den ER nodens innhold.
+#:
+#: `phase` ble foreslaatt gjort til enum. Maalt 2026-09-18: 26 verdier, hvorav
+#: 19 brukt én gang («solid (ice Ih)», «coexistence (solid + liquid + gas)»);
+#: kjernen er sju verdier og dekker 107 av 126 noder. Et lukket enum ville
+#: avvist 19 ekte verdier. Fasen er derfor delt — kjerne + rest — ikke lukket.
+FELTKLASSE = {
+    "id": "struktur", "synlighet": "struktur", "buss_domene": "struktur",
+    "nivaa": "struktur",
+    "phase": "struktur", "sektor": "struktur",
+    "perspektiv": "vurdering", "maale_paradigme": "vurdering",
+    "rcmp": "vurdering",
+}
+#: Felt skjemaet ikke krever, men som huset feller paa. Maalt 2026-09-18 laa
+#: `buss_domene` og `falsifiserbarhet` blant de hardkodede unntakene i denne
+#: funksjonen, altsaa stikk i strid med hva resten av huset bygger paa.
+HUSETS_KRAV = ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
+               "prediction", "settlement")
+
+
 #: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
 #: baere en plassering: «med» og «som» staar i nesten hver nodetekst.
 STOPPORD = frozenset("""
@@ -904,14 +977,6 @@ def plasser(atlas: dict, tekst: str) -> dict:
                         "kobling": "ingen anelse — alfabetisk visning, ikke forslag"}
                        for d in alle.get("buss_domene", (0, []))[1][:3]]
 
-    # hva maa fylles? sammenlign mot en typisk FULL node
-    typisk = set()
-    for n in noder:
-        typisk |= set(n.keys())
-    typisk -= {"id", "buss_domene", "prediction", "settlement",
-               "ville_falsifisere", "analogi", "falsifiserbarhet"}
-    mangler = sorted(typisk)
-
     if forslag and len(treff_domener) > 0:
         status = "hjem_funnet"
         domene_visshet = "vet"
@@ -925,6 +990,35 @@ def plasser(atlas: dict, tekst: str) -> dict:
         domene_visshet = "ingen_anelse"
         domene_grunnlag = "ingen domeneanelse"
 
+    # Hva slags svar krever hvert felt? Tre klasser, avklart 2026-09-18:
+    #   struktur  — utledbar fra fragmentets plass i kjeden; fylles, med grunn
+    #   vurdering — beregnbar som kandidat, men semantikken maa godkjennes
+    #   paastand  — maa deklareres eksplisitt; kan ikke utledes av noe
+    #
+    # Og kravene kommer fra skjemaet, ikke fra en haandskrevet liste. Maalt
+    # 2026-09-18: `buss_domene` og `falsifiserbarhet` laa blant de hardkodede
+    # unntakene, saa en ny node ble bedt om `coupling.empathy_note` men ikke
+    # om buss-domene eller falsifikator — de to feltene resten hviler paa.
+    krav_fra_skjemaet = skjema_krav(atlas)
+
+    fylt = {f: sum(1 for n in noder
+                   if n.get(f) not in (None, "", [], {}))
+            for f in set(krav_fra_skjemaet) | set(HUSETS_KRAV)}
+    krav = []
+    for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
+                                        if x not in krav_fra_skjemaet]:
+        klasse = FELTKLASSE.get(f, "paastand")
+        post = {"felt": f,
+                "klasse": klasse,
+                "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
+                "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
+                "forslag": None, "grunn": None}
+        if klasse == "struktur":
+            post["forslag"], post["grunn"] = _utled_struktur(
+                f, tekst, noder, treff_domener,
+                alle.get("synlighet", (0, []))[1])
+        krav.append(post)
+
     return {
         "status": status,
         "domene_visshet": domene_visshet,
@@ -932,10 +1026,74 @@ def plasser(atlas: dict, tekst: str) -> dict:
         "tekst": tekst,
         "forslag": forslag,
         "naere_noder": naere_noder,
-        "mangler": mangler,
+        "krav": krav,
+        "mangler": [k["felt"] for k in krav],
+        "oppsummering": {
+            "struktur": sum(1 for k in krav if k["klasse"] == "struktur"),
+            "vurdering": sum(1 for k in krav if k["klasse"] == "vurdering"),
+            "paastand": sum(1 for k in krav if k["klasse"] == "paastand"),
+        },
         "aksene": {k: alle[k][1][:6] for k in
                    ("perspektiv", "phase", "synlighet") if k in alle},
     }
+
+
+def _utled_struktur(felt: str, tekst: str, noder: list,
+                    treff_domener: list, synlighet: list) -> tuple:
+    """Utled et strukturfelt — eller si hvorfor det ikke kunne utledes.
+
+    Aldri en gjetning presentert som en verdi. Kan vi ikke utlede det,
+    sier vi det, for det er noeyaktig her et fragment blir til en fasit
+    hvis vi tier.
+    """
+    if felt == "id":
+        if len(treff_domener) == 1:
+            ord_i = [w for w in _norm(tekst).split()
+                     if len(w) > 2 and w not in STOPPORD]
+            if ord_i:
+                prefiks = treff_domener[0].split(".")[-1]
+                return (f"{prefiks}.{ord_i[0]}",
+                        "domenets prefiks + fragmentets foerste innholdsord "
+                        "— et FORSLAG, ikke et vedtak")
+        return None, "uten kjent domene finnes ingen id aa bygge paa"
+    if felt == "synlighet":
+        # Standarden leses fra banken, ikke fra koden: endrer banken seg,
+        # endrer forslaget seg.
+        verdier = [n.get("synlighet") for n in noder if n.get("synlighet")]
+        if not verdier:
+            return None, "ingen synlighetsverdi aa lese standarden fra"
+        vanligst = max(set(verdier), key=verdier.count)
+        return vanligst, (f"{verdier.count(vanligst)}/{len(verdier)} "
+                          f"av nodene i banken")
+    if felt == "buss_domene":
+        if len(treff_domener) == 1:
+            return treff_domener[0], "fragmentet nevner ett kjent domene"
+        if len(treff_domener) > 1:
+            return None, (f"flertydig: {', '.join(treff_domener[:3])} — "
+                          f"valget er en vurdering")
+        return None, "fragmentet treffer ikke noe kjent domene"
+    if felt == "sektor":
+        for d in treff_domener:
+            verdier = [(n.get("maale_paradigme") or {}).get("sektor")
+                       for n in noder if n.get("buss_domene") == d]
+            verdier = [v for v in verdier if v]
+            if len(set(verdier)) == 1:
+                return verdier[0], f"alle {len(verdier)} nodene i {d} har denne"
+            if verdier:
+                talt = collections.Counter(verdier).most_common()
+                return None, (f"flertydig i {d}: "
+                              + ", ".join(f"{v} ({c})" for v, c in talt[:3])
+                              + " — valget er en vurdering")
+        return None, "ingen kjent plass aa lese sektoren fra"
+    if felt == "nivaa":
+        return None, ("kan utledes naar forelderen er valgt: indeksen maa "
+                      "vaere hoeyere enn forelderens")
+    if felt == "phase":
+        kjerne = ["instrument", "regime_engine", "observasjon",
+                  "computation_engine", "teoretisk", "stabil", "observer"]
+        return None, ("kjerne: " + ", ".join(kjerne)
+                      + " — en ny verdi er et bevisst valg, ikke en fritekst")
+    return None, "ingen utledningsregel for dette feltet"
 
 
 # ---------------------------------------------------------------------------
@@ -1197,8 +1355,22 @@ if __name__ == "__main__":
                 print(f"    naboer: {', '.join(f['noder'])}")
         if p_.get("naere_noder"):
             print(f"  naere noder: {', '.join(p_['naere_noder'][:4])}")
+        o = p_.get("oppsummering") or {}
         print(f"  maa utfylle {len(p_['mangler'])} felt for aa bli en node: "
-              f"{', '.join(p_['mangler'][:6])} ...")
+              f"{o.get('struktur', 0)} struktur (utledes), "
+              f"{o.get('vurdering', 0)} vurdering (foreslaas), "
+              f"{o.get('paastand', 0)} paastand (kreves eksplisitt)")
+        for k in p_.get("krav", []):
+            merke = "SKJEMA" if k["kilde"] == "skjema" else "HUSET "
+            if k.get("forslag"):
+                print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
+                      f"= {k['forslag']!r}  ({k['grunn']})")
+            elif k["klasse"] == "struktur":
+                print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
+                      f"kunne ikke utledes: {k['grunn']}")
+            else:
+                print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
+                      f"fylt {k['fylt_i_banken']} i banken")
         sys.exit(0)
 
     # KOBLINGENE — 1-hop, 2-hop, 3-hop
