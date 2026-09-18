@@ -202,7 +202,29 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
     if not naal:
         raise AtlasLesingFeil("tomt emne etter normalisering")
     dekning = _dekning(Path(repo), ref, hent)
-    # `\b` regner `_` som ORDTEGN. Men i node-id-er SKILLER `_` ledd:
+    spoersmaalsakse = _loes_spoersmaalsakse(atlas, emne)
+    if spoersmaalsakse:
+        treff = []
+        for n in roter_akse(atlas, spoersmaalsakse):
+            treff.append({
+                "trefftype": "akse",
+                "id": n.get("id"),
+                "synlighet": n.get("synlighet"),
+                "perspektiv": n.get("perspektiv"),
+                "fase": n.get("phase"),
+                "buss_domene": n.get("buss_domene"),
+                "har_prediksjon": bool(n.get("prediction")),
+                "har_oppgjoer": bool(n.get("settlement")),
+                "har_falsifikator": _har_falsifikator(n),
+            })
+        return {
+            "emne": emne, "akse": spoersmaalsakse,
+            "kilde": atlas["kilde"], "ref": ref, "commit": atlas["commit"],
+            "antall": len(treff), "hull": not treff, "for_bredt": False,
+            "raad": None, "kjent_hull": _kjent_hull(dekning, naal),
+            "dekning_fil": "schema/atlas_dekning.json", "treff": treff,
+        }
+    # `\\b` regner `_` som ORDTEGN. Men i node-id-er SKILLER `_` ledd:
     # `homo.sovn_vaaken`, `efc.solar_flare_engine`. Med `\b` ble `sovn`
     # svekket til delstreng selv om den er et eget ledd i id-en (maalt i
     # review 2026-09-17). Vi definerer derfor ordtegnet eksplisitt, slik at
@@ -269,6 +291,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 f"Bruk et mer presist emne, eller se de sterkeste nedenfor")
     return {
         "emne": emne,
+        "akse": None,
         "kilde": atlas["kilde"],
         "ref": ref,
         "commit": atlas["commit"],
@@ -458,6 +481,35 @@ AKSE_ALIAS: dict[str, str] = {
     "sannhet": "epistemikk.sannhetsstatus",
     "evidens": "epistemikk.evidensstatus",
 }
+
+# Eierens spoersmaalsformer er et eget navnelag, ikke fritekst som skal
+# haapes aa treffe i nodeprosaen. Normaliserte nøkler gjør at mellomrom,
+# bindestrek og understrek følger samme regel som resten av oppslaget.
+SPOERSMAAL_AKSE: dict[str, str] = {
+    "hva maaler": "measure.target",
+    "hva maales": "measure.target",
+    "hva måler": "measure.target",
+    "hva måles": "measure.target",
+    "hvem maaler": "measure.measurer",
+    "hvem måler": "measure.measurer",
+    "hvor maaler": "measure.placement",
+    "hvor maales": "measure.placement",
+    "hvor måler": "measure.placement",
+    "hvor måles": "measure.placement",
+    "med hva": "measure.instrument",
+    "hvilket instrument": "measure.instrument",
+    "via hvilken proxy": "measure.proxy_chain",
+    "hvilke proxyer": "measure.proxy_chain",
+    "hva komprimerer": "measure.compression",
+}
+
+
+def _loes_spoersmaalsakse(atlas: dict, spoersmaal: str) -> str | None:
+    """Loes en eksplisitt spoersmaalsform, ellers None — aldri gjetting."""
+    akse = SPOERSMAAL_AKSE.get(_norm(spoersmaal))
+    if akse and akse in akser(atlas):
+        return akse
+    return None
 
 
 def _loes_akse(atlas: dict, akse: str) -> tuple[str, str | None]:
@@ -752,10 +804,12 @@ def plasser(atlas: dict, tekst: str) -> dict:
             d = (x or {}).get("buss_domene")
             if d and d not in sett:
                 sett.append(d)
-        forslag = [{"domene": d, "noder": [], "kobling": "naerliggende node horer her"}
+        forslag = [{"domene": d, "noder": [],
+                    "kobling": "ordlikhet — ikke et kjent domenevalg"}
                    for d in sett[:4]]
         if not forslag:
-            forslag = [{"domene": d, "noder": [], "kobling": "uten hjem — maa navngis"}
+            forslag = [{"domene": d, "noder": [],
+                        "kobling": "ingen anelse — alfabetisk visning, ikke forslag"}
                        for d in alle.get("buss_domene", (0, []))[1][:3]]
 
     # hva maa fylles? sammenlign mot en typisk FULL node
@@ -768,13 +822,21 @@ def plasser(atlas: dict, tekst: str) -> dict:
 
     if forslag and len(treff_domener) > 0:
         status = "hjem_funnet"
+        domene_visshet = "vet"
+        domene_grunnlag = "eksplisitt treff paa buss_domene"
     elif naere_noder and naere[0][0] >= 2:
         status = "svakt"
+        domene_visshet = "ingen_anelse"
+        domene_grunnlag = "bare ordlikhet — ikke et kjent domene"
     else:
         status = "uten_hjem"
+        domene_visshet = "ingen_anelse"
+        domene_grunnlag = "ingen domeneanelse"
 
     return {
         "status": status,
+        "domene_visshet": domene_visshet,
+        "domene_grunnlag": domene_grunnlag,
         "tekst": tekst,
         "forslag": forslag,
         "naere_noder": naere_noder,
@@ -989,6 +1051,8 @@ if __name__ == "__main__":
         atlas = les_atlas(a.repo, ref=a.ref)
         p_ = plasser(atlas, a.plasser)
         print(f"FRAGMENT: {a.plasser!r}  ->  {p_['status']}")
+        print(f"  domenevisshet: {p_.get('domene_visshet', 'ukjent')} "
+              f"({p_.get('domene_grunnlag', 'ukjent grunnlag')})")
         for f in p_["forslag"][:4]:
             print(f"  domene {f['domene']:26} {f['kobling']}")
             if f["noder"]:
@@ -1104,7 +1168,8 @@ if __name__ == "__main__":
 
     if a.emne:
         s = finn(a.repo, a.emne, ref=a.ref, hent=a.hent)
-        print(f"{s['kilde']} @ {s['commit'][:8]} — {s['antall']} treff paa «{s['emne']}»")
+        akseinfo = f" via akse {s['akse']}" if s.get("akse") else ""
+        print(f"{s['kilde']} @ {s['commit'][:8]} — {s['antall']} treff paa «{s['emne']}»{akseinfo}")
         if s["hull"]:
             kh = s["kjent_hull"]
             if kh:

@@ -99,3 +99,8 @@ class TestPlassererBedre:
         p = atlas_lesing.plasser(atlas, "vulkansk aske i stratosfaeren")
         for f in p["forslag"]:
             assert f.get("kobling"), "forslaget sier ikke hvorfor"
+
+    def test_ordlikhet_kalles_ikke_viten(self, atlas: dict) -> None:
+        p = atlas_lesing.plasser(atlas, "kvantedatamaskin")
+        assert p["domene_visshet"] == "ingen_anelse"
+        assert "ordlikhet" in p["domene_grunnlag"] or "ingen" in p["domene_grunnlag"]
