@@ -73,3 +73,32 @@ class TestRotasjon:
     def test_ukjent_node_feiler_hoeyt(self, atlas: dict) -> None:
         with pytest.raises(KeyError):
             atlas_lesing.roter(atlas, node="finnes.ikke")
+
+    def test_s_akse_roterer_med_regimer(self, atlas: dict) -> None:
+        treff = atlas_lesing.roter_akse(atlas, "S")
+        assert len(treff) > 0
+        assert {n["maale_paradigme"]["s_regime"] for n in treff} >= {
+            "S->0", "S~0", "S>0", "S->1"
+        }
+        assert atlas_lesing.roter_akse(atlas, "maale_paradigme.s_regime", "S~0")
+
+    def test_l_kjeden_har_stigende_s_regimer(self, atlas: dict) -> None:
+        forventet = [("efc.l0", "S->0"), ("efc.l1", "S~0"),
+                     ("efc.l2", "S>0"), ("efc.l3", "S->1")]
+        assert [(n["id"], n["maale_paradigme"]["s_regime"])
+                for n in atlas["noder"] if n["id"].startswith("efc.l")] == forventet
+
+    def test_s_d_c_sektorer_og_ebe_er_deklarert(self, atlas: dict) -> None:
+        noder = {n["id"]: n for n in atlas["noder"]}
+        assert {noder[i]["maale_paradigme"]["sektor"] for i in
+                ("efc.lag_s", "efc.lag_d", "efc.lag_c0")} == {"S", "D", "C"}
+        assert all("claim validity = f(S, L, proxy-chain)" in n["maale_paradigme"]["ebe_function"]
+                   for n in noder.values() if n["id"] in {"efc.l0", "efc.l1", "efc.l2", "efc.l3",
+                                                           "efc.lag_s", "efc.lag_d", "efc.lag_c0"})
+
+    def test_observasjoner_eksplisitt_rcmp_overlap(self, atlas: dict) -> None:
+        observasjoner = [n for n in atlas["noder"] if n["id"].startswith("obs.")]
+        assert observasjoner
+        assert all(n["rcmp"]["overlap"] is True for n in observasjoner)
+        assert all(set(n["rcmp"]) >= {"instrument", "observabel", "teori", "overlap"}
+                   for n in observasjoner)

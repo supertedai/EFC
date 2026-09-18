@@ -479,6 +479,11 @@ AKSE_ALIAS: dict[str, str] = {
     "tid": "nivaa.tidsskala",
     "enheter": "maale_paradigme.enheter",
     "koordinater": "maale_paradigme.koordinater",
+    "S": "maale_paradigme.s_regime",
+    "s": "maale_paradigme.s_regime",
+    "s_regime": "maale_paradigme.s_regime",
+    "s-akse": "maale_paradigme.s_regime",
+    "s-ax": "maale_paradigme.s_regime",
     "sannhet": "epistemikk.sannhetsstatus",
     "evidens": "epistemikk.evidensstatus",
 }

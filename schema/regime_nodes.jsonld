@@ -1068,7 +1068,9 @@
     ],
     "enheter": "—",
     "status": "valgt_ramme",
-    "alternativer": []
+    "alternativer": [],
+    "s_regime": "S->0",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)"
    },
    "nivaa": {
     "indeks": 0,
@@ -1157,7 +1159,9 @@
     "status": "avledet",
     "alternativer": [
      "koordinatfrie formuleringer"
-    ]
+    ],
+    "s_regime": "S~0",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)"
    },
    "nivaa": {
     "indeks": 1,
@@ -1247,7 +1251,9 @@
     "status": "avledet",
     "alternativer": [
      "koordinatfrie formuleringer"
-    ]
+    ],
+    "s_regime": "S>0",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)"
    },
    "nivaa": {
     "indeks": 2,
@@ -1334,7 +1340,9 @@
     "status": "avledet",
     "alternativer": [
      "koordinatfrie formuleringer"
-    ]
+    ],
+    "s_regime": "S->1",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)"
    },
    "nivaa": {
     "indeks": 3,
@@ -1801,7 +1809,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "galakse-surveyer (DESI, eBOSS, BOSS)",
+    "observabel": "BAO-skalaen (r_d ~ 147 Mpc comoving)",
+    "teori": "BAO — standardlinjalen",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.cmb_tt",
@@ -1892,7 +1907,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "Planck",
+    "observabel": "temperatur-/polarisasjonsspekteret",
+    "teori": "CMB TT/EE/TE akustiske topper",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.cmb_lensing",
@@ -1981,7 +2003,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "Planck, ACT, SPT",
+    "observabel": "linsingspotensialet",
+    "teori": "CMB Lensing Reconstruction",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.bbn",
@@ -2069,7 +2098,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "quasar-spektroskopi",
+    "observabel": "deuterium/hydrogen-forholdet",
+    "teori": "BBN lette elementer",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.fsigma8",
@@ -2158,7 +2194,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "BOSS, eBOSS, DESI",
+    "observabel": "vekstraten fsigma8",
+    "teori": "f-sigma-8(z) lineær vekst",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.s8",
@@ -2247,7 +2290,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "KiDS, DES, HSC, Euclid",
+    "observabel": "S8 = sigma8 sqrt(omega_m/0.3)",
+    "teori": "S8-tension",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.eg",
@@ -2335,7 +2385,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "SDSS, KiDS+BOSS",
+    "observabel": "E_G-krysset",
+    "teori": "E_G gravitasjonsslip-statistikk",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.isw",
@@ -2422,7 +2479,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "CMB x galaksekart",
+    "observabel": "ISW-signalet",
+    "teori": "ISW krysskorrelasjon",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.ksz",
@@ -2510,7 +2574,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "ACT, DES x SPT",
+    "observabel": "kSZ-signalet",
+    "teori": "kSZ egenhastigheter",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.cluster_mass",
@@ -2600,7 +2671,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.hoper",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "Chandra, XMM, HST",
+    "observabel": "M_500 fra flere kanaler",
+    "teori": "klyngemasse-skalering",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.cluster_hmf",
@@ -2689,7 +2767,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.hoper",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "DES, SDSS, eROSITA",
+    "observabel": "halomassetetthetsfunksjonen",
+    "teori": "klyngehalo-massetetthet N(M,z)",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.rar",
@@ -2778,7 +2863,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "SPARC",
+    "observabel": "a_obs vs a_bar",
+    "teori": "Radial Acceleration Relation",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.bullet",
@@ -2865,7 +2957,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "HST + Chandra",
+    "observabel": "masse-gass-offseten",
+    "teori": "Bullet-klyngen delta-kappa",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.satellites",
@@ -2954,7 +3053,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.satellitter",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "HST, simuleringer",
+    "observabel": "subhalo-populasjonen",
+    "teori": "manglende satellitter / TBTF / core-cusp",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.jwst_ems",
@@ -3042,7 +3148,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.galakser",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "JWST",
+    "observabel": "galakse-massefunksjonen ved z>10",
+    "teori": "tidlig massiv struktur (JWST z>10)",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.gw_ct",
@@ -3129,7 +3242,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "LIGO/Virgo",
+    "observabel": "c_T fra GW170817",
+    "teori": "Gravitasjonsbolgehastighet c_T",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.pta_gwb",
@@ -3216,7 +3336,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "NANOGrav, EPTA",
+    "observabel": "GW-bakgrunnen ved nHz",
+    "teori": "PTA gravitasjonsbolge-bakgrunn",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.h0_tension",
@@ -3306,7 +3433,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "Planck vs SH0ES",
+    "observabel": "H0 fra to uavhengige kanaler",
+    "teori": "Hubble-tension H0",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.w0wa",
@@ -3395,7 +3529,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "DES, BAO+CMB",
+    "observabel": "w(z)-parametriseringen",
+    "teori": "w0-wa dynamisk moerk energi",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "obs.cc",
@@ -3484,7 +3625,14 @@
     "lengdeskala": "kosmos"
    },
    "buss_domene": "kosmos.kosmologi",
-   "synlighet": "offentlig"
+   "synlighet": "offentlig",
+   "rcmp": {
+    "instrument": "alle kanaler",
+    "observabel": "vakuumenergiens stoerrelse",
+    "teori": "kosmologisk konstant / vakuumenergi",
+    "overlap": true,
+    "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+   }
   },
   {
    "id": "efc.victron_cccv_engine",
@@ -8025,7 +8173,10 @@
     "status": "avledet",
     "alternativer": [
      "LCDM med mork materie (som forklares uten ny komponent her)"
-    ]
+    ],
+    "s_regime": "S>0",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "sektor": "S"
    },
    "nivaa": {
     "indeks": 0,
@@ -8114,7 +8265,10 @@
     "status": "avledet",
     "alternativer": [
      "LCDM med kosmologisk konstant"
-    ]
+    ],
+    "s_regime": "S>0",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "sektor": "D"
    },
    "nivaa": {
     "indeks": 1,
@@ -8205,7 +8359,10 @@
     "status": "avledet",
     "alternativer": [
      "Shannon-entropi som separat maal (FALSIFISERT som multiplikativ modell)"
-    ]
+    ],
+    "s_regime": "S->1",
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "sektor": "C"
    },
    "nivaa": {
     "indeks": 2,
