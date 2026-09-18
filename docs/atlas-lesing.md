@@ -68,6 +68,27 @@ the sum per domain, and a test derives that sum again rather than trusting
 it. A volume table in the code would rot at the first change in bus
 traffic — and a test forbids one.
 
+## Putting something in — the atlas's retain
+
+Reading has an entrance (`finn`), and adding has a door: `--innta` takes a
+fragment from a session, places it with `plasser()`, and appends it to a queue
+with its provenance and its threshold verdict. Nothing becomes a node by
+itself — automation that maps everything would fill the atlas with noise.
+
+    python3 scripts/atlas_lesing.py . --innta "vulkansk aske i stratosfaeren" --kilde samtale
+    python3 scripts/atlas_lesing.py . --bekreft "vulkansk aske i stratosfaeren"
+
+The second command is the closed loop: it answers whether the atlas *now*
+carries the fragment — naming the node, the fields it matched in, the
+generator's code, the placement and the visibility — and whether the node is
+new since the intake rather than something that lay there already. The queue
+is host-local (`data/inntak` is ignored by git), and that is why the
+confirmation reads the **atlas**, not the queue: the queue is working memory,
+the atlas is the truth.
+
+Both rules are code — `bekreft`, `NODE_TERSKEL` and `NODE_ANDEL` in
+`scripts/atlas_lesing.py`. This section only says why the door exists.
+
 ## What is *not* claimed here
 
 An operations guard in a separate systems repository applies the same
