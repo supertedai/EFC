@@ -355,6 +355,12 @@ def _node_rad(node: dict, i: int) -> dict:
                f"Epistemic: {ep.get('sannhetsstatus', '—')} / "
                f"{ep.get('evidensstatus', '—')} / "
                f"{ep.get('konsensusstatus', '—')}.",
+        "sAxis": {
+            "regime": node.get("maale_paradigme", {}).get("s_regime"),
+            "sector": node.get("maale_paradigme", {}).get("sektor"),
+            "ebe": node.get("maale_paradigme", {}).get("ebe_function"),
+            "rcmp": node.get("rcmp"),
+        },
         "steps": [["Perspective", _perspektiv_tekst(node.get("perspektiv"))],
                   ["Epistemics",
                    f"{ep.get('sannhetsstatus', '—')} / "
