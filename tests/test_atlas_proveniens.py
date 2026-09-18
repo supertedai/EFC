@@ -13,7 +13,7 @@ DOI = re.compile(r"^10\.\d{4,9}/\S+$")
 def test_alle_atlasnoder_har_proveniens_og_doi_telles(capsys):
     atlas = json.loads(ATLAS.read_text(encoding="utf-8"))
     noder = atlas["nodes"]
-    assert len(noder) == 116
+    assert len(noder) == 121
     doi_noder = 0
     for node in noder:
         prov = node["ontology"]["proveniens"]
