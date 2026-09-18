@@ -96,7 +96,7 @@
    },
    "nivaa": {
     "indeks": 0,
-    "forelder": null,
+    "forelder": "h2o.triple_point",
     "tidsskala": "ps (gittervibrasjon)",
     "lengdeskala": "Å (krystall)"
    },
@@ -272,7 +272,7 @@
    },
    "nivaa": {
     "indeks": 0,
-    "forelder": null,
+    "forelder": "h2o.triple_point",
     "tidsskala": "ps (kollisjoner)",
     "lengdeskala": "nm (fri bane)"
    },
@@ -359,7 +359,7 @@
    },
    "nivaa": {
     "indeks": 0,
-    "forelder": null,
+    "forelder": "h2o.triple_point",
     "tidsskala": "ps",
     "lengdeskala": "nm"
    },
@@ -425,7 +425,8 @@
      "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
     ],
     "motor": "efc.water_triple_point",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "alene_status": "fasekartets referansepunkt — det er ikke UNDER noe; det er definisjonen de andre kalibreres mot"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -514,7 +515,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "straalingskilden — forutsetning for optikk, men ikke underlagt den"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -709,7 +711,7 @@
    },
    "nivaa": {
     "indeks": 2,
-    "forelder": "h2o.droplet",
+    "forelder": "lys.sol",
     "tidsskala": "ns (lysets gang)",
     "lengdeskala": "mm (dråpe)"
    },
@@ -1037,7 +1039,8 @@
      "ingen terskler i dette laget — rammeverkets strukturlag"
     ],
     "motor": "efc.l0",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "alene_status": "urbetingelsene — starten paa sekvensen; det finnes ingenting foran"
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -1145,7 +1148,7 @@
    },
    "nivaa": {
     "indeks": 0,
-    "forelder": null,
+    "forelder": "efc.l0",
     "tidsskala": "—",
     "lengdeskala": "—"
    },
@@ -1235,7 +1238,7 @@
    },
    "nivaa": {
     "indeks": 0,
-    "forelder": null,
+    "forelder": "efc.l1",
     "tidsskala": "—",
     "lengdeskala": "—"
    },
@@ -1322,7 +1325,7 @@
    },
    "nivaa": {
     "indeks": 0,
-    "forelder": null,
+    "forelder": "efc.l2",
     "tidsskala": "—",
     "lengdeskala": "—"
    },
@@ -5857,7 +5860,8 @@
      "NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala",
      "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"
     ],
-    "motor": "romvaer"
+    "motor": "romvaer",
+    "alene_status": "domenet kosmos.romvaer finnes ikke i snapshotet — motoren er alene til det gjor det"
    },
    "regime": {
     "name": "Magnetosfærens Kp-buffer",
@@ -7164,7 +7168,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "grunnstoffenes struktur — forutsetning for h2o, men ikke et hierarki: h2o er ikke et tilfelle av periodesystemet"
    },
    "nivaa": {
     "indeks": 0,
@@ -7508,7 +7513,8 @@
     "terskler": [
      "ingen terskler — oppgjoeret rapporterer avviket, det setter det ikke"
     ],
-    "motor": "ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16)"
+    "motor": "ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16)",
+    "alene_status": "instrument-node, alene i sitt buss-domene: den leser metno, og det finnes ingen annen node i verden.vaer aa koble til"
    },
    "maale_paradigme": {
     "koordinater": [
@@ -7590,7 +7596,8 @@
      "MEN: terskelen er bare anvendbar der skjemaet har `avvik`; 10 827 poster har `grunnlag` i stedet og kan ikke doemmes av denne noden"
     ],
     "motor": "ingen egen motor — sloeyfa loeper i ledgeren",
-    "buss_status": "intern node — holdes utenfor det offentlige atlaset. Har buss-domene, men publiseres ikke."
+    "buss_status": "intern node — holdes utenfor det offentlige atlaset. Har buss-domene, men publiseres ikke.",
+    "alene_status": "observer-node, alene i sitt buss-domene: OPUS_SELV har ingen soster i atlaset"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -7695,7 +7702,8 @@
     "terskler": [
      "-4.0 er JPLs terskel, ikke vaar — 40 over, 2165 under"
     ],
-    "motor": "efc.orbital_engine (banemekanikk)"
+    "motor": "efc.orbital_engine (banemekanikk)",
+    "alene_status": "instrument-node, alene i sitt buss-domene: jpl-sentry er den eneste kilden for dette domenet"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9073,7 +9081,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "instrument-node bygget 2026-09-18 fra kilden — ingen soster i verden.arbeid ennaa"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
