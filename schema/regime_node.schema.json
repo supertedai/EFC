@@ -420,6 +420,39 @@
           "type": "string",
           "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand."
         },
+        "open_questions": {
+          "type": "array",
+          "description": "Aapne spoersmaal ved denne noden. Dette er den ENESTE kilden til spoersmaal i atlaset: generatoren skriver aldri et spoersmaal selv. Maalt 2026-09-18 fant generatoren opp en linje for hver node uten evidens — identisk for alle sju — og gjorde «7 open» til ett og samme ord sju ganger. Evidensstatusen er en maaling og hoerer i `epistemikk`, ikke i spoersmaalslista. Et element er en tekst, eller et objekt {q, r?, to?}: r = svaret naar spoersmaalet er besvart, to = hvem det venter paa (en menneskehandling).",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "required": [
+                  "q"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "q": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "r": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "to": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          }
+        },
         "revisjon": {
           "type": "array",
           "items": {

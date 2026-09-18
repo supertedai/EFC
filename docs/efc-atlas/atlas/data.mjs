@@ -96,7 +96,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "h2o.solid: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "h2o-liquid",
@@ -135,7 +137,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "h2o.liquid: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "h2o-gas",
@@ -174,7 +178,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "h2o.gas: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "h2o-supercritical",
@@ -213,7 +219,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "h2o.supercritical: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "h2o-triple-point",
@@ -252,7 +260,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "h2o.triple_point: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "lys-sol",
@@ -291,7 +301,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "lys.sol: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "h2o-droplet",
@@ -330,7 +342,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "h2o.droplet: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "optikk-dispersjon",
@@ -369,7 +383,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "optikk.dispersjon: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "regnbue",
@@ -408,7 +424,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "regnbue: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "regnbue-observator",
@@ -447,7 +465,9 @@ export const NODES = [
         "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
       ]
     ],
-    "cond": []
+    "cond": [
+      "regnbue.observator: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-water-phase-engine",
@@ -525,7 +545,9 @@ export const NODES = [
         "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.l0: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-l1",
@@ -564,7 +586,9 @@ export const NODES = [
         "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.l1: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-l2",
@@ -603,7 +627,9 @@ export const NODES = [
         "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.l2: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-l3",
@@ -642,7 +668,9 @@ export const NODES = [
         "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.l3: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "obs-bao",
@@ -2673,7 +2701,9 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.grid_higgs: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-gr-qft-bro",
@@ -2712,7 +2742,9 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.gr_qft_bro: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-double-slit",
@@ -2751,7 +2783,9 @@ export const NODES = [
         "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.double_slit: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "efc-grid-mikrofysikk",
@@ -2868,7 +2902,9 @@ export const NODES = [
         "vaar egen ramme"
       ]
     ],
-    "cond": []
+    "cond": [
+      "efc.sort_hull: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "kjemi-periodesystemet",
@@ -2907,7 +2943,9 @@ export const NODES = [
         "IUPAC-konsensus, l\u00e6rebok-kanonisering"
       ]
     ],
-    "cond": []
+    "cond": [
+      "kjemi.periodesystemet: ingen buss-vei \u2014 emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    ]
   },
   {
     "id": "verden-hav",
@@ -4662,7 +4700,9 @@ export const NODES = [
         "DESI-samarbeidet og BAO-praksisen er den ventede sosiale kanalen; frav\u00e6r av str\u00f8m er rapportert eksplisitt."
       ]
     ],
-    "cond": []
+    "cond": [
+      "kosmos.kosmologi_desi_bao: stroemmen finnes ikke \u2014 venter paa konnektor"
+    ]
   },
   {
     "id": "verden-klima-isbre",
@@ -4701,7 +4741,9 @@ export const NODES = [
         "Glasiologiens felt- og fjernm\u00e5lingsfellesskap er den ventede kanalen; isbreobservasjonen finnes ikke i bussen enn\u00e5."
       ]
     ],
-    "cond": []
+    "cond": [
+      "verden.klima_isbre: stroemmen finnes ikke \u2014 venter paa konnektor"
+    ]
   }
 ];
 
@@ -4945,8 +4987,8 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 79 relations.",
-    "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
+    "lede": "Everything at once \u2014 116 nodes, 53 of them designed and not built, 79 relations.",
+    "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
 ];
