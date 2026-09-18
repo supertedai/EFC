@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '103' },
+  stats: [{ k: 'Nodes', v: '106' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 103 nodes, 19 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 106 nodes, 19 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -4105,6 +4105,120 @@ export const NODES = [
       ]
     ],
     "cond": []
+  },
+  {
+    "id": "kosmos-galakser-mast",
+    "code": "KM",
+    "name": "kosmos.galakser_mast",
+    "short": "galakser mast",
+    "group": "kosmos",
+    "gx": 3.9,
+    "gy": 43.2,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. astronomiske observasjoner og katalogiserte kilder",
+    "what": "MAST CAOM observasjonskatalog \u2014 proxy chain: instrumentmetadata -> CAOM-observasjon -> katalogisert astronomisk kilde",
+    "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "MAST/CAOM b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-klima-gdelt",
+    "code": "GG",
+    "name": "verden.klima_gdelt",
+    "short": "klima gdelt",
+    "group": "samfunn",
+    "gx": 6.3,
+    "gy": 43.2,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. klimarelatert omtale kodet i globale nyhetsdokumenter",
+    "what": "GDELT GKG-koding av dokument, tema, akt\u00f8r og sted \u2014 proxy chain: nyhetsdokument -> GKG-koder -> klimarelatert observasjon",
+    "how": "Buffer role: GDELT-korpuset holder kodingen mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "GDELT-prosjektet b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-klima-worldbank",
+    "code": "WB",
+    "name": "verden.klima_worldbank",
+    "short": "klima worldban",
+    "group": "samfunn",
+    "gx": 8.7,
+    "gy": 43.2,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. klima- og utviklingsindikatorer per land og \u00e5r",
+    "what": "World Bank-indikatorenes innrapporterte og harmoniserte datasett \u2014 proxy chain: nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding",
+    "how": "Buffer role: harmoniserte indikatorserier holder tilstanden mellom \u00e5rlige oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "World Bank b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+      ]
+    ],
+    "cond": []
   }
 ];
 
@@ -4205,10 +4319,11 @@ export const CH = [
       "kosmos-roentgentransienter",
       "kosmos-romfart",
       "kosmos-stjerner",
-      "kosmos-uklassifisert"
+      "kosmos-uklassifisert",
+      "kosmos-galakser-mast"
     ],
     "lede": "Chapter 3 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-cluster-engine, efc-growth-engine, efc-hubble-engine, efc-klima-engine, efc-lensing-engine, efc-mu-kz-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert.</p>",
+    "story": "<p>Revealed: efc-cluster-engine, efc-growth-engine, efc-hubble-engine, efc-klima-engine, efc-lensing-engine, efc-mu-kz-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-tidevann-engine, efc-transient-engine, kosmos-galakser-mast, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert.</p>",
     "flow": null
   },
   {
@@ -4255,10 +4370,12 @@ export const CH = [
       "verden-sikkerhet",
       "verden-teknologi",
       "verden-transport",
-      "verden-utdanning"
+      "verden-utdanning",
+      "verden-klima-gdelt",
+      "verden-klima-worldbank"
     ],
     "lede": "Chapter 6 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
+    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-worldbank, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
     "flow": null
   },
   {
@@ -4335,7 +4452,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 103 nodes, 79 relations.",
+    "lede": "Everything at once \u2014 106 nodes, 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }
