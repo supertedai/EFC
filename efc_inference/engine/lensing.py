@@ -124,8 +124,7 @@ class EFCLensing(EFCEngine):
                 "note": "the buffer belongs to reality, not to the engine.",
             },
             "ontology": {
-                "assumes": ["svak linsing er et gyldig avbildnings-"
-                            "instrument", "The EFC deformation can be "
+                "assumes": ["weak lensing is a valid imaging instrument", "The EFC deformation can be "
                             "translated into kappa — unverified"],
                 "source": "stub-kontrakt; efc_inference/engine/"
                           "lensing.py",

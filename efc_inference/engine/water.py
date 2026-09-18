@@ -293,8 +293,8 @@ class WaterPhaseEngine(EFCEngine):
             "nivaa": {
                 "indeks": 2,
                 "forelder": "h2o.liquid",
-                "tidsskala": "s (motortid)",
-                "lengdeskala": "makro (P-T-rom)"
+                "tidsskala": "s (motor time)",
+                "lengdeskala": "macro (P-T space)"
             },            "regime": {
                 "name": "H2O phase-boundary computation",
                 "validity": validity,

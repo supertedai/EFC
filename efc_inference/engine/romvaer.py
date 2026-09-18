@@ -98,7 +98,7 @@ class RomvaerEngine(EFCEngine):
             "5=G1 ... 9=G5). The EFC contribution is the chain of the "
             "form: the sun's flares charge Earth's buffer."
         )
-        law_form = ("charging: Kp ~ coefficient * (-Bz_sør/10) * (v/100) "
+        law_form = ("charging: Kp ~ coefficient * (-Bz_south/10) * (v/100) "
                     "for Bz < 0; discharging: Kp(t+1) = Kp(t) - rate per "
                     "3 h tick; G levels at Kp 5-9")
         return {
@@ -127,8 +127,8 @@ class RomvaerEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "The magnetosphere's Kp buffer",
                 "validity": validity,
@@ -153,10 +153,10 @@ class RomvaerEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "korrelasjonen Bz/v -> Kp er stabil i den idealiserte formen",
-                    "G-skalaen (NOAA) er den riktige storm-klassifiseringen",
+                    "the correlation Bz/v -> Kp is stable in the idealised form",
+                    "the G scale (NOAA) is the correct storm classification",
                 ],
-                "source": "romvær-korrelasjoner (etablert praksis); NOAA G-skalaen; analogi-merkingen er atlasets egen",
+                "source": "space weather correlations (established practice); the NOAA G scale; the analogy labelling is the atlas's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only (Bz, v) — no magnetopause dynamics, no ring current",

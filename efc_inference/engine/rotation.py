@@ -122,8 +122,8 @@ class EFCRotation(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {"name": "The rotation engine — galaxy rotation",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -148,10 +148,10 @@ class EFCRotation(EFCEngine):
                 "note": "the buffer belongs to the model, not to the engine.",
             },
             "ontology": {
-                "assumes": ["rotasjonskurver er et rent gravitasjons-"
-                            "maaleri", "EFC-kjernen er korrekt for "
-                            "galakseskalaen"],
-                "source": "efc_core; parametrisk fallback — "
+                "assumes": ["rotation curves are a pure gravitational measurement",
+                            "the EFC core is correct for the "
+                            "galaxy scale"],
+                "source": "efc_core; parametric fallback — "
                           "efc_inference/engine/rotation.py",
             },
             "observer": {

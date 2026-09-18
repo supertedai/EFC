@@ -680,8 +680,8 @@ class EFCBackgroundEngine(EFCEngine):
             "nivaa": {
                 "indeks": 0,
                 "forelder": None,
-                "tidsskala": "kosmisk tid",
-                "lengdeskala": "Hubbleskala",
+                "tidsskala": "cosmic time",
+                "lengdeskala": "Hubble scale",
             },
             "regime": {
                 "name": "Self-consistent EFC background (FLAT FRW)",

@@ -73,7 +73,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "termodynamisk fase \u00b7 perspective: academia",
-    "what": "calibrated thermometer + barometer (calibrated against the triple-point cell) \u2014 proxy chain: temperatur via termisk ekspansjon (termometer) -> trykk via membran (barometer) -> fase\u2026",
+    "what": "calibrated thermometer + barometer (calibrated against the triple-point cell) \u2014 proxy chain: temperature via thermal expansion (thermometer) -> trykk via membran (barometer) -> phase\u2026",
     "how": "Buffer role: the crystal lattice + latent heat L_f: the ice holds the drink at 0 C until the\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -114,7 +114,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "termodynamisk fase \u00b7 perspective: academia",
-    "what": "kalibrert termometer + barometer \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> phase identified via P_sat(T)\u2026",
+    "what": "calibrated thermometer + barometer \u2014 proxy chain: temperature via thermal expansion -> trykk via membran -> phase identified via P_sat(T)\u2026",
     "how": "Buffer role: high heat capacity (4.18 kJ/(kg*K)): water holds the temperature during heating\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -155,7 +155,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "termodynamisk fase \u00b7 perspective: academia",
-    "what": "calibrated thermometer + barometer (possibly a hygrometer for vapour) \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> vapor content via dew point\u2026",
+    "what": "calibrated thermometer + barometer (possibly a hygrometer for vapour) \u2014 proxy chain: temperature via thermal expansion -> trykk via membran -> vapor content via dew point\u2026",
     "how": "Buffer role: the gas's heat capacity and expansion damp local pressure and temperature\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -196,7 +196,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "thermodynamic state (not 'phase' \u2014 the boundary is gone) \u00b7 perspective: academia",
-    "what": "hoeytrykks-P-T-celle \u2014 proxy chain: temperatur via termoelement -> trykk via hoeytrykksmembran -> no phase observable \u2014 the\u2026",
+    "what": "high-pressure P-T cell \u2014 proxy chain: temperatur via termoelement -> pressure via a high-pressure membrane -> no phase\u2026",
     "how": "Buffer role: no phase boundary to hold \u2014 the buffer capacity is continuous, with no latent\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -278,7 +278,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "elektromagnetisk straaling \u00b7 perspective: academia",
-    "what": "prisme/gitter-spektrometer \u2014 proxy chain: boelgelengde via gitter-dispersjon -> intensitet via detektor -> colour as an observer\u2026",
+    "what": "prisme/gitter-spektrometer \u2014 proxy chain: wavelength via grating dispersion -> intensity via detector -> colour as an observer proxy\u2026",
     "how": "Buffer role: the sun is an enormous energy source with an approximately stable spectral\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -319,7 +319,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "drop shape and refractive index \u00b7 perspective: academia",
-    "what": "hoyhastighetskamera / refraktometer \u2014 proxy chain: draapeform via overflatespenning -> brytningsindeks via refraksjon (n ~ 1.33) ->\u2026",
+    "what": "high-speed camera / refractometer \u2014 proxy chain: droplet shape via surface tension -> refractive index via refraction (n ~ 1.33) -> droplet\u2026",
     "how": "Buffer role: the surface tension holds the droplet spherical \u2014 a geometric buffer that damps\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -360,7 +360,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "brytningsindeksen n(lambda) \u00b7 perspective: academia",
-    "what": "spektrometer + prisme \u2014 proxy chain: avboyningsvinkel via Snells lov -> n(lambda) via vinkelmaaling -> colour separation as a\u2026",
+    "what": "spectrometer + prism \u2014 proxy chain: deflection angle via Snell's law -> n(lambda) via vinkelmaaling -> colour separation as a\u2026",
     "how": "Buffer role: water's electronic structure gives the dispersion stability \u2014 n(lambda) is a\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -401,7 +401,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the bow's angle and colour order \u00b7 perspective: academia",
-    "what": "retina or CCD sensor \u2014 proxy chain: farge via boelgelengde-dispersjon i draapen -> buevinkel via refraksjonsgeometri (~42\u2026",
+    "what": "retina or CCD sensor \u2014 proxy chain: colour via wavelength dispersion in the droplet -> arc angle via refraction geometry (~42\u2026",
     "how": "Buffer role: the droplet swarm is a statistical buffer \u2014 the pattern survives individual\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -442,7 +442,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the arc as a direction and colour pattern \u00b7 perspective: academia",
-    "what": "retina (S, M and L cones) \u2014 proxy chain: fotoner -> fotoreseptorer -> S/M/L-respons -> fargeopplevelse -> retning -> buens posisjon\u2026",
+    "what": "retina (S, M and L cones) \u2014 proxy chain: photons -> photoreceptors -> S/M/L response -> colour experience -> direction -> arc\u2026",
     "how": "Buffer role: the eye's adaptation (pupil, bleaching of photopigment) buffers against light\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -522,7 +522,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "initial conditions and structure seeds \u00b7 perspective: paradigm",
-    "what": "none direct \u2014 model-dependent \u2014 proxy chain: inflasjonsprediksjoner -> P(k)-avtrykk i L1 -> no direct observable in L0",
+    "what": "none direct \u2014 model-dependent \u2014 proxy chain: inflation predictions -> P(k) imprint in L1 -> no direct observable in L0",
     "how": "Buffer role: the vacuum fluctuations are the seed bank \u2014 a buffer of potential that inflation\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S->0 \u00b7 clarity C(S) at S->0: undifferentiated clarity \u2014 the compression limit (singularity) \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S->0",
@@ -563,7 +563,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "CMB anisotropies and BAO scale \u00b7 perspective: paradigm",
-    "what": "CMB-kart + galakse-survey \u2014 proxy chain: temperaturanisotropier -> P(k) -> BAO scale -> H(z) -> polarisasjon -> optisk dybde",
+    "what": "CMB map + galaxy survey \u2014 proxy chain: temperaturanisotropier -> P(k) -> BAO scale -> H(z) -> polarisation -> optical depth",
     "how": "Buffer role: the plasma's photon-electron coupling keeps the anisotropies frozen until\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S~0 \u00b7 clarity C(S) at S~0: incipient clarity \u2014 the threshold of differentiation \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S~0",
@@ -603,8 +603,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "fsigma8, P(k), svak linse (S8) \u00b7 perspective: paradigm",
-    "what": "galakse-survey + svak linse (KiDS, DES, Euclid) \u2014 proxy chain: galaksefordeling -> P(k) full-shape -> roedforskyvningsromforvrengning -> fsigma8 -> shear\u2026",
+    "one": "fsigma8, P(k), weak lensing (S8) \u00b7 perspective: paradigm",
+    "what": "galaxy survey + weak lensing (KiDS, DES, Euclid) \u2014 proxy chain: galaksefordeling -> P(k) full-shape -> redshift-space distortion -> fsigma8 -> shear -> S8",
     "how": "Buffer role: the structure itself is an inertia buffer: galaxies and clusters hold mass\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 clarity C(S) at S>0: differentiated clarity \u2014 the window of reflection, R above R_c~0.37 gives self-modelling \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S>0",
@@ -686,15 +686,15 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the BAO scale (r_d ~ 147 Mpc comoving) \u00b7 perspective: consensus",
-    "what": "galakse-surveyer (DESI, eBOSS, BOSS) \u2014 proxy chain: galaxy correlation function -> BAO peak at ~150 Mpc -> BAO-topp -> D_H(z)/r_d, D_M(z)/r_d\u2026",
-    "how": "Buffer role: the drag epoch freezes the sound scale into the plasma \u2014 the ruler is frozen in\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=galakse-surveyer (DESI, eBOSS, BOSS); observabel=the BAO scale (r_d ~ 147 Mpc comoving); teori=BAO \u2014 standardlinjalen; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "what": "galaxy surveys (DESI, eBOSS, BOSS) \u2014 proxy chain: galaxy correlation function -> BAO peak at ~150 Mpc -> BAO-topp -> D_H(z)/r_d, D_M(z)/r_d\u2026",
+    "how": "Buffer role: the drag epoch freezes the sound scale into the plasma \u2014 the ruler is frozen in\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=galaxy surveys (DESI, eBOSS, BOSS); observabel=the BAO scale (r_d ~ 147 Mpc comoving); teori=BAO \u2014 standardlinjalen; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
       "klarhet": null,
       "rcmp": {
-        "instrument": "galakse-surveyer (DESI, eBOSS, BOSS)",
+        "instrument": "galaxy surveys (DESI, eBOSS, BOSS)",
         "observabel": "the BAO scale (r_d ~ 147 Mpc comoving)",
         "teori": "BAO \u2014 standardlinjalen",
         "overlap": true,
@@ -731,8 +731,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "temperatur-/polarisasjonsspekteret \u00b7 perspective: consensus",
-    "what": "Planck \u2014 proxy chain: temperaturspektrum -> P(k) -> peak distance -> theta_* and r_s(z_*) -> polarisasjon ->\u2026",
-    "how": "Buffer role: recombination freezes the photons \u2014 the signal is held until it is released at z\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Planck; observabel=temperatur-/polarisasjonsspekteret; teori=CMB TT/EE/TE akustiske topper; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "what": "Planck \u2014 proxy chain: temperaturspektrum -> P(k) -> peak distance -> theta_* and r_s(z_*) -> polarisation ->\u2026",
+    "how": "Buffer role: recombination freezes the photons \u2014 the signal is held until it is released at z\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Planck; observabel=temperatur-/polarisasjonsspekteret; teori=CMB TT/EE/TE acoustic peaks; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -741,7 +741,7 @@ export const NODES = [
       "rcmp": {
         "instrument": "Planck",
         "observabel": "temperatur-/polarisasjonsspekteret",
-        "teori": "CMB TT/EE/TE akustiske topper",
+        "teori": "CMB TT/EE/TE acoustic peaks",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -821,8 +821,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "deuterium/hydrogen-forholdet \u00b7 perspective: consensus",
-    "what": "quasar-spektroskopi \u2014 proxy chain: D/H i quasarskyer -> baryontetthet omega_b h^2 -> omega_b h^2 -> cross-check against CMB",
-    "how": "Buffer role: the nuclear reactions freeze D/H at T ~ 80 keV \u2014 a signal that never changes. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=quasar-spektroskopi; observabel=deuterium/hydrogen-forholdet; teori=BBN lette elementer; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "what": "quasar-spektroskopi \u2014 proxy chain: D/H in quasar clouds -> baryon density omega_b h^2 -> omega_b h^2 -> cross-check against\u2026",
+    "how": "Buffer role: the nuclear reactions freeze D/H at T ~ 80 keV \u2014 a signal that never changes. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=quasar-spektroskopi; observabel=deuterium/hydrogen-forholdet; teori=BBN light elements; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -831,7 +831,7 @@ export const NODES = [
       "rcmp": {
         "instrument": "quasar-spektroskopi",
         "observabel": "deuterium/hydrogen-forholdet",
-        "teori": "BBN lette elementer",
+        "teori": "BBN light elements",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -866,7 +866,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "vekstraten fsigma8 \u00b7 perspective: consensus",
-    "what": "BOSS, eBOSS, DESI \u2014 proxy chain: roedforskyvningsromforvrengning (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form",
+    "what": "BOSS, eBOSS, DESI \u2014 proxy chain: redshift-space distortion (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form",
     "how": "Buffer role: the structure itself is the buffer \u2014 gravitational response holds mass against\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=BOSS, eBOSS, DESI; observabel=vekstraten fsigma8; teori=f-sigma-8(z) linear growth; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1046,7 +1046,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "kSZ-signalet \u00b7 perspective: consensus",
-    "what": "ACT, DES x SPT \u2014 proxy chain: CMB x galakser -> kSZ -> kSZ -> egenhastighetsfelt",
+    "what": "ACT, DES x SPT \u2014 proxy chain: CMB x galaxies -> kSZ -> kSZ -> peculiar velocity field",
     "how": "Buffer role: the electrons in clusters Doppler-scatter photons \u2014 the plasma is the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=ACT, DES x SPT; observabel=kSZ-signalet; teori=kSZ egenhastigheter; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1091,7 +1091,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "M_500 from several channels \u00b7 perspective: consensus",
-    "what": "Chandra, XMM, HST \u2014 proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> skaleringsrelasjoner -> masse",
+    "what": "Chandra, XMM, HST \u2014 proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> scaling relations -> mass",
     "how": "Buffer role: the cluster's potential keeps the gas hot and the light bent \u2014 two buffers, one\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Chandra, XMM, HST; observabel=M_500 from several channels; teori=klyngemasse-skalering; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1136,7 +1136,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "halomassetetthetsfunksjonen \u00b7 perspective: consensus",
-    "what": "DES, SDSS, eROSITA \u2014 proxy chain: antall klynger per masse -> N(M,z) -> N(M,z) -> sigma8 and growth",
+    "what": "DES, SDSS, eROSITA \u2014 proxy chain: number of clusters per mass -> N(M,z) -> N(M,z) -> sigma8 and growth",
     "how": "Buffer role: the collapse buffers mass in halos \u2014 the count is the buffers' distribution. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=DES, SDSS, eROSITA; observabel=halomassetetthetsfunksjonen; teori=klyngehalo-massetetthet N(M,z); overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1181,7 +1181,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "a_obs vs a_bar \u00b7 perspective: consensus",
-    "what": "SPARC \u2014 proxy chain: rotasjonskurver -> a_obs -> barionisk fordeling -> a_bar -> avvik -> a_obs/a_bar",
+    "what": "SPARC \u2014 proxy chain: rotation curves -> a_obs -> baryonic distribution -> a_bar -> avvik -> a_obs/a_bar",
     "how": "Buffer role: the galaxy's potential holds the rotation \u2014 the dynamics are the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SPARC; observabel=a_obs vs a_bar; teori=Radial Acceleration Relation; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1226,7 +1226,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "masse-gass-offseten \u00b7 perspective: consensus",
-    "what": "HST + Chandra \u2014 proxy chain: linse (masse) vs rontgen (gass) -> offset delta-kappa",
+    "what": "HST + Chandra \u2014 proxy chain: lensing (mass) vs X-ray (gas) -> offset delta-kappa",
     "how": "Buffer role: the collision separates the components \u2014 the event is the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=HST + Chandra; observabel=masse-gass-offseten; teori=Bullet-klyngen delta-kappa; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1271,8 +1271,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "subhalo-populasjonen \u00b7 perspective: consensus",
-    "what": "HST, simuleringer \u2014 proxy chain: telte dverg-satellitter vs predikerte -> underskudd -> tette kjerner vs cusp -> profil",
-    "how": "Buffer role: subhalos are held by the host's potential \u2014 the buffer is tidal stripping. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=HST, simuleringer; observabel=subhalo-populasjonen; teori=manglende satellitter / TBTF / core-cusp; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "what": "HST, simuleringer \u2014 proxy chain: counted dwarf satellites vs predicted -> shortfall -> dense cores vs cusp -> profile",
+    "how": "Buffer role: subhalos are held by the host's potential \u2014 the buffer is tidal stripping. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=HST, simuleringer; observabel=subhalo-populasjonen; teori=missing satellites / TBTF / core-cusp; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1281,7 +1281,7 @@ export const NODES = [
       "rcmp": {
         "instrument": "HST, simuleringer",
         "observabel": "subhalo-populasjonen",
-        "teori": "manglende satellitter / TBTF / core-cusp",
+        "teori": "missing satellites / TBTF / core-cusp",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -1316,8 +1316,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the galaxy mass function at z>10 \u00b7 perspective: consensus",
-    "what": "JWST \u2014 proxy chain: JWST photometry -> mass at z>10 -> massefunksjon -> kollapstidsskala",
-    "how": "Buffer role: early halos are the first buffers \u2014 the first to hold mass. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=JWST; observabel=the galaxy mass function at z>10; teori=tidlig massiv struktur (JWST z>10); overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "what": "JWST \u2014 proxy chain: JWST photometry -> mass at z>10 -> mass function -> collapse timescale",
+    "how": "Buffer role: early halos are the first buffers \u2014 the first to hold mass. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=JWST; observabel=the galaxy mass function at z>10; teori=early massive structure (JWST z>10); overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1326,7 +1326,7 @@ export const NODES = [
       "rcmp": {
         "instrument": "JWST",
         "observabel": "the galaxy mass function at z>10",
-        "teori": "tidlig massiv struktur (JWST z>10)",
+        "teori": "early massive structure (JWST z>10)",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -1406,7 +1406,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the GW background at nHz \u00b7 perspective: consensus",
-    "what": "NANOGrav, EPTA \u2014 proxy chain: pulsar-timing-residualer -> Hellings-Downs-korrelasjon -> GW-bakgrunn",
+    "what": "NANOGrav, EPTA \u2014 proxy chain: pulsar timing residuals -> Hellings-Downs correlation -> GW background",
     "how": "Buffer role: the pulsars ARE the buffer \u2014 their rotation holds the phase over years. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=NANOGrav, EPTA; observabel=the GW background at nHz; teori=PTA gravitasjonsbolge-bakgrunn; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1451,7 +1451,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "H0 from two independent channels \u00b7 perspective: consensus",
-    "what": "Planck vs SH0ES \u2014 proxy chain: CMB (LCDM-ekstrapolasjon) -> H0 ~ 67 -> cepheid/SN-stige -> H0 ~ 73 -> gap -> tension",
+    "what": "Planck vs SH0ES \u2014 proxy chain: CMB (LCDM extrapolation) -> H0 ~ 67 -> cepheid/SN-stige -> H0 ~ 73 -> gap -> tension",
     "how": "Buffer role: two independent measurement chains buffer each other \u2014 which is exactly why\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Planck vs SH0ES; observabel=H0 from two independent channels; teori=Hubble-tension H0; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1497,7 +1497,7 @@ export const NODES = [
     "ghost": true,
     "one": "w(z)-parametriseringen \u00b7 perspective: consensus",
     "what": "DES, BAO+CMB \u2014 proxy chain: SN + BAO + CMB -> w0, wa -> w0, wa -> deviation from -1",
-    "how": "Buffer role: the stretch of SN light over distance is the buffer \u2014 the expansion history is\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=DES, BAO+CMB; observabel=w(z)-parametriseringen; teori=w0-wa dynamisk moerk energi; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "how": "Buffer role: the stretch of SN light over distance is the buffer \u2014 the expansion history is\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=DES, BAO+CMB; observabel=w(z)-parametriseringen; teori=w0-wa dynamical dark energy; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1506,7 +1506,7 @@ export const NODES = [
       "rcmp": {
         "instrument": "DES, BAO+CMB",
         "observabel": "w(z)-parametriseringen",
-        "teori": "w0-wa dynamisk moerk energi",
+        "teori": "w0-wa dynamical dark energy",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -1541,8 +1541,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the size of the vacuum energy \u00b7 perspective: consensus",
-    "what": "all channels \u2014 proxy chain: all observations -> omega_Lambda ~ 0.7 -> naivt teoretisk QFT-estimat -> ~120\u2026",
-    "how": "Buffer role: the background's acceleration is the buffer \u2014 it holds the expansion up. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=all channels; observabel=the size of the vacuum energy; teori=kosmologisk konstant / vakuumenergi; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "what": "all channels \u2014 proxy chain: all observations -> omega_Lambda ~ 0.7 -> naive theoretical QFT estimate -> ~120 orders of\u2026",
+    "how": "Buffer role: the background's acceleration is the buffer \u2014 it holds the expansion up. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=all channels; observabel=the size of the vacuum energy; teori=cosmological constant / vacuum energy; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1551,7 +1551,7 @@ export const NODES = [
       "rcmp": {
         "instrument": "all channels",
         "observabel": "the size of the vacuum energy",
-        "teori": "kosmologisk konstant / vakuumenergi",
+        "teori": "cosmological constant / vacuum energy",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -1781,7 +1781,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "R \u2014 the internal reflection coefficient \u00b7 perspective: paradigm",
-    "what": "the hf1\u2013hf5 observation requirements (falsifiable claims in the framework) \u2014 proxy chain: kohrens-proxyer \u2192 R (inferens) -> R \u2192 flow object/flow subject (threshold)",
+    "what": "the hf1\u2013hf5 observation requirements (falsifiable claims in the framework) \u2014 proxy chain: coherence proxies \u2192 R (inference) -> R \u2192 flow object/flow subject (threshold)",
     "how": "Buffer role: the body's buffers (thermal, chemical, neural) hold the flow pattern stable\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -1820,7 +1820,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "deviation from setpoint (\u0394T, \u0394pH, \u0394glucose) \u00b7 perspective: academia",
-    "what": "physiological sensors; here the node is a description, not a sensor \u2014 proxy chain: sensor \u2192 avvik -> avvik \u2192 kompensasjonsrespons",
+    "what": "physiological sensors; here the node is a description, not a sensor \u2014 proxy chain: sensor \u2192 avvik -> deviation \u2192 compensatory response",
     "how": "Buffer role: the buffer itself: capacity that damps change \u2014 the broad logic in pure form. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -1859,7 +1859,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "body temperature against setpoint \u00b7 perspective: academia",
-    "what": "thermometer + pyrogen markers; here: description \u2014 proxy chain: pyrogener \u2192 setpunktsskifte -> temperature \u2192 distance to the new setpoint",
+    "what": "thermometer + pyrogen markers; here: description \u2014 proxy chain: pyrogens \u2192 setpoint shift -> temperature \u2192 distance to the new setpoint",
     "how": "Buffer role: the buffer switches TARGET, not capacity \u2014 that is the regime shift itself. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -1936,8 +1936,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "slagvolum, frekvens, minuttvolum \u00b7 perspective: academia",
-    "what": "physiological measurement; here description \u2014 proxy chain: EKG \u2192 elektrisk syklus -> ekko \u2192 mekanisk syklus",
+    "one": "stroke volume, frequency, minute volume \u00b7 perspective: academia",
+    "what": "physiological measurement; here description \u2014 proxy chain: ECG \u2192 electrical cycle -> echo \u2192 mechanical cycle",
     "how": "Buffer role: the ventricles are the buffers: they fill and empty rhythmically \u2014 never to\u2026 Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -1976,7 +1976,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "expression level per gene (mRNA/protein) \u00b7 perspective: academia",
-    "what": "sequencing; here: description of the regulatory logic \u2014 proxy chain: TF-binding \u2192 uttrykk -> epigenetisk merke \u2192 terskelskifte",
+    "what": "sequencing; here: description of the regulatory logic \u2014 proxy chain: TF-binding \u2192 uttrykk -> epigenetic mark \u2192 threshold shift",
     "how": "Buffer role: the genome keeps the regulatory programs stored \u2014 a capacity that damps random\u2026 Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -2014,7 +2014,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "fase per celle (G1/S/G2/M) \u00b7 perspective: academia",
+    "one": "phase per cell (G1/S/G2/M) \u00b7 perspective: academia",
     "what": "laboratory measurement; here description \u2014 proxy chain: DNA-innhold \u2192 fase -> CDK/cyklin \u2192 sjekkpunkt-status",
     "how": "Buffer role: the checkpoints are the buffers: they hold the cycle until the conditions are\u2026 Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
@@ -2170,8 +2170,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "aktiveringsstatus, antistofftiter, hukommelsespopulasjon \u00b7 perspective: academia",
-    "what": "laboratory measurement; here description \u2014 proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse",
+    "one": "activation status, antibody titre, memory population \u00b7 perspective: academia",
+    "what": "laboratory measurement; here description \u2014 proxy chain: danger signals + antigen concentration -> activation -> titre -> memory",
     "how": "Buffer role: memory is the buffer: it lowers the threshold and makes the next response faster. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -2288,7 +2288,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "rate of change in phenotype/species (morphological and molecular\u2026 \u00b7 perspective: academia",
-    "what": "palaeontological/genomic measurement; here: description \u2014 proxy chain: fossilrekke -> morfologisk rate -> molecular distance -> time since split",
+    "what": "palaeontological/genomic measurement; here: description \u2014 proxy chain: fossil record -> morphological rate -> molecular distance -> time since split",
     "how": "Buffer role: stasis is holding: selection and developmental constraints hold the phenotype\u2026 Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -2678,7 +2678,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "The Grid-Higgs framework: entropic and structural theory of gravity\u2026 \u00b7 perspective: paradigm",
-    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
+    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> paper -> derivation \u2014 literature chain",
     "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
@@ -2719,7 +2719,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "The thermodynamic bridge between general relativity and quantum field\u2026 \u00b7 perspective: paradigm",
-    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
+    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> paper -> derivation \u2014 literature chain",
     "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
@@ -2760,7 +2760,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "The double-slit as a grid-resolution phenomenon: ontological\u2026 \u00b7 perspective: paradigm",
-    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
+    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> paper -> derivation \u2014 literature chain",
     "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
@@ -2801,7 +2801,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "From grid microphysics to the radial acceleration relation \u2014 minimal\u2026 \u00b7 perspective: paradigm",
-    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
+    "what": "none direct \u2014 theoretical work \u2014 proxy chain: DOI -> paper -> derivation \u2014 literature chain",
     "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
@@ -2879,7 +2879,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "black holes as an entropic boundary in the Grid-Higgs frame \u00b7 perspective: paradigm",
-    "what": "none direct \u2014 theoretical \u2014 proxy chain: DOI -> verk -> avledning",
+    "what": "none direct \u2014 theoretical \u2014 proxy chain: DOI -> work -> derivation",
     "how": "Buffer role: BH as entropic buffer in the grid theory. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
@@ -2920,7 +2920,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "periodesystemets struktur (118 grunnstoff) \u00b7 perspective: academia",
-    "what": "spectroscopy and chemical analysis \u2014 proxy chain: atomnummer -> periodisitet \u2014 konsensus-kartlegging",
+    "what": "spectroscopy and chemical analysis \u2014 proxy chain: atomic number -> periodicity \u2014 consensus mapping",
     "how": "Buffer role: the periodic table is the buffer that keeps the chemistry ordered. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -2961,7 +2961,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "havtemperatur \u00b7 perspective: consensus",
-    "what": "boeyestasjoner (tides & currents) \u2014 proxy chain: stasjon -> temperatur -> hav-energi",
+    "what": "buoy stations (tides & currents) \u2014 proxy chain: station -> temperature -> ocean energy",
     "how": "Buffer role: the ocean as heat buffer in the climate. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3039,7 +3039,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "vulkantilstand \u00b7 perspective: consensus",
-    "what": "statusliste (alertLevel) \u2014 proxy chain: alertLevel -> aktivitet -> regime-status",
+    "what": "statusliste (alertLevel) \u2014 proxy chain: alertLevel -> activity -> regime status",
     "how": "Buffer role: volcanoes as the thermal buffer of the Earth. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3117,7 +3117,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "impact probability and Palermo cumulative per object \u00b7 perspective: consensus",
-    "what": "The Sentry list itself; the reconciliation reads the whole list as the answer key \u2014 proxy chain: bane -> treffsannsynlighet (prediksjon) -> liste -> revidert/utelukket (oppgjoer)",
+    "what": "The Sentry list itself; the reconciliation reads the whole list as the answer key \u2014 proxy chain: track -> hit probability (prediction) -> list -> revised/excluded (settlement)",
     "how": "Buffer role: The Sentry list is the buffer that keeps the risk picture stable between\u2026 Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3195,7 +3195,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the structure that the energy-flow field holds up \u00b7 perspective: paradigm",
-    "what": "none directly \u2014 the structure is derived from the field, not measured as structure \u2014 proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur ->\u2026",
+    "what": "none directly \u2014 the structure is derived from the field, not measured as structure \u2014 proxy chain: energy-flow field -> density gradient -> potential -> structure -> structure -> rotation\u2026",
     "how": "Buffer role: the halo itself is the buffer: it holds the form while the field varies beneath. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 sector S \u00b7 clarity C(S) at S>0: structural clarity \u2014 the form reads the energy flow at equilibrium \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S>0",
@@ -3234,7 +3234,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "the energy-flow field J_mu and its divergence \u00b7 perspective: paradigm",
-    "what": "aksjonen (master-spec, eq. 1) \u2014 proxy chain: aksjon -> feltligning -> J_mu -> ekspansjonshistorie -> J_mu -> Sigma (kildeledd)",
+    "what": "the action (master-spec, eq. 1) \u2014 proxy chain: action -> field equation -> J_mu -> expansion history -> J_mu -> Sigma (kildeledd)",
     "how": "Buffer role: F(phi) and K(rho) damp deviations from LCDM depending on the field value. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 sector D \u00b7 clarity C(S) at S>0: dynamic clarity \u2014 time, space and velocity emerge from energy flow under S \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S>0",
@@ -3351,7 +3351,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3546,7 +3546,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3585,7 +3585,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3702,7 +3702,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3741,7 +3741,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3780,7 +3780,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3819,7 +3819,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3858,7 +3858,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3897,7 +3897,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3936,7 +3936,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3975,7 +3975,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4014,7 +4014,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4053,7 +4053,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4092,7 +4092,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4131,7 +4131,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4170,7 +4170,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4209,7 +4209,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "global news streams coded to topic, actor and place \u00b7 perspective: consensus",
-    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> andel per domene",
+    "what": "the GKG pipeline; coded documents per topic \u2014 proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain",
     "how": "Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4248,7 +4248,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "astronomical observations and catalogued sources \u00b7 perspective: consensus",
-    "what": "MAST CAOM observasjonskatalog \u2014 proxy chain: instrumentmetadata -> CAOM-observasjon -> katalogisert astronomisk kilde",
+    "what": "MAST CAOM observation catalog \u2014 proxy chain: instrument metadata -> CAOM observation -> catalogued astronomical source",
     "how": "Buffer role: the observation catalog holds metadata between extractions. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4287,7 +4287,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "climate-related coverage coded in global news documents \u00b7 perspective: consensus",
-    "what": "GDELT GKG coding of document, topic, actor and place \u2014 proxy chain: nyhetsdokument -> GKG-koder -> klimarelatert observasjon",
+    "what": "GDELT GKG coding of document, topic, actor and place \u2014 proxy chain: news document -> GKG codes -> climate-related observation",
     "how": "Buffer role: the GDELT corpus holds the coding between messages. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4326,7 +4326,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "climate and development indicators per country and year \u00b7 perspective: consensus",
-    "what": "the World Bank indicators' reported and harmonised datasets \u2014 proxy chain: nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding",
+    "what": "the World Bank indicators' reported and harmonised datasets \u2014 proxy chain: national reporting -> harmonisation -> indicator value -> state message",
     "how": "Buffer role: harmonised indicator series hold the state between annual updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,

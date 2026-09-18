@@ -138,8 +138,8 @@ class OekonomiEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": "homo.fluxus",
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "Minsky's financial regimes — stability as holding",
                 "validity": validity,
@@ -164,10 +164,10 @@ class OekonomiEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "Minskys tre regimer beskriver finansens kvalitative tilstander",
+                    "Minsky's three regimes describe the qualitative states of finance",
                     "the leverage drift is linear and the confidence term constant (idealization)",
                 ],
-                "source": "Hyman Minsky, Financial Instability Hypothesis (1970-80-årene); analogi-merkingen er atlasets egen",
+                "source": "Hyman Minsky, Financial Instability Hypothesis (the 1970s-80s); the analogy labelling is the atlas's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only debt ratio and interest rates — no sector balances, no currency dynamics",

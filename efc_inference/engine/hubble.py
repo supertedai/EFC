@@ -136,8 +136,8 @@ class EFCHubble(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": "efc.efc_background_engine",
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {"name": "The Hubble engine — the expansion",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -162,7 +162,7 @@ class EFCHubble(EFCEngine):
             },
             "ontology": {
                 "assumes": ["the background is homogeneous and isotropic",
-                            "E²(a) er den riktige deformasjonen"],
+                            "E²(a) is the correct deformation"],
                 "source": "EFCVariantA; efc_inference/engine/hubble.py",
             },
             "observer": {

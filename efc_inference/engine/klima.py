@@ -178,8 +178,8 @@ class KlimaEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "The radiation balance of the climate and its regime switches",
                 "validity": validity,
@@ -205,14 +205,14 @@ class KlimaEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "0D-approksimasjonen gjelder (globalt gjennomsnitt)",
-                    "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)",
+                    "the 0D approximation holds (global average)",
+                    "the ice-albedo switch is idealized (linear rise below 0 °C)",
                     "The AMOC switch is ASSESSED and DELIBERATELY OMITTED (t_9978fc90): "
                     "the engine has no circulation variable — a "
                     "freshwater-driven overturning cell requires two boxes and "
                     "belongs in a SEPARATE ENGINE, not in the radiation balance",
                 ],
-                "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen",
+                "source": "standard 0D energy-balance model (the Budyko-Sellers tradition); the analogy marking is the atlas's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only global averages — no regional dynamics",

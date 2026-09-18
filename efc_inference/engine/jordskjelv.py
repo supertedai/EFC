@@ -110,8 +110,8 @@ class JordskjelvEngine(EFCEngine):
             "charges from stress = 0. Does NOT predict single "
             "earthquakes."
         )
-        law_form = ("gjentakelsestid = terskel / lade_rate; "
-                    "M0 = mu * A * (terskel/mu); "
+        law_form = ("recurrence time = threshold / charge rate; "
+                    "M0 = mu * A * (threshold/mu); "
                     "Mw = (2/3)(log10 M0 - 9.1)")
         return {
             "id": "efc.jordskjelv_engine",
@@ -139,8 +139,8 @@ class JordskjelvEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "The Earth's holding->release (fault buffer)",
                 "validity": validity,
@@ -168,7 +168,7 @@ class JordskjelvEngine(EFCEngine):
                     "elastic rebound applies: the stress accumulates elastically and is released abruptly",
                     "triggering occurs at a fixed threshold (idealization: real friction is velocity- and state-dependent)",
                 ],
-                "source": "elastic rebound (Reid), Burridge-Knopoff-tradisjonen, Kanamoris Mw; idealiseringene er motorens egne",
+                "source": "elastic rebound (Reid), the Burridge-Knopoff tradition, Kanamori's Mw; the idealisations are the engine's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only voltage and charge rate — no friction law, no pore pressure",

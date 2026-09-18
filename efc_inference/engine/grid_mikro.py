@@ -132,8 +132,8 @@ class GridMikroEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "grid-modene følger Bose-Einstein-okkuperings-"
-                    "statistikk (31942821)",
+                    "the grid modes follow Bose-Einstein occupation "
+                    "statistics (31942821)",
                     "Deff(ρ) comes from boundary-mode activation on a "
                     "finite lattice well (31942800)",
                     "Scenario B+ is the microphysical HYPOTHESIS of EFC — "
@@ -188,7 +188,7 @@ class GridMikroEngine(EFCEngine):
                 "koordinater": ["masse", "rom", "energi"],
                 "enheter": "rho_crit = a0/(GN lg)",
                 "status": "avledet",
-                "alternativer": ["konsensus-QFT uten grid-struktur"],
+                "alternativer": ["consensus QFT without grid structure"],
             },
             "stipulasjoner": {
                 "stipulert_av_oss": True,
@@ -197,8 +197,8 @@ class GridMikroEngine(EFCEngine):
                 "motor": "grid_mikro",
             },
             "analogi": {
-                "avbildning": ("grid-moders metning -> batteriets "
-                               "ladekurve / hjemostasens setpunkt"),
+                "avbildning": ("the grid mother's saturation -> the battery's "
+                               "charging curve / the homeostasis setpoint"),
                 "bryter_der": ("the lattice modes are a theoretical "
                                "construct — the battery is measured; "
                                "the form is the same, the substrate's "
@@ -210,7 +210,7 @@ class GridMikroEngine(EFCEngine):
             "nivaa": {
                 "indeks": 3,
                 "forelder": "efc.grid_mikrofysikk",
-                "tidsskala": "gitter-skala",
-                "lengdeskala": "lg (grid-lengden)",
+                "tidsskala": "lattice scale",
+                "lengdeskala": "lg (the grid length)",
             },
         }

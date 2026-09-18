@@ -209,8 +209,8 @@ class MuKZEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "The action's derived Poisson coupling mu(k,z)",
                 "validity": (

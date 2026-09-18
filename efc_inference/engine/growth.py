@@ -268,8 +268,8 @@ class EFCGrowth(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {"name": "The growth engine — fσ8",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -293,10 +293,9 @@ class EFCGrowth(EFCEngine):
                 "note": "the buffer belongs to the model, not to the engine.",
             },
             "ontology": {
-                "assumes": ["lineær perturbasjonsteori holder på "
-                            "fσ8-skalene", "the growth ODE with EFC-H(a) "
+                "assumes": ["linear perturbation theory holds at the fσ8 scales", "the growth ODE with EFC-H(a) "
                             "is the right deformation"],
-                "source": "MVP-G1 hubble-friksjonskanal; "
+                "source": "MVP-G1 hubble friction channel; "
                           "efc_inference/engine/growth.py",
             },
             "observer": {

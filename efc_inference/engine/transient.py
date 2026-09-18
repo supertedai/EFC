@@ -201,8 +201,8 @@ class TransientEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "Stellar death's holding->release (collapse buffer)",
                 "validity": validity,

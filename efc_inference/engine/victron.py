@@ -215,7 +215,7 @@ class VictronChargeEngine(EFCEngine):
                 "indeks": 2,
                 "forelder": "batteri.lading",
                 "tidsskala": "s",
-                "lengdeskala": "anlegg"
+                "lengdeskala": "installation"
             },            "regime": {
                 "name": "Victron charge engine — the CC/CV knee",
                 "validity": validity,

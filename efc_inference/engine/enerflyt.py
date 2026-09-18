@@ -188,9 +188,9 @@ class EnerFlytEngine(EFCEngine):
                 "koordinater": ["energi", "tid", "fraksjon"],
                 "enheter": "energy/time, per-capita fractions",
                 "status": "proxy",
-                "alternativer": ["penger, oppmerksomhet, tillit — "
-                                 "ikke-konserverte valutaer utenfor "
-                                 "modellen"],
+                "alternativer": ["money, attention, trust — "
+                                 "non-conserved currencies outside "
+                                 "the model"],
             },
             # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
             # the engine cannot know where in the ladder its node belongs. The field must
@@ -198,8 +198,8 @@ class EnerFlytEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": "homo.fluxus",
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "stipulasjoner": {
                 "stipulert_av_oss": True,
                 "terskler": [("the threshold is the buffer boundary WE "
@@ -208,9 +208,9 @@ class EnerFlytEngine(EFCEngine):
                 "motor": "enerflyt",
             },
             "analogi": {
-                "avbildning": ("buffer -> batterilager/hjemostase, "
-                               "knapphet -> utladning/feber, "
-                               "produksjon -> lading/inntak"),
+                "avbildning": ("buffer -> battery storage/homeostasis, "
+                               "scarcity -> discharge/fever, "
+                               "production -> charging/intake"),
                 "bryter_der": ("society is not an organism: "
                                "no central regulator, the distribution "
                                "is political, and the actors have "

@@ -165,12 +165,12 @@ Each row is generated from the same bank as the atlas.
   perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · built=no
 - **L1 · efc.l1** — CMB anisotropies and BAO scale
   perspective=paradigm · engine=not specified · bus=no bus route — the subject does not… · S-axis=regime S~0 · clarity C(S) at S~0: incipient clarity — the… · questions=1 · built=no
-- **L2 · efc.l2** — fsigma8, P(k), svak linse (S8)
+- **L2 · efc.l2** — fsigma8, P(k), weak lensing (S8)
   perspective=paradigm · engine=not specified · bus=no bus route — the subject does not… · S-axis=regime S>0 · clarity C(S) at S>0: differentiated clarity… · questions=1 · built=no
 - **L3 · efc.l3** — the far-future state
   perspective=paradigm · engine=not specified · bus=no bus route — the subject does not… · S-axis=regime S->1 · clarity C(S) at S->1: saturated clarity — the… · questions=1 · built=no
 - **BA · obs.bao** — the BAO scale (r_d ~ 147 Mpc comoving)
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=galakse-surveyer (DESI, eBOSS, BOSS)… · questions=0 · built=no
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=galaxy surveys (DESI, eBOSS, BOSS)… · questions=0 · built=no
 - **TT · obs.cmb_tt** — temperatur-/polarisasjonsspekteret
   perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck… · questions=0 · built=no
 - **LC · obs.cmb_lensing** — linsingspotensialet
@@ -217,11 +217,11 @@ Each row is generated from the same bank as the atlas.
   perspective=academia · engine=efc.feber_regime_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
 - **AP · homo.aksjonspotensial** — the membrane potential V(t) against the threshold
   perspective=academia · engine=efc.aksjonspotensial_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
-- **HJ · homo.hjerte_syklus** — slagvolum, frekvens, minuttvolum
+- **HJ · homo.hjerte_syklus** — stroke volume, frequency, minute volume
   perspective=academia · engine=efc.hjerte_syklus_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
 - **GN · homo.genregulering** — expression level per gene (mRNA/protein)
   perspective=academia · engine=efc.genregulering_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
-- **CY · homo.cellesyklus** — fase per celle (G1/S/G2/M)
+- **CY · homo.cellesyklus** — phase per cell (G1/S/G2/M)
   perspective=academia · engine=efc.cellesyklus_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
 - **ME · homo.metabolisme** — ATP/ADP-forhold, O₂-forbruk, substrat-fluks
   perspective=academia · engine=efc.metabolisme_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
@@ -229,7 +229,7 @@ Each row is generated from the same bank as the atlas.
   perspective=paradigm · engine=solar_flare · bus=not specified · S-axis=not measured · questions=0 · built=no
 - **JS · efc.jordskjelv_engine** — recurrence time, seismic moment, moment magnitude
   perspective=paradigm · engine=jordskjelv · bus=not specified · S-axis=not measured · questions=0 · built=no
-- **IM · homo.immunologi** — aktiveringsstatus, antistofftiter, hukommelsespopulasjon
+- **IM · homo.immunologi** — activation status, antibody titre, memory population
   perspective=academia · engine=efc.immunologi_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no
 - **SV · homo.sovn_vaaken** — sleep stage (awake/NREM/REM), homeostatic pressure
   perspective=academia · engine=efc.sovn_vaaken_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · built=no

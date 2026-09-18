@@ -96,8 +96,8 @@ class EFCCluster(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {"name": "The cluster engine — n(M,z) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
@@ -124,8 +124,7 @@ class EFCCluster(EFCEngine):
                 "note": "the buffer belongs to reality, not to the engine.",
             },
             "ontology": {
-                "assumes": ["halomassefunksjonen er et gyldig "
-                            "strukturinstrument", "The EFC deformation "
+                "assumes": ["the halo mass function is a valid structure instrument", "The EFC deformation "
                             "can be translated into n(M,z) — unverified"],
                 "source": "stub-kontrakt; efc_inference/engine/"
                           "cluster.py",

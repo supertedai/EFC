@@ -149,8 +149,8 @@ class OrbitalEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "Orbital regimes — Kepler and binding thresholds",
                 "validity": validity,
@@ -176,10 +176,10 @@ class OrbitalEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "tolegeme-approksimasjonen gjelder (sentral masse dominerer)",
-                    "banene er Kepler-ellipser (ingen perturbasjoner)",
+                    "the two-body approximation holds (the central mass dominates)",
+                    "the orbits are Kepler ellipses (no perturbations)",
                 ],
-                "source": "Keplers lover, vis-viva, Hill-sfæren (standard himmelmekanikk); analogi-merkingen er atlasets egen",
+                "source": "Kepler's laws, vis-viva, the Hill sphere (standard celestial mechanics); the analogy labelling is the atlas's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only (a, e) — no resonance map, no perturbation history",

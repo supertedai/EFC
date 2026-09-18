@@ -141,8 +141,8 @@ class SamfunnEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": "homo.fluxus",
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "SIR epidemiology — flow with threshold",
                 "validity": validity,
@@ -168,10 +168,10 @@ class SamfunnEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "homogen blanding (alle møter alle likt)",
+                    "homogeneous mixture (all meet all alike)",
                     "constant beta and gamma in the window",
                 ],
-                "source": "Kermack-McKendrick SIR (1927); analogi-merkingen er atlasets egen",
+                "source": "Kermack-McKendrick SIR (1927); the analogy marking is the atlas's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only the aggregates S, I, R — no individuals, no network",

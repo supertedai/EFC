@@ -171,8 +171,8 @@ class SolarFlareEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "The Sun's holding->release (magnetic buffer)",
                 "validity": validity,

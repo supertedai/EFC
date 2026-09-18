@@ -106,7 +106,7 @@ class TidevannEngine(EFCEngine):
         )
         law_form = ("a_t = 2 G m_obj R / r^3; h ~ a_t R / g; "
                     "d_roche = 2.44 R (rho_s/rho_o)^(1/3); "
-                    "phase locking: P_rot = P_omløp")
+                    "phase locking: P_rot = P_orbit")
         return {
             "id": "efc.tidevann_engine",
             "synlighet": self.SYNLIGHET,
@@ -133,8 +133,8 @@ class TidevannEngine(EFCEngine):
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
                 "name": "The tide — periodic gravitational coupling",
                 "validity": validity,
@@ -160,10 +160,10 @@ class TidevannEngine(EFCEngine):
             },
             "ontology": {
                 "assumes": [
-                    "likevekts-tidevann (ingen basseng-resonans)",
+                    "equilibrium tide (no basin resonance)",
                     "The Roche limit for a fluid body (the 2.44 factor) with a simplified density ratio",
                 ],
-                "source": "standard tidevannsteori (differensiell gravitasjon, Roche); analogi-merkingen er atlasets egen",
+                "source": "standard tidal theory (differential gravitation, Roche); the analogy marking is the atlas's own",
             },
             "observer": {
                 "bandwidth": "the engine sees only distance and periods — no basin geometry, no dissipation measurement",
