@@ -118,7 +118,7 @@ class TidevannEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "The equilibrium tide and the Roche limit are textbook matter carried by oceanography; the charge/discharge reading of the cycle is the framework's, and lands outside what oceanographers would call a tide model.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

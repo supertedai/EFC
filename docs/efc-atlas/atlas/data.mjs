@@ -97,7 +97,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The ice Ih boundaries are the IAPWS standard's consensus, carried by thermodynamics and the refrigeration and climate\u2026"
       ]
     ],
     "cond": [
@@ -138,7 +138,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "Liquid water is metrology's and oceanography's most used reference (the ocean's heat transport, the Gulf Stream); the\u2026"
       ]
     ],
     "cond": [
@@ -179,7 +179,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The phase boundary is IAPWS consensus; water vapour's role as a greenhouse gas is carried and negotiated by climate\u2026"
       ]
     ],
     "cond": [
@@ -220,7 +220,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "Supercritical water is used and measured by process and power industry (oxidation, power plants); the users care about\u2026"
       ]
     ],
     "cond": [
@@ -261,7 +261,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The triple point is DEFINED, not measured \u2014 the carrier is metrology (IAPWS-95/ITS-90) and every thermometer is\u2026"
       ]
     ],
     "cond": [
@@ -302,7 +302,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "Sunlight as electromagnetic radiation is textbook consensus, carried by classical electromagnetism; that the VISIBLE\u2026"
       ]
     ],
     "cond": [
@@ -343,7 +343,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The drop shape and the refraction are carried by fluid mechanics and optics (the Descartes/Newton tradition) and are\u2026"
       ]
     ],
     "cond": [
@@ -384,7 +384,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The dispersion n(\u03bb) is measured (NIST) and carried by classical optics; the carrier delivers numbers and has no interest\u2026"
       ]
     ],
     "cond": [
@@ -425,7 +425,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The rainbow has been explained since Descartes and is canonized in the textbooks (meteorology); it is a PATTERN, not an\u2026"
       ]
     ],
     "cond": [
@@ -466,7 +466,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "The observer is carried by visual physiology and by the public who see the bow; that the bow exists as a pattern\u2026"
       ]
     ],
     "cond": [
@@ -507,7 +507,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The H2O phase boundaries are the IAPWS standard's institutional consensus; the EFC engine is OUR recomputation of them\u2026"
       ]
     ],
     "cond": []
@@ -546,7 +546,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Pre-inflation and the quantum seeds are cosmology's established frame, carried by the inflation literature; the\u2026"
       ]
     ],
     "cond": [
@@ -587,7 +587,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The CMB and BAO are carried by the whole cosmology field (Planck, DESI); that EFC looks like LCDM precisely HERE is our\u2026"
       ]
     ],
     "cond": [
@@ -628,7 +628,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Structure growth and the S8 tension are negotiated openly by the survey collaborations; that L2 is where EFC departs\u2026"
       ]
     ],
     "cond": [
@@ -669,7 +669,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The far-future state is measured by no one and has no observer group; the carrier is the framework's own mathematics\u2026"
       ]
     ],
     "cond": [
@@ -1610,7 +1610,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The rotation curves are the observers' measurement; the explanation \u00abflat curve WITHOUT dark matter\u00bb is OURS \u2014 the\u2026"
       ]
     ],
     "cond": []
@@ -1649,7 +1649,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "H(z) is measured by the distance-ladder and CMB collaborations; the deformation E\u00b2(a) with alpha_cosmo is OUR law form\u2026"
       ]
     ],
     "cond": []
@@ -1688,7 +1688,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The f\u03c38 numbers are carried by the survey collaborations (BOSS/DESI); the growth ODE with the EFC-deformed H is ours\u2026"
       ]
     ],
     "cond": []
@@ -1727,7 +1727,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Lensing is measured by Planck/ACT/SPT and carried by them; this node is our CONTRACT (a stub) \u2014 it claims no\u2026"
       ]
     ],
     "cond": []
@@ -1766,7 +1766,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The halo mass function is calibrated in the simulation tradition and carried by it; only OUR contract stands here \u2014 no\u2026"
       ]
     ],
     "cond": []
@@ -1805,7 +1805,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Homo Fluxus v1/v2 are OUR DOIs, and the placement \u00abthe human as the L3 carrier\u00bb is the framework's hypothesis; the\u2026"
       ]
     ],
     "cond": []
@@ -2117,7 +2117,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The GOES scale and the storm watch are carried by NOAA/SWPC, who would lose from a wrong warning; our buffer model is\u2026"
       ]
     ],
     "cond": []
@@ -2156,7 +2156,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Seismology carries the physics (Reid, Burridge-Knopoff) and has learned not to promise timing; our threshold model is\u2026"
       ]
     ],
     "cond": []
@@ -2351,7 +2351,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The equations come from our own action paper; the module is OUR port of them, and because the background is INPUT rather\u2026"
       ]
     ],
     "cond": []
@@ -2390,7 +2390,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The Kp scale and the storm classification are carried by NOAA/SWPC; the linear charging form is our idealization, and\u2026"
       ]
     ],
     "cond": []
@@ -2429,7 +2429,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The Minsky tradition (one of several in economics) carries the regime-shift picture; the coupling to buffer and energy\u2026"
       ]
     ],
     "cond": []
@@ -2468,7 +2468,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Kepler, vis-viva and the Hill sphere are textbook consensus carried by celestial mechanics; reading \u00abbound = holding\u2026"
       ]
     ],
     "cond": []
@@ -2507,7 +2507,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The Budyko-Sellers tradition and the climate field carry the energy balance; our 0D model is IDEALIZED and says itself\u2026"
       ]
     ],
     "cond": []
@@ -2546,7 +2546,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "Kermack-McKendrick and infectious-disease epidemiology carry the R0 picture; our homogeneous SIR is a FORM model\u2026"
       ]
     ],
     "cond": []
@@ -2585,7 +2585,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The equilibrium tide and the Roche limit are textbook matter carried by oceanography; the charge/discharge reading of\u2026"
       ]
     ],
     "cond": []
@@ -2624,7 +2624,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "The transient stream (ALeRCE/ZTF) is carried by the observatory community; the collapse branch and the threshold model\u2026"
       ]
     ],
     "cond": []
@@ -2663,7 +2663,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "Conservation in the energy accounts is physics, carried by the statistics; the coupling to society's buffers is OUR\u2026"
       ]
     ],
     "cond": []
@@ -2702,7 +2702,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "The Grid-Higgs frame is published by us (DOI 28559510) and has no group outside the project; that gravity, dark matter\u2026"
       ]
     ],
     "cond": [
@@ -2743,7 +2743,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "The bridge is our own published work (DOI 30402427); both fields it spans have established formalisms, so the bridge\u2026"
       ]
     ],
     "cond": [
@@ -2784,7 +2784,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "The double slit is quantum mechanics' most canonized experiment and is carried by the textbook tradition; reading it as\u2026"
       ]
     ],
     "cond": [
@@ -2825,7 +2825,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "The RAR is measured and carried by the galaxy observers; our gradient-coupled excitation model (DOI 31878760) is a\u2026"
       ]
     ],
     "cond": []
@@ -2864,7 +2864,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "Two of our own DOIs (31942821/31942800) are the only carrier; scenario B+ is the framework's hypothesis and L-031 stands\u2026"
       ]
     ],
     "cond": []
@@ -3180,7 +3180,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "The self-consistent EFC background exists only in our own paper (DOI 31876324); no external group solves these\u2026"
       ]
     ],
     "cond": []

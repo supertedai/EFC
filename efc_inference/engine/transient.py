@@ -185,7 +185,7 @@ class TransientEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "The transient stream (ALeRCE/ZTF) is carried by the observatory community; the collapse branch and the threshold model are the framework's — observers measure the light curve, they do not read it as a buffer.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

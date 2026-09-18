@@ -507,7 +507,7 @@
             },
             "sosial_mekanisme": {
               "type": "string",
-              "description": "Hvilke sosiale krefter bærer konsensusen: narrativ-styrke, insentiver, finansiering, prestisje, ego, karriererisiko."
+              "description": "The social forces that carry the CLAIM: who says it, who would gain from it, who would lose — narrative strength, incentives, funding, prestige, ego, career risk. The text is INDIVIDUALIZED per node (rule 46): two nodes sharing a text is a template, and template text is false traceability. The guard is tests/test_epistemikk_v3.py, which fails on a text two nodes share."
             },
             "konsensus_er_ikke_sannhet": {
               "type": "boolean",
