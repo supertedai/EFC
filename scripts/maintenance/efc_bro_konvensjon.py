@@ -104,6 +104,7 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/analogi",
     "/falsifiserbarhet",
     "/prediction",
+    "/settlement",
 )
 
 #: Stier der motoren faar utstede en DELMENGDE av atlasets liste.
