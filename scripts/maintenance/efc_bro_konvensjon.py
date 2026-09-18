@@ -142,6 +142,26 @@ IKKE_BRO_MOTORER = frozenset({
 
 ATLAS = ("schema", "regime_nodes.jsonld")
 
+#: The file format the bank is written in — ONE source, read by BOTH
+#: writers (``efc_bro_synk.py``, ``bygg_kildenoder.py``) and by the format
+#: guard inside the sync. It lives here because it is the same convention as
+#: ownership: how the bank is written is not each writer's taste.
+#:
+#: Measured 2026-09-18 (t_2bc25575): the format had drifted from the
+#: declaration. The file was indent=1 from 2026-09-17T19:37 until #545
+#: (d826235b, 2026-09-18T14:10) rewrote the WHOLE file as indent=2 as a side
+#: effect of adding nodes. The sync refuses to write when the file is not in
+#: the declared format, and it refused in silence: `--sjekk` failed for ALL
+#: 20 bridges, not just the three someone was looking for, and no CI job ran
+#: it.
+#:
+#: The indent was chosen to AVOID reformatting 605 kB (14 300 lines, every
+#: line changed), which would have collided with every open atlas branch:
+#: the file stands in indent=2, the format is pinned to what the file
+#: actually is, and the guard is unchanged — if anyone rewrites the bank
+#: again, `--sjekk` goes red again, and then the file is the wrong side.
+FORMAT: dict[str, Any] = dict(indent=2, ensure_ascii=False)
+
 
 def _normaliser(sti: str) -> str:
     """`/a[0]` -> `/a[]`; lar undertre-stier staa."""

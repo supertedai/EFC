@@ -1,30 +1,42 @@
 # EFC — kunnskapslivssyklusen, fase 1
+#
+# PYTHON: which interpreter runs the checks. The default is `python3`, which
+# is right in CI (where the dependencies are installed into it). On a
+# workstation `python3` is often a bare system interpreter WITHOUT
+# pytest/numpy, and then the bridge sync stops on the import of the test
+# modules that own the canonical parameters. Measured 2026-09-18
+# (t_2bc25575): the line below carried a comment saying "run with the test
+# venv" while the line itself called `python3` — so `make check` could not be
+# run as written. Override instead of guessing a path:
+#
+#   make check PYTHON=/opt/venvs/<id>/bin/python
+PYTHON ?= python3
+
 install:
 	uv sync --frozen
 
 check:
-	python3 scripts/maintenance/statement_graph_check.py
-	python3 scripts/maintenance/validate_activity_log.py
-	python3 scripts/maintenance/validate_risk_register.py
-	python3 scripts/maintenance/verifier_bench.py
-# Bro-synken leser de KANONISKE parametrene fra testmodulene (én kilde for
-# test og synk), og de modulene importerer numpy/pytest. Kjor denne linja
-# med testvenv-en (f.eks. /opt/venvs/t_123ed6d9/bin/python), ikke en bar
-# python3 — ellers stopper den paa importen og sier hvilken modul som mangler.
-	python3 scripts/maintenance/efc_bro_synk.py --sjekk
+	$(PYTHON) scripts/maintenance/statement_graph_check.py
+	$(PYTHON) scripts/maintenance/validate_activity_log.py
+	$(PYTHON) scripts/maintenance/validate_risk_register.py
+	$(PYTHON) scripts/maintenance/verifier_bench.py
+# The bridge sync reads the CANONICAL parameters from the test modules (one
+# source for test and sync), and those modules import numpy/pytest (see
+# PYTHON above).
+	$(PYTHON) scripts/maintenance/efc_bro_synk.py --sjekk
 
 inntak-dry:
-	python3 scripts/maintenance/efc_inntak.py --dry-run
+	$(PYTHON) scripts/maintenance/efc_inntak.py --dry-run
 
 inntak:
-	python3 scripts/maintenance/efc_inntak.py
+	$(PYTHON) scripts/maintenance/efc_inntak.py
 
 full-check: check
-	python3 scripts/maintenance/validate_repo.py
-	python3 scripts/maintenance/validate_links.py --maks-eksterne 15
+	$(PYTHON) scripts/maintenance/validate_repo.py
+	$(PYTHON) scripts/maintenance/validate_links.py --maks-eksterne 15
 
 runde:
-	python3 scripts/maintenance/vedlikeholdsrunde.py
+	$(PYTHON) scripts/maintenance/vedlikeholdsrunde.py
 
 blast:
-	python3 scripts/maintenance/blast_radius.py --diff origin/main --gate
+	$(PYTHON) scripts/maintenance/blast_radius.py --diff origin/main --gate

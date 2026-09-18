@@ -13,7 +13,12 @@ skal være offentlig eller intern er Mortens beslutning. Den bygges som
 intern inntil videre, og sier det selv.
 """
 import json
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import efc_bro_konvensjon as K  # noqa: E402
 
 DEKNING = Path("schema/atlas_dekning.json")
 
@@ -204,7 +209,7 @@ def main() -> None:
     ude = {k: v for k, v in dek["domener"].items() if not v.get("noder")}
     nye = [node_for(k, v) for k, v in sorted(ude.items()) if k not in finnes]
     d["nodes"].extend(nye)
-    p.write_text(json.dumps(d, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    p.write_text(json.dumps(d, **K.FORMAT) + "\n", encoding="utf-8")
     print(f"la til {len(nye)} noder for {len(ude)} udekkede domener")
     print(f"totalt {len(d['nodes'])} noder")
 
