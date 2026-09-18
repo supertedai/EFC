@@ -77,4 +77,4 @@ jobs:
         run: python3 scripts/maintenance/efc_bro_synk.py --sjekk
 
       - name: Unit tests for the gate, and every workflow file parses
-        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py tests/test_bro_konvensjon.py tests/test_holding_release_motorer.py -q
+        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py tests/test_bro_konvensjon.py tests/test_holding_release_motorer.py tests/test_atlas_kilder.py -q
