@@ -435,6 +435,38 @@ def _loes_akse(atlas: dict, akse: str) -> tuple[str, str | None]:
     raise KeyError(akse)
 
 
+def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
+    """HELE atlaset paa én gang — hva som er hva, hvor, hvor mange.
+
+    Maalt 2026-09-17: rotasjonen svarte paa ETT spoersmaal om gangen. Morten:
+    «ALT dette skal vaere globalt i atlaset og du skal umiddelbart vite hva
+    som er hva hvor osv». Det er ikke et soek — det er tilstanden.
+    """
+    alle = akser(atlas)
+    noder = atlas.get("noder") or []
+    ut: list[tuple[str, list[tuple[str, int]]]] = []
+    for sti in sorted(alle):
+        telling: dict[str, int] = {}
+        for n in noder:
+            v = _les_sti(n, sti)
+            if v is None:
+                continue
+            ledd = v if isinstance(v, list) else [v]
+            for x in ledd:
+                telling[str(x)] = telling.get(str(x), 0) + 1
+        if not telling:
+            continue
+        fordeling = sorted(telling.items(), key=lambda x: -x[1])
+        # bare akser som SKILLER, og bare korte verdier: en fritekst er
+        # ikke en kategori. «Umiddelbart» betyr at det maa kunne leses.
+        if len(fordeling) < 2:
+            continue
+        if any(len(v) > 34 or " " in v for v, _ in fordeling[:8]):
+            continue
+        ut.append((sti, fordeling))
+    return ut
+
+
 def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
     """Roter rundt EN akse — toppnivaa eller nested.
 
@@ -492,7 +524,20 @@ if __name__ == "__main__":
     p.add_argument("--akser", action="store_true",
                    help="list ALLE aksene atlaset barer — ogsaa de nye")
     p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
+    p.add_argument("--oversikt", action="store_true",
+                   help="HELE atlaset paa én gang: hva som er hva, hvor, hvor mange")
     a = p.parse_args()
+
+    # OVERSIKTEN — global tilstand, ikke et soek
+    if a.oversikt:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        o = oversikt(atlas)
+        print(f"ATLASET — {len(atlas.get('noder') or [])} noder, "
+              f"{len(o)} akser som skiller")
+        for sti, ford in o:
+            linje = " · ".join(f"{v} ({n})" for v, n in ford[:6])
+            print(f"  {sti:26} {linje[:92]}")
+        sys.exit(0)
 
     # AKSENE — generisk rotasjon, ikke tjue flagg
     if a.akser or a.akse:
