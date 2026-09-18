@@ -124,7 +124,17 @@ LEDGER_DATA = os.path.join(REPO, "docs", "validation-ledger", "data")
 
 
 def _query_neo4j(cypher, params=None):
-    """Query Neo4j via Symbiose API. Returns list of records or []."""
+    """Query Neo4j via Symbiose API.
+
+    Returns the record list of a COMPLETED query — ``[]`` when the graph
+    answered and there were no records. Returns ``None`` when the query never
+    ran (API down, timeout, auth, malformed answer): "the graph has no edges"
+    and "we never reached the graph" are different answers, and the caller has
+    to be able to tell them apart.
+
+    The exception is caught here on purpose — the graph is optional enrichment
+    and must not kill a run — but it is reported, not swallowed.
+    """
     import urllib.request
     import urllib.error
     url = f"{SYMBIOSE_API}/api/v1/neo4j"
@@ -136,16 +146,31 @@ def _query_neo4j(cypher, params=None):
     try:
         with urllib.request.urlopen(req, timeout=15) as resp:
             data = json.loads(resp.read())
-            return data.get("records", data.get("result", []))
-    except Exception:
-        return []
+    except Exception as e:
+        print(f"    [WARN] Neo4j query did not run ({SYMBIOSE_API}): "
+              f"{type(e).__name__}: {e}")
+        return None
+    if not isinstance(data, dict):
+        print(f"    [WARN] Neo4j answered {type(data).__name__}, not an "
+              f"object — the query did not run")
+        return None
+    records = data.get("records", data.get("result", []))
+    if not isinstance(records, list):
+        print(f"    [WARN] Neo4j answered without a record list "
+              f"({type(records).__name__}) — the query did not run")
+        return None
+    return records
 
 
 def _query_graph_context(idx):
     """Query Neo4j for 1-2 hop connections from this paper's concepts.
 
     Returns dict with related_papers, related_validations, concept_cluster,
-    and bridge_potential. Gracefully returns empty dict if Neo4j unavailable.
+    and bridge_potential. The graph is optional enrichment, so an unreachable
+    graph must not kill the run — but it must not read as a finding either:
+    the lists stay empty and ``graph_available`` is False with the reason in
+    ``graph_error``, so a reader can tell "no connections" apart from "not
+    measured". ``concepts`` falls back to the paper's own keywords.
     """
     doi = idx.get("doi", "")
     if not doi:
@@ -156,7 +181,10 @@ def _query_graph_context(idx):
         "related_papers": [],
         "related_validations": [],
         "bridge_potential": [],
+        "graph_available": True,
+        "graph_error": "",
     }
+    unanswered = []
 
     # Filter out personal/generic concepts that pollute graph traversal
     NOISE_CONCEPTS = {
@@ -175,6 +203,9 @@ def _query_graph_context(idx):
         "c.concept_type AS type LIMIT 30",
         {"doi": doi.split("/")[-1]},
     )
+    if concepts is None:
+        unanswered.append("concepts")
+        concepts = []
     result["concepts"] = [
         {"name": r.get("name", "?"), "domain": r.get("domain", ""),
          "type": r.get("type", "")}
@@ -201,6 +232,9 @@ def _query_graph_context(idx):
         {"doi": doi.split("/")[-1],
          "noise": list(NOISE_CONCEPTS)},
     )
+    if related is None:
+        unanswered.append("related_papers")
+        related = []
     result["related_papers"] = [
         {"name": r.get("name", "?"), "doi": r.get("doi", ""),
          "shared_concept": r.get("shared", "")}
@@ -219,11 +253,19 @@ def _query_graph_context(idx):
         {"doi": doi.split("/")[-1],
          "noise": list(NOISE_CONCEPTS)},
     )
+    if validations is None:
+        unanswered.append("related_validations")
+        validations = []
     result["related_validations"] = [
         {"test_id": r.get("test_id", ""), "name": r.get("name", ""),
          "shared": r.get("shared", "")}
         for r in validations
     ]
+
+    if unanswered:
+        result["graph_available"] = False
+        result["graph_error"] = ("Neo4j did not answer: "
+                                 + ", ".join(unanswered))
 
     return result
 
@@ -300,6 +342,21 @@ def _gather_efc_state():
     return state
 
 
+def _graph_note(graph_ctx):
+    """One prompt line: was the graph actually queried?
+
+    Without it the model is handed empty lists and reads them as "this paper
+    connects to nothing" — the same conflation the caller used to make. An
+    empty list is only a finding when the query ran.
+    """
+    if graph_ctx.get("graph_available", True):
+        return ""
+    reason = graph_ctx.get("graph_error") or "unknown reason"
+    return (f"  !! NOT MEASURED: {reason}. The empty lists below are not a\n"
+            f"  finding — do not write that this paper has no graph\n"
+            f"  connections.\n")
+
+
 def analyze_holistic_impact(idx, pdf_text, graph_ctx, efc_state):
     """Single holistic LLM call that understands the full EFC picture.
 
@@ -307,6 +364,8 @@ def analyze_holistic_impact(idx, pdf_text, graph_ctx, efc_state):
     to generate a complete ledger_impact with page_updates.
     """
     # Build context strings
+    graph_note = _graph_note(graph_ctx)
+
     concepts_str = ", ".join(
         c["name"] for c in graph_ctx.get("concepts", [])[:10]
     ) or "(no graph data)"
@@ -365,7 +424,7 @@ Think like Morten: Where does this belong? What does it cover? What does it poin
 What does it prove? What is the goal? What is implicit?
 
 ## Graph Intelligence (from Neo4j knowledge graph)
-Concepts this paper touches: {concepts_str}
+{graph_note}Concepts this paper touches: {concepts_str}
 Related papers (1-2 hops):
 {related_str}
 Validation tests sharing observables:
@@ -667,18 +726,28 @@ def read_page(key):
 def write_page(key, text):
     path = PUBLIC_PAGES.get(key, "")
     if path:
-        # Navbaren har én eier (efc_navbar_sync.py). Vi normaliserer den til
-        # den kanoniske blokken FOR DENNE SIDEN — med «du er her»-markeringen
-        # (color:#c22) — før vi skriver. Uten sidens navn ble markeringen
-        # strippet og siden etterlatt med navbar_drift (målt 2026-09-17).
+        # The navbar has one owner (efc_navbar_sync.py). We normalise it to
+        # the canonical block FOR THIS PAGE — with the "you are here" marker
+        # (color:#c22) — before we write. Without the page's name the marker
+        # was stripped and the page left with navbar_drift (measured 2026-09-17).
         try:
             import sys as _sys
             import os as _os
             _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
             from _nav_helper import ensure_nav as _ensure_nav
             text = _ensure_nav(text, _os.path.basename(path))
-        except Exception:
-            pass  # never let nav sanitation block a real write
+        except Exception as e:
+            # The write still happens: this page's content is the deliverable,
+            # and efc_navbar_sync.py owns the navbar in the same maintenance
+            # run. But the failure is reported, never swallowed —
+            # _nav_helper.ensure_nav cannot raise by contract (it returns the
+            # html unchanged when it cannot render), so an exception here means
+            # the sanitizer itself broke and the page goes out with the navbar
+            # it came in with. Silently, that is only discovered later by
+            # `efc_navbar_sync.py --check` in CI.
+            print(f"    [WARN] navbar sanitation failed for "
+                  f"{os.path.basename(path)}: {type(e).__name__}: {e} — page "
+                  f"written with the navbar it had")
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)
 
@@ -1680,7 +1749,15 @@ def main():
             graph_ctx = _query_graph_context(ic["idx"])
             n_concepts = len(graph_ctx.get("concepts", []))
             n_related = len(graph_ctx.get("related_papers", []))
-            print(f"    Graph: {n_concepts} concepts, {n_related} related papers")
+            if graph_ctx.get("graph_available", True):
+                print(f"    Graph: {n_concepts} concepts, "
+                      f"{n_related} related papers")
+            else:
+                # A zero here is not a measurement. Say which one it is, or the
+                # log reads as "the graph knows nothing about this paper".
+                print(f"    Graph: NOT MEASURED — {graph_ctx.get('graph_error')}"
+                      f" (the counts {n_concepts}/{n_related} are empty, "
+                      f"not measured)")
 
             pdf_text = extract_pdf_text(ic["path"])
             impact = analyze_holistic_impact(
