@@ -171,6 +171,46 @@ def _norm(s: str) -> str:
     return " ".join(s.lower().replace("-", " ").replace("_", " ").split())
 
 
+def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
+    """Finn registrerte begreper uten aa late som de er atlasnoder.
+
+    To ting skal IKKE svelges stille: et begrep uten `@id` er en defekt i
+    registeret (ikke et brukbart treff), og ugyldig JSON i det PRIMAERE
+    begrepsregisteret er en feil — ikke «ikke funnet». Et oppslagsverk som
+    gjor en lesefeil om til «vet ikke», har svart paa noe annet enn det ble
+    spurt om.
+    """
+    naal = _norm(emne)
+    funn = []
+    for sti in ("docs/concepts.jsonld", "docs/ontology.jsonld"):
+        try:
+            data = json.loads(_git(repo, "show", f"{ref}:{sti}"))
+        except json.JSONDecodeError as feil:
+            raise AtlasLesingFeil(f"{sti} er ikke gyldig JSON: {feil}") from feil
+        except AtlasLesingFeil:
+            # Fila finnes ikke paa denne refen. Det er et maalt fravaer av et
+            # VALGFRITT register, ikke en defekt — og det meldes ikke som treff.
+            continue
+        for post in data.get("@graph", []):
+            kandidater = [post.get("@id"), post.get("label")]
+            for felt in ("skos:prefLabel", "skos:notation", "skos:altLabel"):
+                verdi = post.get(felt)
+                verdier = verdi if isinstance(verdi, list) else [verdi]
+                kandidater.extend(
+                    v.get("@value") if isinstance(v, dict) else v for v in verdier)
+            if any(isinstance(v, str) and _norm(v) == naal for v in kandidater):
+                if not isinstance(post.get("@id"), str) or not post["@id"]:
+                    raise AtlasLesingFeil(
+                        f"{sti}: et begrep matcher «{emne}» men mangler @id — "
+                        "registeret er defekt, og et treff uten id kan ikke "
+                        "etterproeves")
+                funn.append({"id": post["@id"], "kilde": sti})
+    unike = {}
+    for post in funn:
+        unike.setdefault(post["id"], post)
+    return sorted(unike.values(), key=lambda x: x["id"] or "")
+
+
 def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
          hent: bool = False) -> dict:
     """Slaa opp et emne i atlaset — leser fra `ref`, aldri fra arbeidsstreet.
@@ -267,7 +307,31 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3}
+    if not treff:
+        registrert = _navnerom(Path(repo), ref, emne)
+        if registrert:
+            treff = [{
+                "trefftype": "navnerom",
+                "id": post["id"],
+                "synlighet": None,
+                "perspektiv": None,
+                "fase": None,
+                "buss_domene": None,
+                "har_prediksjon": False,
+                "har_oppgjoer": False,
+                "har_falsifikator": False,
+                # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
+                # ga en ikke-tom treffliste, og en leser (eller et
+                # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
+                # noden — det har begrepet i navnerommet. De to feltene sier
+                # det uten at noen maa lese prosaen.
+                "har_node": False,
+                "dekning": "navnerom_uten_node",
+                "grunn": (f"registrert i {post['kilde']}, men er ikke en "
+                          "node i schema/regime_nodes.jsonld"),
+            } for post in registrert]
+    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
+             "navnerom": 4}
     # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
     # det publiserte atlaset; de interne er kontekst.
     treff.sort(key=lambda x: (_rang[x["trefftype"]],
@@ -1260,6 +1324,8 @@ if __name__ == "__main__":
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
             print(f"  {t['id']:<34} {t['synlighet'] or '?':<9} "
                   f"{t['perspektiv'] or '':<10} {' · '.join(merker)}{tt}")
+            if t["trefftype"] == "navnerom":
+                print(f"    grunn: {t['grunn']}")
         if not a.alle and s["antall"] > _VIS_MAKS:
             print(f"  ... og {s['antall'] - _VIS_MAKS} flere — bruk --alle for hele listen")
     else:

@@ -75,3 +75,44 @@ class TestInngangen:
     def test_ukjent_tekst_feiler_ikke(self, atlas: dict) -> None:
         p = atlas_lesing.plasser(atlas, "")
         assert p["status"] == "tomt"
+
+
+def kjoer(*args: str) -> str:
+    import subprocess
+    return subprocess.check_output(
+        [sys.executable, str(REPO / "scripts" / "atlas_inngang.py"),
+         *args], text=True, cwd=REPO)
+
+
+def test_node_svarer_for_node_motor_og_buss() -> None:
+    svar = kjoer("efc.rotation_engine", "--ref", "HEAD")
+    assert "NODE: efc.rotation_engine" in svar
+    assert "MOTOR: rotation.py" in svar
+    assert "BUSS: kosmos.galakser" in svar
+    assert "UTENFOR REKKEVIDDE: Hindsight-banken efc" in svar
+
+
+def test_kjent_hull_skilles_fra_ekte_hull() -> None:
+    svar = kjoer("verden.energi", "--ref", "HEAD")
+    assert "KJENT HULL" in svar
+    assert "ingen node" in svar
+
+
+def test_ekte_hull_sier_at_atlaset_ikke_vet() -> None:
+    svar = kjoer("ord_som_ingen_har_maalt", "--ref", "HEAD")
+    assert "ATLASET VET IKKE" in svar
+
+
+def test_utdata_er_deterministisk() -> None:
+    assert kjoer("efc.rotation_engine", "--ref", "HEAD") == kjoer(
+        "efc.rotation_engine", "--ref", "HEAD")
+
+
+def test_ukjent_ref_feiler_hoyt() -> None:
+    import subprocess
+    p = subprocess.run(
+        [sys.executable, str(REPO / "scripts" / "atlas_inngang.py"),
+         "efc.rotation_engine", "--ref", "ref-som-ikke-finnes"],
+        text=True, capture_output=True, cwd=REPO)
+    assert p.returncode != 0
+    assert "feilet" in p.stderr
