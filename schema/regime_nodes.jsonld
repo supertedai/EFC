@@ -1718,7 +1718,7 @@
    "episenter": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
    "buffer": {
     "role": "drag-epoch fryser lydskalaen inn i plasmaet — linjalen fryses i L1 og leses i L2",
-    "note": "hver observasjon har en buffer som holder signalet til det leses."
+    "note": "BAO-observasjonsstroemmen mangler: kilden er maalt fravaerende — VERDEN_OBS har ingen kosmos.kosmologi.observasjon.desi-bao; det som finnes er tilstand.efc-fs8 (12 meldinger), prediksjon.efc-fs8 (1) og diskusjon.arxiv (288)."
    },
    "ontology": {
     "assumes": [
@@ -5524,7 +5524,7 @@
      "atlas-tekst -> lesning -> forståelse"
     ],
     "placement": "inne i systemet — leseren står ikke utenfor",
-    "compression": "60 noder komprimerer en verden"
+    "compression": "Rotasjonsmaal maalt 2026-09-18: 113/113 akser er roterbare og 39/39 domener er dekket; 25 av 28 maalte akser dekker alle 113 noder, og de 3 siste (analogi, motor, domene) er begrunnede avgjoerelser."
    },
    "episenter": "Atlaset er selv en node i atlaset — ingen beskrivelse utenfra.",
    "buffer": {
@@ -5535,7 +5535,7 @@
     "assumes": [
      "beskrivelsen kan beskrive seg selv uten å stå utenfor"
     ],
-    "source": "EFC epistemikk v2 — selvanvendelse"
+    "source": "EFC epistemikk v2 — selvanvendelse. API-kartet er dokumentert i scripts/atlas_lesing.py med alle offentlige innganger og returform (maalt 2026-09-18)."
    },
    "observer": {
     "bandwidth": "masse som begrepsvalg",
@@ -5611,7 +5611,7 @@
    "episenter": "RegimeNode-skjemaet er selv et RegimeNode-objekt — feltene beskriver feltet.",
    "buffer": {
     "role": "skjemaet er bufferen som holder formen stabil mellom revisjoner",
-    "note": "formen holder innholdet."
+    "note": "19 tomme felt ble lukket 2026-09-18 (#518): instrumentene sier «ingen egne — instrumentet LESER verden», og selvbeskrivelsene sier «loopen er selvreferansen». Alle feltene har verdi eller skriftlig grunn; ingen nye felter ble lagt til."
    },
    "ontology": {
     "assumes": [
@@ -7566,7 +7566,7 @@
    "episenter": "oppgjoeret — der forventningen moeter sitt eget utfall, skrevet ned foer svaret var kjent",
    "buffer": {
     "role": "ledgeren som minne mellom intensjon og utfall",
-    "note": "forventningen kan ikke skrives etterpaa uten at det synes"
+    "note": "forventningen kan ikke skrives etterpaa uten at det synes. Maalt gap 2026-09-18: inngang finnes, innmating manuell — plasser() kalles fra ett sted (CLI-en), uten hook/lytter som mater oektenes innsikter inn; vakten (#510) fanger daarlige inntak, men selve innmatingen er manuell."
    },
    "ontology": {
     "assumes": [
