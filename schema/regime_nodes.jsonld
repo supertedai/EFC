@@ -1299,7 +1299,7 @@
     "placement": "observatoren i L2 ser BAKOVER til L1 — instrumentene maaler fotoner som har reist siden z ~ 1100",
     "compression": "hele CMB-himmelen -> ett effektspektrum"
    },
-   "episenter": "S-rammen: L1 er der mu ~ 1 og GR holder — LCDM er spesialtilfellet av EFC i dette regimet, og det er en EGENSKAP ved rammen, ikke en konkurranse",
+   "episenter": "S-rammen: L1 er der mu ~ 1 og GR holder — EFC predikerer at den gaar over i LCDM her (S~0, mu->1); det er EFCs paastand, ikke LCDMs krav — og ontologisk er plasseringen meningen med rammen, ikke en svakhet",
    "buffer": {
     "role": "plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon — en koblingsbuffer som slipper fotonene ved z ~ 1100",
     "note": "buffer som forsinkelse: signalet holdes til det slippes."
@@ -2027,7 +2027,7 @@
    "id": "obs.bao",
    "regime": {
     "name": "BAO — standardlinjalen",
-    "validity": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
+    "validity": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), en utestet og ikke-diskriminerende null-maaling, delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
     "law_form": "observasjonens lovform: signalet er regimets avtrykk, ikke regimet selv"
    },
    "phase": "observasjon",
@@ -2043,7 +2043,7 @@
     "placement": "observatoeren staar i L2 og leser signalet fra sitt instrument — observasjonen er ALLTID en avlesning, aldri tingen selv",
     "compression": "raadata -> ett sammenfattende maal"
    },
-   "episenter": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
+   "episenter": "r_d (lydhorisont ved baryon-drag) er en standardlinjal kalibrert ved drag-epoken — frosset inn i L1-plasmaet, maalt i L2-strukturen; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger-tilstand: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), en utestet og ikke-diskriminerende null-maaling, delta-AIC=+1.74 — INGEN EFC-preferanse; BOSS DR12 delta-chi2=-7.77 er et pipeline-resultat (mcmc not_run); tolkningen er at et eventuelt signal ligger i vekstsektoren, ikke bakgrunnen.",
    "buffer": {
     "role": "drag-epoch fryser lydskalaen inn i plasmaet — linjalen fryses i L1 og leses i L2",
     "note": "BAO-observasjonsstroemmen mangler: kilden er maalt fravaerende — VERDEN_OBS har ingen kosmos.kosmologi.observasjon.desi-bao; det som finnes er tilstand.efc-fs8 (12 meldinger), prediksjon.efc-fs8 (1) og diskusjon.arxiv (288)."
@@ -4394,7 +4394,7 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "EFC predikerer LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
      "rotasjonskurver er et rent gravitasjons-maaleri",
      "EFC-kjernen er korrekt for galakseskalaen"
     ],
@@ -4504,7 +4504,7 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "EFC predikerer LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
      "bakgrunnen er homogen og isotrop",
      "E²(a) er den riktige deformasjonen"
     ],
@@ -4612,7 +4612,7 @@
    "ontology": {
     "assumes": [
      "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
-     "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
+     "EFC predikerer at LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
      "lineær perturbasjonsteori holder på fσ8-skalene",
      "vekst-ODE-en med EFC-H(a) er riktig deformasjon"
     ],
@@ -4739,7 +4739,7 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "EFC predikerer LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
      "svak linsing er et gyldig avbildnings-instrument",
      "EFC-deformasjonen lar seg oversette til kappa — uverifisert"
     ],
@@ -4845,7 +4845,7 @@
    },
    "ontology": {
     "assumes": [
-     "motoren kjører LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
+     "EFC predikerer LCDM-grensen av EFC-rammen: mu -> 1 (GR/Poisson-sublimiten) MED alpha_cosmo = 0 og flat FLRW-bakgrunn — hele grensen, ikke bare en parameter",
      "halomassefunksjonen er et gyldig strukturinstrument",
      "EFC-deformasjonen lar seg oversette til n(M,z) — uverifisert"
     ],
@@ -6542,7 +6542,7 @@
    "ontology": {
     "assumes": [
      "gravitasjons-rammen er EFC: gravitasjon som entropi — mu-kanalen er koblingen, ikke krumningen",
-     "LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
+     "EFC predikerer at LCDM fremkommer som SPESIALTILFELET (mu -> 1) — motorens parametervalg flytter grensen, ikke rammen",
      "KANDIDAT-kobling til growth: MuKZEngine beregner mu(k,z), men injeksjonen i EFCGrowth er IKKE implementert — growth bruker cosmology.growth_source(...). Relasjonen er kartets plan, ikke kodens kobling.",
      "aksjonen (eq. 1) og de kvasi-statiske uttrykkene (eq. 24-31) er korrekt avledet i papiret",
      "bakgrunns-kvantitetene er gitt utenfra — modulen avleder dem ikke"
@@ -6930,7 +6930,7 @@
    },
    "ontology": {
     "assumes": [
-     "«masse» er rammeavhengig: i EFC er den entropiens tette ende; LCDMs masse-kobling er spesialtilfellet av den samme rammen"
+     "«masse» er rammeavhengig: i EFC er den entropiens tette ende; EFC hevder at LCDMs masse-kobling er spesialtilfellet av den samme rammen"
     ],
     "source": "EFC epistemikk v2 — selvanvendelse",
     "proveniens": {
@@ -6993,7 +6993,7 @@
     "status": "valgt_ramme",
     "alternativer": [
      "EFC-rammen er den generelle: gravitasjon er entropi — masse er den tette enden av entropigradienten",
-     "LCDM er et SPESIALTILFELLE av EFC: i grensen (mu -> 1) reduserer entropi-rammen til masse-krumning (G_mynu = 8pi G T_mynu)",
+     "EFC predikerer LCDM som et SPESIALTILFELLE av EFC: i grensen (mu -> 1) reduserer entropi-rammen til masse-krumning (G_mynu = 8pi G T_mynu)",
      "energi-treghet, tellbarhet"
     ]
    },
