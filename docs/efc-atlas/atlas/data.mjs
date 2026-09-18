@@ -3597,7 +3597,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 103 nodes, 72 relations.",
+    "lede": "Everything at once \u2014 103 nodes, 76 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }

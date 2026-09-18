@@ -337,7 +337,8 @@
      "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
     ],
     "motor": "efc.water_supercritical",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
+    "alene_status": "superkritisk fase er koblet til trippelpunktet som fasekartets referanse; ingen annen forelder er riktig"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -3711,7 +3712,7 @@
    },
    "nivaa": {
     "indeks": 1,
-    "forelder": null,
+    "forelder": "efc.efc_background_engine",
     "tidsskala": "motortid",
     "lengdeskala": "domene"
    },
@@ -5565,7 +5566,8 @@
     ],
     "motor": "",
     "buss_status": "intern — ligger ikke paa bussen; atlaset eier den selv",
-    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen"
+    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen",
+    "alene_status": "selvbeskrivelsen er atlasets rot-node; ingen ekstern forelder er fysisk eller ontologisk riktig"
    },
    "id": "efc.selv.atlas",
    "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema.",
@@ -5647,7 +5649,8 @@
     ],
     "motor": "",
     "buss_status": "intern — ligger ikke paa bussen; atlaset eier den selv",
-    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen"
+    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen",
+    "alene_status": "skjemaet beskriver atlasets ramme; det er en intern rot og har ingen fysisk forelder"
    },
    "id": "efc.selv.skjema",
    "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema.",
@@ -5730,7 +5733,8 @@
     ],
     "motor": "",
     "buss_status": "intern — ligger ikke paa bussen; atlaset eier den selv",
-    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen"
+    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen",
+    "alene_status": "valgt tidskoordinat er en intern epistemisk node, ikke en fysisk undernode av et annet regime"
    },
    "id": "efc.selv.paradigme_tid",
    "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema.",
@@ -5815,7 +5819,8 @@
     ],
     "motor": "",
     "buss_status": "intern — ligger ikke paa bussen; atlaset eier den selv",
-    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen"
+    "motor_status": "ingen motor — selvbeskrivelse — beskriver atlaset eller skjemaet. Ingen tilstand aa beregne; den ER beskrivelsen",
+    "alene_status": "valgt massebegrep er en intern epistemisk node, ikke en fysisk undernode av et annet regime"
    },
    "id": "efc.selv.paradigme_masse",
    "ville_falsifisere": "Selvanvendelsen ville feile om atlaset ikke lot seg beskrive av sitt eget skjema.",
@@ -5947,7 +5952,8 @@
      "drift_rate <= 0 -> NaN (ikke stille klipping) — ærlighetsgrense",
      "hedge/spekulativ/ponzi-grensene — Minsky-typologi — en tradisjon blant flere"
     ],
-    "motor": "oekonomi"
+    "motor": "oekonomi",
+    "alene_status": "Minskys idealiserte økonomiregime har ingen eksplisitt finans-node som mekanisk forelder i atlaset"
    },
    "regime": {
     "name": "Minskys finansregimer — stabilitet som holding",
@@ -6037,7 +6043,8 @@
      "epsilon = -GM/(2a): a<0 (hyperbolsk) gir release — energigrense",
      "Hill-sfaeren — tilnaermet stabilitetsgrense — grense"
     ],
-    "motor": "orbital"
+    "motor": "orbital",
+    "alene_status": "baneregimene er koblet til planetsystemet; ingen ekstra hierarkisk forelder er fysisk riktig"
    },
    "regime": {
     "name": "Baneregimer — Kepler og bindingsterskler",
@@ -6132,7 +6139,8 @@
      "alpha_fall ~ 0.4341 vs alpha_retur = 0.35 — hysterese-terskler — tilstandsavhengige albedoer",
      "straalingslikevekt under frysepunktet -> NaN — modellgrense"
     ],
-    "motor": "klima"
+    "motor": "klima",
+    "alene_status": "klimaregimet er koblet til den målte hav-bufferen; ingen sterkere hierarkisk forelder er fysisk riktig"
    },
    "regime": {
     "name": "Klimaets strålingsbalanse og regimebrytere",
@@ -6317,7 +6325,8 @@
     "terskler": [
      "Roche-grensen ~ 2.44 R — brytningsgrense — idealisert"
     ],
-    "motor": "tidevann"
+    "motor": "tidevann",
+    "alene_status": "tidevannsmotoren er koblet til månen; ingen ekstra hierarkisk forelder er fysisk riktig"
    },
    "regime": {
     "name": "Tidevann — periodisk gravitasjonskopling",
@@ -6662,7 +6671,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "teoretisk ramme-node; de konkrete broene ligger under den, men den er ikke en fysisk undernode av noe annet i atlaset"
    },
    "nivaa": {
     "indeks": 0,
@@ -6745,7 +6755,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "teoretisk bro med egen publikasjon; ingen ekstra fysisk relasjon er definert utover Grid-Higgs-kjeden"
    },
    "nivaa": {
     "indeks": 1,
@@ -6828,7 +6839,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "teoretisk bro — ingen egen fysisk nabo i atlasets modell; kobles ikke uten en definert mekanisme"
    },
    "nivaa": {
     "indeks": 1,
@@ -6910,7 +6922,8 @@
      "ingen terskler — teoretisk verk, ingen måling"
     ],
     "motor": "",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "teoretisk bro; kjeden er allerede forankret under gr_qft_bro, og ingen ytterligere fysisk kant er definert"
    },
    "nivaa": {
     "indeks": 2,
@@ -7086,7 +7099,8 @@
     ],
     "motor": "",
     "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "alene_status": "sort hull er plassert under Grid-Higgs; ingen ytterligere fysisk relasjon er definert i kildematerialet"
    },
    "nivaa": {
     "indeks": 1,
@@ -7338,7 +7352,8 @@
      "ingen terskler — maalingsnode"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GBIF-kanalen er en egen målekanal; ingen fysisk forelder finnes i den målte verden-delen"
    },
    "nivaa": {
     "indeks": 0,
@@ -7422,7 +7437,8 @@
      "ingen terskler — maalingsnode"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "Vulkanstatus er en egen målekanal; ingen fysisk forelder finnes i atlasets kosmos-del"
    },
    "nivaa": {
     "indeks": 0,
@@ -7819,7 +7835,8 @@
     "terskler": [
      "ingen terskler — bakgrunnsløser"
     ],
-    "motor": "efc_background"
+    "motor": "efc_background",
+    "alene_status": "FRW-bakgrunnen er koblet til Hubble-motoren; beholdes som egen modellnode fordi den er forutsetningen, ikke samme regime"
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -7910,7 +7927,8 @@
     "terskler": [
      "K = 4.4 +- 0.6 er hentet fra SPARC, ikke avledet her"
     ],
-    "motor": "efc.rotation_engine"
+    "motor": "efc.rotation_engine",
+    "alene_status": "struktur-laget er kjeden sin rot — det har ingen lavere EFC-forelder i denne modellen"
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -7998,7 +8016,8 @@
     "terskler": [
      "g+ = c*H0/e gir H0 = 70.2 +- 16.8 — usikkerheten er STOR"
     ],
-    "motor": "efc.efc_background_engine"
+    "motor": "efc.efc_background_engine",
+    "alene_status": "EFC-D er koblet som neste trinn etter struktur-laget; ingen annen fysisk forelder er nødvendig"
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -8019,8 +8038,8 @@
     ]
    },
    "nivaa": {
-    "indeks": 0,
-    "forelder": null,
+    "indeks": 1,
+    "forelder": "efc.lag_s",
     "tidsskala": "kosmisk tid",
     "lengdeskala": "Hubbleskala"
    },
@@ -8088,7 +8107,8 @@
      "C = Omega x kappa er FALSIFISERT forhaandsregistrert — et EKTE negativt resultat",
      "K = 4.4 +- 0.6 arvet fra SPARC"
     ],
-    "motor": "efc.klima_engine"
+    "motor": "efc.klima_engine",
+    "alene_status": "EFC-C0 er kjedens kapasitetstrinn etter dynamikken; ingen annen fysisk forelder er nødvendig"
    },
    "epistemikk": {
     "sannhetsstatus": "hypotese",
@@ -8109,8 +8129,8 @@
     ]
    },
    "nivaa": {
-    "indeks": 0,
-    "forelder": null,
+    "indeks": 2,
+    "forelder": "efc.lag_d",
     "tidsskala": "kosmisk tid",
     "lengdeskala": "Hubbleskala til nevral skala"
    },
@@ -8177,7 +8197,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8279,7 +8300,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8381,7 +8403,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "JPL Horizons-kanalen er en egen målekanal; månen er koblet til tidevannsmotoren, men ikke gjort til undernode av en annen datakanal"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8483,7 +8506,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8585,7 +8609,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "JPL Horizons-kanalen er koblet til orbitalmotoren; ingen ekstra hierarkisk forelder er fysisk riktig"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8687,7 +8712,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8789,7 +8815,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8891,7 +8918,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-domenet er en egen tekstlig observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -8993,7 +9021,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GCN-domenet er en egen observasjonskanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9198,7 +9227,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9300,7 +9330,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9402,7 +9433,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9504,7 +9536,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9606,7 +9639,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9708,7 +9742,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9810,7 +9845,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -9912,7 +9948,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10014,7 +10051,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10116,7 +10154,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10218,7 +10257,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10320,7 +10360,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10422,7 +10463,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -10524,7 +10566,8 @@
      "ingen egne terskler — andelen arves fra kodingen"
     ],
     "motor": "",
-    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke"
+    "motor_status": "ingen egen motor — noden ER instrumentet; den leser, den regner ikke",
+    "alene_status": "GDELT-kanalen er en egen temakanal; lik kilde alene er ikke en fysisk relasjon"
    },
    "epistemikk": {
     "sannhetsstatus": "stottet",
@@ -11020,10 +11063,34 @@
    "object": "homo.homeostase_buffer"
   },
   {
+   "subject": "efc.efc_background_engine",
+   "predicate": "COUPLED_TO",
+   "object": "efc.hubble_engine",
+   "note": "FRW-bakgrunnen leverer H(a)-historien som Hubble-motoren leser"
+  },
+  {
+   "subject": "efc.tidevann_engine",
+   "predicate": "COUPLED_TO",
+   "object": "kosmos.maane",
+   "note": "tidevann drives by the Moon-Earth differential-gravity coupling"
+  },
+  {
+   "subject": "efc.orbital_engine",
+   "predicate": "COUPLED_TO",
+   "object": "kosmos.planetsystem",
+   "note": "orbital regimes describe bound and unbound motion in planetary systems"
+  },
+  {
    "subject": "efc.klima_engine",
    "predicate": "COUPLED_TO",
    "object": "homo.fluxus",
    "note": "klimaet bærer flytens YTRE tilstand — energibalansen er rammen homo.fluxus lever i; kobling, ikke analogi"
+  },
+  {
+   "subject": "efc.klima_engine",
+   "predicate": "COUPLED_TO",
+   "object": "verden.hav",
+   "note": "the ocean is the measured heat buffer in the climate energy-balance regime"
   }
  ]
 }
