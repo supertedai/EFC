@@ -33,6 +33,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Projection tests (the start point must resolve)
+        run: |
+          python3 -m pip install --quiet "pytest>=8,<9"
+          python3 -m pytest tests/test_changelog_projeksjon.py -q
       - name: Regenerate changelog (projection)
         run: python3 scripts/maintenance/changelog_projeksjon.py
       - name: Require sync (red if the changelog diverges)
