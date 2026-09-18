@@ -2148,8 +2148,8 @@
         "arbiter_waiting_for": "DESI DR2 full-shape",
         "criterion": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430; DH_over_rd must remain below LCDM at z=0.7 and z=1.0",
         "criteria": "{\"description\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\", \"required_DH_rd_trend\": \"below LCDM at z=0.7 and z=1.0\", \"multi_tracer_consistency\": \"LRG and ELG must agree\"}",
-        "tolerance_rule": "innenfor 1 sigma av DR2-maalingens EGEN usikkerhet, ikke en fast baand",
-        "basis": "forseglet blind prediksjon, EFC mot LCDM; tallene er lest fra pakken og ikke utledet her"
+        "tolerance_rule": "within 1 sigma of the DR2 measurement's OWN uncertainty, not a fixed band",
+        "basis": "sealed blind prediction, EFC against LCDM; the numbers are read from the package and not derived here"
       },
       "settlement": {
         "correlation": "efc-dh-over-rd.z0.7-z1.0",
@@ -2634,8 +2634,8 @@
         "arbiter_waiting_for": "DESI DR2 full-shape",
         "criterion": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
         "criteria": "{\"description\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\", \"required_DH_rd_trend\": \"below LCDM at z=0.7 and z=1.0\", \"multi_tracer_consistency\": \"LRG and ELG must agree\"}",
-        "tolerance_rule": "innenfor 1 sigma av DR2-maalingens EGEN usikkerhet, ikke en fast baand",
-        "basis": "forseglet blind prediksjon, EFC mot LCDM; tallene er lest fra pakken og ikke utledet her"
+        "tolerance_rule": "within 1 sigma of the DR2 measurement's OWN uncertainty, not a fixed band",
+        "basis": "sealed blind prediction, EFC against LCDM; the numbers are read from the package and not derived here"
       },
       "settlement": {
         "correlation": "efc-fs8.fsigma8.z0.7.atlas",
