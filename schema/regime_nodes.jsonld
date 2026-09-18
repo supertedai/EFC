@@ -6229,7 +6229,7 @@
      "R0 = 1 — terskelen mellom tre regimer — regimebryter"
     ],
     "motor": "samfunn",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "koblet til verden.helse: maa R0 og epidemi-banen; domenet heter helse, ikke samfunn"
    },
    "regime": {
     "name": "SIR-epidemiologi — flyt med terskel",
@@ -6308,7 +6308,8 @@
     "lengdeskala": "domene"
    },
    "synlighet": "offentlig",
-   "ville_falsifisere": "Et utbrudd med R0 < 1 som likevel vokser, eller en epidemi-bane som ikke følger SIR gitt målt R0."
+   "ville_falsifisere": "Et utbrudd med R0 < 1 som likevel vokser, eller en epidemi-bane som ikke følger SIR gitt målt R0.",
+   "buss_domene": "verden.helse"
   },
   {
    "id": "efc.tidevann_engine",
@@ -6911,8 +6912,8 @@
      "ingen terskler — teoretisk verk, ingen måling"
     ],
     "motor": "",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
-    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)"
+    "motor_status": "ingen motor — beskrevet, ikke drevet (maalt 2026-09-18)",
+    "buss_status": "koblet til kosmos.kosmologi: samme gitter-nivaa som grid_mikro_engine"
    },
    "nivaa": {
     "indeks": 2,
@@ -6922,7 +6923,8 @@
    },
    "id": "efc.grid_mikrofysikk",
    "synlighet": "offentlig",
-   "ville_falsifisere": "INTERN: ville falsifiseres om den radiale akselerasjonsrelasjonen ikke foelger av gradient-koblet eksitasjon — eller om den foelger av en hvilken som helst annen minimal kobling ogsaa. Da er ikke mikrofysikken det som baerer den."
+   "ville_falsifisere": "INTERN: ville falsifiseres om den radiale akselerasjonsrelasjonen ikke foelger av gradient-koblet eksitasjon — eller om den foelger av en hvilken som helst annen minimal kobling ogsaa. Da er ikke mikrofysikken det som baerer den.",
+   "buss_domene": "kosmos.kosmologi"
   },
   {
    "id": "efc.grid_mikro_engine",
@@ -7002,7 +7004,7 @@
      "rho_crit = a0/(GN lg) — grensen mellom lav og mettet er VÅR skala-definisjon"
     ],
     "motor": "grid_mikro",
-    "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)"
+    "buss_status": "koblet til kosmos.kosmologi: maa Gamma(rho) og Deff(rho) — gitterets mikrofysikk, under kosmologi"
    },
    "analogi": {
     "avbildning": "grid-moders metning -> batteriets ladekurve / hjemostasens setpunkt",
@@ -7015,7 +7017,8 @@
     "lengdeskala": "lg (grid-lengden)"
    },
    "synlighet": "offentlig",
-   "ville_falsifisere": "En målt Γ(ρ) som faller utenfor både lav-tetthets- og mettet-grenen i modellrommet."
+   "ville_falsifisere": "En målt Γ(ρ) som faller utenfor både lav-tetthets- og mettet-grenen i modellrommet.",
+   "buss_domene": "kosmos.kosmologi"
   },
   {
    "regime": {
