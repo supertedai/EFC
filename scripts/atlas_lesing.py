@@ -831,6 +831,8 @@ def helhet(atlas: dict, node_id: str) -> dict:
         },
         "emergence": em,
         "fraktaler": [fr.get("pattern"), fr.get("note")] + (em.get("properties") or []),
+        "motor": (n.get("stipulasjoner") or {}).get("motor") or None,
+        "stipulasjoner": n.get("stipulasjoner") or {},
         "observer": n.get("observer") or {},
         "coupling": n.get("coupling") or {},
         "buffer": n.get("buffer") or {},
@@ -858,6 +860,7 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
     if v:
         L.append(f"  gyldighet   : {v[:150]}")
     L.append(f"  domene      : {h['domene'] or '(ingen)'}")
+    L.append(f"  motor       : {h.get('motor') or '(ingen — ikke en motor-node)'}")
     L.append(f"  episenter   : {h['episenter'] or '(ingen)'}")
     L.append("")
     L.append("  MAALET")
