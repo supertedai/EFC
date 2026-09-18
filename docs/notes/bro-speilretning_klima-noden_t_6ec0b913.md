@@ -109,8 +109,11 @@ Historisk, ikke aapent: ved PR-ens foerste commit (`8ed292d9`) var den roed paa
     # #482s rekkefolge-risiko
     python3 pr482_rekkefolge.py
 
-Skriptene laa i arbeidstreet for kortet
-(`.worktrees/t_6ec0b913/scratch/`, uignorert og dermed ikke i historikken);
-kommandoene og utfallene staar i §5 og paa kortet.
+Skriptene under var utforskende og laa i arbeidstreet for kortet
+(`.worktrees/t_6ec0b913/scratch/`, uignorert og dermed ikke i historikken).
+Den varige reproduserbarheten er ikke dem: naar PR #504 lander, er den
+kanoniske proven `python3 scripts/maintenance/efc_bro_synk.py --sjekk` og
+`pytest tests/test_bro_konvensjon.py` — verktoyet og vakten som eier
+konvensjonen, ikke et engangsskript.
 Kanonisk testpython: `/opt/venvs/t_123ed6d9/bin/python` (3.12, numpy 2.5.3,
 jsonschema 4.26, pytest 8.4.2).
