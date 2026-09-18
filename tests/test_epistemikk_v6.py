@@ -102,7 +102,16 @@ def test_grafen_er_asyklisk():
 
 def test_atlas_og_motor_nivaa_stemmer():
     """Samfunns-motorenes nivaa i atlaset skal stemme med motorenes
-    regime_node() (review-krav: de var uenige)."""
+    regime_node() (review-krav: de var uenige).
+
+    Sammenligningen er HELE nivaa-blokken, ikke bare ``forelder``. Maalt
+    2026-09-18 i t_dd5efeec: den gamle varianten sammenlignet bare
+    ``forelder``, og en mutasjon av ``indeks`` (1 -> 2) paa en av de tre
+    motorene lot testen staa GRØNN — mens ``forelder``-mutasjonen ble fanget.
+    Hele klassen (alle 20 motorer, alle felt) eies av
+    ``tests/test_bro_konvensjon.py``; denne testen dekker de tre
+    samfunnsmotorene og er med vilje en DUBBELT kontroll, ikke den eneste.
+    """
     import importlib
     for motor, nid in (("samfunn", "efc.samfunn_engine"),
                        ("oekonomi", "efc.oekonomi_engine"),
@@ -117,5 +126,4 @@ def test_atlas_og_motor_nivaa_stemmer():
             "samfunn" else {"gjeld": 1.0, "inntekt": 1.0, "rente": 0.05,
                             "tillit": 0.06})
         atlas_node = {n["id"]: n for n in _atlas()["nodes"]}[nid]
-        assert atlas_node["nivaa"]["forelder"] == \
-            motor_node["nivaa"]["forelder"], motor
+        assert atlas_node["nivaa"] == motor_node["nivaa"], motor

@@ -78,6 +78,24 @@ kan ikke kurateres uten aa bli feil den dagen parametrene endres.
 | `efc_bro_synk.py --json` | maskinlesbar rapport (til vedlikeholdsrunden) |
 | `tests/test_bro_konvensjon.py` | binder hele klassen: dekning, feltvis likhet, ingen hull, skjema-dekning |
 
+## Hvor gaten kjoerer
+
+To steder, og begge maa nevnes fordi de dekker hver sin vei:
+
+| Sted | Hva den fanger |
+|---|---|
+| `make check` -> `efc_bro_synk.py --sjekk` | maaler hele klassen lokalt, exit 1 ved avvik (kjor med testvenv-en) |
+| C10-jobben i `.github/workflows/efc-schema.yml` | `tests/test_bro_konvensjon.py` — hele klassen, felt for felt |
+
+Maalt 2026-09-18 (t_dd5efeec): gaten FANTES, men ingen CI-jobb kjorte den —
+den ble paastaatt registrert i #504 og i `requirements.txt`, mens
+pytest-linja i workflowen navnga seks andre filer. I tillegg manglet
+`efc_inference/engine/**` i trigger-listene, saa en endring som bare rorte en
+motor ikke kjorte noen verifikasjon i det hele tatt. Begge er rettet:
+workflowen navngir gaten og vokter motorstiene, og
+`tests/test_repo_konfigurasjon.py::TestBroGatenKjoererISelv` feiler hvis
+gaten eller stiene forsvinner ut av CI igjen.
+
 Kanoniske parametre leses fra testmodulen som eier dem — én kilde for testen
 og synken. Motorer der parametrene konstrueres (victron: serier ->
 `params_for`; bakgrunnen: `EFC = {**LCDM, ...}`) erklærer dem i en
