@@ -48,7 +48,7 @@ def test_paradigme_masse_skiller_gravitasjons_rammene():
     """EFC-rammen er den generelle; LCDM er SPESIALTILFELET (mu -> 1)."""
     n = _node("efc.selv.paradigme_masse")
     alt = n["maale_paradigme"]["alternativer"]
-    assert any("entropi" in a for a in alt), "EFC-rammen mangler"
+    assert any("entropy" in a for a in alt), "EFC-rammen mangler"
     assert any("SPECIAL CASE" in a for a in alt), \
         "LCDM er ikke deklarert som spesialtilfelle"
 

@@ -47,7 +47,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
         assert prov["kilder"][0]["ref"] == stroem
         assert prov["begrensning"]
         assert prov["fullstendig"] is False
-        assert node["stipulasjoner"]["motor_status"] == "instrument — trenger ingen motor"
+        assert node["stipulasjoner"]["motor_status"] == "instrument — needs no engine"
         assert node["stipulasjoner"]["ikke_falsifiserbar_grunn"] == (
             "the instrument node cannot be refuted by an observation — it IS the measurement"
         )

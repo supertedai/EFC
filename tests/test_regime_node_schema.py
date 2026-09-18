@@ -383,7 +383,7 @@ def test_inverter_is_bidirectional():
     tekst = (inv["regime"]["law_form"] + " " + inv["emergence"]["loop"]).upper()
     assert "DC -> AC" in tekst.replace("DC->AC", "DC -> AC").replace(
         "AC->DC", "AC -> DC") or ("DC->AC" in tekst and "AC->DC" in tekst)
-    assert ("LADEMODUS" in tekst or "LADING" in tekst)
+    assert ("CHARGE MODE" in tekst or "CHARGING" in tekst)
 
 
 def test_no_private_site_info_in_public_instance():
@@ -465,7 +465,7 @@ def test_bao_declares_lag_axis_vs_phase_chain():
     inst = _instance()
     bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
     kilde = bao["ontology"]["source"].lower()
-    assert "lag-akse" in kilde and "fasekjede" in kilde
+    assert "different axis" in kilde and "phase chain" in kilde
 
 
 def test_observation_nodes_sourced_from_atlas():

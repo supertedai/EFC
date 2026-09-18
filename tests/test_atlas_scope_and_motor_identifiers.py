@@ -38,7 +38,7 @@ def test_motoridentifikatorer_er_filer_eller_eksplisitt_virtuelle() -> None:
         if motor:
             assert motor in ENGINE_STEMS, (node_id, motor)
         else:
-            assert "abstrakt lag" in stipulasjoner.get("motor_status", ""), node_id
+            assert "abstract layer" in stipulasjoner.get("motor_status", ""), node_id
 
 
 def test_virtuelle_lag_er_merket_uten_motorfelt() -> None:
@@ -46,7 +46,7 @@ def test_virtuelle_lag_er_merket_uten_motorfelt() -> None:
     for node_id in ("efc.l0", "efc.l1", "efc.l2", "efc.l3"):
         stipulasjoner = NODE_BY_ID[node_id]["stipulasjoner"]
         assert "motor" not in stipulasjoner
-        assert "abstrakt lag" in stipulasjoner["motor_status"]
+        assert "abstract layer" in stipulasjoner["motor_status"]
 
 
 def test_victron_peker_paa_victron_motorfil() -> None:

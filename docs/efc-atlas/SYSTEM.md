@@ -1749,7 +1749,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** none directly — S is a field, not a measurement — proxy chain: S -> Omega-hat (differentiation) and kappa-hat (integration) -> Omega x kappa -> C…
 
-**How it's built.** Buffer role: entropy itself: it absorbs energy without the structure changing, until the… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · sector C · clarity C(S) at S->1: saturated clarity locally — propofol EEG (Omega, kappa) measures clarity variation at small scale · EBE claim validity = f(S, L, proxy-chain).
+**How it's built.** Buffer role: entropy itself: it absorbs energy without the structure changing, until the… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · sector C · clarity C(S) at S->1: saturated clarity locally — propofol-EEG (Omega, kappa) measures clarity variation at small scale · EBE claim validity = f(S, L, proxy-chain).
 
 **Steps in execution.**
 

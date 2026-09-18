@@ -56,4 +56,4 @@ def test_propofol_eeg_er_synlig_som_lokal_c_s_maaling() -> None:
     noder = {node["id"]: node for node in _atlas()["nodes"]}
     tekst = _cs(noder["efc.lag_c0"])
     assert "propofol-EEG" in tekst
-    assert "lokal" in tekst
+    assert "locally" in tekst

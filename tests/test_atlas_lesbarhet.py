@@ -117,7 +117,7 @@ def test_perspektivet_er_ikke_borte_fra_noden():
     bank = _bank()
     for n in noder:
         forventet = _perspektiv(bank[n["name"]])
-        assert n["one"].endswith(f"· perspektiv: {forventet}"), n["id"]
+        assert n["one"].endswith(f"· perspective: {forventet}"), n["id"]
         assert ["Perspective", forventet] in n["steps"], n["id"]
 
 
@@ -175,9 +175,9 @@ def test_alle_renderte_tekster_er_noeyaktig_klipp_av_kilden():
         assert n["short"] == GEN_MOD.klipp(navn, G["short"]), n["id"]
 
         target = GEN_MOD.klipp(maal.get("target", ""), G["one"])
-        assert n["one"] == (f"{target} · perspektiv: {_perspektiv(b)}"
+        assert n["one"] == (f"{target} · perspective: {_perspektiv(b)}"
                             if target else
-                            f"perspektiv: {_perspektiv(b)}"), n["id"]
+                            f"perspective: {_perspektiv(b)}"), n["id"]
 
         assert n["what"] == (
             f"{GEN_MOD.klipp(maal.get('instrument', ''), G['what'])} — "
@@ -225,7 +225,7 @@ def test_tomme_felter_blir_ikke_til_tom_tekst():
          "epistemikk": {}, "measure": {}}, 0)
     assert "Buffer role: —" in rad2["how"], rad2["how"]
     rad3 = GEN_MOD._node_rad({"id": "h2o.solid"}, 0)
-    assert rad3["one"] == "perspektiv: agnostic", rad3["one"]
+    assert rad3["one"] == "perspective: agnostic", rad3["one"]
 
 
 # --- 3. spoersmaalene er ikke generert ------------------------------------
@@ -377,7 +377,7 @@ def test_motorordet_betyr_bare_en_ting_paa_hver_flate():
                 "origin/main"], capture_output=True, text=True, cwd=ROT,
                timeout=120)
     assert r.returncode == 0, r.stderr[-300:]
-    assert "motorfiler" in r.stdout, (
+    assert "engine files" in r.stdout, (
         f"navigatoren kaller dem fortsatt motorer:\n{r.stdout[:200]}")
     assert " motorer · " not in r.stdout, "tvetydig ord staar igjen"
 

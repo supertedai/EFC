@@ -278,14 +278,16 @@ def _verdi_er_endret(post: dict) -> None:
 
 
 MUTASJONER = [
-    ("usikkerhet uten kilde", _fjern_kilde, "mangler kilde"),
+    ("usikkerhet uten kilde", _fjern_kilde, "missing kilde"),
     ("feilgrense = 0 der kilden sier 0.029", _grense_er_null,
-     "ikke den kilden oppgir"),
-    ("feilgrense gjetter 0.05", _grense_er_gjettet, "ikke den kilden oppgir"),
-    ("feilgrense fjernet der kilden oppgir en", _grense_er_fjernet, "OPPGIR"),
+     "not the one the source states"),
+    ("feilgrense gjetter 0.05", _grense_er_gjettet,
+     "not the one the source states"),
+    ("feilgrense fjernet der kilden oppgir en", _grense_er_fjernet, "STATES"),
     ("sitat som ikke staar i kilden", _sitat_er_oppdiktet, "ordrett"),
-    ("kildefil som ikke finnes", _fil_finnes_ikke, "ikke sporet"),
-    ("linjenummer utenfor filen", _linje_finnes_ikke, "linjer"),
+    ("kildefil som ikke finnes", _fil_finnes_ikke,
+     "is not tracked in the repo"),
+    ("linjenummer utenfor filen", _linje_finnes_ikke, "lines"),
     ("verdi som ikke staar i kilden", _verdi_er_endret, "verdi"),
 ]
 

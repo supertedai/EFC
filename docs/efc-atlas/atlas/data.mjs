@@ -3274,12 +3274,12 @@ export const NODES = [
     "ghost": true,
     "one": "the entropy field S and its boundaries \u00b7 perspective: paradigm",
     "what": "none directly \u2014 S is a field, not a measurement \u2014 proxy chain: S -> Omega-hat (differentiation) and kappa-hat (integration) -> Omega x kappa -> C\u2026",
-    "how": "Buffer role: entropy itself: it absorbs energy without the structure changing, until the\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 \u00b7 sector C \u00b7 clarity C(S) at S->1: saturated clarity locally \u2014 propofol EEG (Omega, kappa) measures clarity variation at small scale \u00b7 EBE claim validity = f(S, L, proxy-chain).",
+    "how": "Buffer role: entropy itself: it absorbs energy without the structure changing, until the\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 \u00b7 sector C \u00b7 clarity C(S) at S->1: saturated clarity locally \u2014 propofol-EEG (Omega, kappa) measures clarity variation at small scale \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S->1",
       "sector": "C",
       "ebe": "claim validity = f(S, L, proxy-chain)",
-      "klarhet": "C(S) at S->1: saturated clarity locally \u2014 propofol EEG (Omega, kappa) measures clarity variation at small scale",
+      "klarhet": "C(S) at S->1: saturated clarity locally \u2014 propofol-EEG (Omega, kappa) measures clarity variation at small scale",
       "rcmp": null
     },
     "steps": [
