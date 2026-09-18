@@ -13,7 +13,7 @@ CLI = REPO / "scripts" / "atlas_lesing.py"
 
 
 def kjør_inntak(tmp_path: Path, tekst: str, kilde: str) -> subprocess.CompletedProcess[str]:
-    """Kjor den ekte CLI-en mot et isolert inntaksomraade."""
+    """Run the real CLI against an isolated intake area."""
     data = tmp_path / "data"
     data.mkdir(exist_ok=True)
     # CLI-en bruker repoets data/inntak; testens repo er derfor en kopi av
@@ -34,7 +34,7 @@ def test_innta_skriver_ekte_plassering_med_kilde_og_tidspunkt(tmp_path: Path) ->
     resultat = kjør_inntak(tmp_path, "vulkansk aske i stratosfaeren", "samtale")
 
     assert resultat.returncode == 0, resultat.stderr
-    assert "skrevet til" in resultat.stdout
+    assert "written to" in resultat.stdout
     record = les_linjene(fil)[0]
     assert record["tekst"] == "vulkansk aske i stratosfaeren"
     assert record["kilde"] == "samtale"
