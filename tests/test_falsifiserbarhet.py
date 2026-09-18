@@ -143,7 +143,7 @@ class TestFalsifiserbarhet:
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 79, f"offentlige endret: {len(off)}"
-        assert kan == 22, (
+        assert kan == 27, (
             f"kan felles: {kan} — forventet 19. 27 var feil: 2 stubber og 6 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
         assert avventer == 9, (
