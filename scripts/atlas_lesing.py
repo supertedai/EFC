@@ -527,31 +527,44 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    if not treff:
-        registrert = _navnerom(Path(repo), ref, emne)
-        if registrert:
-            treff = [{
-                "trefftype": "navnerom",
-                "id": post["id"],
-                "synlighet": None,
-                "perspektiv": None,
-                "fase": None,
-                "buss_domene": None,
-                "har_prediksjon": False,
-                "har_oppgjoer": False,
-                "har_falsifikator": False,
-                # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
-                # ga en ikke-tom treffliste, og en leser (eller et
-                # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
-                # noden — det har begrepet i navnerommet. De to feltene sier
-                # det uten at noen maa lese prosaen.
-                "har_node": False,
-                "dekning": "navnerom_uten_node",
-                "grunn": (f"registrert i {post['kilde']}, men er ikke en "
-                          "node i schema/regime_nodes.jsonld"),
-            } for post in registrert]
-    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
-             "navnerom": 4}
+    # Registrerte begreper svarer ALLTID med navneromstreffet — ogsaa naar en
+    # node nevner ordene.
+    #
+    # Foerste utgave la navneromstreffet inn BARE naar ingen node traff, og
+    # det var en stille avhengighet av innholdet. Maalt 2026-09-18
+    # (t_af77c6da): usikkerhetslagets `kilde.fil` skrev
+    # «docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/
+    # index.json» inn i obs.bao — og svaret paa «Energy-Flow Cosmology» gikk
+    # fra «registrert begrep: efc:EFC» til «ord i obs.bao». Registeret er
+    # atlasets svar paa «eier jeg dette begrepet?», og det svaret skal ikke
+    # avhenge av hvilke noder som tilfeldigvis siterer en fil.
+    registrert = _navnerom(Path(repo), ref, emne)
+    if registrert:
+        treff.extend({
+            "trefftype": "navnerom",
+            "id": post["id"],
+            "synlighet": None,
+            "perspektiv": None,
+            "fase": None,
+            "buss_domene": None,
+            "har_prediksjon": False,
+            "har_oppgjoer": False,
+            "har_falsifikator": False,
+            # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
+            # ga en ikke-tom treffliste, og en leser (eller et
+            # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
+            # noden — det har begrepet i navnerommet. De to feltene sier
+            # det uten at noen maa lese prosaen.
+            "har_node": False,
+            "dekning": "navnerom_uten_node",
+            "grunn": (f"registrert i {post['kilde']}, men er ikke en "
+                      "node i schema/regime_nodes.jsonld"),
+        } for post in registrert)
+    # Presisjonen er rekkefoelgen: en node som BAERER ordet i id-en eller som
+    # DEKKER domenet sier mer enn registeret gjor; registeret sier mer enn et
+    # loest ord i en tekst. Navneromstreffet staar derfor mellom dem — ikke
+    # sist, som var en arv fra da det bare var en fallback.
+    _rang = {"id": 0, "domene": 1, "navnerom": 2, "ord": 3, "delstreng": 4}
     # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
     # det publiserte atlaset; de interne er kontekst.
     treff.sort(key=lambda x: (_rang[x["trefftype"]],

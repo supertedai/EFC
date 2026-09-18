@@ -35,7 +35,7 @@ ROT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROT / "scripts"))
 sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
 
-from atlas_lesing import (AtlasLesingFeil, plasser,  # noqa: E402
+from atlas_lesing import (AtlasLesingFeil, finn, plasser,  # noqa: E402
                           sjekk_usikkerhet)
 import efc_schema_check  # noqa: E402
 
@@ -213,6 +213,32 @@ def test_sjekkeren_svarer_ikke_alt_vel_paa_et_atlas_uten_noder():
     """
     with pytest.raises(AtlasLesingFeil):
         sjekk_usikkerhet({"usikkerhet": {}}, ROT)
+
+
+def test_en_kildefil_i_en_node_gjoer_ikke_begrepsoppslaget_blindere():
+    """Feltet skal ikke koste atlaset et svar det hadde.
+
+    Maalt 2026-09-18: `kilde.fil` til BAO-papiret skriver
+    «Energy-Flow-Cosmology-…» inn i obs.bao, og atlasets eget oppslag paa
+    «Energy-Flow Cosmology» svarte da med en node i stedet for med det
+    REGISTRERTE begrepet — navneromstreffet ble bare lagt til naar ingen node
+    traff. Registeret er atlasets svar paa «eier jeg dette begrepet?», og det
+    svaret skal ikke avhenge av hvilke noder som tilfeldigvis siterer en fil.
+
+    Konsekvensen er maalt, ikke gjettet: foer fantes `efc:EFC` i svaret, etter
+    var det borte. Begge skal staa der — registeret foerst, noden etter.
+    """
+    svar = finn(ROT, "Energy-Flow Cosmology", ref="HEAD")
+    assert not svar["hull"]
+    typer = [t["trefftype"] for t in svar["treff"]]
+    assert "navnerom" in typer, (
+        f"det registrerte begrepet er borte fra svaret: {typer}")
+    assert typer[0] == "navnerom", (
+        f"et registrert begrep skal svare som begrep, ikke som loest ord: {typer}")
+    assert svar["treff"][0]["id"].startswith("efc:")
+    assert "ord" in typer, (
+        "node-treffet forsvant — begge svar skal staa, ikke byttes om")
+    assert "obs.bao" in [t["id"] for t in svar["treff"]]
 
 
 # ---------------------------------------------------------------------------
