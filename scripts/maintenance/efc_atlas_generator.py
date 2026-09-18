@@ -437,6 +437,14 @@ def _node_rad(node: dict, i: int) -> dict:
     # generatorens penn — en generator som dikter spoersmaal lager arbeidsko
     # av sin egen mal.
     cond = []
+    # Et EKTE aapent spoersmaal kommer fra banken — feltet `open_questions` paa
+    # noden. Generatoren skriver aldri et spoersmaal selv (se `cond = []` over).
+    for spm in node.get("open_questions") or []:
+        if isinstance(spm, str) and spm.strip():
+            cond.append(spm.strip())
+        elif isinstance(spm, dict) and str(spm.get("q", "")).strip():
+            cond.append({k: v for k, v in spm.items()
+                         if k in ("q", "r", "to") and str(v).strip()})
     if node.get("stipulasjoner", {}).get("motor") in (None, "", "KANDIDAT "
         "(broen venter paa konnektor-deploy)"):
         pass
@@ -612,11 +620,25 @@ def hoved() -> int:
             "story": "<p>Revealed: " + ", ".join(sorted(kap[k])) + ".</p>",
             "flow": None,
         })
+    # Kapittel 9 er stedet noen ser HELE atlaset. Da skal det si hva det bestaar
+    # av — ikke bare hvor mange bokser det er. Maalt 2026-09-18: 116 publiserte
+    # noder, hvorav 53 er designet og ikke bygget (46 %), og 7 uten evidens.
+    # Uten det tallet ser kartet fyldigere ut enn det er. Begge er UTLEDET her,
+    # aldri skrevet for haand.
+    ikke_bygget = sum(1 for n in noder if _gruppe(n["id"]) == "ghost")
+    uten_evidens = sum(1 for n in noder
+                       if (n.get("epistemikk") or {}).get("evidensstatus")
+                       == "ingen")
     ch.append({
         "id": "all", "title": "The whole atlas",
         "reveal": [], "lede": f"Everything at once — {len(noder)} nodes, "
+                              f"{ikke_bygget} of them designed and not built, "
                               f"{len(relasjoner)} relations.",
-        "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
+        "story": "<p>Free exploration. Hover, click to pin, go inside.</p>"
+                 f"<p>{uten_evidens} nodes carry no evidence yet — that is what "
+                 f"<i>epistemic: … / ingen / …</i> in “How it's built” says. "
+                 f"Open questions are not generated: they come from the bank, "
+                 f"and none is registered.</p>",
         "flow": None,
     })
 

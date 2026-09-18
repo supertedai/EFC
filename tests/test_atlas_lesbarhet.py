@@ -46,6 +46,13 @@ GEN_MOD = _generator()
 G = GEN_MOD.GRENSER
 
 
+def _les_konstant(navn: str):
+    s = DATA.read_text(encoding="utf-8")
+    i = s.index(f"export const {navn} = ")
+    j = s.index("\nexport const", i + 10)
+    return json.loads(s[i:j][s[i:j].index("=") + 1:].strip().rstrip(";"))
+
+
 @functools.lru_cache(maxsize=1)
 def _bygg_og_les():
     """Bygg atlaset fra banken, og les den RENDERte nodelista."""
@@ -53,11 +60,7 @@ def _bygg_og_les():
         ["/opt/venvs/t_123ed6d9/bin/python", str(GEN)],
         capture_output=True, text=True, cwd=ROT, timeout=180)
     assert r.returncode == 0, r.stderr[-600:]
-    s = DATA.read_text(encoding="utf-8")
-    i = s.index("export const NODES = ")
-    j = s.index("\nexport const", i + 10)
-    noder = json.loads(s[i:j][s[i:j].index("=") + 1:].strip().rstrip(";"))
-    return noder, s
+    return _les_konstant("NODES"), DATA.read_text(encoding="utf-8")
 
 
 @functools.lru_cache(maxsize=1)
@@ -227,33 +230,58 @@ def test_tomme_felter_blir_ikke_til_tom_tekst():
 
 # --- 3. spoersmaalene er ikke generert ------------------------------------
 
-def test_ingen_node_faar_et_generert_spoersmaal():
+def test_den_genererte_spoersmaalsteksten_kommer_aldri_tilbake():
+    """Den maalte fallback-linja skal ikke kunne gjenoppstaas i noen form.
+
+    Foerste utgave av denne testen sa «en node med evidensstatus=ingen faar
+    ingen cond». Det var riktig saa lenge cond BARE kunne komme fra den
+    genererte linja — men feil i det oeyeblikket banken fikk et ekte
+    spoersmaalsfelt: en node kan mangle evidens OG ha et reelt, aapent
+    spoersmaal fra banken samtidig. Kravet er ikke «ingen spoersmaal», det er
+    «ingen spoersmaal skrevet av generatoren». Derfor maales den konkrete
+    teksten, og proveniensen maales i testen over.
+    """
     noder, _ = _bygg_og_les()
-    bank = _bank()
-    for n in noder:
-        b = bank[n["name"]]
-        if b.get("epistemikk", {}).get("evidensstatus") == "ingen":
-            assert not n["cond"], (
-                f"{n['id']} har evidensstatus=ingen og fikk et generert "
-                f"spoersmaal: {n['cond']}")
+    forbudt = ("no evidence yet", "hypothesis marked honestly")
+    feil = [(n["id"], c) for n in noder for c in (n["cond"] or [])
+            if any(f in (c["q"] if isinstance(c, dict) else c) for f in forbudt)]
+    assert not feil, feil[:6]
 
 
 def test_hvert_spoersmaal_kommer_fra_banken():
     """Et spoersmaal skal kunne pekes paa i banken — ikke bare mangle.
 
-    Foreloepig er den eneste kilden `stipulasjoner.motor` som begynner paa
-    KANDIDAT (broen venter paa konnektor-deploy). Kommer det et spoersmaal i
-    atlaset uten et slikt felt i banken, er det generatorens eget.
+    To lovlige kilder: `open_questions` paa noden, eller `stipulasjoner.motor`
+    som begynner paa KANDIDAT (broen venter paa konnektor-deploy). Kommer det et
+    spoersmaal i atlaset uten en av dem, er det generatorens eget.
     """
     noder, _ = _bygg_og_les()
     bank = _bank()
     for n in noder:
         if not n["cond"]:
             continue
-        motor = (bank[n["name"]].get("stipulasjoner") or {}).get("motor", "")
-        assert str(motor).startswith("KANDIDAT"), (
-            f"{n['id']} baerer et spoersmaal ({n['cond']}) uten et "
-            f"KANDIDAT-motor-felt i banken (motor={motor!r})")
+        b = bank[n["name"]]
+        motor = (b.get("stipulasjoner") or {}).get("motor", "")
+        assert b.get("open_questions") or str(motor).startswith("KANDIDAT"), (
+            f"{n['id']} baerer et spoersmaal ({n['cond']}) uten "
+            f"open_questions i banken og uten KANDIDAT-motor (motor={motor!r})")
+
+
+def test_bankfoedte_spoersmaal_naar_atlaset():
+    """Feltet `open_questions` skal faktisk leses — ellers er det et tomt loft.
+
+    Baade tekstformen og {q, r, to}-formen, og ukjente noekler skal ikke
+    lekke gjennom til den bygde spoersmaalslista.
+    """
+    rad = GEN_MOD._node_rad(
+        {"id": "h2o.solid", "open_questions": [
+            "stilles det en maaling vi ikke har gjort?",
+            {"q": "holder testen?", "to": "connector deploy", "tull": "nei"},
+            {"q": "   "},
+            ""]}, 0)
+    assert rad["cond"] == [
+        "stilles det en maaling vi ikke har gjort?",
+        {"q": "holder testen?", "to": "connector deploy"}], rad["cond"]
 
 
 def test_spoersmaalene_er_unike():
@@ -261,6 +289,30 @@ def test_spoersmaalene_er_unike():
     sett = [c["q"] if isinstance(c, dict) else c
             for n in noder for c in (n["cond"] or [])]
     assert len(sett) == len(set(sett)), f"dupliserte spoersmaal: {sett}"
+
+
+def test_kapittel9_sier_hva_atlaset_bestaar_av():
+    """«Alt paa en gang» maa ikke se fyldigere ut enn det er.
+
+    Maalt: 116 publiserte noder, 53 av dem designet og ikke bygget. Stod tallet
+    bare i prosa, ville det blitt staende og lyve. Her utledes begge sider og
+    sammenlignes: teksten i kapittel 9 mot den faktiske tellingen i data.mjs.
+    """
+    noder, _ = _bygg_og_les()
+    ch = _les_konstant("CH")
+    siste = ch[-1]
+    bank = _bank()
+    ikke_bygget = sum(1 for n in noder
+                      if GEN_MOD._gruppe(bank[n["name"]]["id"]) == "ghost")
+    uten_evidens = sum(1 for n in noder
+                       if (bank[n["name"]].get("epistemikk") or {})
+                       .get("evidensstatus") == "ingen")
+    assert ikke_bygget > 0 and uten_evidens > 0, "tellingene er doede"
+    assert f"{ikke_bygget} of them designed and not built" in siste["lede"], (
+        f"kapittel 9 sier ikke hvor mange som ikke er bygget: {siste['lede']}")
+    assert f"{uten_evidens} nodes carry no evidence yet" in siste["story"], (
+        f"kapittel 9 sier ikke hvor mange som mangler evidens: {siste['story']}")
+    assert len(noder) and f"{len(noder)} nodes" in siste["lede"]
 
 
 # --- 4. S-aksen naar BEGGE byggene ----------------------------------------

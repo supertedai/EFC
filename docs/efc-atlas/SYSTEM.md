@@ -2,7 +2,7 @@
 
 _**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._
 
-_Question status: **0 open · 0 resolved**._
+_Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
@@ -29,7 +29,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 79 relations.
+9. **The whole atlas** — Everything at once — 116 nodes, 53 of them designed and not built, 79 relations.
 
 ## Structures
 
@@ -49,6 +49,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
+**Questions.**
+
+- **Q-L01** efc.l0: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 ### The grid — your published works
 
 #### GH · efc.grid_higgs
@@ -65,6 +69,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / ingen / minoritet
 3. **Social mechanism** — vaar egen ramme — baeres av oss, ikke av feltet
 
+**Questions.**
+
+- **Q-GH1** efc.grid_higgs: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### GQ · efc.gr_qft_bro
 
 **In one line.** Den termodynamiske broen mellom generell relativitet og… · perspektiv: paradigm
@@ -79,6 +87,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / ingen / minoritet
 3. **Social mechanism** — vaar egen ramme — baeres av oss, ikke av feltet
 
+**Questions.**
+
+- **Q-GQ1** efc.gr_qft_bro: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### DS · efc.double_slit
 
 **In one line.** Dobbeltspalten som grid-oppløsningsfenomen: ontologisk utvidelse… · perspektiv: paradigm
@@ -92,6 +104,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
 3. **Social mechanism** — vaar egen ramme — baeres av oss, ikke av feltet
+
+**Questions.**
+
+- **Q-DS1** efc.double_slit: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### GM · efc.grid_mikrofysikk
 
@@ -134,6 +150,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
 3. **Social mechanism** — vaar egen ramme
+
+**Questions.**
+
+- **Q-SH1** efc.sort_hull: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 ### Cosmos — engines on the bus
 
@@ -487,6 +507,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — DESI-samarbeidet og BAO-praksisen er den ventede sosiale kanalen; fravær av strøm er rapportert eksplisitt.
 
+**Questions.**
+
+- **Q-DB1** kosmos.kosmologi_desi_bao: stroemmen finnes ikke — venter paa konnektor
+
 ### Bridges — gap domains, round two
 
 #### HA · verden.hav
@@ -560,6 +584,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — IUPAC-konsensus, lærebok-kanonisering
+
+**Questions.**
+
+- **Q-PS1** kjemi.periodesystemet: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 ### Society — energy flow
 
@@ -927,6 +955,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — Glasiologiens felt- og fjernmålingsfellesskap er den ventede kanalen; isbreobservasjonen finnes ikke i bussen ennå.
 
+**Questions.**
+
+- **Q-IB1** verden.klima_isbre: stroemmen finnes ikke — venter paa konnektor
+
 ### Epistemics
 
 ### Not yet built
@@ -945,6 +977,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
+**Questions.**
+
+- **Q-SO1** h2o.solid: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### LI · h2o.liquid _(not switched on)_
 
 **In one line.** termodynamisk fase · perspektiv: academia
@@ -958,6 +994,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
+
+**Questions.**
+
+- **Q-LI1** h2o.liquid: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### GA · h2o.gas _(not switched on)_
 
@@ -973,6 +1013,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
+**Questions.**
+
+- **Q-GA1** h2o.gas: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### SC · h2o.supercritical _(not switched on)_
 
 **In one line.** termodynamisk tilstand (ikke 'fase' — grensen er borte) · perspektiv: academia
@@ -986,6 +1030,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
+
+**Questions.**
+
+- **Q-SC1** h2o.supercritical: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### TP · h2o.triple_point _(not switched on)_
 
@@ -1001,6 +1049,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
+**Questions.**
+
+- **Q-TP1** h2o.triple_point: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### LY · lys.sol _(not switched on)_
 
 **In one line.** elektromagnetisk straaling · perspektiv: academia
@@ -1014,6 +1066,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
+
+**Questions.**
+
+- **Q-LY1** lys.sol: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### DR · h2o.droplet _(not switched on)_
 
@@ -1029,6 +1085,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
+**Questions.**
+
+- **Q-DR1** h2o.droplet: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### OP · optikk.dispersjon _(not switched on)_
 
 **In one line.** brytningsindeksen n(lambda) · perspektiv: academia
@@ -1042,6 +1102,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
+
+**Questions.**
+
+- **Q-OP1** optikk.dispersjon: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### RB · regnbue _(not switched on)_
 
@@ -1057,6 +1121,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
 
+**Questions.**
+
+- **Q-RB1** regnbue: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### OB · regnbue.observator _(not switched on)_
 
 **In one line.** buen som retnings- og fargemonster · perspektiv: academia
@@ -1070,6 +1138,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — fagfellevurdering, lærebok-kanonisering, karriereinsentiver — akademia forteller det som overlever vurderingen
+
+**Questions.**
+
+- **Q-OB1** regnbue.observator: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### L1 · efc.l1 _(not switched on)_
 
@@ -1085,6 +1157,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
+**Questions.**
+
+- **Q-L11** efc.l1: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### L2 · efc.l2 _(not switched on)_
 
 **In one line.** fsigma8, P(k), svak linse (S8) · perspektiv: paradigm
@@ -1099,6 +1175,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
+**Questions.**
+
+- **Q-L21** efc.l2: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+
 #### L3 · efc.l3 _(not switched on)_
 
 **In one line.** fjern-fremtid-tilstanden · perspektiv: paradigm
@@ -1112,6 +1192,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+
+**Questions.**
+
+- **Q-L31** efc.l3: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 #### BA · obs.bao _(not switched on)_
 
@@ -1699,6 +1783,27 @@ Payload shapes are what the design implies, not measured traffic.
 
 Reference by ID. ✓ resolved (with date) · otherwise open.
 
+- **Q-L01** (L0) efc.l0: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-GH1** (GH) efc.grid_higgs: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-GQ1** (GQ) efc.gr_qft_bro: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-DS1** (DS) efc.double_slit: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-SH1** (SH) efc.sort_hull: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-DB1** (DB) kosmos.kosmologi_desi_bao: stroemmen finnes ikke — venter paa konnektor
+- **Q-PS1** (PS) kjemi.periodesystemet: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-IB1** (IB) verden.klima_isbre: stroemmen finnes ikke — venter paa konnektor
+- **Q-SO1** (SO) h2o.solid: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-LI1** (LI) h2o.liquid: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-GA1** (GA) h2o.gas: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-SC1** (SC) h2o.supercritical: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-TP1** (TP) h2o.triple_point: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-LY1** (LY) lys.sol: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-DR1** (DR) h2o.droplet: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-OP1** (OP) optikk.dispersjon: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-RB1** (RB) regnbue: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-OB1** (OB) regnbue.observator: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-L11** (L1) efc.l1: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-L21** (L2) efc.l2: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
+- **Q-L31** (L3) efc.l3: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 
 ## What the platform gives vs what we own
 
