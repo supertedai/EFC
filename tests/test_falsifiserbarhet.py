@@ -124,7 +124,7 @@ class TestFalsifiserbarhet:
         avventer = [n for n in _offentlige()
                     if (n.get("falsifiserbarhet") or {}).get("status")
                     == "terskel_ikke_fastsatt"]
-        assert len(avventer) == 7, f"forventet 7, fikk {len(avventer)}"
+        assert len(avventer) == 7, f"forventet 7 rammeverk uten terskel, fikk {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
@@ -144,9 +144,10 @@ class TestFalsifiserbarhet:
                        in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 76, f"offentlige endret: {len(off)}"
         assert kan == 19, (
-            f"kan felles: {kan} — forventet 20. 27 var feil: 2 stubber og 5 "
+            f"kan felles: {kan} — forventet 19. 27 var feil: 2 stubber og 6 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
-        assert avventer == 8, f"avventer: {avventer} — forventet 8 (2+6)"
-        assert kan + avventer == 27, (
-            f"{kan} + {avventer} = {kan + avventer}, men det er 27 EFC-noder "
+        assert avventer == 9, (
+            f"avventer: {avventer} — forventet 9 (2 stubber + 7 uten fastsatt terskel)")
+        assert kan + avventer == 28, (
+            f"{kan} + {avventer} = {kan + avventer}, men det er 28 EFC-noder "
             f"blant de offentlige")

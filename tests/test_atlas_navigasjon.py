@@ -375,12 +375,12 @@ class TestFalsifiserbarhetsSkillet:
         e = d["epistemisk"]
         assert "kan_felles" in e, "mangler skillet"
         n, t_ = e["kan_felles"]
-        assert t_ == 27, f"nevneren skal vaere de 27 EFC-nodene, fikk {t_}"
-        assert n == 19, f"kan felles: {n} av {t_} — forventet 19 (8 avventer, 47 maaler)"
+        assert t_ == 28, f"nevneren skal vaere de 28 EFC-nodene, fikk {t_}"
+        assert n == 19, f"kan felles: {n} av {t_} — forventet 19 (9 avventer, 48 maaler)"
 
     def test_instrumentene_telles_for_seg(self):
         d = atlas_navigasjon.naviger(REPO, "HEAD")
         e = d["epistemisk"]
         assert "maaler_eller_observert" in e, "de 47 er ikke navngitt"
         n, t_ = e["maaler_eller_observert"]
-        assert n == t_ == 47, f"forventet 47/47, fikk {n}/{t_}"
+        assert n == t_ == 48, f"forventet 48/48, fikk {n}/{t_}"
