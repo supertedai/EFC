@@ -1063,30 +1063,55 @@ def fragment(atlas: dict, node_id: str) -> dict:
     }
 
 
-#: Hva slags svar et felt krever av den som plasserer noe nytt.
-#: Avklart med Morten 2026-09-18, etter et innspill som ville gjort `--plasser`
-#: om til «struktur beregnes, vurderinger foreslaas, paastander kreves».
+#: What kind of answer each field demands of whoever places something new.
+#: Settled with Morten 2026-09-18, after an input that wanted `--plasser` to
+#: become "structure is computed, assessments are proposed, claims are required".
 #:
-#:   struktur  — utledbar fra fragmentets plass i kjeden. Fylles, med grunn.
-#:   vurdering — beregnbar som kandidat, men semantikken maa godkjennes.
-#:   paastand  — kan ikke utledes av noe. Den ER nodens innhold.
+#:   struktur  — derivable from the fragment's place in the chain. Filled, with grounds.
+#:   vurdering — computable as a candidate, but the semantics must be approved.
+#:   paastand  — cannot be derived from anything. It IS the node's content.
 #:
-#: `phase` ble foreslaatt gjort til enum. Maalt 2026-09-18: 26 verdier, hvorav
-#: 19 brukt én gang («solid (ice Ih)», «coexistence (solid + liquid + gas)»);
-#: kjernen er sju verdier og dekker 107 av 126 noder. Et lukket enum ville
-#: avvist 19 ekte verdier. Fasen er derfor delt — kjerne + rest — ikke lukket.
+#: `phase` was proposed as an enum. Measured 2026-09-18: 26 values, of which 19
+#: used once ("solid (ice Ih)", "coexistence (solid + liquid + gas)"); the core
+#: is seven values and covers 107 of 126 nodes. A closed enum would have
+#: rejected 19 real values. The phase is therefore core + residue, not closed.
 FELTKLASSE = {
     "id": "struktur", "synlighet": "struktur", "buss_domene": "struktur",
-    "nivaa": "struktur",
-    "phase": "struktur", "sektor": "struktur",
+    "nivaa": "struktur", "phase": "struktur", "sektor": "struktur",
     "perspektiv": "vurdering", "maale_paradigme": "vurdering",
     "rcmp": "vurdering",
 }
-#: Felt skjemaet ikke krever, men som huset feller paa. Maalt 2026-09-18 laa
-#: `buss_domene` og `falsifiserbarhet` blant de hardkodede unntakene i denne
-#: funksjonen, altsaa stikk i strid med hva resten av huset bygger paa.
+#: Fields the schema does NOT require, but which the house falls on. Measured
+#: 2026-09-18 these were on the hardcoded exemption list in this function —
+#: exactly inverted from what the rest of the house is built on.
 HUSETS_KRAV = ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
                "prediction", "settlement")
+
+
+FELT_REFERANSER: dict[str, tuple[int, int]] = {
+    "id": (101, 103), "regime": (24, 71), "prediction": (27, 5),
+    "measure": (20, 20), "phase": (13, 15), "ontology": (12, 18),
+    "synlighet": (8, 15), "rcmp": (7, 2), "observer": (6, 9),
+    "coupling": (6, 9), "maale_paradigme": (6, 7), "buss_domene": (6, 13),
+    "buffer": (5, 18), "stipulasjoner": (5, 16), "epistemikk": (5, 15),
+    "nivaa": (5, 10), "perspektiv": (4, 13), "episenter": (4, 6),
+    "open_questions": (4, 2), "lagdeling": (4, 2),
+    "emergence": (3, 5), "fractal": (3, 4), "ville_falsifisere": (3, 8),
+    "settlement": (3, 5), "falsifiserbarhet": (2, 8),
+}
+
+#: Below this limit the field is referenced by next to nothing. The limit is
+#: CHOSEN, not measured, and it is set low on purpose: with the broad
+#: measurement NO requirement qualifies as unused, and it stays that way until
+#: a measurement says otherwise.
+GRENSE_SKRIPT = 2
+GRENSE_TESTER = 2
+
+
+def baerer_feltet_noe(felt: str) -> bool:
+    """Does anything reference the field — in scripts or in tests?"""
+    skript, tester = FELT_REFERANSER.get(felt, (0, 0))
+    return skript >= GRENSE_SKRIPT or tester >= GRENSE_TESTER
 
 
 #: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
@@ -1221,11 +1246,17 @@ def plasser(atlas: dict, tekst: str) -> dict:
     for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
                                         if x not in krav_fra_skjemaet]:
         klasse = FELTKLASSE.get(f, "paastand")
+        skript, tester = FELT_REFERANSER.get(f, (0, 0))
         post = {"felt": f,
                 "klasse": klasse,
                 "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
                 "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
+                "referert_i_skript": skript, "referert_i_tester": tester,
+                "baerer": baerer_feltet_noe(f),
                 "forslag": None, "grunn": None}
+        if not post["baerer"]:
+            post["grunn"] = (f"schema requires it, but it is referenced in "
+                             f"{skript} scripts and {tester} tests")
         if klasse == "struktur":
             post["forslag"], post["grunn"] = _utled_struktur(
                 f, tekst, noder, treff_domener,
@@ -1245,6 +1276,9 @@ def plasser(atlas: dict, tekst: str) -> dict:
             "struktur": sum(1 for k in krav if k["klasse"] == "struktur"),
             "vurdering": sum(1 for k in krav if k["klasse"] == "vurdering"),
             "paastand": sum(1 for k in krav if k["klasse"] == "paastand"),
+            "baerer": sum(1 for k in krav if k["baerer"]),
+            "uten_leser": sum(1 for k in krav if not k["baerer"]),
+            "uten_leser_felt": [k["felt"] for k in krav if not k["baerer"]],
         },
         "aksene": {k: alle[k][1][:6] for k in
                    ("perspektiv", "phase", "synlighet") if k in alle},
@@ -1253,11 +1287,10 @@ def plasser(atlas: dict, tekst: str) -> dict:
 
 def _utled_struktur(felt: str, tekst: str, noder: list,
                     treff_domener: list, synlighet: list) -> tuple:
-    """Utled et strukturfelt — eller si hvorfor det ikke kunne utledes.
+    """Derive a structure field — or say why it could not be derived.
 
-    Aldri en gjetning presentert som en verdi. Kan vi ikke utlede det,
-    sier vi det, for det er noeyaktig her et fragment blir til en fasit
-    hvis vi tier.
+    Never a guess presented as a value. If it cannot be derived we say so:
+    this is exactly where a fragment silently turns into a fact.
     """
     if felt == "id":
         if len(treff_domener) == 1:
@@ -1964,6 +1997,11 @@ if __name__ == "__main__":
               f"{o.get('struktur', 0)} struktur (utledes), "
               f"{o.get('vurdering', 0)} vurdering (foreslaas), "
               f"{o.get('paastand', 0)} paastand (kreves eksplisitt)")
+        print(f"  hvorav {o.get('baerer', 0)} baerer noe i dag, og "
+              f"{o.get('uten_leser', 0)} refereres nesten ikke: "
+              f"{', '.join(o.get('uten_leser_felt', []))}")
+        print("    (skjemaet krever dem fortsatt — aa fjerne dem fra `required` "
+              "er en beslutning, ikke en koderegel)")
         for k in p_.get("krav", []):
             merke = "SKJEMA" if k["kilde"] == "skjema" else "HUSET "
             if k.get("forslag"):
