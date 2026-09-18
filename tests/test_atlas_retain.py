@@ -137,9 +137,9 @@ def test_innta_skriver_terskelen_med_fragmentet(tmp_path: Path) -> None:
 
 def test_terskelutskriften_sier_nei_med_grunn(tmp_path: Path) -> None:
     r = kjør_inntak(tmp_path, "kwisatz haderach", "test")
-    assert "IKKE node-verdig" in r.stdout
+    assert "NOT node-worthy" in r.stdout
     assert "uten_hjem" in r.stdout
-    assert "ingen domene-eier" in r.stdout
+    assert "no domain owner" in r.stdout
 
 
 def test_plasser_ser_alle_domenene_ikke_bare_de_seks_forste() -> None:
