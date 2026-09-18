@@ -52,10 +52,29 @@ class TransientEngine(EFCEngine):
     # Fysikk
     # ------------------------------------------------------------------
 
+    def _gyldig_masse(self, masse: np.ndarray) -> np.ndarray:
+        """Motorens fail-closed-kontrakt for masse — EEN kilde.
+
+        Gyldig masse er ENDELIG og IKKE-NEGATIV. Alt annet er utenfor
+        vinduet: det gir NaN, aldri en gjetning. Predikatet er skilt ut
+        fordi baade compute() og bindingsenergi() maa holde samme kontrakt
+        — to kopier driver fra hverandre (PR #435).
+        """
+        return np.isfinite(masse) & (masse >= 0.0)
+
     def bindingsenergi(self, params: dict, masse: np.ndarray) -> np.ndarray:
-        """Gravitasjonsbindingen E = G * M^2 / R (J) — bufferens energi."""
+        """Gravitasjonsbindingen E = G * M^2 / R (J) — bufferens energi.
+
+        Ugyldig inngang (negativ eller ikke-endelig masse) er utenfor
+        vinduet og gir NaN — aldri en gjetning. Kvadreringen ville ellers
+        gjort energien POSITIV for negativ masse, saa en direkte kallende
+        part fikk et tall der compute() gir NaN.
+        """
         m = np.asarray(masse, dtype=float)
-        return params["G"] * m ** 2 / params["radius"]
+        ut = np.full(m.shape, np.nan)
+        gyldig = self._gyldig_masse(m)
+        ut[gyldig] = params["G"] * m[gyldig] ** 2 / params["radius"]
+        return ut
 
     def holdetid(self, params: dict) -> float:
         """Tid fra M=0 til stabilitetsgrensen ved konstant vekstrate (s)."""
@@ -112,8 +131,7 @@ class TransientEngine(EFCEngine):
         """
         masse = np.asarray(coordinates, dtype=float)
         ut = np.full(masse.shape, np.nan)
-        ut[np.isfinite(masse) & (masse < 0.0)] = np.nan
-        gyldig = np.isfinite(masse) & (masse >= 0.0)
+        gyldig = self._gyldig_masse(masse)
         ut[gyldig] = 0.0
         kritisk = gyldig & (masse >= params_dict["terskelmasse"])
         ut[kritisk] = self.bindingsenergi(params_dict, masse[kritisk])

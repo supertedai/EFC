@@ -280,6 +280,43 @@ def test_transient_fail_closed_paa_ugyldig_inngang():
     assert e.validate_params(ufullstendig) is False
 
 
+def test_transient_bindingsenergi_holder_samme_fail_closed_kontrakt():
+    """Hjelperen skal ikke gjore kvadreringen om til et gyldig svar.
+
+    compute() maskerer negativ og ikke-endelig masse til NaN, men
+    bindingsenergi() regnet E = G*M^2/R direkte — og M^2 gjorde energien
+    POSITIV for negativ masse. En som kalte hjelperen direkte (eller
+    utlost_energi-veien) fikk dermed et svar der motoren ellers gir NaN.
+    Flagget av copilot-reviewen paa PR #435; kontrakten skal ha EEN kilde.
+    """
+    e = TransientEngine()
+    m = TRANS_PARAMS["terskelmasse"]
+    ugyldig = np.array([-1.0, -m, np.nan, np.inf, -np.inf])
+    ut = e.bindingsenergi(TRANS_PARAMS, ugyldig)
+    assert np.all(np.isnan(ut)), ut
+    # Gyldig masse er uendret: E = G*M^2/R.
+    assert np.isclose(e.bindingsenergi(TRANS_PARAMS, np.array([m]))[0],
+                      TRANS_PARAMS["G"] * m ** 2 / TRANS_PARAMS["radius"])
+    # ...og utlost_energi() er UPAVIRKET — den kalles med den deklarerte
+    # terskelmassen, som er positiv.
+    assert np.isclose(e.utlost_energi(TRANS_PARAMS),
+                      TRANS_PARAMS["G"] * m ** 2 / TRANS_PARAMS["radius"])
+    assert e.utlost_energi(TRANS_PARAMS) > 0
+
+
+def test_transient_massekontrakten_har_een_kilde():
+    """NaN-settet til hjelperen og til compute() skal vaere det SAMME.
+
+    Ellers finnes kontrakten i to utgaver, og den ene kan drive fra den
+    andre uten at noen test sier fra.
+    """
+    e = TransientEngine()
+    m = TRANS_PARAMS["terskelmasse"]
+    miks = np.array([-1.0, -m, np.nan, np.inf, -np.inf, 0.0, 0.5 * m, m, 2.0 * m])
+    assert np.array_equal(np.isnan(e.bindingsenergi(TRANS_PARAMS, miks)),
+                          np.isnan(e.compute(TRANS_PARAMS, miks)))
+
+
 def test_transient_regime_node_selvbeskrivelse():
     e = TransientEngine()
     node = e.regime_node(TRANS_PARAMS)
