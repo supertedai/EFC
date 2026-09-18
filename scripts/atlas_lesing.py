@@ -140,6 +140,15 @@ def _kjent_hull(dekning: dict, naal: str) -> dict | None:
     return None
 
 
+def _norm(s: str) -> str:
+    """Bindestrek, understrek og mellomrom er samme skilletegn.
+
+    Et oppslagsverk som ikke ser at `energy-flow` og `energy flow` er samme
+    ord, svarer «vet ikke» paa et ord det faktisk eier.
+    """
+    return " ".join(s.lower().replace("-", " ").replace("_", " ").split())
+
+
 def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
          hent: bool = False) -> dict:
     """Slaa opp et emne i atlaset — leser fra `ref`, aldri fra arbeidsstreet.
@@ -165,7 +174,12 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "tomt emne — et oppslag uten spoersmaal ville matchet alt og "
             "dermed ikke svart paa noe")
     atlas = les_atlas(repo, ref, hent=hent, sti="schema/regime_nodes.jsonld")
-    naal = emne.strip().lower()
+    # Maalt 2026-09-18: `--emne "energy-flow"` traff, `--emne "energy flow"`
+    # gav 0 treff. Ordene Morten bruker har BEGGE former, og et oppslagsverk
+    # som ikke ser det, svarer «vet ikke» paa et ord det faktisk eier.
+    naal = _norm(emne)
+    if not naal:
+        raise AtlasLesingFeil("tomt emne etter normalisering")
     dekning = _dekning(Path(repo), ref, hent)
     # `\b` regner `_` som ORDTEGN. Men i node-id-er SKILLER `_` ledd:
     # `homo.sovn_vaaken`, `efc.solar_flare_engine`. Med `\b` ble `sovn`
@@ -178,7 +192,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
         rf"(?<![{_ORDTEGN}])" + re.escape(naal) + rf"(?![{_ORDTEGN}])")
     treff = []
     for n in atlas["noder"]:
-        tekst = json.dumps(n, ensure_ascii=False).lower()
+        tekst = _norm(json.dumps(n, ensure_ascii=False))
         if naal not in tekst:
             continue
         # Tre nivaaer, ikke to. «sol» traff `batteri.lading` som ORD — fordi
@@ -645,6 +659,77 @@ def fragment(atlas: dict, node_id: str) -> dict:
     }
 
 
+def plasser(atlas: dict, tekst: str) -> dict:
+    """Plasser et NYTT fragment — og si hva som gjenstaar.
+
+    Inngangen er ikke et hull. Den er en liste over hva fragmentet maa
+    utfylle for aa bli en node: hvilket domene det horer i, hvilke noder
+    det ligner, og hvilke felt som mangler.
+    """
+    if not tekst.strip():
+        return {"status": "tomt", "forslag": [], "mangler": []}
+
+    alle = akser(atlas)
+    ord_i = {w for w in _norm(tekst).split() if len(w) > 2}
+    noder = atlas.get("noder") or []
+
+    # hvilke domener nevner ordene?
+    domener = alle.get("buss_domene", (0, []))[1]
+    treff_domener = [d for d in domener
+                     if any(w in _norm(d) for w in ord_i)]
+
+    # hvilke noder deler ord med fragmentet?
+    naere = [(len(ord_i & set(_norm(json.dumps(n, ensure_ascii=False)).split())), n["id"])
+             for n in noder]
+    naere = sorted((x for x in naere if x[0] > 0), key=lambda x: -x[0])
+    naere_noder = [i for _, i in naere[:6]]
+
+    forslag = []
+    for d in treff_domener:
+        eiere = [n["id"] for n in noder if n.get("buss_domene") == d]
+        forslag.append({"domene": d, "noder": eiere[:4],
+                        "kobling": "domenet nevnes i fragmentet"})
+    if not forslag and naere_noder:
+        forslag.append({"domene": "(avledet)", "noder": naere_noder[:4],
+                        "kobling": "noder deler ord med fragmentet"})
+    if not forslag:
+        # ingen domene nevnt og ingen node deler ord: foreslaa de STOERSTE
+        # ueide domenene — et fragment maa havne et sted, ogsaa naar Atlaset
+        # ikke kjenner ordene. Det er den aapne inngangen.
+        dek = atlas.get("_dekning") or {}
+        for d in treff_domener or []:
+            forslag.append({"domene": d, "noder": [], "kobling": "nevnt"})
+        if not forslag:
+            naermeste = alle.get("buss_domene", (0, []))[1][:3]
+            forslag = [{"domene": d, "noder": [], "kobling": "uten hjem — maa navngis"}
+                       for d in naermeste]
+
+    # hva maa fylles? sammenlign mot en typisk FULL node
+    typisk = set()
+    for n in noder:
+        typisk |= set(n.keys())
+    typisk -= {"id", "buss_domene", "prediction", "settlement",
+               "ville_falsifisere", "analogi", "falsifiserbarhet"}
+    mangler = sorted(typisk)
+
+    if forslag and len(treff_domener) > 0:
+        status = "hjem_funnet"
+    elif naere_noder and naere[0][0] >= 2:
+        status = "svakt"
+    else:
+        status = "uten_hjem"
+
+    return {
+        "status": status,
+        "tekst": tekst,
+        "forslag": forslag,
+        "naere_noder": naere_noder,
+        "mangler": mangler,
+        "aksene": {k: alle[k][1][:6] for k in
+                   ("perspektiv", "phase", "synlighet") if k in alle},
+    }
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -665,11 +750,27 @@ if __name__ == "__main__":
     p.add_argument("--akser", action="store_true",
                    help="list ALLE aksene atlaset barer — ogsaa de nye")
     p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
+    p.add_argument("--plasser", help="plasser et NYTT fragment: hvor horer det, og hva mangler")
     p.add_argument("--hop", help="N hopp fra en node:  eller ")
     p.add_argument("--fragment", help="roter rundt ETT fragment: node + alle koblinger")
     p.add_argument("--oversikt", action="store_true",
                    help="HELE atlaset paa én gang: hva som er hva, hvor, hvor mange")
     a = p.parse_args()
+
+    # INNGANGEN — plasser et nytt fragment
+    if a.plasser:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        p_ = plasser(atlas, a.plasser)
+        print(f"FRAGMENT: {a.plasser!r}  ->  {p_['status']}")
+        for f in p_["forslag"][:4]:
+            print(f"  domene {f['domene']:26} {f['kobling']}")
+            if f["noder"]:
+                print(f"    naboer: {', '.join(f['noder'])}")
+        if p_.get("naere_noder"):
+            print(f"  naere noder: {', '.join(p_['naere_noder'][:4])}")
+        print(f"  maa utfylle {len(p_['mangler'])} felt for aa bli en node: "
+              f"{', '.join(p_['mangler'][:6])} ...")
+        sys.exit(0)
 
     # KOBLINGENE — 1-hop, 2-hop, 3-hop
     if a.hop or a.fragment:
