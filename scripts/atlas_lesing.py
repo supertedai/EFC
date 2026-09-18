@@ -1178,6 +1178,9 @@ if __name__ == "__main__":
             for n in treff:
                 v = _les_sti(n, sti)
                 print(f"  {n['id']:34} {str(v)[:60]}")
+                klarhet = (n.get("maale_paradigme") or {}).get("klarhetsfunksjon")
+                if klarhet:
+                    print(f"    {klarhet}")
         sys.exit(0)
 
     # ROTASJON — de fire vinklene som ikke fantes 2026-09-17
