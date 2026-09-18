@@ -91,3 +91,38 @@ class TestGeneriskRotasjon:
     def test_ukjent_verdi_paa_kjent_akse_gir_tomt_ikke_feil(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "perspektiv", "finnes-ikke")
         assert t == []
+
+
+class TestNavnelaget:
+    """MORTENS navn mot ATLASETS stier — tre ulike klasser.
+
+    Maalt 2026-09-17: `isomorphisme` er `analogi`, `loop` er
+    `emergence.loop`, og `paradigme` er en VERDI av `perspektiv` — ikke en
+    akse. Uten dette laget ser alle tre like ut: «finnes ikke».
+    """
+
+    def test_alias_isomorphisme_er_analogi(self, atlas: dict) -> None:
+        t = atlas_lesing.roter_akse(atlas, "isomorphisme")
+        assert len(t) == 13, f"isomorphisme: {len(t)}"
+
+    def test_alias_loop_er_emergence_loop(self, atlas: dict) -> None:
+        t = atlas_lesing.roter_akse(atlas, "loop")
+        assert len(t) == 86
+
+    def test_verdi_paradigme_loeses_som_perspektiv_verdi(self, atlas: dict) -> None:
+        """TREDJE KLASSE: `paradigme` er ikke en akse. Det er en verdi."""
+        t = atlas_lesing.roter_akse(atlas, "paradigme")
+        assert t
+        assert all(n["perspektiv"] == "paradigme" for n in t)
+
+    def test_menneskelige_maalefelt_naas(self, atlas: dict) -> None:
+        a = atlas_lesing.akser(atlas)
+        for navn, sti in (("hva_maales", "measure.target"),
+                          ("hvem_maaler", "measure.measurer"),
+                          ("hvor_maales", "measure.placement"),
+                          ("maaleinstrument", "measure.instrument")):
+            assert sti in a, f"{navn} -> {sti} mangler"
+
+    def test_ukjent_navn_feiler_fortsatt(self, atlas: dict) -> None:
+        with pytest.raises(KeyError):
+            atlas_lesing.roter_akse(atlas, "finnes.ikke.her")
