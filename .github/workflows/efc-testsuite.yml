@@ -1,0 +1,101 @@
+name: efc-testsuite
+
+# C14 — the WHOLE suite, collected from the repository root.
+#
+# MEASURED 2026-09-18 (card t_89eea983) on origin/main 9fd9ae4a: no CI job ran
+# the whole suite. Four workflows named TWELVE test files between them, against
+# a suite of 1161 tests, and `make full-check` runs scripts/maintenance/* — it
+# does not run pytest at all.
+#
+# Main is therefore RED today, in two classes, and nothing said so:
+#   1. a COLLECTION ERROR: tests/test_atlas_retain.py imports NODE_TERSKEL,
+#      bekreft and node_verdig from scripts/atlas_lesing.py, and PR #532
+#      (9fd9ae4a) merged the test file without the code it imports. pytest
+#      interrupts the whole session on a collection error, so NOT ONE of the
+#      1161 tests runs on main right now (measured: `1 error in 4.70s`,
+#      `Interrupted: 1 error during collection`).
+#   2. a FAILING TEST: tests/test_bro_konvensjon.py::
+#      test_hvert_skjema_felt_har_en_eier — the field `open_questions` is in
+#      schema/regime_node.schema.json (PR #555) with no owner in the bridge
+#      convention.
+# With (1) set aside as a MEASUREMENT (never as a gate setting) the suite is
+#   1 failed, 1159 passed, 1 skipped in 50.94s
+# — that is, (1) is the only reason the suite cannot run at all, and (2) is the
+# only failure behind it.
+#
+# This job is RED the day it lands, for exactly those two reasons, and that is
+# the honest signal: it reports what no gate reported before it. The repair
+# order matters — (1), then (2), then this job is green. It deliberately
+# carries no ignore, no xfail and no allowlist for either: an exemption is how
+# a gate stops being a gate.
+#
+# THE COMMAND, and why it is not the short form:
+#   * `python3 -m pytest -q` from the root — not `pytest tests/`. From the root
+#     efc_inference/tests/ comes along (123 tests). `tests/` alone drops them in
+#     silence, which is exactly the trap
+#     tests/test_repo_konfigurasjon.py::TestIngenDekningForsvinner exists for.
+#     Measured on the previous base: `tests/` = 995 tests, the root = 1123.
+#   * `python3 -m pytest`, not `pytest`: only the `-m` form puts CWD on
+#     sys.path, so `import efc_inference` works without an install. Measured in
+#     a fresh venv: `pytest tests/test_cross_probe_s8.py` stopped with
+#     ModuleNotFoundError: efc_inference.
+#   * No `pip install -e .` and no `--ignore=tests/test_growth_friction.py`:
+#     pyproject.toml puts `src` on the path (`pythonpath = ["src"]`, added
+#     upstream on 2026-09-18), so tests/test_growth_friction.py is collected and
+#     RUNS. Measured with no package installed in the venv at all:
+#     `python3 -m pytest tests/test_growth_friction.py -q` → 3 passed in 0.69s.
+#     The ignore inherited from the card was an install artefact of a bare
+#     venv, not a property of the test — and the file is a regression guard for
+#     a real growth-ODE bug, so leaving it ungated is the drift this job exists
+#     to stop.
+#
+# MEASURED COST (3.11.15, requirements.txt, TMPDIR=/tmp, 2026-09-18): 50.94s of
+# pytest for the level-2 run above; CI adds checkout, Python setup and the
+# requirements install. That is the price of the only run that sees all 1161.
+#
+# Environment sensitivity, measured the same day: the tests in
+# tests/test_repo_tre.py and tests/test_efc_*.py::Rigg assume TMPDIR sits
+# OUTSIDE a git tree. With TMPDIR=/opt/... (which is a git tree on the
+# measurement host) 15 of them fail on "[] is not None" in git_indeks. The
+# GitHub runner uses /tmp, which is not a git tree, so this job does not set
+# TMPDIR — and must not.
+#
+# No `paths:` filter, deliberately: a whole-suite gate must run for EVERY
+# change, since any file can break any test. That is why it was not added to
+# one of the filtered jobs (efc-schema.yml runs the schema-near files and would
+# never have seen test_bro_konvensjon).
+#
+# Schedule: the cron maintenance commits to main with GITHUB_TOKEN, and such
+# robot commits fire no workflow (cf. efc-verify.yml). Many tests read
+# docs/public/*.html and docs/validation-ledger/ — precisely the surfaces the
+# robot writes. A daily run catches that rot within a day.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "37 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testsuite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: "Install the test dependencies (one source — requirements.txt)"
+        # Deliberately `-r requirements.txt` and not a list of its own: the test
+        # dependencies live in one place, and
+        # tests/test_repo_konfigurasjon.py::TestAvhengighetslisteneErISynk guards
+        # that it does not drift from the list in efc-schema.yml.
+        run: python3 -m pip install --quiet -r requirements.txt
+
+      - name: The whole suite from the root (tests/ and efc_inference/tests/)
+        run: python3 -m pytest -q
