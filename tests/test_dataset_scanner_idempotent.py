@@ -219,6 +219,40 @@ def test_report_problems_names_a_finding_with_no_readable_date():
     assert any("DESI/data release" in p for p in problems), problems
 
 
+def test_a_report_that_cannot_be_read_is_not_an_empty_answer(rig, capsys):
+    """`no report` and `unreadable report` may not collapse into one value: the
+    write path would overwrite observations it could not read and re-date them
+    as new."""
+    rig.report.write_text("{not json", encoding="utf-8")
+
+    rig.run(DAY1)
+
+    assert rig.report.read_text(encoding="utf-8") == "{not json", (
+        "the run rewrote a report it could not read — the observations it "
+        "carried are now dated as if they were made today")
+    assert "cannot be read" in capsys.readouterr().out
+
+
+def test_a_missing_report_is_named_by_the_stale_check(tmp_path, capsys):
+    mod = load_scanner()
+    missing = tmp_path / "nothing-here.json"
+
+    assert mod.check_stale(str(missing), today=DAY2) == 1
+
+    out = capsys.readouterr().out
+    assert "no report at" in out, (
+        "an absent artifact answered like a clean one — absence is not an answer")
+
+
+def test_a_broken_report_is_named_by_the_stale_check(tmp_path, capsys):
+    mod = load_scanner()
+    path = tmp_path / "report.json"
+    path.write_text("[]", encoding="utf-8")
+
+    assert mod.check_stale(str(path), today=DAY2) == 1
+    assert "not a report object" in capsys.readouterr().out
+
+
 def test_check_stale_fails_on_an_expired_report_and_passes_a_fresh_one(tmp_path, capsys):
     mod = load_scanner()
     path = tmp_path / "report.json"

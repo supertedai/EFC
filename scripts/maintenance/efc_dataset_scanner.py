@@ -155,16 +155,25 @@ def scan_for_new_datasets():
     return findings
 
 
-def load_report(path: str = REPORT_PATH):
-    """The report as it sits on disk, or None when there is none to read."""
+def read_report(path: str = REPORT_PATH):
+    """(report, problem): the report on disk, and what is wrong with it.
+
+    A MISSING report is (None, "") — there is nothing to carry forward, which is
+    a legitimate state for a first run. A file that cannot be read, or is not a
+    report, is (None, <why>): the two must not collapse into one value, because
+    the write path would otherwise overwrite observations it could not read and
+    re-date them as new.
+    """
     if not os.path.exists(path):
-        return None
+        return None, ""
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
-    except (OSError, ValueError):
-        return None
-    return data if isinstance(data, dict) else None
+    except (OSError, ValueError) as e:
+        return None, f"{path} cannot be read ({e.__class__.__name__}: {e})"
+    if not isinstance(data, dict):
+        return None, f"{path} is not a report object ({type(data).__name__})"
+    return data, ""
 
 
 def _iso_date(value) -> str:
@@ -244,11 +253,13 @@ def report_problems(report: dict) -> list:
     return problems
 
 
-def stale_answer(report, today: datetime.date, path: str = REPORT_PATH) -> dict:
+def stale_answer(path: str = REPORT_PATH, today: datetime.date | None = None) -> dict:
     """The machine-readable answer about the report's own expiry."""
+    report, problem = read_report(path)
     if report is None:
-        return {"report": path, "problems": [f"no readable report at {path}"],
-                "expired": []}
+        # An absent artifact is an answer too: it is not «nothing to report».
+        return {"report": path, "expired": [],
+                "problems": [problem or f"no report at {path}"]}
     return {"report": path,
             "reader": report.get("reader"),
             "stale_after_days": report.get("stale_after_days"),
@@ -263,7 +274,7 @@ def check_stale(path: str = REPORT_PATH, today: datetime.date | None = None,
     No network, no write — the answer is a property of the artifact on disk.
     """
     today = today or datetime.date.today()
-    answer = stale_answer(load_report(path), today, path)
+    answer = stale_answer(path, today)
     if as_json:
         print(json.dumps(answer, indent=2))
     else:
@@ -308,7 +319,16 @@ def main():
     # alone therefore changes nothing. The exit code above (findings exist) is
     # independent of whether the file needed writing.
     today = datetime.date.today().isoformat()
-    new_report = build_report(known, findings, load_report(REPORT_PATH), today)
+    previous, problem = read_report(REPORT_PATH)
+    if problem:
+        # A report we cannot read is not «no report»: its observations exist and
+        # we cannot see them, so overwriting it would re-date them as new. The
+        # state is named and the file is left alone — a human fixes or removes it.
+        print(f"\n  report problem: {problem}")
+        print("  refusing to rewrite it: the observations it carries would be "
+              "re-dated as new. Fix or remove the file, then re-run.")
+        return 1
+    new_report = build_report(known, findings, previous, today)
     new_text = json.dumps(new_report, indent=2)
     old_text = None
     if os.path.exists(REPORT_PATH):
