@@ -980,7 +980,7 @@
         },
         "usikkerhet": {
           "type": "object",
-          "description": "USIKKERHETSLAGET (ADR-086 §3.1): hvilken feilgrense KILDEN oppgir for en verdi noden bærer — eller en eksplisitt erklæring om at kilden ikke oppgir den. Valgfritt, lukket og additivt: ingen node må endres for at atlaset skal validere, og et tall uten oppgitt usikkerhet skal fortsatt kunne leses som nettopp det. Diagnosen er målt: hodetallene står MED feilgrense i sine egne kilder (`k = 0.415 ± 0.029` i docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5) mens atlaset hadde 0 strukturerte usikkerhetsfelt. Feltet skal ikke skaffe ny usikkerhet — det skal slutte å miste den. `null` er et gyldig svar; 0 og en gjetning er det ikke. Regelen som ikke kan stå her (en post SKAL ha en kilde som svarer) holdes av tests/test_usikkerhetslag.py inntil C10-gaten kan endres med menneskeord (t_2e60afa6). Eier: Morten og Joakim (ord 2026-09-18).",
+          "description": "THE UNCERTAINTY LAYER (ADR-086 §3.1): which error bound THE SOURCE states for a value the node carries — or an explicit declaration that the source does not state it. Optional, closed and additive: no node must be changed for the atlas to validate, and a number without a stated uncertainty shall still be readable as exactly that. The diagnosis is measured: the headline numbers stand WITH an error bound in their own sources (`k = 0.415 ± 0.029` in docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5) while the atlas had 0 structured uncertainty fields. The field shall not procure new uncertainty — it shall stop losing it. `null` is a valid answer; 0 and a guess are not. The rule that cannot stand here (a post SHALL have a source that answers) is held by tests/test_usikkerhetslag.py until the C10 gate can be changed by human word (t_2e60afa6). Owner: Morten and Joakim (word 2026-09-18).",
           "required": [
             "poster"
           ],
@@ -992,7 +992,7 @@
               "items": {
                 "$ref": "#/$defs/Usikkerhetspost"
               },
-              "description": "Én post per verdi noden bærer med usikkerhet. Tom liste er ikke en post: et felt som ser fylt ut uten å være det, er nettopp feilen dette laget skal hindre."
+              "description": "One post per value the node carries with uncertainty. An empty list is not a post: a field that looks filled without being it is exactly the error this layer shall prevent."
             }
           }
         }
@@ -1134,21 +1134,21 @@
         "storrelse": {
           "type": "string",
           "minLength": 1,
-          "description": "Størrelsen slik KILDEN skriver den (f.eks. «k», «β», «σ_int») — kildens navn, ikke vårt."
+          "description": "The quantity as THE SOURCE writes it (e.g. «k», «β», «σ_int») — the source's name, not ours."
         },
         "verdi": {
           "type": [
             "number",
             "null"
           ],
-          "description": "Verdien slik kilden oppgir den. `null` er et svar når kilden bare oppgir grensen."
+          "description": "The value as the source states it. `null` is an answer when the source only states the bound."
         },
         "feilgrense": {
           "type": [
             "number",
             "null"
           ],
-          "description": "Feilgrensen KILDEN oppgir på den navngitte linjen. `null` betyr at kilden ikke oppgir den — det er et SVAR, ikke en mangel, og β = 0.16 er prøven. En feilgrense på 0 er bare gyldig når kilden selv sier 0."
+          "description": "The error bound THE SOURCE states on the named line. `null` means the source does not state it — that is an ANSWER, not a shortcoming, and β = 0.16 is the test. An error bound of 0 is valid only when the source itself says 0."
         },
         "kilde": {
           "$ref": "#/$defs/Usikkerhetskilde"
@@ -1167,17 +1167,17 @@
         "fil": {
           "type": "string",
           "minLength": 1,
-          "description": "Sti fra repo-roten til filen grensen er lest fra. Filen må være sporet i repoet — en usporet «kilde» finnes ikke som kilde."
+          "description": "Path from the repo root to the file the bound was read from. The file must be tracked in the repo — an untracked «source» does not exist as a source."
         },
         "linje": {
           "type": "integer",
           "minimum": 1,
-          "description": "Linjenummeret i filen, 1-indeksert. Leses tilbake av tests/test_usikkerhetslag.py: en gjetning står ikke på linjen den viser til."
+          "description": "The line number in the file, 1-indexed. Read back by tests/test_usikkerhetslag.py: a guess does not stand on the line it points to."
         },
         "ordrett": {
           "type": "string",
           "minLength": 1,
-          "description": "Et ORDRETT utsnitt av linjen — nok til å se at kilden sier det posten sier. Et sitat som ikke står på linjen, feller testen."
+          "description": "A VERBATIM excerpt of the line — enough to see that the source says what the post says. A quotation that does not stand on the line fells the test."
         }
       }
     }
