@@ -915,101 +915,101 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### HO · homo.homeostase_buffer _(not switched on)_
 
-**In one line.** Perspective: paradigm. avvik fra setpunkt (ΔT, ΔpH, Δglukose)
+**In one line.** Perspective: academia. avvik fra setpunkt (ΔT, ΔpH, Δglukose)
 
 **What it does.** fysiologiske sensorer; her er noden beskrivelse, ikke sensor — proxy chain: sensor → avvik -> avvik → kompensasjonsrespons
 
-**How it's built.** Buffer role: selve bufferen: kapasitet som demper endring — den brede logikken i ren form. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: selve bufferen: kapasitet som demper endring — den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — Levin 2019 (biologi) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet.
 
 #### FE · homo.feber_regime _(not switched on)_
 
-**In one line.** Perspective: paradigm. kroppstemperatur mot setpunkt
+**In one line.** Perspective: academia. kroppstemperatur mot setpunkt
 
 **What it does.** termometer + pyrogen-markører; her beskrivelse — proxy chain: pyrogener → setpunktsskifte -> temperatur → avstand til nytt setpunkt
 
-**How it's built.** Buffer role: bufferen bytter TARGET, ikke kapasitet — det er selve regimeskiftet. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: bufferen bytter TARGET, ikke kapasitet — det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — fysiologi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet.
 
 #### AP · homo.aksjonspotensial _(not switched on)_
 
-**In one line.** Perspective: paradigm. membranpotensialet V(t) mot terskelen
+**In one line.** Perspective: academia. membranpotensialet V(t) mot terskelen
 
 **What it does.** fysiologisk måling; her beskrivelse — proxy chain: ionestrømmer → V(t) -> V(t) mot V_th → spike
 
-**How it's built.** Buffer role: membranen er bufferen: gradienten lades og holdes til utløsning. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: membranen er bufferen: gradienten lades og holdes til utløsning. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — nevrofysiologi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av felt
 
 #### HJ · homo.hjerte_syklus _(not switched on)_
 
-**In one line.** Perspective: paradigm. slagvolum, frekvens, minuttvolum
+**In one line.** Perspective: academia. slagvolum, frekvens, minuttvolum
 
 **What it does.** fysiologisk måling; her beskrivelse — proxy chain: EKG → elektrisk syklus -> ekko → mekanisk syklus
 
-**How it's built.** Buffer role: ventriklene er bufferne: de fylles og tømmes rytmisk — aldri til null, aldri ove. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: ventriklene er bufferne: de fylles og tømmes rytmisk — aldri til null, aldri ove. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — kardiologi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet.
 
 #### GN · homo.genregulering _(not switched on)_
 
-**In one line.** Perspective: paradigm. uttrykksnivå per gen (mRNA/protein)
+**In one line.** Perspective: academia. uttrykksnivå per gen (mRNA/protein)
 
 **What it does.** sekvensering; her beskrivelse av reguleringslogikken — proxy chain: TF-binding → uttrykk -> epigenetisk merke → terskelskifte
 
-**How it's built.** Buffer role: genomet holder reguleringsprogrammene lagret — en kapasitet som demper tilfeldig. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: genomet holder reguleringsprogrammene lagret — en kapasitet som demper tilfeldig. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — molekylaerbiologi (standard) — fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen paa
 
 #### CY · homo.cellesyklus _(not switched on)_
 
-**In one line.** Perspective: paradigm. fase per celle (G1/S/G2/M)
+**In one line.** Perspective: academia. fase per celle (G1/S/G2/M)
 
 **What it does.** laboratoriemåling; her beskrivelse — proxy chain: DNA-innhold → fase -> CDK/cyklin → sjekkpunkt-status
 
-**How it's built.** Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — cellebiologi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet
 
 #### ME · homo.metabolisme _(not switched on)_
 
-**In one line.** Perspective: paradigm. ATP/ADP-forhold, O₂-forbruk, substrat-fluks
+**In one line.** Perspective: academia. ATP/ADP-forhold, O₂-forbruk, substrat-fluks
 
 **What it does.** laboratoriemåling; her beskrivelse — proxy chain: O₂-forbruk → fluks -> ATP/ADP → reguleringsstatus
 
-**How it's built.** Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — biokjemi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet.
 
 #### SF · efc.solar_flare_engine _(not switched on)_
 
@@ -1041,59 +1041,59 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### IM · homo.immunologi _(not switched on)_
 
-**In one line.** Perspective: paradigm. aktiveringsstatus, antistofftiter, hukommelsespopulasjon
+**In one line.** Perspective: academia. aktiveringsstatus, antistofftiter, hukommelsespopulasjon
 
 **What it does.** laboratoriemåling; her beskrivelse — proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse
 
-**How it's built.** Buffer role: hukommelsen er bufferen: den senker terskelen og gjør neste respons raskere. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: hukommelsen er bufferen: den senker terskelen og gjør neste respons raskere. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — immunologi (standard: Janeway/Matzinger) — fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke
 
 #### SV · homo.sovn_vaaken _(not switched on)_
 
-**In one line.** Perspective: paradigm. søvnstadium (våken/NREM/REM), homeostatisk trykk
+**In one line.** Perspective: academia. søvnstadium (våken/NREM/REM), homeostatisk trykk
 
 **What it does.** klinisk måling; her beskrivelse — proxy chain: EEG-synkroni -> stadium -> våkenhetsvarighet -> homeostatisk trykk
 
-**How it's built.** Buffer role: søvnbehovet er bufferen: det akkumuleres i våken og tømmes i søvn — hjernens døg. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: søvnbehovet er bufferen: det akkumuleres i våken og tømmes i søvn — hjernens døg. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — sovnfysiologi (standard: Borbely, Steriade) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og b
 
 #### OE · homo.okologi _(not switched on)_
 
-**In one line.** Perspective: paradigm. tilstandsvariabler (næringsstoffer, dekning, artssammensetning)
+**In one line.** Perspective: academia. tilstandsvariabler (næringsstoffer, dekning, artssammensetning)
 
 **What it does.** økologisk overvåking; her beskrivelse — proxy chain: næringsstoffer -> tilstand -> dekning -> regime
 
-**How it's built.** Buffer role: økosystemets bufferevne (resiliens) demper forstyrrelser — til bufferen er brukt. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: økosystemets bufferevne (resiliens) demper forstyrrelser — til bufferen er brukt. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — regime-shift-okologi (Scheffer) — fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen
 
 #### EV · homo.evolusjon _(not switched on)_
 
-**In one line.** Perspective: paradigm. endringstakt i fenotype/art (morfologiske og molekylære rater)
+**In one line.** Perspective: academia. endringstakt i fenotype/art (morfologiske og molekylære rater)
 
 **What it does.** paleontologisk/genomisk måling; her beskrivelse — proxy chain: fossilrekke -> morfologisk rate -> molekylær avstand -> tid siden splitt
 
-**How it's built.** Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen — til r. Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen — til r. Epistemic: stottet / replikert / institusjonell.
 
 **Steps in execution.**
 
-1. **Perspective** — paradigm
-2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
+1. **Perspective** — academia
+2. **Epistemics** — stottet / replikert / institusjonell
+3. **Social mechanism** — evolusjonsbiologi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av f
 
 #### VV · verden.vaer _(not switched on)_
 

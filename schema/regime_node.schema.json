@@ -691,6 +691,87 @@
               "type": "string"
             }
           }
+        },
+        "lagdeling": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "En node kan baere FLERE lag med ulik epistemisk status. Biologien er kjernen: fysiologien er laerebok (akademia/stottet), mens analogien til EFC er vaar egen (paradigme/hypotese). Ett `perspektiv`-felt kan ikke baere begge — derfor dette.",
+          "properties": {
+            "fysiologi": {
+              "type": "object",
+              "required": [
+                "status",
+                "kilde",
+                "sannhet",
+                "konsensus"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "akademia",
+                    "konsensus",
+                    "paradigme",
+                    "agnostikk"
+                  ]
+                },
+                "kilde": {
+                  "type": "string"
+                },
+                "sannhet": {
+                  "enum": [
+                    "stottet",
+                    "hypotese",
+                    "modellrelativ"
+                  ]
+                },
+                "konsensus": {
+                  "enum": [
+                    "institusjonell",
+                    "minoritet",
+                    "ingen"
+                  ]
+                }
+              }
+            },
+            "analogi": {
+              "type": "object",
+              "required": [
+                "status",
+                "kilde",
+                "sannhet",
+                "konsensus"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "akademia",
+                    "konsensus",
+                    "paradigme",
+                    "agnostikk"
+                  ]
+                },
+                "kilde": {
+                  "type": "string"
+                },
+                "sannhet": {
+                  "enum": [
+                    "stottet",
+                    "hypotese",
+                    "modellrelativ"
+                  ]
+                },
+                "konsensus": {
+                  "enum": [
+                    "institusjonell",
+                    "minoritet",
+                    "ingen"
+                  ]
+                }
+              }
+            }
+          }
         }
       },
       "additionalProperties": false
@@ -728,6 +809,43 @@
         }
       },
       "additionalProperties": false
+    },
+    "Lag": {
+      "type": "object",
+      "required": [
+        "status",
+        "kilde",
+        "sannhet",
+        "konsensus"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "akademia",
+            "konsensus",
+            "paradigme",
+            "agnostikk"
+          ]
+        },
+        "kilde": {
+          "type": "string"
+        },
+        "sannhet": {
+          "enum": [
+            "stottet",
+            "hypotese",
+            "modellrelativ"
+          ]
+        },
+        "konsensus": {
+          "enum": [
+            "institusjonell",
+            "minoritet",
+            "ingen"
+          ]
+        }
+      }
     }
   },
   "additionalProperties": false
