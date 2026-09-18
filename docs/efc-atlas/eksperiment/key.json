@@ -1,0 +1,110 @@
+{
+  "instrument": "EFC-atlaset: evidenslag-eksperiment",
+  "dato": "2026-09-18",
+  "adr": "ADR-086 §4",
+  "hensikt": "Avgjore om et usikkerhetslag og eksplisitte stoette-/motsigelseskanter forbedrer atlaset: faerre falske stoetteavgjorelser UTEN tap i dagens oppslagsnoeyaktighet.",
+  "status": "NOKKELEN ER SKREVET OG COMMITTET FOR NOEN KJORING. sha256 av denne fila star i commit-meldingen. Endres nokkelen etterpa, er eksperimentet ikke blindt lenger og skal sies hoyt.",
+  "noder": ["obs.bao", "obs.fsigma8", "efc.growth_engine", "efc.rotation_engine", "efc.lag_c0", "h2o.droplet", "homo.aksjonspotensial", "homo.hjerte_syklus"],
+  "mal": {
+    "korrekt_svarandel": "antall sporsmal besvart korrekt av 8",
+    "avstaelse": "antall sporsmal systemet erklaerer at det ikke kan besvare",
+    "falske_stoettepastander": "antall svar der systemet hevder empirisk stoette som ikke finnes (nokkelen sier ingen)",
+    "proveniens": "antall svar som navngir fil:felt svaret er lest fra",
+    "tid_sekunder": "veggklokke per system for hele settet",
+    "kalibrering": "av svarene der systemet sier 'stottet', hvor mange er korrekte"
+  },
+  "sporsmal": [
+    {
+      "id": "Q1",
+      "type": "kjede",
+      "sporsmal": "For efc.growth_engine: hvilken observasjon er den observert i, og hvilket regime er den koblet til?",
+      "nokkel": {
+        "observasjon": ["obs.fsigma8", "obs.s8"],
+        "regime": ["efc.l2"]
+      },
+      "grunnlag": "schema/regime_nodes.jsonld — efc.growth_engine har OBSERVED_IN -> obs.fsigma8 og obs.s8, COUPLED_TO -> efc.l2",
+      "kan_besvares_i_dag": true
+    },
+    {
+      "id": "Q2",
+      "type": "oppgjor",
+      "sporsmal": "Hvilke av de atte nodene baerer BADE prediction og settlement?",
+      "nokkel": ["obs.bao", "obs.fsigma8", "efc.growth_engine"],
+      "grunnlag": "feltfylling lest per node: 3 av 8. De ovrige 5 har ingen av feltene.",
+      "kan_besvares_i_dag": true
+    },
+    {
+      "id": "Q3",
+      "type": "analogi-mot-stotte",
+      "sporsmal": "Hvor mange av de atte nodene er empirisk stottet av en annen node?",
+      "nokkel": {"antall": 0, "merknad": "0 av 86 relasjoner i banken baerer stoette eller motsigelse. De 8 har til sammen 16 relasjoner, alle OBSERVED_IN, COUPLED_TO, ANALOGOUS_TO eller INSTANCE_OF/EMERGES_FROM."},
+      "grunnlag": "predikater talt over hele banken: OBSERVED_IN 29, COUPLED_TO 20, ANALOGOUS_TO 16, CARRIES 9, TRANSITIONS_TO 7, EMERGES_FROM 3, INSTANCE_OF 1, OBSERVED_THROUGH 1. Stoette/motsigelse: 0.",
+      "kan_besvares_i_dag": false,
+      "hvorfor_ikke": "sporsmalet har ingen term i dagens atlas. Et system uten stoette-begrep ma enten avsta eller svare paa koblinger — og det andre er nettopp den falske stoettepastanden."
+    },
+    {
+      "id": "Q4",
+      "type": "feilrettet-kant",
+      "sporsmal": "Hvilken kant i settet har feil retning — en motor oppgitt som observert inne i en observasjon?",
+      "nokkel": {"subject": "efc.hubble_engine", "predicate": "OBSERVED_IN", "object": "obs.bao"},
+      "grunnlag": "schema/regime_nodes.jsonld: efc.hubble_engine --OBSERVED_IN--> obs.bao. OBSERVED_IN gaar observasjon -> regime i alle 29 andre tilfeller.",
+      "kan_besvares_i_dag": true
+    },
+    {
+      "id": "Q5",
+      "type": "syklus",
+      "sporsmal": "Finnes det en syklus i relasjonene rundt de atte nodene, og hvor mange rader baerer den?",
+      "nokkel": {"syklus": true, "par": ["homo.aksjonspotensial", "homo.hjerte_syklus"], "predikat": "ANALOGOUS_TO", "rader": 4},
+      "grunnlag": "ANALOGOUS_TO begge veier mellom de to, og BEGGE retninger er duplisert: 4 rader for 2 relasjoner.",
+      "kan_besvares_i_dag": true
+    },
+    {
+      "id": "Q6",
+      "type": "falsifikator",
+      "sporsmal": "Hvilke av de atte nodene mangler en falsifikator-avgjorelse?",
+      "nokkel": {"mangler": [], "merknad": "Ingen. Alle 8 har en avgjorelse, men i TRE former: ville_falsifisere (efc.growth_engine, efc.lag_c0), stipulasjoner.ikke_falsifiserbar_grunn (obs.bao, obs.fsigma8, h2o.droplet, homo.aksjonspotensial, homo.hjerte_syklus) og falsifiserbarhet.status = terskel_ikke_fastsatt (efc.rotation_engine)."},
+      "grunnlag": "lest per node fra schema/regime_nodes.jsonld",
+      "kan_besvares_i_dag": true,
+      "felle": "Et oppslag som bare ser etter ville_falsifisere svarer feil: det melder efc.rotation_engine som udekket. Den tredje formen er ekte og pinnet av testene (31 + 4 + 78 = 113, kort t_c11ffa45)."
+    },
+    {
+      "id": "Q7",
+      "type": "usikkerhet",
+      "sporsmal": "Baerer noen av de atte nodene et strukturert usikkerhetsfelt?",
+      "nokkel": {"antall": 0, "merknad": "Ingen. Skjemaet har 0 forekomster av uncertainty/usikkerhet. Tallene i nodene har ingen feilgrense aa lese."},
+      "grunnlag": "schema/regime_node.schema.json: grep -ci 'uncertainty|usikkerhet' = 0. Feltfylling per node: ingen usikkerhetsfelt.",
+      "kan_besvares_i_dag": false
+    },
+    {
+      "id": "Q8",
+      "type": "kjede",
+      "sporsmal": "Hvilke to regimer er obs.bao observert i?",
+      "nokkel": ["efc.l1", "efc.l2"],
+      "grunnlag": "schema/regime_nodes.jsonld: obs.bao OBSERVED_IN -> efc.l1 og efc.l2",
+      "kan_besvares_i_dag": true
+    }
+  ],
+  "systemer": {
+    "A": {
+      "navn": "dagens leser",
+      "regel": "Svarer fra dagens felt og relasjoner, med den lesningen atlaset inviterer til: en relasjon til noe som maaler eller observerer teller som stotte; finnes feltet ikke, er svaret nei; ordet 'usikkerhet' i prosa teller ikke som felt. Systemet faar AVSTA naar sporsmalet ikke har en term aa svare med.",
+      "bygges_av": "scripts/atlas_* som de staar paa origin/main"
+    },
+    "B": {
+      "navn": "prototype med minimalt evidenslag",
+      "regel": "Samme sporsmal, men (i) ANALOGOUS_TO teller ALDRI som stotte, (ii) stotte krever en eksplisitt stoettekant, (iii) usikkerhet leses fra evidenslaget, (iv) retningen paa OBSERVED_IN kontrolleres mot nodetypen, (v) duplikate kanter slas sammen.",
+      "bygges_av": "eget sidefil-lag, ikke en skjemaendring"
+    }
+  },
+  "blindhet": {
+    "hva_som_er_blindt": "Nokkelen er skrevet og committet for prototypen finnes. Scoreren sammenligner mekanisk (normalisert likhet), ikke ved min vurdering.",
+    "hva_som_ikke_er_blindt": "Jeg har valgt sporsmalene OG bygget B. Det er den svake leddet, og det skal sta i rapporten. Verifiseres av et uavhengig spor som leser nokkelen mot banken uten aa se prototypen.",
+    "regel_for_ending": "Er en nokkel feil, rettes den i en egen commit med grunn — og antallet rettede nokler rapporteres. Aldri stille."
+  },
+  "beslutningsregel": {
+    "stotte_kanter_inn": "B har 0 falske stoettepastander OG A mister ingenting der begge svarer (Q1, Q2, Q4, Q5, Q8 like) OG B svarer korrekt der A avstar.",
+    "stotte_kanter_ut": "B har like mange eller flere falske stoettepastander enn A, eller B taper noeyaktighet der A svarer korrekt.",
+    "usikkerhetslaget": "Vurderes separat: laget er verdt noe hvis det gir minst ett svar (Q7) som dagens leser ikke kan gi, uten aa fylle det med gjetting."
+  },
+  "kjent_svakhet": "A er en REGEL jeg har skrevet, ikke atlaset selv. Eksperimentet maaler A-som-spesifisert. Staar A svakt, er funnet 'regelen er for naiv', ikke 'atlaset er ubrukelig'. Begge utfall er nyttige, men de skal ikke blandes."
+}
