@@ -58,7 +58,24 @@ name: efc-testsuite
 #
 # MEASURED COST (3.11.15, requirements.txt, TMPDIR=/tmp, 2026-09-18): 50.94s of
 # pytest for the level-2 run above; CI adds checkout, Python setup and the
-# requirements install. That is the price of the only run that sees all 1161.
+# requirements install.
+#
+# MEASURED IN CI the same evening. First run (35383963611): 29s to the
+# collection error above — checkout and the requirements install are about 20s
+# of that, so the whole gate costs well under a minute. With (1) set aside in a
+# probe run (35384359541) the pytest step ran 31.53s and reported
+#   25 failed, 1136 passed, 1 skipped
+# — which is the number that matters for anyone planning to make this job
+# green: (2) is NOT the whole distance. Three of the failing files hard-code
+# the interpreter path `/opt/venvs/t_123ed6d9/bin/python`
+# (tests/test_atlas_lesbarhet.py, tests/test_atlas_navigasjon.py,
+# tests/test_efc_atlas_generator.py) — a path that exists only on the Hermes
+# host, so those tests pass there and cannot run anywhere else. That is a test
+# defect (the repair is `sys.executable`), it is reported as its own card, and
+# it is not patched inside a CI-policy change. One more file needs `origin/main`
+# to resolve; THIS job provides it, because comparing against the main revision
+# is deliberate in those tests (the atlas reader's own --ref default) and a job
+# that runs the suite has to hand it the revision.
 #
 # Environment sensitivity, measured the same day: the tests in
 # tests/test_repo_tre.py and tests/test_efc_*.py::Rigg assume TMPDIR sits
@@ -92,6 +109,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          # The atlas tests read the revision they compare the tree against
+          # (`origin/main` is the atlas reader's own default ref), so the ref
+          # has to exist in the checkout. A PR checkout does not create it.
+          fetch-depth: 0
+
+      - name: Make origin/main resolvable for the tests that compare against it
+        run: git fetch --no-tags origin main
 
       - uses: actions/setup-python@v6
         with:
@@ -105,7 +130,4 @@ jobs:
         run: python3 -m pip install --quiet -r requirements.txt
 
       - name: The whole suite from the root (tests/ and efc_inference/tests/)
-        # PROBE ONLY (card t_89eea983): the ignore is reverted in the next
-        # commit. See tests/test_ci_gate_probe.py for why it is needed to let
-        # a deliberately failing test execute at all.
-        run: python3 -m pytest -q --ignore=tests/test_atlas_retain.py
+        run: python3 -m pytest -q
