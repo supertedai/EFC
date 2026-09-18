@@ -22,6 +22,15 @@ on:
       - 'docs/papers/**'
       - 'docs/validation-ledger/**'
       - 'public/**'
+      # The writers and the helper they share: a change here decides whether
+      # the projection stays the single owner of the two generated files.
+      - 'scripts/maintenance/changelog_projeksjon.py'
+      - 'scripts/maintenance/efc_auto_changelog.py'
+      - 'scripts/maintenance/efc_maintain.py'
+      - 'scripts/maintenance/efc_navbar_sync.py'
+      - 'scripts/maintenance/_nav_helper.py'
+      - 'tests/test_maintenance_chain_fixpoint.py'
+      - '.github/workflows/efc-changelog-sync.yml'
 
 jobs:
   changelog-sync:
@@ -33,10 +42,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Projection tests (the start point must resolve)
+      - name: Fixpoint tests (the start point resolves; the chain converges)
         run: |
           python3 -m pip install --quiet "pytest>=8,<9"
-          python3 -m pytest tests/test_changelog_projeksjon.py -q
+          python3 -m pytest tests/test_changelog_projeksjon.py \
+                           tests/test_maintenance_chain_fixpoint.py \
+                           tests/test_nav_helper_canonical.py -q
       - name: Regenerate changelog (projection)
         run: python3 scripts/maintenance/changelog_projeksjon.py
       - name: Require sync (red if the changelog diverges)
@@ -47,6 +58,26 @@ jobs:
             exit 1
           fi
           echo "✓ Changelog in sync (projection matches history)"
+      - name: Step 8 of efc_maintain must not break the fixpoint
+        # The projection above is only half the property: the maintenance
+        # chain also writes, and it must not write THESE two files. Measured
+        # 2026-09-18 (t_9cdf466e): efc_auto_changelog.py (step 8) rewrote
+        # changelog.json with json.dump's default ensure_ascii=True, so every
+        # em dash became an escape; the projection rewrote it back and the
+        # gate was red on a tree that was in fixpoint. A dirty, public-
+        # relevant tree is created on purpose, because an automatic step that
+        # only writes when there is something to write must be given
+        # something to write about.
+        run: |
+          printf '\n<!-- fixpoint probe -->\n' >> docs/public/EFC_Atlas.html
+          python3 scripts/maintenance/efc_auto_changelog.py
+          git checkout -- docs/public/EFC_Atlas.html
+          if ! git diff --quiet -- docs/public/EFC_Changelog.html docs/validation-ledger/data/changelog.json; then
+            echo "::error::efc_auto_changelog.py wrote a file the projection owns. The projection is the single writer; this step must only report."
+            git diff --stat -- docs/public/EFC_Changelog.html docs/validation-ledger/data/changelog.json
+            exit 1
+          fi
+          echo "✓ Step 8 reports and writes neither generated file"
       - name: Language gate (English only in changelog)
         run: |
           python3 - << 'PYEOF'

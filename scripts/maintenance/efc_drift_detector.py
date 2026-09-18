@@ -134,7 +134,9 @@ _DOI_NEAR_RE = re.compile(r'(?:doi\.org/|figshare\.|10\.6084/m9\.figshare)', re.
 # definition is an append-only log of history; existing entries are
 # historical statements that rotate stale numbers as the repo evolves.
 # Auto-rewriting them changes the historical record. New Changelog
-# entries are added by efc_ledger_autofill.py / efc_auto_changelog.py.
+# entries are added by efc_ledger_autofill.py (DOI rows) and by
+# changelog_projeksjon.py, which owns both changelog files; step 8 of
+# efc_maintain.py (efc_auto_changelog.py) reports and writes nothing.
 _FIX_FORBIDDEN = {"Changelog"}
 
 
