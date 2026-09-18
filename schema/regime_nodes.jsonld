@@ -14183,9 +14183,10 @@
       "object": "efc.l2"
     },
     {
-      "subject": "efc.hubble_engine",
-      "predicate": "OBSERVED_IN",
-      "object": "obs.bao"
+      "subject": "obs.bao",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "efc.hubble_engine",
+      "note": "observert gjennom denne motoren — retningen snudd 2026-09-18: OBSERVED_IN betyr observasjon -> regime, og gjorde det bare for 23 av 29"
     },
     {
       "subject": "efc.growth_engine",
@@ -14193,29 +14194,34 @@
       "object": "efc.l2"
     },
     {
-      "subject": "efc.growth_engine",
-      "predicate": "OBSERVED_IN",
-      "object": "obs.fsigma8"
+      "subject": "obs.fsigma8",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "efc.growth_engine",
+      "note": "observert gjennom denne motoren — retningen snudd 2026-09-18: OBSERVED_IN betyr observasjon -> regime, og gjorde det bare for 23 av 29"
     },
     {
-      "subject": "efc.growth_engine",
-      "predicate": "OBSERVED_IN",
-      "object": "obs.s8"
+      "subject": "obs.s8",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "efc.growth_engine",
+      "note": "observert gjennom denne motoren — retningen snudd 2026-09-18: OBSERVED_IN betyr observasjon -> regime, og gjorde det bare for 23 av 29"
     },
     {
-      "subject": "efc.lensing_engine",
-      "predicate": "OBSERVED_IN",
-      "object": "obs.cmb_lensing"
+      "subject": "obs.cmb_lensing",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "efc.lensing_engine",
+      "note": "observert gjennom denne motoren — retningen snudd 2026-09-18: OBSERVED_IN betyr observasjon -> regime, og gjorde det bare for 23 av 29"
     },
     {
-      "subject": "efc.cluster_engine",
-      "predicate": "OBSERVED_IN",
-      "object": "obs.cluster_hmf"
+      "subject": "obs.cluster_hmf",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "efc.cluster_engine",
+      "note": "observert gjennom denne motoren — retningen snudd 2026-09-18: OBSERVED_IN betyr observasjon -> regime, og gjorde det bare for 23 av 29"
     },
     {
-      "subject": "efc.cluster_engine",
-      "predicate": "OBSERVED_IN",
-      "object": "obs.cluster_mass"
+      "subject": "obs.cluster_mass",
+      "predicate": "OBSERVED_THROUGH",
+      "object": "efc.cluster_engine",
+      "note": "observert gjennom denne motoren — retningen snudd 2026-09-18: OBSERVED_IN betyr observasjon -> regime, og gjorde det bare for 23 av 29"
     },
     {
       "subject": "homo.homeostase_buffer",
@@ -14231,11 +14237,6 @@
       "subject": "homo.aksjonspotensial",
       "predicate": "ANALOGOUS_TO",
       "object": "homo.hjerte_syklus"
-    },
-    {
-      "subject": "homo.hjerte_syklus",
-      "predicate": "ANALOGOUS_TO",
-      "object": "homo.aksjonspotensial"
     },
     {
       "subject": "homo.genregulering",
