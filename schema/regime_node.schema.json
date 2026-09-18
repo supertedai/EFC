@@ -495,9 +495,36 @@
                 "type": "string"
               },
               "description": "Alternative beskrivelser som er utelatt — bevissthet om at andre rammer kunne vært valgt."
+            },
+            "s_regime": {
+              "type": "string",
+              "enum": ["Low-S", "S->0", "S~0", "S>0", "S->1", "high_s"],
+              "description": "EBE-S-regimet som noden er gyldig i; en eksplisitt, roterbar S-koordinat."
+            },
+            "sektor": {
+              "type": "string",
+              "enum": ["S", "D", "C"],
+              "description": "EFC-sektor: strukturell, dynamisk eller kapasitet."
+            },
+            "ebe_function": {
+              "type": "string",
+              "description": "EBE-funksjonen som binder claim validity til S, L og proxy-kjede."
             }
           },
           "description": "Koordinat-paradigmene (krav d): tid, rom, masse og hastighet er valgte koordinater — noden deklarerer hvilke den antar."
+        },
+        "rcmp": {
+          "type": "object",
+          "required": ["instrument", "observabel", "teori", "overlap"],
+          "additionalProperties": false,
+          "properties": {
+            "instrument": {"type": "string"},
+            "observabel": {"type": "string"},
+            "teori": {"type": "string"},
+            "overlap": {"const": true},
+            "deklarasjon": {"type": "string"}
+          },
+          "description": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
         },
         "nivaa": {
           "type": "object",
