@@ -2,11 +2,11 @@
 
 _**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._
 
-_Question status: **6 open · 1 resolved**._
+_Question status: **7 open · 1 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 74 nodes, 18 engines, NATS bridges.
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 76 nodes, 19 engines, NATS bridges.
 
 ## Decisions locked
 
@@ -28,8 +28,8 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds kjemi-periodesystemet)_
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time.
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
-8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-water-phase-engine, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, efc-mu-kz-engine, efc-romvaer-engine, efc-oekonomi-engine, efc-orbital-engine, efc-klima-engine, efc-samfunn-engine, efc-tidevann-engine, efc-transient-engine, efc-enerflyt-engine, verden-vaer)_
-9. **The whole atlas** — Everything at once — 74 nodes, 72 relations.
+8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-water-phase-engine, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, efc-mu-kz-engine, efc-romvaer-engine, efc-oekonomi-engine, efc-orbital-engine, efc-klima-engine, efc-samfunn-engine, efc-tidevann-engine, efc-transient-engine, efc-enerflyt-engine, verden-vaer, kosmos-asteroider, efc-efc-background-engine)_
+9. **The whole atlas** — Everything at once — 76 nodes, 72 relations.
 
 ## Structures
 
@@ -1113,6 +1113,38 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler
 
+#### KO · kosmos.asteroider _(not switched on)_
+
+**In one line.** Perspective: consensus. treffsannsynlighet og Palermo-kumulativ per objekt
+
+**What it does.** Sentry-listen selv; oppgjoeret leser hele listen som fasit — proxy chain: bane -> treffsannsynlighet (prediksjon) -> liste -> revidert/utelukket (oppgjoer)
+
+**How it's built.** Buffer role: Sentry-listen er bufferen som holder risikobildet stabilt mellom revisjoner. Epistemic: stottet / proxy / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / proxy / institusjonell
+3. **Social mechanism** — JPL Sentry som konsensus-kanal
+
+#### EF · efc.efc_background_engine _(not switched on)_
+
+**In one line.** Perspective: paradigm. bakgrunnsgeometrien H(a) og F(phi), K(rho)
+
+**What it does.** ingen direkte — avledet og loest numerisk — proxy chain: aksjon -> feltligninger -> FRW-bakgrunn
+
+**How it's built.** Buffer role: F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / ingen / minoritet.
+
+**Steps in execution.**
+
+1. **Perspective** — paradigm
+2. **Epistemics** — hypotese / ingen / minoritet
+3. **Social mechanism** — vaar egen ramme — baeres av oss, ikke av feltet
+
+**Questions.**
+
+- **Q-EF1** efc.efc_background_engine: no evidence yet — hypothesis marked honestly
+
 ## Flows (representative packets)
 
 Payload shapes are what the design implies, not measured traffic.
@@ -1146,6 +1178,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 - **Q-GE1** (GE) efc.grid_mikro_engine: no evidence yet — hypothesis marked honestly
 - **Q-SH1** (SH) efc.sort_hull: no evidence yet — hypothesis marked honestly
 - **Q-VU1** (VU) kosmos.jord.vulkan: motor waits for connector deploy
+- **Q-EF1** (EF) efc.efc_background_engine: no evidence yet — hypothesis marked honestly
 
 ## What the platform gives vs what we own
 

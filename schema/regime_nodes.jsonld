@@ -7437,6 +7437,196 @@
     "outcome_time": "2026-09-17T19:56:26Z",
     "settlement_version": "1"
    }
+  },
+  {
+   "id": "kosmos.asteroider",
+   "regime": {
+    "name": "nær-jord-objekter",
+    "validity": "JPL Sentry: banerisiko for nær-jord-objekter, Palermo-skala. Prediksjonene gjelder aarsspenn (f.eks. 2880), ikke tidspunkt — `tidspunkt_kjent` er `nei`. Terskel ps_cum <= -4.0."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "treffsannsynlighet og Palermo-kumulativ per objekt",
+    "measurer": "NASA/JPL Sentry — og oppgjoeret som reviderer listen",
+    "instrument": "Sentry-listen selv; oppgjoeret leser hele listen som fasit",
+    "proxy_chain": [
+     "bane -> treffsannsynlighet (prediksjon)",
+     "liste -> revidert/utelukket (oppgjoer)"
+    ],
+    "placement": "observasjon",
+    "compression": "hvert objekt komprimeres til én Palermo-verdi"
+   },
+   "episenter": "revisjonen — der en tidligere risiko forsvinner eller endrer seg, og det gamle tallet kan sammenlignes",
+   "buffer": {
+    "role": "Sentry-listen er bufferen som holder risikobildet stabilt mellom revisjoner",
+    "note": "hele listen er fasit — ikke vaart utvalg over en terskel"
+   },
+   "ontology": {
+    "assumes": [
+     "JPL DE441 har regnet banen — ingen instrument leste av",
+     "Palermo-skalaen under -2 regnes som ubetydelig",
+     "et aarsspenn er ikke et tidspunkt"
+    ],
+    "source": "NATS-stroemmen VERDEN_PROGNOSE, emne kosmos.asteroider.*"
+   },
+   "observer": {
+    "bandwidth": "Sentry-listen — bare objekter over JPLs egen terskel",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "bane -> risiko -> revisjon -> ny bane; sloeyfa lukker seg over aarti",
+    "properties": []
+   },
+   "fractal": {
+    "pattern": "ett objekt er hele listens proxy",
+    "note": "og listen er hele risikoens proxy"
+   },
+   "coupling": {
+    "local": "hvert objekt vurderes for seg",
+    "global": "listen som helhet er jordas risikobilde",
+    "empathy_note": "oppgjoeret maaler LISTEN, ikke objektet — et objekt kan forsvinne fordi banen ble bedre kjent, ikke fordi faren gikk over"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "-4.0 er JPLs terskel, ikke vaar — 40 over, 2165 under"
+    ],
+    "motor": "efc.orbital_engine (banemekanikk)"
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "JPL Sentry som konsensus-kanal",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "fraksjon",
+     "tid"
+    ],
+    "enheter": "sannsynlighet 0-1 og log10(risiko/bakgrunn)",
+    "status": "valgt_ramme",
+    "alternativer": [
+     "Torino-skalaen 0-10 — MAALT 2026-09-04: 0 for 2186 av 2188 objekter, skiller ingenting i dag"
+    ]
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "aar (spenn, ikke tidspunkt)",
+    "lengdeskala": "AU"
+   },
+   "buss_domene": "kosmos.asteroider",
+   "synlighet": "offentlig",
+   "prediction": {
+    "source": "nasa-jpl-sentry",
+    "observable": "banerisiko",
+    "issued_at": "2026-09-17T19:31:02Z",
+    "valid_for": "2880-01-01T00:00:00Z",
+    "expected": "{\"absoluttmagnitude\": 17.94, \"diameter_km_estimert\": 1.3, \"fullt_navn\": \"29075 (1950 DA)\", \"objekt\": \"29075\", \"palermo_kumulativ\": -0.92, \"treffsannsynlighet\": 0.0003833, \"tidsrom\": \"2880-2880\", \"tidspunkt_kjent\": \"nei\"}",
+    "correlation": "jpl-sentry.29075",
+    "basis": "speilet fra en maalt melding paa bussen (seq 168747), ikke utledet her",
+    "criterion": "et oppgjoer med SAMME korrelasjon reviderer eller utelukker objektet",
+    "tolerance_rule": "utelukket eller revidert — ingen gradering"
+   },
+   "settlement": {
+    "correlation": "jpl-sentry.2026 RO10",
+    "expected": "{\"objekt\": \"2026 RO10\"}",
+    "outcome": "{\"utfall\": \"revidert\"}",
+    "deviation": "{\"avvik\": 0.01, \"palermo_kumulativ_da\": -3.89, \"palermo_kumulativ_naa\": -3.88}",
+    "outcome_source": "jpl-sentry-oppgjoer",
+    "outcome_time": "2026-09-14T13:11:39Z",
+    "settlement_version": "1"
+   }
+  },
+  {
+   "id": "efc.efc_background_engine",
+   "regime": {
+    "name": "FRW-bakgrunn",
+    "validity": "selvkonsistent EFC-bakgrunn fra aksjonspapiret (L-033), DOI 10.6084/m9.figshare.31876324. Foerste FRW-bakgrunnsloeser i repoet — koblet til observasjon via efc.hubble_engine."
+   },
+   "phase": "regime_engine",
+   "measure": {
+    "target": "bakgrunnsgeometrien H(a) og F(phi), K(rho)",
+    "measurer": "den publiserte aksjonen (eq. 1)",
+    "instrument": "ingen direkte — avledet og loest numerisk",
+    "proxy_chain": [
+     "aksjon -> feltligninger -> FRW-bakgrunn"
+    ],
+    "placement": "teorirom",
+    "compression": "hele bakgrunnshistorien -> H(a)"
+   },
+   "episenter": "FRW-bakgrunnen — der aksjonen blir en ekspansjonshistorie",
+   "buffer": {
+    "role": "F(phi) og K(rho) er bufferne som demper avvik fra LCDM avhengig av feltverdi",
+    "note": "modellens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "aksjonen (eq. 1) er gyldig",
+     "en FRW-ansats er tilstrekkelig paa bakgrunnsnivaa"
+    ],
+    "source": "DOI 10.6084/m9.figshare.31876324 (Magnusson, 2025/2026)"
+   },
+   "observer": {
+    "bandwidth": "ingen instrumentvindu — bakgrunnen er avledet, ikke maalt",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "F(phi) og K(rho) -> H(a) -> observasjon; sloeyfa lukker seg gjennom hubble_engine",
+    "properties": []
+   },
+   "fractal": {
+    "pattern": "bakgrunnen er det LCDM-lignende grensetilfellet av samme aksjon",
+    "note": "skal reprodusere kjent kosmologi i grensen"
+   },
+   "coupling": {
+    "local": "hver parameter virker lokalt i aksjonen",
+    "global": "H(a) bærer hele bakgrunnshistorien og er det hubble_engine leser",
+    "empathy_note": "en bakgrunn som passer er ikke et bevis — den er en forutsetning for at perturbasjonene kan testes"
+   },
+   "perspektiv": "paradigme",
+   "stipulasjoner": {
+    "stipulert_av_oss": true,
+    "terskler": [
+     "ingen terskler — bakgrunnsløser"
+    ],
+    "motor": "efc_background"
+   },
+   "epistemikk": {
+    "sannhetsstatus": "hypotese",
+    "evidensstatus": "ingen",
+    "konsensusstatus": "minoritet",
+    "sosial_mekanisme": "vaar egen ramme — baeres av oss, ikke av feltet",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "rom"
+    ],
+    "enheter": "H(a) i km/s/Mpc",
+    "status": "avledet",
+    "alternativer": [
+     "LCDM-bakgrunnen (den grensen EFC skal reprodusere)"
+    ]
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "kosmisk tid",
+    "lengdeskala": "Hubbleskala"
+   },
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig",
+   "falsifiserbarhet": {
+    "status": "terskel_ikke_fastsatt",
+    "grunn": "skal reprodusere LCDM i en grense, og avvike fra den i en annen — men hvilken grense, og hvor mye avvik som teller, er IKKE fastsatt i noden. Foerste skritt er aa navngi grensetilfellet mot efc.hubble_engine"
+   }
   }
  ],
  "relations": [
