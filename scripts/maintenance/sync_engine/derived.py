@@ -40,5 +40,6 @@ def regenerate_all() -> None:
     _run("efc_drift_detector.py", "--fix")
     # Level 3 — Symbiose snapshot from ledger
     _run("efc_symbiose_snapshot.py", "--from-ledger")
-    # Level 3 — auto-changelog stamp
+    # Level 3 — changelog report. It writes nothing: the two changelog files
+    # are owned by changelog_projeksjon.py (t_9cdf466e).
     _run("efc_auto_changelog.py")

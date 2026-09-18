@@ -150,7 +150,12 @@ def handle_drift_fix(change: Change) -> list[str]:
 
 
 def handle_date_rollover(change: Change) -> list[str]:
-    """T14 — Day changed. Refresh date stamps + snapshot."""
+    """T14 — Day changed. Refresh date stamps + snapshot.
+
+    ``efc_auto_changelog.py`` reports only; the changelog files are owned by
+    ``changelog_projeksjon.py`` (t_9cdf466e), so this handler still touches
+    nothing but the snapshot.
+    """
     _run("efc_symbiose_snapshot.py", "--from-ledger")
     _run("efc_auto_changelog.py")
     return [".claude/symbiose_snapshot.json"]

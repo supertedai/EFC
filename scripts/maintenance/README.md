@@ -189,8 +189,27 @@ is regenerated in the same PR as the change:
 
 ```
 python3 scripts/maintenance/changelog_projeksjon.py   # regenerate
-python3 scripts/maintenance/efc_navbar_sync.py        # the projection's ensure_nav drops the current-page highlight
+python3 scripts/maintenance/efc_navbar_sync.py        # navbar last, so the canonical block wins
 ```
+
+**One writer per generated file.** Both files are owned by the projection and
+by nothing else. `efc_auto_changelog.py` — step 8 of `efc_maintain.py` — used
+to be a second writer, driven by the working tree instead of the history.
+Measured 2026-09-18 (t_9cdf466e): it wrote the JSON with `json.dump`'s default
+`ensure_ascii=True`, so one maintenance run turned every em dash into `\u2014`
+and merged its own summary into the projection's newest entry; committing the
+tree exactly as `efc_maintain.py` left it made the projection rewrite the
+escapes back, and the gate was red on a tree that was in fixpoint — no commit
+could turn it green. Both writers also prepended `<li>` rows to the same list,
+so two such commits merged into a conflict that was committed unresolved
+(`docs/public/EFC_Changelog.html`, introduced by 207274ad). Step 8 now detects
+and reports only; it writes neither file. `_nav_helper.ensure_nav()` is a thin
+call onto `efc_navbar_sync.render_nav()` — one canonical navbar form — and is
+asked for the page it is writing, because without the page name it is a no-op.
+`tests/test_maintenance_chain_fixpoint.py` locks all of it: it builds a
+throwaway git repo carrying real copies of the two files, runs step 8 → the
+projection → the navbar twice, and requires the second pass to leave the tree
+unchanged.
 
 **The start point must exist.** `last_processed_sha` is stamped from the commit
 the projection ran on, and a squash-merge leaves that commit on no branch, so a

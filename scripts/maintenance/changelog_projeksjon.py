@@ -19,6 +19,12 @@ Language rule (Morten 2026-09-17): ALL EFC public content is English —
 summaries are cleaned commit subjects; Norwegian stopwords fail the gate.
 
 Usage:  python3 scripts/maintenance/changelog_projeksjon.py
+
+OWNERSHIP: these two files have exactly ONE writer, this script. Step 8 of
+``efc_maintain.py`` (``efc_auto_changelog.py``) reports the working-tree diff
+and writes neither, so that a second input — the working tree, next to the git
+history — can never make the gate unsatisfiable. Measured 2026-09-18
+(t_9cdf466e).
 """
 from __future__ import annotations
 
@@ -32,8 +38,9 @@ from datetime import datetime, timezone
 try:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from _nav_helper import ensure_nav  # type: ignore
-except ImportError:
-    ensure_nav = lambda t: t  # noqa: E731
+except ImportError:  # pragma: no cover — a missing helper must not block a write
+    def ensure_nav(html: str, page: str | None = None) -> str:  # type: ignore[misc]
+        return html
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HTML = os.path.join(REPO, "docs", "public", "EFC_Changelog.html")
@@ -202,7 +209,11 @@ def _hoved() -> int:
         if ul < 0:
             raise SystemExit("EFC_Changelog.html missing changelog <ul>")
         tekst = tekst[:ul + 4] + "\n  " + li + tekst[ul + 4:]
-    tekst = ensure_nav(tekst)
+    # ONE canonical navbar form, shared with efc_navbar_sync.py: the helper
+    # asks that module's render_nav() for THIS page, so the red active-page
+    # marker survives the write. Without the page name the helper is a no-op
+    # (by contract) and a drifted navbar would stay drifted.
+    tekst = ensure_nav(tekst, HTML)
     with open(HTML, "w", encoding="utf-8") as f:
         f.write(tekst)
 

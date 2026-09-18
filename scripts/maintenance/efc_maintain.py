@@ -137,7 +137,11 @@ def main() -> int:
     run(SYMBIOSE, "--from-ledger")
     # Step 7: Scan for new external datasets (Euclid, DESI, KiDS, Simons)
     run(DATASET_SCANNER)
-    # Step 8: Auto-changelog — detect and log all changes before commit
+    # Step 8: report the changes the maintain run produced. The changelog
+    # files themselves are OWNED by changelog_projeksjon.py — a projection of
+    # the git history — and step 8 writes neither of them: two writers over
+    # one generated file, from two different inputs (working tree vs history),
+    # is what made the changelog-sync gate unsatisfiable (t_9cdf466e).
     run(AUTO_CHANGELOG)
     # Step 9: CROSS-VALIDATION GATE — check public pages vs repo/ledger/Symbiose
     # This is the "council" step that blocks publishing if data is inconsistent
