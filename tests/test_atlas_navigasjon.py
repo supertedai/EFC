@@ -36,7 +36,7 @@ import atlas_navigasjon  # noqa: E402
 
 # Maalt mot origin/main 606b3127, 2026-09-17. Disse er ikke maal — de er
 # et GULV. Synker de, er noe blitt usynlig for navigasjonen.
-BASELINE_MOTORER_TOTALT = 20
+BASELINE_MOTORER_TOTALT = 32
 BASELINE_MOTORER_NAADD = 17
 BASELINE_EMNER_NAADD = 34
 BASELINE_DOMENER_NAADD = 12
