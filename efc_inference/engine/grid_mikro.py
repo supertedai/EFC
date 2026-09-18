@@ -52,12 +52,12 @@ class GridMikroEngine(EFCEngine):
         """Given density values, return Γ(ρ) per point (scenario B+)."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        koord = np.asarray(coordinates, dtype=float)
-        ut = []
-        for rho in koord:
+        coords = np.asarray(coordinates, dtype=float)
+        out = []
+        for rho in coords:
             p = {**params_dict, "rho": float(rho)}
-            ut.append(self.gamma(p, scenario="B_plus"))
-        return np.array(ut)
+            out.append(self.gamma(p, scenario="B_plus"))
+        return np.array(out)
 
     def deff(self, params: dict) -> float:
         """Deff(ρ) ∝ √(ρ/ρcrit) — boundary-mode activation (31942800)."""

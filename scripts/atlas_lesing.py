@@ -1,34 +1,34 @@
 #!/usr/bin/env python3
-"""atlas_lesing — les atlaset fra en GIT-REF, aldri fra et arbeidsstre.
+"""atlas_lesing — read the atlas from a GIT-REF, never from a working tree.
 
-REGELEN SOM KODE, ikke som prosa. Grunnen er maalt: en test som leser et
-dokument kan bare se at ordene finnes, ikke hva de betyr. En mutant som
-snudde regelen til «les fra arbeidskopien» passerte tre dokumenttester.
-Meningen maa derfor bo i en funksjon som kan kjores og muteres mot.
+THE RULE AS CODE, not as prose. The reason is measured: a test that reads a
+document can only see that the words exist, not what they mean. A mutant that
+flipped the rule to «read from the working copy» passed three document tests.
+The meaning must therefore live in a function that can be run and mutated against.
 
-Bakgrunnen, maalt 2026-09-17: atlaset finnes i flere arbeidskopier som ikke
-viser samme kart. Ett arbeidsstre viste 72 noder mens origin/main hadde 82;
-en annen klone sto paa en senere merget PR-gren; et vedlikeholds-worktree
-manglet `perspektiv` paa alle 45 noder.
+The background, measured 2026-09-17: the atlas exists in several working copies
+that do not show the same map. One working tree showed 72 nodes while
+origin/main had 82; another clone sat on a later merged PR branch; a
+maintenance worktree lacked `perspektiv` on all 45 nodes.
 
-    En kopi som svarer, leser som et levende atlas.
+    A copy that answers reads as a live atlas.
 
-Samme feilmodus som 2026-09-16 (atlas-sync mot komponenter som ikke kjorte)
-og 2026-09-14 (minne tilgjengelig, men ikke styrende).
+Same failure mode as 2026-09-16 (atlas sync against components that did not
+run) and 2026-09-14 (memory available but not steering).
 
-MERK om ferskhet: `origin/main` er en remote-tracking ref og kan vaere
-foreldet. Denne modulen henter derfor IKKE av seg selv — den rapporterer
-hvilken commit den leste, slik at en foreldet ref er synlig i resultatet
-i stedet for i leserens antakelse. `hent=False` er standard; sett
-`hent=True` naar leseren vil ha ferskest mulig.
+NOTE on freshness: `origin/main` is a remote-tracking ref and can be stale.
+This module therefore does NOT fetch on its own — it reports which commit it
+read, so that a stale ref is visible in the result instead of in the reader's
+assumption. `hent=False` is the default; pass `hent=True` when the reader
+wants the freshest available.
 
-API-KARTET — hva de offentlige funksjonene tar og gir. Satt opp 2026-09-18
-etter at en leser (jeg) gjettet tre av dem feil fra husken: `finn` ble
-indeksert som en liste (den er en dict), `plasser` ble lest med en noekkel
-som ikke finnes, og `kjent_hull` ble kalt under et navn som var privat.
-Ingen av dem var en feil i atlaset — alle var en feil i grensesnittet.
+THE API MAP — what the public functions take and give. Set up 2026-09-18
+after a reader (me) guessed three of them wrong from memory: `finn` was
+indexed as a list (it is a dict), `plasser` was read with a key that does not
+exist, and `kjent_hull` was called under a name that was private. None of them
+was an error in the atlas — all of them were an error in the interface.
 
-    les_atlas(repo, ref)            -> dict   hele atlaset
+    les_atlas(repo, ref)            -> dict   the whole atlas
     finn(repo, emne, ref)           -> dict   {antall, hull, for_bredt, raad, ...}
     akser(atlas)                    -> dict   {sti: (antall, eksempelverdier)}
     roter_akse(atlas, akse, verdi)  -> list[dict]
@@ -36,12 +36,12 @@ Ingen av dem var en feil i atlaset — alle var en feil i grensesnittet.
     helhet(atlas, node_id)          -> dict   {episenter, felt, motor, ...}
     plasser(atlas, tekst)           -> dict   {status, forslag, naere_noder, ...}
     kjent_hull(repo, emne, ref)     -> dict | None
-    naboer/hop/hop_stier/fragment   -> koblingsgrafen
-    maaleformer/proxy_kjeder        -> hva maaler, via hva
+    naboer/hop/hop_stier/fragment   -> the coupling graph
+    maaleformer/proxy_kjeder        -> what measures, via what
 
-REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
-«ATLASET VET IKKE» heller enn aa gi et loest treff; `plasser` svarer
-`uten_hjem` heller enn aa gjette et domene.
+THE RULE they all follow: an entrance that does not know SAYS so. `finn`
+answers «THE ATLAS DOES NOT KNOW» rather than giving a loose hit; `plasser`
+answers `uten_hjem` rather than guessing a domain.
 """
 
 from __future__ import annotations
@@ -55,13 +55,13 @@ from pathlib import Path
 
 STANDARD_REF = "origin/main"
 
-# Hvor mange treff CLI-en viser foer den sier «... og N flere». Et svar paa
-# 80 linjer blir ikke lest; de sterkeste treffene er sortert foerst.
+# How many hits the CLI shows before it says «... and N more». An answer of
+# 80 lines is not read; the strongest hits are sorted first.
 _VIS_MAKS = 15
 
 
 class AtlasLesingFeil(RuntimeError):
-    """Refen kunne ikke leses. Aldri stille fallback til arbeidsstreet."""
+    """The ref could not be read. Never a silent fallback to the working tree."""
 
 
 def _git(repo: Path, *args: str) -> str:
@@ -69,20 +69,20 @@ def _git(repo: Path, *args: str) -> str:
                        capture_output=True, text=True)
     if p.returncode != 0:
         raise AtlasLesingFeil(
-            f"git {' '.join(args)} feilet i {repo}: {p.stderr.strip()}")
+            f"git {' '.join(args)} failed in {repo}: {p.stderr.strip()}")
     return p.stdout
 
 
 def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
               hent: bool = False, sti: str = "schema/regime_nodes.jsonld") -> dict:
-    """Les atlaset fra `ref` i `repo` — aldri fra arbeidsstreet.
+    """Read the atlas from `ref` in `repo` — never from the working tree.
 
-    Returnerer et objekt som NAVNGIR kilden den leste, slik at en foreldet
-    eller feil ref er synlig i resultatet.
+    Returns an object that NAMES the source it read, so that a stale or wrong
+    ref is visible in the result.
 
-    Reiser AtlasLesingFeil hvis refen ikke finnes. Det er med vilje: en
-    stille fallback til arbeidsstreet er noeyaktig feilmodusen denne
-    funksjonen finnes for aa hindre.
+    Raises AtlasLesingFeil if the ref does not exist. That is deliberate: a
+    silent fallback to the working tree is exactly the failure mode this
+    function exists to prevent.
     """
     repo = Path(repo)
     if hent:
@@ -93,14 +93,15 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
         data = json.loads(raa)
     except json.JSONDecodeError as e:
         raise AtlasLesingFeil(
-            f"{ref}:{sti} i {repo} er ikke gyldig JSON: {e}") from e
+            f"{ref}:{sti} in {repo} is not valid JSON: {e}") from e
     if not isinstance(data, dict) or "nodes" not in data:
         raise AtlasLesingFeil(
-            f"{ref}:{sti} i {repo} mangler 'nodes' — "
-            f"noekler: {sorted(data)[:8] if isinstance(data, dict) else type(data).__name__}")
-    # Merk: skjemaet leses IKKE her. Denne funksjonen leser atlaset, og et
-    # atlas finnes ogsaa uten skjema (syntetiske repoer i tester, delvise
-    # uttrekk). Kravene hentes der de brukes — se `skjema_krav()`.
+            f"{ref}:{sti} in {repo} lacks 'nodes' — "
+            f"keys: {sorted(data)[:8] if isinstance(data, dict) else type(data).__name__}")
+    # Note: the schema is NOT read here. This function reads the atlas, and an
+    # atlas exists also without a schema (synthetic repos in tests, partial
+    # extracts). The requirements are fetched where they are used — see
+    # `skjema_krav()`.
     return {
         "kilde": f"git:{ref}",
         "ref": ref,
@@ -112,64 +113,65 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
 
 
 def skjema_krav(atlas: dict) -> list[str]:
-    """Hvilke felt KREVER skjemaet av en node? Ett sted, ikke to.
+    """Which fields does the schema REQUIRE of a node? One place, not two.
 
-    Maalt 2026-09-18: `plasser` regnet dette ut som alle felt i banken minus
-    sju hardkodede unntak — og blant unntakene laa `buss_domene` og
-    `falsifiserbarhet`. En ny node ble altsaa bedt om `coupling.empathy_note`,
-    men IKKE om buss-domene eller falsifikator: de to feltene resten av huset
-    hviler paa. En liste som ikke kan oppdage at den selv har blitt feil er
-    ikke et krav — den er et minne.
+    Measured 2026-09-18: `plasser` computed this as every field in the bank
+    minus seven hardcoded exceptions — and among the exceptions lay
+    `buss_domene` and `falsifiserbarhet`. A new node was thus asked for
+    `coupling.empathy_note`, but NOT for bus domain or falsifier: the two
+    fields the rest of the house rests on. A list that cannot detect that it
+    has itself become wrong is not a requirement — it is a memory.
 
-    Reiser AtlasLesingFeil naar ingen kilde finnes. En tom kravliste ville
-    betydd «ingen krav», og det svaret ser ut som kunnskap.
+    Raises AtlasLesingFeil when no source exists. An empty requirement list
+    would have meant «no requirements», and that answer looks like knowledge.
     """
     if atlas.get("skjema_krav"):
         return list(atlas["skjema_krav"])
     if atlas.get("repo") and atlas.get("ref"):
-        return _skjema_krav(Path(atlas["repo"]), atlas["ref"])
+        return _schema_requirements(Path(atlas["repo"]), atlas["ref"])
     raise AtlasLesingFeil(
-        "atlaset har ingen kravkilde: verken 'skjema_krav', 'repo' eller "
-        "'ref' finnes — da kan kravene ikke leses")
+        "the atlas has no source of requirements: neither 'skjema_krav', "
+        "'repo' nor 'ref' exists — so the requirements cannot be read")
 
 
-def _skjema_krav(repo: Path, ref: str,
+def _schema_requirements(repo: Path, ref: str,
                  sti: str = "schema/regime_node.schema.json") -> list[str]:
-    """Les hvilke felt skjemaet KREVER av en node — ett sted, ikke to.
+    """Read which fields the schema REQUIRES of a node — one place, not two.
 
-    Reiser AtlasLesingFeil hvis skjemaet mangler eller ikke deklarerer
-    `required`. En tom liste ville betydd «ingen krav», og det er et svar
-    som ser ut som kunnskap.
+    Raises AtlasLesingFeil if the schema is missing or does not declare
+    `required`. An empty list would have meant «no requirements», and that is
+    an answer that looks like knowledge.
     """
     raa = _git(repo, "show", f"{ref}:{sti}")
     try:
         skjema = json.loads(raa)
     except json.JSONDecodeError as e:
-        raise AtlasLesingFeil(f"{ref}:{sti} er ikke gyldig JSON: {e}") from e
+        raise AtlasLesingFeil(f"{ref}:{sti} is not valid JSON: {e}") from e
     krav = ((skjema.get("$defs") or {}).get("RegimeNode") or {}).get("required")
     if not krav:
         raise AtlasLesingFeil(
-            f"{ref}:{sti} deklarerer ingen required-liste for RegimeNode")
+            f"{ref}:{sti} declares no required list for RegimeNode")
     return list(krav)
 
 
 def _har_falsifikator(node: dict) -> bool:
-    """Bærer noden en observasjon som ville felle den?
+    """Does the node carry an observation that would fell it?
 
-    `ville_falsifisere` er navnet i skjemaet, maalt 2026-09-17. En node som
-    ikke kan felles av noe, er en pastand — og leseren skal kunne se
-    forskjellen uten aa lese hele noden selv.
+    `ville_falsifisere` is the name in the schema, measured 2026-09-17. A node
+    that cannot be felled by anything is a claim — and the reader must be able
+    to see the difference without reading the whole node itself.
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
 
 
 def _dekning(repo: Path, ref: str, hent: bool) -> dict:
-    """Les dekningsfilen fra SAMME ref. Mangler den, er svaret tomt — ikke en feil.
+    """Read the coverage file from the SAME ref. Missing → empty answer, not an error.
 
-    Dekningsstatusen er et eget artefakt (`schema/atlas_dekning.json`), ikke
-    et felt paa nodene. Uten dette leser oppslaget bare nodene, og maa svare
-    «vet ikke» om noe noen faktisk har maalt og funnet manglende.
+    The coverage status is a separate artefact (`schema/atlas_dekning.json`),
+    not a field on the nodes. Without this the lookup reads only the nodes, and
+    must answer «don't know» about something somebody actually measured and
+    found missing.
     """
     try:
         raa = _git(repo, "show", f"{ref}:schema/atlas_dekning.json")
@@ -184,59 +186,60 @@ def _dekning(repo: Path, ref: str, hent: bool) -> dict:
 
 
 def _kjent_hull(dekning: dict, naal: str) -> dict | None:
-    """Er emnet et domene noen har maalt? Seker paa domeneNAVN, ikke innhold.
+    """Is the topic a domain somebody has measured? Looks at the domain NAME, not the content.
 
-    Bare et treff paa navnet teller. Et treff paa en begrunnelse ville gjort
-    «kjent» til «nevnt et sted», og da mister ordet sin verdi.
+    Only a hit on the name counts. A hit on a reason would make «known» into
+    «mentioned somewhere», and then the word loses its value.
     """
     if dekning.get("_mangler"):
         return None
-    naal_lav = naal.lower()
+    needle_lower = naal.lower()
     for domene, v in dekning.items():
         if not isinstance(v, dict):
             continue
-        d_lav = domene.lower()
-        if naal_lav == d_lav or naal_lav in d_lav.split("."):
+        d_lower = domene.lower()
+        if needle_lower == d_lower or needle_lower in d_lower.split("."):
             return {"domene": domene, "status": v.get("status"),
                     "noder": v.get("noder"), "begrunnelse": v.get("begrunnelse"),
-                    # VALGFRITT: PR #475 legger maalt meldingsvolum per
-                    # domene i dekningsfilen. Finnes det, vises det — og da
-                    # kan et hull paa 190 770 skilles fra ett paa 228.
-                    # Finnes det ikke, virker oppslaget som foer; et
-                    # oppslagsverk som ikke virker foer en annen PR lander,
-                    # er et oppslagsverk som ikke virker.
+                    # OPTIONAL: PR #475 puts measured message volume per
+                    # domain in the coverage file. If it is there, it is shown
+                    # — and then a hole of 190 770 can be told apart from one
+                    # of 228. If it is not, the lookup works as before; a
+                    # reference work that does not work before another PR
+                    # lands is a reference work that does not work.
                     "meldinger": v.get("meldinger")}
     return None
 
 
-def _norm(s: str) -> str:
-    """Bindestrek, understrek og mellomrom er samme skilletegn.
+def _normalize(s: str) -> str:
+    """Hyphen, underscore and space are the same delimiter.
 
-    Et oppslagsverk som ikke ser at `energy-flow` og `energy flow` er samme
-    ord, svarer «vet ikke» paa et ord det faktisk eier.
+    A reference work that cannot see that `energy-flow` and `energy flow` are
+    the same word answers «don't know» to a word it actually owns.
     """
     return " ".join(s.lower().replace("-", " ").replace("_", " ").split())
 
 
 def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
-    """Finn registrerte begreper uten aa late som de er atlasnoder.
+    """Find registered concepts without pretending they are atlas nodes.
 
-    To ting skal IKKE svelges stille: et begrep uten `@id` er en defekt i
-    registeret (ikke et brukbart treff), og ugyldig JSON i det PRIMAERE
-    begrepsregisteret er en feil — ikke «ikke funnet». Et oppslagsverk som
-    gjor en lesefeil om til «vet ikke», har svart paa noe annet enn det ble
-    spurt om.
+    Two things must NOT be swallowed in silence: a concept without `@id` is a
+    defect in the register (not a usable hit), and invalid JSON in the PRIMARY
+    concept register is an error — not «not found». A reference work that turns
+    a read error into «don't know» has answered something other than what it
+    was asked about.
     """
-    naal = _norm(emne)
+    naal = _normalize(emne)
     funn = []
     for sti in ("docs/concepts.jsonld", "docs/ontology.jsonld"):
         try:
             data = json.loads(_git(repo, "show", f"{ref}:{sti}"))
         except json.JSONDecodeError as feil:
-            raise AtlasLesingFeil(f"{sti} er ikke gyldig JSON: {feil}") from feil
+            raise AtlasLesingFeil(f"{sti} is not valid JSON: {feil}") from feil
         except AtlasLesingFeil:
-            # Fila finnes ikke paa denne refen. Det er et maalt fravaer av et
-            # VALGFRITT register, ikke en defekt — og det meldes ikke som treff.
+            # The file does not exist on this ref. That is a measured absence
+            # of an OPTIONAL register, not a defect — and it is not reported
+            # as a hit.
             continue
         for post in data.get("@graph", []):
             kandidater = [post.get("@id"), post.get("label")]
@@ -245,12 +248,12 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
                 verdier = verdi if isinstance(verdi, list) else [verdi]
                 kandidater.extend(
                     v.get("@value") if isinstance(v, dict) else v for v in verdier)
-            if any(isinstance(v, str) and _norm(v) == naal for v in kandidater):
+            if any(isinstance(v, str) and _normalize(v) == naal for v in kandidater):
                 if not isinstance(post.get("@id"), str) or not post["@id"]:
                     raise AtlasLesingFeil(
-                        f"{sti}: et begrep matcher «{emne}» men mangler @id — "
-                        "registeret er defekt, og et treff uten id kan ikke "
-                        "etterproeves")
+                        f"{sti}: a concept matches «{emne}» but lacks @id — "
+                        "the register is defective, and a hit without an id "
+                        "cannot be verified")
                 funn.append({"id": post["@id"], "kilde": sti})
     unike = {}
     for post in funn:
@@ -260,40 +263,40 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
 
 def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
          hent: bool = False) -> dict:
-    """Slaa opp et emne i atlaset — leser fra `ref`, aldri fra arbeidsstreet.
+    """Look up a topic in the atlas — reads from `ref`, never from the working tree.
 
-    Forskjellen fra `les_atlas`: denne svarer paa et SPOERSMAAL. `les_atlas`
-    gir deg hele kartet og lar deg lete; prisen for det er at atlaset ikke
-    blir konsultert spontant. Maalt 2026-09-17: modulen hadde en utgang og
-    ingen inngang.
+    The difference from `les_atlas`: this one answers a QUESTION. `les_atlas`
+    gives you the whole map and lets you search; the price of that is that the
+    atlas is not consulted spontaneously. Measured 2026-09-17: the module had
+    an exit and no entrance.
 
-    Svaret er ALLTID formet likt, ogsaa naar det er tomt:
+    The answer is ALWAYS shaped the same, also when it is empty:
 
         {"emne", "antall", "hull", "treff", "kilde", "ref", "commit"}
 
-    `hull: True` betyr «atlaset vet ikke» — det er et svar, ikke en feil,
-    og det kan skilles fra en feil fordi en feil REISER. Et oppslagsverk som
-    ikke kan si «jeg vet ikke», sier «nei» av uvitenhet.
+    `hull: True` means «the atlas does not know» — that is an answer, not an
+    error, and it can be told apart from an error because an error RAISES. A
+    reference work that cannot say «I don't know» says «no» out of ignorance.
 
-    Hvert treff navngir sin epistemiske status, slik at leseren ikke maa
-    lese hele noden for aa vite hva som er kjent og hva som er stipulert.
+    Every hit names its epistemic status, so that the reader does not have to
+    read the whole node to know what is known and what is stipulated.
     """
     if not emne or not emne.strip():
         raise AtlasLesingFeil(
-            "tomt emne — et oppslag uten spoersmaal ville matchet alt og "
-            "dermed ikke svart paa noe")
+            "empty topic — a lookup without a question would match everything "
+            "and thus have answered nothing")
     atlas = les_atlas(repo, ref, hent=hent, sti="schema/regime_nodes.jsonld")
-    # Maalt 2026-09-18: `--emne "energy-flow"` traff, `--emne "energy flow"`
-    # gav 0 treff. Ordene Morten bruker har BEGGE former, og et oppslagsverk
-    # som ikke ser det, svarer «vet ikke» paa et ord det faktisk eier.
-    naal = _norm(emne)
+    # Measured 2026-09-18: `--emne "energy-flow"` hit, `--emne "energy flow"`
+    # gave 0 hits. The words Morten uses have BOTH forms, and a reference work
+    # that does not see that answers «don't know» to a word it actually owns.
+    naal = _normalize(emne)
     if not naal:
-        raise AtlasLesingFeil("tomt emne etter normalisering")
+        raise AtlasLesingFeil("empty topic after normalization")
     dekning = _dekning(Path(repo), ref, hent)
-    spoersmaalsakse = _loes_spoersmaalsakse(atlas, emne)
-    if spoersmaalsakse:
+    question_axis = _resolve_question_axis(atlas, emne)
+    if question_axis:
         treff = []
-        for n in roter_akse(atlas, spoersmaalsakse):
+        for n in roter_akse(atlas, question_axis):
             treff.append({
                 "trefftype": "akse",
                 "id": n.get("id"),
@@ -306,40 +309,40 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
-            "emne": emne, "akse": spoersmaalsakse,
+            "emne": emne, "akse": question_axis,
             "kilde": atlas["kilde"], "ref": ref, "commit": atlas["commit"],
             "antall": len(treff), "hull": not treff, "for_bredt": False,
             "raad": None, "kjent_hull": _kjent_hull(dekning, naal),
             "dekning_fil": "schema/atlas_dekning.json", "treff": treff,
         }
-    # `\\b` regner `_` som ORDTEGN. Men i node-id-er SKILLER `_` ledd:
-    # `homo.sovn_vaaken`, `efc.solar_flare_engine`. Med `\b` ble `sovn`
-    # svekket til delstreng selv om den er et eget ledd i id-en (maalt i
-    # review 2026-09-17). Vi definerer derfor ordtegnet eksplisitt, slik at
-    # `_`, `.` og `-` alle er separatorer — og `sol` i `solid` fortsatt er
-    # en delstreng.
-    _ORDTEGN = "a-z0-9æøå"
-    ordmonster = re.compile(
-        rf"(?<![{_ORDTEGN}])" + re.escape(naal) + rf"(?![{_ORDTEGN}])")
+    # `\b` counts `_` as a WORD CHARACTER. But in node ids `_` SEPARATES
+    # segments: `homo.sovn_vaaken`, `efc.solar_flare_engine`. With `\b` the
+    # word `sovn` was weakened to a substring even though it is its own segment
+    # in the id (measured in review 2026-09-17). We therefore define the word
+    # character explicitly, so that `_`, `.` and `-` are all separators — and
+    # `sol` in `solid` is still a substring.
+    _WORD_CHARS = "a-z0-9æøå"
+    word_pattern = re.compile(
+        rf"(?<![{_WORD_CHARS}])" + re.escape(naal) + rf"(?![{_WORD_CHARS}])")
     treff = []
     for n in atlas["noder"]:
-        tekst = _norm(json.dumps(n, ensure_ascii=False))
+        tekst = _normalize(json.dumps(n, ensure_ascii=False))
         if naal not in tekst:
             continue
-        # Tre nivaaer, ikke to. «sol» traff `batteri.lading` som ORD — fordi
-        # ordet finnes i en tekst inne i noden — men noden handler ikke om
-        # sol. Og «sol» traff `h2o.solid` som delstreng av «solid». Uten
-        # skillet maa leseren gjette hvilke treff som er ekte.
-        id_tekst = str(n.get("id", "")).lower()
+        # Three levels, not two. «sol» hit `batteri.lading` as a WORD — because
+        # the word stands in a text inside the node — but the node is not about
+        # the sun. And «sol» hit `h2o.solid` as a substring of «solid». Without
+        # the distinction the reader has to guess which hits are real.
+        id_text = str(n.get("id", "")).lower()
         buss = str(n.get("buss_domene") or "").lower()
-        if ordmonster.search(id_tekst):
+        if word_pattern.search(id_text):
             trefftype = "id"
         elif buss and (naal == buss or naal in buss.split(".")):
-            # En node som DEKKER domenet `verden.energi` er relevant for
-            # «energi» selv om ordet bare staar i prosaen. Uten dette
-            # rangerte `efc.enerflyt_engine` som loes prosa.
+            # A node that COVERS the domain `verden.energi` is relevant to
+            # «energi» even if the word only stands in the prose. Without this
+            # `efc.enerflyt_engine` ranked as loose prose.
             trefftype = "domene"
-        elif ordmonster.search(tekst):
+        elif word_pattern.search(tekst):
             trefftype = "ord"
         else:
             trefftype = "delstreng"
@@ -367,40 +370,42 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "har_prediksjon": False,
                 "har_oppgjoer": False,
                 "har_falsifikator": False,
-                # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
-                # ga en ikke-tom treffliste, og en leser (eller et
-                # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
-                # noden — det har begrepet i navnerommet. De to feltene sier
-                # det uten at noen maa lese prosaen.
+                # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace
+                # hit gave a non-empty hit list, and a reader (or a downstream
+                # call) could conclude «covered». The atlas does NOT have the
+                # node — it has the concept in the namespace. The two fields say
+                # so without anyone having to read the prose.
                 "har_node": False,
                 "dekning": "navnerom_uten_node",
-                "grunn": (f"registrert i {post['kilde']}, men er ikke en "
-                          "node i schema/regime_nodes.jsonld"),
+                "grunn": (f"registered in {post['kilde']}, but is not a "
+                          "node in schema/regime_nodes.jsonld"),
             } for post in registrert]
-    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
+    rank_order = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
              "navnerom": 4}
-    # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
-    # det publiserte atlaset; de interne er kontekst.
-    treff.sort(key=lambda x: (_rang[x["trefftype"]],
+    # Within the same rank: public before internal. The public ones are the
+    # core of the published atlas; the internal ones are context.
+    treff.sort(key=lambda x: (rank_order[x["trefftype"]],
                               x["synlighet"] != "offentlig",
                               x["id"] or ""))
-    # «For bredt» hviler paa om soket har NOE PRESIST — ikke paa et antall.
+    # «Too broad» rests on whether the search has anything PRECISE — not on a
+    # count.
     #
-    # Foerste versjon brukte «>50 treff eller >60 % av atlaset». Review runde 4
-    # maalte den mot ekte spoersmaal: sol=20, energi=25, kosmos=32, h2o=36 —
-    # alle langt under, instrument=82 over. Ingen ekte spoersmaal laa i
-    # naarheten, saa tallet var gjettet. Verre: `efc` gir 68 treff hvorav 32
-    # PRESISE — en antalls-terskel kalte det bredt, som er stikk motsatt.
+    # The first version used «>50 hits or >60 % of the atlas». Review round 4
+    # measured it against real questions: sol=20, energi=25, kosmos=32, h2o=36 —
+    # all far below, instrument=82 above. No real question lay anywhere near, so
+    # the number was guessed. Worse: `efc` gives 68 hits of which 32 are
+    # PRECISE — a count threshold called that broad, which is the exact opposite.
     #
-    # Kriteriet er derfor: et treff er presist hvis det staar i node-id-en
-    # eller dekker et buss-domene. Er det ingen presise treff OG svaret ikke
-    # faar plass i visningen, er soket bredt — uansett hvor stort atlaset blir.
+    # The criterion is therefore: a hit is precise if it stands in the node id
+    # or covers a bus domain. If there are no precise hits AND the answer does
+    # not fit the display, the search is broad — no matter how large the atlas
+    # grows.
     presise = [t for t in treff if t["trefftype"] in ("id", "domene")]
     for_bredt = not presise and len(treff) > _VIS_MAKS
     raad = None
     if for_bredt:
-        raad = (f"ingen presise treff — alle {len(treff)} er loes prosa. "
-                f"Bruk et mer presist emne, eller se de sterkeste nedenfor")
+        raad = (f"no precise hits — all {len(treff)} are loose prose. "
+                f"Use a more precise topic, or see the strongest below")
     return {
         "emne": emne,
         "akse": None,
@@ -418,36 +423,36 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
 
 
 # ---------------------------------------------------------------------------
-# ROTASJON — aa se strukturen fra alle vinkler, ikke bare slaa opp et emne
+# ROTATION — seeing the structure from every angle, not just looking up a topic
 #
-# Maalt 2026-09-17: verktoeyet hadde fire flagg (`--emne`, `--ref`, `--hent`,
-# `--alle`). Det kunne slaa opp og liste. Det kunne IKKE filtrere paa
-# perspektiv, ikke skille en maalt node fra en avledet, ikke vise
-# proxy-kjeder. Rotasjonen fantes ikke.
+# Measured 2026-09-17: the tool had four flags (`--emne`, `--ref`, `--hent`,
+# `--alle`). It could look up and list. It could NOT filter on perspective, not
+# tell a measured node from a derived one, not show proxy chains. The rotation
+# did not exist.
 # ---------------------------------------------------------------------------
 
-#: Faser der noden MAALER noe — den har et instrument i verden.
-_MAALENDE_FASER = frozenset({"instrument", "observasjon"})
+#: Phases in which the node MEASURES something — it has an instrument in the world.
+_MEASURING_PHASES = frozenset({"instrument", "observasjon"})
 
-#: Faser der noden er AVLEDET — regnet, ikke maalt.
-_AVLEDEDE_FASER = frozenset({"regime_engine", "computation_engine",
+#: Phases in which the node is DERIVED — computed, not measured.
+_DERIVED_PHASES = frozenset({"regime_engine", "computation_engine",
                              "teoretisk", "stabil"})
 
 
 def roter(atlas: dict, *, node: str | None = None,
           perspektiv: str | None = None, fase: str | None = None,
           domene: str | None = None) -> list[dict]:
-    """Roter i atlaset paa tvers av feltene.
+    """Rotate in the atlas across the fields.
 
-    Ett kall, én vinkel. `node` gir HELE noden — alle felt, ikke et utvalg.
-    `KeyError` naar noden ikke finnes: et tomt svar ville skjult at navnet
-    var feil.
+    One call, one angle. `node` gives the WHOLE node — all fields, not a
+    selection. `KeyError` when the node does not exist: an empty answer would
+    have hidden that the name was wrong.
     """
     noder = atlas.get("noder") or []
     if node is not None:
         funn = [n for n in noder if n.get("id") == node]
         if not funn:
-            raise KeyError(f"noden `{node}` finnes ikke i atlaset")
+            raise KeyError(f"the node `{node}` does not exist in the atlas")
         return funn
     if perspektiv is not None:
         noder = [n for n in noder if n.get("perspektiv") == perspektiv]
@@ -459,18 +464,19 @@ def roter(atlas: dict, *, node: str | None = None,
 
 
 def maaleformer(atlas: dict) -> dict[str, list[str]]:
-    """Skill hva som MAALER fra hva som er avledet.
+    """Separate what MEASURES from what is derived.
 
-    «maaler eller er etablert» var ETT tall for 47 svaert ulike noder. Det
-    skiller ikke et termometer fra en numerisk loeser. Her deles de.
+    «measures or is established» was ONE number for 47 very different nodes. It
+    does not distinguish a thermometer from a numerical solver. Here they are
+    split.
     """
     ut: dict[str, list[str]] = {"instrument": [], "avledet": [], "ingen": []}
     for n in atlas.get("noder") or []:
         fase = n.get("phase")
         m = n.get("measure") or {}
-        if fase in _MAALENDE_FASER:
+        if fase in _MEASURING_PHASES:
             ut["instrument"].append(n["id"])
-        elif fase in _AVLEDEDE_FASER or fase == "regime_engine":
+        elif fase in _DERIVED_PHASES or fase == "regime_engine":
             ut["avledet"].append(n["id"])
         elif m.get("instrument"):
             ut["instrument"].append(n["id"])
@@ -480,11 +486,11 @@ def maaleformer(atlas: dict) -> dict[str, list[str]]:
 
 
 def proxy_kjeder(atlas: dict) -> dict[str, list[str]]:
-    """Hva gaar via hva — i alle ledd.
+    """What goes via what — in every segment.
 
-    `measure.proxy_chain` sier hvilke ledd som skiller det maalte fra det
-    konkluderte. En node uten kjede sier at den leser direkte; en med tre
-    ledd sier at tre ting maa holde.
+    `measure.proxy_chain` says which segments separate the measured from the
+    concluded. A node without a chain says that it reads directly; one with
+    three segments says that three things must hold.
     """
     ut: dict[str, list[str]] = {}
     for n in atlas.get("noder") or []:
@@ -496,52 +502,54 @@ def proxy_kjeder(atlas: dict) -> dict[str, list[str]]:
 
 
 # ---------------------------------------------------------------------------
-# AKSENE — alle, ikke de seks jeg tilfeldigvis bygde
+# ---------------------------------------------------------------------------
+# THE AXES — all of them, not the six I happened to build
 #
-# Maalt 2026-09-17: atlaset bar 21 toppnivaa-felt, alle obligatoriske paa
-# alle 86 noder. Rotasjonen dekket seks. Femten var usynlige for verktoeyet.
-# Loesningen er ikke tjue flagg: den er aa FINNE aksene selv, saa en akse
-# som legges til i morgen ogsaa virker i morgen.
+# Measured 2026-09-17: the atlas carried 21 top-level fields, all mandatory on
+# all 86 nodes. The rotation covered six. Fifteen were invisible to the tool.
+# The solution is not twenty flags: it is to FIND the axes themselves, so that
+# an axis added tomorrow also works tomorrow.
 # ---------------------------------------------------------------------------
 
-def _bla(sti: str, v, ut: dict) -> None:
-    """Gaa gjennom en node og samle hver sti som en akse.
+def _collect_paths(sti: str, v, ut: dict) -> None:
+    """Walk through a node and collect every path as an axis.
 
-    Baade bladet OG forelderen registreres: `analogi.avbildning` er nyttig,
-    men `analogi` er aksen — en node som HAR isomorfien skal finnes paa den.
+    Both the leaf AND the parent are registered: `analogi.avbildning` is
+    useful, but `analogi` is the axis — a node that HAS the isomorphism must be
+    findable on it.
     """
     if isinstance(v, dict):
-        ut.setdefault(sti, []).append(f"<{len(v)} felt>")
+        ut.setdefault(sti, []).append(f"<{len(v)} fields>")
         for k, x in v.items():
-            _bla(f"{sti}.{k}", x, ut)
+            _collect_paths(f"{sti}.{k}", x, ut)
     elif isinstance(v, list):
         ut.setdefault(sti, []).extend(str(x) for x in v)
     elif v is None:
-        # `None` er ikke en verdi. `str(None)` ble bokstavelig talt «None»,
-        # som er truthy — og gjorde `nivaa.forelder` til en akse med 113
-        # noder som svarte 33, med «None» som en tilbudt verdi.
-        # Maalt 2026-09-18.
+        # `None` is not a value. `str(None)` became literally «None», which is
+        # truthy — and made `nivaa.forelder` an axis with 113 nodes answering
+        # 33, with «None» as an offered value. Measured 2026-09-18.
         return
     else:
         ut.setdefault(sti, []).append(str(v))
 
 
 def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
-    """Finn ALLE aksene i atlaset — ogsaa de som ikke fantes i gaar.
+    """Find ALL the axes in the atlas — also those that did not exist yesterday.
 
-    Returnerer `{sti: (antall noder som har den, eksempelverdier)}`.
-    Nestede felt gaas med dot: `emergence.loop`, `epistemikk.sannhetsstatus`.
+    Returns `{sti: (number of nodes that have it, example values)}`.
+    Nested fields are walked with dots: `emergence.loop`,
+    `epistemikk.sannhetsstatus`.
     """
     raa: dict[str, set] = {}
     antall: dict[str, int] = {}
     for n in atlas.get("noder") or []:
         blad: dict[str, list] = {}
         for k, v in n.items():
-            _bla(k, v, blad)
+            _collect_paths(k, v, blad)
         for sti, verdier in blad.items():
-            # En akse finnes bare hvis den har en VERDI. `nivaa.forelder` er
-            # `None` paa 80 av 113 noder; aa telle dem som en verdi gjorde at
-            # aksen tilboed 113 og svarte med 33. Maalt 2026-09-18.
+            # An axis exists only if it has a VALUE. `nivaa.forelder` is `None`
+            # on 80 of 113 nodes; counting them as a value made the axis offer
+            # 113 and answer with 33. Measured 2026-09-18.
             if not any(v for v in verdier):
                 continue
             antall[sti] = antall.get(sti, 0) + 1
@@ -549,8 +557,8 @@ def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
     return {sti: (antall[sti], sorted(raa[sti])[:6]) for sti in antall}
 
 
-def _les_sti(n: dict, akse: str):
-    """Les en dot-sti fra en node. `None` om den ikke finnes."""
+def _read_path(n: dict, akse: str):
+    """Read a dot path from a node. `None` if it does not exist."""
     v = n
     for del_ in akse.split("."):
         if not isinstance(v, dict) or del_ not in v:
@@ -559,10 +567,11 @@ def _les_sti(n: dict, akse: str):
     return v
 
 
-#: Navnene MORTEN bruker mot stiene atlaset faktisk barer. Maalt
-#: 2026-09-17: `isomorphisme` er `analogi`, `loop` er `emergence.loop`,
-#: og `paradigme`/`konsensus`/`akademia` er VERDIER av `perspektiv` —
-#: ikke akser. Tre ulike klasser; uten dette laget ser de like ut.
+#: The names MORTEN uses against the paths the atlas actually carries.
+#: Measured 2026-09-17: `isomorphisme` is `analogi`, `loop` is
+#: `emergence.loop`, and `paradigme`/`konsensus`/`akademia` are VALUES of
+#: `perspektiv` — not axes. Three different classes; without this layer
+#: they look alike.
 AKSE_ALIAS: dict[str, str] = {
     "isomorphisme": "analogi",
     "isomorfi": "analogi",
@@ -599,9 +608,9 @@ AKSE_ALIAS: dict[str, str] = {
     "evidens": "epistemikk.evidensstatus",
 }
 
-# Eierens spoersmaalsformer er et eget navnelag, ikke fritekst som skal
-# haapes aa treffe i nodeprosaen. Normaliserte nøkler gjør at mellomrom,
-# bindestrek og understrek følger samme regel som resten av oppslaget.
+# The owner's question forms are a separate name layer, not free text that is
+# to be hoped into the node prose. Normalized keys make spaces, hyphens and
+# underscores follow the same rule as the rest of the lookup.
 SPOERSMAAL_AKSE: dict[str, str] = {
     "hva maaler": "measure.target",
     "hva maales": "measure.target",
@@ -621,27 +630,27 @@ SPOERSMAAL_AKSE: dict[str, str] = {
 }
 
 
-def _loes_spoersmaalsakse(atlas: dict, spoersmaal: str) -> str | None:
-    """Loes en eksplisitt spoersmaalsform, ellers None — aldri gjetting."""
-    akse = SPOERSMAAL_AKSE.get(_norm(spoersmaal))
+def _resolve_question_axis(atlas: dict, spoersmaal: str) -> str | None:
+    """Resolve an explicit question form, otherwise None — never a guess."""
+    akse = SPOERSMAAL_AKSE.get(_normalize(spoersmaal))
     if akse and akse in akser(atlas):
         return akse
     return None
 
 
-def _loes_akse(atlas: dict, akse: str) -> tuple[str, str | None]:
-    """Loes et menneskelig navn til (sti, verdi). Tre klasser.
+def _resolve_axis(atlas: dict, akse: str) -> tuple[str, str | None]:
+    """Resolve a human name to (path, value). Three classes.
 
-    1. NAVNET ER STIEN          -> (sti, None)
-    2. NAVNET ER ET ALIAS       -> (sti, None)
-    3. NAVNET ER EN VERDI       -> (perspektiv, verdi)  <- tredje klasse
+    1. THE NAME IS THE PATH     -> (sti, None)
+    2. THE NAME IS AN ALIAS     -> (sti, None)
+    3. THE NAME IS A VALUE      -> (perspektiv, verdi)   <- third class
     """
     alle = akser(atlas)
     if akse in alle:
         return akse, None
     if akse in AKSE_ALIAS and AKSE_ALIAS[akse] in alle:
         return AKSE_ALIAS[akse], None
-    # tredje klasse: er det en VERDI av en kjent akse?
+    # third class: is it a VALUE of a known axis?
     for sti in ("perspektiv", "phase", "maale_paradigme.status",
                 "epistemikk.sannhetsstatus", "epistemikk.evidensstatus"):
         verdier = alle.get(sti, (0, []))[1]
@@ -651,11 +660,11 @@ def _loes_akse(atlas: dict, akse: str) -> tuple[str, str | None]:
 
 
 def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
-    """HELE atlaset paa én gang — hva som er hva, hvor, hvor mange.
+    """THE WHOLE atlas at once — what is what, where, how many.
 
-    Maalt 2026-09-17: rotasjonen svarte paa ETT spoersmaal om gangen. Morten:
-    «ALT dette skal vaere globalt i atlaset og du skal umiddelbart vite hva
-    som er hva hvor osv». Det er ikke et soek — det er tilstanden.
+    Measured 2026-09-17: the rotation answered ONE question at a time. Morten:
+    «ALL of this must be global in the atlas and you must immediately know what
+    is what, where, etc.». That is not a search — it is the state.
     """
     alle = akser(atlas)
     noder = atlas.get("noder") or []
@@ -663,7 +672,7 @@ def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
     for sti in sorted(alle):
         telling: dict[str, int] = {}
         for n in noder:
-            v = _les_sti(n, sti)
+            v = _read_path(n, sti)
             if v is None:
                 continue
             ledd = v if isinstance(v, list) else [v]
@@ -672,8 +681,8 @@ def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
         if not telling:
             continue
         fordeling = sorted(telling.items(), key=lambda x: -x[1])
-        # bare akser som SKILLER, og bare korte verdier: en fritekst er
-        # ikke en kategori. «Umiddelbart» betyr at det maa kunne leses.
+        # only axes that SEPARATE, and only short values: free text is not a
+        # category. «Immediately» means it must be readable.
         if len(fordeling) < 2:
             continue
         if any(len(v) > 34 or " " in v for v, _ in fordeling[:8]):
@@ -683,65 +692,68 @@ def oversikt(atlas: dict) -> list[tuple[str, list[tuple[str, int]]]]:
 
 
 def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
-    """Roter rundt EN akse — toppnivaa eller nested.
+    """Rotate around ONE axis — top-level or nested.
 
-    `verdi=None` gir alle noder som HAR aksen. Ukjent akse feiler hoeyt med
-    forslag, fordi et tomt svar ville skjult at navnet var feil.
+    `verdi=None` gives all nodes that HAVE the axis. An unknown axis fails
+    loudly with suggestions, because an empty answer would have hidden that the
+    name was wrong.
     """
     alle = akser(atlas)
     try:
-        akse, l_a_verdi = _loes_akse(atlas, akse)
-        if l_a_verdi is not None and verdi is None:
-            verdi = l_a_verdi
+        akse, resolved_value = _resolve_axis(atlas, akse)
+        if resolved_value is not None and verdi is None:
+            verdi = resolved_value
     except KeyError:
         rot = akse.split(".")[0]
         naere = sorted(a for a in alle
                        if rot in a or a.split(".")[0] in akse
                        or akse in AKSE_ALIAS)[:5]
-        if not naere:  # ingen likhet — vis de mest brukte
+        if not naere:  # no similarity — show the most used
             naere = [a for a, _ in sorted(alle.items(),
                                           key=lambda x: -x[1][0])[:6]]
         raise KeyError(
-            f"aksen `{akse}` finnes ikke i atlaset. "
-            f"Nærliggende: {', '.join(naere) if naere else 'ingen'}")
+            f"the axis `{akse}` does not exist in the atlas. "
+            f"Nearby: {', '.join(naere) if naere else 'none'}")
     ut = []
     for n in atlas.get("noder") or []:
-        v = _les_sti(n, akse)
-        # Tom liste og tom streng er ikke en verdi. `emergence.properties`
-        # er `[]` paa 99 av 113 noder; aa telle dem gjorde at aksen svarte
-        # 113 der den hadde 99. Maalt 2026-09-18.
+        v = _read_path(n, akse)
+        # Empty list and empty string are not a value. `emergence.properties`
+        # is `[]` on 99 of 113 nodes; counting them made the axis answer 113
+        # where it had 99. Measured 2026-09-18.
         if v is None or (isinstance(v, (list, str, dict)) and not v):
             continue
         if verdi is None:
             ut.append(n)
             continue
-        str_v = [str(x) for x in v] if isinstance(v, list) else [str(v)]
-        if verdi in str_v:
+        value_strings = [str(x) for x in v] if isinstance(v, list) else [str(v)]
+        if verdi in value_strings:
             ut.append(n)
     return ut
 
 
 
 # ---------------------------------------------------------------------------
-# KOBLINGENE — 1-hop, 2-hop, 3-hop
+# ---------------------------------------------------------------------------
+# THE COUPLINGS — 1-hop, 2-hop, 3-hop
 #
-# Maalt 2026-09-18: verktoeyet hadde `--emne`, `--akse`, `--node`,
-# `--oversikt` og `--proxy`. Det hadde INGEN hopp. Koblingene fantes i
-# dataene — nivaa.forelder, coupling, analogi, stipulasjoner.motor,
-# buss_domene, measure.proxy_chain — og ingen av dem kunne FOELGES.
+# Measured 2026-09-18: the tool had `--emne`, `--akse`, `--node`, `--oversikt`
+# and `--proxy`. It had NO hops. The couplings existed in the data —
+# nivaa.forelder, coupling, analogi, stipulasjoner.motor, buss_domene,
+# measure.proxy_chain — and none of them could be FOLLOWED.
+# ---------------------------------------------------------------------------
 # ---------------------------------------------------------------------------
 
-def _mekanisme(noder: list[dict]) -> dict[str, dict]:
+def _node_index(noder: list[dict]) -> dict[str, dict]:
     return {x["id"]: x for x in noder}
 
 
 def _koblinger(n: dict, atlas: dict) -> dict[str, list[str]]:
-    """Hvilke noder henger sammen med denne, og HVORDAN.
+    """Which nodes hang together with this one, and HOW.
 
-    Koblingstypen er poenget: «samme domene» er svakere enn «er forelder».
+    The coupling type is the point: «same domain» is weaker than «is parent».
     """
     noder = atlas.get("noder") or []
-    idx = _mekanisme(noder)
+    idx = _node_index(noder)
     ut: dict[str, list[str]] = {}
 
     forelder = (n.get("nivaa") or {}).get("forelder")
@@ -784,26 +796,26 @@ def _koblinger(n: dict, atlas: dict) -> dict[str, list[str]]:
 
 
 def naboer(atlas: dict, node_id: str) -> dict[str, list[str]]:
-    """1-HOP: hva henger denne sammen med, og hvordan. `KeyError` om ukjent."""
+    """1-HOP: what hangs together with this, and how. `KeyError` if unknown."""
     for n in atlas.get("noder") or []:
         if n["id"] == node_id:
             return _koblinger(n, atlas)
-    raise KeyError(f"noden `{node_id}` finnes ikke i atlaset")
+    raise KeyError(f"the node `{node_id}` does not exist in the atlas")
 
 
 def hop(atlas: dict, node_id: str, d: int = 1) -> list[str]:
-    """Alle noder innen `d` hopp — startnoden selv ikke med."""
-    naboer(atlas, node_id)  # validerer at noden finnes
+    """All nodes within `d` hops — the start node itself not included."""
+    naboer(atlas, node_id)  # validates that the node exists
     sett = {node_id}
     front = {node_id}
     for _ in range(max(0, d)):
         ny: set[str] = set()
         for x in front:
             try:
-                kob = naboer(atlas, x)
+                links = naboer(atlas, x)
             except KeyError:
                 continue
-            for ider in kob.values():
+            for ider in links.values():
                 ny.update(ider)
         ny -= sett
         sett |= ny
@@ -814,9 +826,9 @@ def hop(atlas: dict, node_id: str, d: int = 1) -> list[str]:
 
 def hop_stier(atlas: dict, node_id: str,
               d: int = 2) -> dict[str, tuple[list[str], list[str]]]:
-    """Stiene, ikke bare mengden: HVORFOR henger de sammen.
+    """The PATHS, not just the set: WHY they hang together.
 
-    Returnerer `{node: (stien, koblingstypene langs stien)}`.
+    Returns `{node: (the path, the coupling types along the path)}`.
     """
     ut: dict[str, tuple[list[str], list[str]]] = {}
     sett = {node_id}
@@ -825,10 +837,10 @@ def hop_stier(atlas: dict, node_id: str,
         ny: list[tuple[str, list[str], list[str]]] = []
         for x, sti, typer in front:
             try:
-                kob = naboer(atlas, x)
+                links = naboer(atlas, x)
             except KeyError:
                 continue
-            for type_, ider in kob.items():
+            for type_, ider in links.items():
                 for i in ider:
                     if i in sett:
                         continue
@@ -840,10 +852,11 @@ def hop_stier(atlas: dict, node_id: str,
 
 
 def fragment(atlas: dict, node_id: str) -> dict:
-    """Roter rundt ETT fragment: noden, dens koblinger, og naboers naboer.
+    """Rotate around ONE fragment: the node, its couplings, and neighbours of neighbours.
 
-    «rotere rundt hver fragment en observasjon vi gjor» — naar en observasjon
-    kommer inn, skal den kunne settes inn og sees fra alle kanter.
+    «rotate around every fragment of an observation we make» — when an
+    observation comes in, it must be possible to insert it and see it from all
+    sides.
     """
     treff = [x for x in atlas.get("noder") or [] if x["id"] == node_id]
     if not treff:
@@ -852,29 +865,31 @@ def fragment(atlas: dict, node_id: str) -> dict:
                 "naere": [x["id"] for x in atlas.get("noder") or []
                           if rot in x["id"]][:5]}
     n = treff[0]
-    kob = _koblinger(n, atlas)
+    links = _koblinger(n, atlas)
     return {
         "finnes": True,
         "node": n,
-        "koblinger": kob,
-        "ett_hopp": len({i for ider in kob.values() for i in ider}),
+        "koblinger": links,
+        "ett_hopp": len({i for ider in links.values() for i in ider}),
         "to_hopp": len(hop(atlas, node_id, 2)),
         "tre_hopp": len(hop(atlas, node_id, 3)),
     }
 
 
-#: Hva slags svar et felt krever av den som plasserer noe nytt.
-#: Avklart med Morten 2026-09-18, etter et innspill som ville gjort `--plasser`
-#: om til «struktur beregnes, vurderinger foreslaas, paastander kreves».
+#: What kind of answer a field demands of the one placing something new.
+#: Settled with Morten 2026-09-18, after an input that would have turned
+#: `--plasser` into «structure is computed, assessments are proposed, claims
+#: are demanded».
 #:
-#:   struktur  — utledbar fra fragmentets plass i kjeden. Fylles, med grunn.
-#:   vurdering — beregnbar som kandidat, men semantikken maa godkjennes.
-#:   paastand  — kan ikke utledes av noe. Den ER nodens innhold.
+#:   struktur  — derivable from the fragment's place in the chain. Filled, with a reason.
+#:   vurdering — computable as a candidate, but the semantics must be approved.
+#:   paastand  — cannot be derived from anything. It IS the content of the node.
 #:
-#: `phase` ble foreslaatt gjort til enum. Maalt 2026-09-18: 26 verdier, hvorav
-#: 19 brukt én gang («solid (ice Ih)», «coexistence (solid + liquid + gas)»);
-#: kjernen er sju verdier og dekker 107 av 126 noder. Et lukket enum ville
-#: avvist 19 ekte verdier. Fasen er derfor delt — kjerne + rest — ikke lukket.
+#: `phase` was proposed made into an enum. Measured 2026-09-18: 26 values, of
+#: which 19 are used once («solid (ice Ih)», «coexistence (solid + liquid +
+#: gas)»); the core is seven values and covers 107 of 126 nodes. A closed enum
+#: would have rejected 19 real values. The phase is therefore split — core +
+#: rest — not closed.
 FELTKLASSE = {
     "id": "struktur", "synlighet": "struktur", "buss_domene": "struktur",
     "nivaa": "struktur",
@@ -882,15 +897,17 @@ FELTKLASSE = {
     "perspektiv": "vurdering", "maale_paradigme": "vurdering",
     "rcmp": "vurdering",
 }
-#: Felt skjemaet ikke krever, men som huset feller paa. Maalt 2026-09-18 laa
-#: `buss_domene` og `falsifiserbarhet` blant de hardkodede unntakene i denne
-#: funksjonen, altsaa stikk i strid med hva resten av huset bygger paa.
+#: Fields the schema does not require, but that the house fells on. Measured
+#: 2026-09-18 `buss_domene` and `falsifiserbarhet` lay among the hardcoded
+#: exceptions in this function, that is, in direct conflict with what the rest
+#: of the house builds on.
 HUSETS_KRAV = ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
                "prediction", "settlement")
 
 
-#: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
-#: baere en plassering: «med» og «som» staar i nesten hver nodetekst.
+#: Function words, Norwegian and English. They describe nothing and can
+#: therefore not carry a placement: «med» and «som» stand in almost every node
+#: text.
 STOPPORD = frozenset("""
 og av til for med den det de en et som er var paa fra ved mot over under
 mellom uten etter mens naar hvor hva hvem hvis saa men eller ikke bare kan
@@ -904,53 +921,55 @@ may be been being has have had its their our your his her they them we you it
 
 
 def plasser(atlas: dict, tekst: str) -> dict:
-    """Plasser et NYTT fragment — og si hva som gjenstaar.
+    """Place a NEW fragment — and say what remains.
 
-    Inngangen er ikke et hull. Den er en liste over hva fragmentet maa
-    utfylle for aa bli en node: hvilket domene det horer i, hvilke noder
-    det ligner, og hvilke felt som mangler.
+    The entrance is not a hole. It is a list of what the fragment must fill in
+    to become a node: which domain it belongs in, which nodes it resembles, and
+    which fields are missing.
     """
     if not tekst.strip():
         return {"status": "tomt", "forslag": [], "mangler": []}
 
     alle = akser(atlas)
-    # Funksjonsord baerer ingen plassering. Maalt 2026-09-18: fragmentet
-    # «varmepumpe med CO2 som kjolemiddel» matchet paa «med» og «som» — ord som
-    # staar i nesten hver node — og svaret ble «naere noder: homo.fluxus,
-    # homo.homeostase_buffer, homo.hjerte_syklus, homo.cellesyklus». En liste
-    # som SER ut som et plasseringsforslag, men er stoy, er samme klasse som
-    # fallbacken som svarer. Kravet er derfor at ordet beskriver noe.
-    ord_i = {w for w in _norm(tekst).split()
+    # Function words carry no placement. Measured 2026-09-18: the fragment
+    # «varmepumpe med CO2 som kjolemiddel» matched on «med» and «som» — words
+    # that stand in almost every node — and the answer became «naere noder:
+    # homo.fluxus, homo.homeostase_buffer, homo.hjerte_syklus,
+    # homo.cellesyklus». A list that LOOKS like a placement suggestion but is
+    # noise is the same class as the fallback that answers. The requirement is
+    # therefore that the word describes something.
+    query_words = {w for w in _normalize(tekst).split()
              if len(w) > 2 and w not in STOPPORD}
     noder = atlas.get("noder") or []
 
-    # hvilke domener nevner ordene?
+    # which domains do the words mention?
     domener = alle.get("buss_domene", (0, []))[1]
-    treff_domener = [d for d in domener
-                     if any(w in _norm(d) for w in ord_i)]
+    matched_domains = [d for d in domener
+                     if any(w in _normalize(d) for w in query_words)]
 
-    # hvilke noder deler ord med fragmentet? Vekten legges der ordet FAKTISK
-    # beskriver noe: maalet og regimet, ikke alle tekster i noden.
-    def _stamme(a: str, b: str, n: int = 5) -> bool:
-        """«vulkansk» og «vulkan» er samme ord for et menneske, ikke for ==."""
+    # which nodes share words with the fragment? The weight is put where the
+    # word ACTUALLY describes something: the target and the regime, not all
+    # texts in the node.
+    def _same_stem(a: str, b: str, n: int = 5) -> bool:
+        """«vulkansk» and «vulkan» are the same word to a human, not to ==."""
         return len(a) >= n and len(b) >= n and a[:n] == b[:n]
 
     def vekt(n: dict) -> int:
         m = n.get("measure") or {}
         r = n.get("regime") or {}
-        tung = _norm(" ".join(str(m.get(k) or "") for k in
+        weighted_text = _normalize(" ".join(str(m.get(k) or "") for k in
                               ("target", "measurer", "instrument"))
                      + " " + str(r.get("name") or "") + " " + str(r.get("validity") or ""))
-        ord_t = set(tung.split())
-        return sum(1 for w in ord_i
-                   if w in ord_t or any(_stamme(w, x) for x in ord_t))
+        target_words = set(weighted_text.split())
+        return sum(1 for w in query_words
+                   if w in target_words or any(_same_stem(w, x) for x in target_words))
 
     naere = [(vekt(n), n["id"]) for n in noder]
     naere = sorted((x for x in naere if x[0] > 0), key=lambda x: -x[0])
     naere_noder = [i for _, i in naere[:6]]
 
     forslag = []
-    for d in treff_domener:
+    for d in matched_domains:
         eiere = [n["id"] for n in noder if n.get("buss_domene") == d]
         forslag.append({"domene": d, "noder": eiere[:4],
                         "kobling": "domenet nevnes i fragmentet"})
@@ -959,10 +978,10 @@ def plasser(atlas: dict, tekst: str) -> dict:
                         "kobling": ("noder deler ord med fragmentet — "
                                     "ORDLIKHET, ikke et plasseringsforslag")})
     if not forslag:
-        # ingen domene-streng matchet: bruk DOMENENE TIL DE NAERE NODENE.
-        # Fallback-en skal ikke foreslaa alfabetet — den skal foreslaa det
-        # fragmentet LIGNER. (Maalt 2026-09-18: «vulkansk aske» pekte paa
-        # kosmos.asteroider/galakser/hoper, altsaa bare de tre forste.)
+        # no domain string matched: use the DOMAINS OF THE NEAR NODES.
+        # The fallback must not suggest the alphabet — it must suggest what the
+        # fragment RESEMBLES. (Measured 2026-09-18: «vulkansk aske» pointed at
+        # kosmos.asteroider/galakser/hoper, that is, only the first three.)
         sett: list[str] = []
         for _, nid in naere[:8]:
             x = next((y for y in noder if y["id"] == nid), None)
@@ -977,45 +996,47 @@ def plasser(atlas: dict, tekst: str) -> dict:
                         "kobling": "ingen anelse — alfabetisk visning, ikke forslag"}
                        for d in alle.get("buss_domene", (0, []))[1][:3]]
 
-    if forslag and len(treff_domener) > 0:
+    if forslag and len(matched_domains) > 0:
         status = "hjem_funnet"
         domene_visshet = "vet"
-        domene_grunnlag = "eksplisitt treff paa buss_domene"
+        domene_grunnlag = "explicit hit on buss_domene"
     elif naere_noder and naere[0][0] >= 2:
         status = "svakt"
         domene_visshet = "ingen_anelse"
-        domene_grunnlag = "bare ordlikhet — ikke et kjent domene"
+        domene_grunnlag = "word similarity only — not a known domain"
     else:
         status = "uten_hjem"
         domene_visshet = "ingen_anelse"
-        domene_grunnlag = "ingen domeneanelse"
+        domene_grunnlag = "no domain clue"
 
-    # Hva slags svar krever hvert felt? Tre klasser, avklart 2026-09-18:
-    #   struktur  — utledbar fra fragmentets plass i kjeden; fylles, med grunn
-    #   vurdering — beregnbar som kandidat, men semantikken maa godkjennes
-    #   paastand  — maa deklareres eksplisitt; kan ikke utledes av noe
+    # What kind of answer does each field demand? Three classes, settled
+    # 2026-09-18:
+    #   struktur  — derivable from the fragment's place in the chain; filled,
+    #               with a reason
+    #   vurdering — computable as a candidate, but the semantics must be approved
+    #   paastand  — must be declared explicitly; cannot be derived from anything
     #
-    # Og kravene kommer fra skjemaet, ikke fra en haandskrevet liste. Maalt
-    # 2026-09-18: `buss_domene` og `falsifiserbarhet` laa blant de hardkodede
-    # unntakene, saa en ny node ble bedt om `coupling.empathy_note` men ikke
-    # om buss-domene eller falsifikator — de to feltene resten hviler paa.
-    krav_fra_skjemaet = skjema_krav(atlas)
+    # And the requirements come from the schema, not from a handwritten list.
+    # Measured 2026-09-18: `buss_domene` and `falsifiserbarhet` lay among the
+    # hardcoded exceptions, so a new node was asked for `coupling.empathy_note`
+    # but not for bus domain or falsifier — the two fields the rest rests on.
+    schema_requirements = skjema_krav(atlas)
 
     fylt = {f: sum(1 for n in noder
                    if n.get(f) not in (None, "", [], {}))
-            for f in set(krav_fra_skjemaet) | set(HUSETS_KRAV)}
+            for f in set(schema_requirements) | set(HUSETS_KRAV)}
     krav = []
-    for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
-                                        if x not in krav_fra_skjemaet]:
+    for f in list(schema_requirements) + [x for x in HUSETS_KRAV
+                                        if x not in schema_requirements]:
         klasse = FELTKLASSE.get(f, "paastand")
         post = {"felt": f,
                 "klasse": klasse,
-                "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
+                "kilde": "skjema" if f in schema_requirements else "huset",
                 "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
                 "forslag": None, "grunn": None}
         if klasse == "struktur":
-            post["forslag"], post["grunn"] = _utled_struktur(
-                f, tekst, noder, treff_domener,
+            post["forslag"], post["grunn"] = _derive_structure(
+                f, tekst, noder, matched_domains,
                 alle.get("synlighet", (0, []))[1])
         krav.append(post)
 
@@ -1038,99 +1059,98 @@ def plasser(atlas: dict, tekst: str) -> dict:
     }
 
 
-def _utled_struktur(felt: str, tekst: str, noder: list,
-                    treff_domener: list, synlighet: list) -> tuple:
-    """Utled et strukturfelt — eller si hvorfor det ikke kunne utledes.
+def _derive_structure(felt: str, tekst: str, noder: list,
+                    matched_domains: list, synlighet: list) -> tuple:
+    """Derive a structure field — or say why it could not be derived.
 
-    Aldri en gjetning presentert som en verdi. Kan vi ikke utlede det,
-    sier vi det, for det er noeyaktig her et fragment blir til en fasit
-    hvis vi tier.
+    Never a guess presented as a value. If we cannot derive it, we say so,
+    because it is exactly here a fragment turns into a fact if we stay silent.
     """
     if felt == "id":
-        if len(treff_domener) == 1:
-            ord_i = [w for w in _norm(tekst).split()
+        if len(matched_domains) == 1:
+            query_words = [w for w in _normalize(tekst).split()
                      if len(w) > 2 and w not in STOPPORD]
-            if ord_i:
-                prefiks = treff_domener[0].split(".")[-1]
-                return (f"{prefiks}.{ord_i[0]}",
-                        "domenets prefiks + fragmentets foerste innholdsord "
-                        "— et FORSLAG, ikke et vedtak")
-        return None, "uten kjent domene finnes ingen id aa bygge paa"
+            if query_words:
+                prefiks = matched_domains[0].split(".")[-1]
+                return (f"{prefiks}.{query_words[0]}",
+                        "the domain's prefix + the fragment's first content "
+                        "word — a SUGGESTION, not a decision")
+        return None, "without a known domain there is no id to build on"
     if felt == "synlighet":
-        # Standarden leses fra banken, ikke fra koden: endrer banken seg,
-        # endrer forslaget seg.
+        # The default is read from the bank, not from the code: if the bank
+        # changes, the suggestion changes.
         verdier = [n.get("synlighet") for n in noder if n.get("synlighet")]
         if not verdier:
-            return None, "ingen synlighetsverdi aa lese standarden fra"
+            return None, "no visibility value to read the default from"
         vanligst = max(set(verdier), key=verdier.count)
         return vanligst, (f"{verdier.count(vanligst)}/{len(verdier)} "
-                          f"av nodene i banken")
+                          f"of the nodes in the bank")
     if felt == "buss_domene":
-        if len(treff_domener) == 1:
-            return treff_domener[0], "fragmentet nevner ett kjent domene"
-        if len(treff_domener) > 1:
-            return None, (f"flertydig: {', '.join(treff_domener[:3])} — "
-                          f"valget er en vurdering")
-        return None, "fragmentet treffer ikke noe kjent domene"
+        if len(matched_domains) == 1:
+            return matched_domains[0], "the fragment mentions one known domain"
+        if len(matched_domains) > 1:
+            return None, (f"ambiguous: {', '.join(matched_domains[:3])} — "
+                          f"the choice is an assessment")
+        return None, "the fragment hits no known domain"
     if felt == "sektor":
-        for d in treff_domener:
+        for d in matched_domains:
             verdier = [(n.get("maale_paradigme") or {}).get("sektor")
                        for n in noder if n.get("buss_domene") == d]
             verdier = [v for v in verdier if v]
             if len(set(verdier)) == 1:
-                return verdier[0], f"alle {len(verdier)} nodene i {d} har denne"
+                return verdier[0], f"all {len(verdier)} nodes in {d} have this"
             if verdier:
                 talt = collections.Counter(verdier).most_common()
-                return None, (f"flertydig i {d}: "
+                return None, (f"ambiguous in {d}: "
                               + ", ".join(f"{v} ({c})" for v, c in talt[:3])
-                              + " — valget er en vurdering")
-        return None, "ingen kjent plass aa lese sektoren fra"
+                              + " — the choice is an assessment")
+        return None, "no known place to read the sector from"
     if felt == "nivaa":
-        return None, ("kan utledes naar forelderen er valgt: indeksen maa "
-                      "vaere hoeyere enn forelderens")
+        return None, ("can be derived once the parent is chosen: the index "
+                      "must be higher than the parent's")
     if felt == "phase":
         kjerne = ["instrument", "regime_engine", "observasjon",
                   "computation_engine", "teoretisk", "stabil", "observer"]
-        return None, ("kjerne: " + ", ".join(kjerne)
-                      + " — en ny verdi er et bevisst valg, ikke en fritekst")
-    return None, "ingen utledningsregel for dette feltet"
+        return None, ("core: " + ", ".join(kjerne)
+                      + " — a new value is a deliberate choice, not free text")
+    return None, "no derivation rule for this field"
 
 
 # ---------------------------------------------------------------------------
-# HELHETEN — alt om en node, i én lesning
+# THE WHOLE — everything about a node, in one reading
 #
-# Morten, 2026-09-18: «om vi snakker om h2o, BAO, regnbuen eller victron nå
-# skal du umiddelbart via atlaset få en lokalglobal sammenkobling, se
-# emergence, se episenter, vektorene, feltene, domene, kryssdomene, flere
-# hops i alle retninger, se paradigme, se konsensus, se akademia, se
-# emergence, se alle fraktalene den målte emergencen har, kunne rotere rundt
-# det vi måler, vite hva vi måler, om det er via proxy, med hvilke
-# målemetoder, og instrumentet».
+# Morten, 2026-09-18: «if we are talking about h2o, BAO, the rainbow or victron
+# now, you must immediately via the atlas get a local-global interconnection,
+# see emergence, see epicentre, the vectors, the fields, domain, cross-domain,
+# more hops in all directions, see paradigm, see consensus, see academia, see
+# emergence, see all the fractals the measured emergence has, be able to rotate
+# around what we measure, know what we measure, whether it is via proxy, with
+# which measurement methods, and the instrument».
 #
-# Maalt foer: svaret fantes bare som tretten separate kommandoor.
+# Measured before: the answer existed only as thirteen separate commands.
 # ---------------------------------------------------------------------------
 
 def kjent_hull(repo: str | Path, emne: str,
                ref: str = STANDARD_REF, *, hent: bool = False) -> dict | None:
-    """Er emnet et KJENT hull — et domene noen har maalt og funnet tomt?
+    """Is the topic a KNOWN hole — a domain somebody has measured and found empty?
 
-    Dette er den offentlige inngangen. Den private `_kjent_hull` tar
-    dekningsfilen som alt er lest; denne gjor oppslaget selv, fordi en
-    leser som spoer «er dette et kjent hull?» ikke har dekningsfilen
-    for haanden — hen har et emne.
+    This is the public entrance. The private `_kjent_hull` takes the coverage
+    file that is already read; this one does the lookup itself, because a
+    reader who asks «is this a known hole?» does not have the coverage file at
+    hand — they have a topic.
 
-    Satt opp 2026-09-18: `kjent_hull` fantes, men het `_kjent_hull` og
-    tok en annen parameter enn den en leser ville gjettet. En inngang
-    som ikke kan finnes, virker ikke — uansett hvor riktig den er.
+    Set up 2026-09-18: `kjent_hull` existed, but was called `_kjent_hull` and
+    took a different parameter than the one a reader would have guessed. An
+    entrance that cannot be found does not work — no matter how correct it is.
     """
     return _kjent_hull(_dekning(Path(repo), ref, hent), emne)
 
 
 def helhet(atlas: dict, node_id: str) -> dict:
-    """ALT om en node — de seks delene, i én lesning.
+    """EVERYTHING about a node — the six parts, in one reading.
 
-    Ikke et sammendrag: hver del er den raa verdien fra noden, fordi et
-    sammendrag ville skjult nettopp det man spor etter.
+    Not a summary: each part is the raw value from the node, because a summary
+    would hide exactly what one is looking for.
     """
     treff = [x for x in atlas.get("noder") or [] if x["id"] == node_id]
     if not treff:
@@ -1145,9 +1165,9 @@ def helhet(atlas: dict, node_id: str) -> dict:
     fr = n.get("fractal") or {}
     reg = n.get("regime") or {}
 
-    # KOBLINGENE, begge veier: «flere hops i alle retninger»
+    # THE COUPLINGS, both ways: «more hops in all directions»
     ut = _koblinger(n, atlas)
-    ut_ider = {i for ider in ut.values() for i in ider}
+    out_ids = {i for ider in ut.values() for i in ider}
     inn: dict[str, list[str]] = {}
     for x in atlas.get("noder") or []:
         if x["id"] == node_id:
@@ -1160,10 +1180,10 @@ def helhet(atlas: dict, node_id: str) -> dict:
             typer = [t for t, ider in k.items() if node_id in ider]
             inn[x["id"]] = typer
 
-    # KRYSSDOMENE: hvilke ANDRE domener noden naar via hopp
+    # CROSS-DOMAIN: which OTHER domains the node reaches via hops
     eget = n.get("buss_domene")
     kryss: list[str] = []
-    for i in ut_ider | set(inn):
+    for i in out_ids | set(inn):
         x = next((y for y in atlas["noder"] if y["id"] == i), None)
         d = (x or {}).get("buss_domene")
         if d and d != eget and d not in kryss:
@@ -1204,7 +1224,7 @@ def helhet(atlas: dict, node_id: str) -> dict:
         "nivaa": n.get("nivaa") or {},
         "koblinger": {"ut": ut, "inn": inn},
         "kryssdomene": kryss,
-        "ett_hopp": len(ut_ider),
+        "ett_hopp": len(out_ids),
         "to_hopp": len(hop(atlas, node_id, 2)),
         "tre_hopp": len(hop(atlas, node_id, 3)),
         "falsifiserbarhet": n.get("ville_falsifisere"),
@@ -1212,43 +1232,43 @@ def helhet(atlas: dict, node_id: str) -> dict:
 
 
 def helhet_tekst(atlas: dict, node_id: str) -> str:
-    """Helheten som lesbar tekst — for CLI og for oeyet."""
+    """The whole thing as readable text — for the CLI and for the eye."""
     h = helhet(atlas, node_id)
     if not h["finnes"]:
-        return (f"FEIL: `{node_id}` finnes ikke. Nærliggende: "
-                f"{', '.join(h['naere']) or 'ingen'}")
+        return (f"ERROR: `{node_id}` does not exist. Nearby: "
+                f"{', '.join(h['naere']) or 'none'}")
     L: list[str] = [f"=== {h['id']} ==="]
-    L.append(f"  felt/regime : {h['felt'].get('name', '?')}")
+    L.append(f"  field/regime: {h['felt'].get('name', '?')}")
     v = h["felt"].get("validity")
     if v:
-        L.append(f"  gyldighet   : {v[:150]}")
-    L.append(f"  domene      : {h['domene'] or '(ingen)'}")
-    L.append(f"  motor       : {h.get('motor') or '(ingen — ikke en motor-node)'}")
-    L.append(f"  episenter   : {h['episenter'] or '(ingen)'}")
+        L.append(f"  validity    : {v[:150]}")
+    L.append(f"  domain      : {h['domene'] or '(none)'}")
+    L.append(f"  engine      : {h.get('motor') or '(none — not an engine node)'}")
+    L.append(f"  epicentre   : {h['episenter'] or '(none)'}")
     L.append("")
-    L.append("  MAALET")
-    for k, navn in (("hva", "hva"), ("hvem", "hvem"), ("hvor", "hvor"),
-                    ("instrument", "instrument"), ("kompresjon", "kompresjon")):
+    L.append("  THE MEASUREMENT")
+    for k, navn in (("hva", "what"), ("hvem", "who"), ("hvor", "where"),
+                    ("instrument", "instrument"), ("kompresjon", "compression")):
         if h["maal"].get(k):
             L.append(f"    {navn:11} {str(h['maal'][k])[:130]}")
     if h["maal"]["proxy"]:
         L.append(f"    proxy       {' -> '.join(str(x) for x in h['maal']['proxy'])[:130]}")
     else:
-        L.append("    proxy       ingen — lest direkte")
+        L.append("    proxy       none — read directly")
     L.append("")
-    L.append("  PERSPEKTIVET")
+    L.append("  THE PERSPECTIVE")
     for k in ("perspektiv", "sannhetsstatus", "konsensusstatus",
               "evidensstatus", "sosial_mekanisme"):
         if h["perspektiv"].get(k):
             L.append(f"    {k:16} {str(h['perspektiv'][k])[:120]}")
     L.append("")
     L.append(f"  EMERGENCE   {str(h['emergence'].get('loop'))[:130]}")
-    L.append(f"  FRAKTALER   {len(h['fraktaler'])} ledd")
+    L.append(f"  FRACTALS    {len(h['fraktaler'])} segments")
     for f in h["fraktaler"][:3]:
         if f:
             L.append(f"    - {str(f)[:120]}")
     L.append("")
-    L.append(f"  KOBLINGER   1-hop {h['ett_hopp']} · 2-hop {h['to_hopp']} · "
+    L.append(f"  COUPLINGS   1-hop {h['ett_hopp']} · 2-hop {h['to_hopp']} · "
              f"3-hop {h['tre_hopp']}")
     for t, ider in h["koblinger"]["ut"].items():
         if ider:
@@ -1256,9 +1276,9 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
     for i, typer in list(h["koblinger"]["inn"].items())[:6]:
         L.append(f"    inn {','.join(typer)[:17]:17}       {i}")
     if h["kryssdomene"]:
-        L.append(f"  KRYSSDOMENE {', '.join(h['kryssdomene'][:5])}")
+        L.append(f"  CROSS-DOMAIN {', '.join(h['kryssdomene'][:5])}")
     if h.get("falsifiserbarhet"):
-        L.append(f"  FALSIFIKATOR {h['falsifiserbarhet'][:130]}")
+        L.append(f"  FALSIFIER   {h['falsifiserbarhet'][:130]}")
     return "\n".join(L)
 
 
@@ -1294,93 +1314,95 @@ if __name__ == "__main__":
     import argparse
     import sys
 
-    p = argparse.ArgumentParser(description="Les atlaset — eller slaa opp i det.")
-    p.add_argument("repo", nargs="?", default=".", help="sti til repoet")
-    p.add_argument("--emne", "-e", help="slaa opp et emne i stedet for aa lese alt")
-    p.add_argument("--ref", default=STANDARD_REF, help=f"git-ref (standard: {STANDARD_REF})")
-    p.add_argument("--hent", action="store_true", help="hent origin foerst")
-    p.add_argument("--alle", action="store_true", help="vis alle treff, ikke bare de sterkeste")
-    p.add_argument("--node", help="roter rundt EN node — vis alle felt")
-    p.add_argument("--perspektiv", help="roter: filtrer paa perspektiv (paradigme/konsensus/akademia)")
-    p.add_argument("--fase", help="roter: filtrer paa fase (instrument/regime_engine/...)")
-    p.add_argument("--domene", help="roter: filtrer paa buss_domene")
+    p = argparse.ArgumentParser(description="Read the atlas — or look something up in it.")
+    p.add_argument("repo", nargs="?", default=".", help="path to the repo")
+    p.add_argument("--emne", "-e", help="look up a topic instead of reading everything")
+    p.add_argument("--ref", default=STANDARD_REF, help=f"git ref (default: {STANDARD_REF})")
+    p.add_argument("--hent", action="store_true", help="fetch origin first")
+    p.add_argument("--alle", action="store_true", help="show all hits, not just the strongest")
+    p.add_argument("--node", help="rotate around ONE node — show all fields")
+    p.add_argument("--perspektiv",
+                   help="rotate: filter on perspektiv (paradigm/consensus/academia)")
+    p.add_argument("--fase", help="rotate: filter on phase (instrument/regime_engine/...)")
+    p.add_argument("--domene", help="rotate: filter on buss_domene")
     p.add_argument("--maaleform", action="store_true",
-                   help="roter: skill hva som MAALER fra hva som er avledet")
-    p.add_argument("--proxy", action="store_true", help="roter: vis alle proxy-kjeder")
+                   help="rotate: separate what MEASURES from what is derived")
+    p.add_argument("--proxy", action="store_true", help="rotate: show all proxy chains")
     p.add_argument("--akser", action="store_true",
-                   help="list ALLE aksene atlaset barer — ogsaa de nye")
-    p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
-    p.add_argument("--alt", dest="alt", help="HELHETEN: alt om en node, i én lesning")
-    p.add_argument("--plasser", help="plasser et NYTT fragment: hvor horer det, og hva mangler")
-    p.add_argument("--innta", help="ta imot et fragment i retain-koeen (ingen node opprettes)")
-    p.add_argument("--kilde", default="samtale", help="provenienskilde for --innta")
-    p.add_argument("--inntak-fil", help="alternativ JSONL-fil for --innta")
-    p.add_argument("--hop", help="N hopp fra en node:  eller ")
-    p.add_argument("--fragment", help="roter rundt ETT fragment: node + alle koblinger")
+                   help="list ALL the axes the atlas carries — also the new ones")
+    p.add_argument("--akse", help="rotate around an arbitrary axis: `sti` or `sti=verdi`")
+    p.add_argument("--alt", dest="alt", help="THE WHOLE: everything about a node, in one reading")
+    p.add_argument("--plasser",
+                   help="place a NEW fragment: where does it belong, and what is missing")
+    p.add_argument("--innta", help="take in a fragment into the retain queue (no node is created)")
+    p.add_argument("--kilde", default="samtale", help="provenance source for --innta")
+    p.add_argument("--inntak-fil", help="alternative JSONL file for --innta")
+    p.add_argument("--hop", help="N hops from a node:  or ")
+    p.add_argument("--fragment", help="rotate around ONE fragment: node + all couplings")
     p.add_argument("--oversikt", action="store_true",
-                   help="HELE atlaset paa én gang: hva som er hva, hvor, hvor mange")
+                   help="THE WHOLE atlas at once: what is what, where, how many")
     a = p.parse_args()
 
-    # HELHETEN — alt om en node
+    # THE WHOLE — everything about a node
     if a.alt:
         atlas = les_atlas(a.repo, ref=a.ref)
         print(helhet_tekst(atlas, a.alt))
         sys.exit(0)
 
-    # RETAIN-INNTAK — append-only koe, aldri automatisk node-oppretting
+    # RETAIN INTAKE — append-only queue, never automatic node creation
     if a.innta:
         atlas = les_atlas(a.repo, ref=a.ref)
         fil = a.inntak_fil or str(Path(a.repo) / "data" / "inntak" /
                                   "atlas_fragmenter.jsonl")
         record = skriv_inntak(atlas, a.innta, fil, kilde=a.kilde)
         print(f"FRAGMENT: {a.innta!r}  ->  {record['plasseringsstatus']}")
-        print(f"  proveniens: {record['kilde']}")
+        print(f"  provenance: {record['kilde']}")
         print(f"  written to: {fil}")
         if record["plasseringsstatus"] == "uten_hjem":
-            print("  koe: uten_hjem — menneskelig vurdering kreves")
+            print("  queue: uten_hjem — human assessment required")
         else:
-            print("  koe: fragment-forslag — ingen node opprettet")
+            print("  queue: fragment suggestion — no node created")
         sys.exit(0)
 
-    # INNGANGEN — plasser et nytt fragment
+    # THE ENTRANCE — place a new fragment
     if a.plasser:
         atlas = les_atlas(a.repo, ref=a.ref)
-        p_ = plasser(atlas, a.plasser)
-        print(f"FRAGMENT: {a.plasser!r}  ->  {p_['status']}")
-        print(f"  domenevisshet: {p_.get('domene_visshet', 'ukjent')} "
-              f"({p_.get('domene_grunnlag', 'ukjent grunnlag')})")
-        for f in p_["forslag"][:4]:
-            print(f"  domene {f['domene']:26} {f['kobling']}")
+        placement = plasser(atlas, a.plasser)
+        print(f"FRAGMENT: {a.plasser!r}  ->  {placement['status']}")
+        print(f"  domain certainty: {placement.get('domene_visshet', 'ukjent')} "
+              f"({placement.get('domene_grunnlag', 'ukjent grunnlag')})")
+        for f in placement["forslag"][:4]:
+            print(f"  domain {f['domene']:26} {f['kobling']}")
             if f["noder"]:
-                print(f"    naboer: {', '.join(f['noder'])}")
-        if p_.get("naere_noder"):
-            print(f"  naere noder: {', '.join(p_['naere_noder'][:4])}")
-        o = p_.get("oppsummering") or {}
-        print(f"  maa utfylle {len(p_['mangler'])} felt for aa bli en node: "
-              f"{o.get('struktur', 0)} struktur (utledes), "
-              f"{o.get('vurdering', 0)} vurdering (foreslaas), "
-              f"{o.get('paastand', 0)} paastand (kreves eksplisitt)")
-        for k in p_.get("krav", []):
-            merke = "SKJEMA" if k["kilde"] == "skjema" else "HUSET "
+                print(f"    neighbours: {', '.join(f['noder'])}")
+        if placement.get("naere_noder"):
+            print(f"  near nodes: {', '.join(placement['naere_noder'][:4])}")
+        o = placement.get("oppsummering") or {}
+        print(f"  must fill in {len(placement['mangler'])} fields to become a node: "
+              f"{o.get('struktur', 0)} struktur (derived), "
+              f"{o.get('vurdering', 0)} vurdering (proposed), "
+              f"{o.get('paastand', 0)} paastand (required explicitly)")
+        for k in placement.get("krav", []):
+            merke = "SCHEMA" if k["kilde"] == "skjema" else "HOUSE "
             if k.get("forslag"):
                 print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
                       f"= {k['forslag']!r}  ({k['grunn']})")
             elif k["klasse"] == "struktur":
                 print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
-                      f"kunne ikke utledes: {k['grunn']}")
+                      f"could not be derived: {k['grunn']}")
             else:
                 print(f"    [{merke}] {k['felt']:<17} {k['klasse']:<9} "
-                      f"fylt {k['fylt_i_banken']} i banken")
+                      f"filled {k['fylt_i_banken']} in the bank")
         sys.exit(0)
 
-    # KOBLINGENE — 1-hop, 2-hop, 3-hop
+    # THE COUPLINGS — 1-hop, 2-hop, 3-hop
     if a.hop or a.fragment:
         atlas = les_atlas(a.repo, ref=a.ref)
         if a.fragment:
             f = fragment(atlas, a.fragment)
             if not f["finnes"]:
-                print(f"FEIL: 'fragmentet {a.fragment}' finnes ikke. Nærliggende: "
-                      f"{', '.join(f['naere']) or 'ingen'}")
+                print(f"ERROR: 'the fragment {a.fragment}' does not exist. "
+                      f"Nearby: {', '.join(f['naere']) or 'none'}")
                 sys.exit(1)
             print(f"=== {a.fragment} ===")
             print(f"  {f['node'].get('regime', {}).get('name', '?')}")
@@ -1393,30 +1415,30 @@ if __name__ == "__main__":
             try:
                 stier = hop_stier(atlas, node, int(d) if d else 1)
             except KeyError as e:
-                print(f"FEIL: {e}")
+                print(f"ERROR: {e}")
                 sys.exit(1)
-            print(f"{len(stier)} noder innen {d or 1} hopp fra {node}:")
+            print(f"{len(stier)} nodes within {d or 1} hops from {node}:")
             for nid, (sti, typer) in sorted(stier.items(), key=lambda x: len(x[1][0]))[:22]:
                 print(f"  {' -> '.join(sti)[:52]:54} [{' -> '.join(typer)}]")
         sys.exit(0)
 
-    # OVERSIKTEN — global tilstand, ikke et soek
+    # THE OVERVIEW — global state, not a search
     if a.oversikt:
         atlas = les_atlas(a.repo, ref=a.ref)
         o = oversikt(atlas)
-        print(f"ATLASET — {len(atlas.get('noder') or [])} noder, "
-              f"{len(o)} akser som skiller")
+        print(f"THE ATLAS — {len(atlas.get('noder') or [])} nodes, "
+              f"{len(o)} axes that separate")
         for sti, ford in o:
             linje = " · ".join(f"{v} ({n})" for v, n in ford[:6])
             print(f"  {sti:26} {linje[:92]}")
         sys.exit(0)
 
-    # AKSENE — generisk rotasjon, ikke tjue flagg
+    # THE AXES — generic rotation, not twenty flags
     if a.akser or a.akse:
         atlas = les_atlas(a.repo, ref=a.ref)
         if a.akser:
             alle = akser(atlas)
-            print(f"{len(alle)} akser i atlaset:")
+            print(f"{len(alle)} axes in the atlas:")
             for sti, (n, verdier) in sorted(alle.items()):
                 v = ", ".join(verdier[:4]) + (" ..." if len(verdier) > 4 else "")
                 print(f"  {sti:34} {n:3}  {v[:66]}")
@@ -1424,31 +1446,31 @@ if __name__ == "__main__":
             navn, _, verdi = a.akse.partition("=")
             try:
                 treff = roter_akse(atlas, navn, verdi or None)
-                sti, lv = _loes_akse(atlas, navn)
+                sti, lv = _resolve_axis(atlas, navn)
                 if lv is not None and not verdi:
                     verdi = lv
             except KeyError as e:
-                print(f"FEIL: {e}")
+                print(f"ERROR: {e}")
                 sys.exit(1)
-            print(f"{len(treff)} noder  akse={navn}"
+            print(f"{len(treff)} nodes  axis={navn}"
                   + (f"={verdi}" if verdi else "")
                   + (f"  ({sti})" if sti != navn else ""))
             for n in treff:
-                v = _les_sti(n, sti)
+                v = _read_path(n, sti)
                 print(f"  {n['id']:34} {str(v)[:60]}")
                 klarhet = (n.get("maale_paradigme") or {}).get("klarhetsfunksjon")
                 if klarhet:
                     print(f"    {klarhet}")
         sys.exit(0)
 
-    # ROTASJON — de fire vinklene som ikke fantes 2026-09-17
+    # ROTATION — the four angles that did not exist 2026-09-17
     if a.node or a.perspektiv or a.fase or a.domene or a.maaleform or a.proxy:
         atlas = les_atlas(a.repo, ref=a.ref)
         if a.node:
             try:
                 treff = roter(atlas, node=a.node)
             except KeyError as e:
-                print(f"FEIL: {e}")
+                print(f"ERROR: {e}")
                 sys.exit(1)
             for n in treff:
                 print(f"=== {n['id']} ===")
@@ -1464,16 +1486,16 @@ if __name__ == "__main__":
                 print(f"{form:12} ({len(ider)}): {', '.join(ider[:6])}"
                       f"{' ...' if len(ider) > 6 else ''}")
         elif a.proxy:
-            kj = proxy_kjeder(atlas)
-            print(f"{len(kj)} noder med proxy-kjede:")
-            for nid, ledd in sorted(kj.items()):
+            proxy_chains = proxy_kjeder(atlas)
+            print(f"{len(proxy_chains)} nodes with a proxy chain:")
+            for nid, ledd in sorted(proxy_chains.items()):
                 print(f"  {nid}: {' -> '.join(ledd)}")
         else:
             treff = roter(atlas, perspektiv=a.perspektiv, fase=a.fase, domene=a.domene)
-            print(f"{len(treff)} noder"
-                  + (f" perspektiv={a.perspektiv}" if a.perspektiv else "")
-                  + (f" fase={a.fase}" if a.fase else "")
-                  + (f" domene={a.domene}" if a.domene else ""))
+            print(f"{len(treff)} nodes"
+                  + (f" perspective={a.perspektiv}" if a.perspektiv else "")
+                  + (f" phase={a.fase}" if a.fase else "")
+                  + (f" domain={a.domene}" if a.domene else ""))
             for n in treff:
                 ep = (n.get("episenter") or "")[:56]
                 print(f"  {n['id']:34} {n.get('phase','?'):18} {ep}")
@@ -1481,47 +1503,48 @@ if __name__ == "__main__":
 
     if a.emne:
         s = finn(a.repo, a.emne, ref=a.ref, hent=a.hent)
-        akseinfo = f" via akse {s['akse']}" if s.get("akse") else ""
-        print(f"{s['kilde']} @ {s['commit'][:8]} — {s['antall']} treff paa «{s['emne']}»{akseinfo}")
+        axis_info = f" via axis {s['akse']}" if s.get("akse") else ""
+        print(f"{s['kilde']} @ {s['commit'][:8]} — {s['antall']} hit(s) on "
+              f"«{s['emne']}»{axis_info}")
         if s["hull"]:
             kh = s["kjent_hull"]
             if kh:
                 ant = kh.get("meldinger")
-                storrelse = f" · {ant} meldinger" if ant is not None else ""
-                print(f"  KJENT HULL — maalt som «{kh['status']}»{storrelse}")
+                storrelse = f" · {ant} messages" if ant is not None else ""
+                print(f"  KNOWN HOLE — measured as «{kh['status']}»{storrelse}")
                 if kh.get("begrunnelse"):
-                    print(f"  begrunnelse: {kh['begrunnelse']}")
+                    print(f"  reason: {kh['begrunnelse']}")
                 if ant is None:
-                    print("  (stoerrelse ikke maalt — kommer fra PR #475)")
+                    print("  (size not measured — comes from PR #475)")
             else:
-                print("  ATLASET VET IKKE — ingen node baerer dette emnet, "
-                      "og det er ikke et maalt dekningshull.")
+                print("  THE ATLAS DOES NOT KNOW — no node carries this "
+                      "topic, and it is not a measured coverage hole.")
             sys.exit(0)
         kh = s["kjent_hull"]
         if kh:
-            print(f"  (domenet {kh['domene']} er maalt som «{kh['status']}»)")
+            print(f"  (the domain {kh['domene']} is measured as «{kh['status']}»)")
         if s["for_bredt"]:
-            print(f"  FOR BREDT — {s['raad']}")
-        # Et svar paa 80 linjer er ikke et svar. Vis de sterkeste, og si
-        # hvor mange som ligger under — leseren kan be om alle med --alle.
+            print(f"  TOO BROAD — {s['raad']}")
+        # An answer of 80 lines is not an answer. Show the strongest, and say
+        # how many lie below — the reader can ask for all with --alle.
         viste = s["treff"] if a.alle else s["treff"][:_VIS_MAKS]
         for t in viste:
-            merker = []
+            tags = []
             if t["har_falsifikator"]:
-                merker.append("kan felles")
+                tags.append("can be felled")
             if t["har_prediksjon"]:
-                merker.append("har prediksjon")
+                tags.append("has prediction")
             if t["har_oppgjoer"]:
-                merker.append("er gjort opp")
+                tags.append("is settled")
             if t["buss_domene"]:
-                merker.append(f"buss:{t['buss_domene']}")
+                tags.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
             print(f"  {t['id']:<34} {t['synlighet'] or '?':<9} "
-                  f"{t['perspektiv'] or '':<10} {' · '.join(merker)}{tt}")
+                  f"{t['perspektiv'] or '':<10} {' · '.join(tags)}{tt}")
             if t["trefftype"] == "navnerom":
-                print(f"    grunn: {t['grunn']}")
+                print(f"    reason: {t['grunn']}")
         if not a.alle and s["antall"] > _VIS_MAKS:
-            print(f"  ... og {s['antall'] - _VIS_MAKS} flere — bruk --alle for hele listen")
+            print(f"  ... and {s['antall'] - _VIS_MAKS} more — use --alle for the whole list")
     else:
         d = les_atlas(a.repo, ref=a.ref, hent=a.hent)
-        print(f"{d['kilde']} @ {d['commit'][:8]} — {len(d['noder'])} noder")
+        print(f"{d['kilde']} @ {d['commit'][:8]} — {len(d['noder'])} nodes")

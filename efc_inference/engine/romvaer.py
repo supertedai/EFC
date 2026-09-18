@@ -15,7 +15,7 @@ the sun's flares (SolarFlareEngine) charge Earth's buffer (this engine) —
 two domains, one chain (the same source, SWPC).
 
 Idealised charging/discharging model:
-    charging:   Kp_up ~ coefficient * (-Bz_sør/10) * (v/100)
+    charging:   Kp_up ~ coefficient * (-Bz/10) * (v/100) for southward Bz
     discharging: Kp(t+1) = Kp(t) - discharge rate per 3 h tick
 The storm levels (the NOAA scale): Kp 5 = G1, 6 = G2, 7 = G3, 8 = G4,
 9 = G5.
@@ -50,12 +50,12 @@ class RomvaerEngine(EFCEngine):
         northward shields. Kp ~ coefficient * (-Bz/10) * (v/100) for
         Bz < 0."""
         if bz >= 0:
-            ladning = 0.0
+            charging_current = 0.0
         else:
-            ladning = (params["lade_koeffisient"]
-                       * (-bz / 10.0) * (hastighet / 100.0))
+            charging_current = (params["lade_koeffisient"]
+                                * (-bz / 10.0) * (hastighet / 100.0))
         # Cap at 9 — the maximum of the scale
-        return float(min(9.0, ladning))
+        return float(min(9.0, charging_current))
 
     def utlad(self, kp: float, params: dict, tikk: int = 1) -> float:
         """The buffer discharges: Kp falls with the discharge rate per tick."""
@@ -65,8 +65,8 @@ class RomvaerEngine(EFCEngine):
         """The NOAA G scale: Kp 5=G1, 6=G2, 7=G3, 8=G4, 9=G5."""
         if kp < params["storm_terskel"]:
             return "ingen"
-        niva = {5: "G1", 6: "G2", 7: "G3", 8: "G4", 9: "G5"}
-        return niva.get(int(np.floor(kp)), "G5")
+        levels = {5: "G1", 6: "G2", 7: "G3", 8: "G4", 9: "G5"}
+        return levels.get(int(np.floor(kp)), "G5")
 
     # ------------------------------------------------------------------
     # The EFCEngine contract
@@ -75,12 +75,12 @@ class RomvaerEngine(EFCEngine):
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
         """Given (Bz, speed) pairs (N x 2), return the expected Kp."""
-        koord = np.asarray(coordinates, dtype=float)
-        if koord.ndim == 1:
-            koord = koord.reshape(1, -1)
+        coords = np.asarray(coordinates, dtype=float)
+        if coords.ndim == 1:
+            coords = coords.reshape(1, -1)
         return np.array([
-            self.forventet_kp(params_dict, float(rad[0]), float(rad[1]))
-            for rad in koord
+            self.forventet_kp(params_dict, float(row[0]), float(row[1]))
+            for row in coords
         ])
 
     # ------------------------------------------------------------------

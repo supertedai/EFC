@@ -36,15 +36,15 @@ import numpy as np
 
 from efc_inference.engine.growth import EFCGrowth
 
-FORSEGLET_DOI = "10.6084/m9.figshare.32013156"
-FORSEGLET_DATO = "2026-04-14"
+SEALED_DOI = "10.6084/m9.figshare.32013156"
+SEALED_DATE = "2026-04-14"
 ARBITER_INSTRUMENT = "DESI DR2 full-shape RSD (galaxy-RSD, z~0.7)"
-ANKER_EFC = 0.430
-ANKER_LCDM = 0.449
+ANCHOR_EFC = 0.430
+ANCHOR_LCDM = 0.449
 # The instrument requires galaxy-RSD tracers (LRG/ELG); Lyα is a different
 # tracer and cannot pass the verdict. The z window is the test's regime: z~0.7.
-TILLATTE_TRACERE = ("LRG", "ELG")
-Z_MIN, Z_MAKS = 0.5, 0.9
+ALLOWED_TRACERS = ("LRG", "ELG")
+Z_MIN, Z_MAX = 0.5, 0.9
 # Floating-point rounding makes «exactly 1σ/2σ/3σ» values land a hair's
 # breadth on the wrong side of the limit (2.0 becomes 1.999999999999999).
 # The «~1σ» formulation is not exact anyway, so the limits use an epsilon.
@@ -63,13 +63,13 @@ class SealedFs8Arbiter:
     @staticmethod
     def kriterium() -> dict:
         return {
-            "anker_efc": ANKER_EFC,
-            "anker_lcdm": ANKER_LCDM,
+            "anker_efc": ANCHOR_EFC,
+            "anker_lcdm": ANCHOR_LCDM,
             "arbiter_instrument": ARBITER_INSTRUMENT,
-            "tillatte_tracere": list(TILLATTE_TRACERE),
-            "z_vindu": [Z_MIN, Z_MAKS],
-            "forseglet_dato": FORSEGLET_DATO,
-            "forseglet_doi": FORSEGLET_DOI,
+            "tillatte_tracere": list(ALLOWED_TRACERS),
+            "z_vindu": [Z_MIN, Z_MAX],
+            "forseglet_dato": SEALED_DATE,
+            "forseglet_doi": SEALED_DOI,
             "bekreftelse": ("DESI DR2 full-shape fsigma8(z~0.7) shall lie "
                             "within ~1σ of 0.430"),
             "falsifikasjon_a": ("Measured fσ8(z=0.7) > 0.449 at more than 3σ — "
@@ -100,15 +100,15 @@ class SealedFs8Arbiter:
     # ------------------------------------------------------------------
     # The verdict
     # ------------------------------------------------------------------
-    def vurder(self, måling: Optional[dict],
+    def vurder(self, measurement: Optional[dict],
                params: Optional[dict] = None) -> dict:
         """Three-valued verdict: PASS / FAIL / VENTER.
 
-        måling: dict with fsigma8, sigma, z_eff, tracer, kilde — or
+        measurement: dict with fsigma8, sigma, z_eff, tracer, kilde — or
         None (the arbiter measurement does not exist yet).
         params: engine parameters for the EXPLICIT engine prediction.
         """
-        if måling is None:
+        if measurement is None:
             return {
                 "status": "VENTER",
                 "årsak": ("The arbiter measurement is missing: DESI DR2 "
@@ -122,61 +122,61 @@ class SealedFs8Arbiter:
             }
 
         # --- validation of the measurement ----------------------------
-        for felt in ("fsigma8", "sigma", "z_eff", "tracer", "kilde"):
-            if felt not in måling or måling[felt] is None:
+        for field in ("fsigma8", "sigma", "z_eff", "tracer", "kilde"):
+            if field not in measurement or measurement[field] is None:
                 return {
                     "status": "VENTER",
-                    "årsak": f"the measurement is missing the field «{felt}» — "
+                    "årsak": f"the measurement is missing the field «{field}» — "
                              "invalid basis, verdict not passed.",
                     "regel": "none — invalid measurement",
                     "kilde": "the arbiter's own validation",
                 }
-        if not np.isfinite(måling["sigma"]) or måling["sigma"] <= 0:
+        if not np.isfinite(measurement["sigma"]) or measurement["sigma"] <= 0:
             return {
                 "status": "VENTER",
-                "årsak": (f"sigma={måling['sigma']} is not a positive, "
+                "årsak": (f"sigma={measurement['sigma']} is not a positive, "
                           "finite number — invalid basis, verdict not "
                           "passed."),
                 "regel": "none — invalid measurement",
                 "kilde": "the arbiter's own validation",
             }
-        if måling["tracer"].upper() not in TILLATTE_TRACERE:
+        if measurement["tracer"].upper() not in ALLOWED_TRACERS:
             return {
                 "status": "VENTER",
-                "årsak": (f"Tracer {måling['tracer']} is not galaxy-"
-                          f"RSD ({'/'.join(TILLATTE_TRACERE)}). Lyα is a "
+                "årsak": (f"Tracer {measurement['tracer']} is not galaxy-"
+                          f"RSD ({'/'.join(ALLOWED_TRACERS)}). Lyα is a "
                           "different tracer and cannot pass this verdict."),
                 "regel": "none — wrong instrument",
                 "kilde": ARBITER_INSTRUMENT,
             }
-        if not (Z_MIN <= måling["z_eff"] <= Z_MAKS):
+        if not (Z_MIN <= measurement["z_eff"] <= Z_MAX):
             return {
                 "status": "VENTER",
-                "årsak": (f"z_eff={måling['z_eff']} lies outside the test's "
-                          f"z window [{Z_MIN}, {Z_MAKS}] — the measurement "
+                "årsak": (f"z_eff={measurement['z_eff']} lies outside the test's "
+                          f"z window [{Z_MIN}, {Z_MAX}] — the measurement "
                           "is not the criterion's measurement."),
                 "regel": "none — wrong z window",
                 "kilde": "the criterion applies to z~0.7",
             }
 
-        m = måling["fsigma8"]
-        s = måling["sigma"]
-        diff_efc = abs(m - ANKER_EFC) / s
-        diff_lcdm = abs(m - ANKER_LCDM) / s
+        m = measurement["fsigma8"]
+        s = measurement["sigma"]
+        diff_efc = abs(m - ANCHOR_EFC) / s
+        diff_lcdm = abs(m - ANCHOR_LCDM) / s
 
         # --- explicit engine prediction (separate from the anchor) -----
-        motor_pred = None
+        engine_prediction = None
         if params is not None:
-            motor_pred = self.prediksjon_efc(params)
+            engine_prediction = self.prediksjon_efc(params)
 
-        detaljer = {
+        details = {
             "avstand_anker_efc_sigma": round(diff_efc, 2),
             "avstand_anker_lcdm_sigma": round(diff_lcdm, 2),
         }
-        if motor_pred is not None:
-            detaljer["motorprediksjon"] = motor_pred
-            detaljer["avstand_motorprediksjon_sigma"] = round(
-                abs(m - motor_pred) / s, 2)
+        if engine_prediction is not None:
+            details["motorprediksjon"] = engine_prediction
+            details["avstand_motorprediksjon_sigma"] = round(
+                abs(m - engine_prediction) / s, 2)
 
         if diff_efc <= 1.0 + EPS:
             return {
@@ -185,27 +185,27 @@ class SealedFs8Arbiter:
                           f"the anchor 0.430 — within ~1σ "
                           "(the confirmation criterion)."),
                 "regel": self.kriterium()["bekreftelse"],
-                "kilde": FORSEGLET_DOI,
-                **detaljer,
+                "kilde": SEALED_DOI,
+                **details,
             }
 
-        over_lcdm_3sigma = (m - ANKER_LCDM) / s > 3.0 + EPS
-        konsistent_lcdm_1sigma = diff_lcdm < 1.0 + EPS
-        ekskluderer_anker_2sigma = diff_efc >= 2.0 - EPS
+        over_lcdm_3sigma = (m - ANCHOR_LCDM) / s > 3.0 + EPS
+        consistent_lcdm_1sigma = diff_lcdm < 1.0 + EPS
+        excludes_anchor_2sigma = diff_efc >= 2.0 - EPS
 
         if over_lcdm_3sigma:
             return {
                 "status": "FAIL",
                 "årsak": (f"The measurement {m}±{s} lies "
-                          f"{(m - ANKER_LCDM) / s:.1f}σ ABOVE 0.449 — "
+                          f"{(m - ANCHOR_LCDM) / s:.1f}σ ABOVE 0.449 — "
                           "consistent with ΛCDM at high significance "
                           "(P2 damage-test)."),
                 "regel": self.kriterium()["falsifikasjon_a"],
-                "kilde": f"validation-ledger P2 (DAMAGE); {FORSEGLET_DOI}",
-                **detaljer,
+                "kilde": f"validation-ledger P2 (DAMAGE); {SEALED_DOI}",
+                **details,
             }
 
-        if konsistent_lcdm_1sigma or ekskluderer_anker_2sigma:
+        if consistent_lcdm_1sigma or excludes_anchor_2sigma:
             return {
                 "status": "FAIL",
                 "årsak": (f"The measurement {m}±{s} is consistent with 0.449 "
@@ -213,8 +213,8 @@ class SealedFs8Arbiter:
                           f"excludes the anchor 0.430 at ≥2σ "
                           f"({diff_efc:.1f}σ) — falsified after P1."),
                 "regel": self.kriterium()["falsifikasjon_b"],
-                "kilde": FORSEGLET_DOI,
-                **detaljer,
+                "kilde": SEALED_DOI,
+                **details,
             }
 
         return {
@@ -224,17 +224,17 @@ class SealedFs8Arbiter:
                       f"{diff_lcdm:.1f}σ from 0.449 — neither confirmed "
                       "nor falsified."),
             "regel": "none — intermediate",
-            "kilde": FORSEGLET_DOI,
-            **detaljer,
+            "kilde": SEALED_DOI,
+            **details,
         }
 
     # ------------------------------------------------------------------
     # The report — full provenance + the honesty clause
     # ------------------------------------------------------------------
-    def rapport(self, måling: Optional[dict] = None,
+    def rapport(self, measurement: Optional[dict] = None,
                 params: Optional[dict] = None) -> dict:
         """Full report: criterion, predictions, verdict and honesty."""
-        dom = self.vurder(måling, params)
+        verdict = self.vurder(measurement, params)
         null = self.nullmodell()
 
         # The μ channel's status in the engine layer — measured, not assumed:
@@ -249,7 +249,7 @@ class SealedFs8Arbiter:
         return {
             "kriterium": self.kriterium(),
             "nullmodell_fs8_07": null,
-            "dom": dom,
+            "dom": verdict,
             "mu_kanal_i_injisert_motor": mu_status["i_injisert_motor"],
             "mu_reproduksjon_variantc": mu_status["reproduksjon_variantc"],
             "ærlighet": mu_status["ærlighet"],
@@ -266,7 +266,7 @@ class SealedFs8Arbiter:
            value is reproducible (a consistency check, NOT proof about the
            sealed parameter value).
         """
-        i_injisert = bool(getattr(self.growth, "stotter_mu", lambda: False)())
+        is_injected = bool(getattr(self.growth, "stotter_mu", lambda: False)())
         variant = type(self.growth.cosmology).__name__
 
         repro = None
@@ -281,24 +281,24 @@ class SealedFs8Arbiter:
                 {"Omega_m": 0.3, "H0": 70.0, "sigma8": 0.8,
                  "alpha_cosmo": 0.0, "mu_0": 1.0},
                 np.array([0.7]))[0])
-            avvik = abs(fs8_mu05 - ANKER_EFC)
+            deviation = abs(fs8_mu05 - ANCHOR_EFC)
             repro = {
                 "variant": "EFCVariantC",
                 "mu_0": 0.5,
                 "fs8_mu_0_5": round(fs8_mu05, 4),
                 "fs8_mu_1_0": round(fs8_mu1, 4),
-                "avvik_fra_anker": round(avvik, 4),
+                "avvik_fra_anker": round(deviation, 4),
             }
         except Exception as e:  # pragma: no cover
             repro = {"feil": str(e)}
 
-        injisert_tekst = (
+        injected_text = (
             f"The injected engine ({variant}) "
-            + ("HAS" if i_injisert else "does NOT have")
+            + ("HAS" if is_injected else "does NOT have")
             + " the μ channel."
         )
-        ærlighet = (
-            f"{injisert_tekst} The engine layer's capability: EFCVariantC "
+        honesty = (
+            f"{injected_text} The engine layer's capability: EFCVariantC "
             "carries μ = 1 + (mu_0−1)·g(a), and with canonical parameters "
             f"and mu_0=0.5 it gives fσ8(z=0.7)={repro['fs8_mu_0_5']:.4f} — "
             f"{repro['avvik_fra_anker']:.4f} from the sealed anchor "
@@ -307,28 +307,28 @@ class SealedFs8Arbiter:
             "is still passed only against the anchor. The engine prediction "
             "is reported separately — deviations shall be visible, not hidden."
         ) if repro and "feil" not in repro else (
-            f"{injisert_tekst} The VariantC reproduction could not be measured "
+            f"{injected_text} The VariantC reproduction could not be measured "
             f"({repro.get('feil') if repro else 'unknown'}) — the arbiter "
             "claims nothing it has not measured.")
 
         return {
-            "i_injisert_motor": i_injisert,
+            "i_injisert_motor": is_injected,
             "variant": variant,
             "reproduksjon_variantc": repro,
-            "ærlighet": ærlighet,
+            "ærlighet": honesty,
         }
 
     # ------------------------------------------------------------------
     # The bus payload (subject kosmos.kosmologi.oppgjoer.efc-fs8-arbiter)
     # ------------------------------------------------------------------
-    def payload(self, måling: Optional[dict] = None,
+    def payload(self, measurement: Optional[dict] = None,
                 params: Optional[dict] = None) -> dict:
         """Payload for publication — or for an artefact when the bus is
         read-only for us (the verden-MCP is a consumer only)."""
         return {
             "emne": "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter",
             "kriterium": self.kriterium(),
-            "rapport": self.rapport(måling, params),
+            "rapport": self.rapport(measurement, params),
             "proveniens": {
                 "generert_av": "SealedFs8Arbiter",
                 "modul": "efc_inference/arbiter/sealed_fs8.py",

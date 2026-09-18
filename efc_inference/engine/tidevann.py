@@ -59,8 +59,8 @@ class TidevannEngine(EFCEngine):
     def roche_grense(self, params: dict) -> float:
         """d = 2.44 R (rho_sentral/rho_objekt)^(1/3) — the threshold where
         the tide breaks the cohesion (idealized fluid body)."""
-        forhold = params["rho_sentral"] / params["rho_objekt"]
-        return float(2.44 * params["radius_sentral"] * forhold ** (1 / 3))
+        ratio = params["rho_sentral"] / params["rho_objekt"]
+        return float(2.44 * params["radius_sentral"] * ratio ** (1 / 3))
 
     def er_faselaast(self, params: dict, rotasjonsperiode: float,
                      omlopsperiode: float) -> bool:
@@ -77,15 +77,15 @@ class TidevannEngine(EFCEngine):
         """Given distances (m), return the tidal acceleration (m/s^2)."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        avstander = np.asarray(coordinates, dtype=float)
-        ut = []
-        for r in avstander:
+        distances = np.asarray(coordinates, dtype=float)
+        out = []
+        for r in distances:
             p = {**params_dict, "avstand": float(r)}
             if float(r) <= 0:
-                ut.append(np.nan)
+                out.append(np.nan)
             else:
-                ut.append(self.tidevannsakselerasjon(p))
-        return np.array(ut)
+                out.append(self.tidevannsakselerasjon(p))
+        return np.array(out)
 
     # ------------------------------------------------------------------
     # Self-description

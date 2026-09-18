@@ -65,7 +65,7 @@ class SamfunnEngine(EFCEngine):
         qualitative trajectory of the form (this is a form model, not a
         precision integrator; the docstring's honesty says so)."""
         s, i = s0, i0
-        s_bane, i_bane, r_bane = [s], [i], [1 - s - i]
+        s_track, i_track, r_track = [s], [i], [1 - s - i]
         dt = float(np.mean(np.diff(np.asarray(t, dtype=float))))
         for _ in range(len(np.atleast_1d(t)) - 1):
             ds = -params["beta"] * s * i
@@ -73,10 +73,10 @@ class SamfunnEngine(EFCEngine):
             s = max(0.0, s + ds * dt)
             i = max(0.0, i + di * dt)
             r = 1.0 - s - i
-            s_bane.append(s)
-            i_bane.append(i)
-            r_bane.append(r)
-        return (np.array(s_bane), np.array(i_bane), np.array(r_bane))
+            s_track.append(s)
+            i_track.append(i)
+            r_track.append(r)
+        return (np.array(s_track), np.array(i_track), np.array(r_track))
 
     # ------------------------------------------------------------------
     # The EFCEngine contract
@@ -87,15 +87,15 @@ class SamfunnEngine(EFCEngine):
         """Given (beta, gamma) pairs (N x 2), return R0 per point."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        koord = np.asarray(coordinates, dtype=float)
-        if koord.ndim == 1:
-            koord = koord.reshape(1, -1)
-        ut = []
-        for rad in koord:
-            p = {**params_dict, "beta": float(rad[0]),
-                 "gamma": float(rad[1])}
-            ut.append(self.r0(p))
-        return np.array(ut)
+        coords = np.asarray(coordinates, dtype=float)
+        if coords.ndim == 1:
+            coords = coords.reshape(1, -1)
+        out = []
+        for row in coords:
+            p = {**params_dict, "beta": float(row[0]),
+                 "gamma": float(row[1])}
+            out.append(self.r0(p))
+        return np.array(out)
 
     # ------------------------------------------------------------------
     # Self-description

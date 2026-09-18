@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bygg ein arbeidskoe direkte fra ein git-ref, ikkje fra arbeidsdisken."""
+"""Build a work queue straight from a git ref, not from the working disk."""
 from __future__ import annotations
 
 import argparse
@@ -9,183 +9,200 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
+# ROT keeps its name: atlas_volum.py, atlas_navigasjon.py and the tests define
+# the same module root under the same name. Reported, not hidden.
 ROT = Path(__file__).resolve().parents[1]
-MAALEFELT = ("s_regime", "klarhetsfunksjon", "ebe_function", "sektor")
-ALLE_FELT = MAALEFELT + ("rcmp",)
+# The four names are the bank's own fields (maale_paradigme and rcmp), not
+# prose — they are read out of schema/regime_nodes.jsonld verbatim.
+MEASURED_FIELDS = ("s_regime", "klarhetsfunksjon", "ebe_function", "sektor")
+ALL_FIELDS = MEASURED_FIELDS + ("rcmp",)
 
 
 def _git_sha(ref: str) -> str:
-    """Loes refen opp til en commit ÉN gang, og les alt derfra.
+    """Resolve the ref to a commit ONCE, and read everything from there.
 
-    Uten dette leser kjoeringen den bevegelige refen om og om igjen: flytter
-    `origin/main` seg underveis, kan to filer i samme svar komme fra hver sin
-    tilstand, og svaret blir umulig aa reprodusere.
+    Without this the run reads the moving ref over and over: if `origin/main`
+    moves along the way, two files in the same answer can come from different
+    states, and the answer becomes impossible to reproduce.
     """
     try:
-        ut = subprocess.run(["git", "rev-parse", ref], cwd=ROT, check=True,
-                            capture_output=True, text=True)
+        out = subprocess.run(["git", "rev-parse", ref], cwd=ROT, check=True,
+                             capture_output=True, text=True)
     except (OSError, subprocess.CalledProcessError) as exc:
-        raise SystemExit(f"ukjent ref {ref!r}: {exc}") from exc
-    return ut.stdout.strip()
+        raise SystemExit(f"unknown ref {ref!r}: {exc}") from exc
+    return out.stdout.strip()
 
 
-def _git_fil(ref: str, sti: str) -> str:
-    """Les ei fil fra ref slik at ulagte endringar ikkje kan endre svaret."""
+def _git_file(ref: str, path: str) -> str:
+    """Read a file from ref, so that uncommitted changes cannot change the answer."""
     try:
-        ut = subprocess.run(
-            ["git", "show", f"{ref}:{sti}"],
+        out = subprocess.run(
+            ["git", "show", f"{ref}:{path}"],
             cwd=ROT,
             check=True,
             capture_output=True,
             text=True,
         )
     except (OSError, subprocess.CalledProcessError) as exc:
-        raise SystemExit(f"kunne ikke lese {sti} fra {ref}: {exc}") from exc
-    return ut.stdout
+        raise SystemExit(f"could not read {path} from {ref}: {exc}") from exc
+    return out.stdout
 
 
 def _bank(ref: str) -> dict[str, Any]:
-    return json.loads(_git_fil(ref, "schema/regime_nodes.jsonld"))
+    return json.loads(_git_file(ref, "schema/regime_nodes.jsonld"))
 
 
-def _plassering(ref: str) -> dict[str, tuple[str, int]]:
-    """Hent generatorens eksplisitte gruppe- og kapittelkart fra samme ref."""
-    tre = ast.parse(_git_fil(ref, "scripts/maintenance/efc_atlas_generator.py"))
-    for node in tre.body:
+def _placement(ref: str) -> dict[str, tuple[str, int]]:
+    """Fetch the generator's explicit group and chapter map from the same ref."""
+    tree = ast.parse(_git_file(ref, "scripts/maintenance/efc_atlas_generator.py"))
+    for node in tree.body:
         if isinstance(node, ast.Assign) and any(
             isinstance(target, ast.Name) and target.id == "PLASSERING"
             for target in node.targets
         ):
             return ast.literal_eval(node.value)
-    raise SystemExit(f"PLASSERING mangler i {ref}")
+    raise SystemExit(f"PLASSERING is missing in {ref}")
 
 
-def _fylt(verdi: Any) -> bool:
-    """Er feltet DEKLARERT med innhold?
+# `_fylt` keeps its name: tests/test_atlas_arbeidskoe.py imports it and calls
+# it as the one definition of "filled" — the test and the code must agree on
+# the definition, so they must agree on the name. Reported, not hidden.
+def _fylt(value: Any) -> bool:
+    """Is the field DECLARED with content?
 
-    `"   "` er ikke et svar. Foerste utgave behandlet en hvitromsstreng som
-    fylt, saa en node kunne se maalt ut med et tomt felt — og testen regnet
-    ventetallet med `bool()`, altsaa en ANNEN definisjon enn koden den testet.
-    `False` og `0` teller som deklarert: de er svar, ikke fravaer av svar.
+    `"   "` is not an answer. The first version treated a whitespace string as
+    filled, so a node could look measured with an empty field — and the test
+    computed the expected number with `bool()`, that is, a DIFFERENT definition
+    than the code it tested. `False` and `0` count as declared: they are
+    answers, not the absence of an answer.
     """
-    if isinstance(verdi, str):
-        return bool(verdi.strip())
-    return verdi is not None and verdi != [] and verdi != {}
+    if isinstance(value, str):
+        return bool(value.strip())
+    return value is not None and value != [] and value != {}
 
 
-def _status(objekt: dict[str, Any], felt: str) -> str | None:
-    """Skill mellom manglende noekkel og eksisterende, tom verdi."""
-    if felt not in objekt:
+def _status(object: dict[str, Any], field: str) -> str | None:
+    """Distinguish a missing key from an existing, empty value.
+
+    The two words it answers are the tool's own wire values, pinned by
+    tests/test_atlas_arbeidskoe.py:149-150.
+    """
+    if field not in object:
         return "finnes_ikke"
-    if not _fylt(objekt[felt]):
+    if not _fylt(object[field]):
         return "tomt"
     return None
 
 
-def sakse_noder(noder: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, int]]:
-    """Lag S-koeen og maalingssummer fra offentlige noder."""
-    maalte = {felt: 0 for felt in ALLE_FELT}
-    koe: list[dict[str, Any]] = []
-    for node in noder:
-        maale = node.get("maale_paradigme") or {}
-        objekt = dict(maale)
+# `sakse_noder` keeps its name: tests/test_atlas_arbeidskoe.py:121,143 imports
+# it. Reported, not hidden.
+def sakse_noder(nodes: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], dict[str, int]]:
+    """Build the S queue and the measurement sums from public nodes."""
+    measured = {field: 0 for field in ALL_FIELDS}
+    queue: list[dict[str, Any]] = []
+    for node in nodes:
+        measurement = node.get("maale_paradigme") or {}
+        payload = dict(measurement)
         if "rcmp" in node:
-            objekt["rcmp"] = node["rcmp"]
-        mangler = []
-        for felt in ALLE_FELT:
-            status = _status(objekt, felt)
+            payload["rcmp"] = node["rcmp"]
+        missing = []
+        for field in ALL_FIELDS:
+            status = _status(payload, field)
             if status is None:
-                maalte[felt] += 1
+                measured[field] += 1
             else:
-                mangler.append({"felt": felt, "status": status})
-        if mangler:
-            koe.append({
+                missing.append({"felt": field, "status": status})
+        if missing:
+            queue.append({
                 "id": node["id"],
-                "maalte": len(ALLE_FELT) - len(mangler),
-                "mangler": mangler,
+                "maalte": len(ALL_FIELDS) - len(missing),
+                "mangler": missing,
             })
-    koe.sort(key=lambda rad: (-rad["maalte"], rad["id"]))
-    return koe, maalte
+    queue.sort(key=lambda row: (-row["maalte"], row["id"]))
+    return queue, measured
 
 
+# `arbeidskoe_sakse` and `arbeidskoe_ghost` keep their names: the ghost mode is
+# called by tests/test_atlas_arbeidskoe.py:106, and the two are one pair (the
+# same `--sakse` / `--ghost` the CLI and the JSON `modus` carry).
 def arbeidskoe_sakse(data: dict[str, Any]) -> dict[str, Any]:
-    offentlige = [n for n in data.get("nodes", []) if n.get("synlighet") == "offentlig"]
-    noder, maalte = sakse_noder(offentlige)
-    return {"modus": "sakse", "maalte": maalte, "noder": noder}
+    public = [n for n in data.get("nodes", []) if n.get("synlighet") == "offentlig"]
+    nodes, measured = sakse_noder(public)
+    return {"modus": "sakse", "maalte": measured, "noder": nodes}
 
 
-def arbeidskoe_ghost(data: dict[str, Any], plassering: dict[str, tuple[str, int]]) -> dict[str, Any]:
-    rader = []
+def arbeidskoe_ghost(data: dict[str, Any], placement: dict[str, tuple[str, int]]) -> dict[str, Any]:
+    rows = []
     for node in data.get("nodes", []):
         if node.get("synlighet") != "offentlig":
             continue
-        if node["id"] not in plassering:
-            # Ingen standardverdi her. Klasseslekten er maalt foer: i atlaset
-            # gjorde `PLASSERING.get(navn, ("ghost", 8))` 68 av 73 noder til
-            # «ikke bygget», og feilen saa ut som data. En node som mangler
-            # plassering skal meldes, ikke gjettes.
+        if node["id"] not in placement:
+            # No default value here. The class of bug is measured: in the atlas,
+            # `PLASSERING.get(name, ("ghost", 8))` turned 68 of 73 nodes into
+            # "not built", and the error looked like data. A node with no
+            # placement must be reported, not guessed.
             raise SystemExit(
-                f"[arbeidskoe] {node['id']} staar ikke i generatorens "
-                f"PLASSERING — kan ikke avgjoere om den er bygget eller ghost")
-        gruppe, kapittel = plassering[node["id"]]
-        if gruppe != "ghost":
+                f"[arbeidskoe] {node['id']} is not in the generator's "
+                f"PLASSERING — cannot decide whether it is built or a ghost")
+        group, chapter = placement[node["id"]]
+        if group != "ghost":
             continue
-        # target er bankens egen deklarasjon av hva noden skal maale.
-        maal = (node.get("measure") or {}).get("target")
-        rader.append({
+        # target is the bank's own declaration of what the node shall measure.
+        target = (node.get("measure") or {}).get("target")
+        rows.append({
             "id": node["id"],
-            "intensjon": maal,
-            "intensjon_status": "deklarert" if _fylt(maal) else "ikke deklarert",
-            "gruppe": gruppe,
-            "kapittel": kapittel,
+            "intensjon": target,
+            "intensjon_status": "deklarert" if _fylt(target) else "ikke deklarert",
+            "gruppe": group,
+            "kapittel": chapter,
         })
-    rader.sort(key=lambda rad: rad["id"])
-    return {"modus": "ghost", "noder": rader}
+    rows.sort(key=lambda row: row["id"])
+    return {"modus": "ghost", "noder": rows}
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generert atlas-arbeidskoe")
-    modus = parser.add_mutually_exclusive_group(required=True)
-    modus.add_argument("--sakse", action="store_true")
-    modus.add_argument("--ghost", action="store_true")
+    parser = argparse.ArgumentParser(description="Generated atlas work queue")
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--sakse", action="store_true")
+    mode.add_argument("--ghost", action="store_true")
     parser.add_argument("--ref", default="origin/main")
     parser.add_argument("--json", action="store_true",
-                        help="maskinlesbar utdata (standard: lesbar liste)")
+                        help="machine-readable output (default: readable list)")
     args = parser.parse_args()
-    # Les alt fra ÉN opploest commit, ikke fra den bevegelige refen. Flytter
-    # `origin/main` seg midt i kjoeringen, ville ellers overskriften og
-    # innholdet kunne svare paa hver sin tilstand.
+    # Read everything from ONE resolved commit, not from the moving ref. If
+    # `origin/main` moved mid-run, the header and the contents could otherwise
+    # answer for two different states.
     sha = _git_sha(args.ref)
     data = _bank(sha)
     if args.sakse:
-        svar = arbeidskoe_sakse(data)
+        answer = arbeidskoe_sakse(data)
     else:
-        svar = arbeidskoe_ghost(data, _plassering(sha))
+        answer = arbeidskoe_ghost(data, _placement(sha))
     if args.json:
-        print(json.dumps(svar, ensure_ascii=False, indent=2, sort_keys=True))
+        print(json.dumps(answer, ensure_ascii=False, indent=2, sort_keys=True))
         return
-    # Standard er LESBAR utdata. Foerste utgave skrev bare JSON: riktig, men
-    # en koe ingen kan lese uten et ekstra verktoy er ikke en koe for et
-    # menneske som skal velge hva som fylles neste gang.
+    # The default is READABLE output. The first version wrote only JSON:
+    # correct, but a queue nobody can read without an extra tool is not a queue
+    # for a human who is to choose what gets filled next.
     if args.sakse:
-        m = svar["maalte"]
-        noder = svar["noder"]
-        print(f"S-akse-arbeidskoe · {len(noder)} noder mangler minst ett felt "
-              f"(noder uten hull staar ikke i koeen)")
-        print("  maalt i alt: " + " · ".join(
+        m = answer["maalte"]
+        nodes = answer["noder"]
+        print(f"S-axis work queue · {len(nodes)} nodes are missing at least one "
+              f"field (nodes with no gap are not in the queue)")
+        print("  measured in total: " + " · ".join(
             f"{k} {v}" for k, v in sorted(m.items())))
         print()
-        for rad in noder[:40]:
-            hull = ", ".join(f"{f['felt']}:{f['status']}" for f in rad["mangler"])
-            print(f"  {rad['id']:<30} maalt={rad['maalte']}  mangler {hull}")
-        if len(noder) > 40:
-            print(f"  … {len(noder) - 40} flere (bruk --json for hele lista)")
+        for row in nodes[:40]:
+            gaps = ", ".join(f"{f['felt']}:{f['status']}" for f in row["mangler"])
+            print(f"  {row['id']:<30} measured={row['maalte']}  missing {gaps}")
+        if len(nodes) > 40:
+            print(f"  … {len(nodes) - 40} more (use --json for the full list)")
     else:
-        print(f"Ghost-noder · {len(svar['noder'])} designet, ikke bygget")
+        print(f"Ghost nodes · {len(answer['noder'])} designed, not built")
         print()
-        for rad in svar["noder"]:
-            intensjon = rad.get("intensjon") or "intensjon: ikke deklarert"
-            print(f"  {rad['id']:<28} [{rad['gruppe']}] {intensjon}")
+        for row in answer["noder"]:
+            intent = row.get("intensjon") or "intent: not declared"
+            print(f"  {row['id']:<28} [{row['gruppe']}] {intent}")
 
 
 if __name__ == "__main__":

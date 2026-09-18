@@ -105,14 +105,14 @@ def les_fra_ref(repo: str | Path = ROT, ref: str = STANDARD_REF, *,
     if hent:
         _git(repo, "fetch", "-q", "origin")
     commit = _git(repo, "rev-parse", ref).strip()
-    ut: dict = {"kilde": f"git:{ref}", "ref": ref, "commit": commit}
-    for nokkel, sti in (("snapshot", SNAPSHOT_STI), ("dekning", DEKNING_STI)):
-        raa = _git(repo, "show", f"{ref}:{sti}")
+    out: dict = {"kilde": f"git:{ref}", "ref": ref, "commit": commit}
+    for key, path in (("snapshot", SNAPSHOT_STI), ("dekning", DEKNING_STI)):
+        raw = _git(repo, "show", f"{ref}:{path}")
         try:
-            ut[nokkel] = json.loads(raa)
+            out[key] = json.loads(raw)
         except json.JSONDecodeError as e:
-            raise VolumFeil(f"{ref}:{sti} is not valid JSON: {e}") from e
-    return ut
+            raise VolumFeil(f"{ref}:{path} is not valid JSON: {e}") from e
+    return out
 
 
 def meldinger_per_domene(snapshot: dict) -> dict[str, int]:
@@ -128,24 +128,24 @@ def meldinger_per_domene(snapshot: dict) -> dict[str, int]:
     object has no attribute 'values'` said nothing about what was missing or
     what was to be done about it. The form is therefore checked explicitly.
     """
-    ut: dict[str, int] = {}
-    for domene, rad in (snapshot.get("domener") or {}).items():
-        emner = rad.get("emner")
-        if not isinstance(emner, dict):
+    counts: dict[str, int] = {}
+    for domain, row in (snapshot.get("domener") or {}).items():
+        subjects = row.get("emner")
+        if not isinstance(subjects, dict):
             raise VolumFeil(
                 f"the measurement does not carry a count per subject "
-                f"({domene}: {type(emner).__name__}). The snapshot predates "
-                f"the volume measurement — run `atlas_volum.py --maal` "
-                f"against the bus, or read a ref that already carries the "
-                f"volume (`--ref HEAD`). The volume cannot be derived from a "
-                f"list of names, and it must not be guessed.")
-        ut[domene] = sum(emner.values())
-    return ut
+                f"({domain}: {type(subjects).__name__}). The snapshot "
+                f"predates the volume measurement — run `atlas_volum.py "
+                f"--maal` against the bus, or read a ref that already "
+                f"carries the volume (`--ref HEAD`). The volume cannot be "
+                f"derived from a list of names, and it must not be guessed.")
+        counts[domain] = sum(subjects.values())
+    return counts
 
 
-def hull(dekning: dict, snapshot: dict | None = None, *,
+def hull(coverage: dict, snapshot: dict | None = None, *,
          statuser: tuple[str, ...] | None = ("ikke_dekket",),
-         topp: int | None = None) -> list[dict]:
+         top: int | None = None) -> list[dict]:
     """The gaps, sorted by MEANING — messages descending, then name.
 
     Alphabetical order is random information about the world: it says what
@@ -156,28 +156,28 @@ def hull(dekning: dict, snapshot: dict | None = None, *,
     `statuser=None` gives every domain — then a `dekket` channel that
     carries a lot behind one node shows up too.
     """
-    maalt = meldinger_per_domene(snapshot) if snapshot else {}
-    rader: list[dict] = []
-    for navn, rad in (dekning.get("domener") or {}).items():
-        if statuser is not None and rad.get("status") not in statuser:
+    measured = meldinger_per_domene(snapshot) if snapshot else {}
+    rows: list[dict] = []
+    for name, row in (coverage.get("domener") or {}).items():
+        if statuser is not None and row.get("status") not in statuser:
             continue
-        emne_antall = ((snapshot or {}).get("domener", {})
-                       .get(navn, {}).get("emner") or {})
-        emner = sorted(
-            ((e, emne_antall.get(e)) for e in (rad.get("emner") or [])),
-            key=lambda p: (-(p[1] or 0), p[0]))
-        rader.append({
-            "domene": navn,
-            "status": rad.get("status"),
-            "meldinger": maalt.get(navn, rad.get("meldinger", 0)),
-            "noder": list(rad.get("noder") or []),
-            "emner": emner,
+        subject_counts = ((snapshot or {}).get("domener", {})
+                          .get(name, {}).get("emner") or {})
+        subjects = sorted(
+            ((e, subject_counts.get(e)) for e in (row.get("emner") or [])),
+            key=lambda pair: (-(pair[1] or 0), pair[0]))
+        rows.append({
+            "domene": name,
+            "status": row.get("status"),
+            "meldinger": measured.get(name, row.get("meldinger", 0)),
+            "noder": list(row.get("noder") or []),
+            "emner": subjects,
         })
-    rader.sort(key=lambda r: (-r["meldinger"], r["domene"]))
-    return rader[:topp] if topp else rader
+    rows.sort(key=lambda r: (-r["meldinger"], r["domene"]))
+    return rows[:top] if top else rows
 
 
-def _last_env(sti: Path = NATS_ENV) -> bool:
+def _load_env(path: Path = NATS_ENV) -> bool:
     """Set `NATS_VERDEN` from the house's `.env` when the environment lacks it.
 
     The tool reads the URL from the environment because Hermes starts it
@@ -188,66 +188,67 @@ def _last_env(sti: Path = NATS_ENV) -> bool:
     if os.environ.get("NATS_VERDEN"):
         return True
     try:
-        linjer = sti.read_text(encoding="utf-8").splitlines()
+        lines = path.read_text(encoding="utf-8").splitlines()
     except OSError:
         return False
-    for linje in linjer:
-        if linje.startswith("NATS_VERDEN="):
-            os.environ["NATS_VERDEN"] = linje.split("=", 1)[1].strip().strip("'\"")
+    for line in lines:
+        if line.startswith("NATS_VERDEN="):
+            os.environ["NATS_VERDEN"] = line.split("=", 1)[1].strip().strip("'\"")
             return True
     return False
 
 
-def _kort_emne(domene: str, emne: str) -> str:
+def _short_subject(domain: str, subject: str) -> str:
     """`verden.vaer.prediksjon.metno` -> `prediksjon.metno`.
 
     The bus names the subject IN FULL; the domain is already the key. The
     snapshot (and the declaration) carries the short form — it is relative to
     the domain, and a full form would repeat the domain name in every row.
     """
-    prefiks = f"{domene}."
-    return emne[len(prefiks):] if emne.startswith(prefiks) else emne
+    prefix = f"{domain}."
+    return subject[len(prefix):] if subject.startswith(prefix) else subject
 
 
-def maal_bussen(mcp_fil: str | Path | None = None) -> dict:
+def maal_bussen(mcp_path: str | Path | None = None) -> dict:
     """Measure the bus: `{domene: {emne: antall}}` — and the empty streams.
 
     Fails LOUDLY when the tool or the credential is missing. A gap without a
     number is not a measured gap, and a guessed number is worse than no
     number: it looks like a measurement.
     """
-    fil = Path(mcp_fil or VERDEN_MCP)
-    if not fil.exists():
+    tool_path = Path(mcp_path or VERDEN_MCP)
+    if not tool_path.exists():
         raise VolumFeil(
-            f"the verden tool does not exist: {fil} — the measurement "
+            f"the verden tool does not exist: {tool_path} — the measurement "
             f"cannot be made. Set VERDEN_MCP, or run where the tool lives.")
-    if not _last_env():
+    if not _load_env():
         raise VolumFeil(
             "NATS_VERDEN is not set, and no .env carrying it was found "
             f"({NATS_ENV}). The measurement requires the user's OWN "
             f"consumer key.")
-    spec = importlib.util.spec_from_file_location("verden_mcp_volum", fil)
+    spec = importlib.util.spec_from_file_location(
+        "verden_mcp_volum", tool_path)
     if spec is None or spec.loader is None:
-        raise VolumFeil(f"could not load {fil} as a module")
-    modul = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(modul)
+        raise VolumFeil(f"could not load {tool_path} as a module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
     try:
-        svar = modul.verden_domener({})
+        answer = module.verden_domener({})
     except Exception as e:                                    # noqa: BLE001
         raise VolumFeil(f"verden_domener failed: {type(e).__name__}: {e}") from e
-    domener = {navn: {_kort_emne(navn, r["emne"]): int(r["meldinger"])
-                      for r in rader}
-               for navn, rader in sorted((svar.get("domener") or {}).items())}
-    return {"domener": domener,
-            "tomme_stroemmer": svar.get("tomme_stroemmer") or []}
+    domains = {name: {_short_subject(name, r["emne"]): int(r["meldinger"])
+                      for r in rows}
+               for name, rows in sorted((answer.get("domener") or {}).items())}
+    return {"domener": domains,
+            "tomme_stroemmer": answer.get("tomme_stroemmer") or []}
 
 
-def _skriv_json(sti: Path, data: dict) -> None:
-    sti.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n",
-                   encoding="utf-8")
+def _write_json(path: Path, data: dict) -> None:
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n",
+                    encoding="utf-8")
 
 
-def skriv_snapshot(sti: str | Path, domener: dict, *,
+def skriv_snapshot(path: str | Path, domains: dict, *,
                    lest_av: str, maalt: str | None = None) -> dict:
     """Write the measurement. The provenance is data, not a comment."""
     maalt = maalt or datetime.datetime.now(
@@ -267,14 +268,14 @@ def skriv_snapshot(sti: str | Path, domener: dict, *,
                         "are measured, and the coverage file's `meldinger` "
                         "is their sum."),
         },
-        "domener": {navn: {"emner": dict(sorted(emner.items()))}
-                    for navn, emner in sorted(domener.items())},
+        "domener": {name: {"emner": dict(sorted(subjects.items()))}
+                    for name, subjects in sorted(domains.items())},
     }
-    _skriv_json(Path(sti), data)
+    _write_json(Path(path), data)
     return data
 
 
-def oppdater_dekning(dekning: dict, domener: dict) -> tuple[dict, dict]:
+def oppdater_dekning(coverage: dict, domains: dict) -> tuple[dict, dict]:
     """Set `meldinger` per domain = the sum of the measured subject counts.
 
     Everything else in the declaration is the HUMAN'S: `status` and
@@ -283,45 +284,48 @@ def oppdater_dekning(dekning: dict, domener: dict) -> tuple[dict, dict]:
     not write: new domains and new subjects must trip the invariant until
     someone has taken a position on them.
 
-    Returns `(ny_dekning, rapport)`.
+    Returns `(updated, report)`.
     """
-    maalt = {navn: sum(emner.values()) for navn, emner in domener.items()}
-    rapport: dict = {"nye_domener": [], "nye_emner": {}, "borte": []}
-    ny: dict = {}
-    for navn, rad in (dekning.get("domener") or {}).items():
-        if navn not in maalt:
-            rapport["borte"].append(navn)
-        nye = sorted(set(domener.get(navn, {})) - set(rad.get("emner") or []))
-        if nye:
-            rapport["nye_emner"][navn] = nye
-        ny[navn] = {
-            "status": rad.get("status"),
-            "meldinger": maalt.get(navn, 0),
-            "noder": list(rad.get("noder") or []),
-            "begrunnelse": rad.get("begrunnelse", ""),
-            "emner": list(rad.get("emner") or []),
+    measured = {name: sum(subjects.values())
+                for name, subjects in domains.items()}
+    report: dict = {"nye_domener": [], "nye_emner": {}, "borte": []}
+    updated: dict = {}
+    for name, row in (coverage.get("domener") or {}).items():
+        if name not in measured:
+            report["borte"].append(name)
+        new_subjects = sorted(set(domains.get(name, {}))
+                              - set(row.get("emner") or []))
+        if new_subjects:
+            report["nye_emner"][name] = new_subjects
+        updated[name] = {
+            "status": row.get("status"),
+            "meldinger": measured.get(name, 0),
+            "noder": list(row.get("noder") or []),
+            "begrunnelse": row.get("begrunnelse", ""),
+            "emner": list(row.get("emner") or []),
         }
-    rapport["nye_domener"] = sorted(set(domener) - set(dekning.get("domener") or {}))
-    ut = dict(dekning)
-    ut["domener"] = ny
-    return ut, rapport
+    report["nye_domener"] = sorted(set(domains)
+                                   - set(coverage.get("domener") or {}))
+    result = dict(coverage)
+    result["domener"] = updated
+    return result, report
 
 
-def formater(rader: list[dict]) -> str:
+def format_table(rows: list[dict]) -> str:
     """The table the human reads — largest first, with the subjects below."""
-    if not rader:
+    if not rows:
         return "  (no gaps in this slice)"
-    bredde = max(len(r["domene"]) for r in rader)
-    linjer = []
-    for r in rader:
-        linjer.append(f"{r['meldinger']:>10}  {r['status']:<11}  "
-                      f"{r['domene']:<{bredde}}  "
-                      f"{len(r['noder'])} node(s), "
-                      f"{len(r['emner'])} subject(s)")
-        for emne, antall in r["emner"][:3]:
-            tall = "?" if antall is None else f"{antall}"
-            linjer.append(f"{'':>10}  {'':<11}  {emne}  {tall}")
-    return "\n".join(linjer)
+    width = max(len(r["domene"]) for r in rows)
+    lines = []
+    for r in rows:
+        lines.append(f"{r['meldinger']:>10}  {r['status']:<11}  "
+                     f"{r['domene']:<{width}}  "
+                     f"{len(r['noder'])} node(s), "
+                     f"{len(r['emner'])} subject(s)")
+        for subject, count in r["emner"][:3]:
+            value = "?" if count is None else f"{count}"
+            lines.append(f"{'':>10}  {'':<11}  {subject}  {value}")
+    return "\n".join(lines)
 
 
 def hoved(argv: list[str] | None = None) -> int:
@@ -352,41 +356,44 @@ def hoved(argv: list[str] | None = None) -> int:
         # the working tree, and a pre-image from the ref would silently have
         # discarded uncommitted changes to the declaration. Reading the ref
         # is for the one who ASKS; measuring is for the one who WRITES.
-        sti = repo / DEKNING_STI
-        if not sti.exists():
-            raise VolumFeil(f"{sti} does not exist — it is the declaration "
-                            f"that is to receive a volume, and it cannot be "
-                            f"guessed into place")
+        declaration_path = repo / DEKNING_STI
+        if not declaration_path.exists():
+            raise VolumFeil(f"{declaration_path} does not exist — it is the "
+                            f"declaration that is to receive a volume, and "
+                            f"it cannot be guessed into place")
         try:
-            dekning = json.loads(sti.read_text(encoding="utf-8"))
+            coverage = json.loads(
+                declaration_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as e:
-            raise VolumFeil(f"{sti} is not valid JSON: {e}") from e
-        ny = maal_bussen()
-        domener = ny["domener"]
+            raise VolumFeil(
+                f"{declaration_path} is not valid JSON: {e}") from e
+        measurement = maal_bussen()
+        domains = measurement["domener"]
         lest_av = os.environ.get(
             "ATLAS_LEST_AV",
             f"{os.environ.get('HERMES_PROFILE', 'unknown')} "
             f"(scripts/atlas_volum.py)")
         if not args.torr:
-            skriv_snapshot(repo / SNAPSHOT_STI, domener, lest_av=lest_av)
-        ny_dekning, rapport = oppdater_dekning(dekning, domener)
+            skriv_snapshot(repo / SNAPSHOT_STI, domains, lest_av=lest_av)
+        updated, report = oppdater_dekning(coverage, domains)
         if not args.torr:
-            _skriv_json(sti, ny_dekning)
-        for domene, rader in sorted(
-                domener.items(), key=lambda kv: -sum(kv[1].values())):
-            print(f"{sum(rader.values()):>10}  {domene}")
-        if rapport["nye_domener"]:
-            print(f"\nNOT DECLARED ({len(rapport['nye_domener'])}) — carries "
+            _write_json(declaration_path, updated)
+        for domain, subjects in sorted(
+                domains.items(), key=lambda kv: -sum(kv[1].values())):
+            print(f"{sum(subjects.values()):>10}  {domain}")
+        if report["nye_domener"]:
+            print(f"\nNOT DECLARED ({len(report['nye_domener'])}) — carries "
                   f"messages, is not listed in {DEKNING_STI}. The atlas does "
                   f"not know they exist, and the invariant must TRIP until "
                   f"someone has taken a position on them:")
-            for d in rapport["nye_domener"]:
-                print(f"    {d}  {sum(domener[d].values())}")
-        for domene, emner in sorted(rapport["nye_emner"].items()):
-            print(f"\nNEW SUBJECTS in {domene} — no position taken: {emner}")
-        if rapport["borte"]:
+            for domain in report["nye_domener"]:
+                print(f"    {domain}  {sum(domains[domain].values())}")
+        for domain, subjects in sorted(report["nye_emner"].items()):
+            print(f"\nNEW SUBJECTS in {domain} — no position taken: "
+                  f"{subjects}")
+        if report["borte"]:
             print(f"\nDECLARED, BUT OUT OF THE MEASUREMENT: "
-                  f"{rapport['borte']} — "
+                  f"{report['borte']} — "
                   f"the declaration promises a world that is no longer there. "
                   f"Bus subjects inside the retention window disappear on "
                   f"their own; remove them from the file or explain why.")
@@ -394,16 +401,16 @@ def hoved(argv: list[str] | None = None) -> int:
             print("\n(--torr: nothing written)")
         return 0
 
-    lest = les_fra_ref(repo, args.ref)
-    print(f"{lest['kilde']} @ {lest['commit'][:8]}", file=sys.stderr)
-    rader = hull(lest["dekning"], lest["snapshot"],
-                 statuser=None if args.alle else ("ikke_dekket",),
-                 topp=args.topp)
-    print(formater(rader))
+    read = les_fra_ref(repo, args.ref)
+    print(f"{read['kilde']} @ {read['commit'][:8]}", file=sys.stderr)
+    rows = hull(read["dekning"], read["snapshot"],
+                statuser=None if args.alle else ("ikke_dekket",),
+                top=args.topp)
+    print(format_table(rows))
     return 0
 
 
-def _hoved_med_feil(argv: list[str] | None = None) -> int:
+def _main_with_errors(argv: list[str] | None = None) -> int:
     """VolumFeil is an ANSWER, not a stack trace.
 
     A reader who gets "the ref does not carry the volume yet" knows what to
@@ -418,4 +425,4 @@ def _hoved_med_feil(argv: list[str] | None = None) -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(_hoved_med_feil())
+    sys.exit(_main_with_errors())

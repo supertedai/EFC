@@ -90,18 +90,18 @@ class OrbitalEngine(EFCEngine):
         """
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        koord = np.asarray(coordinates, dtype=float)
-        if koord.ndim == 1:
-            koord = koord.reshape(1, -1)
+        coords = np.asarray(coordinates, dtype=float)
+        if coords.ndim == 1:
+            coords = coords.reshape(1, -1)
         m_tot = params_dict["M_sentral"] + params_dict["m_objekt"]
-        ut = []
-        for rad in koord:
-            a = float(rad[0])
+        out = []
+        for row in coords:
+            a = float(row[0])
             if a == 0:
-                ut.append(np.nan)
+                out.append(np.nan)
             else:
-                ut.append(-params_dict["G"] * m_tot / (2.0 * a))
-        return np.array(ut)
+                out.append(-params_dict["G"] * m_tot / (2.0 * a))
+        return np.array(out)
 
     # ------------------------------------------------------------------
     # Self-description

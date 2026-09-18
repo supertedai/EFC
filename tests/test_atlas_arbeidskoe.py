@@ -52,7 +52,7 @@ def test_standardutskriften_er_lesbar_ikke_json():
     for mode in ("--sakse", "--ghost"):
         ut = kjoer_raa(mode)
         assert not ut.lstrip().startswith("{"), f"{mode} skriver JSON som standard"
-        assert "mangler" in ut or "bygget" in ut, ut[:200]
+        assert "missing" in ut or "built" in ut, ut[:200]
 
 
 def bank() -> dict:

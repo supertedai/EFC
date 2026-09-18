@@ -58,7 +58,7 @@ class EFCGrowth(EFCEngine):
     # Optional perturbation channel: μ(a) = 1 + (mu_0 - 1)·g(a) in the
     # variants that support it (EFCVariantC+). mu_0=1.0 = ΛCDM source.
     # Validity interval [0, 2]: μ must stay positive over g(a)∈[0,1].
-    MU0_MIN, MU0_MAKS, MU0_DEFAULT = 0.0, 2.0, 1.0
+    MU0_MIN, MU0_MAX, MU0_DEFAULT = 0.0, 2.0, 1.0
 
     # Integration settings
     _A_INI = 1e-3       # start deep in matter era
@@ -92,7 +92,7 @@ class EFCGrowth(EFCEngine):
                 return False
             if not np.isfinite(mu0):
                 return False
-            if not (self.MU0_MIN <= mu0 <= self.MU0_MAKS):
+            if not (self.MU0_MIN <= mu0 <= self.MU0_MAX):
                 return False
         return True
 
@@ -224,19 +224,19 @@ class EFCGrowth(EFCEngine):
         al = params_dict["alpha_cosmo"]
         mu0 = params_dict.get("mu_0", self.MU0_DEFAULT)
         if self.stotter_mu():
-            mu_beskrivelse = (
+            mu_description = (
                 f"mu_0={mu0} (μ = 1 + (mu_0−1)·g(a) — "
                 f"{self.cosmology.name} has the channel; mu_0<1 damps the growth)"
             )
         else:
-            mu_beskrivelse = (
+            mu_description = (
                 f"{self.cosmology.name} has no μ channel (μ=1 hardcoded; "
                 "a given mu_0 has no effect — the channel exists in "
                 "EFCVariantC+)"
             )
         validity = (
             f"fσ8(z) via the growth ODE with EFC-deformed H(a): Omega_m={om}, "
-            f"H0={h0}, sigma8={s8}, alpha_cosmo={al}, {mu_beskrivelse} — "
+            f"H0={h0}, sigma8={s8}, alpha_cosmo={al}, {mu_description} — "
             "the L2 regime's growth of structure (perturbation level)"
         )
         law_form = ("D'' + [3/a + H'/H] D' - source(a)*D = 0 — numerical "

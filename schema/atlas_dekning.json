@@ -70,7 +70,7 @@
         "efc.jordskjelv_engine",
         "kosmos.jord.vulkan"
       ],
-      "begrunnelse": "2 node(r) navngir domenet via buss_domene",
+      "begrunnelse": "2 node(s) name the domain via buss_domene",
       "emner": [
         "tilstand.usgs-seismikk",
         "tilstand.usgs-vulkan"
@@ -179,7 +179,7 @@
         "efc.romvaer_engine",
         "kosmos.romvaer_swpc"
       ],
-      "begrunnelse": "romvaer-motoren beregner korrelasjoner; instrumentnoden leser tilstand.swpc-kp.",
+      "begrunnelse": "the space-weather engine computes correlations; the instrument node reads tilstand.swpc-kp.",
       "emner": [
         "tilstand.swpc-kp"
       ]
@@ -204,7 +204,7 @@
         "efc.solar_flare_engine",
         "kosmos.sol_goes"
       ],
-      "begrunnelse": "solflaremotoren beskriver flare-regimer; instrumentnoden leser swpc-goes-xray.",
+      "begrunnelse": "the solar-flare engine describes flare regimes; the instrument node reads swpc-goes-xray.",
       "emner": [
         "tilstand.swpc-goes-xray",
         "hendelse.nasa-donki"
@@ -228,7 +228,7 @@
         "efc.transient_engine",
         "kosmos.transienter_alerce"
       ],
-      "begrunnelse": "transientmotoren beskriver kollapsregimet; instrumentnoden leser alerce-hendelser.",
+      "begrunnelse": "the transient engine describes the collapse regime; the instrument node reads alerce events.",
       "emner": [
         "hendelse.alerce"
       ]

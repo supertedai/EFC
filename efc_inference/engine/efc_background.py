@@ -176,7 +176,7 @@ def _x_num(rho_over_crit: float) -> float:
     return min(rho_over_crit, 1.0 - VEGG_EPS)
 
 
-def _normaliser(params: dict) -> dict:
+def _normalise(params: dict) -> dict:
     """Fills in the defaults and checks that what must be there is there."""
     mangler = [k for k in PAKREVDE if k not in params]
     if mangler:
@@ -264,18 +264,18 @@ class BackgroundSolution:
         This is L-033's purpose: the inputs come from the solution, not
         from thin air. They are still only defined where the solution is.
         """
-        def _ved(arr):
+        def _at_z(arr):
             return float(np.interp(z, self.z, arr))
 
-        gyldig = np.isfinite(self.E)
-        nokler = ("phi_bar", "phi_dot_bar", "rho_bar", "lambda_dot_bar")
-        if not np.any(gyldig) or z > float(np.nanmax(self.z[gyldig])):
-            return {k: float("nan") for k in nokler}
+        valid = np.isfinite(self.E)
+        keys = ("phi_bar", "phi_dot_bar", "rho_bar", "lambda_dot_bar")
+        if not np.any(valid) or z > float(np.nanmax(self.z[valid])):
+            return {k: float("nan") for k in keys}
         return {
-            "phi_bar": _ved(self.phi),
-            "phi_dot_bar": _ved(self.phi_dot),
-            "rho_bar": _ved(self.rho_m),
-            "lambda_dot_bar": _ved(self.lam_dot),
+            "phi_bar": _at_z(self.phi),
+            "phi_dot_bar": _at_z(self.phi_dot),
+            "rho_bar": _at_z(self.rho_m),
+            "lambda_dot_bar": _at_z(self.lam_dot),
         }
 
 
@@ -295,7 +295,7 @@ class EFCBackgroundSolver:
     def __init__(self, params: dict,
                  nonminimal_sign: float = NONMINIMAL_SIGN_DEFAULT,
                  lambda_stress: str = LAMBDA_STRESS_DEFAULT):
-        self.params = _normaliser(params)
+        self.params = _normalise(params)
         if nonminimal_sign not in (NONMINIMAL_SIGN_PAPER,
                                    NONMINIMAL_SIGN_STANDARD):
             raise ValueError(
@@ -311,7 +311,7 @@ class EFCBackgroundSolver:
 
     # -- T^(lambda): energy density and pressure (eq. 6 vs eq. 12) ---------
 
-    def _lambda_ledd(self, E, lam, u, w, G):
+    def _lambda_term(self, E, lam, u, w, G):
         """(rho_lambda, p_lambda), both in units of 3 M_Pl^2 H0^2.
 
         ``rho_lambda`` is the term that enters eq. (12); ``p_lambda`` is
@@ -328,7 +328,7 @@ class EFCBackgroundSolver:
 
     # -- E from the modified Friedmann equation (eq. 12) -------------------
 
-    def _E_fra_constraint(self, rho_m, phi, u, w, lam=0.0):
+    def _E_from_constraint(self, rho_m, phi, u, w, lam=0.0):
         """Eq. (12) solved for H/H0 — it is quadratic when alpha != 0.
 
         F E^2 - sigma alpha phi_dot E - X = 0,
@@ -344,7 +344,7 @@ class EFCBackgroundSolver:
             return np.nan
         K = kinetic_stiffness(p["k0"], x)
         G = gamma_of_rho(p["gamma0"], x)
-        rho_lam, _ = self._lambda_ledd(1.0, lam, u, w, G)
+        rho_lam, _ = self._lambda_term(1.0, lam, u, w, G)
         X = rho_m + K * u ** 2 / 6.0 + self._V0 + rho_lam / 3.0
         b = pr * p["alpha"] * u
         disk = b ** 2 + 4.0 * F * X
@@ -368,7 +368,7 @@ class EFCBackgroundSolver:
             raise RuntimeError("the fields left their domain of validity")
         K = kinetic_stiffness(p["k0"], x)
         G = gamma_of_rho(p["gamma0"], x)
-        _, p_lam = self._lambda_ledd(E, lam, u, w, G)
+        _, p_lam = self._lambda_term(E, lam, u, w, G)
 
         # (i,j): -F(2E' + 3E^2) = K u^2/2 - 3 V0 + 3 p_lambda + sign7 alpha Gamma
         D = (-3.0 * F * E ** 2 - K * u ** 2 / 2.0 + 3.0 * self._V0
@@ -448,12 +448,12 @@ class EFCBackgroundSolver:
         # -- initial condition: eq. (12) is set at z = 0 -------------------
         x0 = p["Omega_m"] / p["omega_crit"]
         F0 = 1.0 + p["alpha"] * p["phi0"]
-        E0 = self._E_fra_constraint(p["Omega_m"], p["phi0"],
-                                    p["phi_dot0"], p["lam_dot0"],
-                                    p["lam0"])
+        E0 = self._E_from_constraint(p["Omega_m"], p["phi0"],
+                                     p["phi_dot0"], p["lam_dot0"],
+                                     p["lam0"])
         if not np.isfinite(E0) or x0 >= 1.0 or F0 <= 0.0:
-            return self._tomt_grid(z_grid, honesty, status="invalid_state",
-                                   z_rho_crit=None)
+            return self._empty_grid(z_grid, honesty, status="invalid_state",
+                                    z_rho_crit=None)
 
         y0 = np.array([1.0, E0, p["Omega_m"], p["phi0"], p["phi_dot0"],
                        p["lam0"], p["lam_dot0"]])
@@ -469,9 +469,9 @@ class EFCBackgroundSolver:
                             method="RK45", rtol=rtol, atol=atol,
                             events=[_rho_crit_event], dense_output=True)
         except (RuntimeError, ValueError, FloatingPointError) as exc:
-            return self._tomt_grid(z_grid, honesty,
-                                   status=f"integration_failed: {exc}",
-                                   z_rho_crit=None)
+            return self._empty_grid(z_grid, honesty,
+                                    status=f"integration_failed: {exc}",
+                                    z_rho_crit=None)
 
         z_rho_crit = None
         if res.t_events and len(res.t_events[0]) > 0:
@@ -480,24 +480,24 @@ class EFCBackgroundSolver:
         if not res.success and status == "ok":
             status = f"integration_failed: {res.message}"
 
-        gyldig = z_grid <= (z_rho_crit if z_rho_crit is not None
-                            else float(z_max) + 1e-12)
-        ut = self._tomt_grid(z_grid, honesty, status=status,
-                             z_rho_crit=z_rho_crit)
-        if np.any(gyldig):
-            Y = res.sol(z_grid[gyldig])
-            ut.a[gyldig] = Y[0]
-            ut.E[gyldig] = Y[1]
-            ut.rho_m[gyldig] = Y[2]
-            ut.phi[gyldig] = Y[3]
-            ut.phi_dot[gyldig] = Y[4]
-            ut.lam[gyldig] = Y[5]
-            ut.lam_dot[gyldig] = Y[6]
+        valid = z_grid <= (z_rho_crit if z_rho_crit is not None
+                           else float(z_max) + 1e-12)
+        out = self._empty_grid(z_grid, honesty, status=status,
+                               z_rho_crit=z_rho_crit)
+        if np.any(valid):
+            Y = res.sol(z_grid[valid])
+            out.a[valid] = Y[0]
+            out.E[valid] = Y[1]
+            out.rho_m[valid] = Y[2]
+            out.phi[valid] = Y[3]
+            out.phi_dot[valid] = Y[4]
+            out.lam[valid] = Y[5]
+            out.lam_dot[valid] = Y[6]
 
-        ut.diagnostics = self._diagnostikk(ut)
-        return ut
+        out.diagnostics = self._diagnostics(out)
+        return out
 
-    def _tomt_grid(self, z_grid, honesty, status, z_rho_crit
+    def _empty_grid(self, z_grid, honesty, status, z_rho_crit
                    ) -> BackgroundSolution:
         nan = np.full_like(z_grid, np.nan, dtype=float)
         return BackgroundSolution(
@@ -509,7 +509,7 @@ class EFCBackgroundSolver:
 
     # -- the measurements --------------------------------------------------
 
-    def _diagnostikk(self, sol: BackgroundSolution) -> dict:
+    def _diagnostics(self, sol: BackgroundSolution) -> dict:
         """Residuals along the solution — the measured verdict on the solution."""
         p = self.params
         ok = np.isfinite(sol.E)
@@ -550,7 +550,7 @@ class EFCBackgroundSolver:
                + self.nonminimal_sign * E * p["alpha"] * u)
         d["constraint_residual_max"] = float(
             np.max(np.abs(F * E ** 2 - rhs) / E ** 2))
-        E_c = np.array([self._E_fra_constraint(r, f, uu, ww, ll)
+        E_c = np.array([self._E_from_constraint(r, f, uu, ww, ll)
                         for r, f, uu, ww, ll in zip(rho, phi, u, w, lam)])
         d["h_consistency_max_rel"] = float(
             np.max(np.abs(E - E_c) / E))
@@ -613,7 +613,7 @@ class EFCBackgroundEngine(EFCEngine):
     # regime_node(): the engine's self-description in the atlas
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
-        p = _normaliser(params_dict)
+        p = _normalise(params_dict)
         sign = float(params_dict.get("nonminimal_sign",
                                      NONMINIMAL_SIGN_DEFAULT))
         V0 = _V0_fra_lukning(p, sign)

@@ -52,7 +52,7 @@ class TransientEngine(EFCEngine):
     # Physics
     # ------------------------------------------------------------------
 
-    def _gyldig_masse(self, masse: np.ndarray) -> np.ndarray:
+    def _valid_mass(self, mass: np.ndarray) -> np.ndarray:
         """The engine's fail-closed contract for mass — ONE source.
 
         Valid mass is FINITE and NON-NEGATIVE. Anything else is outside
@@ -60,9 +60,9 @@ class TransientEngine(EFCEngine):
         separated out because both compute() and bindingsenergi() must
         keep the same contract — two copies drift apart (PR #435).
         """
-        return np.isfinite(masse) & (masse >= 0.0)
+        return np.isfinite(mass) & (mass >= 0.0)
 
-    def bindingsenergi(self, params: dict, masse: np.ndarray) -> np.ndarray:
+    def bindingsenergi(self, params: dict, mass: np.ndarray) -> np.ndarray:
         """The gravitational binding E = G * M^2 / R (J) — the buffer's energy.
 
         Invalid input (negative or non-finite mass) is outside the window
@@ -70,11 +70,11 @@ class TransientEngine(EFCEngine):
         made the energy POSITIVE for negative mass, so a direct caller got
         a number where compute() yields NaN.
         """
-        m = np.asarray(masse, dtype=float)
-        ut = np.full(m.shape, np.nan)
-        gyldig = self._gyldig_masse(m)
-        ut[gyldig] = params["G"] * m[gyldig] ** 2 / params["radius"]
-        return ut
+        m = np.asarray(mass, dtype=float)
+        out = np.full(m.shape, np.nan)
+        valid = self._valid_mass(m)
+        out[valid] = params["G"] * m[valid] ** 2 / params["radius"]
+        return out
 
     def holdetid(self, params: dict) -> float:
         """Time from M=0 to the stability limit at constant growth rate (s)."""
@@ -90,7 +90,7 @@ class TransientEngine(EFCEngine):
         return float(self.bindingsenergi(
             params, np.array([params["terskelmasse"]]))[0])
 
-    def lettkurve(self, params: dict, tider_dager: np.ndarray) -> np.ndarray:
+    def lettkurve(self, params: dict, times_dager: np.ndarray) -> np.ndarray:
         """Normalised lightcurve shape (maximum 1.0 at stigningstid_dager).
 
         The shape is PARAMETERISED, not derived: a rapid rise
@@ -102,17 +102,17 @@ class TransientEngine(EFCEngine):
         Times in DAYS (the parameters are named _dager); negative or
         non-finite times are outside the window and yield NaN.
         """
-        t = np.asarray(tider_dager, dtype=float)
+        t = np.asarray(times_dager, dtype=float)
         t_stig = float(params["stigningstid_dager"])
         t_hale = float(params["haletid_dager"])
         alpha = float(params["stigningseksponent"])
-        ut = np.full(t.shape, np.nan)
-        gyldig = np.isfinite(t) & (t >= 0.0)
-        stigning = gyldig & (t < t_stig)
-        hale = gyldig & (t >= t_stig)
-        ut[stigning] = (t[stigning] / t_stig) ** alpha
-        ut[hale] = np.exp(-(t[hale] - t_stig) / t_hale)
-        return ut
+        out = np.full(t.shape, np.nan)
+        valid = np.isfinite(t) & (t >= 0.0)
+        rise_mask = valid & (t < t_stig)
+        tail_mask = valid & (t >= t_stig)
+        out[rise_mask] = (t[rise_mask] / t_stig) ** alpha
+        out[tail_mask] = np.exp(-(t[tail_mask] - t_stig) / t_hale)
+        return out
 
     # ------------------------------------------------------------------
     # The EFCEngine contract
@@ -130,13 +130,13 @@ class TransientEngine(EFCEngine):
         Invalid input (negative or non-finite mass) is outside the window
         and yields NaN — never a guess.
         """
-        masse = np.asarray(coordinates, dtype=float)
-        ut = np.full(masse.shape, np.nan)
-        gyldig = self._gyldig_masse(masse)
-        ut[gyldig] = 0.0
-        kritisk = gyldig & (masse >= params_dict["terskelmasse"])
-        ut[kritisk] = self.bindingsenergi(params_dict, masse[kritisk])
-        return ut
+        mass = np.asarray(coordinates, dtype=float)
+        out = np.full(mass.shape, np.nan)
+        valid = self._valid_mass(mass)
+        out[valid] = 0.0
+        critical = valid & (mass >= params_dict["terskelmasse"])
+        out[critical] = self.bindingsenergi(params_dict, mass[critical])
+        return out
 
     # ------------------------------------------------------------------
     # Self-description

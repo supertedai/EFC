@@ -110,7 +110,7 @@
             },
             "validity": {
               "type": "string",
-              "description": "Gyldighetsomraadet — HVA gjelder noden for. Et regime uten deklarert gyldighet er en pastand uten grense."
+              "description": "The validity range — WHAT the node applies to. A regime without a declared validity is a claim without a boundary."
             },
             "law_form": {
               "type": "string",
@@ -121,7 +121,7 @@
         },
         "phase": {
           "type": "string",
-          "description": "Tilstanden innenfor regimet (f.eks. solid/liquid/gas/supercritical)."
+          "description": "The state within the regime (e.g. solid/liquid/gas/supercritical)."
         },
         "measure": {
           "type": "object",
@@ -144,7 +144,7 @@
             },
             "instrument": {
               "type": "string",
-              "description": "Måleinstrumentet: den fysiske innretningen."
+              "description": "The measuring instrument: the physical device."
             },
             "proxy_chain": {
               "type": "array",
@@ -197,11 +197,11 @@
               "items": {
                 "type": "string"
               },
-              "description": "Hva beskrivelsen antar finnes — de ontologiske startpunktene, skrevet EKSPLISITT."
+              "description": "What the description assumes exists — the ontological starting points, written EXPLICITLY."
             },
             "source": {
               "type": "string",
-              "description": "Kilden antakelsene hviler paa (DOI, papir, maalt referanse)."
+              "description": "The source the assumptions rest on (DOI, paper, measured reference)."
             },
             "proveniens": {
               "type": "object",
@@ -267,7 +267,7 @@
           "properties": {
             "bandwidth": {
               "type": "string",
-              "description": "Observatorens vindu: hvilken del av spekteret den ser. Hele virkeligheten ligger paa et bredt spekter; en observator ser noen faa nm."
+              "description": "The observer's window: which part of the spectrum it sees. All of reality lies on a broad spectrum; an observer sees a few nm."
             },
             "awareness": {
               "type": "string",
@@ -290,7 +290,7 @@
             },
             "maalepavirkning": {
               "type": "string",
-              "description": "Hvordan målingen påvirker/avgrenser det målte (back-action), om relevant."
+              "description": "How the measurement affects/bounds what is measured (back-action), if relevant."
             }
           },
           "additionalProperties": false
@@ -341,7 +341,7 @@
           "properties": {
             "local": {
               "type": "string",
-              "description": "Lokal rolle: hva noden gjor der den er."
+              "description": "Local role: what the node does where it is."
             },
             "global": {
               "type": "string",
@@ -361,7 +361,7 @@
             "akademia",
             "agnostikk"
           ],
-          "description": "Epistemisk hjemsted: paradigme = vår ramme; konsensus = rådende verdensbilde; akademia = etablert kunnskapsbase; agnostikk = det åpne"
+          "description": "Epistemic home: paradigme = our frame; konsensus = the prevailing worldview; akademia = the established knowledge base; agnostikk = the open"
         },
         "stipulasjoner": {
           "type": "object",
@@ -405,7 +405,7 @@
               "description": "Written ground when the node cannot be refuted by an observation: the instrument node IS the measurement, established physics is not ours to refute, or the self-description has no claim to refute."
             }
           },
-          "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",
+          "description": "The stipulations are where we define the boundaries. Before epistemology v2 they lived hardcoded in the engines with no trace in the node.",
           "additionalProperties": false
         },
         "synlighet": {
@@ -418,11 +418,11 @@
         },
         "ville_falsifisere": {
           "type": "string",
-          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand."
+          "description": "Which observation would kill this node's placement/claim."
         },
         "open_questions": {
           "type": "array",
-          "description": "Aapne spoersmaal ved denne noden. Dette er den ENESTE kilden til spoersmaal i atlaset: generatoren skriver aldri et spoersmaal selv. Maalt 2026-09-18 fant generatoren opp en linje for hver node uten evidens — identisk for alle sju — og gjorde «7 open» til ett og samme ord sju ganger. Evidensstatusen er en maaling og hoerer i `epistemikk`, ikke i spoersmaalslista. Et element er en tekst, eller et objekt {q, r?, to?}: r = svaret naar spoersmaalet er besvart, to = hvem det venter paa (en menneskehandling).",
+          "description": "Open questions at this node. This is the ONLY source of questions in the atlas: the generator never writes a question itself. Measured 2026-09-18: the generator invented a line for every node without evidence — identical for all seven — and made «7 open» one and the same word seven times. The evidence status is a measurement and belongs in `epistemikk`, not in the question list. An element is a text, or an object {q, r?, to?}: r = the answer once the question is answered, to = whom it waits for (a human action).",
           "items": {
             "oneOf": [
               {
@@ -458,7 +458,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Logg over endrede terskler/antakelser (dato + hva)."
+          "description": "Log of changed thresholds/assumptions (date + what)."
         },
         "epistemikk": {
           "type": "object",
@@ -491,7 +491,7 @@
                 "uavhengig",
                 "replikert"
               ],
-              "description": "Hva slags evidens bærer påstanden."
+              "description": "What kind of evidence the claim carries."
             },
             "konsensusstatus": {
               "type": "string",
@@ -506,7 +506,7 @@
             },
             "sosial_mekanisme": {
               "type": "string",
-              "description": "Hvilke sosiale krefter bærer konsensusen: narrativ-styrke, insentiver, finansiering, prestisje, ego, karriererisiko."
+              "description": "Which social forces carry the consensus: narrative strength, incentives, funding, prestige, ego, career risk."
             },
             "konsensus_er_ikke_sannhet": {
               "type": "boolean",
@@ -526,7 +526,7 @@
             },
             "bryter_der": {
               "type": "string",
-              "description": "Disanalogien: hvor analogien brekker — obligatorisk når noden erklærer ANALOGOUS_TO."
+              "description": "The disanalogy: where the analogy breaks — mandatory when the node declares ANALOGOUS_TO."
             }
           },
           "description": "Analogy discipline: an analogy without a disanalogy hardens into ontology.",
@@ -566,7 +566,7 @@
             },
             "enheter": {
               "type": "string",
-              "description": "Enhetene noden måler i (SI eller andre)."
+              "description": "The units the node measures in (SI or others)."
             },
             "status": {
               "type": "string",
@@ -576,7 +576,7 @@
                 "direkte_observerbar",
                 "proxy"
               ],
-              "description": "Er koordinatet en valgt ramme, noe avledet, direkte observerbart eller en proxy?"
+              "description": "Is the coordinate a chosen frame, something derived, directly observable or a proxy?"
             },
             "alternativer": {
               "type": "array",
@@ -605,7 +605,7 @@
                 "D",
                 "C"
               ],
-              "description": "EFC-sektor: strukturell, dynamisk eller kapasitet."
+              "description": "EFC sector: structural, dynamic or capacity."
             },
             "ebe_function": {
               "type": "string",
@@ -613,7 +613,7 @@
             },
             "klarhetsfunksjon": {
               "type": "string",
-              "description": "C(S)-deklarasjonen for nodens klarhet langs S-aksen."
+              "description": "The C(S) declaration for the node's clarity along the S axis."
             }
           },
           "description": "The coordinate paradigms (requirement d): time, space, mass and velocity are chosen coordinates — the node declares which ones it assumes."
@@ -658,7 +658,7 @@
           "properties": {
             "indeks": {
               "type": "integer",
-              "description": "Platå-indeksen: 0 = substratet, økende = mer emergert nivå."
+              "description": "The plateau index: 0 = the substrate, increasing = more emerged level."
             },
             "forelder": {
               "type": [
@@ -669,11 +669,11 @@
             },
             "tidsskala": {
               "type": "string",
-              "description": "Platåets karakteristiske tidsskala."
+              "description": "The plateau's characteristic time scale."
             },
             "lengdeskala": {
               "type": "string",
-              "description": "Platåets karakteristiske lengdeskala."
+              "description": "The plateau's characteristic length scale."
             }
           },
           "description": "The plateau structure (requirement b): the recursion as a graph — each node declares its level, its parent and its scales. The fractal field is the prose; the level is the structure."
@@ -774,7 +774,7 @@
             },
             "observed_at": {
               "type": "string",
-              "description": "Naar kilden utstedte/observerte (`observert`)."
+              "description": "When the source issued/observed (`observert`)."
             }
           }
         },
@@ -830,7 +830,7 @@
             },
             "valid_for": {
               "type": "string",
-              "description": "Tidspunktet oppgjoeret gjelder for (`gyldig_for`)."
+              "description": "The time the settlement applies to (`gyldig_for`)."
             },
             "observed_at": {
               "type": "string",

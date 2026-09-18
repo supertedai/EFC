@@ -23,7 +23,7 @@ import numpy as np
 from .base_engine import EFCEngine
 
 # GOES classes in ascending order (canonical scale)
-GOES_KLASSER = "ABCMX"
+GOES_CLASSES = "ABCMX"
 
 
 class SolarFlareEngine(EFCEngine):
@@ -44,14 +44,14 @@ class SolarFlareEngine(EFCEngine):
     # Physics
     # ------------------------------------------------------------------
 
-    def _gyldig_felt(self, b: np.ndarray) -> np.ndarray:
+    def _valid_field(self, b: np.ndarray) -> np.ndarray:
         """The engine's fail-closed contract for field strength — ONE source.
 
         Valid field strength is FINITE and NON-NEGATIVE: the buffer charges
         from B = 0 and upwards, so negative B is outside the model's state
         space. Separated out because both compute() and magnetisk_energi()
         must keep the SAME contract — two copies drift apart. The same form
-        as TransientEngine._gyldig_masse() (L-036), and for the same reason:
+        as TransientEngine._valid_mass() (L-036), and for the same reason:
         the square makes the input positive.
         """
         return np.isfinite(b) & (b >= 0.0)
@@ -65,10 +65,10 @@ class SolarFlareEngine(EFCEngine):
         got a number where compute() answers «outside the window».
         """
         b = np.asarray(b, dtype=float)
-        ut = np.full(b.shape, np.nan)
-        gyldig = self._gyldig_felt(b)
-        ut[gyldig] = (b[gyldig] ** 2 / (2 * params["mu_0"])) * params["volum"]
-        return ut
+        out = np.full(b.shape, np.nan)
+        valid = self._valid_field(b)
+        out[valid] = (b[valid] ** 2 / (2 * params["mu_0"])) * params["volum"]
+        return out
 
     def oppladningstid(self, params: dict) -> float:
         """Time from B=0 to the threshold at constant charging rate."""
@@ -78,7 +78,7 @@ class SolarFlareEngine(EFCEngine):
         """The energy released when the buffer reaches the threshold."""
         return float(self.magnetisk_energi(params, np.array([params["b_crit"]]))[0])
 
-    def goes_klasse(self, energi: float) -> str:
+    def goes_klasse(self, energy: float) -> str:
         """Maps released energy to expected GOES class (proxy).
 
         Proxy chain: energy -> peak flux (1-8 A) -> class.
@@ -87,19 +87,19 @@ class SolarFlareEngine(EFCEngine):
         (1e22 J is the typical released energy for M class flares.)
         Idealised: real flares release only a FRACTION of the buffer.
         """
-        energi_per_klasse = {
+        energy_per_class = {
             "A": 1e20,   # A: energy < 1e20 J
             "B": 1e21,
             "C": 1e22,
             "M": 1e23,   # M: 1e22 <= energy < 1e23 (the anchor 1e22 -> M)
             "X": float("inf"),
         }
-        klasse = "X"
-        for k in GOES_KLASSER:
-            if energi < energi_per_klasse[k]:
-                klasse = k
+        cls = "X"
+        for k in GOES_CLASSES:
+            if energy < energy_per_class[k]:
+                cls = k
                 break
-        return klasse
+        return cls
 
     # ------------------------------------------------------------------
     # The EFCEngine contract
@@ -116,12 +116,12 @@ class SolarFlareEngine(EFCEngine):
         reported as «holding» (0.0) and +inf as a release.
         """
         b = np.asarray(coordinates, dtype=float)
-        ut = np.full(b.shape, np.nan)
-        gyldig = self._gyldig_felt(b)
-        ut[gyldig] = 0.0
-        kritisk = gyldig & (b >= params_dict["b_crit"])
-        ut[kritisk] = self.magnetisk_energi(params_dict, b[kritisk])
-        return ut
+        out = np.full(b.shape, np.nan)
+        valid = self._valid_field(b)
+        out[valid] = 0.0
+        critical = valid & (b >= params_dict["b_crit"])
+        out[critical] = self.magnetisk_energi(params_dict, b[critical])
+        return out
 
     # ------------------------------------------------------------------
     # Self-description

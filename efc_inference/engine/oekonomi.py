@@ -25,7 +25,7 @@ import numpy as np
 
 from .base_engine import EFCEngine
 
-REGIME_KODER = {"hedge": 0, "spekulativ": 1, "ponzi": 2}
+REGIME_CODES = {"hedge": 0, "spekulativ": 1, "ponzi": 2}
 
 
 class OekonomiEngine(EFCEngine):
@@ -64,9 +64,9 @@ class OekonomiEngine(EFCEngine):
         # the drift is amplified (the confidence term, fixed idealised 0.06/year
         # — larger than the interest-minus-return gap so that
         # the Minsky moment is positive, as the hypothesis requires).
-        tillitsledd = 0.06
+        confidence_term = 0.06
         drift_rate = (params["rente"] - params["inntektsavkastning"]
-                      + tillitsledd)
+                      + confidence_term)
         if drift_rate <= 0:
             # The model assumes positive drift; without it the
             # Minsky moment is undefined — an honest NaN, not silent
@@ -85,7 +85,7 @@ class OekonomiEngine(EFCEngine):
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
         gg = np.asarray(coordinates, dtype=float)
-        return np.array([REGIME_KODER[self.regime(params_dict, float(g))]
+        return np.array([REGIME_CODES[self.regime(params_dict, float(g))]
                          for g in gg])
 
     # ------------------------------------------------------------------

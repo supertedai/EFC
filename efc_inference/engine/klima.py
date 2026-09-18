@@ -60,9 +60,9 @@ class KlimaEngine(EFCEngine):
     def likevektstemperatur(self, params: dict) -> float:
         """T_eq = [(S/4)(1-alpha)/(eps sigma)]^(1/4)."""
         s = params["solarkonstant"]
-        inn = (s / 4.0) * (1.0 - params["albedo"])
-        return float((inn / (params["emissivitet"]
-                            * params["stefan_boltzmann"])) ** 0.25)
+        incoming = (s / 4.0) * (1.0 - params["albedo"])
+        return float((incoming / (params["emissivitet"]
+                                  * params["stefan_boltzmann"])) ** 0.25)
 
     def tidskonstant(self, params: dict) -> float:
         """Tau = C / (4 eps sigma T_eq^3) — the buffer's inertia."""
@@ -78,15 +78,15 @@ class KlimaEngine(EFCEngine):
         # Idealized: the albedo rises linearly with a fall below 0 °C
         # with slope coefficient 0.005 K^-1 (order of magnitude from
         # ice extent).
-        stigning = 0.005
-        d_alpha = stigning * (-delta_t) if delta_t < 0 else 0.0
+        slope = 0.005
+        d_alpha = slope * (-delta_t) if delta_t < 0 else 0.0
         if d_alpha <= 0:
             return 1.0
         # T_eq sensitivity to albedo: dT_eq/d_alpha = -T_eq/(4(1-alpha))
         t_eq = self.likevektstemperatur(params)
-        følsomhet = t_eq / (4 * (1 - params["albedo"]))
-        forsterkning = 1.0 / (1.0 - følsomhet * stigning)
-        return float(forsterkning)
+        sensitivity = t_eq / (4 * (1 - params["albedo"]))
+        amplification = 1.0 / (1.0 - sensitivity * slope)
+        return float(amplification)
 
     def har_varm_likevekt(self, params: dict, tilstand: str = "varm") -> bool:
         """A warm equilibrium exists when T_eq > 273.15 K — with STATE-
@@ -105,8 +105,8 @@ class KlimaEngine(EFCEngine):
         """The albedo where T_eq crosses 273.15 K:
         alpha = 1 - 4 eps sigma T^4 / S."""
         t = 273.15
-        utstraaling = 4 * params["emissivitet"] * params["stefan_boltzmann"] * t ** 4
-        return float(1.0 - utstraaling / params["solarkonstant"])
+        out_radiation = 4 * params["emissivitet"] * params["stefan_boltzmann"] * t ** 4
+        return float(1.0 - out_radiation / params["solarkonstant"])
 
     # ------------------------------------------------------------------
     # The EFCEngine contract
@@ -118,12 +118,12 @@ class KlimaEngine(EFCEngine):
         equilibrium — NaN where the equilibrium lies below the freezing
         point (no WARM equilibrium exists there)."""
         alb = np.asarray(coordinates, dtype=float)
-        ut = []
+        out = []
         for a in alb:
             p = {**params_dict, "albedo": float(a)}
             t_eq = self.likevektstemperatur(p)
-            ut.append(t_eq if t_eq > 273.15 else np.nan)
-        return np.array(ut)
+            out.append(t_eq if t_eq > 273.15 else np.nan)
+        return np.array(out)
 
     # ------------------------------------------------------------------
     # Self-description
@@ -131,10 +131,10 @@ class KlimaEngine(EFCEngine):
 
     def regime_node(self, params: dict) -> dict:
         t_eq = self.likevektstemperatur(params)
-        tau_aar = self.tidskonstant(params) / (365.25 * 86400)
+        tau_years = self.tidskonstant(params) / (365.25 * 86400)
         validity = (
             "0D energy-balance regime: energy in (sun) -> buffer (ocean, "
-            f"tau ~ {tau_aar:.0f} year) -> out (emission). The ice-albedo "
+            f"tau ~ {tau_years:.0f} year) -> out (emission). The ice-albedo "
             "switch is the regime transition with STATE-DEPENDENT "
             "thresholds (hysteresis): from «warm» the system falls at "
             "alpha_fall, from «snowball» it returns only at alpha_retur "
