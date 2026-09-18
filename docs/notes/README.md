@@ -97,29 +97,33 @@ recurrence of the same class of error.
 ### bro-speilretning_klima-noden_t_6ec0b913.md
 
 **Full title**: Speilretningen mellom motor og atlas — og `efc.klima_engine`-noden
-**Status**: Measurement note (2026-09-18) — the fix it verifies lives in PR #504, not here
+**Status**: Measurement note (2026-09-18) — the fix it verifies has landed in `main` (#477, #481, #482, #504), not here
 
 Records which side owns which field when an engine's `regime_node()` and the
 atlas node carrying its name disagree, and the measurement that settles it:
 the parameter-derived fields (`regime.validity`, `regime.law_form`) are the
 engine's, the curated fields (`nivaa`, `buss_domene`, `stipulasjoner`,
 epistemics) are the atlas'. The decision itself is not restated here — it
-lives in the `efc_bro_synk.py` docstring and, in full, in PR #504's
-`docs/bro-konvensjon.md` with its machine-readable ownership table.
+lives in the `efc_bro_synk.py` docstring and, in full, in
+`docs/bro-konvensjon.md` (merged, #504) with its machine-readable ownership
+table.
 
 The note corrects its own card's premise: a guard on `id`, `regime.name`,
 `phase` and `perspektiv` was proposed as the way to catch the divergence, and
 a sweep over all 20 engines measures that those four fields differ for exactly
 one node (`efc.efc_background_engine`, whose engine declares a node id that
 does not exist) — not for `efc.klima_engine`, whose divergence sat in
-`regime.validity`. It also records the strongest single piece of evidence for
-the direction: `efc.orbital_engine`'s hand-written Hill radius (`1.496e+09 m`,
-the Earth–Sun value) against the `6.151e+07 m` the engine computes for the
-Earth–Moon parameters its node describes. Verification of PR #504 (796 tests,
-12 maintenance gates, three killed mutations, red-before/green-after) and the
-residual risks — `main` still diverging until #504 lands, #504 conflicting
-with `main` in a generated file, and PR #482 measured red as it stands — are
-in the note.
+`regime.validity`. That blindness is one instance of the landed convention's
+measured class-wide drift (20 engines, 20 atlas nodes, deviations in both
+directions, 111 field-level gaps on the unfixed tree). It also records the
+strongest single piece of evidence for the direction: `efc.orbital_engine`'s
+hand-written Hill radius (`1.496e+09 m`, the Earth–Sun value) against the
+`6.151e+07 m` the engine computes for the Earth–Moon parameters its node
+describes. Verification of PR #504 (796 tests, 12 maintenance gates, three
+killed mutations, red-before/green-after) is kept as a historical record; the
+residual risks from that round are closed, and the note ends on what actually
+remains — a canonical-format drift (`--sjekk` exits 1) in
+`schema/regime_nodes.jsonld`.
 
 ## How Notes Relate to the Broader EFC Programme
 
