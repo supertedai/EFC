@@ -504,6 +504,147 @@ def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
 
 
 
+# ---------------------------------------------------------------------------
+# KOBLINGENE — 1-hop, 2-hop, 3-hop
+#
+# Maalt 2026-09-18: verktoeyet hadde `--emne`, `--akse`, `--node`,
+# `--oversikt` og `--proxy`. Det hadde INGEN hopp. Koblingene fantes i
+# dataene — nivaa.forelder, coupling, analogi, stipulasjoner.motor,
+# buss_domene, measure.proxy_chain — og ingen av dem kunne FOELGES.
+# ---------------------------------------------------------------------------
+
+def _mekanisme(noder: list[dict]) -> dict[str, dict]:
+    return {x["id"]: x for x in noder}
+
+
+def _koblinger(n: dict, atlas: dict) -> dict[str, list[str]]:
+    """Hvilke noder henger sammen med denne, og HVORDAN.
+
+    Koblingstypen er poenget: «samme domene» er svakere enn «er forelder».
+    """
+    noder = atlas.get("noder") or []
+    idx = _mekanisme(noder)
+    ut: dict[str, list[str]] = {}
+
+    forelder = (n.get("nivaa") or {}).get("forelder")
+    if forelder and forelder in idx:
+        ut["forelder"] = [forelder]
+
+    barn = [x["id"] for x in noder
+            if (x.get("nivaa") or {}).get("forelder") == n["id"]]
+    if barn:
+        ut["barn"] = barn
+
+    dom = n.get("buss_domene")
+    if dom:
+        ut["samme_domene"] = [i for i, x in idx.items()
+                              if i != n["id"] and x.get("buss_domene") == dom]
+
+    if isinstance(n.get("analogi"), dict):
+        ut["deler_analogi"] = [i for i, x in idx.items()
+                               if i != n["id"] and isinstance(x.get("analogi"), dict)]
+
+    motor = (n.get("stipulasjoner") or {}).get("motor")
+    if motor:
+        ut["samme_motor"] = [
+            i for i, x in idx.items() if i != n["id"]
+            and (x.get("stipulasjoner") or {}).get("motor") == motor]
+
+    kilde = (n.get("ontology") or {}).get("source")
+    if kilde:
+        ut["samme_kilde"] = [
+            i for i, x in idx.items() if i != n["id"]
+            and (x.get("ontology") or {}).get("source") == kilde]
+
+    ledd = set(((n.get("measure") or {}).get("proxy_chain")) or [])
+    if ledd:
+        ut["deler_proxy_ledd"] = [
+            i for i, x in idx.items() if i != n["id"]
+            and ledd.intersection(
+                set(((x.get("measure") or {}).get("proxy_chain")) or []))]
+    return ut
+
+
+def naboer(atlas: dict, node_id: str) -> dict[str, list[str]]:
+    """1-HOP: hva henger denne sammen med, og hvordan. `KeyError` om ukjent."""
+    for n in atlas.get("noder") or []:
+        if n["id"] == node_id:
+            return _koblinger(n, atlas)
+    raise KeyError(f"noden `{node_id}` finnes ikke i atlaset")
+
+
+def hop(atlas: dict, node_id: str, d: int = 1) -> list[str]:
+    """Alle noder innen `d` hopp — startnoden selv ikke med."""
+    naboer(atlas, node_id)  # validerer at noden finnes
+    sett = {node_id}
+    front = {node_id}
+    for _ in range(max(0, d)):
+        ny: set[str] = set()
+        for x in front:
+            try:
+                kob = naboer(atlas, x)
+            except KeyError:
+                continue
+            for ider in kob.values():
+                ny.update(ider)
+        ny -= sett
+        sett |= ny
+        front = ny
+    sett.discard(node_id)
+    return sorted(sett)
+
+
+def hop_stier(atlas: dict, node_id: str,
+              d: int = 2) -> dict[str, tuple[list[str], list[str]]]:
+    """Stiene, ikke bare mengden: HVORFOR henger de sammen.
+
+    Returnerer `{node: (stien, koblingstypene langs stien)}`.
+    """
+    ut: dict[str, tuple[list[str], list[str]]] = {}
+    sett = {node_id}
+    front: list[tuple[str, list[str], list[str]]] = [(node_id, [node_id], [])]
+    for _ in range(max(0, d)):
+        ny: list[tuple[str, list[str], list[str]]] = []
+        for x, sti, typer in front:
+            try:
+                kob = naboer(atlas, x)
+            except KeyError:
+                continue
+            for type_, ider in kob.items():
+                for i in ider:
+                    if i in sett:
+                        continue
+                    sett.add(i)
+                    ny.append((i, sti + [i], typer + [type_]))
+                    ut[i] = (sti + [i], typer + [type_])
+        front = ny
+    return ut
+
+
+def fragment(atlas: dict, node_id: str) -> dict:
+    """Roter rundt ETT fragment: noden, dens koblinger, og naboers naboer.
+
+    «rotere rundt hver fragment en observasjon vi gjor» — naar en observasjon
+    kommer inn, skal den kunne settes inn og sees fra alle kanter.
+    """
+    treff = [x for x in atlas.get("noder") or [] if x["id"] == node_id]
+    if not treff:
+        rot = node_id.split(".")[0]
+        return {"finnes": False, "sokt": node_id,
+                "naere": [x["id"] for x in atlas.get("noder") or []
+                          if rot in x["id"]][:5]}
+    n = treff[0]
+    kob = _koblinger(n, atlas)
+    return {
+        "finnes": True,
+        "node": n,
+        "koblinger": kob,
+        "ett_hopp": len({i for ider in kob.values() for i in ider}),
+        "to_hopp": len(hop(atlas, node_id, 2)),
+        "tre_hopp": len(hop(atlas, node_id, 3)),
+    }
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -524,9 +665,38 @@ if __name__ == "__main__":
     p.add_argument("--akser", action="store_true",
                    help="list ALLE aksene atlaset barer — ogsaa de nye")
     p.add_argument("--akse", help="roter rundt en vilkaarlig akse: `sti` eller `sti=verdi`")
+    p.add_argument("--hop", help="N hopp fra en node:  eller ")
+    p.add_argument("--fragment", help="roter rundt ETT fragment: node + alle koblinger")
     p.add_argument("--oversikt", action="store_true",
                    help="HELE atlaset paa én gang: hva som er hva, hvor, hvor mange")
     a = p.parse_args()
+
+    # KOBLINGENE — 1-hop, 2-hop, 3-hop
+    if a.hop or a.fragment:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        if a.fragment:
+            f = fragment(atlas, a.fragment)
+            if not f["finnes"]:
+                print(f"FEIL: 'fragmentet {a.fragment}' finnes ikke. Nærliggende: "
+                      f"{', '.join(f['naere']) or 'ingen'}")
+                sys.exit(1)
+            print(f"=== {a.fragment} ===")
+            print(f"  {f['node'].get('regime', {}).get('name', '?')}")
+            print(f"  1-hop {f['ett_hopp']} · 2-hop {f['to_hopp']} · 3-hop {f['tre_hopp']}")
+            for type_, ider in f["koblinger"].items():
+                vis = ", ".join(ider[:5])
+                print(f"  {type_:18} {len(ider):3}  {vis[:66]}")
+        else:
+            node, _, d = a.hop.partition(":")
+            try:
+                stier = hop_stier(atlas, node, int(d) if d else 1)
+            except KeyError as e:
+                print(f"FEIL: {e}")
+                sys.exit(1)
+            print(f"{len(stier)} noder innen {d or 1} hopp fra {node}:")
+            for nid, (sti, typer) in sorted(stier.items(), key=lambda x: len(x[1][0]))[:22]:
+                print(f"  {' -> '.join(sti)[:52]:54} [{' -> '.join(typer)}]")
+        sys.exit(0)
 
     # OVERSIKTEN — global tilstand, ikke et soek
     if a.oversikt:
