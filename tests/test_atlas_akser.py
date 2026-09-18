@@ -47,7 +47,7 @@ class TestAkselisten:
     def test_hver_akse_har_antall_og_eksempelverdier(self, atlas: dict) -> None:
         a = atlas_lesing.akser(atlas)
         n, verdier = a["perspektiv"]
-        assert n == 86
+        assert n == len(atlas["noder"])
         assert set(verdier) <= {"paradigme", "konsensus", "akademia", "agnostikk"}
 
     def test_nestede_akser_naas_med_dotted_sti(self, atlas: dict) -> None:
@@ -71,7 +71,7 @@ class TestGeneriskRotasjon:
 
     def test_roter_paa_nested_sti(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "emergence.loop", None)
-        assert len(t) == 86, "alle noder har en loekke"
+        assert len(t) == len(atlas["noder"]), "alle noder har en loekke"
 
     def test_roter_paa_isomorfismen(self, atlas: dict) -> None:
         """«isomorphisme» — det heter `analogi` i atlaset. 13 noder."""
@@ -107,7 +107,7 @@ class TestNavnelaget:
 
     def test_alias_loop_er_emergence_loop(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "loop")
-        assert len(t) == 86
+        assert len(t) == len(atlas["noder"])
 
     def test_verdi_paradigme_loeses_som_perspektiv_verdi(self, atlas: dict) -> None:
         """TREDJE KLASSE: `paradigme` er ikke en akse. Det er en verdi."""
