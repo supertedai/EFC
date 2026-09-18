@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '76' },
+  stats: [{ k: 'Nodes', v: '79' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 76 nodes, 19 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 79 nodes, 19 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -2508,6 +2508,102 @@ export const NODES = [
     "cond": [
       "efc.efc_background_engine: no evidence yet \u2014 hypothesis marked honestly"
     ]
+  },
+  {
+    "id": "efc-lag-s",
+    "code": "EF",
+    "name": "efc.lag_s",
+    "short": "lag s",
+    "group": "ghost",
+    "gx": 11.1,
+    "gy": 30.200000000000003,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": true,
+    "one": "Perspective: paradigm. strukturen som energy-flow-feltet holder oppe",
+    "what": "ingen direkte \u2014 strukturen er avledet fra feltet, ikke maalt som struktur \u2014 proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur -> rotasjonskurv",
+    "how": "Buffer role: haloen selv er bufferen: den holder formen mens feltet varierer under. Epistemic: hypotese / proxy / minoritet.",
+    "steps": [
+      [
+        "Perspective",
+        "paradigm"
+      ],
+      [
+        "Epistemics",
+        "hypotese / proxy / minoritet"
+      ],
+      [
+        "Social mechanism",
+        "vaar ramme \u2014 erstatter mork materie, som er et MINORITETSstandpunkt mot LCDM"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "efc-lag-d",
+    "code": "EF",
+    "name": "efc.lag_d",
+    "short": "lag d",
+    "group": "ghost",
+    "gx": 13.5,
+    "gy": 30.200000000000003,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": true,
+    "one": "Perspective: paradigm. energy-flow-feltet J_mu og dets divergens",
+    "what": "aksjonen (master-spec, eq. 1) \u2014 proxy chain: aksjon -> feltligning -> J_mu -> ekspansjonshistorie -> J_mu -> Sigma (kildeledd)",
+    "how": "Buffer role: F(phi) og K(rho) demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / proxy / minoritet.",
+    "steps": [
+      [
+        "Perspective",
+        "paradigm"
+      ],
+      [
+        "Epistemics",
+        "hypotese / proxy / minoritet"
+      ],
+      [
+        "Social mechanism",
+        "vaar ramme \u2014 erstatter mork energi, som er konsensus i LCDM"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "efc-lag-c0",
+    "code": "EF",
+    "name": "efc.lag_c0",
+    "short": "lag c0",
+    "group": "ghost",
+    "gx": 1.5,
+    "gy": 32.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": true,
+    "one": "Perspective: paradigm. entropi-feltet S og dets grenser",
+    "what": "ingen direkte \u2014 S er et felt, ikke en maaling \u2014 proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C (FALSIFI",
+    "how": "Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen naa. Epistemic: hypotese / proxy / minoritet.",
+    "steps": [
+      [
+        "Perspective",
+        "paradigm"
+      ],
+      [
+        "Epistemics",
+        "hypotese / proxy / minoritet"
+      ],
+      [
+        "Social mechanism",
+        "vaar ramme \u2014 broen kosmologi-til-kognisjon er ikke etablert"
+      ]
+    ],
+    "cond": []
   }
 ];
 
@@ -2699,17 +2795,20 @@ export const CH = [
       "efc-enerflyt-engine",
       "verden-vaer",
       "kosmos-asteroider",
-      "efc-efc-background-engine"
+      "efc-efc-background-engine",
+      "efc-lag-s",
+      "efc-lag-d",
+      "efc-lag-c0"
     ],
     "lede": "Chapter 8 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-cluster-engine, efc-efc-background-engine, efc-enerflyt-engine, efc-growth-engine, efc-hubble-engine, efc-jordskjelv-engine, efc-klima-engine, efc-l1, efc-l2, efc-l3, efc-lensing-engine, efc-mu-kz-engine, efc-oekonomi-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-samfunn-engine, efc-solar-flare-engine, efc-tidevann-engine, efc-transient-engine, efc-water-phase-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
+    "story": "<p>Revealed: efc-cluster-engine, efc-efc-background-engine, efc-enerflyt-engine, efc-growth-engine, efc-hubble-engine, efc-jordskjelv-engine, efc-klima-engine, efc-l1, efc-l2, efc-l3, efc-lag-c0, efc-lag-d, efc-lag-s, efc-lensing-engine, efc-mu-kz-engine, efc-oekonomi-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-samfunn-engine, efc-solar-flare-engine, efc-tidevann-engine, efc-transient-engine, efc-water-phase-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
     "flow": null
   },
   {
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 76 nodes, 72 relations.",
+    "lede": "Everything at once \u2014 79 nodes, 72 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }

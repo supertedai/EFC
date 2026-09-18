@@ -7627,6 +7627,269 @@
     "status": "terskel_ikke_fastsatt",
     "grunn": "skal reprodusere LCDM i en grense, og avvike fra den i en annen — men hvilken grense, og hvor mye avvik som teller, er IKKE fastsatt i noden. Foerste skritt er aa navngi grensetilfellet mot efc.hubble_engine"
    }
+  },
+  {
+   "id": "efc.lag_s",
+   "regime": {
+    "name": "EFC-S — strukturell sektor",
+    "validity": "struktur-laget: haloer, rotasjonskurver, linse-effekt. Gyldig der strukturen er stabil over tidsskalaer der dynamikken er midlet ut."
+   },
+   "phase": "regime_engine",
+   "measure": {
+    "target": "strukturen som energy-flow-feltet holder oppe",
+    "measurer": "SPARC-rotasjonskurver (K = 4.4 +- 0.6); linse-kart",
+    "instrument": "ingen direkte — strukturen er avledet fra feltet, ikke maalt som struktur",
+    "proxy_chain": [
+     "energy-flow-felt -> tetthetsgradient -> potensial -> struktur",
+     "struktur -> rotasjonskurve (observerbar)"
+    ],
+    "placement": "teorirom",
+    "compression": "hele halo-strukturen -> én rotasjonskurve"
+   },
+   "episenter": "overgangen fra felt til form — der et felt blir en halo vi kan veie",
+   "buffer": {
+    "role": "haloen selv er bufferen: den holder formen mens feltet varierer under",
+    "note": "modellens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "energy-flow-feltet er skalart",
+     "strukturen er en midlet tilstand av dynamikken",
+     "ingen mork materie som egen komponent — strukturen ER feltet"
+    ],
+    "source": "EFC master-spec; SPARC-datasettet"
+   },
+   "observer": {
+    "bandwidth": "rotasjonskurven er vinduet — den ser den midlede massen, ikke strommen som bygger den",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "energi-strom -> tetthetsgradient -> potensialbronn -> bundet struktur -> dypere bronn",
+    "properties": [
+     "flat rotasjonskurve uten mork materie",
+     "K = 4.4 +- 0.6"
+    ]
+   },
+   "fractal": {
+    "pattern": "hver halo er hele kosmologien i miniatyr — samme felt, samme kobling, annen skala",
+    "note": "det som gjelder for en galakse gjelder for en hop; bare massen skifter"
+   },
+   "coupling": {
+    "local": "hver galakse balanserer i sitt eget felt",
+    "global": "alle haloer er bygget av det samme feltet — de ER den globale strukturen, lokalt",
+    "empathy_note": "en galakse som holder sammen er ikke et bevis for feltet — den er en losning som maatte finnes"
+   },
+   "perspektiv": "paradigme",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "K = 4.4 +- 0.6 er hentet fra SPARC, ikke avledet her"
+    ],
+    "motor": "efc.rotation_engine"
+   },
+   "epistemikk": {
+    "sannhetsstatus": "hypotese",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "minoritet",
+    "sosial_mekanisme": "vaar ramme — erstatter mork materie, som er et MINORITETSstandpunkt mot LCDM",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "rotasjonskurve i km/s mot radius i kpc",
+    "status": "avledet",
+    "alternativer": [
+     "LCDM med mork materie (som forklares uten ny komponent her)"
+    ]
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "kosmisk tid",
+    "lengdeskala": "kpc til Mpc"
+   },
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "efc.lag_d",
+   "regime": {
+    "name": "EFC-D — energy-flow-dynamikken",
+    "validity": "dynamikken: ekspansjon, transisjonsakselerasjon g+ = c*H0/e. Gyldig der strommen endrer seg, ikke der strukturen er i likevekt."
+   },
+   "phase": "regime_engine",
+   "measure": {
+    "target": "energy-flow-feltet J_mu og dets divergens",
+    "measurer": "ingen direkte — dynamikken er en ligning, ikke et instrument",
+    "instrument": "aksjonen (master-spec, eq. 1)",
+    "proxy_chain": [
+     "aksjon -> feltligning -> J_mu -> ekspansjonshistorie",
+     "J_mu -> Sigma (kildeledd)"
+    ],
+    "placement": "teorirom",
+    "compression": "hele dynamikken -> H(a)"
+   },
+   "episenter": "der strommen endrer seg — akselerasjonen, ikke tilstanden",
+   "buffer": {
+    "role": "F(phi) og K(rho) demper avvik fra LCDM avhengig av feltverdi",
+    "note": "modellens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "aksjonen er gyldig",
+     "energy-flow-feltet er skalart og koblet til S",
+     "J_mu er bevart: div J = Sigma"
+    ],
+    "source": "EFC master-spec, aksjonen"
+   },
+   "observer": {
+    "bandwidth": "ingen instrumentvindu — dynamikken er avledet",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "J_mu -> div J = Sigma -> endring i S -> ny strom",
+    "properties": [
+     "g+ = c*H0/e (transisjonsakselerasjon)",
+     "forklarer akselerasjon uten mork energi"
+    ]
+   },
+   "fractal": {
+    "pattern": "dynamikken er den samme paa alle skalaer — det er DERFOR den er ett felt",
+    "note": "skalaen skifter, koblingen ikke"
+   },
+   "coupling": {
+    "local": "hver lokal endring i strommen er en lokal endring i ekspansjonen",
+    "global": "bare lokalt — alt annet er summen",
+    "empathy_note": "den globale ekspansjonen er summen av lokale stromendringer"
+   },
+   "perspektiv": "paradigme",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "g+ = c*H0/e gir H0 = 70.2 +- 16.8 — usikkerheten er STOR"
+    ],
+    "motor": "efc.efc_background_engine"
+   },
+   "epistemikk": {
+    "sannhetsstatus": "hypotese",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "minoritet",
+    "sosial_mekanisme": "vaar ramme — erstatter mork energi, som er konsensus i LCDM",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "tid",
+     "rom"
+    ],
+    "enheter": "H0 i km/s/Mpc",
+    "status": "avledet",
+    "alternativer": [
+     "LCDM med kosmologisk konstant"
+    ]
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "kosmisk tid",
+    "lengdeskala": "Hubbleskala"
+   },
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
+  },
+  {
+   "id": "efc.lag_c0",
+   "regime": {
+    "name": "EFC-C0 — entropi-informasjons-kapasitet",
+    "validity": "mappingen mellom entropi-feltet S og informasjonskapasitet. Grensetilstander: S=0 (singularitet), S=1 (altularitet)."
+   },
+   "phase": "regime_engine",
+   "measure": {
+    "target": "entropi-feltet S og dets grenser",
+    "measurer": "SPARC (K = 4.4 +- 0.6); propofol-EEG (Omega, kappa)",
+    "instrument": "ingen direkte — S er et felt, ikke en maaling",
+    "proxy_chain": [
+     "S -> Omega-hat (differensiering) og kappa-hat (integrasjon)",
+     "Omega x kappa -> C (FALSIFISERT som multiplikativ modell)"
+    ],
+    "placement": "teorirom",
+    "compression": "hele entropi-feltet -> én skalar C"
+   },
+   "episenter": "der S naar en grense — S=0 og S=1 er der tid-rom-oppfoerselen skifter",
+   "buffer": {
+    "role": "entropien selv: den absorberer energi uten at strukturen endres, til grensen naas",
+    "note": "modellens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "S er et felt, ikke bare et tall",
+     "S=0 og S=1 er grensetilstander, ikke verdier",
+     "Omega og kappa er ikke separable"
+    ],
+    "source": "EFC-C0-papiret; Chennu et al. 2016 (propofol-EEG)"
+   },
+   "observer": {
+    "bandwidth": "EEG er vinduet — det ser korrelater, ikke feltet selv",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "S -> strukturell kompleksitet -> informasjonskapasitet -> ny S",
+    "properties": [
+     "S=0: singularitet",
+     "S=1: altularitet",
+     "C = Omega x kappa er FALSIFISERT"
+    ]
+   },
+   "fractal": {
+    "pattern": "samme entropi-felt gir struktur baade i kosmos og i kognisjon — det er broen",
+    "note": "broen er hypotesen, ikke resultatet"
+   },
+   "coupling": {
+    "local": "lokal entropi i en region er en lokal kapasitet",
+    "global": "den globale S er summen av de lokale",
+    "empathy_note": "entropioekning som drivkraft er ikke konsensus — den er vaar"
+   },
+   "perspektiv": "paradigme",
+   "stipulasjoner": {
+    "stipulert_av_oss": true,
+    "terskler": [
+     "C = Omega x kappa er FALSIFISERT forhaandsregistrert — et EKTE negativt resultat",
+     "K = 4.4 +- 0.6 arvet fra SPARC"
+    ],
+    "motor": "efc.klima_engine"
+   },
+   "epistemikk": {
+    "sannhetsstatus": "hypotese",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "minoritet",
+    "sosial_mekanisme": "vaar ramme — broen kosmologi-til-kognisjon er ikke etablert",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "dimensionloes S i [0,1]",
+    "status": "avledet",
+    "alternativer": [
+     "Shannon-entropi som separat maal (FALSIFISERT som multiplikativ modell)"
+    ]
+   },
+   "nivaa": {
+    "indeks": 0,
+    "forelder": null,
+    "tidsskala": "kosmisk tid",
+    "lengdeskala": "Hubbleskala til nevral skala"
+   },
+   "buss_domene": "kosmos.kosmologi",
+   "synlighet": "offentlig"
   }
  ],
  "relations": [
