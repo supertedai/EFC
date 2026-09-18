@@ -118,8 +118,8 @@ DELMENGDE: tuple[str, ...] = ("/ontology/assumes", "/maale_paradigme/alternative
 #: skal vaere en DEKLARERT utelatelse, ikke en stille (regel 64).
 UTENFOR_BROEN: tuple[str, ...] = (
     "/settlement/", "/revisjon", "/observer/maalepavirkning",
- "/lagdeling/",
- "/stipulasjoner/alene_status",
+    "/lagdeling/", "/open_questions",
+    "/stipulasjoner/alene_status",
  "/stipulasjoner/buss_status",
  "/stipulasjoner/ikke_falsifiserbar_grunn",
  "/stipulasjoner/motor_status",
