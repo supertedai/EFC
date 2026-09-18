@@ -1,0 +1,80 @@
+name: EFC language gate
+
+# P0 card t_537ab101. Measured 2026-09-17: the only language check in CI was one
+# step inside efc-changelog-sync.yml, and it read the newest 30 entries of
+# docs/validation-ledger/data/changelog.json. Nothing read
+# docs/validation-ledger/**, docs/public/**, public/**, scripts/** or tests/**.
+# 6254 stopword hits live in 131 of those files and are recorded, per file, in
+# scripts/maintenance/spraak-baseline.json; that file is the debt and the work
+# queue, and this workflow is what stops it growing.
+#
+# Two enforcement points are added here:
+#   1. the file scan over the guarded paths, ratcheted against the committed
+#      baseline: it does not pretend the existing debt is zero, and it fails on
+#      anything new;
+#   2. the commit SUBJECTS of this change, with no baseline and no window, so a
+#      violation is caught in the commit that creates it instead of 30
+#      changelog entries later (the way 7c7e30b7 was caught, if at all).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/validation-ledger/**'
+      - 'docs/public/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/efc-spraak.yml'
+      - '.github/workflows/efc-changelog-sync.yml'
+  pull_request:
+    paths:
+      - 'docs/validation-ledger/**'
+      - 'docs/public/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/efc-spraak.yml'
+      - '.github/workflows/efc-changelog-sync.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  spraakvakt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rule tests (the limits are locked, the samples come from the list)
+        run: |
+          python3 -m pip install --quiet "pytest>=8,<9" "PyYAML>=6"
+          python3 -m pytest tests/test_spraakvakt.py -q
+      - name: Language scan over the guarded paths (declared baseline)
+        run: python3 scripts/maintenance/efc_spraakvakt.py --json
+      - name: Declared limits, with the measured count outside the guard
+        run: python3 scripts/maintenance/efc_spraakvakt.py --grenser
+      - name: Commit subjects in this change
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          BEFORE: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          if [ -n "${BASE_REF}" ]; then
+            git fetch --quiet --no-tags origin "+refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}" || true
+            RANGE="origin/${BASE_REF}..HEAD"
+          elif [ -n "${BEFORE:-}" ] && [ "${BEFORE}" != "0000000000000000000000000000000000000000" ]; then
+            RANGE="${BEFORE}..${HEAD_SHA}"
+          else
+            RANGE="HEAD~1..HEAD"
+          fi
+          echo "commit range under the language rule: ${RANGE}"
+          python3 scripts/maintenance/efc_spraakvakt.py --commits "${RANGE}" --json
+      - name: Changelog entries, window declared
+        run: python3 scripts/maintenance/efc_spraakvakt.py --changelog --json
