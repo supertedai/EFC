@@ -83,20 +83,21 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         p = node["prediction"]
         for felt in ("observable", "sealed_doi", "sealing_sha256",
                      "criterion", "tolerance_rule", "correlation"):
-            self.assertIn(felt, p, f"{felt} mangler i nodens prediction")
+            self.assertIn(felt, p, f"{felt} is missing from the node's prediction")
         self.assertEqual(p["observable"], fixture["observabel"])
         self.assertEqual(p["sealed_doi"], fixture["forseglet_doi"])
         self.assertEqual(p["sealing_sha256"], fixture["forsegling_sha256"])
         self.assertEqual(p["criterion"], fixture["kriterium"])
-        # Fixturen er den MALTE norsk-meldingen, frosset. Produsenten (atlaset)
-        # gaar naa paa engelsk, saa speilingen pinnes mot produsentens tekst —
-        # og fixturen pinnes fortsatt som uendret maalt melding.
+        # The fixture is the MEASURED Norwegian message, frozen. The producer
+        # (the atlas) now speaks English, so the mirror is pinned to the
+        # producer's text — and the fixture is still pinned as an unedited
+        # measured message.
         self.assertEqual(p["tolerance_rule"],
                          "within 1 sigma of the DR2 measurement's OWN "
                          "uncertainty, not a fixed band")
         self.assertIn("EGEN usikkerhet", fixture["toleranse_regel"],
-                      "fixturen er den malte meldingen — den redigeres "
-                      "ikke for haand")
+                      "the fixture is the measured message — it is not edited "
+                      "by hand")
 
     def test_expected_er_speilet_ikke_avskrevet(self):
         """`forventet` sendes som JSON-kodet streng paa bussen. Speilingen
