@@ -124,10 +124,9 @@ class TestFalsifiserbarhet:
         # SAMME populasjon som : EFC-paastander. Ellers teller
         # de to sidene ulike mengder og summen kan ikke stemme.
         avventer = [n for n in _offentlige()
-                    if n["id"].startswith("efc.")
-                    and (n.get("falsifiserbarhet") or {}).get("status")
+                    if (n.get("falsifiserbarhet") or {}).get("status")
                     in ("terskel_ikke_fastsatt", "stub")]
-        assert len(avventer) == 4, f"forventet 4 EFC-noder uten fastsatt terskel, fikk {len(avventer)}"
+        assert len(avventer) == 4, f"forventet 4 uten fastsatt terskel, fikk {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
