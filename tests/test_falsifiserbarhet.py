@@ -121,10 +121,13 @@ class TestFalsifiserbarhet:
         En node som ikke kan oppgi en terskel kan ikke felles. Den skal
         si det — ikke skrive ordet «terskel» og la det passere.
         """
+        # SAMME populasjon som : EFC-paastander. Ellers teller
+        # de to sidene ulike mengder og summen kan ikke stemme.
         avventer = [n for n in _offentlige()
-                    if (n.get("falsifiserbarhet") or {}).get("status")
-                    == "terskel_ikke_fastsatt"]
-        assert len(avventer) == 7, f"forventet 7 rammeverk uten terskel, fikk {len(avventer)}"
+                    if n["id"].startswith("efc.")
+                    and (n.get("falsifiserbarhet") or {}).get("status")
+                    in ("terskel_ikke_fastsatt", "stub")]
+        assert len(avventer) == 4, f"forventet 4 EFC-noder uten terskel, fikk {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
