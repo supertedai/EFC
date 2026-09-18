@@ -63,3 +63,17 @@ norecursedirs = [
     "venv",
     "{arch}",
 ]
+# `src/` maa staa paa sys.path FOER samlingen, ellers avhenger det av
+# rekkefoelgen om en testfil kan importeres i det hele tatt.
+#
+# Maalt 2026-09-18: `pytest tests/test_growth_friction.py` alene feilet med
+# `ModuleNotFoundError: No module named 'efc'`, mens hele suiten var groenn —
+# fordi `tests/test_cosmology_engine_bridges.py` (som samles foerst, siden
+# «c» < «g») importerer `efc_inference.engine.rotation`, og DEN modulen
+# setter `src/` inn i sys.path som bivirkning av importen. Snu rekkefoelgen,
+# og samlingen stopper med én collection-feil. CI har ikke sett det, fordi
+# `uv sync` installerer pakken der; en bar testvenv har den ikke.
+#
+# Samme klasse som t_122b4022: utfallet skal komme fra testen, ikke fra hva
+# som tilfeldigvis ble samlet foer den.
+pythonpath = ["src"]

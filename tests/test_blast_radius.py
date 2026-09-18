@@ -9,7 +9,6 @@ vært «liten» — den skal fortsatt bli blokkerende.
 from __future__ import annotations
 
 import json
-import os
 import subprocess
 import sys
 from pathlib import Path
@@ -17,8 +16,10 @@ from pathlib import Path
 ROT = Path(__file__).resolve().parents[1]
 SCRIPT = ROT / "scripts" / "maintenance" / "blast_radius.py"
 sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import blast_radius as br  # noqa: E402
+from _gitmiljo import rent_gitmiljo  # noqa: E402
 
 GIT = ["git", "-c", "user.name=test", "-c", "user.email=test@example.org"]
 
@@ -49,7 +50,12 @@ GYLDIG_POST = {
 
 
 def _git_rot(tmp_path: Path, filer: dict[str, str]) -> Path:
-    """Minimalt git-repo med base-commit og et eierregister som dekker det."""
+    """Minimalt git-repo med base-commit og et eierregister som dekker det.
+
+    Git-kallene får testens eget miljø (se `_gitmiljo.py`), så en arvet GIT_DIR
+    eller en lokal gitconfig utenfor testen ikke kan avgjøre utfallet.
+    """
+    miljo = rent_gitmiljo(tmp_path / "hjem")
     (tmp_path / "governance").mkdir(parents=True, exist_ok=True)
     (tmp_path / "governance" / "ownership-register.json").write_text(
         json.dumps(EIERREGISTER), encoding="utf-8")
@@ -60,14 +66,17 @@ def _git_rot(tmp_path: Path, filer: dict[str, str]) -> Path:
         p = tmp_path / navn
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(innhold, encoding="utf-8")
-    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
-    subprocess.run(GIT + ["add", "-A"], cwd=tmp_path, check=True)
-    subprocess.run(GIT + ["commit", "-qm", "base"], cwd=tmp_path, check=True)
+    subprocess.run(["git", "init", "-q"], cwd=tmp_path, env=miljo, check=True)
+    subprocess.run(GIT + ["add", "-A"], cwd=tmp_path, env=miljo, check=True)
+    subprocess.run(GIT + ["commit", "-qm", "base"], cwd=tmp_path, env=miljo, check=True)
     return tmp_path
 
 
 def _kall(rot: Path, *args: str) -> subprocess.CompletedProcess:
-    miljo = {**os.environ, "GIT_AUTHOR_NAME": "test", "GIT_AUTHOR_EMAIL": "t@e.org"}
+    # Verktøyet skal måle repoet på `--rot`, ikke det en arvet GIT_DIR eller en
+    # lokal gitconfig peker på — derfor et skrubbet miljø også her.
+    miljo = rent_gitmiljo(rot / "hjem")
+    miljo.update({"GIT_AUTHOR_NAME": "test", "GIT_AUTHOR_EMAIL": "t@e.org"})
     return subprocess.run([sys.executable, str(SCRIPT), "--rot", str(rot), *args],
                           capture_output=True, text=True, env=miljo, timeout=120)
 
