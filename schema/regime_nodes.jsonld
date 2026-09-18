@@ -4692,7 +4692,7 @@
    "id": "efc.solar_flare_engine",
    "regime": {
     "name": "Solens holding->release (magnetisk buffer)",
-    "validity": "holding: B < 0.3 T — bufferen lades, ingen utlosning; release: B >= 0.3 T — bufferen slippes. IDEALISERT regime-modell (Avallon-stil buffer): hele bufferen slippes ved terskelen; ekte flares slipper en brakdel. Predikerer IKKE enkelthendelser.",
+    "validity": "holding: B < 0.3 T — bufferen lades, ingen utlosning; release: B >= 0.3 T — bufferen slippes. IDEALISERT regime-modell (Avallon-stil buffer): hele bufferen slippes ved terskelen; ekte flares slipper en brakdel. Ugyldig inngang (negativ eller ikke-endelig B) er utenfor vinduet og gir NaN — aldri en gjetning: bufferen lades fra B = 0, og B^2 ville ellers gjort energien positiv ogsaa for negativ B. Predikerer IKKE enkelthendelser.",
     "law_form": "E = B^2/(2 mu_0) * V; oppladningstid = b_crit / (dB/dt); utlosning ved B = b_crit"
    },
    "phase": "computation_engine",
@@ -4785,7 +4785,7 @@
    "id": "efc.jordskjelv_engine",
    "regime": {
     "name": "Jordas holding->release (forkastningsbuffer)",
-    "validity": "holding: spenning < 3000000.0 Pa — forkastningen lades, ingen utlosning; release: spenning >= 3000000.0 Pa — bufferen slippes. IDEALISERT regime-modell (Burridge-Knopoff-stil lading): utlosningen skjer ved en fast terskel og hele spenningsfallet slippes. Predikerer IKKE enkeltskjelv.",
+    "validity": "holding: spenning < 3000000.0 Pa — forkastningen lades, ingen utlosning; release: spenning >= 3000000.0 Pa — bufferen slippes. IDEALISERT regime-modell (Burridge-Knopoff-stil lading): utlosningen skjer ved en fast terskel og hele spenningsfallet slippes. Ugyldig inngang (negativ eller ikke-endelig spenning) er utenfor vinduet og gir NaN — aldri en gjetning: bufferen lades fra spenning = 0. Predikerer IKKE enkeltskjelv.",
     "law_form": "gjentakelsestid = terskel / lade_rate; M0 = mu * A * (terskel/mu); Mw = (2/3)(log10 M0 - 9.1)"
    },
    "phase": "computation_engine",

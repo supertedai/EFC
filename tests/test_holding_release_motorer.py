@@ -11,7 +11,10 @@ Motorene er REGIME-MOTORER: de beregner formens observabler
 Disiplin: modellene er idealiserte (Avallon-stil magnetisk buffer;
 elastic-rebound/Burridge-Knopoff-stil forkastningslading; kollaps-buffer
 med G*M^2/R). Det skal sta i motorens egen beskrivelse, og utlosning skal
-vaere TERSKELSTYRT — ikke tidsstyrt.
+vaere TERSKELSTYRT — ikke tidsstyrt. Alle tre holder ogsaa SAMME
+fail-closed-kontrakt for inngangen: bufferen lades fra null, saa negativ
+eller ikke-endelig inngang er utenfor vinduet og gir NaN — aldri
+«holding» og aldri en utlosning (L-036/PR #501-formen).
 
 Transient-motoren (L-036) har LANDET atlas-kobling: noden
 efc.transient_engine staar i schema/regime_nodes.jsonld med de tre
@@ -108,6 +111,50 @@ def test_solarflare_regime_node_selvbeskrivelse():
     assert node["regime"]["law_form"].strip()
 
 
+def test_solarflare_fail_closed_paa_ugyldig_feltstyrke():
+    """Ugyldig feltstyrke er utenfor vinduet — aldri «holding» og aldri
+    en exception.
+
+    Maalt for denne kontrakten (origin/main = afdc620f):
+    compute([-1, nan, inf, -inf]) -> [0.0, 0.0, inf, 0.0] — motoren
+    svarte «bufferen holder» paa NaN og -inf, og slapp en uendelig
+    energi for +inf.
+    """
+    e = SolarFlareEngine()
+    ugyldig = np.array([-1.0, -SOLFLARE_PARAMS["b_crit"], np.nan,
+                        np.inf, -np.inf])
+    ut = e.compute(SOLFLARE_PARAMS, ugyldig)
+    assert np.all(np.isnan(ut)), ut
+
+
+def test_solarflare_hjelperen_har_samme_fail_closed_kontrakt():
+    """magnetisk_energi() er samme KLASSE hjelper som transient-motorens
+    bindingsenergi(): B^2 gjorde energien POSITIV ogsaa for negativ B, saa
+    en direkte kallende part fikk et tall der compute() gir NaN.
+    Kontrakten skal ha EEN kilde, ikke en per kall.
+    """
+    e = SolarFlareEngine()
+    ugyldig = np.array([-1.0, np.nan, np.inf, -np.inf])
+    energi = e.magnetisk_energi(SOLFLARE_PARAMS, ugyldig)
+    assert np.all(np.isnan(energi)), energi
+    # Gyldig inngang er UENDRET: E = B^2/(2 mu_0) * V ved terskelen.
+    assert np.isclose(e.magnetisk_energi(SOLFLARE_PARAMS, np.array([0.3]))[0],
+                      e.utlost_energi(SOLFLARE_PARAMS))
+    # ...og NaN-settet til hjelperen og til compute() er det SAMME.
+    miks = np.array([-1.0, np.nan, np.inf, -np.inf, 0.0, 0.1, 0.3, 0.9])
+    assert np.array_equal(np.isnan(e.magnetisk_energi(SOLFLARE_PARAMS, miks)),
+                          np.isnan(e.compute(SOLFLARE_PARAMS, miks)))
+
+
+def test_solarflare_validity_deklarerer_ugyldig_inngang():
+    """Vinduet er motorens egen paastand. Staar kontrakten ikke der, er
+    den stille — samme feilklasse som «NaN -> holding» var maalt som."""
+    v = SolarFlareEngine().regime_node(SOLFLARE_PARAMS)["regime"]["validity"]
+    assert "utenfor vinduet" in v
+    assert "NaN" in v
+    assert "negativ" in v
+
+
 # ----------------------------------------------------------------------
 # Jordskjelv-motoren
 # ----------------------------------------------------------------------
@@ -162,6 +209,33 @@ def test_jordskjelv_regime_node_selvbeskrivelse():
     assert "release" in node["regime"]["validity"].lower() or \
            "utlos" in node["regime"]["validity"].lower()
     assert node["regime"]["law_form"].strip()
+
+
+def test_jordskjelv_fail_closed_paa_ugyldig_spenning():
+    """Ugyldig spenning er utenfor vinduet — aldri «holding» og aldri
+    en exception.
+
+    Maalt for denne kontrakten (origin/main = afdc620f):
+    compute([-1, nan, inf, -inf]) -> [0.0, 0.0, 3e14, 0.0] — motoren
+    svarte «bufferen holder» paa NaN og -inf, og slapp hele momentet
+    for +inf. Gyldige punkter skal vaere UENDRET.
+    """
+    e = JordskjelvEngine()
+    ugyldig = np.array([-1.0, -JORDSKJELV_PARAMS["terskel"], np.nan,
+                        np.inf, -np.inf])
+    ut = e.compute(JORDSKJELV_PARAMS, ugyldig)
+    assert np.all(np.isnan(ut)), ut
+    assert e.compute(JORDSKJELV_PARAMS, np.array([1.0e6]))[0] == 0.0
+    assert e.compute(JORDSKJELV_PARAMS, np.array([3.2e6]))[0] > 0.0
+
+
+def test_jordskjelv_validity_deklarerer_ugyldig_inngang():
+    """Vinduet er motorens egen paastand — kontrakten skal staa der."""
+    v = JordskjelvEngine().regime_node(
+        JORDSKJELV_PARAMS)["regime"]["validity"]
+    assert "utenfor vinduet" in v
+    assert "NaN" in v
+    assert "negativ" in v
 
 
 # ----------------------------------------------------------------------
@@ -397,3 +471,39 @@ def test_alle_tre_motorene_er_terskelstyrte_ikke_tidsstyrte():
     m = TRANS_PARAMS["terskelmasse"]
     assert trans.compute(TRANS_PARAMS, np.array([0.99 * m]))[0] == 0.0
     assert trans.compute(TRANS_PARAMS, np.array([1.01 * m]))[0] > 0.0
+
+
+def test_alle_tre_motorene_deler_fail_closed_kontrakten():
+    """Samme form OGSAA for ugyldig inngang: de tre bufferne lades fra
+    null, saa negativ eller ikke-endelig inngang er utenfor vinduet i
+    alle tre. Maalt for kontrakten: sol og jord svarte 0.0 («holding»)
+    paa NaN, mens transient svarte NaN — én form, to svar. Naa er svaret
+    NaN i alle tre, med samme predikat.
+    """
+    ugyldig = np.array([-1.0, np.nan, np.inf, -np.inf])
+    for e, params in ((SolarFlareEngine(), SOLFLARE_PARAMS),
+                      (JordskjelvEngine(), JORDSKJELV_PARAMS),
+                      (TransientEngine(), TRANS_PARAMS)):
+        ut = e.compute(params, ugyldig)
+        assert np.all(np.isnan(ut)), (e.name, ut)
+
+
+def test_sol_og_jord_atlasnodene_folger_motorenes_validity():
+    """Feltene motoren EIER — regime.validity og regime.law_form — skal
+    vaere FELT-identiske ogsaa for sol- og jordskjelv-noden.
+
+    Bro-testen for transient-noden finnes fra for; disse to er ikke i
+    BROER i efc_bro_synk.py, saa uten denne testen kunne teksten drive
+    fra motoren i det stille (drift-klassen efc_bro_synk.py ble skrevet
+    for: motoren ble skjerpet, atlaset ble ikke regenerert).
+    """
+    atlas = json.loads(_ATLAS.read_text(encoding="utf-8"))
+    noder = {n["id"]: n for n in atlas["nodes"]}
+    for e, params, nid in (
+            (SolarFlareEngine(), SOLFLARE_PARAMS, "efc.solar_flare_engine"),
+            (JordskjelvEngine(), JORDSKJELV_PARAMS, "efc.jordskjelv_engine")):
+        assert nid in noder, nid
+        motor = e.regime_node(params)["regime"]
+        assert noder[nid]["regime"]["validity"] == motor["validity"], nid
+        assert noder[nid]["regime"]["law_form"] == motor["law_form"], nid
+

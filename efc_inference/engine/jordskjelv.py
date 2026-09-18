@@ -39,6 +39,17 @@ class JordskjelvEngine(EFCEngine):
     # Fysikk
     # ------------------------------------------------------------------
 
+    def _gyldig_spenning(self, spenning: np.ndarray) -> np.ndarray:
+        """Motorens fail-closed-kontrakt for spenning — EEN kilde.
+
+        Gyldig spenning er ENDELIG og IKKE-NEGATIV: bufferen lades fra
+        spenning = 0 og oppover, saa negativ spenning er utenfor
+        modellens tilstandsrom. Skilt ut fordi kontrakten skal ha ett
+        sted, ikke ett per kall. Samme form som
+        TransientEngine._gyldig_masse() (L-036).
+        """
+        return np.isfinite(spenning) & (spenning >= 0.0)
+
     def gjentakelsestid(self, params: dict) -> float:
         """Tid mellom utlosninger ved konstant lade-rate (idealisert)."""
         return float(params["terskel"] / params["lade_rate"])
@@ -65,10 +76,16 @@ class JordskjelvEngine(EFCEngine):
         Holding: spenning < terskel -> bufferen holder, utlosning = 0.
         Release: spenning >= terskel -> momentet slippes (idealisert:
         M0 beregnes med det DEKLARERTE spenningsfallet, ikke det lokale).
+
+        Ugyldig inngang (negativ eller ikke-endelig spenning) er utenfor
+        vinduet og gir NaN — aldri en gjetning. For ble NaN, -1 og -inf
+        rapportert som «holding» (0.0) og +inf som en utlosning.
         """
         spenning = np.asarray(coordinates, dtype=float)
-        ut = np.zeros(spenning.shape)
-        kritisk = spenning >= params_dict["terskel"]
+        ut = np.full(spenning.shape, np.nan)
+        gyldig = self._gyldig_spenning(spenning)
+        ut[gyldig] = 0.0
+        kritisk = gyldig & (spenning >= params_dict["terskel"])
         ut[kritisk] = self.seismisk_moment(params_dict)
         return ut
 
@@ -85,8 +102,10 @@ class JordskjelvEngine(EFCEngine):
             "lades, ingen utlosning; release: spenning >= " + str(terskel)
             + " Pa — bufferen slippes. IDEALISERT regime-modell "
             "(Burridge-Knopoff-stil lading): utlosningen skjer ved en "
-            "fast terskel og hele spenningsfallet slippes. Predikerer "
-            "IKKE enkeltskjelv."
+            "fast terskel og hele spenningsfallet slippes. Ugyldig "
+            "inngang (negativ eller ikke-endelig spenning) er utenfor "
+            "vinduet og gir NaN — aldri en gjetning: bufferen lades fra "
+            "spenning = 0. Predikerer IKKE enkeltskjelv."
         )
         law_form = ("gjentakelsestid = terskel / lade_rate; "
                     "M0 = mu * A * (terskel/mu); "
