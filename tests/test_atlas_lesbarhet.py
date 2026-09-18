@@ -360,3 +360,29 @@ def test_saksen_naar_teksttvillingen_og_headeren():
         "headeren viser ikke hvor mye av S-aksen som er maalt")
     assert f"{maalt} of {len(noder)} measured" in data, (
         "tallet staar ikke i data.mjs")
+
+
+# --- 5. ett ord, ett tall ------------------------------------------------
+
+def test_motorordet_betyr_bare_en_ting_paa_hver_flate():
+    """«motorer» sto for 32 (motorfiler) ett sted og 19 (motornoder) et annet.
+
+    To ulike maalinger med samme navn er ikke en navnekonflikt man kan leve
+    med: den som leser 32 og 19 tror ett av tallene lyver. Utad heter de naa
+    MOTORFILER og ENGINE NODES.
+    """
+    import subprocess as sp
+    r = sp.run(["/opt/venvs/t_123ed6d9/bin/python",
+                str(ROT / "scripts" / "atlas_navigasjon.py"), ".", "--ref",
+                "origin/main"], capture_output=True, text=True, cwd=ROT,
+               timeout=120)
+    assert r.returncode == 0, r.stderr[-300:]
+    assert "motorfiler" in r.stdout, (
+        f"navigatoren kaller dem fortsatt motorer:\n{r.stdout[:200]}")
+    assert " motorer · " not in r.stdout, "tvetydig ord staar igjen"
+
+    system_md = (ATLAS / "SYSTEM.md").read_text(encoding="utf-8")
+    noder, _ = _bygg_og_les()
+    motorer = sum(1 for n in noder if "_engine" in n["name"])
+    assert f"{len(noder)} nodes, {motorer} engine nodes" in system_md, (
+        "teksttvillingen skiller ikke motorfil fra motornode")

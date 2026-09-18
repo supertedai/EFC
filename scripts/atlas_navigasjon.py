@@ -231,11 +231,17 @@ if __name__ == "__main__":
     a = ap.parse_args()
     d = naviger(a.repo, a.ref) if a.ref else naviger(a.repo)
     lag = d["lag"]
+    # Ordet «motor» betyr to ting i dette huset: motoren paa disk (32 filer) og
+    # noden som baerer den (`efc.*_engine`, 19). Maalt 2026-09-18 sto begge som
+    # «motorer» — 32 her og 19 i SYSTEM.md — og et ord som betyr to tall er
+    # ikke et navn. Utad heter det naa MOTORFILER her (nokkelen er uendret, for
+    # den er et API) og «engine nodes» i teksttvillingen.
+    ETIKETT = {"motorer": "motorfiler"}
     print(f"{d['ref']} @ {d['commit'][:8]}")
-    print(f"  lag      : {lag['noder']} noder · {lag['motorer']} motorer · "
+    print(f"  lag      : {lag['noder']} noder · {lag['motorer']} motorfiler · "
           f"{lag['emner']} emner i {lag['buss_domener']} domener")
     for navn, (n, t) in d["dekning"].items():
-        print(f"  {navn:9}: {n}/{t} naar fram")
+        print(f"  {ETIKETT.get(navn, navn):9}: {n}/{t} naar fram")
     e = d["epistemisk"]
     kf, kt = e["kan_felles"]
     mo, mt = e["maaler_eller_observert"]
