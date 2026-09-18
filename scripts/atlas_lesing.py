@@ -378,6 +378,63 @@ def _les_sti(n: dict, akse: str):
     return v
 
 
+#: Navnene MORTEN bruker mot stiene atlaset faktisk barer. Maalt
+#: 2026-09-17: `isomorphisme` er `analogi`, `loop` er `emergence.loop`,
+#: og `paradigme`/`konsensus`/`akademia` er VERDIER av `perspektiv` —
+#: ikke akser. Tre ulike klasser; uten dette laget ser de like ut.
+AKSE_ALIAS: dict[str, str] = {
+    "isomorphisme": "analogi",
+    "isomorfi": "analogi",
+    "isomorfisme": "analogi",
+    "loop": "emergence.loop",
+    "loops": "emergence.loop",
+    "sloeyfe": "emergence.loop",
+    "sloyfe": "emergence.loop",
+    "fraktal": "fractal.pattern",
+    "fraktaler": "fractal.pattern",
+    "hva_maales": "measure.target",
+    "hvem_maaler": "measure.measurer",
+    "hvor_maales": "measure.placement",
+    "maaleinstrument": "measure.instrument",
+    "instrument": "measure.instrument",
+    "proxy": "measure.proxy_chain",
+    "proxyer": "measure.proxy_chain",
+    "observatoer": "observer",
+    "kobling": "coupling",
+    "domenet": "buss_domene",
+    "domene": "buss_domene",
+    "antakelser": "ontology.assumes",
+    "kompresjon": "measure.compression",
+    "rom": "nivaa.lengdeskala",
+    "tid": "nivaa.tidsskala",
+    "enheter": "maale_paradigme.enheter",
+    "koordinater": "maale_paradigme.koordinater",
+    "sannhet": "epistemikk.sannhetsstatus",
+    "evidens": "epistemikk.evidensstatus",
+}
+
+
+def _loes_akse(atlas: dict, akse: str) -> tuple[str, str | None]:
+    """Loes et menneskelig navn til (sti, verdi). Tre klasser.
+
+    1. NAVNET ER STIEN          -> (sti, None)
+    2. NAVNET ER ET ALIAS       -> (sti, None)
+    3. NAVNET ER EN VERDI       -> (perspektiv, verdi)  <- tredje klasse
+    """
+    alle = akser(atlas)
+    if akse in alle:
+        return akse, None
+    if akse in AKSE_ALIAS and AKSE_ALIAS[akse] in alle:
+        return AKSE_ALIAS[akse], None
+    # tredje klasse: er det en VERDI av en kjent akse?
+    for sti in ("perspektiv", "phase", "maale_paradigme.status",
+                "epistemikk.sannhetsstatus", "epistemikk.evidensstatus"):
+        verdier = alle.get(sti, (0, []))[1]
+        if akse in verdier:
+            return sti, akse
+    raise KeyError(akse)
+
+
 def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
     """Roter rundt EN akse — toppnivaa eller nested.
 
@@ -385,10 +442,15 @@ def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
     forslag, fordi et tomt svar ville skjult at navnet var feil.
     """
     alle = akser(atlas)
-    if akse not in alle:
+    try:
+        akse, l_a_verdi = _loes_akse(atlas, akse)
+        if l_a_verdi is not None and verdi is None:
+            verdi = l_a_verdi
+    except KeyError:
         rot = akse.split(".")[0]
         naere = sorted(a for a in alle
-                       if rot in a or a.split(".")[0] in akse)[:5]
+                       if rot in a or a.split(".")[0] in akse
+                       or akse in AKSE_ALIAS)[:5]
         if not naere:  # ingen likhet — vis de mest brukte
             naere = [a for a, _ in sorted(alle.items(),
                                           key=lambda x: -x[1][0])[:6]]
@@ -442,14 +504,18 @@ if __name__ == "__main__":
                 v = ", ".join(verdier[:4]) + (" ..." if len(verdier) > 4 else "")
                 print(f"  {sti:34} {n:3}  {v[:66]}")
         else:
-            sti, _, verdi = a.akse.partition("=")
+            navn, _, verdi = a.akse.partition("=")
             try:
-                treff = roter_akse(atlas, sti, verdi or None)
+                treff = roter_akse(atlas, navn, verdi or None)
+                sti, lv = _loes_akse(atlas, navn)
+                if lv is not None and not verdi:
+                    verdi = lv
             except KeyError as e:
                 print(f"FEIL: {e}")
                 sys.exit(1)
-            print(f"{len(treff)} noder  akse={sti}"
-                  + (f"={verdi}" if verdi else ""))
+            print(f"{len(treff)} noder  akse={navn}"
+                  + (f"={verdi}" if verdi else "")
+                  + (f"  ({sti})" if sti != navn else ""))
             for n in treff:
                 v = _les_sti(n, sti)
                 print(f"  {n['id']:34} {str(v)[:60]}")
