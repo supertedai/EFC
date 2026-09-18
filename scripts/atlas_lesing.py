@@ -21,6 +21,27 @@ foreldet. Denne modulen henter derfor IKKE av seg selv — den rapporterer
 hvilken commit den leste, slik at en foreldet ref er synlig i resultatet
 i stedet for i leserens antakelse. `hent=False` er standard; sett
 `hent=True` naar leseren vil ha ferskest mulig.
+
+API-KARTET — hva de offentlige funksjonene tar og gir. Satt opp 2026-09-18
+etter at en leser (jeg) gjettet tre av dem feil fra husken: `finn` ble
+indeksert som en liste (den er en dict), `plasser` ble lest med en noekkel
+som ikke finnes, og `kjent_hull` ble kalt under et navn som var privat.
+Ingen av dem var en feil i atlaset — alle var en feil i grensesnittet.
+
+    les_atlas(repo, ref)            -> dict   hele atlaset
+    finn(repo, emne, ref)           -> dict   {antall, hull, for_bredt, raad, ...}
+    akser(atlas)                    -> dict   {sti: (antall, eksempelverdier)}
+    roter_akse(atlas, akse, verdi)  -> list[dict]
+    roter(atlas, node=, ...)        -> dict
+    helhet(atlas, node_id)          -> dict   {episenter, felt, motor, ...}
+    plasser(atlas, tekst)           -> dict   {status, forslag, naere_noder, ...}
+    kjent_hull(repo, emne, ref)     -> dict | None
+    naboer/hop/hop_stier/fragment   -> koblingsgrafen
+    maaleformer/proxy_kjeder        -> hva maaler, via hva
+
+REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
+«ATLASET VET IKKE» heller enn aa gi et loest treff; `plasser` svarer
+`uten_hjem` heller enn aa gjette et domene.
 """
 
 from __future__ import annotations
@@ -776,6 +797,22 @@ def plasser(atlas: dict, tekst: str) -> dict:
 #
 # Maalt foer: svaret fantes bare som tretten separate kommandoor.
 # ---------------------------------------------------------------------------
+
+def kjent_hull(repo: str | Path, emne: str,
+               ref: str = STANDARD_REF, *, hent: bool = False) -> dict | None:
+    """Er emnet et KJENT hull — et domene noen har maalt og funnet tomt?
+
+    Dette er den offentlige inngangen. Den private `_kjent_hull` tar
+    dekningsfilen som alt er lest; denne gjor oppslaget selv, fordi en
+    leser som spoer «er dette et kjent hull?» ikke har dekningsfilen
+    for haanden — hen har et emne.
+
+    Satt opp 2026-09-18: `kjent_hull` fantes, men het `_kjent_hull` og
+    tok en annen parameter enn den en leser ville gjettet. En inngang
+    som ikke kan finnes, virker ikke — uansett hvor riktig den er.
+    """
+    return _kjent_hull(_dekning(Path(repo), ref, hent), emne)
+
 
 def helhet(atlas: dict, node_id: str) -> dict:
     """ALT om en node — de seks delene, i én lesning.
