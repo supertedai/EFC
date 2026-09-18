@@ -351,6 +351,16 @@
       "meldinger": 2606,
       "noder": [
         "efc.samfunn_engine",
+        "homo.aksjonspotensial",
+        "homo.cellesyklus",
+        "homo.feber_regime",
+        "homo.fluxus",
+        "homo.genregulering",
+        "homo.hjerte_syklus",
+        "homo.homeostase_buffer",
+        "homo.immunologi",
+        "homo.metabolisme",
+        "homo.sovn_vaaken",
         "verden.helse"
       ],
       "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
@@ -434,10 +444,12 @@
       ]
     },
     "verden.miljo": {
-      "status": "delvis",
+      "status": "dekket",
       "meldinger": 1280,
       "noder": [
         "efc.water_phase_engine",
+        "homo.evolusjon",
+        "homo.okologi",
         "verden.biosfaere"
       ],
       "begrunnelse": "gbif-planter og ecowitt er dekket; mgnify-mikrobiom og gdelt mangler",
