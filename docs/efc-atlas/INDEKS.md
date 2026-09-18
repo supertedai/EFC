@@ -5,134 +5,250 @@
 Hver rad er generert fra samme bank som atlaset.
 
 ## Roots
-- L0 · efc.l0 · urbetingelser og strukturfro · perspektiv… · paradigm · regime S->0 · klarhet… · ikke oppgitt · ingen buss-vei — emnet… · 1 · nei
+- **L0 · efc.l0** — urbetingelser og strukturfro
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=regime S->0 · klarhet C(S) ved S->0: udifferensiert klarhet… · spoersmaal=1 · bygget=ja
 
 ## The grid
-- GH · efc.grid_higgs · Grid-Higgs-rammen: entropisk og strukturell… · paradigm · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · nei
-- GQ · efc.gr_qft_bro · Den termodynamiske broen mellom generell… · paradigm · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · nei
-- DS · efc.double_slit · Dobbeltspalten som grid-oppløsningsfenomen… · paradigm · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · nei
-- GM · efc.grid_mikrofysikk · Fra grid-mikrofysikk til den radiale… · paradigm · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- GE · efc.grid_mikro_engine · Gamma(rho) og Deff(rho) · perspektiv: paradigm · paradigm · ikke maalt · grid_mikro · ikke oppgitt · 0 · nei
-- SH · efc.sort_hull · sorte hull som entropisk grense i… · paradigm · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · nei
+- **GH · efc.grid_higgs** — Grid-Higgs-rammen: entropisk og strukturell teori for gravitasjon…
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
+- **GQ · efc.gr_qft_bro** — Den termodynamiske broen mellom generell relativitet og…
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
+- **DS · efc.double_slit** — Dobbeltspalten som grid-oppløsningsfenomen: ontologisk utvidelse…
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
+- **GM · efc.grid_mikrofysikk** — Fra grid-mikrofysikk til den radiale akselerasjonsrelasjonen — minimal…
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **GE · efc.grid_mikro_engine** — Gamma(rho) og Deff(rho)
+  perspektiv=paradigm · motor=grid_mikro · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **SH · efc.sort_hull** — sorte hull som entropisk grense i Grid-Higgs-rammen
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
 
 ## Cosmos
-- RO · efc.rotation_engine · v(r) — rotasjonshastighet som funksjon av radius… · paradigm · ikke maalt · rotation · ikke oppgitt · 0 · nei
-- HB · efc.hubble_engine · H(z) — ekspansjonsraten · perspektiv: paradigm · paradigm · ikke maalt · hubble · ikke oppgitt · 0 · nei
-- GR · efc.growth_engine · fσ8(z) — vekstrate ganger amplitude… · paradigm · ikke maalt · growth · ikke oppgitt · 0 · nei
-- LN · efc.lensing_engine · kappa(theta) — konvergens som funksjon av… · paradigm · ikke maalt · lensing · ikke oppgitt · 0 · nei
-- CL · efc.cluster_engine · n(M,z) — halomassefunksjonen · perspektiv… · paradigm · ikke maalt · cluster · ikke oppgitt · 0 · nei
-- MK · efc.mu_kz_engine · mu(k,z) — effektiv Poisson-kobling · perspektiv… · paradigm · ikke maalt · mu_kz · ikke oppgitt · 0 · nei
-- RV · efc.romvaer_engine · forventet Kp, stormnivå, utladningsbane… · paradigm · ikke maalt · romvaer · ikke oppgitt · 0 · nei
-- OR · efc.orbital_engine · periode, hastighet, spesifikk energi, Hill-sfære… · paradigm · ikke maalt · orbital · ikke oppgitt · 0 · nei
-- KL · efc.klima_engine · likevektstemperatur, tidskonstant, regimebryter… · paradigm · ikke maalt · klima · ikke oppgitt · 0 · nei
-- TI · efc.tidevann_engine · tidevannsakselerasjon, tidevannshøyde… · paradigm · ikke maalt · tidevann · ikke oppgitt · 0 · nei
-- TR · efc.transient_engine · holdetid, utlost energi, lettkurvens form… · paradigm · ikke maalt · transient · ikke oppgitt · 0 · nei
-- KG · kosmos.gammaglimt · varsler om transienter i sanntid, fra bakke og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- KI · kosmos.interstellart · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- MA · kosmos.maane · baneposisjoner regnet fra DE441-ephemeriden… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- NO · kosmos.noeytrinoer · varsler om transienter i sanntid, fra bakke og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- PL · kosmos.planetsystem · baneposisjoner regnet fra DE441-ephemeriden… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- KR · kosmos.roentgentransienter · varsler om transienter i sanntid, fra bakke og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- RF · kosmos.romfart · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- ST · kosmos.stjerner · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- UK · kosmos.uklassifisert · varsler om transienter i sanntid, fra bakke og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- KM · kosmos.galakser_mast · astronomiske observasjoner og katalogiserte… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- RK · kosmos.romvaer_swpc · Kp-tilstand og stormnivå · perspektiv: consensus · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- SG · kosmos.sol_goes · GOES røntgenfluks og flareklasse · perspektiv… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- TA · kosmos.transienter_alerce · optiske transienthendelser · perspektiv… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- DB · kosmos.kosmologi_desi_bao · DESI BAO-observasjoner når strømmen finnes… · consensus · ikke maalt · ikke oppgitt · stroemmen finnes ikke… · 1 · nei
+- **RO · efc.rotation_engine** — v(r) — rotasjonshastighet som funksjon av radius
+  perspektiv=paradigm · motor=rotation · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **HB · efc.hubble_engine** — H(z) — ekspansjonsraten
+  perspektiv=paradigm · motor=hubble · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **GR · efc.growth_engine** — fσ8(z) — vekstrate ganger amplitude
+  perspektiv=paradigm · motor=growth · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **LN · efc.lensing_engine** — kappa(theta) — konvergens som funksjon av vinkelposisjon
+  perspektiv=paradigm · motor=lensing · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **CL · efc.cluster_engine** — n(M,z) — halomassefunksjonen
+  perspektiv=paradigm · motor=cluster · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **MK · efc.mu_kz_engine** — mu(k,z) — effektiv Poisson-kobling
+  perspektiv=paradigm · motor=mu_kz · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **RV · efc.romvaer_engine** — forventet Kp, stormnivå, utladningsbane
+  perspektiv=paradigm · motor=romvaer · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **OR · efc.orbital_engine** — periode, hastighet, spesifikk energi, Hill-sfære
+  perspektiv=paradigm · motor=orbital · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **KL · efc.klima_engine** — likevektstemperatur, tidskonstant, regimebryter
+  perspektiv=paradigm · motor=klima · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **TI · efc.tidevann_engine** — tidevannsakselerasjon, tidevannshøyde, Roche-grense…
+  perspektiv=paradigm · motor=tidevann · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **TR · efc.transient_engine** — holdetid, utlost energi, lettkurvens form
+  perspektiv=paradigm · motor=transient · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **KG · kosmos.gammaglimt** — varsler om transienter i sanntid, fra bakke og rom
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **KI · kosmos.interstellart** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **MA · kosmos.maane** — baneposisjoner regnet fra DE441-ephemeriden
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **NO · kosmos.noeytrinoer** — varsler om transienter i sanntid, fra bakke og rom
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **PL · kosmos.planetsystem** — baneposisjoner regnet fra DE441-ephemeriden
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **KR · kosmos.roentgentransienter** — varsler om transienter i sanntid, fra bakke og rom
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **RF · kosmos.romfart** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **ST · kosmos.stjerner** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **UK · kosmos.uklassifisert** — varsler om transienter i sanntid, fra bakke og rom
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **KM · kosmos.galakser_mast** — astronomiske observasjoner og katalogiserte kilder
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **RK · kosmos.romvaer_swpc** — Kp-tilstand og stormnivå
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **SG · kosmos.sol_goes** — GOES røntgenfluks og flareklasse
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **TA · kosmos.transienter_alerce** — optiske transienthendelser
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **DB · kosmos.kosmologi_desi_bao** — DESI BAO-observasjoner når strømmen finnes
+  perspektiv=consensus · motor=ikke oppgitt · buss=stroemmen finnes ikke — venter paa… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
 
 ## Bridges
-- HA · verden.hav · havtemperatur · perspektiv: consensus · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- BI · verden.biosfaere · arts-tellinger (planteriket) · perspektiv… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- VU · kosmos.jord.vulkan · vulkantilstand · perspektiv: consensus · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
+- **HA · verden.hav** — havtemperatur
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **BI · verden.biosfaere** — arts-tellinger (planteriket)
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **VU · kosmos.jord.vulkan** — vulkantilstand
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
 
 ## Structures
-- WA · efc.water_phase_engine · fasegrenser P_sat(T), T_m(P), P_sub(T)… · paradigm · ikke maalt · water · ikke oppgitt · 0 · nei
-- PS · kjemi.periodesystemet · periodesystemets struktur (118 grunnstoff)… · academia · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · nei
+- **WA · efc.water_phase_engine** — fasegrenser P_sat(T), T_m(P), P_sub(T)
+  perspektiv=paradigm · motor=water · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **PS · kjemi.periodesystemet** — periodesystemets struktur (118 grunnstoff)
+  perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
 
 ## Society
-- OK · efc.oekonomi_engine · finansregime (hedge/spekulativ/ponzi)… · paradigm · ikke maalt · oekonomi · ikke oppgitt · 0 · nei
-- SA · efc.samfunn_engine · R0, utbruddsstatus, epidemi-banen · perspektiv… · paradigm · ikke maalt · samfunn · ikke oppgitt · 0 · nei
-- EF · efc.enerflyt_engine · bufferen S og driften dS/dt = P - C - L… · paradigm · ikke maalt · enerflyt · ikke oppgitt · 0 · nei
-- AR · verden.arbeid · arbeidsmarkeds- og sosialstatistikk for Europa… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- DE · verden.demografi · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- FI · verden.finans · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- VG · verden.geopolitikk · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- VH · verden.handel · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- HE · verden.helse · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- VI · verden.infrastruktur · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- KO · verden.kommunikasjon · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- LO · verden.lov · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- MI · verden.militaer · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- PO · verden.politikk · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- SI · verden.sikkerhet · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- TE · verden.teknologi · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- VT · verden.transport · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- UT · verden.utdanning · globale nyhetsstrømmer kodet til tema, aktør og… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- GG · verden.klima_gdelt · klimarelatert omtale kodet i globale… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- WB · verden.klima_worldbank · klima- og utviklingsindikatorer per land og år… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- MX · verden.miljo_mikrobiom · microbial taxa and functional profiles across… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- GY · verden.miljo_gdelt · environment-related coverage encoded in global… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- OX · verden.oekonomi_worldbank · economic indicators by country and year… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- IX · verden.oekonomi_imf · macroeconomic projections and scenario… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- OY · verden.oekonomi_gdelt · economic coverage encoded in global news… · consensus · ikke maalt · ikke oppgitt · ikke oppgitt · 0 · nei
-- IB · verden.klima_isbre · isbre/glasiologi-observasjoner når strømmen… · consensus · ikke maalt · ikke oppgitt · stroemmen finnes ikke… · 1 · nei
+- **OK · efc.oekonomi_engine** — finansregime (hedge/spekulativ/ponzi), gjeldsgrad-drift
+  perspektiv=paradigm · motor=oekonomi · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **SA · efc.samfunn_engine** — R0, utbruddsstatus, epidemi-banen
+  perspektiv=paradigm · motor=samfunn · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **EF · efc.enerflyt_engine** — bufferen S og driften dS/dt = P - C - L
+  perspektiv=paradigm · motor=enerflyt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **AR · verden.arbeid** — arbeidsmarkeds- og sosialstatistikk for Europa
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **DE · verden.demografi** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **FI · verden.finans** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **VG · verden.geopolitikk** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **VH · verden.handel** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **HE · verden.helse** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **VI · verden.infrastruktur** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **KO · verden.kommunikasjon** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **LO · verden.lov** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **MI · verden.militaer** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **PO · verden.politikk** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **SI · verden.sikkerhet** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **TE · verden.teknologi** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **VT · verden.transport** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **UT · verden.utdanning** — globale nyhetsstrømmer kodet til tema, aktør og sted
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **GG · verden.klima_gdelt** — klimarelatert omtale kodet i globale nyhetsdokumenter
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **WB · verden.klima_worldbank** — klima- og utviklingsindikatorer per land og år
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **MX · verden.miljo_mikrobiom** — microbial taxa and functional profiles across sampled environments
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **GY · verden.miljo_gdelt** — environment-related coverage encoded in global news documents
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **OX · verden.oekonomi_worldbank** — economic indicators by country and year
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **IX · verden.oekonomi_imf** — macroeconomic projections and scenario indicators
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **OY · verden.oekonomi_gdelt** — economic coverage encoded in global news documents
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
+- **IB · verden.klima_isbre** — isbre/glasiologi-observasjoner når strømmen finnes
+  perspektiv=consensus · motor=ikke oppgitt · buss=stroemmen finnes ikke — venter paa… · S-akse=ikke maalt · spoersmaal=1 · bygget=ja
 
 ## Not yet built
-- SO · h2o.solid · termodynamisk fase · perspektiv: academia · academia · ikke maalt · efc.water_solid · ingen buss-vei — emnet… · 1 · ja
-- LI · h2o.liquid · termodynamisk fase · perspektiv: academia · academia · ikke maalt · water · ingen buss-vei — emnet… · 1 · ja
-- GA · h2o.gas · termodynamisk fase · perspektiv: academia · academia · ikke maalt · efc.water_gas · ingen buss-vei — emnet… · 1 · ja
-- SC · h2o.supercritical · termodynamisk tilstand (ikke 'fase' — grensen er… · academia · ikke maalt · efc.water_supercritical · ingen buss-vei — emnet… · 1 · ja
-- TP · h2o.triple_point · temperaturskalaens referansepunkt · perspektiv… · academia · ikke maalt · efc.water_triple_point · ingen buss-vei — emnet… · 1 · ja
-- LY · lys.sol · elektromagnetisk straaling · perspektiv… · academia · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- DR · h2o.droplet · draapeform og brytningsindeks · perspektiv… · academia · ikke maalt · efc.water_droplet · ingen buss-vei — emnet… · 1 · ja
-- OP · optikk.dispersjon · brytningsindeksen n(lambda) · perspektiv… · academia · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- RB · regnbue · buens vinkel og fargerekkefoelge · perspektiv… · academia · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- OB · regnbue.observator · buen som retnings- og fargemonster · perspektiv… · academia · ikke maalt · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- L1 · efc.l1 · CMB-anisotropier og BAO-skala · perspektiv… · paradigm · regime S~0 · klarhet… · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- L2 · efc.l2 · fsigma8, P(k), svak linse (S8) · perspektiv… · paradigm · regime S>0 · klarhet… · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- L3 · efc.l3 · fjern-fremtid-tilstanden · perspektiv: paradigm · paradigm · regime S->1 · klarhet… · ikke oppgitt · ingen buss-vei — emnet… · 1 · ja
-- BA · obs.bao · BAO-skalaen (r_d ~ 147 Mpc comoving)… · consensus · RCMP… · ikke oppgitt · ikke oppgitt · 0 · ja
-- TT · obs.cmb_tt · temperatur-/polarisasjonsspekteret · perspektiv… · consensus · RCMP instrument=Planck… · ikke oppgitt · ikke oppgitt · 0 · ja
-- LC · obs.cmb_lensing · linsingspotensialet · perspektiv: consensus · consensus · RCMP instrument=Planck… · ikke oppgitt · ikke oppgitt · 0 · ja
-- BB · obs.bbn · deuterium/hydrogen-forholdet · perspektiv… · consensus · RCMP… · ikke oppgitt · ikke oppgitt · 0 · ja
-- F8 · obs.fsigma8 · vekstraten fsigma8 · perspektiv: consensus · consensus · RCMP instrument=BOSS… · ikke oppgitt · ikke oppgitt · 0 · ja
-- S8 · obs.s8 · S8 = sigma8 sqrt(omega_m/0.3) · perspektiv… · consensus · RCMP instrument=KiDS… · ikke oppgitt · ikke oppgitt · 0 · ja
-- EG · obs.eg · E_G-krysset · perspektiv: consensus · consensus · RCMP instrument=SDSS… · ikke oppgitt · ikke oppgitt · 0 · ja
-- IS · obs.isw · ISW-signalet · perspektiv: consensus · consensus · RCMP instrument=CMB x… · ikke oppgitt · ikke oppgitt · 0 · ja
-- KS · obs.ksz · kSZ-signalet · perspektiv: consensus · consensus · RCMP instrument=ACT, DES… · ikke oppgitt · ikke oppgitt · 0 · ja
-- CM · obs.cluster_mass · M_500 fra flere kanaler · perspektiv: consensus · consensus · RCMP instrument=Chandra… · ikke oppgitt · ikke oppgitt · 0 · ja
-- HM · obs.cluster_hmf · halomassetetthetsfunksjonen · perspektiv… · consensus · RCMP instrument=DES… · ikke oppgitt · ikke oppgitt · 0 · ja
-- RA · obs.rar · a_obs vs a_bar · perspektiv: consensus · consensus · RCMP instrument=SPARC… · ikke oppgitt · ikke oppgitt · 0 · ja
-- BU · obs.bullet · masse-gass-offseten · perspektiv: consensus · consensus · RCMP instrument=HST +… · ikke oppgitt · ikke oppgitt · 0 · ja
-- SL · obs.satellites · subhalo-populasjonen · perspektiv: consensus · consensus · RCMP instrument=HST… · ikke oppgitt · ikke oppgitt · 0 · ja
-- JW · obs.jwst_ems · galakse-massefunksjonen ved z>10 · perspektiv… · consensus · RCMP instrument=JWST… · ikke oppgitt · ikke oppgitt · 0 · ja
-- GW · obs.gw_ct · c_T fra GW170817 · perspektiv: consensus · consensus · RCMP… · ikke oppgitt · ikke oppgitt · 0 · ja
-- PA · obs.pta_gwb · GW-bakgrunnen ved nHz · perspektiv: consensus · consensus · RCMP… · ikke oppgitt · ikke oppgitt · 0 · ja
-- H0 · obs.h0_tension · H0 fra to uavhengige kanaler · perspektiv… · consensus · RCMP instrument=Planck… · ikke oppgitt · ikke oppgitt · 0 · ja
-- W0 · obs.w0wa · w(z)-parametriseringen · perspektiv: consensus · consensus · RCMP instrument=DES… · ikke oppgitt · ikke oppgitt · 0 · ja
-- CC · obs.cc · vakuumenergiens stoerrelse · perspektiv… · consensus · RCMP instrument=alle… · ikke oppgitt · ikke oppgitt · 0 · ja
-- HF · homo.fluxus · R — den indre refleksjonskoeffisienten… · paradigm · regime S~0.5 · klarhet… · efc.fluxus_engine · ikke oppgitt · 0 · ja
-- HO · homo.homeostase_buffer · avvik fra setpunkt (ΔT, ΔpH, Δglukose)… · academia · regime S~0.5 · klarhet… · efc.homeostase_buffer_en… · ikke oppgitt · 0 · ja
-- FE · homo.feber_regime · kroppstemperatur mot setpunkt · perspektiv… · academia · regime S~0.5 · klarhet… · efc.feber_regime_engine · ikke oppgitt · 0 · ja
-- AP · homo.aksjonspotensial · membranpotensialet V(t) mot terskelen… · academia · regime S~0.5 · klarhet… · efc.aksjonspotensial_eng… · ikke oppgitt · 0 · ja
-- HJ · homo.hjerte_syklus · slagvolum, frekvens, minuttvolum · perspektiv… · academia · regime S~0.5 · klarhet… · efc.hjerte_syklus_engine · ikke oppgitt · 0 · ja
-- GN · homo.genregulering · uttrykksnivå per gen (mRNA/protein)… · academia · regime S~0.5 · klarhet… · efc.genregulering_engine · ikke oppgitt · 0 · ja
-- CY · homo.cellesyklus · fase per celle (G1/S/G2/M) · perspektiv… · academia · regime S~0.5 · klarhet… · efc.cellesyklus_engine · ikke oppgitt · 0 · ja
-- ME · homo.metabolisme · ATP/ADP-forhold, O₂-forbruk, substrat-fluks… · academia · regime S~0.5 · klarhet… · efc.metabolisme_engine · ikke oppgitt · 0 · ja
-- SF · efc.solar_flare_engine · oppladningstid, utlost energi, GOES-klasse… · paradigm · ikke maalt · solar_flare · ikke oppgitt · 0 · ja
-- JS · efc.jordskjelv_engine · gjentakelsestid, seismisk moment… · paradigm · ikke maalt · jordskjelv · ikke oppgitt · 0 · ja
-- IM · homo.immunologi · aktiveringsstatus, antistofftiter… · academia · regime S~0.5 · klarhet… · efc.immunologi_engine · ikke oppgitt · 0 · ja
-- SV · homo.sovn_vaaken · søvnstadium (våken/NREM/REM), homeostatisk trykk… · academia · regime S~0.5 · klarhet… · efc.sovn_vaaken_engine · ikke oppgitt · 0 · ja
-- OE · homo.okologi · tilstandsvariabler (næringsstoffer, dekning… · academia · regime S~0.5 · klarhet… · efc.okologi_engine · ikke oppgitt · 0 · ja
-- EV · homo.evolusjon · endringstakt i fenotype/art (morfologiske og… · academia · regime S~0.5 · klarhet… · efc.evolusjon_engine · ikke oppgitt · 0 · ja
-- VV · verden.vaer · temperatur, vind, trykk, skydekke og fuktighet… · consensus · ikke maalt · ingen egen motor… · ikke oppgitt · 0 · ja
-- KA · kosmos.asteroider · treffsannsynlighet og Palermo-kumulativ per… · consensus · ikke maalt · efc.orbital_engine… · ikke oppgitt · 0 · ja
-- EE · efc.efc_background_engine · H(z) og bakgrunns-feltene phi, phi_dot, rho_m… · paradigm · ikke maalt · efc_background · ikke oppgitt · 0 · ja
-- LS · efc.lag_s · strukturen som energy-flow-feltet holder oppe… · paradigm · regime S>0 · sektor S… · efc.rotation_engine · ikke oppgitt · 0 · ja
-- LD · efc.lag_d · energy-flow-feltet J_mu og dets divergens… · paradigm · regime S>0 · sektor D… · efc.efc_background_engin… · ikke oppgitt · 0 · ja
-- C0 · efc.lag_c0 · entropi-feltet S og dets grenser · perspektiv… · paradigm · regime S->1 · sektor C… · efc.klima_engine · ikke oppgitt · 0 · ja
+- **SO · h2o.solid** — termodynamisk fase
+  perspektiv=academia · motor=efc.water_solid · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **LI · h2o.liquid** — termodynamisk fase
+  perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **GA · h2o.gas** — termodynamisk fase
+  perspektiv=academia · motor=efc.water_gas · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **SC · h2o.supercritical** — termodynamisk tilstand (ikke 'fase' — grensen er borte)
+  perspektiv=academia · motor=efc.water_supercritical · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **TP · h2o.triple_point** — temperaturskalaens referansepunkt
+  perspektiv=academia · motor=efc.water_triple_point · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **LY · lys.sol** — elektromagnetisk straaling
+  perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **DR · h2o.droplet** — draapeform og brytningsindeks
+  perspektiv=academia · motor=efc.water_droplet · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **OP · optikk.dispersjon** — brytningsindeksen n(lambda)
+  perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **RB · regnbue** — buens vinkel og fargerekkefoelge
+  perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **OB · regnbue.observator** — buen som retnings- og fargemonster
+  perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · bygget=nei
+- **L1 · efc.l1** — CMB-anisotropier og BAO-skala
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=regime S~0 · klarhet C(S) ved S~0: begynnende klarhet… · spoersmaal=1 · bygget=nei
+- **L2 · efc.l2** — fsigma8, P(k), svak linse (S8)
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=regime S>0 · klarhet C(S) ved S>0: differensiert klarhet… · spoersmaal=1 · bygget=nei
+- **L3 · efc.l3** — fjern-fremtid-tilstanden
+  perspektiv=paradigm · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=regime S->1 · klarhet C(S) ved S->1: mettet klarhet… · spoersmaal=1 · bygget=nei
+- **BA · obs.bao** — BAO-skalaen (r_d ~ 147 Mpc comoving)
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=galakse-surveyer (DESI, eBOSS, BOSS)… · spoersmaal=0 · bygget=nei
+- **TT · obs.cmb_tt** — temperatur-/polarisasjonsspekteret
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=Planck… · spoersmaal=0 · bygget=nei
+- **LC · obs.cmb_lensing** — linsingspotensialet
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=Planck, ACT, SPT… · spoersmaal=0 · bygget=nei
+- **BB · obs.bbn** — deuterium/hydrogen-forholdet
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=quasar-spektroskopi… · spoersmaal=0 · bygget=nei
+- **F8 · obs.fsigma8** — vekstraten fsigma8
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=BOSS, eBOSS, DESI; observabel=vekstraten… · spoersmaal=0 · bygget=nei
+- **S8 · obs.s8** — S8 = sigma8 sqrt(omega_m/0.3)
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=KiDS, DES, HSC, Euclid; observabel=S8 =… · spoersmaal=0 · bygget=nei
+- **EG · obs.eg** — E_G-krysset
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=SDSS, KiDS+BOSS; observabel=E_G-krysset… · spoersmaal=0 · bygget=nei
+- **IS · obs.isw** — ISW-signalet
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=CMB x galaksekart; observabel=ISW-signalet… · spoersmaal=0 · bygget=nei
+- **KS · obs.ksz** — kSZ-signalet
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=ACT, DES x SPT; observabel=kSZ-signalet… · spoersmaal=0 · bygget=nei
+- **CM · obs.cluster_mass** — M_500 fra flere kanaler
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=Chandra, XMM, HST; observabel=M_500 fra… · spoersmaal=0 · bygget=nei
+- **HM · obs.cluster_hmf** — halomassetetthetsfunksjonen
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=DES, SDSS, eROSITA… · spoersmaal=0 · bygget=nei
+- **RA · obs.rar** — a_obs vs a_bar
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=SPARC; observabel=a_obs vs a_bar… · spoersmaal=0 · bygget=nei
+- **BU · obs.bullet** — masse-gass-offseten
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=HST + Chandra… · spoersmaal=0 · bygget=nei
+- **SL · obs.satellites** — subhalo-populasjonen
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=HST, simuleringer… · spoersmaal=0 · bygget=nei
+- **JW · obs.jwst_ems** — galakse-massefunksjonen ved z>10
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=JWST; observabel=galakse-massefunksjonen ved… · spoersmaal=0 · bygget=nei
+- **GW · obs.gw_ct** — c_T fra GW170817
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=LIGO/Virgo; observabel=c_T fra GW170817… · spoersmaal=0 · bygget=nei
+- **PA · obs.pta_gwb** — GW-bakgrunnen ved nHz
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=NANOGrav, EPTA; observabel=GW-bakgrunnen ved… · spoersmaal=0 · bygget=nei
+- **H0 · obs.h0_tension** — H0 fra to uavhengige kanaler
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=Planck vs SH0ES; observabel=H0 fra to… · spoersmaal=0 · bygget=nei
+- **W0 · obs.w0wa** — w(z)-parametriseringen
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=DES, BAO+CMB… · spoersmaal=0 · bygget=nei
+- **CC · obs.cc** — vakuumenergiens stoerrelse
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=alle kanaler; observabel=vakuumenergiens… · spoersmaal=0 · bygget=nei
+- **HF · homo.fluxus** — R — den indre refleksjonskoeffisienten
+  perspektiv=paradigm · motor=efc.fluxus_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **HO · homo.homeostase_buffer** — avvik fra setpunkt (ΔT, ΔpH, Δglukose)
+  perspektiv=academia · motor=efc.homeostase_buffer_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **FE · homo.feber_regime** — kroppstemperatur mot setpunkt
+  perspektiv=academia · motor=efc.feber_regime_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **AP · homo.aksjonspotensial** — membranpotensialet V(t) mot terskelen
+  perspektiv=academia · motor=efc.aksjonspotensial_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **HJ · homo.hjerte_syklus** — slagvolum, frekvens, minuttvolum
+  perspektiv=academia · motor=efc.hjerte_syklus_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **GN · homo.genregulering** — uttrykksnivå per gen (mRNA/protein)
+  perspektiv=academia · motor=efc.genregulering_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **CY · homo.cellesyklus** — fase per celle (G1/S/G2/M)
+  perspektiv=academia · motor=efc.cellesyklus_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **ME · homo.metabolisme** — ATP/ADP-forhold, O₂-forbruk, substrat-fluks
+  perspektiv=academia · motor=efc.metabolisme_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **SF · efc.solar_flare_engine** — oppladningstid, utlost energi, GOES-klasse
+  perspektiv=paradigm · motor=solar_flare · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=nei
+- **JS · efc.jordskjelv_engine** — gjentakelsestid, seismisk moment, moment-magnitude
+  perspektiv=paradigm · motor=jordskjelv · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=nei
+- **IM · homo.immunologi** — aktiveringsstatus, antistofftiter, hukommelsespopulasjon
+  perspektiv=academia · motor=efc.immunologi_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **SV · homo.sovn_vaaken** — søvnstadium (våken/NREM/REM), homeostatisk trykk
+  perspektiv=academia · motor=efc.sovn_vaaken_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **OE · homo.okologi** — tilstandsvariabler (næringsstoffer, dekning, artssammensetning)
+  perspektiv=academia · motor=efc.okologi_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **EV · homo.evolusjon** — endringstakt i fenotype/art (morfologiske og molekylære rater)
+  perspektiv=academia · motor=efc.evolusjon_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · bygget=nei
+- **VV · verden.vaer** — temperatur, vind, trykk, skydekke og fuktighet
+  perspektiv=consensus · motor=ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16) · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=nei
+- **KA · kosmos.asteroider** — treffsannsynlighet og Palermo-kumulativ per objekt
+  perspektiv=consensus · motor=efc.orbital_engine (banemekanikk) · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=nei
+- **EE · efc.efc_background_engine** — H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot
+  perspektiv=paradigm · motor=efc_background · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=nei
+- **LS · efc.lag_s** — strukturen som energy-flow-feltet holder oppe
+  perspektiv=paradigm · motor=efc.rotation_engine · buss=ikke oppgitt · S-akse=regime S>0 · sektor S · klarhet C(S) ved S>0: strukturell… · spoersmaal=0 · bygget=nei
+- **LD · efc.lag_d** — energy-flow-feltet J_mu og dets divergens
+  perspektiv=paradigm · motor=efc.efc_background_engine · buss=ikke oppgitt · S-akse=regime S>0 · sektor D · klarhet C(S) ved S>0: dynamisk… · spoersmaal=0 · bygget=nei
+- **C0 · efc.lag_c0** — entropi-feltet S og dets grenser
+  perspektiv=paradigm · motor=efc.klima_engine · buss=ikke oppgitt · S-akse=regime S->1 · sektor C · klarhet C(S) ved S->1: mettet… · spoersmaal=0 · bygget=nei
 
 ## Hva som ikke er bygget
 

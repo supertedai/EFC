@@ -554,11 +554,22 @@ def _indeks(noder: list[dict], rader: list[dict]) -> str:
             buss = stip.get("buss_status") or "ikke oppgitt"
             spm = len(node.get("open_questions") or [])
             perspektiv = _perspektiv_tekst(node.get("perspektiv"))
-            fields = [rad["code"], node["id"],
-                      klipp(rad["one"], 48), perspektiv, klipp(st, 24),
-                      klipp(str(motor), 24), klipp(str(buss), 24), str(spm),
-                      "ja" if rad["ghost"] else "nei"]
-            lines.append("- " + " · ".join(fields))
+            # Linja er en LESEFLAte, ikke en dump. Foerste utgave ga ni kolonner
+            # uten navn — blant dem «1 · nei» — og perspektivet sto BAAE som
+            # avkuttet hale av one-lineren og som egen kolonne. Et tall uten
+            # etikett er en gaate, ikke en opplysning; den som skanner skal
+            # kunne lese raden uten aa sla opp hva kolonnene betyr.
+            substans = rad["one"].split(" · perspektiv:")[0].strip()
+            lines.append(f"- **{rad['code']} · {node['id']}**"
+                         + (f" — {klipp(substans, 90)}" if substans else ""))
+            lines.append("  " + " · ".join([
+                f"perspektiv={perspektiv}",
+                f"motor={motor}",
+                f"buss={klipp(str(buss), 40)}",
+                f"S-akse={klipp(st, 60)}",
+                f"spoersmaal={spm}",
+                f"bygget={'nei' if rad['ghost'] else 'ja'}",
+            ]))
         lines.append("")
     lines.append("## Hva som ikke er bygget")
     lines.append("")

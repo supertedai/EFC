@@ -14,14 +14,37 @@ REF = "origin/main"
 
 
 def kjoer(mode: str) -> dict:
+    """Maskinlesbar modus. Standardutskriften er LESBAR (se testen under)."""
     ut = subprocess.run(
-        [str(PYTHON), str(CLI), mode, "--ref", REF],
+        [str(PYTHON), str(CLI), mode, "--json", "--ref", REF],
         cwd=ROT,
         check=True,
         capture_output=True,
         text=True,
     )
     return json.loads(ut.stdout)
+
+
+def kjoer_raa(mode: str) -> str:
+    return subprocess.run(
+        [str(PYTHON), str(CLI), mode, "--ref", REF],
+        cwd=ROT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout
+
+
+def test_standardutskriften_er_lesbar_ikke_json():
+    """En koe som bare finnes som JSON er ikke en koe for et menneske.
+
+    Maalt 2026-09-18: foerste utgave skrev JSON i alle modi. Riktig, men den
+    som skal velge hva som fylles neste gang maatte hente et ekstra verktoy.
+    """
+    for mode in ("--sakse", "--ghost"):
+        ut = kjoer_raa(mode)
+        assert not ut.lstrip().startswith("{"), f"{mode} skriver JSON som standard"
+        assert "mangler" in ut or "bygget" in ut, ut[:200]
 
 
 def bank() -> dict:

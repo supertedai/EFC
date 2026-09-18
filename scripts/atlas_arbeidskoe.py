@@ -115,13 +115,38 @@ def main() -> None:
     modus.add_argument("--sakse", action="store_true")
     modus.add_argument("--ghost", action="store_true")
     parser.add_argument("--ref", default="origin/main")
+    parser.add_argument("--json", action="store_true",
+                        help="maskinlesbar utdata (standard: lesbar liste)")
     args = parser.parse_args()
     data = _bank(args.ref)
     if args.sakse:
         svar = arbeidskoe_sakse(data)
     else:
         svar = arbeidskoe_ghost(data, _plassering(args.ref))
-    print(json.dumps(svar, ensure_ascii=False, indent=2, sort_keys=True))
+    if args.json:
+        print(json.dumps(svar, ensure_ascii=False, indent=2, sort_keys=True))
+        return
+    # Standard er LESBAR utdata. Foerste utgave skrev bare JSON: riktig, men
+    # en koe ingen kan lese uten et ekstra verktoy er ikke en koe for et
+    # menneske som skal velge hva som fylles neste gang.
+    if args.sakse:
+        m = svar["maalte"]
+        noder = svar["noder"]
+        print(f"S-akse-arbeidskoe · {len(noder)} noder mangler minst ett felt "
+              f"(noder uten hull staar ikke i koeen)")
+        print("  maalt i alt: " + " · ".join(
+            f"{k} {v}" for k, v in sorted(m.items())))
+        print()
+        for rad in noder[:40]:
+            hull = ", ".join(f"{f['felt']}:{f['status']}" for f in rad["mangler"])
+            print(f"  {rad['id']:<30} maalt={rad['maalte']}  mangler {hull}")
+        if len(noder) > 40:
+            print(f"  … {len(noder) - 40} flere (bruk --json for hele lista)")
+    else:
+        print(f"Ghost-noder · {len(svar['noder'])} designet, ikke bygget")
+        print()
+        for rad in svar["noder"]:
+            print(f"  {rad['id']:<28} [{rad['gruppe']}] {rad.get('intensjon', '')}")
 
 
 if __name__ == "__main__":

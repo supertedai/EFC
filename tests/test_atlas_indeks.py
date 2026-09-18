@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 
 ROT = pathlib.Path(__file__).resolve().parents[1]
 BANK = ROT / "schema" / "regime_nodes.jsonld"
@@ -22,16 +23,34 @@ def _index_lines():
 
 
 def _node_rows():
-    return [line for line in _index_lines() if line.startswith("- ") and " · " in line]
+    """Nodenes id-er, lest fra den fete hodeparen i hver rad.
+
+    Raden er TO linjer (hode + navngitte detaljer) med vilje: foerste utgave
+    hadde ni unavngitte kolonner, blant dem «1 · nei», og var uleselig. Testen
+    leser derfor id-en der den staar — ikke en kolonneindeks som skjuler at
+    formatet har endret seg.
+    """
+    return [m.group(1) for line in _index_lines()
+            if (m := re.match(r"^- \*\*[A-Za-z0-9]{1,2} · ([\w.]+)\*\*", line))]
 
 
 def test_hver_publiserte_node_staar_noyaktig_en_gang():
-    rows = _node_rows()
-    ids = [row.split(" · ", 2)[1] for row in rows]
+    ids = _node_rows()
     expected = [node["id"] for node in _public_nodes()]
-    assert len(rows) == len(expected)
+    assert len(ids) == len(expected)
     assert sorted(ids) == sorted(expected)
     assert len(ids) == len(set(ids))
+
+
+def test_hver_node_har_navngitte_detaljer():
+    """Et tall uten etikett er en gaate. Kolonnene skal si hva de er."""
+    detaljer = [line for line in _index_lines() if line.startswith("  ")]
+    assert detaljer, "ingen detaljlinjer"
+    for linje in detaljer:
+        assert "perspektiv=" in linje and "bygget=" in linje, linje
+    # ingen bar «1 · nei»-kolonne igjen
+    assert not any(re.search(r"·\s*\d+\s*·\s*(ja|nei)\s*$", l)
+                   for l in _index_lines())
 
 
 def test_overskriftens_tall_er_utledet_fra_banken():

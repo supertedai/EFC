@@ -83,10 +83,16 @@ def les(repo: str | Path, ord_eller_node: str, ref: str = STANDARD_REF) -> str:
         regime = node.get("regime") or {}
         ep = node.get("epistemikk") or {}
         s_status = (node.get("maale_paradigme") or {}).get("s_regime", "ikke deklarert")
-        lines += [f"NODE: {node['id']}", f"  kode: {node.get('phase', 'ikke deklarert')}",
-                  f"  gruppe: {regime.get('name', 'ikke deklarert')}",
+        lines += [f"NODE: {node['id']}",
+                  # Feltet heter `phase`, ikke «kode». Foerste utgave skrev
+                  # «kode: regime_engine» — et navn som loey om innholdet, for
+                  # nodens kode er den korte identifikatoren (RO, HB, …) som
+                  # generatoren eier. Et felt som presenterer en fase som en
+                  # kode er samme klasse som et svar som svarer paa noe annet.
+                  f"  fase: {node.get('phase', 'ikke deklarert')}",
+                  f"  regime: {regime.get('name', 'ikke deklarert')}",
                   f"  synlighet: {node.get('synlighet', 'ikke deklarert')}",
-                  f"  one-liner: {regime.get('validity', regime.get('name', 'ikke deklarert'))}",
+                  f"  gyldighet: {regime.get('validity', regime.get('name', 'ikke deklarert'))}",
                   f"  epistemikk: sannhet={ep.get('sannhetsstatus', 'ikke deklarert')}; evidens={ep.get('evidensstatus', 'ikke deklarert')}",
                   f"  S-akse-status: {s_status}"]
         motor = node_motor(node["id"], motorer)
