@@ -1070,9 +1070,10 @@
     "status": "valgt_ramme",
     "alternativer": [],
     "s_regime": "S->0",
-    "ebe_function": "claim validity = f(S, L, proxy-chain)"
-   },
-   "nivaa": {
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "klarhetsfunksjon": "C(S) ved S->0: udifferensiert klarhet — kompresjonsgrensen (singularitet)"
+    },
+    "nivaa": {
     "indeks": 0,
     "forelder": null,
     "tidsskala": "—",
@@ -1161,9 +1162,10 @@
      "koordinatfrie formuleringer"
     ],
     "s_regime": "S~0",
-    "ebe_function": "claim validity = f(S, L, proxy-chain)"
-   },
-   "nivaa": {
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "klarhetsfunksjon": "C(S) ved S~0: begynnende klarhet — differensieringens terskel"
+    },
+    "nivaa": {
     "indeks": 1,
     "forelder": "efc.l0",
     "tidsskala": "—",
@@ -1253,9 +1255,10 @@
      "koordinatfrie formuleringer"
     ],
     "s_regime": "S>0",
-    "ebe_function": "claim validity = f(S, L, proxy-chain)"
-   },
-   "nivaa": {
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "klarhetsfunksjon": "C(S) ved S>0: differensiert klarhet — refleksjonens vindu, R over R_c~0.37 gir selvmodellering"
+    },
+    "nivaa": {
     "indeks": 2,
     "forelder": "efc.l1",
     "tidsskala": "—",
@@ -1342,9 +1345,10 @@
      "koordinatfrie formuleringer"
     ],
     "s_regime": "S->1",
-    "ebe_function": "claim validity = f(S, L, proxy-chain)"
-   },
-   "nivaa": {
+    "ebe_function": "claim validity = f(S, L, proxy-chain)",
+    "klarhetsfunksjon": "C(S) ved S->1: mettet klarhet — altular-grensen, avtagende energitetthet"
+    },
+    "nivaa": {
     "indeks": 3,
     "forelder": "efc.l2",
     "tidsskala": "—",
@@ -8176,9 +8180,10 @@
     ],
     "s_regime": "S>0",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
-    "sektor": "S"
-   },
-   "nivaa": {
+    "sektor": "S",
+    "klarhetsfunksjon": "C(S) ved S>0: strukturell klarhet — formen leser energiflyten i likevekt"
+  },
+  "nivaa": {
     "indeks": 0,
     "forelder": null,
     "tidsskala": "kosmisk tid",
@@ -8268,9 +8273,10 @@
     ],
     "s_regime": "S>0",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
-    "sektor": "D"
-   },
-   "nivaa": {
+    "sektor": "D",
+    "klarhetsfunksjon": "C(S) ved S>0: dynamisk klarhet — tid, rom og hastighet emergerer fra energy flow under S"
+  },
+  "nivaa": {
     "indeks": 1,
     "forelder": "efc.lag_s",
     "tidsskala": "kosmisk tid",
@@ -8310,7 +8316,7 @@
      "Omega og kappa er ikke separable",
      "Eiers korreksjon 2026-09-18: S=Struktur, D=Dynamikk, R=Regime, C(S)=klarhetsfunksjon, EFC-C=BEVISSTHET — ikke kapasitet"
     ],
-    "source": "EFC-C0-papiret; Chennu et al. 2016 (propofol-EEG)"
+    "source": "EFC-C0-papiret; Chennu et al. 2016 (propofol-EEG); EFC-Hypothesis (DOI 10.6084/m9.figshare.28098386); CEM (DOI 10.6084/m9.figshare.30275947)"
    },
    "observer": {
     "bandwidth": "EEG er vinduet — det ser korrelater, ikke feltet selv",
@@ -8363,9 +8369,10 @@
     ],
     "s_regime": "S->1",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
-    "sektor": "C"
-   },
-   "nivaa": {
+    "sektor": "C",
+    "klarhetsfunksjon": "C(S) ved S->1: mettet klarhet lokalt — propofol-EEG (Omega, kappa) måler klarhetsvariasjon i liten skala"
+  },
+  "nivaa": {
     "indeks": 2,
     "forelder": "efc.lag_d",
     "tidsskala": "kosmisk tid",

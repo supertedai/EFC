@@ -86,6 +86,7 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/maale_paradigme/s_regime",
     "/maale_paradigme/sektor",
     "/maale_paradigme/ebe_function",
+    "/maale_paradigme/klarhetsfunksjon",
     "/rcmp",
     "/rcmp/instrument",
     "/rcmp/observabel",

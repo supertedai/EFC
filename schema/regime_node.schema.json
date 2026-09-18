@@ -509,6 +509,10 @@
             "ebe_function": {
               "type": "string",
               "description": "EBE-funksjonen som binder claim validity til S, L og proxy-kjede."
+            },
+            "klarhetsfunksjon": {
+              "type": "string",
+              "description": "C(S)-deklarasjonen for nodens klarhet langs S-aksen."
             }
           },
           "description": "Koordinat-paradigmene (krav d): tid, rom, masse og hastighet er valgte koordinater — noden deklarerer hvilke den antar."
