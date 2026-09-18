@@ -6,7 +6,7 @@ _Question status: **7 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 79 nodes, 19 engines, NATS bridges.
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 103 nodes, 19 engines, NATS bridges.
 
 ## Decisions locked
 
@@ -23,13 +23,13 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Roots — time and self** — Chapter 1 of 9 — a few structures at a time. _(adds efc-l0)_
 2. **The grid — your published works** — Chapter 2 of 9 — a few structures at a time. _(adds efc-grid-higgs, efc-gr-qft-bro, efc-double-slit, efc-grid-mikrofysikk, efc-grid-mikro-engine, efc-sort-hull)_
-3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine)_
+3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert)_
 4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
-6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine)_
+6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 79 nodes, 72 relations.
+9. **The whole atlas** — Everything at once — 103 nodes, 72 relations.
 
 ## Structures
 
@@ -315,6 +315,132 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det
 
+#### KG · kosmos.gammaglimt
+
+**In one line.** Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom
+
+**What it does.** Fermi, Swift og bakkebaserte teleskoper — proxy chain: fotoner inn -> detektorterskel -> varsel ut
+
+**How it's built.** Buffer role: GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — GCN varsler naar noe DETEKTERES; andelen maaler instrumentets dekning, ikke himmelens aktivitet
+
+#### KI · kosmos.interstellart
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Det interstellare er kjent fra et faatall objekter; andelen hviler paa en haandfull maalinger
+
+#### MA · kosmos.maane
+
+**In one line.** Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden
+
+**What it does.** DE441-ephemeriden; ingen instrument leste av — proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon
+
+**How it's built.** Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / proxy / institusjonell
+3. **Social mechanism** — Samme ephemeride som planetsystemet — to domener, ett regnestykke
+
+#### NO · kosmos.noeytrinoer
+
+**In one line.** Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom
+
+**What it does.** Fermi, Swift og bakkebaserte teleskoper — proxy chain: fotoner inn -> detektorterskel -> varsel ut
+
+**How it's built.** Buffer role: GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Noytrinodeteksjon er en haandfull anlegg verden over — andelen maaler anleggene, ikke fluksene
+
+#### PL · kosmos.planetsystem
+
+**In one line.** Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden
+
+**What it does.** DE441-ephemeriden; ingen instrument leste av — proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon
+
+**How it's built.** Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / proxy / institusjonell
+3. **Social mechanism** — JPL DE441 er en TILPASNING til historiske observasjoner; andelen maaler ephemeriden, ikke himmelen
+
+#### KR · kosmos.roentgentransienter
+
+**In one line.** Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom
+
+**What it does.** Fermi, Swift og bakkebaserte teleskoper — proxy chain: fotoner inn -> detektorterskel -> varsel ut
+
+**How it's built.** Buffer role: GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Roentgentransienter krever instrumenter som ser i det baandet; uten dem finnes de ikke i dataene
+
+#### RF · kosmos.romfart
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Oppskytingsdata er institusjonelle og nasjonale; det som ikke annonseres, telles ikke
+
+#### ST · kosmos.stjerner
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Stjernedata kommer fra surveyer med hver sin seleksjon; andelen baerer surveyens blikk
+
+#### UK · kosmos.uklassifisert
+
+**In one line.** Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom
+
+**What it does.** Fermi, Swift og bakkebaserte teleskoper — proxy chain: fotoner inn -> detektorterskel -> varsel ut
+
+**How it's built.** Buffer role: GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Det uklassifiserte er definert ved at det IKKE passer — andelen maaler skjemaets grense, ikke fenomenet
+
 ### Bridges — gap domains, round two
 
 #### HA · verden.hav
@@ -432,6 +558,216 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
 3. **Social mechanism** — vaar egen ramme — baeres av oss, ikke av feltet
+
+#### AR · verden.arbeid
+
+**In one line.** Perspective: consensus. arbeidsmarkeds- og sosialstatistikk for Europa
+
+**What it does.** nasjonale statistikkbyråer, harmonisert — proxy chain: nasjonal statistikk -> harmonisering -> indikator
+
+**How it's built.** Buffer role: Eurostat er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Eurostat og ILO maaler formell arbeidskraft; den uformelle okonomien er strukturelt fravaerende
+
+#### DE · verden.demografi
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Folkeregistre er ujevnt utbygd; andelen maaler registreringen like mye som befolkningen
+
+#### FI · verden.finans
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Finansielle stroemmer beveger seg raskere enn statistikken; andelen er et etterslep
+
+#### VG · verden.geopolitikk
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Geopolitikk er et spraak om maktforhold; kodingsskjemaet velger hva som faar en etikett
+
+#### VH · verden.handel
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Handel telles over grenser med tollskjema — tjenester og digitalt bytte faller utenfor
+
+#### HE · verden.helse
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — WHO og nasjonale helseregistre setter hva som telles som helse; det som ikke rapporteres, finnes ikke i andelen
+
+#### VI · verden.infrastruktur
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Infrastruktur telles naar den bygges og naar den feiler; den stille virkerdag er usynlig
+
+#### KO · verden.kommunikasjon
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Mediedekning er skjevt fordelt — rike land melder mer, saa andelen maaler mediet, ikke hendelsen
+
+#### LO · verden.lov
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Lovgivning registreres naar den vedtas, ikke naar den virker — og ikke i land uten frie registre
+
+#### MI · verden.militaer
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Militære forhold rapporteres av statene selv; det hemmelige er usynlig i korpuset, ikke i verden
+
+#### PO · verden.politikk
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — GDELT koder verdens nyhetsstroem — andelen maaler hva som BLE skrevet om, ikke hva som skjedde
+
+#### SI · verden.sikkerhet
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Sikkerhetshendelser rapporteres naar de er spektakulaere; den stille hverdagen telles ikke
+
+#### TE · verden.teknologi
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Teknologinyheter er framtidsorientert: andelen maaler forventning, ikke utbredelse
+
+#### VT · verden.transport
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Transport maales der den registreres — uformell og lokal transport er usynlig
+
+#### UT · verden.utdanning
+
+**In one line.** Perspective: consensus. globale nyhetsstrømmer kodet til tema, aktør og sted
+
+**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+
+**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — Utdanningsstatistikk maaler skolegang, ikke laering — og land som ikke rapporterer, blir usynlige i samme andel
 
 ### Epistemics
 

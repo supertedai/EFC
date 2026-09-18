@@ -7998,6 +7998,2430 @@
    "buss_domene": "kosmos.kosmologi",
    "synlighet": "offentlig",
    "ville_falsifisere": "FALSIFISERT ALLEREDE, forhaandsregistrert: den multiplikative modellen C = Omega x kappa feilet i propofol-EEG (Chennu et al. 2016). Det som gjenstaar aa felle er om S som FELT gir noe Shannon-entropi ikke gir — en differensiell prediksjon."
+  },
+  {
+   "id": "kosmos.gammaglimt",
+   "regime": {
+    "name": "gammaglimt — diskusjonslaget fra GCN — Gamma-ray Coordinates Network",
+    "validity": "gjelder den delen av GCN — Gamma-ray Coordinates Network som dekker gammaglimt. Maalt volum: 146 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "varsler om transienter i sanntid, fra bakke og rom",
+    "measurer": "observatorier verden over som melder inn til GCN",
+    "instrument": "Fermi, Swift og bakkebaserte teleskoper",
+    "proxy_chain": [
+     "fotoner inn",
+     "detektorterskel",
+     "varsel ut"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om gammaglimt -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for gammaglimt — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GCN — Gamma-ray Coordinates Network er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet diskusjon.gcn representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.gammaglimt.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare gammaglimt, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "deteksjon -> varsel -> oppfølging -> ny deteksjon",
+    "properties": [
+     "146 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert varsel er hele nettverket i miniatyr — ett instrument ser, alle leser",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til gammaglimt lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "GCN varsler naar noe DETEKTERES; andelen maaler instrumentets dekning, ikke himmelens aktivitet",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.gammaglimt",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GCN — Gamma-ray Coordinates Network",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.interstellart",
+   "regime": {
+    "name": "interstellart — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker interstellart. Maalt volum: 54 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om interstellart -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for interstellart — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.mast-caom representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.interstellart.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare interstellart, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "54 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til interstellart lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Det interstellare er kjent fra et faatall objekter; andelen hviler paa en haandfull maalinger",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.interstellart",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.maane",
+   "regime": {
+    "name": "maane — prediksjonslaget fra JPL Horizons",
+    "validity": "gjelder den delen av JPL Horizons som dekker maane. Maalt volum: 311 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "baneposisjoner regnet fra DE441-ephemeriden",
+    "measurer": "JPL — regnet, ikke målt",
+    "instrument": "DE441-ephemeriden; ingen instrument leste av",
+    "proxy_chain": [
+     "observasjoner (historiske)",
+     "DE441-tilpasning",
+     "posisjon"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om maane -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for maane — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "JPL Horizons er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet prediksjon.jpl-horizons representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.maane.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare maane, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "bane -> posisjon -> ny posisjon; loopen er deterministisk, ikke målt",
+    "properties": [
+     "311 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert himmellegeme er hele solsystemet i miniatyr — samme lover, ulik masse",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til maane lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Samme ephemeride som planetsystemet — to domener, ett regnestykke",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.maane",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "JPL Horizons",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.noeytrinoer",
+   "regime": {
+    "name": "noeytrinoer — diskusjonslaget fra GCN — Gamma-ray Coordinates Network",
+    "validity": "gjelder den delen av GCN — Gamma-ray Coordinates Network som dekker noeytrinoer. Maalt volum: 13 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "varsler om transienter i sanntid, fra bakke og rom",
+    "measurer": "observatorier verden over som melder inn til GCN",
+    "instrument": "Fermi, Swift og bakkebaserte teleskoper",
+    "proxy_chain": [
+     "fotoner inn",
+     "detektorterskel",
+     "varsel ut"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om noeytrinoer -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for noeytrinoer — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GCN — Gamma-ray Coordinates Network er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet diskusjon.gcn representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.noeytrinoer.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare noeytrinoer, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "deteksjon -> varsel -> oppfølging -> ny deteksjon",
+    "properties": [
+     "13 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert varsel er hele nettverket i miniatyr — ett instrument ser, alle leser",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til noeytrinoer lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Noytrinodeteksjon er en haandfull anlegg verden over — andelen maaler anleggene, ikke fluksene",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.noeytrinoer",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GCN — Gamma-ray Coordinates Network",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.planetsystem",
+   "regime": {
+    "name": "planetsystem — prediksjonslaget fra JPL Horizons",
+    "validity": "gjelder den delen av JPL Horizons som dekker planetsystem. Maalt volum: 2177 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "baneposisjoner regnet fra DE441-ephemeriden",
+    "measurer": "JPL — regnet, ikke målt",
+    "instrument": "DE441-ephemeriden; ingen instrument leste av",
+    "proxy_chain": [
+     "observasjoner (historiske)",
+     "DE441-tilpasning",
+     "posisjon"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om planetsystem -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for planetsystem — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "JPL Horizons er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet prediksjon.jpl-horizons representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.planetsystem.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare planetsystem, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "bane -> posisjon -> ny posisjon; loopen er deterministisk, ikke målt",
+    "properties": [
+     "2177 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert himmellegeme er hele solsystemet i miniatyr — samme lover, ulik masse",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til planetsystem lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "proxy",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "JPL DE441 er en TILPASNING til historiske observasjoner; andelen maaler ephemeriden, ikke himmelen",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.planetsystem",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "JPL Horizons",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.roentgentransienter",
+   "regime": {
+    "name": "roentgentransienter — tilstandslaget fra GCN — Gamma-ray Coordinates Network",
+    "validity": "gjelder den delen av GCN — Gamma-ray Coordinates Network som dekker roentgentransienter. Maalt volum: 59 meldinger over 2 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "varsler om transienter i sanntid, fra bakke og rom",
+    "measurer": "observatorier verden over som melder inn til GCN",
+    "instrument": "Fermi, Swift og bakkebaserte teleskoper",
+    "proxy_chain": [
+     "fotoner inn",
+     "detektorterskel",
+     "varsel ut"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om roentgentransienter -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for roentgentransienter — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GCN — Gamma-ray Coordinates Network er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.heasarc representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.roentgentransienter.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare roentgentransienter, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "deteksjon -> varsel -> oppfølging -> ny deteksjon",
+    "properties": [
+     "59 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert varsel er hele nettverket i miniatyr — ett instrument ser, alle leser",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til roentgentransienter lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Roentgentransienter krever instrumenter som ser i det baandet; uten dem finnes de ikke i dataene",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.roentgentransienter",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GCN — Gamma-ray Coordinates Network",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.romfart",
+   "regime": {
+    "name": "romfart — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker romfart. Maalt volum: 194 meldinger over 3 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om romfart -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for romfart — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet oppgjoer.launch-library representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.romfart.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare romfart, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "194 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til romfart lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Oppskytingsdata er institusjonelle og nasjonale; det som ikke annonseres, telles ikke",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.romfart",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.stjerner",
+   "regime": {
+    "name": "stjerner — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker stjerner. Maalt volum: 26 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om stjerner -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for stjerner — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.mast-caom representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.stjerner.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare stjerner, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "26 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til stjerner lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Stjernedata kommer fra surveyer med hver sin seleksjon; andelen baerer surveyens blikk",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.stjerner",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "kosmos.uklassifisert",
+   "regime": {
+    "name": "uklassifisert — tilstandslaget fra GCN — Gamma-ray Coordinates Network",
+    "validity": "gjelder den delen av GCN — Gamma-ray Coordinates Network som dekker uklassifisert. Maalt volum: 30 meldinger over 2 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "varsler om transienter i sanntid, fra bakke og rom",
+    "measurer": "observatorier verden over som melder inn til GCN",
+    "instrument": "Fermi, Swift og bakkebaserte teleskoper",
+    "proxy_chain": [
+     "fotoner inn",
+     "detektorterskel",
+     "varsel ut"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om uklassifisert -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for uklassifisert — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GCN — Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GCN — Gamma-ray Coordinates Network er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.mast-caom representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne kosmos.uklassifisert.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare uklassifisert, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "deteksjon -> varsel -> oppfølging -> ny deteksjon",
+    "properties": [
+     "30 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert varsel er hele nettverket i miniatyr — ett instrument ser, alle leser",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til uklassifisert lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Det uklassifiserte er definert ved at det IKKE passer — andelen maaler skjemaets grense, ikke fenomenet",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "kosmos.uklassifisert",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GCN — Gamma-ray Coordinates Network",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.arbeid",
+   "regime": {
+    "name": "arbeid — tilstandslaget fra Eurostat",
+    "validity": "gjelder den delen av Eurostat som dekker arbeid. Maalt volum: 2570 meldinger over 5 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "arbeidsmarkeds- og sosialstatistikk for Europa",
+    "measurer": "Eurostat — fra medlemslandenes statistikkbyråer",
+    "instrument": "nasjonale statistikkbyråer, harmonisert",
+    "proxy_chain": [
+     "nasjonal statistikk",
+     "harmonisering",
+     "indikator"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om arbeid -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for arbeid — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "Eurostat er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "Eurostat er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.arbeid.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare arbeid, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "land måler -> Eurostat harmoniserer -> indikator -> neste kvartal",
+    "properties": [
+     "2570 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert land er hele arbeidsmarkedet i miniatyr — samme indikatorer, ulik struktur",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til arbeid lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Eurostat og ILO maaler formell arbeidskraft; den uformelle okonomien er strukturelt fravaerende",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.arbeid",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "Eurostat",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.demografi",
+   "regime": {
+    "name": "demografi — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker demografi. Maalt volum: 1656 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om demografi -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for demografi — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.demografi.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare demografi, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "1656 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til demografi lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Folkeregistre er ujevnt utbygd; andelen maaler registreringen like mye som befolkningen",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.demografi",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.finans",
+   "regime": {
+    "name": "finans — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker finans. Maalt volum: 206 meldinger over 2 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om finans -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for finans — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.finans.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare finans, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "206 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til finans lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Finansielle stroemmer beveger seg raskere enn statistikken; andelen er et etterslep",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.finans",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.geopolitikk",
+   "regime": {
+    "name": "geopolitikk — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker geopolitikk. Maalt volum: 2582 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om geopolitikk -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for geopolitikk — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.geopolitikk.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare geopolitikk, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2582 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til geopolitikk lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Geopolitikk er et spraak om maktforhold; kodingsskjemaet velger hva som faar en etikett",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.geopolitikk",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.handel",
+   "regime": {
+    "name": "handel — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker handel. Maalt volum: 120 meldinger over 2 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om handel -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for handel — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.handel.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare handel, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "120 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til handel lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Handel telles over grenser med tollskjema — tjenester og digitalt bytte faller utenfor",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.handel",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.helse",
+   "regime": {
+    "name": "helse — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker helse. Maalt volum: 2606 meldinger over 5 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om helse -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for helse — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.helse.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare helse, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2606 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til helse lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "WHO og nasjonale helseregistre setter hva som telles som helse; det som ikke rapporteres, finnes ikke i andelen",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.helse",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.infrastruktur",
+   "regime": {
+    "name": "infrastruktur — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker infrastruktur. Maalt volum: 1400 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om infrastruktur -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for infrastruktur — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.infrastruktur.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare infrastruktur, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "1400 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til infrastruktur lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Infrastruktur telles naar den bygges og naar den feiler; den stille virkerdag er usynlig",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.infrastruktur",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.kommunikasjon",
+   "regime": {
+    "name": "kommunikasjon — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker kommunikasjon. Maalt volum: 2591 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om kommunikasjon -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for kommunikasjon — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.kommunikasjon.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare kommunikasjon, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2591 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til kommunikasjon lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Mediedekning er skjevt fordelt — rike land melder mer, saa andelen maaler mediet, ikke hendelsen",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.kommunikasjon",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.lov",
+   "regime": {
+    "name": "lov — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker lov. Maalt volum: 2578 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om lov -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for lov — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.lov.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare lov, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2578 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til lov lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Lovgivning registreres naar den vedtas, ikke naar den virker — og ikke i land uten frie registre",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.lov",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.militaer",
+   "regime": {
+    "name": "militaer — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker militaer. Maalt volum: 2600 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om militaer -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for militaer — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.militaer.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare militaer, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2600 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til militaer lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Militære forhold rapporteres av statene selv; det hemmelige er usynlig i korpuset, ikke i verden",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.militaer",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.politikk",
+   "regime": {
+    "name": "politikk — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker politikk. Maalt volum: 2585 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om politikk -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for politikk — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.politikk.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare politikk, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2585 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til politikk lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "GDELT koder verdens nyhetsstroem — andelen maaler hva som BLE skrevet om, ikke hva som skjedde",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.politikk",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.sikkerhet",
+   "regime": {
+    "name": "sikkerhet — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker sikkerhet. Maalt volum: 2588 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om sikkerhet -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for sikkerhet — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.sikkerhet.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare sikkerhet, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2588 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til sikkerhet lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Sikkerhetshendelser rapporteres naar de er spektakulaere; den stille hverdagen telles ikke",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.sikkerhet",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.teknologi",
+   "regime": {
+    "name": "teknologi — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker teknologi. Maalt volum: 118 meldinger over 3 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om teknologi -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for teknologi — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.teknologi.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare teknologi, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "118 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til teknologi lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Teknologinyheter er framtidsorientert: andelen maaler forventning, ikke utbredelse",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.teknologi",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.transport",
+   "regime": {
+    "name": "transport — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker transport. Maalt volum: 111 meldinger over 2 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om transport -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for transport — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.transport.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare transport, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "111 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til transport lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Transport maales der den registreres — uformell og lokal transport er usynlig",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.transport",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
+  },
+  {
+   "id": "verden.utdanning",
+   "regime": {
+    "name": "utdanning — tilstandslaget fra GDELT GKG",
+    "validity": "gjelder den delen av GDELT GKG som dekker utdanning. Maalt volum: 2602 meldinger over 4 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+   },
+   "phase": "instrument",
+   "measure": {
+    "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
+    "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
+    "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+    "proxy_chain": [
+     "rå nyhetstekst",
+     "GKG-koder (tema, aktør, sted)",
+     "andel per domene"
+    ],
+    "placement": "observasjon",
+    "compression": "alle meldinger om utdanning -> én andel"
+   },
+   "episenter": "der korpuset blir en andel for utdanning — tallet finnes ikke i kilden, det oppstaar i lesningen",
+   "buffer": {
+    "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+    "note": "kildens, ikke motorens"
+   },
+   "ontology": {
+    "assumes": [
+     "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+     "andelen er sammenlignbar over tid",
+     "emnet observasjon.gdelt-gkg representerer domenet"
+    ],
+    "source": "NATS-stroemmen, emne verden.utdanning.* — maalt i schema/atlas_dekning.json"
+   },
+   "observer": {
+    "bandwidth": "andelen — bare utdanning, ikke hele korpuset",
+    "awareness": "instrument_window",
+    "er_del_av_systemet": true
+   },
+   "emergence": {
+    "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+    "properties": [
+     "2602 meldinger"
+    ]
+   },
+   "fractal": {
+    "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+    "note": "ett domene, samme korpus"
+   },
+   "coupling": {
+    "local": "hver melding hoerer til utdanning lokalt",
+    "global": "alle 39 domener leser det SAMME korpuset",
+    "empathy_note": "at en andel er stoerst betyr ikke at den er viktigst — den betyr at kodingen traff den oftest"
+   },
+   "perspektiv": "konsensus",
+   "stipulasjoner": {
+    "stipulert_av_oss": false,
+    "terskler": [
+     "ingen egne terskler — andelen arves fra kodingen"
+    ],
+    "motor": ""
+   },
+   "epistemikk": {
+    "sannhetsstatus": "stottet",
+    "evidensstatus": "direkte",
+    "konsensusstatus": "institusjonell",
+    "sosial_mekanisme": "Utdanningsstatistikk maaler skolegang, ikke laering — og land som ikke rapporterer, blir usynlige i samme andel",
+    "konsensus_er_ikke_sannhet": true
+   },
+   "maale_paradigme": {
+    "koordinater": [
+     "rom",
+     "tid"
+    ],
+    "enheter": "andel av korpuset (0-1)",
+    "status": "proxy",
+    "alternativer": [
+     "kildens egne tall, uten vaar andelslesning"
+    ]
+   },
+   "nivaa": {
+    "indeks": 2,
+    "forelder": null,
+    "tidsskala": "løpende",
+    "lengdeskala": "globalt"
+   },
+   "buss_domene": "verden.utdanning",
+   "synlighet": "offentlig",
+   "lagdeling": {
+    "kilde": {
+     "status": "konsensus",
+     "kilde": "GDELT GKG",
+     "sannhet": "stottet",
+     "konsensus": "institusjonell"
+    },
+    "analogi": {
+     "status": "paradigme",
+     "kilde": "vaar andelslesning",
+     "sannhet": "hypotese",
+     "konsensus": "minoritet"
+    }
+   }
   }
  ],
  "relations": [

@@ -770,6 +770,43 @@
                   ]
                 }
               }
+            },
+            "kilde": {
+              "type": "object",
+              "required": [
+                "status",
+                "kilde",
+                "sannhet",
+                "konsensus"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "enum": [
+                    "akademia",
+                    "konsensus",
+                    "paradigme",
+                    "agnostikk"
+                  ]
+                },
+                "kilde": {
+                  "type": "string"
+                },
+                "sannhet": {
+                  "enum": [
+                    "stottet",
+                    "hypotese",
+                    "modellrelativ"
+                  ]
+                },
+                "konsensus": {
+                  "enum": [
+                    "institusjonell",
+                    "minoritet",
+                    "ingen"
+                  ]
+                }
+              }
             }
           }
         }

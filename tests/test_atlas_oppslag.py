@@ -298,7 +298,13 @@ class TestKjenteHull:
         assert isinstance(domener, dict), "forutsetning: domener er en dict"
         ikke_dekket = [k for k, v in domener.items()
                        if isinstance(v, dict) and v.get("status") == "ikke_dekket"]
-        assert ikke_dekket, "forutsetning: dekningsfilen har kjente hull"
+        # 2026-09-18: alle 39 domener har naa en node. At lista er tom er
+        # maalet naadd — men da finnes det heller ingen kjent-hull-oppslag
+        # aa teste. Vi hopper aerlig over i stedet for aa feile paa at
+        # verden ble bedre.
+        if not ikke_dekket:
+            import pytest as _pytest
+            _pytest.skip("ingen kjente hull — alle 39 domener er dekket")
         svar = atlas_lesing.finn(ekte_repo, ikke_dekket[0], ref="HEAD")
         assert svar["kjent_hull"] is not None, (
             f"`{ikke_dekket[0]}` er maalt som ikke_dekket — oppslaget skal "
