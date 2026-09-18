@@ -68,6 +68,9 @@ jobs:
       - name: Check DOI sync consistency (C8)
         id: sync_dois_check
         run: python3 scripts/maintenance/efc_sync_dois.py --check
+      - name: Check package provenance (C13 — a registered deviation carries its archived title and date)
+        id: provenance_check
+        run: python3 scripts/maintenance/efc_provenance_check.py
       - name: "Check the efc: namespace (C9 — one binding, every term declared, docs/ontology fresh)"
         run: python3 scripts/maintenance/efc_ontology.py
       - name: Check the concept registry (C11 — SKOS source, generated views fresh, dead copies absent, all concepts declared)
@@ -102,6 +105,7 @@ jobs:
           echo "::group::Failed step attribution"
           echo "gen_ai_friendly:   ${{ steps.gen_ai_friendly.outcome }}"
           echo "sync_dois_check:   ${{ steps.sync_dois_check.outcome }}"
+          echo "provenance_check:  ${{ steps.provenance_check.outcome }}"
           echo "verify:            ${{ steps.verify.outcome }}"
           echo "drift:             ${{ steps.drift.outcome }}"
           echo "uncommitted_check: ${{ steps.uncommitted_check.outcome }}"

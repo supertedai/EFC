@@ -19,6 +19,7 @@ on:
       - "tests/test_efc_schema_check.py"
       - "tests/test_workflows_parse.py"
       - "tests/test_regime_node_schema.py"
+      - "tests/test_efc_provenance.py"
       - ".github/workflows/*.yml"
       - "requirements.txt"
       - ".github/workflows/efc-schema.yml"
@@ -35,6 +36,7 @@ on:
       - "tests/test_efc_schema_check.py"
       - "tests/test_workflows_parse.py"
       - "tests/test_regime_node_schema.py"
+      - "tests/test_efc_provenance.py"
       - ".github/workflows/*.yml"
       - "requirements.txt"
       - ".github/workflows/efc-schema.yml"
@@ -60,4 +62,4 @@ jobs:
         run: python3 scripts/maintenance/efc_schema_check.py
 
       - name: Unit tests for the gate, and every workflow file parses
-        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_repo_konfigurasjon.py -q
+        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py -q
