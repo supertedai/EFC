@@ -11,8 +11,16 @@ pandas>=1.4,<3
 # cosmosis>=0.5
 
 # Verification (CI gate C10 + tests; .github/workflows/efc-schema.yml installs the same)
+#
+# numpy/scipy are pinned again here, with the same ranges as the core stack
+# above: the C10 job also runs tests/test_bro_konvensjon.py, which loads the
+# engine modules (they import numpy, and scipy for the ODE engines) and the
+# test modules that own the canonical parameters. Without them the bro gate
+# cannot be measured in CI at all — it stops on the import.
 jsonschema>=4.18,<5
 rfc3339-validator>=0.1,<1
 pytest>=8,<9
 PyYAML>=6,<7
 emcee>=3,<4
+numpy>=1.22,<3
+scipy>=1.8,<2
