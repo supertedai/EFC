@@ -809,7 +809,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — World Bank bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+3. **Social mechanism** — World Bank bærer klimaets institusjonelle målepraksis; strømmen gjør land- og årsindikatorene tilgjengelige, men dette e
 
 #### MX · verden.miljo_mikrobiom
 
@@ -837,7 +837,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — GDELT bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+3. **Social mechanism** — GDELT bærer miljøets nyhetsmålepraksis; strømmen gjør kodet omtale tilgjengelig, men dette er ikke sannheten selv
 
 #### OX · verden.oekonomi_worldbank
 
@@ -851,7 +851,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — World Bank bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+3. **Social mechanism** — World Bank bærer økonomiens institusjonelle målepraksis; strømmen gjør land- og årsindikatorene tilgjengelige, men dette
 
 #### IX · verden.oekonomi_imf
 
@@ -879,7 +879,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — GDELT bærer målepraksisen og strømmen gjør den tilgjengelig; dette er en sosial kanal, ikke sannheten selv
+3. **Social mechanism** — GDELT bærer økonomiens nyhetsmålepraksis; strømmen gjør kodet omtale tilgjengelig, men dette er ikke sannheten selv
 
 ### Epistemics
 

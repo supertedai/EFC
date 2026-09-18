@@ -4215,7 +4215,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "World Bank b\u00e6rer klimaets institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette e"
       ]
     ],
     "cond": []
@@ -4291,7 +4291,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GDELT b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "GDELT b\u00e6rer milj\u00f8ets nyhetsm\u00e5lepraksis; str\u00f8mmen gj\u00f8r kodet omtale tilgjengelig, men dette er ikke sannheten selv"
       ]
     ],
     "cond": []
@@ -4329,7 +4329,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "World Bank b\u00e6rer \u00f8konomiens institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette"
       ]
     ],
     "cond": []
@@ -4405,7 +4405,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GDELT b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "GDELT b\u00e6rer \u00f8konomiens nyhetsm\u00e5lepraksis; str\u00f8mmen gj\u00f8r kodet omtale tilgjengelig, men dette er ikke sannheten selv"
       ]
     ],
     "cond": []

@@ -381,6 +381,6 @@ class TestFalsifiserbarhetsSkillet:
     def test_instrumentene_telles_for_seg(self):
         d = atlas_navigasjon.naviger(REPO, "HEAD")
         e = d["epistemisk"]
-        assert "maaler_eller_observert" in e, "de 47 er ikke navngitt"
+        assert "maaler_eller_observert" in e, "instrumentnodene er ikke navngitt"
         n, t_ = e["maaler_eller_observert"]
-        assert n == t_ == 75, f"forventet 75/75, fikk {n}/{t_}"
+        assert n == t_ == 80, f"forventet 80/80, fikk {n}/{t_}"
