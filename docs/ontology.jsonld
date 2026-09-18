@@ -1432,6 +1432,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:begrensning",
+      "@type": "rdf:Property",
+      "label": "begrensning",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 113,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:bryter_der",
       "@type": "rdf:Property",
       "label": "bryter_der",
@@ -2022,6 +2032,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:fullstendig",
+      "@type": "rdf:Property",
+      "label": "fullstendig",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 113,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:fysiologi",
       "@type": "rdf:Property",
       "label": "fysiologi",
@@ -2078,6 +2098,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 4,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:hentet",
+      "@type": "rdf:Property",
+      "label": "hentet",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 177,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -2178,6 +2208,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 89,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:kilder",
+      "@type": "rdf:Property",
+      "label": "kilder",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 113,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -2812,6 +2852,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:proveniens",
+      "@type": "rdf:Property",
+      "label": "proveniens",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 113,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:proxy_chain",
       "@type": "rdf:Property",
       "label": "proxy_chain",
@@ -2838,6 +2888,16 @@
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 20,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:ref",
+      "@type": "rdf:Property",
+      "label": "ref",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 177,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -3347,9 +3407,9 @@
       "label": "type",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 8,
+      "usedAsProperty": 185,
       "usedAsValue": 0,
-      "inDocuments": 2
+      "inDocuments": 3
     },
     {
       "@id": "efc:unit",

@@ -44,7 +44,28 @@
      "H2O-molekyler (materie) i termodynamiske tilstander beskrevet av T og P",
      "en makroskopisk fase er en veldefinert tilstand"
     ],
-    "source": "standard termodynamikk; IAPWS R6-95/R14-08; EFC WaterPhaseEngine (efc_inference/engine/water.py)"
+    "source": "standard termodynamikk; IAPWS R6-95/R14-08; EFC WaterPhaseEngine (efc_inference/engine/water.py)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#h2o.solid",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R6-95",
+       "hentet": "vedlikeholdt"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R14-08",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "instrumentvindu: termometer og barometer ser bare T og P — noen faa kanaler av hele spekteret (elektromagnetisk, akustisk, kjemisk ...)",
@@ -132,7 +153,28 @@
     "assumes": [
      "H2O-molekyler (materie) i termodynamiske tilstander beskrevet av T og P"
     ],
-    "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine"
+    "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#h2o.liquid",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R6-95",
+       "hentet": "vedlikeholdt"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R14-08",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "instrumentvindu: T og P av hele spekteret — optiske, akustiske og kjemiske kanaler er lukket for dette instrumentet",
@@ -221,7 +263,28 @@
     "assumes": [
      "H2O-molekyler (materie) i termodynamiske tilstander beskrevet av T og P"
     ],
-    "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine"
+    "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#h2o.gas",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R6-95",
+       "hentet": "vedlikeholdt"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R14-08",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "instrumentvindu: T og P — gassen er usynlig i det synlige spekteret, men fullt tilstede i IR (drivhuseffekten er IR-baandbredde)",
@@ -310,7 +373,28 @@
     "assumes": [
      "H2O-molekyler i en tilstand der vaeske/gass-skillet ikke eksisterer"
     ],
-    "source": "standard termodynamikk; IAPWS R6-95 (kritisk punkt 647.096 K / 22.064 MPa)"
+    "source": "standard termodynamikk; IAPWS R6-95 (kritisk punkt 647.096 K / 22.064 MPa)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#h2o.supercritical",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R6-95",
+       "hentet": "vedlikeholdt"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R14-08",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "instrumentvindu: T og P — men det synlige skillet observatoeren pleier aa se (fasegrense) er utenfor vinduets rekkevidde",
@@ -400,7 +484,28 @@
      "tre faser kan sameksistere i ett punkt",
      "dette punktet er reproduserbart og definerer skalaen"
     ],
-    "source": "IAPWS-95; ITS-90 temperaturskala"
+    "source": "IAPWS-95; ITS-90 temperaturskala",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#h2o.triple_point",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R6-95",
+       "hentet": "vedlikeholdt"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R14-08",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "instrumentvindu: termometret ser bare temperaturen — av tre samtidige faser ser det ETT tall",
@@ -490,7 +595,18 @@
      "lys er elektromagnetiske boelger med boelgelengde",
      "hvitt lys er en blanding av boelgelengder"
     ],
-    "source": "klassisk elektromagnetisme; Met Office optical effects (rainbows)"
+    "source": "klassisk elektromagnetisme; Met Office optical effects (rainbows)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#lys.sol",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "menneskets oeye fanger ~400-700 nm av hele EM-spekteret — resten (UV, IR, radio, roentgen) er usynlig for oss",
@@ -579,7 +695,28 @@
      "draapen er h2o.liquid med overflatespenning",
      "sma draaper er tilnaermet sfaeriske"
     ],
-    "source": "standard fluidmekanikk og optikk; EFC regime_nodes (h2o.liquid)"
+    "source": "standard fluidmekanikk og optikk; EFC regime_nodes (h2o.liquid)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#h2o.droplet",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R6-95",
+       "hentet": "vedlikeholdt"
+      },
+      {
+       "type": "artikkel",
+       "ref": "IAPWS R14-08",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "instrumentvindu: hoyhastighetskamera eller oeye — form og farge, ikke molekylaer dynamikk",
@@ -668,7 +805,18 @@
      "lys vekselvirker med materie via elektronpolarisasjon",
      "responsen er boelgelengdeavhengig"
     ],
-    "source": "klassisk optikk (Snell, Descartes 1637; Newton, Opticks)"
+    "source": "klassisk optikk (Snell, Descartes 1637; Newton, Opticks)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#optikk.dispersjon",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "det synlige vinduet er der dispersjonen blir til farge for oss — utenfor 400-700 nm er separasjonen usynlig for oeyet",
@@ -756,7 +904,18 @@
      "draaper + lys + observatorgeometri er tilstrekkelig for buen",
      "regnbuen er IKKE en gjenstand i draapeomraadet — den er et monster"
     ],
-    "source": "Descartes (1637); Newton (Opticks); Met Office optical effects — rainbows"
+    "source": "Descartes (1637); Newton (Opticks); Met Office optical effects — rainbows",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#regnbue",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "oeyet ser fargene fordi vinduet er ~400-700 nm — et UV- eller IR-oeye ville ikke sett buen slik, eller ikke sett den i det hele tatt",
@@ -845,7 +1004,18 @@
      "observatoeren er et punkt med en retning og et fargevindu",
      "opplevelsen av buen konstrueres av synssystemet"
     ],
-    "source": "fysiologisk optikk og fargesyn; Met Office optical effects"
+    "source": "fysiologisk optikk og fargesyn; Met Office optical effects",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#regnbue.observator",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "menneskets oeye: ~400-700 nm av hele det elektromagnetiske spekteret — fra radio til gammastraaling er mange dekader; vi ser noen faa nm av totalen",
@@ -933,7 +1103,18 @@
      "materialparametrene (latente varme, tettheter, kritiske konstanter) er korrekte",
      "Clausius-Clapeyron gjelder i de deklarerte regimene"
     ],
-    "source": "IAPWS R6-95/R14-08; standard termodynamikk; review-verifisert mot IAPWS (2026-09-16)"
+    "source": "IAPWS R6-95/R14-08; standard termodynamikk; review-verifisert mot IAPWS (2026-09-16)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.water_phase_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare T og P — ingen optiske, akustiske eller kjemiske kanaler",
@@ -1022,7 +1203,23 @@
      "S er en veldefinert regimekoordinat",
      "et pre-inflasjonært regime eksisterer"
     ],
-    "source": "EFC README regime-arkitektur (README.md:163-175) for den kosmologiske instansen; Foundations of EFC (DOI 10.6084/m9.figshare.31135597) for den generiske L-definisjonen. S-konvensjonen her er den normaliserte (S i [0,1]); R(k,S)-dokumentet bruker en logaritmisk S-variabel — de blandes ikke."
+    "source": "EFC README regime-arkitektur (README.md:163-175) for den kosmologiske instansen; Foundations of EFC (DOI 10.6084/m9.figshare.31135597) for den generiske L-definisjonen. S-konvensjonen her er den normaliserte (S i [0,1]); R(k,S)-dokumentet bruker en logaritmisk S-variabel — de blandes ikke.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31135597",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.l0",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen observator kan se L0 direkte — bare via L1-avtrykket (primordial P(k)); en kanal av hele spekteret",
@@ -1072,8 +1269,8 @@
     "s_regime": "S->0",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "klarhetsfunksjon": "C(S) ved S->0: udifferensiert klarhet — kompresjonsgrensen (singularitet)"
-    },
-    "nivaa": {
+   },
+   "nivaa": {
     "indeks": 0,
     "forelder": null,
     "tidsskala": "—",
@@ -1112,7 +1309,23 @@
      "S ~ 0 i dette regimet",
      "CMB-fotonene baerer L1s tilstand uendret til oss"
     ],
-    "source": "EFC README regime-arkitektur; RCMP (Regime-Consistent Measurement Principle)"
+    "source": "EFC README regime-arkitektur; RCMP (Regime-Consistent Measurement Principle)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.28098386",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.l1",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "vi ser L1 gjennom EM-vinduet (CMB-fotoner) — en kanal av hele spekteret; gravitasjonsbolger er et nytt, ennå umodent vindu",
@@ -1164,8 +1377,8 @@
     "s_regime": "S~0",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "klarhetsfunksjon": "C(S) ved S~0: begynnende klarhet — differensieringens terskel"
-    },
-    "nivaa": {
+   },
+   "nivaa": {
     "indeks": 1,
     "forelder": "efc.l0",
     "tidsskala": "—",
@@ -1205,7 +1418,23 @@
      "vekstmodifikasjonen er perturbasjonsnivaaets, ikke bakgrunnens",
      "mu < 1 er perturbasjonsnivaa-konvensjonen (README.md:170); AGENTS.md:322-330 oppgir mu > 1 for en annen sektor — repoet forener ikke disse to konvensjonene, og denne noden deklarerer perturbasjonsnivaaet eksplisitt"
     ],
-    "source": "EFC README regime-arkitektur (README.md:163-175); RCMP_COMPLIANCE_MATRIX.md (f sigma8, P(k), S8, E_G); EFC Screening Model (DOI 10.6084/m9.figshare.31940469)"
+    "source": "EFC README regime-arkitektur (README.md:163-175); RCMP_COMPLIANCE_MATRIX.md (f sigma8, P(k), S8, E_G); EFC Screening Model (DOI 10.6084/m9.figshare.31940469)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31940469",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.l2",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "OBSERVATOREN STAAR I L2: vi ser bakover til L1 (CMB) og maaler veksten i vårt eget regime — EM-vinduet og gravitasjonsbolger er noen faa kanaler av hele spekteret",
@@ -1257,8 +1486,8 @@
     "s_regime": "S>0",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "klarhetsfunksjon": "C(S) ved S>0: differensiert klarhet — refleksjonens vindu, R over R_c~0.37 gir selvmodellering"
-    },
-    "nivaa": {
+   },
+   "nivaa": {
     "indeks": 2,
     "forelder": "efc.l1",
     "tidsskala": "—",
@@ -1296,7 +1525,23 @@
      "S -> 1 er en ekte asymptote",
      "vekstloven fra L2 forlenges gyldig"
     ],
-    "source": "EFC README regime-arkitektur (L3: far future, S -> 1)"
+    "source": "EFC README regime-arkitektur (L3: far future, S -> 1)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.30275947",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.l3",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen observator naar L3 — det er en predikert grense, ikke et maalbart vindu",
@@ -1347,8 +1592,8 @@
     "s_regime": "S->1",
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "klarhetsfunksjon": "C(S) ved S->1: mettet klarhet — altular-grensen, avtagende energitetthet"
-    },
-    "nivaa": {
+   },
+   "nivaa": {
     "indeks": 3,
     "forelder": "efc.l2",
     "tidsskala": "—",
@@ -1388,7 +1633,23 @@
      "SOC er en veldefinert regimekoordinat for cellen",
      "OCV-SOC-kurvens flathet gjelder ved lav C-rate"
     ],
-    "source": "LiFePO4-BMS — anonymisert avlesning fra et privat Victron-anlegg (full site-proveniens i privat artifact). Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile."
+    "source": "LiFePO4-BMS — anonymisert avlesning fra et privat Victron-anlegg (full site-proveniens i privat artifact). Pakkespenningen er terminal- og ladespenning, IKKE OCV/hvile.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#batteri.celle",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "stroem",
+       "ref": "victron",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "BMS-en ser bare V, I, T — tre kanaler av cellens fulle kjemiske tilstand; alt annet er modell",
@@ -1480,7 +1741,18 @@
      "CC/CV-protokollen er den kanoniske ladeprotokollen for LiFePO4",
      "kneet er et ekte regimeskifte, ikke bare en justering"
     ],
-    "source": "VE.Bus-ladeprotokollen — «Effective charge voltage», «Charge voltage setpoint» og BMS-CVL er tre ulike nivaaer (verdier i privat artifact): effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv"
+    "source": "VE.Bus-ladeprotokollen — «Effective charge voltage», «Charge voltage setpoint» og BMS-CVL er tre ulike nivaaer (verdier i privat artifact): effektivt settpunkt, charger-setpoint og BMS-grense; én oyeblikksmaaling dokumenterer IKKE CC->CV-kneet selv",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#batteri.lading",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "laderen observerer bare V og I — kneet er lesbart i disse to kanalene",
@@ -1572,7 +1844,23 @@
      "bufferen er mer enn en lagerboks — den er en homeostatisk mekanisme",
      "SOC er bufferens tilstandskoordinat"
     ],
-    "source": "privat Victron VRM-anlegg (ESS) — anonymisert; full site-proveniens i privat artifact"
+    "source": "privat Victron VRM-anlegg (ESS) — anonymisert; full site-proveniens i privat artifact",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#batteri.buffer",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "stroem",
+       "ref": "victron",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "VRM-portalen ser bufferen gjennom sine sensorer — V, A, W, T, SOC; noen faa kanaler av hele energispekteret",
@@ -1662,7 +1950,18 @@
      "DC og AC er to veldefinerte regimer",
      "konverteringen er en ekte transformasjon, ikke bare skalering"
     ],
-    "source": "inverterprodusentens spesifikasjon (VE.Bus-inverter)"
+    "source": "inverterprodusentens spesifikasjon (VE.Bus-inverter)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#batteri.inverter",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "inverteren ser DC-siden og AC-siden hver for seg — broen selv har to vinduer",
@@ -1754,7 +2053,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: galakse-surveyer (DESI, eBOSS, BOSS); BAO-tall: inference.json (BOSS r_d=147.09), framework_atlas.jsonld:L104-105 (147.18), ledger tests.json:L188-200 (DESI DR2). Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: galakse-surveyer (DESI, eBOSS, BOSS); BAO-tall: inference.json (BOSS r_d=147.09), framework_atlas.jsonld:L104-105 (147.18), ledger tests.json:L188-200 (DESI DR2). Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.bao",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "surveyer ser bare roedforskyvning og vinkel — hver avstand er relativ til r_d",
@@ -1852,7 +2167,28 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck; Planck 2018 VI (arXiv:1807.06209). Atlasets L-akse angir L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck; Planck 2018 VI (arXiv:1807.06209). Atlasets L-akse angir L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.cmb_tt",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "stroem",
+       "ref": "arxiv",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "Planck ser hele himmelen i ni frekvensbaand — ett spekter av hele L1",
@@ -1949,7 +2285,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck, ACT, SPT. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck, ACT, SPT. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.cmb_lensing",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "linsingen leses av CMB-kartets hoeyere-ordens statistikk — strukturen i støyen",
@@ -2045,7 +2397,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: quasar-spektroskopi. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: quasar-spektroskopi. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.bbn",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "spektroskopien ser D-absorpsjon i fjerne skyer — en kjemisk proxy for kosmologi",
@@ -2140,7 +2508,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: BOSS, eBOSS, DESI. Atlasets L-akse angir L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: BOSS, eBOSS, DESI. Atlasets L-akse angir L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.fsigma8",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "surveyer maaler posisjoner og roedforskyvninger — hastigheter er avledet",
@@ -2236,7 +2620,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: KiDS, DES, HSC, Euclid. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: KiDS, DES, HSC, Euclid. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.s8",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "svak linse ser formforvrengning — massen er usynlig, bare bøyningen synes",
@@ -2332,7 +2732,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: SDSS, KiDS+BOSS. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: SDSS, KiDS+BOSS. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.eg",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "krysset krever to surveyer i samme himmelregion — observatoeren bygger broen selv",
@@ -2426,7 +2842,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: CMB x galaksekart; ledger.json:L893-905 (Planck x DESI). Atlasets L-akse angir L0-L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: CMB x galaksekart; ledger.json:L893-905 (Planck x DESI). Atlasets L-akse angir L0-L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.isw",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "signalet finnes bare i krysset mellom to kart — ingen av dem ser det alene",
@@ -2521,7 +2953,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: ACT, DES x SPT. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: ACT, DES x SPT. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.ksz",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "signalet er svakt og trenger mange kryss — statistikken er instrumentet",
@@ -2617,7 +3065,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Chandra, XMM, HST. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Chandra, XMM, HST. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.cluster_mass",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "masse er aldri direkte maalt — alltid gjennom gass eller lys",
@@ -2713,7 +3177,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: DES, SDSS, eROSITA. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: DES, SDSS, eROSITA. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.cluster_hmf",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "surveyen teller og sorterer — massen er avledet fra rikdom",
@@ -2810,7 +3290,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: SPARC. Atlasets L-akse angir L3 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: SPARC. Atlasets L-akse angir L3 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.rar",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "kurven er synlig i rotasjonshastighet — massen selv er moerk",
@@ -2904,7 +3400,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: HST + Chandra. Atlasets L-akse angir L3 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: HST + Chandra. Atlasets L-akse angir L3 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.bullet",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "to instrumenter ser to komponenter — bare offseten mellom dem er signalet",
@@ -2999,7 +3511,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: HST, simuleringer. Atlasets L-akse angir L3 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: HST, simuleringer. Atlasets L-akse angir L3 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.satellites",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "underskuddet er synlig bare mot en prediksjon — observasjonen trenger modellen",
@@ -3095,7 +3623,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: JWST. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: JWST. Atlasets L-akse angir L2 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.jwst_ems",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "JWST ser bakover — hvert bilde er et annet regimes øyeblikksbilde",
@@ -3189,7 +3733,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: LIGO/Virgo. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: LIGO/Virgo. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.gw_ct",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "én hendelse, to budbringere — hver kanal bekrefter den andre",
@@ -3283,7 +3843,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: NANOGrav, EPTA. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: NANOGrav, EPTA. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.pta_gwb",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "signalet finnes bare i korrelasjonen mellom dusinvis av pulsarer — ingen pulsar ser det alene",
@@ -3379,7 +3955,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck vs SH0ES. Atlasets L-akse angir L0-L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.; H0-tall: framework_atlas.jsonld:75-76 (Planck 67.36, SH0ES 73.04 km/s/Mpc)"
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: Planck vs SH0ES. Atlasets L-akse angir L0-L1 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.; H0-tall: framework_atlas.jsonld:75-76 (Planck 67.36, SH0ES 73.04 km/s/Mpc)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.h0_tension",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "spenningen er synlig bare i sammenligningen — ingen enkeltkanal ser den",
@@ -3475,7 +4067,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: DES, BAO+CMB. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: DES, BAO+CMB. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.w0wa",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "avviket er synlig bare mot w=-1-referansen — nullhypotesen er instrumentet",
@@ -3571,7 +4179,23 @@
      "signalet baerer regimets tilstand",
      "instrumentet og teorien har overlappende gyldighetsomraade (RCMP)"
     ],
-    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: alle kanaler. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert."
+    "source": "docs/validation-ledger/data/atlas.json (phenomena); instrument: alle kanaler. Atlasets L-akse angir L0 (lag-akse: L0 bakgrunn, L1 lineaert, L2 ikke-lineaert, L3 lokal/galaktisk) — en ANNEN akse enn regime-nodenes fasekjede efc.l0-l3; begge deklarert.",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#obs.cc",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "docs/validation-ledger/data/atlas.json",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "problemet er synlig bare i sammenligningen maalt/teoretisk — det er et regneproblem, ikke en maaling",
@@ -3667,7 +4291,23 @@
      "CC/CV-protokollen er den kanoniske ladeprotokollen",
      "kneet er lesbart i V og I alene (ingen SOC kreves)"
     ],
-    "source": "CC/CV-ladeprotokoll; motor-kontrakt efc_inference/engine/base_engine.py"
+    "source": "CC/CV-ladeprotokoll; motor-kontrakt efc_inference/engine/base_engine.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.victron_cccv_engine",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "stroem",
+       "ref": "victron",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare V og I — to kanaler; SOC er ikke paakrevd for kneet",
@@ -3758,7 +4398,23 @@
      "rotasjonskurver er et rent gravitasjons-maaleri",
      "EFC-kjernen er korrekt for galakseskalaen"
     ],
-    "source": "efc_core; parametrisk fallback — efc_inference/engine/rotation.py"
+    "source": "efc_core; parametrisk fallback — efc_inference/engine/rotation.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.32013156",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.rotation_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare v(r) — én kanal av galaksens fulle dynamikk",
@@ -3852,7 +4508,23 @@
      "bakgrunnen er homogen og isotrop",
      "E²(a) er den riktige deformasjonen"
     ],
-    "source": "EFCVariantA; efc_inference/engine/hubble.py"
+    "source": "EFCVariantA; efc_inference/engine/hubble.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.28098386",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.hubble_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare H(z) — én kanal av ekspansjonens fulle tilstand",
@@ -3944,7 +4616,23 @@
      "lineær perturbasjonsteori holder på fσ8-skalene",
      "vekst-ODE-en med EFC-H(a) er riktig deformasjon"
     ],
-    "source": "MVP-G1 hubble-friksjonskanal; efc_inference/engine/growth.py"
+    "source": "MVP-G1 hubble-friksjonskanal; efc_inference/engine/growth.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31222900",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.growth_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare fσ8(z) — én kanal av vekstens fulle tilstand",
@@ -4055,7 +4743,23 @@
      "svak linsing er et gyldig avbildnings-instrument",
      "EFC-deformasjonen lar seg oversette til kappa — uverifisert"
     ],
-    "source": "stub-kontrakt; efc_inference/engine/lensing.py"
+    "source": "stub-kontrakt; efc_inference/engine/lensing.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.30275947",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.lensing_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen — motoren observerer ikke ennå",
@@ -4145,7 +4849,23 @@
      "halomassefunksjonen er et gyldig strukturinstrument",
      "EFC-deformasjonen lar seg oversette til n(M,z) — uverifisert"
     ],
-    "source": "stub-kontrakt; efc_inference/engine/cluster.py"
+    "source": "stub-kontrakt; efc_inference/engine/cluster.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31222900",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.cluster_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen — motoren observerer ikke ennå",
@@ -4235,7 +4955,18 @@
      "liv er en ikke-likevekts-termodynamisk prosess (Schrödinger, Prigogine, England)",
      "R er operasjonaliserbart via kohrens-proxyene"
     ],
-    "source": "docs/papers/meta/HomoFluxus/README.md + Homo Fluxus v1/v2"
+    "source": "docs/papers/meta/HomoFluxus/README.md + Homo Fluxus v1/v2",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.fluxus",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "kohrens-proxyene ser deler av flyten — aldri hele",
@@ -4333,7 +5064,18 @@
      "setpunktene er adaptive, ikke faste (allostase)",
      "kompensasjonen er begrenset — bufferens kapasitet kan mettes"
     ],
-    "source": "docs/papers/meta/HomoFluxus/README.md (Levin 2019); Homo Fluxus v1"
+    "source": "docs/papers/meta/HomoFluxus/README.md (Levin 2019); Homo Fluxus v1",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.homeostase_buffer",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "avviksvektoren, ikke flytens fulle tilstand",
@@ -4441,7 +5183,18 @@
      "setpunktet er nevralt kontrollert (hypothalamus)",
      "~41 °C er et klinisk kritisk område, ikke en universell hard grense"
     ],
-    "source": "fysiologi (standard); analogi-merkingen er EFC-atlasets egen"
+    "source": "fysiologi (standard); analogi-merkingen er EFC-atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.feber_regime",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "temperatur og setpunkt — ikke pyrogen-kaskaden",
@@ -4549,7 +5302,18 @@
      "Hodgkin–Huxley er en etablert, idealisert konduktansmodell for eksitable membraner",
      "terskelen er skarp nok til all-eller-ingenting (approksimasjon)"
     ],
-    "source": "nevrofysiologi (standard); analogi-merkingen er atlasets egen"
+    "source": "nevrofysiologi (standard); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.aksjonspotensial",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "V(t) — ikke kanalenes fulle tilstand",
@@ -4657,7 +5421,23 @@
      "sinusknuten setter rytmen",
      "Frank–Starling-mekanismen gjelder innenfor fysiologisk område — kontraktilitet og afterload virker også"
     ],
-    "source": "kardiologi (standard); analogi-merkingen er atlasets egen"
+    "source": "kardiologi (standard); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.hjerte_syklus",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "NCBI StatPearls (hjerte); AHA (ejeksjonsfraksjon)",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "elektrisk + mekanisk syklus — ikke perfusjonens fulle rom",
@@ -4765,7 +5545,18 @@
      "uttrykk er regulerbart og arvelig reguleringslogikk finnes (epigenetikk)",
      "nettverkets tilbakekoblinger er den stabile enheten, ikke enkeltgenene"
     ],
-    "source": "molekylærbiologi (standard); analogi-merkingen er atlasets egen"
+    "source": "molekylærbiologi (standard); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.genregulering",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "uttrykksnivåer — ikke nettverkets fulle dynamikk",
@@ -4855,7 +5646,18 @@
      "CDK/cyklin-maskineriet med fosforylering, inhibitorer og checkpoint-signaler er korrekt beskrivelse",
      "sjekkpunktenes strenge kobling er det som hindrer ukontrollert deling (kreft = regimebrudd)"
     ],
-    "source": "cellebiologi (standard); analogi-merkingen er atlasets egen"
+    "source": "cellebiologi (standard); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.cellesyklus",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "fasefordelingen — ikke den enkelte cellens historie",
@@ -4963,7 +5765,18 @@
      "glykolyse/Krebs/elektrontransport er korrekt biokjemi",
      "energistatus-reguleringen er kontekstavhengig: ATP hemmer PFK-1, ADP/AMP stimulerer — ingen enkel global brems"
     ],
-    "source": "biokjemi (standard); analogi-merkingen er atlasets egen"
+    "source": "biokjemi (standard); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.metabolisme",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "fluks og forhold — ikke alle intermediater",
@@ -5071,7 +5884,18 @@
      "magnetisk energitetthet B^2/(2 mu_0) gjelder",
      "utlosning skjer ved en kritisk feltstyrke (idealisering: ekte utlosning avhenger ogsa av topologi)"
     ],
-    "source": "sol-fysikkens energibuffer-bilde (Avallon-stil); GOES-klasseskalaen (1-8 A); idealiseringene er motorens egne"
+    "source": "sol-fysikkens energibuffer-bilde (Avallon-stil); GOES-klasseskalaen (1-8 A); idealiseringene er motorens egne",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.solar_flare_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare feltstyrke og oppladningsrate — ingen magnetisk topologi, ingen plasma-dynamikk",
@@ -5164,7 +5988,18 @@
      "elastic rebound gjelder: spenningen akkumuleres elastisk og slippes bratt",
      "utlosning skjer ved en fast terskel (idealisering: ekte friksjon er hastighets- og tilstandsavhengig)"
     ],
-    "source": "elastic rebound (Reid), Burridge-Knopoff-tradisjonen, Kanamoris Mw; idealiseringene er motorens egne"
+    "source": "elastic rebound (Reid), Burridge-Knopoff-tradisjonen, Kanamoris Mw; idealiseringene er motorens egne",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.jordskjelv_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare spenning og lade-rate — ingen friksjonslov, ingen poretrykk",
@@ -5258,7 +6093,23 @@
      "fare-modellen (Matzinger): kontekst, ikke bare gjenkjenning, styrer aktivering",
      "selv/ikke-selv-skillet er flytende, ikke absolutt"
     ],
-    "source": "immunologi (standard: Janeway/Matzinger); analogi-merkingen er atlasets egen"
+    "source": "immunologi (standard: Janeway/Matzinger); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.immunologi",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "laerebok",
+       "ref": "Janeway's Immunobiology kap.11",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "titer og cellepopulasjoner — ikke repertoarets fulle rom",
@@ -5348,7 +6199,23 @@
      "to-prosess-modellen (Borbély): homeostatisk trykk + døgnrytme",
      "bistabiliteten i thalamokortikale nettverk forklarer overgangen"
     ],
-    "source": "søvnfysiologi (standard: Borbély, Steriade); analogi-merkingen er atlasets egen"
+    "source": "søvnfysiologi (standard: Borbély, Steriade); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.sovn_vaaken",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "artikkel",
+       "ref": "Borbely 1982; Carskadon & Dement 2011",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "stadium og timing — ikke drømmenes innhold",
@@ -5456,7 +6323,18 @@
      "alternative stabile tilstander og vippepunkter beskriver noen (ikke alle) økosystemer",
      "resiliens er målbart som avstand til vippepunktet (med stor usikkerhet)"
     ],
-    "source": "regime-shift-økologi (Scheffer); analogi-merkingen er atlasets egen"
+    "source": "regime-shift-økologi (Scheffer); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.okologi",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "noen tilstandsvariabler — ikke hele næringsnettet",
@@ -5546,7 +6424,18 @@
      "punktuert likevekt beskriver MØNSTERET (ikke nødvendigvis mekanismen) i deler av fossilrekka",
      "raske endringer er raske i geologisk tid, ikke i enkeltgenerasjoner"
     ],
-    "source": "Eldredge & Gould (1972); analogi-merkingen er atlasets egen"
+    "source": "Eldredge & Gould (1972); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#homo.evolusjon",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "rater og splitt-tidspunkter — ikke de levende populasjonenes fulle historie",
@@ -5658,7 +6547,18 @@
      "aksjonen (eq. 1) og de kvasi-statiske uttrykkene (eq. 24-31) er korrekt avledet i papiret",
      "bakgrunns-kvantitetene er gitt utenfra — modulen avleder dem ikke"
     ],
-    "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — portert fra papirets src/efc_relativistic.py"
+    "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — portert fra papirets src/efc_relativistic.py",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.mu_kz_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "modulen ser bare bakgrunns-inngangene og (a,k) — ingen felt-dynamikk",
@@ -5746,7 +6646,18 @@
     "assumes": [
      "beskrivelsen kan beskrive seg selv uten å stå utenfor"
     ],
-    "source": "EFC epistemikk v2 — selvanvendelse. API-kartet er dokumentert i scripts/atlas_lesing.py med alle offentlige innganger og returform (maalt 2026-09-18)."
+    "source": "EFC epistemikk v2 — selvanvendelse. API-kartet er dokumentert i scripts/atlas_lesing.py med alle offentlige innganger og returform (maalt 2026-09-18).",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.selv.atlas",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "masse som begrepsvalg",
@@ -5829,7 +6740,18 @@
     "assumes": [
      "beskrivelsen kan beskrive seg selv uten å stå utenfor"
     ],
-    "source": "EFC epistemikk v2 — selvanvendelse"
+    "source": "EFC epistemikk v2 — selvanvendelse",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.selv.skjema",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "masse som begrepsvalg",
@@ -5913,7 +6835,18 @@
      "beskrivelsen kan beskrive seg selv uten å stå utenfor",
      "SI-sekundet er en lokal måler av egentid — den globale tidskoordinaten i ΛCDM er en annen, romtid-vevd ramme"
     ],
-    "source": "EFC epistemikk v2 — selvanvendelse"
+    "source": "EFC epistemikk v2 — selvanvendelse",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.selv.paradigme_tid",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "masse som begrepsvalg",
@@ -5999,7 +6932,18 @@
     "assumes": [
      "«masse» er rammeavhengig: i EFC er den entropiens tette ende; LCDMs masse-kobling er spesialtilfellet av den samme rammen"
     ],
-    "source": "EFC epistemikk v2 — selvanvendelse"
+    "source": "EFC epistemikk v2 — selvanvendelse",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.selv.paradigme_masse",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "masse som begrepsvalg",
@@ -6100,7 +7044,23 @@
      "korrelasjonen Bz/v -> Kp er stabil i den idealiserte formen",
      "G-skalaen (NOAA) er den riktige storm-klassifiseringen"
     ],
-    "source": "romvær-korrelasjoner (etablert praksis); NOAA G-skalaen; analogi-merkingen er atlasets egen"
+    "source": "romvær-korrelasjoner (etablert praksis); NOAA G-skalaen; analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.28098386",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.romvaer_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare (Bz, v) — ingen magnetopause-dynamikk, ingen ringstrøm",
@@ -6192,7 +7152,18 @@
      "Minskys tre regimer beskriver finansens kvalitative tilstander",
      "gjeldsgrad-driften er lineær og tillitsleddet konstant (idealisering)"
     ],
-    "source": "Hyman Minsky, Financial Instability Hypothesis (1970-80-årene); analogi-merkingen er atlasets egen"
+    "source": "Hyman Minsky, Financial Instability Hypothesis (1970-80-årene); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.oekonomi_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare gjeldsgrad og renter — ingen sektorbalanser, ingen valutadynamikk",
@@ -6284,7 +7255,23 @@
      "tolegeme-approksimasjonen gjelder (sentral masse dominerer)",
      "banene er Kepler-ellipser (ingen perturbasjoner)"
     ],
-    "source": "Keplers lover, vis-viva, Hill-sfæren (standard himmelmekanikk); analogi-merkingen er atlasets egen"
+    "source": "Keplers lover, vis-viva, Hill-sfæren (standard himmelmekanikk); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.30275947",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.orbital_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare (a, e) — ingen resonans-kart, ingen perturbasjonshistorikk",
@@ -6381,7 +7368,23 @@
      "is-albedo-bryteren er idealisert (lineær stigning under 0 °C)",
      "AMOC-bryteren er VURDERT og BEVISST UTELATT (t_9978fc90): motoren har ingen sirkulasjonsvariabel — en ferskvannsdrevet omveltningscelle krever to bokser og hører hjemme i en EGEN MOTOR, ikke i strålingsbalansen"
     ],
-    "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen"
+    "source": "standard 0D-energibalansemodell (Budyko-Sellers-tradisjonen); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.32013156",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.klima_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare globale gjennomsnitt — ingen regional dynamikk",
@@ -6476,7 +7479,18 @@
      "homogen blanding (alle møter alle likt)",
      "konstante beta og gamma i vinduet"
     ],
-    "source": "Kermack-McKendrick SIR (1927); analogi-merkingen er atlasets egen"
+    "source": "Kermack-McKendrick SIR (1927); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.samfunn_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare aggregatene S, I, R — ingen individer, ingen nettverk",
@@ -6567,7 +7581,23 @@
      "likevekts-tidevann (ingen basseng-resonans)",
      "Roche-grensen for flytende legeme (2.44-faktoren) med forenklet tetthetsforhold"
     ],
-    "source": "standard tidevannsteori (differensiell gravitasjon, Roche); analogi-merkingen er atlasets egen"
+    "source": "standard tidevannsteori (differensiell gravitasjon, Roche); analogi-merkingen er atlasets egen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31222900",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.tidevann_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare avstand og perioder — ingen bassenggeometri, ingen dissipasjonsmåling",
@@ -6660,7 +7690,23 @@
      "utlosning skjer naar massen krysser en stabilitetsgrense (idealisering: grensen er en modellparameter, og ekte kollaps avhenger ogsa av rotasjon og sammensetning)",
      "lettkurvens form er parametrisert, ikke avledet av en stralingstransportmodell"
     ],
-    "source": "kollaps-buffer-bildet (supernova/GRB som frigjoring av gravitasjonsbinding); Chandrasekhar-stil masse-grense som modellparameter; lettkurvens stigning/hale som formvalg; idealiseringene er motorens egne"
+    "source": "kollaps-buffer-bildet (supernova/GRB som frigjoring av gravitasjonsbinding); Chandrasekhar-stil masse-grense som modellparameter; lettkurvens stigning/hale som formvalg; idealiseringene er motorens egne",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.32013156",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.transient_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "motoren ser bare kjernemasse og en massetilvekst — ingen rotasjon, ingen metallisitet, ingen forloperstruktur; lettkurven ser den normaliserte formen, ikke spekteret eller en lysstyrkeskala",
@@ -6746,7 +7792,18 @@
      "produksjon og forbruk er idealiserte skalarer — virkelige samfunn har sektorer, nettverk og makt",
      "dS/dt = P - C - L er en idealisert flytligning, ikke en sosial lov"
     ],
-    "source": "energiregnskapets konservering; EFC bufferlogikk (analogi til batteri og hjemostase — ikke identitet)"
+    "source": "energiregnskapets konservering; EFC bufferlogikk (analogi til batteri og hjemostase — ikke identitet)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.enerflyt_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "samfunnets eget regnskap — bare det som registreres og rapporteres; svart økonomi og uregistrerte flukser er usynlige for dette instrumentet",
@@ -6836,7 +7893,23 @@
     "assumes": [
      "Grid-Higgs-rammen: entropisk og strukturell teori for gravitasjon, mørk materie og sorte hull"
     ],
-    "source": "DOI 10.6084/m9.figshare.28559510 (Magnusson, 2025/2026)"
+    "source": "DOI 10.6084/m9.figshare.28559510 (Magnusson, 2025/2026)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.28559510",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.grid_higgs",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen instrumentvindu — teoretisk verk",
@@ -6920,7 +7993,23 @@
     "assumes": [
      "Den termodynamiske broen mellom generell relativitet og kvantefeltteori"
     ],
-    "source": "DOI 10.6084/m9.figshare.30402427 (Magnusson, 2025/2026)"
+    "source": "DOI 10.6084/m9.figshare.30402427 (Magnusson, 2025/2026)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.30402427",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.gr_qft_bro",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen instrumentvindu — teoretisk verk",
@@ -7004,7 +8093,23 @@
     "assumes": [
      "Dobbeltspalten som grid-oppløsningsfenomen: ontologisk utvidelse, UV-cutoff-analyse"
     ],
-    "source": "DOI 10.6084/m9.figshare.31564129 (Magnusson, 2025/2026)"
+    "source": "DOI 10.6084/m9.figshare.31564129 (Magnusson, 2025/2026)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31564129",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.double_slit",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen instrumentvindu — teoretisk verk",
@@ -7088,7 +8193,23 @@
     "assumes": [
      "Fra grid-mikrofysikk til den radiale akselerasjonsrelasjonen — minimal gradient-koblet eksitasjonsmodell"
     ],
-    "source": "DOI 10.6084/m9.figshare.31878760 (Magnusson, 2025/2026)"
+    "source": "DOI 10.6084/m9.figshare.31878760 (Magnusson, 2025/2026)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31878760",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.grid_mikrofysikk",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen instrumentvindu — teoretisk verk",
@@ -7176,7 +8297,28 @@
      "Scenario B+ er EFCs mikrofysiske HYPOTESE — ikke konsensus-fysikk; L-031 står åpen til papirenes forseglede prediksjoner er testet",
      "Gamma(rho) er DYNAMISK og skilles fra muBE(g) som er statisk — dobbelttelling er eksplisitt oppløst"
     ],
-    "source": "DOI 10.6084/m9.figshare.31942821 og 10.6084/m9.figshare.31942800 (Magnusson, 2026)"
+    "source": "DOI 10.6084/m9.figshare.31942821 og 10.6084/m9.figshare.31942800 (Magnusson, 2026)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31942821",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31942800",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.grid_mikro_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen instrumentvindu — ren avledning; det er et hull i seg selv at det ikke finnes en direkte måling",
@@ -7265,7 +8407,23 @@
     "assumes": [
      "sorte hull inngår i Grid-Higgs-rammen (DOI 28559510)"
     ],
-    "source": "DOI 10.6084/m9.figshare.28559510"
+    "source": "DOI 10.6084/m9.figshare.28559510",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.28559510",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.sort_hull",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "ingen — teoretisk; observasjons-broene (EHT, GW) er ikke koblet",
@@ -7348,7 +8506,18 @@
     "assumes": [
      "periodesystemet er etablert kunnskap (IUPAC-konsensus)"
     ],
-    "source": "IUPAC; generell kjemi (akademia)"
+    "source": "IUPAC; generell kjemi (akademia)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kjemi.periodesystemet",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "spektroskopisk vindu — bare det som måles",
@@ -7432,7 +8601,18 @@
     "assumes": [
      "NOAA-temperaturer er maalt, ikke modellert"
     ],
-    "source": "NOAA tides & currents (aapent, maalt 200)"
+    "source": "NOAA tides & currents (aapent, maalt 200)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.hav",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "stasjonsdekning — kystnaert, ikke dyphav",
@@ -7518,7 +8698,18 @@
     "assumes": [
      "GBIF-tellinger er indeks, ikke folketelling"
     ],
-    "source": "GBIF species search (aapent, maalt 200)"
+    "source": "GBIF species search (aapent, maalt 200)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.biosfaere",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "taksonomisk soek — ikke felt-maaling",
@@ -7604,7 +8795,18 @@
     "assumes": [
      "VHP-statuslisten er maalt, ikke modellert"
     ],
-    "source": "USGS Volcano Hazards Program (datasenter-lukket; deploy er menneskeord)"
+    "source": "USGS Volcano Hazards Program (datasenter-lukket; deploy er menneskeord)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.jord.vulkan",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "statusliste — bare overvaakede vulkaner",
@@ -7694,7 +8896,23 @@
      "METAR er en maaling, ikke en modell",
      "avviket er reelt og ikke et artefakt av interpolasjon"
     ],
-    "source": "NATS-stroemmen VERDEN_PROGNOSE, emne verden.vaer.oppgjoer.metno"
+    "source": "NATS-stroemmen VERDEN_PROGNOSE, emne verden.vaer.oppgjoer.metno",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.vaer",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "stroem",
+       "ref": "metno",
+       "hentet": "vedlikeholdt"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "ett sted per melding; stasjonsnettet er ikke komplett",
@@ -7809,7 +9027,18 @@
      "forventningen er skrevet foer utfallet var kjent",
      "utfallet er maalt, ikke husket"
     ],
-    "source": "NATS-stroemmen OPUS_SELV, emne opus.dommekraft.*"
+    "source": "NATS-stroemmen OPUS_SELV, emne opus.dommekraft.*",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#opus.dommekraft",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "én post per handling",
@@ -7919,7 +9148,18 @@
      "Palermo-skalaen under -2 regnes som ubetydelig",
      "et aarsspenn er ikke et tidspunkt"
     ],
-    "source": "NATS-stroemmen VERDEN_PROGNOSE, emne kosmos.asteroider.*"
+    "source": "NATS-stroemmen VERDEN_PROGNOSE, emne kosmos.asteroider.*",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.asteroider",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "Sentry-listen — bare objekter over JPLs egen terskel",
@@ -8031,7 +9271,23 @@
      "V(phi) = const — vaart valg, fordi papiret ikke spesifiserer potensialet og LCDM-grensen krever et Lambda-liknende ledd",
      "materie er stov som bevares separat (rho ~ a^-3)"
     ],
-    "source": "DOI 10.6084/m9.figshare.31876324 (Magnusson, 2025/2026)"
+    "source": "DOI 10.6084/m9.figshare.31876324 (Magnusson, 2025/2026)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.31876324",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.efc_background_engine",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "loeseren ser bakgrunnen — ingen perturbasjoner, ingen CMB",
@@ -8129,7 +9385,18 @@
      "strukturen er en midlet tilstand av dynamikken",
      "ingen mork materie som egen komponent — strukturen ER feltet"
     ],
-    "source": "EFC master-spec; SPARC-datasettet"
+    "source": "EFC master-spec; SPARC-datasettet",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.lag_s",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "rotasjonskurven er vinduet — den ser den midlede massen, ikke strommen som bygger den",
@@ -8182,8 +9449,8 @@
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "sektor": "S",
     "klarhetsfunksjon": "C(S) ved S>0: strukturell klarhet — formen leser energiflyten i likevekt"
-  },
-  "nivaa": {
+   },
+   "nivaa": {
     "indeks": 0,
     "forelder": null,
     "tidsskala": "kosmisk tid",
@@ -8222,7 +9489,18 @@
      "energy-flow-feltet er skalart og koblet til S",
      "J_mu er bevart: div J = Sigma"
     ],
-    "source": "EFC master-spec, aksjonen"
+    "source": "EFC master-spec, aksjonen",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.lag_d",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "ingen instrumentvindu — dynamikken er avledet",
@@ -8275,8 +9553,8 @@
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "sektor": "D",
     "klarhetsfunksjon": "C(S) ved S>0: dynamisk klarhet — tid, rom og hastighet emergerer fra energy flow under S"
-  },
-  "nivaa": {
+   },
+   "nivaa": {
     "indeks": 1,
     "forelder": "efc.lag_s",
     "tidsskala": "kosmisk tid",
@@ -8316,7 +9594,28 @@
      "Omega og kappa er ikke separable",
      "Eiers korreksjon 2026-09-18: S=Struktur, D=Dynamikk, R=Regime, C(S)=klarhetsfunksjon, EFC-C=BEVISSTHET — ikke kapasitet"
     ],
-    "source": "EFC-C0-papiret; Chennu et al. 2016 (propofol-EEG); EFC-Hypothesis (DOI 10.6084/m9.figshare.28098386); CEM (DOI 10.6084/m9.figshare.30275947)"
+    "source": "EFC-C0-papiret; Chennu et al. 2016 (propofol-EEG); EFC-Hypothesis (DOI 10.6084/m9.figshare.28098386); CEM (DOI 10.6084/m9.figshare.30275947)",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.28098386",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "doi",
+       "ref": "10.6084/m9.figshare.30275947",
+       "hentet": "2026-09-18"
+      },
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#efc.lag_c0",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": true
+    }
    },
    "observer": {
     "bandwidth": "EEG er vinduet — det ser korrelater, ikke feltet selv",
@@ -8371,8 +9670,8 @@
     "ebe_function": "claim validity = f(S, L, proxy-chain)",
     "sektor": "C",
     "klarhetsfunksjon": "C(S) ved S->1: mettet klarhet lokalt — propofol-EEG (Omega, kappa) måler klarhetsvariasjon i liten skala"
-  },
-  "nivaa": {
+   },
+   "nivaa": {
     "indeks": 2,
     "forelder": "efc.lag_d",
     "tidsskala": "kosmisk tid",
@@ -8412,7 +9711,18 @@
      "andelen er sammenlignbar over tid",
      "emnet diskusjon.gcn representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.gammaglimt.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.gammaglimt.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.gammaglimt",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare gammaglimt, ikke hele korpuset",
@@ -8516,7 +9826,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.mast-caom representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.interstellart.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.interstellart.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.interstellart",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare interstellart, ikke hele korpuset",
@@ -8620,7 +9941,18 @@
      "andelen er sammenlignbar over tid",
      "emnet prediksjon.jpl-horizons representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.maane.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.maane.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.maane",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare maane, ikke hele korpuset",
@@ -8724,7 +10056,18 @@
      "andelen er sammenlignbar over tid",
      "emnet diskusjon.gcn representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.noeytrinoer.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.noeytrinoer.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.noeytrinoer",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare noeytrinoer, ikke hele korpuset",
@@ -8828,7 +10171,18 @@
      "andelen er sammenlignbar over tid",
      "emnet prediksjon.jpl-horizons representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.planetsystem.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.planetsystem.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.planetsystem",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare planetsystem, ikke hele korpuset",
@@ -8932,7 +10286,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.heasarc representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.roentgentransienter.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.roentgentransienter.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.roentgentransienter",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare roentgentransienter, ikke hele korpuset",
@@ -9036,7 +10401,18 @@
      "andelen er sammenlignbar over tid",
      "emnet oppgjoer.launch-library representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.romfart.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.romfart.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.romfart",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare romfart, ikke hele korpuset",
@@ -9140,7 +10516,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.mast-caom representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.stjerner.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.stjerner.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.stjerner",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare stjerner, ikke hele korpuset",
@@ -9244,7 +10631,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.mast-caom representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne kosmos.uklassifisert.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne kosmos.uklassifisert.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#kosmos.uklassifisert",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare uklassifisert, ikke hele korpuset",
@@ -9348,7 +10746,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.arbeid.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.arbeid.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.arbeid",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare arbeid, ikke hele korpuset",
@@ -9452,7 +10861,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.demografi.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.demografi.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.demografi",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare demografi, ikke hele korpuset",
@@ -9556,7 +10976,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.finans.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.finans.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.finans",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare finans, ikke hele korpuset",
@@ -9660,7 +11091,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.geopolitikk.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.geopolitikk.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.geopolitikk",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare geopolitikk, ikke hele korpuset",
@@ -9764,7 +11206,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.handel.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.handel.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.handel",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare handel, ikke hele korpuset",
@@ -9868,7 +11321,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.helse.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.helse.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.helse",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare helse, ikke hele korpuset",
@@ -9972,7 +11436,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.infrastruktur.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.infrastruktur.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.infrastruktur",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare infrastruktur, ikke hele korpuset",
@@ -10076,7 +11551,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.kommunikasjon.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.kommunikasjon.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.kommunikasjon",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare kommunikasjon, ikke hele korpuset",
@@ -10180,7 +11666,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.lov.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.lov.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.lov",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare lov, ikke hele korpuset",
@@ -10284,7 +11781,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.militaer.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.militaer.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.militaer",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare militaer, ikke hele korpuset",
@@ -10388,7 +11896,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.politikk.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.politikk.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.politikk",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare politikk, ikke hele korpuset",
@@ -10492,7 +12011,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.sikkerhet.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.sikkerhet.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.sikkerhet",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare sikkerhet, ikke hele korpuset",
@@ -10596,7 +12126,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.teknologi.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.teknologi.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.teknologi",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare teknologi, ikke hele korpuset",
@@ -10700,7 +12241,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.transport.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.transport.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.transport",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare transport, ikke hele korpuset",
@@ -10804,7 +12356,18 @@
      "andelen er sammenlignbar over tid",
      "emnet observasjon.gdelt-gkg representerer domenet"
     ],
-    "source": "NATS-stroemmen, emne verden.utdanning.* — maalt i schema/atlas_dekning.json"
+    "source": "NATS-stroemmen, emne verden.utdanning.* — maalt i schema/atlas_dekning.json",
+    "proveniens": {
+     "kilder": [
+      {
+       "type": "intern",
+       "ref": "schema/regime_nodes.jsonld#verden.utdanning",
+       "hentet": "2026-09-18"
+      }
+     ],
+     "begrensning": "DOI etablerer identitet og persistens, ikke sannhet — og selv dette er ikke det ultimate",
+     "fullstendig": false
+    }
    },
    "observer": {
     "bandwidth": "andelen — bare utdanning, ikke hele korpuset",

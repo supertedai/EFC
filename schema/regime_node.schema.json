@@ -202,6 +202,29 @@
             "source": {
               "type": "string",
               "description": "Kilden antakelsene hviler paa (DOI, papir, maalt referanse)."
+            },
+            "proveniens": {
+              "type": "object",
+              "required": ["kilder", "begrensning", "fullstendig"],
+              "properties": {
+                "kilder": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "required": ["type", "ref", "hentet"],
+                    "properties": {
+                      "type": {"enum": ["doi", "url", "stroem", "laerebok", "artikkel", "intern"]},
+                      "ref": {"type": "string", "minLength": 1},
+                      "hentet": {"type": "string", "minLength": 1}
+                    },
+                    "additionalProperties": false
+                  }
+                },
+                "begrensning": {"type": "string", "minLength": 1},
+                "fullstendig": {"type": "boolean"}
+              },
+              "additionalProperties": false
             }
           },
           "additionalProperties": false
@@ -861,6 +884,29 @@
             }
           }
         }
+      },
+      "additionalProperties": false
+    },
+    "Proveniens": {
+      "type": "object",
+      "required": ["kilder", "begrensning", "fullstendig"],
+      "properties": {
+        "kilder": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["type", "ref", "hentet"],
+            "properties": {
+              "type": {"enum": ["doi", "url", "stroem", "laerebok", "artikkel", "intern"]},
+              "ref": {"type": "string", "minLength": 1},
+              "hentet": {"type": "string", "minLength": 1}
+            },
+            "additionalProperties": false
+          }
+        },
+        "begrensning": {"type": "string", "minLength": 1},
+        "fullstendig": {"type": "boolean"}
       },
       "additionalProperties": false
     },
