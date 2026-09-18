@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -143,6 +144,20 @@ def test_every_entry_with_an_id_is_on_the_page_verbatim():
         li = (f'<li><strong>{e["date"]}</strong> &mdash; {e["summary"]} '
               f'<span style="color:#6b7f9e;">({e["id"]})</span></li>')
         assert html.count(li) == 1, f"{e['id']}: <li> found {html.count(li)} times"
+
+
+def test_the_page_carries_no_orphan_row():
+    """The forward check is not enough: the projection ADDS rows and never
+    removes one, so a row whose sha is not an entry survives every
+    regeneration. Two such rows (471e154f40e0, 72d919146b23) sat on the page
+    inside a committed merge conflict while the forward direction passed."""
+    cl, html = _lastet()
+    ider = {e.get("id") or e.get("sha") for e in cl["changes"]
+            if (e.get("id") or e.get("sha"))}
+    funnet = set(re.findall(r"\(([0-9a-f]{12})\)</span></li>", html))
+    assert funnet == ider, (
+        f"rows with no entry: {sorted(funnet - ider)}; "
+        f"entries with no row: {sorted(ider - funnet)}")
 
 
 def test_no_entry_carries_a_sha_the_repo_does_not_descend_from():
