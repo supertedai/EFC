@@ -255,6 +255,11 @@
               "const": true,
               "description": "Vi er måleinstrumentet selv, ikke en observatør utenfor systemet. Konst sann — en node som påstår noe annet er en epistemisk feil i skjema-øyemed."
             },
+            "c_s_posisjon": {
+              "type": "string",
+              "minLength": 1,
+              "description": "C(S)-punktet observatoeren leser fra; bandwidth er det smale vinduet rundt punktet."
+            },
             "maalepavirkning": {
               "type": "string",
               "description": "Hvordan målingen påvirker/avgrenser det målte (back-action), om relevant."
