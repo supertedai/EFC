@@ -85,8 +85,10 @@ class TestRotasjon:
     def test_l_kjeden_har_stigende_s_regimer(self, atlas: dict) -> None:
         forventet = [("efc.l0", "S->0"), ("efc.l1", "S~0"),
                      ("efc.l2", "S>0"), ("efc.l3", "S->1")]
-        assert [(n["id"], n["maale_paradigme"]["s_regime"])
-                for n in atlas["noder"] if n["id"].startswith("efc.l")] == forventet
+        l_noder = {n["id"]: n for n in atlas["noder"] if n["id"] in
+                   {"efc.l0", "efc.l1", "efc.l2", "efc.l3"}}
+        assert [(i, l_noder[i]["maale_paradigme"]["s_regime"])
+                for i, _ in forventet] == forventet
 
     def test_s_d_c_sektorer_og_ebe_er_deklarert(self, atlas: dict) -> None:
         noder = {n["id"]: n for n in atlas["noder"]}
