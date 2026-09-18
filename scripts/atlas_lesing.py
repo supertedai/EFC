@@ -816,6 +816,20 @@ def fragment(atlas: dict, node_id: str) -> dict:
     }
 
 
+#: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
+#: baere en plassering: «med» og «som» staar i nesten hver nodetekst.
+STOPPORD = frozenset("""
+og av til for med den det de en et som er var paa fra ved mot over under
+mellom uten etter mens naar hvor hva hvem hvis saa men eller ikke bare kan
+skal vil maa bor blir ble har hadde sine sin sitt seg selv dette disse denne
+deres vart vaere alle noen noe annet andre mer mest minst slik slike hvert
+hver samt baade enten verken dess fordi dersom
+the and for with that this from into over under between without after while
+when where what which who whose than then also not only can will shall must
+may be been being has have had its their our your his her they them we you it
+""".split())
+
+
 def plasser(atlas: dict, tekst: str) -> dict:
     """Plasser et NYTT fragment — og si hva som gjenstaar.
 
@@ -827,7 +841,14 @@ def plasser(atlas: dict, tekst: str) -> dict:
         return {"status": "tomt", "forslag": [], "mangler": []}
 
     alle = akser(atlas)
-    ord_i = {w for w in _norm(tekst).split() if len(w) > 2}
+    # Funksjonsord baerer ingen plassering. Maalt 2026-09-18: fragmentet
+    # «varmepumpe med CO2 som kjolemiddel» matchet paa «med» og «som» — ord som
+    # staar i nesten hver node — og svaret ble «naere noder: homo.fluxus,
+    # homo.homeostase_buffer, homo.hjerte_syklus, homo.cellesyklus». En liste
+    # som SER ut som et plasseringsforslag, men er stoy, er samme klasse som
+    # fallbacken som svarer. Kravet er derfor at ordet beskriver noe.
+    ord_i = {w for w in _norm(tekst).split()
+             if len(w) > 2 and w not in STOPPORD}
     noder = atlas.get("noder") or []
 
     # hvilke domener nevner ordene?
@@ -862,7 +883,8 @@ def plasser(atlas: dict, tekst: str) -> dict:
                         "kobling": "domenet nevnes i fragmentet"})
     if not forslag and naere_noder:
         forslag.append({"domene": "(avledet)", "noder": naere_noder[:4],
-                        "kobling": "noder deler ord med fragmentet"})
+                        "kobling": ("noder deler ord med fragmentet — "
+                                    "ORDLIKHET, ikke et plasseringsforslag")})
     if not forslag:
         # ingen domene-streng matchet: bruk DOMENENE TIL DE NAERE NODENE.
         # Fallback-en skal ikke foreslaa alfabetet — den skal foreslaa det
