@@ -121,10 +121,12 @@ class TestFalsifiserbarhet:
         En node som ikke kan oppgi en terskel kan ikke felles. Den skal
         si det — ikke skrive ordet «terskel» og la det passere.
         """
+        # SAMME populasjon som : EFC-paastander. Ellers teller
+        # de to sidene ulike mengder og summen kan ikke stemme.
         avventer = [n for n in _offentlige()
                     if (n.get("falsifiserbarhet") or {}).get("status")
-                    == "terskel_ikke_fastsatt"]
-        assert len(avventer) == 7, f"forventet 7 rammeverk uten terskel, fikk {len(avventer)}"
+                    in ("terskel_ikke_fastsatt", "stub")]
+        assert len(avventer) == 4, f"forventet 4 uten fastsatt terskel, fikk {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
@@ -143,11 +145,13 @@ class TestFalsifiserbarhet:
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 79, f"offentlige endret: {len(off)}"
-        assert kan == 22, (
-            f"kan felles: {kan} — forventet 19. 27 var feil: 2 stubber og 6 "
+        assert kan == 27, (
+            f"kan felles: {kan} — forventet 27. 19 var feil: 2 stubber og 6 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
-        assert avventer == 9, (
-            f"avventer: {avventer} — forventet 9 (2 stubber + 7 uten fastsatt terskel)")
+        assert avventer == 4, (
+            f"avventer: {avventer} — forventet 4 (2 stubber + 2 uten fastsatt "
+            f"terskel). Fem noder fikk kriterium skrevet og er dermed FASTSATT; "
+            f"de to kategoriene er disjoint.")
         assert kan + avventer == 31, (
             f"{kan} + {avventer} = {kan + avventer}, men det er 28 EFC-noder "
             f"blant de offentlige")

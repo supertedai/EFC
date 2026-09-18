@@ -3582,7 +3582,7 @@
    "synlighet": "offentlig",
    "falsifiserbarhet": {
     "status": "terskel_ikke_fastsatt",
-    "grunn": "kriteriet krevde at EFC-kjernen skulle foelge dataene innenfor en toleranse — men toleransen er IKKE fastsatt noe sted. Uten den kan noden ikke felles ennaa"
+    "grunn": "TERSKELEN ER IKKE fastsatt — kriteriet finnes i klartekst, men noden er ikke ferdig: Ville falsifiseres om SPARC-rotasjonskurvene lar seg tilpasse like godt uten feltet — eller om den beste tilpasningen krever en K som varierer fra galakse til galakse. En konstant som maa justeres per"
    }
   },
   {
@@ -3868,7 +3868,7 @@
    "synlighet": "offentlig",
    "falsifiserbarhet": {
     "status": "stub",
-    "grunn": "konvergensen kappa(theta) — compute() hever NotImplementedError — en stub kan ikke felles for den regner"
+    "grunn": "TERSKELEN ER IKKE fastsatt — kriteriet finnes i klartekst, men noden er ikke ferdig: Ville falsifiseres om linse-kartene lar seg forklare like godt med en massemodell som ikke er en potensialbronn fra feltet — eller om KiDS-1000-tilpasningen forverres naar bakgrunnsmodellen erstattes "
    }
   },
   {
@@ -3957,7 +3957,7 @@
    "synlighet": "offentlig",
    "falsifiserbarhet": {
     "status": "stub",
-    "grunn": "halomassefunksjonen n(M,z) — compute() hever NotImplementedError — en stub kan ikke felles for den regner"
+    "grunn": "TERSKELEN ER IKKE fastsatt — kriteriet finnes i klartekst, men noden er ikke ferdig: Ville falsifiseres om hopemassene ikke foelger av feltet — eller om Bullet Cluster (der gass og masse er skilt) ikke kan gjengis. Det skillet er den strenge proeven: den krever at feltet henger ved ma"
    }
   },
   {
@@ -5362,7 +5362,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "atlaset -> noder -> beskrivelsen av atlaset -> ny node; selvbeskrivelsen ER selv en node, saa loopen lukker seg gjennom seg selv",
     "properties": []
    },
    "fractal": {
@@ -5440,7 +5440,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "skjemaet -> validerer noder -> en node beskriver skjemaet -> skjemaet maa validere sin egen beskrivelse",
     "properties": []
    },
    "fractal": {
@@ -5519,7 +5519,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "koordinatet velges -> alle noder maaler i det -> maalingene bekrefter valget -> valget staar som gitt",
     "properties": []
    },
    "fractal": {
@@ -5600,7 +5600,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "begrepet velges -> lovene formuleres i det -> lovene bekrefter begrepet -> begrepet staar som gitt",
     "properties": []
    },
    "fractal": {
@@ -6467,10 +6467,7 @@
    },
    "id": "efc.grid_higgs",
    "synlighet": "offentlig",
-   "falsifiserbarhet": {
-    "status": "terskel_ikke_fastsatt",
-    "grunn": "en maalt avvik i den radiale akselerasjonsrelasjonen — men terskelen, skalaen og hvilken maaling som skiller rammen fra GR er IKKE fastsatt — derfor kan noden ikke felles ennaa"
-   }
+   "ville_falsifisere": "INTERN (teoretisk verk, ikke en maaling): ville falsifiseres om rammen ikke gir en ENESTE stoerrelse som skiller seg fra standard Higgs + GR — eller om den gir en som allerede er utelukket ved LHC. En bro som ikke gir en differensiell prediksjon er ikke en bro."
   },
   {
    "regime": {
@@ -6551,10 +6548,7 @@
    },
    "id": "efc.gr_qft_bro",
    "synlighet": "offentlig",
-   "falsifiserbarhet": {
-    "status": "terskel_ikke_fastsatt",
-    "grunn": "en beregning som viser at broen ikke reproduserer en kjent grense — men hvilken grense, og hvor mye avvik som teller, er IKKE fastsatt — derfor kan noden ikke felles ennaa"
-   }
+   "ville_falsifisere": "INTERN: ville falsifiseres om broen ikke REDUSERER til GR i den ene grensen og til QFT i den andre. En bro som ikke har begge grensetilfellene er ikke en bro mellom dem."
   },
   {
    "regime": {
@@ -6635,10 +6629,7 @@
    },
    "id": "efc.double_slit",
    "synlighet": "offentlig",
-   "falsifiserbarhet": {
-    "status": "terskel_ikke_fastsatt",
-    "grunn": "et interferensmoenster grid-opploesningen ikke kan reprodusere — men spalteavstand, boelgelengde og kontrastterskel er IKKE fastsatt — derfor kan noden ikke felles ennaa"
-   }
+   "ville_falsifisere": "INTERN: ville falsifiseres om interferensmoensteret ikke foelger av grid-opploesningen — eller om det foelger like godt UTEN den. Siste halvdel er den strenge: en forklaring som ikke utelukker noe, forklarer ingenting."
   },
   {
    "regime": {
@@ -6719,10 +6710,7 @@
    },
    "id": "efc.grid_mikrofysikk",
    "synlighet": "offentlig",
-   "falsifiserbarhet": {
-    "status": "terskel_ikke_fastsatt",
-    "grunn": "en maalt akselerasjon som ikke foelger den radiale akselerasjonsrelasjonen — men akselerasjonsskalaen og toleransen er IKKE fastsatt — derfor kan noden ikke felles ennaa"
-   }
+   "ville_falsifisere": "INTERN: ville falsifiseres om den radiale akselerasjonsrelasjonen ikke foelger av gradient-koblet eksitasjon — eller om den foelger av en hvilken som helst annen minimal kobling ogsaa. Da er ikke mikrofysikken det som baerer den."
   },
   {
    "id": "efc.grid_mikro_engine",
@@ -6892,10 +6880,7 @@
    },
    "id": "efc.sort_hull",
    "synlighet": "offentlig",
-   "falsifiserbarhet": {
-    "status": "terskel_ikke_fastsatt",
-    "grunn": "en maalt sort-hull-entropi som avviker fra den entropiske grensen — men usikkerheten og hva som teller som avvik er IKKE fastsatt — derfor kan noden ikke felles ennaa"
-   }
+   "ville_falsifisere": "INTERN: ville falsifiseres om S=0-grensen ikke gir en horisont — eller gir en hvis entropi strider mot Bekenstein-Hawking. Grensen skal vaere gjenkjennelig som det vi alt vet, ikke som noe nytt."
   },
   {
    "regime": {
@@ -6996,7 +6981,7 @@
    "episenter": "lesning av havtemperatur — instrument-vinduet",
    "buffer": {
     "role": "havet som varmebuffer i klimaet",
-    "note": "broen mater klima-motoren (0D-proxy, aarlig)"
+    "note": "broen mater klima-motoren (0D-proxy, aarlig). MOTORSTATUS: ingen egen motor — proxy-mater (klima)"
    },
    "ontology": {
     "assumes": [
@@ -7047,7 +7032,7 @@
     "terskler": [
      "ingen terskler — maalingsnode"
     ],
-    "motor": "klima (proxy-mater)"
+    "motor": ""
    },
    "nivaa": {
     "indeks": 0,
@@ -7078,7 +7063,7 @@
    "episenter": "lesning av arts-tellinger — instrument-vinduet",
    "buffer": {
     "role": "biosfaeren som energiflyt-buffer",
-    "note": "broen mater enerflyt-motoren (fotavtrykk)"
+    "note": "broen mater enerflyt-motoren (fotavtrykk). MOTORSTATUS: ingen egen motor — proxy-mater (energiflyt)"
    },
    "ontology": {
     "assumes": [
@@ -7128,7 +7113,7 @@
     "terskler": [
      "ingen terskler — maalingsnode"
     ],
-    "motor": "enerflyt (proxy-mater)"
+    "motor": ""
    },
    "nivaa": {
     "indeks": 0,
@@ -7159,7 +7144,7 @@
    "episenter": "lesning av vulkantilstand — instrument-vinduet",
    "buffer": {
     "role": "vulkaner som jordas termiske buffer",
-    "note": "slektning av seismikk-noden; broen er KANDIDAT inntil konnektor-deploy"
+    "note": "slektning av seismikk-noden; broen er KANDIDAT inntil konnektor-deploy. MOTORSTATUS: KANDIDAT — broen venter paa konnektor-deploy"
    },
    "ontology": {
     "assumes": [
@@ -7209,7 +7194,7 @@
     "terskler": [
      "ingen terskler — maalingsnode"
     ],
-    "motor": "KANDIDAT (broen venter paa konnektor-deploy)"
+    "motor": ""
    },
    "nivaa": {
     "indeks": 0,

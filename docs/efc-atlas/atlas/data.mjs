@@ -2404,12 +2404,7 @@ export const NODES = [
         "USGS-statuslisten som konsensus-kanal"
       ]
     ],
-    "cond": [
-      {
-        "q": "kosmos.jord.vulkan: motor waits for connector deploy",
-        "to": "connector deploy (human step)"
-      }
-    ]
+    "cond": []
   },
   {
     "id": "verden-vaer",
