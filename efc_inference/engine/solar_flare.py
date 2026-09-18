@@ -44,10 +44,32 @@ class SolarFlareEngine(EFCEngine):
     # Fysikk
     # ------------------------------------------------------------------
 
+    def _gyldig_felt(self, b: np.ndarray) -> np.ndarray:
+        """Motorens fail-closed-kontrakt for feltstyrke — EEN kilde.
+
+        Gyldig feltstyrke er ENDELIG og IKKE-NEGATIV: bufferen lades fra
+        B = 0 og oppover, saa negativ B er utenfor modellens
+        tilstandsrom. Skilt ut fordi baade compute() og
+        magnetisk_energi() maa holde SAMME kontrakt — to kopier driver
+        fra hverandre. Samme form som TransientEngine._gyldig_masse()
+        (L-036), og av samme grunn: kvadratet gjor inngangen positiv.
+        """
+        return np.isfinite(b) & (b >= 0.0)
+
     def magnetisk_energi(self, params: dict, b: np.ndarray) -> np.ndarray:
-        """Magnetisk bufferenergi E = B^2 / (2 mu_0) * V."""
+        """Magnetisk bufferenergi E = B^2 / (2 mu_0) * V.
+
+        Ugyldig inngang (negativ eller ikke-endelig B) er utenfor
+        vinduet og gir NaN — aldri en gjetning. Uten masken ville B^2
+        gjort energien POSITIV ogsaa for negativ B, saa en direkte
+        kallende part fikk et tall der compute() svarer «utenfor
+        vinduet».
+        """
         b = np.asarray(b, dtype=float)
-        return (b ** 2 / (2 * params["mu_0"])) * params["volum"]
+        ut = np.full(b.shape, np.nan)
+        gyldig = self._gyldig_felt(b)
+        ut[gyldig] = (b[gyldig] ** 2 / (2 * params["mu_0"])) * params["volum"]
+        return ut
 
     def oppladningstid(self, params: dict) -> float:
         """Tid fra B=0 til terskelen ved konstant oppladningsrate."""
@@ -89,10 +111,16 @@ class SolarFlareEngine(EFCEngine):
 
         Holding: B < b_crit -> bufferen holder, utlosning = 0.
         Release: B >= b_crit -> bufferen slippes (idealisert: helt).
+
+        Ugyldig inngang (negativ eller ikke-endelig B) er utenfor
+        vinduet og gir NaN — aldri en gjetning. For ble NaN og -inf
+        rapportert som «holding» (0.0) og +inf som en utlosning.
         """
         b = np.asarray(coordinates, dtype=float)
-        ut = np.zeros(b.shape)
-        kritisk = b >= params_dict["b_crit"]
+        ut = np.full(b.shape, np.nan)
+        gyldig = self._gyldig_felt(b)
+        ut[gyldig] = 0.0
+        kritisk = gyldig & (b >= params_dict["b_crit"])
         ut[kritisk] = self.magnetisk_energi(params_dict, b[kritisk])
         return ut
 
@@ -110,7 +138,10 @@ class SolarFlareEngine(EFCEngine):
             "utlosning; release: B >= " + str(b_crit) + " T — bufferen "
             "slippes. IDEALISERT regime-modell (Avallon-stil buffer): "
             "hele bufferen slippes ved terskelen; ekte flares slipper "
-            "en brakdel. Predikerer IKKE enkelthendelser."
+            "en brakdel. Ugyldig inngang (negativ eller ikke-endelig B) "
+            "er utenfor vinduet og gir NaN — aldri en gjetning: bufferen "
+            "lades fra B = 0, og B^2 ville ellers gjort energien positiv "
+            "ogsaa for negativ B. Predikerer IKKE enkelthendelser."
         )
         law_form = ("E = B^2/(2 mu_0) * V; oppladningstid = b_crit / "
                     "(dB/dt); utlosning ved B = b_crit")
