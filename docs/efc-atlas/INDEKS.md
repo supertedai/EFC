@@ -47,7 +47,7 @@ Hver rad er generert fra samme bank som atlaset.
   perspektiv=paradigm · motor=transient · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
 - **KG · kosmos.gammaglimt** — varsler om transienter i sanntid, fra bakke og rom
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
-- **KI · kosmos.interstellart** — globale nyhetsstrømmer kodet til tema, aktør og sted
+- **KI · kosmos.interstellart** — arkivobservasjoner — instrumentbårne rådata fra romteleskoper
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
 - **MA · kosmos.maane** — baneposisjoner regnet fra DE441-ephemeriden
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
@@ -57,9 +57,9 @@ Hver rad er generert fra samme bank som atlaset.
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
 - **KR · kosmos.roentgentransienter** — varsler om transienter i sanntid, fra bakke og rom
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
-- **RF · kosmos.romfart** — globale nyhetsstrømmer kodet til tema, aktør og sted
+- **RF · kosmos.romfart** — oppskytingsdata — planlagte, oppskutte og oppgjorte oppskytninger
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
-- **ST · kosmos.stjerner** — globale nyhetsstrømmer kodet til tema, aktør og sted
+- **ST · kosmos.stjerner** — arkivobservasjoner — instrumentbårne rådata fra romteleskoper
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
 - **UK · kosmos.uklassifisert** — varsler om transienter i sanntid, fra bakke og rom
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · bygget=ja
