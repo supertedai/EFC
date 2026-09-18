@@ -38,6 +38,7 @@ Ingen av dem var en feil i atlaset — alle var en feil i grensesnittet.
     kjent_hull(repo, emne, ref)     -> dict | None
     naboer/hop/hop_stier/fragment   -> koblingsgrafen
     maaleformer/proxy_kjeder        -> hva maaler, via hva
+    sjekk_usikkerhet(atlas, repo)   -> list[str]  hver post mot sin egen kilde
 
 REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
 «ATLASET VET IKKE» heller enn aa gi et loest treff; `plasser` svarer
@@ -162,6 +163,178 @@ def _har_falsifikator(node: dict) -> bool:
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
+
+# ---------------------------------------------------------------------------
+# USIKKERHETSLAGET — hvert tall skal kunne bære hvor sikkert det er
+#
+# ADR-086 §3.1: feltet er valgfritt, lukket og additivt. Kilden HAR
+# informasjonen (k = 0.415 ± 0.029 står i sitt eget paper); atlaset mistet den
+# i overføringen. Diagnosen er derfor ikke «skaff usikkerhet», men «slutt å
+# kaste den» — og da er den ene regelen som gjør laget verdt noe: EN VERDI HAR
+# ALLTID EN KILDE.
+#
+# Sjekkeren står her og ikke i skjemaet, med vilje. Skjemaet sier hva en post
+# ER; denne sier om posten STÅR SEG mot kilden sin. Og C10-gaten kan ikke
+# kreve feltet før den endres med menneskeord (`t_2e60afa6`) — et krav som
+# ikke kan stilles i skjemaet må stilles der det faktisk kjører.
+# ---------------------------------------------------------------------------
+
+# Postens og kildens nøkler. Samme tre i skjemaet ($defs/Usikkerhetspost,
+# $defs/Usikkerhetskilde) — to lister ville driftet, og den ene ville tiet.
+USIKKERHETSPOST_NOKLER = ("storrelse", "verdi", "feilgrense", "kilde")
+USIKKERHETSKILDE_NOKLER = ("fil", "linje", "ordrett")
+
+_TALL_RE = re.compile(r"[0-9]+(?:\.[0-9]+)?")
+_GRENSE_RE = re.compile(r"±\s*([0-9]+(?:\.[0-9]+)?)")
+
+
+def _tall_i(tekst: str) -> list[float]:
+    return [float(t) for t in _TALL_RE.findall(tekst)]
+
+
+def _grenser_pa(tekst: str) -> list[float]:
+    """Tallene som står rett etter et ± — KILDENS egne feilgrenser."""
+    return [float(g) for g in _GRENSE_RE.findall(tekst)]
+
+
+def _like_tall(a: float, b: float) -> bool:
+    """0.029 skrevet som 0.029 og som 2.9e-2 er samme grense for et menneske."""
+    return abs(a - b) <= 1e-9 * max(1.0, abs(a), abs(b))
+
+
+def _sporet(repo: Path, fil: str) -> bool:
+    """Er filen i repoet? En usporet «kilde» finnes ikke som kilde."""
+    p = subprocess.run(["git", "-C", str(repo), "ls-files", "--error-unmatch",
+                        "--", fil], capture_output=True, text=True)
+    return p.returncode == 0
+
+
+def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]:
+    """Én post mot sin egen kildefil. Hver vei ut navngir hvorfor."""
+    hvor = f"{node_id}/usikkerhet/{nr}"
+    if not isinstance(post, dict):
+        return [f"{hvor}: posten er ikke et objekt"]
+    if isinstance(post.get("storrelse"), str) and post["storrelse"].strip():
+        hvor = f"{hvor} «{post['storrelse']}»"
+
+    # Typevakt FØRST: en manglende nøkkel skal ikke gi en TypeError i
+    # diagnosegrenen — da krasjer leseren nettopp der den skal si hva som er galt.
+    mangler = [k for k in USIKKERHETSPOST_NOKLER if k not in post]
+    if mangler:
+        return [f"{hvor}: mangler {', '.join(mangler)}"]
+
+    verdi, grense = post["verdi"], post["feilgrense"]
+    for navn, v in (("verdi", verdi), ("feilgrense", grense)):
+        if isinstance(v, bool) or not isinstance(v, (int, float, type(None))):
+            return [f"{hvor}: {navn} er ikke et tall eller null"]
+    kilde = post["kilde"]
+    if not isinstance(kilde, dict):
+        return [f"{hvor}: usikkerhet uten kilde"]
+    mangler = [k for k in USIKKERHETSKILDE_NOKLER if k not in kilde]
+    if mangler:
+        return [f"{hvor}: kilde mangler {', '.join(mangler)}"]
+
+    fil, linje, ordrett = kilde["fil"], kilde["linje"], kilde["ordrett"]
+    if not isinstance(fil, str) or not fil.strip():
+        return [f"{hvor}: kilde.fil er tom"]
+    if fil.startswith("/") or ".." in fil.split("/"):
+        return [f"{hvor}: kilde.fil maa vaere en sti i repoet, ikke {fil!r}"]
+    if not _sporet(repo, fil):
+        return [f"{hvor}: kilde.fil {fil} er ikke sporet i repoet"]
+    if isinstance(linje, bool) or not isinstance(linje, int) or linje < 1:
+        return [f"{hvor}: kilde.linje er ikke et positivt heltall"]
+    try:
+        linjer = (repo / fil).read_text(encoding="utf-8").splitlines()
+    except OSError as e:
+        return [f"{hvor}: {fil} kunne ikke leses — {e}"]
+    if linje > len(linjer):
+        return [f"{hvor}: {fil} har {len(linjer)} linjer, posten viser til {linje}"]
+    tekst = linjer[linje - 1]
+
+    ut: list[str] = []
+    if not isinstance(ordrett, str) or not ordrett.strip():
+        ut.append(f"{hvor}: kilde.ordrett er tom — et sitat maa kunne leses")
+    elif ordrett not in tekst:
+        ut.append(f"{hvor}: ordrett staar ikke paa {fil}:{linje}: {ordrett!r}")
+
+    if isinstance(verdi, (int, float)) and not any(_like_tall(verdi, t)
+                                                  for t in _tall_i(tekst)):
+        ut.append(f"{hvor}: verdi {verdi} staar ikke paa {fil}:{linje}")
+
+    grenser = _grenser_pa(tekst)
+    if grense is None:
+        if grenser:
+            ut.append(f"{hvor}: kilden OPPGIR en feilgrense ({grenser}) paa "
+                      f"{fil}:{linje} — posten sier den ikke gjoer det")
+    elif not grenser:
+        ut.append(f"{hvor}: feilgrense {grense} er oppgitt, men {fil}:{linje} "
+                  f"oppgir ingen (ingen ±) — 0 og gjetting er ikke et svar")
+    elif not any(_like_tall(grense, g) for g in grenser):
+        ut.append(f"{hvor}: feilgrense {grense} er ikke den kilden oppgir "
+                  f"({grenser}) paa {fil}:{linje}")
+    return ut
+
+
+def sjekk_usikkerhet(atlas: dict, repo: str | Path | None = None) -> list[str]:
+    """Hver post i usikkerhetslaget mot SIN EGEN kilde. Tom liste = rent.
+
+    Returnerer problemer, ikke en dom: hvert problem navngir noden, posten og
+    hva som ikke stemte, slik at svaret kan leses som en rettelse.
+
+    Reglene, alle maalt mot kilden og ingen mot skjemaet:
+
+      * posten maa ha `storrelse` og en `kilde` med fil, linje og et ORDRETT
+        utsnitt av linjen;
+      * filen maa vaere sporet i repoet, og linjen maa finnes der;
+      * `verdi` maa staa paa linjen posten viser til;
+      * `feilgrense` er enten et tall kilden oppgir etter et ± PAA DEN LINJEN,
+        eller `null` — og `null` krever at linjen ikke oppgir noen.
+
+    Det siste er hele grunnen til at `null` er et svar og 0 ikke er det: en
+    feilgrense paa 0 som kilden ikke sier, er en gjetning skrevet som en
+    maaling. `β = 0.16 (free amplitude)` er prøven — den skal staa som hull.
+
+    `repo` faller tilbake til `atlas['repo']` (som `les_atlas` setter), og
+    mangler begge, reiser vi: en sjekk uten kilder ville svart «alt vel» paa
+    hver post, og det svaret ser ut som kunnskap.
+    """
+    sti = repo if repo is not None else atlas.get("repo")
+    if not sti:
+        raise AtlasLesingFeil(
+            "usikkerhetslaget kan ikke sjekkes uten repo: hverken 'repo' eller "
+            "atlas['repo'] finnes — da er det ingen kilder aa lese")
+    repo = Path(sti)
+
+    # Baade atlas-laget ('noder', fra les_atlas) og raafila ('nodes') leses.
+    # Et atlas UTEN nodenoekkel REISER her, og det er med vilje: en sjekk som
+    # ikke finner nodene ville svart «alt vel» paa hver post, og det svaret ser
+    # ut som kunnskap — noeyaktig feilmodusen dette laget finnes for aa hindre.
+    noder = atlas.get("noder")
+    if noder is None:
+        noder = atlas.get("nodes")
+    if noder is None:
+        raise AtlasLesingFeil(
+            "atlaset har hverken 'noder' eller 'nodes' — da er det ingen poster "
+            "aa sjekke, og «ingen problemer» ville vaert et tomt svar")
+
+    ut: list[str] = []
+    for node in noder or []:
+        if not isinstance(node, dict):
+            continue
+        node_id = str(node.get("id") or "?")
+        usikkerhet = node.get("usikkerhet")
+        if usikkerhet is None:
+            continue  # VALGFRITT: en node uten laget er ikke et problem
+        if not isinstance(usikkerhet, dict):
+            ut.append(f"{node_id}: usikkerhet er ikke et objekt")
+            continue
+        poster = usikkerhet.get("poster")
+        if not isinstance(poster, list) or not poster:
+            ut.append(f"{node_id}: usikkerhet uten poster — tomt felt som ser fylt ut")
+            continue
+        for nr, post in enumerate(poster):
+            ut.extend(_sjekk_usikkerhetspost(node_id, nr, post, repo))
+    return ut
 
 
 def _dekning(repo: Path, ref: str, hent: bool) -> dict:

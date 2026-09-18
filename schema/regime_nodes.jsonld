@@ -2206,6 +2206,20 @@
         "teori": "BAO — standardlinjalen",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+      },
+      "usikkerhet": {
+        "poster": [
+          {
+            "storrelse": "β",
+            "verdi": 0.16,
+            "feilgrense": null,
+            "kilde": {
+              "fil": "docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/index.json",
+              "linje": 55,
+              "ordrett": "β = 0.16 (free amplitude)"
+            }
+          }
+        ]
       }
     },
     {
@@ -3480,6 +3494,20 @@
         "teori": "Radial Acceleration Relation",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+      },
+      "usikkerhet": {
+        "poster": [
+          {
+            "storrelse": "k",
+            "verdi": 0.415,
+            "feilgrense": 0.029,
+            "kilde": {
+              "fil": "docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json",
+              "linje": 5,
+              "ordrett": "k = 0.415 ± 0.029"
+            }
+          }
+        ]
       }
     },
     {

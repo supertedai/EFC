@@ -103,6 +103,7 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/ville_falsifisere",
     "/analogi",
     "/falsifiserbarhet",
+    "/usikkerhet",
     "/prediction",
     "/settlement",
 )
