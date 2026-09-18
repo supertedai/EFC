@@ -105,4 +105,7 @@ jobs:
         run: python3 -m pip install --quiet -r requirements.txt
 
       - name: The whole suite from the root (tests/ and efc_inference/tests/)
-        run: python3 -m pytest -q
+        # PROBE ONLY (card t_89eea983): the ignore is reverted in the next
+        # commit. See tests/test_ci_gate_probe.py for why it is needed to let
+        # a deliberately failing test execute at all.
+        run: python3 -m pytest -q --ignore=tests/test_atlas_retain.py
