@@ -31,7 +31,9 @@ Registeret er append-only og ligger i governance/risiko/risiko-register.jsonl.
      lukkefeltene (status, gate_decision, gate_besluttet_av, sist_vurdert) på
      en eksisterende post kan endres i stedet for å appendes, fordi det er
      menneskets beslutningssti. Alt annet (sletting, omskriving av et annet
-     felt, omordning) er fortsatt forbudt.
+     felt, omordning) er fortsatt forbudt. Målingen er hermetisk: hvilket
+     repo den leser kommer fra `rot`, og diffen leses med --no-ext-diff og
+     --no-textconv, så en lokal git-konfigurasjon kan ikke gjøre gaten blind.
 
 Bruk:
   python3 scripts/maintenance/validate_risk_register.py [--json] [--base origin/main]
@@ -42,6 +44,7 @@ from __future__ import annotations
 import argparse
 import fnmatch
 import json
+import os
 import re
 import subprocess
 import sys
@@ -51,6 +54,15 @@ from pathlib import Path
 ROT = Path(__file__).resolve().parents[2]
 REGISTER = "governance/risiko/risiko-register.jsonl"
 EIERREGISTER = "governance/ownership-register.json"
+
+# Miljøvariabler som flytter hvilket repo git snakker med. Gaten måler repoet
+# på en KJENT sti (`rot`), så et arvet GIT_DIR/GIT_WORK_TREE fra omgivelsen —
+# en annen testprosess, en CI-wrapper, et skall — peker den et annet sted.
+AMBARTE_REPO_VARS = (
+    "GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE",
+    "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
+    "GIT_CEILING_DIRECTORIES",
+)
 
 SKJEMA_VERSJON = "1.0"
 
@@ -310,6 +322,11 @@ def _lukkefelter_endret(gammel: dict, ny: dict) -> bool:
                for k in LUKKE_FELTER)
 
 
+def _git_miljo() -> dict[str, str]:
+    """Et git-miljø der «hvilket repo» kommer fra kallet, ikke fra omgivelsen."""
+    return {k: v for k, v in os.environ.items() if k not in AMBARTE_REPO_VARS}
+
+
 def append_only(base: str, rot: Path) -> list[dict]:
     """Diffen på risiko-register.jsonl skal BARE legge til linjer — med ETT unntak.
 
@@ -318,9 +335,17 @@ def append_only(base: str, rot: Path) -> list[dict]:
     beslutningssti, og den skjer som en linjeendring («venter» → «godkjent»/«avslått»),
     ikke som en ny linje. Alt annet — sletting av en post, endring av et annet
     felt, eller en identisk linje som bare flyttes (omordning) — er not_append_only.
+
+    Kallet er hermetisk med vilje: en gate hvis dom kan endres av
+    git-konfigurasjonen utenfor prosessen er ikke en gate. `--no-ext-diff`
+    stenger `diff.external`/`GIT_EXTERNAL_DIFF`, `--no-textconv` stenger en
+    textconv-driver, og `_git_miljo()` fjerner de arvede GIT_*-variablene som
+    peker git på et annet repo enn `rot`.
     """
-    r = subprocess.run(["git", "diff", "-U0", base, "--", REGISTER],
-                       cwd=str(rot), capture_output=True, timeout=60)
+    r = subprocess.run(["git", "diff", "-U0", "--no-ext-diff", "--no-textconv",
+                        base, "--", REGISTER],
+                       cwd=str(rot), capture_output=True, timeout=60,
+                       env=_git_miljo())
     if r.returncode != 0:
         return [{"type": "tool_error",
                  "msg": f"git diff mot «{base}» feilet: "

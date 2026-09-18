@@ -15,8 +15,10 @@ from pathlib import Path
 
 ROT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import validate_risk_register as vr  # noqa: E402
+from _gitmiljo import rent_gitmiljo  # noqa: E402
 
 EIERREGISTER = {
     "owners": ["orchestrator", "researcher", "faber", "menneske"],
@@ -151,16 +153,31 @@ def test_registerets_egne_filer_ma_ha_eier(tmp_path):
                               med, tmp_path) == []
 
 
+def _git(*args: str, cwd: Path, miljo: dict[str, str]) -> subprocess.CompletedProcess:
+    """Ett git-kall med testens eget miljø — se `_gitmiljo.py`."""
+    return subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@e.org", *args],
+                          cwd=cwd, env=miljo, capture_output=True, text=True, check=True)
+
+
+def _git_repo(tmp_path: Path) -> tuple[str, dict[str, str]]:
+    """Et ferskt, lite git-repo med registeret i første commit.
+
+    Returnerer (base-sha, miljø). Hjemmemappa ligger i `tmp_path`, og
+    GIT_DIR/GIT_* er skrubbet bort: utfallet skal komme fra denne fixturen, ikke
+    fra hva andre tester eller maskinen tilfeldigvis hadde satt.
+    """
+    miljo = rent_gitmiljo(tmp_path / "hjem")
+    _git("init", "-q", cwd=tmp_path, miljo=miljo)
+    _git("add", "-A", cwd=tmp_path, miljo=miljo)
+    _git("commit", "-qm", "base", cwd=tmp_path, miljo=miljo)
+    return _git("rev-parse", "HEAD", cwd=tmp_path, miljo=miljo).stdout.strip(), miljo
+
+
 def test_append_only_er_en_git_egenskap(tmp_path):
     register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
     register.parent.mkdir(parents=True)
     register.write_text(json.dumps(GYLDIG, ensure_ascii=False) + "\n", encoding="utf-8")
-    git = ["git", "-c", "user.name=t", "-c", "user.email=t@e.org"]
-    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
-    subprocess.run(git + ["add", "-A"], cwd=tmp_path, check=True)
-    subprocess.run(git + ["commit", "-qm", "base"], cwd=tmp_path, check=True)
-    base = subprocess.run(git + ["rev-parse", "HEAD"], cwd=tmp_path,
-                          capture_output=True, text=True).stdout.strip()
+    base, miljo = _git_repo(tmp_path)
 
     assert vr.append_only(base, tmp_path) == []
     register.write_text(register.read_text(encoding="utf-8") +
@@ -169,7 +186,7 @@ def test_append_only_er_en_git_egenskap(tmp_path):
                                    ensure_ascii=False) + "\n", encoding="utf-8")
     assert vr.append_only(base, tmp_path) == [], "en ny linje er lov"
 
-    subprocess.run(git + ["commit", "-qam", "legg til"], cwd=tmp_path, check=True)
+    _git("commit", "-qam", "legg til", cwd=tmp_path, miljo=miljo)
     register.write_text(json.dumps({**GYLDIG, "rest_risiko": "endret"}, ensure_ascii=False) + "\n",
                         encoding="utf-8")
     feil = vr.append_only(base, tmp_path)
@@ -187,12 +204,7 @@ def test_append_only_tillater_gatebeslutning_men_ikke_annet(tmp_path):
     register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
     register.parent.mkdir(parents=True)
     register.write_text(json.dumps(GYLDIG, ensure_ascii=False) + "\n", encoding="utf-8")
-    git = ["git", "-c", "user.name=t", "-c", "user.email=t@e.org"]
-    subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
-    subprocess.run(git + ["add", "-A"], cwd=tmp_path, check=True)
-    subprocess.run(git + ["commit", "-qm", "base"], cwd=tmp_path, check=True)
-    base = subprocess.run(git + ["rev-parse", "HEAD"], cwd=tmp_path,
-                          capture_output=True, text=True).stdout.strip()
+    base, _ = _git_repo(tmp_path)
 
     # (a) beslutningen: flip av lukkefeltene på posten — lovlig.
     besluttet = {**GYLDIG, "status": "lukket", "gate_decision": "godkjent",
@@ -208,6 +220,49 @@ def test_append_only_tillater_gatebeslutning_men_ikke_annet(tmp_path):
     # (c) en post slettet — fortsatt forbudt.
     register.write_text("", encoding="utf-8")
     assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
+
+
+def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch):
+    """Registerets append-only-gate må ikke kunne gjøres blind utenfra.
+
+    En git-konfigurasjon utenfor prosessen kan bytte ut selve diffen:
+    `diff.external` (eller GIT_EXTERNAL_DIFF) kjører en vilkårlig kommando i
+    stedet for git, og en textconv-driver kan gjøre innholdet tomt. Da ser
+    gaten ingen fjernede linjer — og et reelt linjebrudd på registeret ville
+    passert med exit 0. Målt 2026-09-18: begge kanalene gjorde nøyaktig det.
+
+    Kanarifuglen er med vilje: den beviser FØRST at forgiftningen virker på et
+    rått `git diff`. Uten den kunne testen blitt grønn fordi kanalen ble
+    stengt et annet sted enn i gaten.
+    """
+    register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
+    register.parent.mkdir(parents=True)
+    register.write_text(json.dumps(GYLDIG, ensure_ascii=False) + "\n", encoding="utf-8")
+    (tmp_path / ".gitattributes").write_text("*.jsonl diff=jsonl\n", encoding="utf-8")
+    forgiftet = tmp_path / "forgiftet-gitconfig"
+    forgiftet.write_text("[diff]\n\texternal = /bin/true\n"
+                         "[diff \"jsonl\"]\n\ttextconv = /bin/true\n", encoding="utf-8")
+    base, miljo = _git_repo(tmp_path)
+
+    # Lovbruddet: rest_risiko (utenfor lukkefeltene) skrives om — ingenting legges til.
+    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omkrevet"},
+                                   ensure_ascii=False) + "\n", encoding="utf-8")
+
+    # Kanarifugl: med begge kanalene åpne er den RÅ diffen blind.
+    kanar = {**miljo, "GIT_CONFIG_GLOBAL": str(forgiftet),
+             "GIT_EXTERNAL_DIFF": "/bin/true"}
+    raa = subprocess.run(["git", "diff", "-U0", base, "--",
+                          "governance/risiko/risiko-register.jsonl"],
+                         cwd=tmp_path, env=kanar, capture_output=True, text=True, check=True)
+    assert not [ln for ln in raa.stdout.splitlines()
+                if ln.startswith("-") and not ln.startswith("---")], \
+        "kanarifuglen er ikke blind — da måler denne prøven ingenting"
+
+    # Gaten skal se bruddet selv om omgivelsen rundt den gjør det motsatte.
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(forgiftet))
+    monkeypatch.setenv("GIT_EXTERNAL_DIFF", "/bin/true")
+    feil = vr.append_only(base, tmp_path)
+    assert [f["type"] for f in feil] == ["not_append_only"], feil
 
 
 def test_det_ekte_registeret_validerer():
