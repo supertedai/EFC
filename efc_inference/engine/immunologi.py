@@ -1,4 +1,4 @@
-"""Immunologisk responsmotor med eksplisitt eksponeringsregime."""
+"""Immune-response engine with an explicit exposure regime."""
 from __future__ import annotations
 import numpy as np
 from .base_engine import EFCEngine
@@ -34,4 +34,4 @@ class ImmunologiEngine(EFCEngine):
         if c.ndim != 1 or not valid: return np.full(c.shape,np.nan)
         return self.antibody_titer(params_dict,c)
     def regime_node(self, params):
-        return {"id":"homo.immunologi","synlighet":self.SYNLIGHET,"phase":"regime_engine","regime":{"name":"Immunsystemet","regimes":["usensibilisert","primaerrespons","sekundaerrespons","toleranse"],"validity":"dager >= 0; aktivering krever antigen over terskel og kontekst; eksponeringstype velger primær/sekundær; toleranse eksplisitt","law_form":"klonal ekspansjon og tidsavhengig antistofftiter"},"measure":{"target":"antistofftiter","measurer":"ELISA","instrument":"immunologisk analyse"},"emergence":{"loop":"antigen -> aktivering -> respons -> hukommelse"},"lagdeling":{"fysiologi":{"status":"akademia","kilde":"Janeway; Matzinger"},"analogi":{"status":"paradigme","kilde":"EFC: terskelstyrt buffer"}}}
+        return {"id":"homo.immunologi","synlighet":self.SYNLIGHET,"phase":"regime_engine","regime":{"name":"The immune system","regimes":["usensibilisert","primaerrespons","sekundaerrespons","toleranse"],"validity":"days >= 0; activation requires antigen above threshold and context; the exposure type selects primary/secondary; tolerance is explicit","law_form":"clonal expansion and a time-dependent antibody titre"},"measure":{"target":"antibody titre","measurer":"ELISA","instrument":"immunological analysis"},"emergence":{"loop":"antigen -> activation -> response -> memory"},"lagdeling":{"fysiologi":{"status":"akademia","kilde":"Janeway; Matzinger"},"analogi":{"status":"paradigme","kilde":"EFC: threshold-governed buffer"}}}

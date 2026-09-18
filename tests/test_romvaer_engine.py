@@ -71,9 +71,8 @@ def test_regime_node_selvbeskrivelse():
     node = e.regime_node(PARAMS)
     assert node["id"] == "efc.romvaer_engine"
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "korrelasjonsmodell" in tekst
-    assert "ikke fysikk fra bunnen" in tekst or \
-           "ikke fysikk fra bunn" in tekst
+    assert "correlation model" in tekst
+    assert "not physics from the ground up" in tekst
     assert node["regime"]["law_form"].strip()
 
 

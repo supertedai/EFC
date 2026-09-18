@@ -28,7 +28,7 @@ def test_ventenodene_er_aerlige_og_uten_bussdomene():
     for node_id in ("kosmos.kosmologi_desi_bao", "verden.klima_isbre"):
         node = noder[node_id]
         assert "buss_domene" not in node
-        assert "stroemmen finnes ikke" in node["stipulasjoner"]["buss_status"]
+        assert "the stream does not exist" in node["stipulasjoner"]["buss_status"]
         assert node["ontology"]["proveniens"]["kilder"][0]["type"] == "intern"
 
 

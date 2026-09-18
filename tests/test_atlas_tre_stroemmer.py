@@ -49,7 +49,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
         assert prov["fullstendig"] is False
         assert node["stipulasjoner"]["motor_status"] == "instrument — trenger ingen motor"
         assert node["stipulasjoner"]["ikke_falsifiserbar_grunn"] == (
-            "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+            "the instrument node cannot be refuted by an observation — it IS the measurement"
         )
         assert node["epistemikk"]["konsensus_er_ikke_sannhet"] is True
         assert node["perspektiv"] == "konsensus"

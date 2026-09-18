@@ -11,11 +11,11 @@ Physics (MVP-G1):
 
     where ' = d/da, E(a) = H(a)/H0, and the EFC deformation enters
     through the cosmology model. TWO channels exist:
-      - Hubble-friksjon: H(a) endres (alle varianter; EFCVariantA/B
-        har mu = 1 — Poisson-leddet uendret der).
-      - μ-kanalen (trinn 13): EFCVariantC+ skalerer kilden med
-        μ(a) = 1 + (mu_0 - 1)·g(a); mu_0 < 1 demper veksten.
-        (mu_0 er valgfri, default 1.0, gyldig [0, 2].)
+      - Hubble friction: H(a) changes (all variants; EFCVariantA/B
+        have mu = 1 — the Poisson term unchanged there).
+      - The μ channel (step 13): EFCVariantC+ scales the source by
+        μ(a) = 1 + (mu_0 - 1)·g(a); mu_0 < 1 damps the growth.
+        (mu_0 is optional, default 1.0, valid [0, 2].)
 
     Observables:
         f(a) = d ln D / d ln a = a * D'/D
@@ -55,9 +55,9 @@ class EFCGrowth(EFCEngine):
 
     REQUIRED_PARAMS = ["Omega_m", "H0", "sigma8", "alpha_cosmo"]
 
-    # Valgfri perturbasjonskanal: μ(a) = 1 + (mu_0 - 1)·g(a) i de
-    # variantene som støtter den (EFCVariantC+). mu_0=1.0 = ΛCDM-kilde.
-    # Gyldighetsintervall [0, 2]: μ må holde seg positiv over g(a)∈[0,1].
+    # Optional perturbation channel: μ(a) = 1 + (mu_0 - 1)·g(a) in the
+    # variants that support it (EFCVariantC+). mu_0=1.0 = ΛCDM source.
+    # Validity interval [0, 2]: μ must stay positive over g(a)∈[0,1].
     MU0_MIN, MU0_MAKS, MU0_DEFAULT = 0.0, 2.0, 1.0
 
     # Integration settings
@@ -75,15 +75,15 @@ class EFCGrowth(EFCEngine):
         return f"growth-{self.cosmology.name}"
 
     def validate_params(self, params_dict: dict) -> bool:
-        """Required-feltene (arvet sjekk) + mu_0 hvis gitt: må vaere et
-        endelig tall i [0, 2]. Ugyldige typer (strenger, None, bool)
-        avvises uten exception."""
+        """The required fields (inherited check) + mu_0 if given: must be
+        a finite number in [0, 2]. Invalid types (strings, None, bool)
+        are rejected without exception."""
         if not super().validate_params(params_dict):
             return False
         if "mu_0" in params_dict:
             mu0 = params_dict["mu_0"]
-            # Ingen strenger — heller ikke numeriske: typen er en del av
-            # kontrakten, og stille konvertering skjuler feil hos kalleren.
+            # No strings — not even numeric ones: the type is part of the
+            # contract, and silent conversion hides errors at the caller.
             if isinstance(mu0, (bool, str)) or mu0 is None:
                 return False
             try:
@@ -97,8 +97,8 @@ class EFCGrowth(EFCEngine):
         return True
 
     def stotter_mu(self) -> bool:
-        """Har den injiserte kosmologien en perturbasjons-μ-kanal?
-        (EFCVariantA/B har μ=1 hardkodet — mu_0 er da uten effekt.)"""
+        """Does the injected cosmology have a perturbation-μ channel?
+        (EFCVariantA/B have μ=1 hardcoded — mu_0 then has no effect.)"""
         return hasattr(self.cosmology, "mu_of_a")
 
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
@@ -215,7 +215,7 @@ class EFCGrowth(EFCEngine):
         return fs8
 
     # ------------------------------------------------------------------
-    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset
+    # The regime_node() bridge (step 11): the engine describes itself in the atlas
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
         om = params_dict["Omega_m"]
@@ -226,100 +226,100 @@ class EFCGrowth(EFCEngine):
         if self.stotter_mu():
             mu_beskrivelse = (
                 f"mu_0={mu0} (μ = 1 + (mu_0−1)·g(a) — "
-                f"{self.cosmology.name} har kanalen; mu_0<1 demper veksten)"
+                f"{self.cosmology.name} has the channel; mu_0<1 damps the growth)"
             )
         else:
             mu_beskrivelse = (
-                f"{self.cosmology.name} har ingen μ-kanal (μ=1 hardkodet; "
-                "en gitt mu_0 er uten effekt — kanalen finnes i "
+                f"{self.cosmology.name} has no μ channel (μ=1 hardcoded; "
+                "a given mu_0 has no effect — the channel exists in "
                 "EFCVariantC+)"
             )
         validity = (
-            f"fσ8(z) via vekst-ODE med EFC-deformert H(a): Omega_m={om}, "
+            f"fσ8(z) via the growth ODE with EFC-deformed H(a): Omega_m={om}, "
             f"H0={h0}, sigma8={s8}, alpha_cosmo={al}, {mu_beskrivelse} — "
-            "L2-regimets vekst av struktur (perturbasjonsnivå)"
+            "the L2 regime's growth of structure (perturbation level)"
         )
-        law_form = ("D'' + [3/a + H'/H] D' - kilde(a)*D = 0 — numerisk "
-                    "integrasjon, f = d ln D / d ln a; kilden skalerer "
-                    "med μ(a) når varianten har kanalen")
+        law_form = ("D'' + [3/a + H'/H] D' - source(a)*D = 0 — numerical "
+                    "integration, f = d ln D / d ln a; the source scales "
+                    "with μ(a) when the variant has the channel")
         return {
             "id": "efc.growth_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["mu=0.5 (EFCVariantC) reproduserer fsigma8 ~ 0.430 — parametervalg — forseglet kriterium", "mu=1.0 gir 0.4534 — kontrastpunkt"],
+            "terskler": ["mu=0.5 (EFCVariantC) reproduces fsigma8 ~ 0.430 — parameter choice — sealed criterion", "mu=1.0 gives 0.4534 — contrast point"],
             "motor": "growth"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the staircase its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
                 "tidsskala": "motortid",
                 "lengdeskala": "domene"
-            },            "regime": {"name": "Vekstmotoren — fσ8",
+            },            "regime": {"name": "The growth engine — fσ8",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {
-                "target": "fσ8(z) — vekstrate ganger amplitude",
-                "measurer": "EFCGrowth (vekst-ODE med EFC-H)",
-                "instrument": "observasjonssiden er RSD/ELG/QSO; motoren "
-                              "regner veksten",
-                "proxy_chain": ["RSD-målinger -> fσ8 (observasjon)",
-                                "fσ8 -> EFC-parametre (inferens)"],
-                "placement": "motoren er L2-regimets egen målestokk — "
-                             "arbiteren mot den forseglede fσ8-baselinen "
-                             "er den faktiske EFC-testen",
-                "compression": "hele veksthistorien -> fire parametre",
+                "target": "fσ8(z) — growth rate times amplitude",
+                "measurer": "EFCGrowth (growth ODE with EFC-H)",
+                "instrument": "the observation side is RSD/ELG/QSO; the engine "
+                              "computes the growth",
+                "proxy_chain": ["RSD measurements -> fσ8 (observation)",
+                                "fσ8 -> EFC parameters (inference)"],
+                "placement": "the engine is the L2 regime's own yardstick — "
+                             "the arbiter against the sealed fσ8 baseline "
+                             "is the actual EFC test",
+                "compression": "the whole growth history -> four parameters",
             },
-            "episenter": "vekstrammen: fσ8-kurven er der EFC møter "
-                         "observasjonen — dommen, ikke dommen avgjort",
+            "episenter": "the growth frame: the fσ8 curve is where EFC meets "
+                         "the observation — the judgement, not the judgement decided",
             "buffer": {
-                "role": "strukturens materie-buffer vokser gjennom "
-                        "koplingsfeltet — modellert, ikke målt direkte",
-                "note": "bufferen er modellens, ikke motorens.",
+                "role": "the structure's matter buffer grows through "
+                        "the coupling field — modelled, not measured directly",
+                "note": "the buffer belongs to the model, not to the engine.",
             },
             "ontology": {
                 "assumes": ["lineær perturbasjonsteori holder på "
-                            "fσ8-skalene", "vekst-ODE-en med EFC-H(a) "
-                            "er riktig deformasjon"],
+                            "fσ8-skalene", "the growth ODE with EFC-H(a) "
+                            "is the right deformation"],
                 "source": "MVP-G1 hubble-friksjonskanal; "
                           "efc_inference/engine/growth.py",
             },
             "observer": {
-                "er_del_av_systemet": True,"bandwidth": "motoren ser bare fσ8(z) — én kanal "
-                                     "av vekstens fulle tilstand",
+                "er_del_av_systemet": True,"bandwidth": "the engine sees only fσ8(z) — one channel "
+                                     "of the growth's full state",
                          "awareness": "instrument_window"},
             "emergence": {
-                "loop": "tetthet -> vekst -> struktur — fσ8 er loopens "
-                        "akselerasjonsmåler",
+                "loop": "density -> growth -> structure — fσ8 is the loop's "
+                        "accelerometer",
                 "properties": ["sigma8", "gamma_vekst"],
             },
             "fractal": {
-                "pattern": "vekstens regimekne — samme overgangsmonster "
-                           "som CC->CV og L1->L2 (analogi)",
-                "note": "ett monster, tre domener.",
+                "pattern": "the growth regime knee — the same transition pattern "
+                           "as CC->CV and L1->L2 (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "motoren arbeider langs z innenfor L2",
-                "global": "fσ8 er arbiterens prediksjonsside — koblet til "
-                          "kosmos.kosmologi-emnene (prediksjon) og "
+                "local": "the engine works along z inside L2",
+                "global": "fσ8 is the prediction side of the arbiter — coupled to "
+                          "the kosmos.kosmologi-emnene topics (prediction) and "
                           "obs.fsigma8 (OBSERVED_IN)",
-                "empathy_note": "motoren vet at baselinen dømmer den — "
-                                "den beskriver seg likevel bare, den "
-                                "dømmer ikke seg selv.",
+                "empathy_note": "the engine knows that the baseline judges it — "
+                                "it nevertheless only describes itself, it "
+                                "does not judge itself.",
             },
         }

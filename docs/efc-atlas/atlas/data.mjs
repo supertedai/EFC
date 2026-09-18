@@ -72,8 +72,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: academia. termodynamisk fase",
-    "what": "kalibrert termometer + barometer (kalibrert mot trippelpunktcellen) \u2014 proxy chain: temperatur via termisk ekspansjon (termometer) -> trykk via membran (barometer) -> fase id",
-    "how": "Buffer role: krystallgitteret + latent varme L_f: isen holder drikken ved 0 C til siste kryst. Epistemic: stottet / replikert / institusjonell.",
+    "what": "calibrated thermometer + barometer (calibrated against the triple-point cell) \u2014 proxy chain: temperatur via termisk ekspansjon (termometer) -> trykk via membran (barometer) -> fase id",
+    "how": "Buffer role: the crystal lattice + latent heat L_f: the ice holds the drink at 0 C until the . Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -91,7 +91,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -110,8 +110,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: academia. termodynamisk fase",
-    "what": "kalibrert termometer + barometer \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> fase identifisert via P_sat(T) o",
-    "how": "Buffer role: hoey varmekapasitet (4.18 kJ/(kg*K)): vann holder temperaturen under oppvarming . Epistemic: stottet / replikert / institusjonell.",
+    "what": "kalibrert termometer + barometer \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> phase identified via P_sat(T) an",
+    "how": "Buffer role: high heat capacity (4.18 kJ/(kg*K)): water holds the temperature during heating . Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -129,7 +129,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -149,7 +149,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. termodynamisk fase",
     "what": "kalibrert termometer + barometer (evt. hygrometer for damp) \u2014 proxy chain: temperatur via termisk ekspansjon -> trykk via membran -> dampinnhold via duggpunkt (hygro",
-    "how": "Buffer role: gassens varmekapasitet og utvidelse demper lokale trykk- og temperaturgradienter. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the gas's heat capacity and expansion damp local pressure and temperature gradie. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -167,7 +167,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -185,8 +185,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. termodynamisk tilstand (ikke 'fase' \u2014 grensen er borte)",
-    "what": "hoeytrykks-P-T-celle \u2014 proxy chain: temperatur via termoelement -> trykk via hoeytrykksmembran -> ingen faseobservabel \u2014 grens",
+    "one": "Perspective: academia. thermodynamic state (not 'phase' \u2014 the boundary is gone)",
+    "what": "hoeytrykks-P-T-celle \u2014 proxy chain: temperatur via termoelement -> trykk via hoeytrykksmembran -> no phase observable \u2014 the li",
     "how": "Buffer role: ingen fasegrense aa holde \u2014 bufferkapasiteten er kontinuerlig, uten latent varme. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -205,7 +205,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -224,8 +224,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: academia. temperaturskalaens referansepunkt",
-    "what": "kalibrert trippelpunktcelle \u2014 ITS-90-referansen \u2014 proxy chain: trykk holdt konstant (611.657 Pa) -> temperatur avlest som celleveggens termiske likevekt ",
-    "how": "Buffer role: punktet absorberer energi uten temperaturstigning saa lenge tre faser sameksiste. Epistemic: stottet / replikert / institusjonell.",
+    "what": "kalibrert trippelpunktcelle \u2014 ITS-90-referansen \u2014 proxy chain: trykk holdt konstant (611.657 Pa) -> temperature read as the cell wall's thermal equilibri",
+    "how": "Buffer role: the point absorbs energy with no temperature rise as long as three phases coexis. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -243,7 +243,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -262,8 +262,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: academia. elektromagnetisk straaling",
-    "what": "prisme/gitter-spektrometer \u2014 proxy chain: boelgelengde via gitter-dispersjon -> intensitet via detektor -> farge som observator-prox",
-    "how": "Buffer role: solen er en enorm energikilde med tilnaermet stabil spektralfordeling over menne. Epistemic: stottet / replikert / institusjonell.",
+    "what": "prisme/gitter-spektrometer \u2014 proxy chain: boelgelengde via gitter-dispersjon -> intensitet via detektor -> colour as an observer pro",
+    "how": "Buffer role: the sun is an enormous energy source with an approximately stable spectral distr. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -281,7 +281,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -299,9 +299,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. draapeform og brytningsindeks",
+    "one": "Perspective: academia. drop shape and refractive index",
     "what": "hoyhastighetskamera / refraktometer \u2014 proxy chain: draapeform via overflatespenning -> brytningsindeks via refraksjon (n ~ 1.33) -> draapesto",
-    "how": "Buffer role: overflatespenningen holder draapen sfaerisk \u2014 en geometrisk buffer som demper fo. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the surface tension holds the droplet spherical \u2014 a geometric buffer that damps . Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -319,7 +319,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -338,8 +338,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: academia. brytningsindeksen n(lambda)",
-    "what": "spektrometer + prisme \u2014 proxy chain: avboyningsvinkel via Snells lov -> n(lambda) via vinkelmaaling -> fargeseparasjon som prox",
-    "how": "Buffer role: vannets elektroniske struktur gir dispersjonen stabilitet \u2014 n(lambda) er en mate. Epistemic: stottet / replikert / institusjonell.",
+    "what": "spektrometer + prisme \u2014 proxy chain: avboyningsvinkel via Snells lov -> n(lambda) via vinkelmaaling -> colour separation as a p",
+    "how": "Buffer role: water's electronic structure gives the dispersion stability \u2014 n(lambda) is a mat. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -357,7 +357,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -375,9 +375,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. buens vinkel og fargerekkefoelge",
+    "one": "Perspective: academia. the bow's angle and colour order",
     "what": "retina eller CCD-sensor \u2014 proxy chain: farge via boelgelengde-dispersjon i draapen -> buevinkel via refraksjonsgeometri (~42 grad",
-    "how": "Buffer role: draapesvermen er en statistisk buffer \u2014 monsteret overlever at enkeltdraaper fal. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the droplet swarm is a statistical buffer \u2014 the pattern survives individual drop. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -395,7 +395,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -413,9 +413,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. buen som retnings- og fargemonster",
-    "what": "retina (S-, M- og L-kjegler) \u2014 proxy chain: fotoner -> fotoreseptorer -> S/M/L-respons -> fargeopplevelse -> retning -> buens posisjon",
-    "how": "Buffer role: oeyets adaptasjon (pupille, bleking av fotopigment) bufferer mot lysvariasjon \u2014 . Epistemic: stottet / replikert / institusjonell.",
+    "one": "Perspective: academia. the arc as a direction and colour pattern",
+    "what": "retina (S, M and L cones) \u2014 proxy chain: fotoner -> fotoreseptorer -> S/M/L-respons -> fargeopplevelse -> retning -> buens posisjon",
+    "how": "Buffer role: the eye's adaptation (pupil, bleaching of photopigment) buffers against light va. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -433,7 +433,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fagfellevurdering, l\u00e6rebok-kanonisering, karriereinsentiver \u2014 akademia forteller det som overlever vurderingen"
+        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
       ]
     ],
     "cond": []
@@ -451,9 +451,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. fasegrenser P_sat(T), T_m(P), P_sub(T)",
-    "what": "WaterPhaseEngine (efc_inference/engine/water.py) \u2014 proxy chain: P_sat(T) via Watson L_v(T) -> T_m(P) via dv_melt = 1/rho_vann - 1/rho_is -> P_sub(T) via k",
-    "how": "Buffer role: gyldighetsomraadene er motorens buffer: utenfor dem svarer den NaN/unknown i ste. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. phase boundaries P_sat(T), T_m(P), P_sub(T)",
+    "what": "WaterPhaseEngine (efc_inference/engine/water.py) \u2014 proxy chain: P_sat(T) via Watson L_v(T) -> T_m(P) via dv_melt = 1/rho_vann - 1/rho_is -> P_sub(T) via c",
+    "how": "Buffer role: the validity ranges are the engine's buffer: outside them it answers NaN/unknown. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -471,7 +471,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -489,9 +489,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. urbetingelser og strukturfro",
+    "one": "Perspective: paradigm. initial conditions and structure seeds",
     "what": "ingen direkte \u2014 modellavhengig \u2014 proxy chain: inflasjonsprediksjoner -> P(k)-avtrykk i L1 -> ingen direkte observabel i L0",
-    "how": "Buffer role: vakuumsvingningene er frobanken \u2014 en buffer av potensial som inflasjonen tapper. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: the vacuum fluctuations are the seed bank \u2014 a buffer of potential that inflation. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S->0",
       "sector": null,
@@ -509,7 +509,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -527,9 +527,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. CMB-anisotropier og BAO-skala",
+    "one": "Perspective: paradigm. CMB anisotropies and BAO scale",
     "what": "CMB-kart + galakse-survey \u2014 proxy chain: temperaturanisotropier -> P(k) -> BAO-skala -> H(z) -> polarisasjon -> optisk dybde",
-    "how": "Buffer role: plasmaets foton-elektron-kobling holder anisotropiene frosne til rekombinasjon \u2014. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: the plasma's photon-electron coupling keeps the anisotropies frozen until recomb. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S~0",
       "sector": null,
@@ -547,7 +547,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -567,7 +567,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: paradigm. fsigma8, P(k), svak linse (S8)",
     "what": "galakse-survey + svak linse (KiDS, DES, Euclid) \u2014 proxy chain: galaksefordeling -> P(k) full-shape -> roedforskyvningsromforvrengning -> fsigma8 -> skj\u00e6r",
-    "how": "Buffer role: strukturen selv er en treghetsbuffer: galakser og klynger holder masse mot ekspa. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: the structure itself is an inertia buffer: galaxies and clusters hold mass again. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S>0",
       "sector": null,
@@ -585,7 +585,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -605,7 +605,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: paradigm. fjern-fremtid-tilstanden",
     "what": "ingen direkte \u2014 predikert grense \u2014 proxy chain: vekstlovens asymptote -> S->1-tilstanden -> ingen maalbar proxy i dag",
-    "how": "Buffer role: metningen ER en buffer: veksten bremses mot en grense i stedet for aa loepe loep. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: the saturation IS a buffer: growth is braked against a limit instead of running . Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S->1",
       "sector": null,
@@ -623,7 +623,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -643,7 +643,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: consensus. BAO-skalaen (r_d ~ 147 Mpc comoving)",
     "what": "galakse-surveyer (DESI, eBOSS, BOSS) \u2014 proxy chain: galakse-korrelasjonsfunksjon -> BAO-topp ved ~150 Mpc -> BAO-topp -> D_H(z)/r_d, D_M(z)/r_",
-    "how": "Buffer role: drag-epoch fryser lydskalaen inn i plasmaet \u2014 linjalen fryses i L1 og leses i L2. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: the drag epoch freezes the sound scale into the plasma \u2014 the ruler is frozen in . Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -653,7 +653,7 @@ export const NODES = [
         "observabel": "BAO-skalaen (r_d ~ 147 Mpc comoving)",
         "teori": "BAO \u2014 standardlinjalen",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -667,7 +667,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "BAO-toppen ble kanonisert via SDSS/BOSS/eBOSS og DESI \u2014 store samarbeid med NSF/DOE-finansiering; survey-konkurransen og"
+        "The BAO peak was canonized via SDSS/BOSS/eBOSS and DESI \u2014 large collaborations with NSF/DOE funding; the survey competit"
       ]
     ],
     "cond": []
@@ -686,8 +686,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: consensus. temperatur-/polarisasjonsspekteret",
-    "what": "Planck \u2014 proxy chain: temperaturspektrum -> P(k) -> toppavstand -> theta_* og r_s(z_*) -> polarisasjon -> optisk",
-    "how": "Buffer role: rekombinasjonen fryser fotonene \u2014 signalet holdes til det slippes ved z ~ 1100. Epistemic: modellrelativ / proxy / institusjonell.",
+    "what": "Planck \u2014 proxy chain: temperaturspektrum -> P(k) -> peak distance -> theta_* and r_s(z_*) -> polarisasjon -> opt",
+    "how": "Buffer role: recombination freezes the photons \u2014 the signal is held until it is released at z. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -697,7 +697,7 @@ export const NODES = [
         "observabel": "temperatur-/polarisasjonsspekteret",
         "teori": "CMB TT/EE/TE akustiske topper",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -711,7 +711,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "CMB-temperaturspekteret b\u00e6res av Planck-samarbeidets institusjonelle autoritet \u2014 resultatet ble kanonisert i l\u00e6reb\u00f8ker o"
+        "The CMB temperature spectrum is carried by the Planck collaboration's institutional authority \u2014 the result was canonised"
       ]
     ],
     "cond": []
@@ -741,7 +741,7 @@ export const NODES = [
         "observabel": "linsingspotensialet",
         "teori": "CMB Lensing Reconstruction",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -755,7 +755,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Lensing-konsensusen b\u00e6res av Planck og ACT/SPT \u2014 to konkurrerende instrumentgrupper som bekrefter hverandre; avviks-funn"
+        "The lensing consensus is carried by Planck and ACT/SPT \u2014 two competing instrument groups that confirm each other; anomal"
       ]
     ],
     "cond": []
@@ -774,8 +774,8 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: consensus. deuterium/hydrogen-forholdet",
-    "what": "quasar-spektroskopi \u2014 proxy chain: D/H i quasarskyer -> baryontetthet omega_b h^2 -> omega_b h^2 -> kryssjekk mot CMB",
-    "how": "Buffer role: kjernereaksjonene fryser D/H ved T ~ 80 keV \u2014 et signal som aldri endres. Epistemic: modellrelativ / proxy / institusjonell.",
+    "what": "quasar-spektroskopi \u2014 proxy chain: D/H i quasarskyer -> baryontetthet omega_b h^2 -> omega_b h^2 -> cross-check against CMB",
+    "how": "Buffer role: the nuclear reactions freeze D/H at T ~ 80 keV \u2014 a signal that never changes. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -785,7 +785,7 @@ export const NODES = [
         "observabel": "deuterium/hydrogen-forholdet",
         "teori": "BBN lette elementer",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -799,7 +799,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "BBN er kanonisert i l\u00e6reb\u00f8ker og b\u00e6res av den estetiske sammenhengen med CMB \u2014 \u00e5 teste den p\u00e5 nytt gir lite prestisje, s"
+        "BBN is canonised in textbooks and carried by the aesthetic connection with the CMB \u2014 re-testing it yields little prestig"
       ]
     ],
     "cond": []
@@ -819,7 +819,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: consensus. vekstraten fsigma8",
     "what": "BOSS, eBOSS, DESI \u2014 proxy chain: roedforskyvningsromforvrengning (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form",
-    "how": "Buffer role: strukturen selv er bufferen \u2014 gravitasjonell respons holder masse mot ekspansjon. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: the structure itself is the buffer \u2014 gravitational response holds mass against t. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -829,7 +829,7 @@ export const NODES = [
         "observabel": "vekstraten fsigma8",
         "teori": "f-sigma-8(z) line\u00e6r vekst",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -843,7 +843,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "f\u03c38-m\u00e5lingene kommer fra store survey-samarbeid \u2014 karriereveiene ligger i samarbeidene, og systematikker publiseres sjel"
+        "the f\u03c38 measurements come from large survey collaborations \u2014 the career paths lie in the collaborations, and systematics"
       ]
     ],
     "cond": []
@@ -873,7 +873,7 @@ export const NODES = [
         "observabel": "S8 = sigma8 sqrt(omega_m/0.3)",
         "teori": "S8-tension",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -887,7 +887,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "S8-tensionen er omstridt MELLOM instrument-tradisjoner \u2014 to fellesskap med egne karrierer leser samme data; hvem som har"
+        "The S8 tension is disputed BETWEEN instrument traditions \u2014 two communities with their own careers read the same data; wh"
       ]
     ],
     "cond": []
@@ -906,7 +906,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: consensus. E_G-krysset",
-    "what": "SDSS, KiDS+BOSS \u2014 proxy chain: linse (kappa) x RSD (beta) -> E_G -> E_G -> slip mellom lys og masse",
+    "what": "SDSS, KiDS+BOSS \u2014 proxy chain: linse (kappa) x RSD (beta) -> E_G -> E_G -> slip between light and mass",
     "how": "Buffer role: to uavhengige proxyer buffrer hverandre \u2014 krysset er mer robust enn hver del. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -917,7 +917,7 @@ export const NODES = [
         "observabel": "E_G-krysset",
         "teori": "E_G gravitasjonsslip-statistikk",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -931,7 +931,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "EG-m\u00e5linger er avhengige av f\u00e5 instrumenter \u2014 narrativet b\u00e6res av en liten gruppe spesialister med h\u00f8y publiseringsmakt "
+        "EG measurements depend on few instruments \u2014 the narrative is carried by a small group of specialists with high publicati"
       ]
     ],
     "cond": []
@@ -961,7 +961,7 @@ export const NODES = [
         "observabel": "ISW-signalet",
         "teori": "ISW krysskorrelasjon",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -975,7 +975,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "ISW-signalet er svakt og var lenge omstridt \u2014 konsensusen vokste med CMB-tradisjonens autoritet, ikke med nye uavhengige"
+        "The ISW signal is weak and was long disputed \u2014 the consensus grew with the authority of the CMB tradition, not with new "
       ]
     ],
     "cond": []
@@ -1005,7 +1005,7 @@ export const NODES = [
         "observabel": "kSZ-signalet",
         "teori": "kSZ egenhastigheter",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1019,7 +1019,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "kSZ er en ung tradisjon \u2014 konsensusen er institusjonell f\u00f8r den er replikert; f\u00e5 grupper har instrumentene"
+        "kSZ is a young tradition \u2014 the consensus is institutional before it is replicated; few groups have the instruments"
       ]
     ],
     "cond": []
@@ -1037,19 +1037,19 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. M_500 fra flere kanaler",
+    "one": "Perspective: consensus. M_500 from several channels",
     "what": "Chandra, XMM, HST \u2014 proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> skaleringsrelasjoner -> masse",
-    "how": "Buffer role: klyngens potensial holder gassen varm og lyset boeyd \u2014 to buffere, \u00e9n masse. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: the cluster's potential keeps the gas hot and the light bent \u2014 two buffers, one . Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
       "ebe": null,
       "rcmp": {
         "instrument": "Chandra, XMM, HST",
-        "observabel": "M_500 fra flere kanaler",
+        "observabel": "M_500 from several channels",
         "teori": "klyngemasse-skalering",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1063,7 +1063,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Hopemassene avhenger av r\u00f8ntgen/svak-lensing-kalibreringer fra noen f\u00e5 store samarbeid \u2014 konsensusen arver deres interne"
+        "The halo masses depend on X-ray/weak-lensing calibrations from a few large collaborations \u2014 the consensus inherits their"
       ]
     ],
     "cond": []
@@ -1082,7 +1082,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: consensus. halomassetetthetsfunksjonen",
-    "what": "DES, SDSS, eROSITA \u2014 proxy chain: antall klynger per masse -> N(M,z) -> N(M,z) -> sigma8 og vekst",
+    "what": "DES, SDSS, eROSITA \u2014 proxy chain: antall klynger per masse -> N(M,z) -> N(M,z) -> sigma8 and growth",
     "how": "Buffer role: kollapsen buffrer masse i halos \u2014 tellingen er buffernes fordeling. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -1093,7 +1093,7 @@ export const NODES = [
         "observabel": "halomassetetthetsfunksjonen",
         "teori": "klyngehalo-massetetthet N(M,z)",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1107,7 +1107,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Hopfunsjonen er forankret i numeriske simuleringer med egne kode-tradisjoner \u2014 konsensusen b\u00e6res av simuleringsgruppenes"
+        "The halo function is anchored in numerical simulations with their own code traditions \u2014 the consensus is carried by the "
       ]
     ],
     "cond": []
@@ -1137,7 +1137,7 @@ export const NODES = [
         "observabel": "a_obs vs a_bar",
         "teori": "Radial Acceleration Relation",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1151,7 +1151,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "RAR (radial acceleration relation) er omstridt i MOND-debatten \u2014 to fellesskap med uforenlige narrativ leser samme data;"
+        "RAR (radial acceleration relation) is contested in the MOND debate \u2014 two communities with incompatible narratives read t"
       ]
     ],
     "cond": []
@@ -1181,7 +1181,7 @@ export const NODES = [
         "observabel": "masse-gass-offseten",
         "teori": "Bullet-klyngen delta-kappa",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1195,7 +1195,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Bullet Cluster leses i MOND-debatten \u2014 to rammer med egne karrierebaner; bildet er det samme, fortellingen er kampen"
+        "The Bullet Cluster is read in the MOND debate \u2014 two frames with their own career paths; the image is the same, the story"
       ]
     ],
     "cond": []
@@ -1225,7 +1225,7 @@ export const NODES = [
         "observabel": "subhalo-populasjonen",
         "teori": "manglende satellitter / TBTF / core-cusp",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1239,7 +1239,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Satellittproblemet b\u00e6res av simuleringstradisjonen vs observat\u00f8rene \u2014 et kjent spenningspunkt der konsensusen skifter me"
+        "The satellite problem is carried by the simulation tradition vs the observers \u2014 a known point of tension where the conse"
       ]
     ],
     "cond": []
@@ -1259,7 +1259,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: consensus. galakse-massefunksjonen ved z>10",
     "what": "JWST \u2014 proxy chain: JWST-fotometri -> masse ved z>10 -> massefunksjon -> kollapstidsskala",
-    "how": "Buffer role: tidlige halos er de foerste bufferne \u2014 de foerste som holdt masse. Epistemic: modellrelativ / proxy / institusjonell.",
+    "how": "Buffer role: early halos are the first buffers \u2014 the first to hold mass. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1269,7 +1269,7 @@ export const NODES = [
         "observabel": "galakse-massefunksjonen ved z>10",
         "teori": "tidlig massiv struktur (JWST z>10)",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1283,7 +1283,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "JWST-funnene er nye og forhandles \u00c5PENT \u2014 hvert \u00abuventet\u00bb funn gir publisitet og dermed insentiv til spenning i narrativ"
+        "The JWST findings are new and are negotiated OPENLY \u2014 every \u00abunexpected\u00bb finding yields publicity and thereby an incenti"
       ]
     ],
     "cond": []
@@ -1301,8 +1301,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. c_T fra GW170817",
-    "what": "LIGO/Virgo \u2014 proxy chain: GW- og gammaankomst -> c_T/c innen 1e-15",
+    "one": "Perspective: consensus. c_T from GW170817",
+    "what": "LIGO/Virgo \u2014 proxy chain: GW and gamma arrival -> c_T/c within 1e-15",
     "how": "Buffer role: 1.7-sekunders-forsinkelsen over 40 Mpc er maalingens buffer \u2014 reisen kalibrerer. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -1310,10 +1310,10 @@ export const NODES = [
       "ebe": null,
       "rcmp": {
         "instrument": "LIGO/Virgo",
-        "observabel": "c_T fra GW170817",
+        "observabel": "c_T from GW170817",
         "teori": "Gravitasjonsbolgehastighet c_T",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1327,7 +1327,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Gravitasjonsb\u00f8lger er en ung, raskt institusjonalisert tradisjon \u2014 LIGO/Virgo/KAGRA-samarbeidene har monopol p\u00e5 dataene "
+        "Gravitational waves are a young, rapidly institutionalized tradition \u2014 the LIGO/Virgo/KAGRA collaborations hold a monopo"
       ]
     ],
     "cond": []
@@ -1357,7 +1357,7 @@ export const NODES = [
         "observabel": "GW-bakgrunnen ved nHz",
         "teori": "PTA gravitasjonsbolge-bakgrunn",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1371,7 +1371,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "PTA-konsensusen bygges av noen f\u00e5 store samarbeid med ti\u00e5r lange datasett \u2014 dataene er private frem til publisering, s\u00e5 "
+        "The PTA consensus is built by a few large collaborations with decade-long data sets \u2014 the data are private until publica"
       ]
     ],
     "cond": []
@@ -1389,7 +1389,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. H0 fra to uavhengige kanaler",
+    "one": "Perspective: consensus. H0 from two independent channels",
     "what": "Planck vs SH0ES \u2014 proxy chain: CMB (LCDM-ekstrapolasjon) -> H0 ~ 67 -> cepheid/SN-stige -> H0 ~ 73 -> gap -> tension",
     "how": "Buffer role: to uavhengige maalekjeder buffrer hverandre \u2014 nettopp derfor kan ingen av dem sk. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
@@ -1398,10 +1398,10 @@ export const NODES = [
       "ebe": null,
       "rcmp": {
         "instrument": "Planck vs SH0ES",
-        "observabel": "H0 fra to uavhengige kanaler",
+        "observabel": "H0 from two independent channels",
         "teori": "Hubble-tension H0",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1415,7 +1415,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Hubble-tensionen er AKTUELT omstridt \u2014 avstandsskala vs CMB, to karriereveier; hver ny m\u00e5ling flytter narrativet, og beg"
+        "The Hubble tension is CURRENTLY contested \u2014 distance scale vs CMB, two career paths; every new measurement shifts the na"
       ]
     ],
     "cond": []
@@ -1434,7 +1434,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "Perspective: consensus. w(z)-parametriseringen",
-    "what": "DES, BAO+CMB \u2014 proxy chain: SN + BAO + CMB -> w0, wa -> w0, wa -> avvik fra -1",
+    "what": "DES, BAO+CMB \u2014 proxy chain: SN + BAO + CMB -> w0, wa -> w0, wa -> deviation from -1",
     "how": "Buffer role: SN-lysets strekk over avstand er bufferen \u2014 ekspansjonshistorien er skrevet i de. Epistemic: modellrelativ / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -1445,7 +1445,7 @@ export const NODES = [
         "observabel": "w(z)-parametriseringen",
         "teori": "w0-wa dynamisk moerk energi",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1489,7 +1489,7 @@ export const NODES = [
         "observabel": "vakuumenergiens stoerrelse",
         "teori": "kosmologisk konstant / vakuumenergi",
         "overlap": true,
-        "deklarasjon": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+        "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
     },
     "steps": [
@@ -1503,7 +1503,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "klynge-tellingens konsensus b\u00e6res av masse-kalibreringskjeden \u2014 en lang kjede av antakelser som hver for seg er konsensu"
+        "the cluster count's consensus is carried by the mass-calibration chain \u2014 a long chain of assumptions each of which is co"
       ]
     ],
     "cond": []
@@ -1521,9 +1521,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. v(r) \u2014 rotasjonshastighet som funksjon av radius",
-    "what": "observasjonssiden er galaksespektre; motoren regner kurven \u2014 proxy chain: spektrallinjer -> v(r) (observasjon) -> v(r) -> EFC-parametre (inferens)",
-    "how": "Buffer role: galaksens materie-buffer holder kurven flat gjennom koplingsfeltet \u2014 tolkning, i. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. v(r) \u2014 rotation velocity as a function of radius",
+    "what": "the observation side is galaxy spectra; the engine computes the curve \u2014 proxy chain: spectral lines -> v(r) (observation) -> v(r) -> EFC parameters (inference)",
+    "how": "Buffer role: the matter buffer of the galaxy keeps the curve flat through the coupling field . Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1541,7 +1541,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -1559,9 +1559,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. H(z) \u2014 ekspansjonsraten",
-    "what": "observasjonssiden er BAO/kronometer; motoren regner raten \u2014 proxy chain: BAO/SNIa -> H(z) (observasjon) -> H(z) -> EFC-parametre (inferens)",
-    "how": "Buffer role: bakgrunnsenergien er bufferen som holder ekspansjonen \u2014 modellert, ikke m\u00e5lt dir. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. H(z) \u2014 the expansion rate",
+    "what": "the observation side is BAO/chronometers; the engine computes the rate \u2014 proxy chain: BAO/SNIa -> H(z) (observation) -> H(z) -> EFC parameters (inference)",
+    "how": "Buffer role: the background energy is the buffer that holds the expansion \u2014 modelled, not mea. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1579,7 +1579,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -1597,9 +1597,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. f\u03c38(z) \u2014 vekstrate ganger amplitude",
-    "what": "observasjonssiden er RSD/ELG/QSO; motoren regner veksten \u2014 proxy chain: RSD-m\u00e5linger -> f\u03c38 (observasjon) -> f\u03c38 -> EFC-parametre (inferens)",
-    "how": "Buffer role: strukturens materie-buffer vokser gjennom koplingsfeltet \u2014 modellert, ikke m\u00e5lt . Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. f\u03c38(z) \u2014 growth rate times amplitude",
+    "what": "the observation side is RSD/ELG/QSO; the engine computes the growth \u2014 proxy chain: RSD measurements -> f\u03c38 (observation) -> f\u03c38 -> EFC parameters (inference)",
+    "how": "Buffer role: the structure's matter buffer grows through the coupling field \u2014 modelled, not m. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1617,7 +1617,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -1635,9 +1635,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. kappa(theta) \u2014 konvergens som funksjon av vinkelposisjon",
-    "what": "observasjonssiden er svak linsing; motoren regner ingenting enn\u00e5 \u2014 proxy chain: shear -> kappa (observasjon) -> kappa -> EFC-parametre (venter p\u00e5 fysikken)",
-    "how": "Buffer role: strukturens masse-buffer b\u00f8yer lyset \u2014 mekanismen er observert, motoren modeller. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. kappa(theta) \u2014 convergence as a function of angular position",
+    "what": "the observation side is weak lensing; the engine computes nothing yet \u2014 proxy chain: shear -> kappa (observation) -> kappa -> EFC parameters (awaiting the physics)",
+    "how": "Buffer role: the structure's mass buffer bends light \u2014 the mechanism is observed, the engine . Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1655,7 +1655,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -1673,9 +1673,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. n(M,z) \u2014 halomassefunksjonen",
-    "what": "observasjonssiden er hopetellinger; motoren regner ingenting enn\u00e5 \u2014 proxy chain: hopetelling -> n(M,z) (observasjon) -> n(M,z) -> EFC-parametre (venter p\u00e5 fysikken)",
-    "how": "Buffer role: hopene er strukturens tetteste buffere \u2014 observert, ikke modellert her enn\u00e5. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. n(M,z) \u2014 the halo mass function",
+    "what": "the observation side is halo counts; the engine computes nothing yet \u2014 proxy chain: halo counts -> n(M,z) (observation) -> n(M,z) -> EFC parameters (awaiting the physics)",
+    "how": "Buffer role: the halos are the structure's densest buffers \u2014 observed, not modelled here yet. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1693,7 +1693,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -1731,7 +1731,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -1749,9 +1749,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. avvik fra setpunkt (\u0394T, \u0394pH, \u0394glukose)",
-    "what": "fysiologiske sensorer; her er noden beskrivelse, ikke sensor \u2014 proxy chain: sensor \u2192 avvik -> avvik \u2192 kompensasjonsrespons",
-    "how": "Buffer role: selve bufferen: kapasitet som demper endring \u2014 den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell.",
+    "one": "Perspective: academia. deviation from setpoint (\u0394T, \u0394pH, \u0394glucose)",
+    "what": "physiological sensors; here the node is a description, not a sensor \u2014 proxy chain: sensor \u2192 avvik -> avvik \u2192 kompensasjonsrespons",
+    "how": "Buffer role: the buffer itself: capacity that damps change \u2014 the broad logic in pure form. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1769,7 +1769,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Levin 2019 (biologi) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
+        "Levin 2019 (biology) \u2014 peer-reviewed and canonised in textbooks. THE ANALOGY to EFC is our own and is not carried by the"
       ]
     ],
     "cond": []
@@ -1787,9 +1787,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. kroppstemperatur mot setpunkt",
-    "what": "termometer + pyrogen-mark\u00f8rer; her beskrivelse \u2014 proxy chain: pyrogener \u2192 setpunktsskifte -> temperatur \u2192 avstand til nytt setpunkt",
-    "how": "Buffer role: bufferen bytter TARGET, ikke kapasitet \u2014 det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell.",
+    "one": "Perspective: academia. body temperature against setpoint",
+    "what": "termometer + pyrogen-mark\u00f8rer; her beskrivelse \u2014 proxy chain: pyrogener \u2192 setpunktsskifte -> temperature \u2192 distance to the new setpoint",
+    "how": "Buffer role: the buffer switches TARGET, not capacity \u2014 that is the regime shift itself. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1807,7 +1807,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "fysiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
+        "physiology (standard) \u2014 peer-reviewed and canonised in textbooks. The ANALOGY to EFC is our own and is not carried by th"
       ]
     ],
     "cond": []
@@ -1825,9 +1825,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. membranpotensialet V(t) mot terskelen",
-    "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: ionestr\u00f8mmer \u2192 V(t) -> V(t) mot V_th \u2192 spike",
-    "how": "Buffer role: membranen er bufferen: gradienten lades og holdes til utl\u00f8sning. Epistemic: stottet / replikert / institusjonell.",
+    "one": "Perspective: academia. the membrane potential V(t) against the threshold",
+    "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: ionestr\u00f8mmer \u2192 V(t) -> V(t) vs V_th \u2192 spike",
+    "how": "Buffer role: the membrane is the buffer: the gradient charges and is held until release. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1845,7 +1845,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "nevrofysiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av felt"
+        "neurophysiology (standard) \u2014 peer-reviewed and textbook-canonized. The ANALOGY to EFC is our own and is not carried by t"
       ]
     ],
     "cond": []
@@ -1865,7 +1865,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. slagvolum, frekvens, minuttvolum",
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EKG \u2192 elektrisk syklus -> ekko \u2192 mekanisk syklus",
-    "how": "Buffer role: ventriklene er bufferne: de fylles og t\u00f8mmes rytmisk \u2014 aldri til null, aldri ove. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the ventricles are the buffers: they fill and empty rhythmically \u2014 never to zero. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1883,7 +1883,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "kardiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
+        "cardiology (standard) \u2014 peer-reviewed and textbook-canonized. The ANALOGY to EFC is our own and is not carried by the fi"
       ]
     ],
     "cond": []
@@ -1903,7 +1903,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. uttrykksniv\u00e5 per gen (mRNA/protein)",
     "what": "sekvensering; her beskrivelse av reguleringslogikken \u2014 proxy chain: TF-binding \u2192 uttrykk -> epigenetisk merke \u2192 terskelskifte",
-    "how": "Buffer role: genomet holder reguleringsprogrammene lagret \u2014 en kapasitet som demper tilfeldig. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the genome keeps the regulatory programs stored \u2014 a capacity that damps random e. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1921,7 +1921,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "molekylaerbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen paa"
+        "molecular biology (standard) \u2014 peer-reviewed and textbook-canonized. The atlas uses it as established, not as its own cl"
       ]
     ],
     "cond": []
@@ -1941,7 +1941,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. fase per celle (G1/S/G2/M)",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: DNA-innhold \u2192 fase -> CDK/cyklin \u2192 sjekkpunkt-status",
-    "how": "Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the checkpoints are the buffers: they hold the cycle until the conditions are me. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1959,7 +1959,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "cellebiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet"
+        "cell biology (standard) \u2014 peer-reviewed and canonised in textbooks. THE ANALOGY to EFC is our own and is not carried by "
       ]
     ],
     "cond": []
@@ -1979,7 +1979,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. ATP/ADP-forhold, O\u2082-forbruk, substrat-fluks",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: O\u2082-forbruk \u2192 fluks -> ATP/ADP \u2192 reguleringsstatus",
-    "how": "Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: The ATP pool and glycogen are the buffers: short- and long-term stores that damp. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -1997,7 +1997,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "biokjemi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av feltet."
+        "biochemistry (standard) \u2014 peer-reviewed and canonized in textbooks. The ANALOGY to EFC is our own and is not carried by "
       ]
     ],
     "cond": []
@@ -2015,9 +2015,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. oppladningstid, utlost energi, GOES-klasse",
-    "what": "SolarFlareEngine (efc_inference/engine/solar_flare.py) \u2014 proxy chain: B -> magnetisk energi (E = B^2/(2 mu_0) * V) -> energi -> GOES-klasse (kalibreringsproxy: ",
-    "how": "Buffer role: magnetfeltet er bufferen: energien lades og holdes til terskelen krysses. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. charging time, released energy, GOES class",
+    "what": "SolarFlareEngine (efc_inference/engine/solar_flare.py) \u2014 proxy chain: B -> magnetic energy (E = B^2/(2 mu_0) * V) -> energy -> GOES class (calibration proxy: 1e",
+    "how": "Buffer role: the magnetic field is the buffer: the energy is charged and held until the thres. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2035,7 +2035,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2053,9 +2053,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. gjentakelsestid, seismisk moment, moment-magnitude",
-    "what": "JordskjelvEngine (efc_inference/engine/jordskjelv.py) \u2014 proxy chain: lade-rate -> gjentakelsestid -> spenningsfall -> slipp -> M0 -> Mw (Kanamori)",
-    "how": "Buffer role: forkastningen er bufferen: spenningen lades og holdes til terskelen krysses. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. recurrence time, seismic moment, moment magnitude",
+    "what": "JordskjelvEngine (efc_inference/engine/jordskjelv.py) \u2014 proxy chain: charge rate -> recurrence time -> stress drop -> slip -> M0 -> Mw (Kanamori)",
+    "how": "Buffer role: the fault is the buffer: the stress charges and is held until the threshold is c. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2073,7 +2073,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2093,7 +2093,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. aktiveringsstatus, antistofftiter, hukommelsespopulasjon",
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse",
-    "how": "Buffer role: hukommelsen er bufferen: den senker terskelen og gj\u00f8r neste respons raskere. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: memory is the buffer: it lowers the threshold and makes the next response faster. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -2111,7 +2111,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "immunologi (standard: Janeway/Matzinger) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke "
+        "immunology (standard: Janeway/Matzinger) \u2014 peer-reviewed and textbook-canonized. The atlas uses it as established, not a"
       ]
     ],
     "cond": []
@@ -2131,7 +2131,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. s\u00f8vnstadium (v\u00e5ken/NREM/REM), homeostatisk trykk",
     "what": "klinisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EEG-synkroni -> stadium -> v\u00e5kenhetsvarighet -> homeostatisk trykk",
-    "how": "Buffer role: s\u00f8vnbehovet er bufferen: det akkumuleres i v\u00e5ken og t\u00f8mmes i s\u00f8vn \u2014 hjernens d\u00f8g. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the need for sleep is the buffer: it accumulates while awake and is drained in s. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -2149,7 +2149,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "sovnfysiologi (standard: Borbely, Steriade) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og b"
+        "sleep physiology (standard: Borbely, Steriade) \u2014 peer-reviewed and textbook-canonized. The ANALOGY to EFC is our own and"
       ]
     ],
     "cond": []
@@ -2169,7 +2169,7 @@ export const NODES = [
     "ghost": true,
     "one": "Perspective: academia. tilstandsvariabler (n\u00e6ringsstoffer, dekning, artssammensetning)",
     "what": "\u00f8kologisk overv\u00e5king; her beskrivelse \u2014 proxy chain: n\u00e6ringsstoffer -> tilstand -> dekning -> regime",
-    "how": "Buffer role: \u00f8kosystemets bufferevne (resiliens) demper forstyrrelser \u2014 til bufferen er brukt. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: the ecosystem's buffer capacity (resilience) damps disturbances \u2014 until the buff. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -2187,7 +2187,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "regime-shift-okologi (Scheffer) \u2014 fagfellevurdert og laerebokkanonisert. Atlaset bruker den som etablert, ikke som egen "
+        "regime-shift ecology (Scheffer) \u2014 peer-reviewed and canonised in textbooks. The atlas uses it as established, not as its"
       ]
     ],
     "cond": []
@@ -2205,9 +2205,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: academia. endringstakt i fenotype/art (morfologiske og molekyl\u00e6re rater)",
+    "one": "Perspective: academia. rate of change in phenotype/species (morphological and molecular rates",
     "what": "paleontologisk/genomisk m\u00e5ling; her beskrivelse \u2014 proxy chain: fossilrekke -> morfologisk rate -> molekyl\u00e6r avstand -> tid siden splitt",
-    "how": "Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen \u2014 til r. Epistemic: stottet / replikert / institusjonell.",
+    "how": "Buffer role: stasis is holding: selection and developmental constraints hold the phenotype \u2014 . Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": "S~0.5",
       "sector": null,
@@ -2225,7 +2225,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "evolusjonsbiologi (standard) \u2014 fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av f"
+        "evolutionary biology (standard) \u2014 peer-reviewed and canonised in textbooks. The ANALOGY to EFC is our own and is not car"
       ]
     ],
     "cond": []
@@ -2243,9 +2243,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. mu(k,z) \u2014 effektiv Poisson-kobling",
-    "what": "MuKZEngine (efc_inference/engine/mu_kz.py) \u2014 proxy chain: bakgrunns-innganger -> eps_F, eps_K, R -> eps_F, eps_K, R -> mu (eq. 28)",
-    "how": "Buffer role: gyldighetsomraadet er modulens buffer: kvasi-statisk sub-horisont \u2014 utenfor det . Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. mu(k,z) \u2014 the effective Poisson coupling",
+    "what": "MuKZEngine (efc_inference/engine/mu_kz.py) \u2014 proxy chain: background inputs -> eps_F, eps_K, R -> eps_F, eps_K, R -> mu (eq. 28)",
+    "how": "Buffer role: the validity range is the module's buffer: quasi-static sub-horizon \u2014 outside it. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2263,7 +2263,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2281,9 +2281,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. forventet Kp, stormniv\u00e5, utladningsbane",
-    "what": "RomvaerEngine (efc_inference/engine/romvaer.py) \u2014 proxy chain: Bz, v -> ladestr\u00f8m (korrelasjonsproxy) -> Kp -> G-niv\u00e5 (NOAA-skalaen)",
-    "how": "Buffer role: magnetosf\u00e6ren er bufferen: den holder ladningen fra solvinden til stormen utl\u00f8se. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. expected Kp, storm level, discharge trajectory",
+    "what": "RomvaerEngine (efc_inference/engine/romvaer.py) \u2014 proxy chain: Bz, v -> charging current (correlation proxy) -> Kp -> G level (the NOAA scale)",
+    "how": "Buffer role: the magnetosphere is the buffer: it holds the charge from the solar wind until t. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2301,7 +2301,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2319,9 +2319,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. finansregime (hedge/spekulativ/ponzi), gjeldsgrad-drift",
-    "what": "OekonomiEngine (efc_inference/engine/oekonomi.py) \u2014 proxy chain: gjeldsgrad -> regime (to terskler) -> stabile \u00e5r -> gjeldsgrad-drift (Minsky-momentet)",
-    "how": "Buffer role: de stabile \u00e5rene er bufferen: tilliten bygges opp og gjelden akkumuleres \u2014 helt . Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. financial regime (hedge/spekulativ/ponzi), leverage drift",
+    "what": "OekonomiEngine (efc_inference/engine/oekonomi.py) \u2014 proxy chain: leverage ratio -> regime (two thresholds) -> stable years -> leverage drift (the Minsky mo",
+    "how": "Buffer role: the stable years are the buffer: trust builds up and the debt accumulates \u2014 unti. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2339,7 +2339,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2357,9 +2357,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. periode, hastighet, spesifikk energi, Hill-sf\u00e6re",
+    "one": "Perspective: paradigm. period, velocity, specific energy, Hill sphere",
     "what": "OrbitalEngine (efc_inference/engine/orbital.py) \u2014 proxy chain: a, e -> T (Kepler) -> a, r -> v (vis-viva) -> eps = -GM/(2a) -> holding/release",
-    "how": "Buffer role: Hill-sf\u00e6ren er banens TILN\u00c6RMEDE stabilitetsbuffer: innenfor er sentralkroppens . Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: the Hill sphere is the orbit's APPROXIMATE stability buffer: inside it the centr. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2377,7 +2377,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2395,9 +2395,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. likevektstemperatur, tidskonstant, regimebryter",
-    "what": "KlimaEngine (efc_inference/engine/klima.py) \u2014 proxy chain: solarkonstant + albedo -> innstr\u00e5ling -> eps sigma T^4 -> utstr\u00e5ling -> C -> bufferens tre",
-    "how": "Buffer role: havets varmekapasitet er bufferen: den demper og forsinker alle forstyrrelser \u2014 . Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. equilibrium temperature, time constant, regime switch",
+    "what": "KlimaEngine (efc_inference/engine/klima.py) \u2014 proxy chain: solar constant + albedo -> incoming radiation -> eps sigma T^4 -> outgoing radiation -> C ",
+    "how": "Buffer role: the ocean's heat capacity is the buffer: it damps and delays all disturbances \u2014 . Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2415,7 +2415,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2433,9 +2433,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. R0, utbruddsstatus, epidemi-banen",
-    "what": "SamfunnEngine (efc_inference/engine/samfunn.py) \u2014 proxy chain: beta, gamma -> R0 -> R0 -> utbruddsstatus (terskel 1) -> SIR-banen -> kurveformen",
-    "how": "Buffer role: reservoaret av mottagelige er bufferen: utbruddet t\u00f8mmer den, og n\u00e5r den er tom,. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. R0, outbreak status, the epidemic trajectory",
+    "what": "SamfunnEngine (efc_inference/engine/samfunn.py) \u2014 proxy chain: beta, gamma -> R0 -> R0 -> outbreak status (threshold 1) -> the SIR trajectory -> the shap",
+    "how": "Buffer role: the reservoir of susceptibles is the buffer: the outbreak drains it, and when it. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2453,7 +2453,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2471,9 +2471,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. tidevannsakselerasjon, tidevannsh\u00f8yde, Roche-grense, fase-l\u00e5singsstatu",
-    "what": "TidevannEngine (efc_inference/engine/tidevann.py) \u2014 proxy chain: m_obj, r -> a_t (differensiell gravitasjon) -> a_t -> h (\u00e5pent-hav-proxy) -> perioder -> f",
-    "how": "Buffer role: havet er bufferen: det l\u00f8ftes og senkes i den periodiske syklusen uten \u00e5 bryte \u2014. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. tidal acceleration, tidal height, Roche limit, phase-lock status",
+    "what": "TidevannEngine (efc_inference/engine/tidevann.py) \u2014 proxy chain: m_obj, r -> a_t (differential gravity) -> a_t -> h (open-ocean proxy) -> periods -> phase-",
+    "how": "Buffer role: the sea is the buffer: it is raised and lowered in the periodic cycle without br. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2491,7 +2491,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2509,9 +2509,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. holdetid, utlost energi, lettkurvens form",
-    "what": "TransientEngine (efc_inference/engine/transient.py) \u2014 proxy chain: kjernemasse -> bindingsenergi (E = G*M^2/R) -> bindingsenergi -> utlost energi ved stabili",
-    "how": "Buffer role: kjernen er bufferen: massen bygges og holdes oppe til stabilitetsgrensen krysses. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. hold time, released energy, the lightcurve's form",
+    "what": "TransientEngine (efc_inference/engine/transient.py) \u2014 proxy chain: core mass -> binding energy (E = G*M^2/R) -> binding energy -> released energy at the stab",
+    "how": "Buffer role: the core is the buffer: the mass is built up and held up until the stability lim. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2529,7 +2529,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "v\u00e5r egen ramme \u2014 b\u00e6res av oss, ikke av feltet; narrativet er v\u00e5rt eget, og det er en styrke \u00e5 vite det"
+        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
       ]
     ],
     "cond": []
@@ -2547,9 +2547,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. bufferen S og driften dS/dt = P - C - L",
-    "what": "statistikkbyraaer og nettoperatoerer \u2014 proxy chain: registrert produksjon -> forbruk -> bufferanslag \u2014 alle er regnskaps-proxyer, ikke direkte",
-    "how": "Buffer role: S er samfunnets energibuffer \u2014 holdingen som absorberer ubalansen mellom produks. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. the buffer S and the drift dS/dt = P - C - L",
+    "what": "statistics agencies and grid operators \u2014 proxy chain: registered production -> consumption -> buffer estimate \u2014 all are accounting proxies, not ",
+    "how": "Buffer role: S is society's energy buffer \u2014 the holding that absorbs the imbalance between pr. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2567,7 +2567,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": []
@@ -2585,9 +2585,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Grid-Higgs-rammen: entropisk og strukturell teori for gravitasjon, m\u00f8r",
+    "one": "Perspective: paradigm. The Grid-Higgs framework: entropic and structural theory of gravity, d",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
-    "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
+    "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2605,7 +2605,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": [
@@ -2625,9 +2625,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Den termodynamiske broen mellom generell relativitet og kvantefeltteor",
+    "one": "Perspective: paradigm. The thermodynamic bridge between general relativity and quantum field ",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
-    "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
+    "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2645,7 +2645,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": [
@@ -2665,9 +2665,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Dobbeltspalten som grid-oppl\u00f8sningsfenomen: ontologisk utvidelse, UV-c",
+    "one": "Perspective: paradigm. The double-slit as a grid-resolution phenomenon: ontological extension",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
-    "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
+    "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2685,7 +2685,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": [
@@ -2705,9 +2705,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Fra grid-mikrofysikk til den radiale akselerasjonsrelasjonen \u2014 minimal",
+    "one": "Perspective: paradigm. From grid microphysics to the radial acceleration relation \u2014 minimal g",
     "what": "ingen direkte \u2014 teoretisk verk \u2014 proxy chain: DOI -> papir -> avledning \u2014 litteraturkjede",
-    "how": "Buffer role: verket er bufferen som holder bro-hypotesen til den testes. Epistemic: hypotese / ingen / minoritet.",
+    "how": "Buffer role: the work is the buffer that holds the bridge hypothesis until it is tested. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2725,7 +2725,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": [
@@ -2745,9 +2745,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. Gamma(rho) og Deff(rho)",
-    "what": "ingen direkte \u2014 mikrofysisk avledning, modellavhengig \u2014 proxy chain: tetthet -> grid-mode-okkupering -> entropi-produksjon \u2014 ren teori-kjede",
-    "how": "Buffer role: grid-modene er bufferen \u2014 okkuperte moders entropi lader opp med tettheten og me. Epistemic: hypotese / ingen / minoritet.",
+    "one": "Perspective: paradigm. Gamma(rho) and Deff(rho)",
+    "what": "no direct one \u2014 microphysical derivation, model-dependent \u2014 proxy chain: density -> grid-mode occupancy -> entropy production \u2014 a pure theory chain",
+    "how": "Buffer role: the grid modes are the buffer \u2014 the entropy of occupied modes charges with the d. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2765,7 +2765,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": [
@@ -2785,9 +2785,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: paradigm. sorte hull som entropisk grense i Grid-Higgs-rammen",
+    "one": "Perspective: paradigm. black holes as an entropic boundary in the Grid-Higgs frame",
     "what": "ingen direkte \u2014 teoretisk \u2014 proxy chain: DOI -> verk -> avledning",
-    "how": "Buffer role: BH som entropisk buffer i grid-teorien. Epistemic: hypotese / ingen / minoritet.",
+    "how": "Buffer role: BH as entropic buffer in the grid theory. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2826,8 +2826,8 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "Perspective: academia. periodesystemets struktur (118 grunnstoff)",
-    "what": "spektroskopi og kjemisk analyse \u2014 proxy chain: atomnummer -> periodisitet \u2014 konsensus-kartlegging",
-    "how": "Buffer role: periodesystemet er bufferen som holder kjemien ordnet. Epistemic: stottet / replikert / institusjonell.",
+    "what": "spectroscopy and chemical analysis \u2014 proxy chain: atomnummer -> periodisitet \u2014 konsensus-kartlegging",
+    "how": "Buffer role: the periodic table is the buffer that keeps the chemistry ordered. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2865,7 +2865,7 @@ export const NODES = [
     "ghost": false,
     "one": "Perspective: consensus. havtemperatur",
     "what": "boeyestasjoner (tides & currents) \u2014 proxy chain: stasjon -> temperatur -> hav-energi",
-    "how": "Buffer role: havet som varmebuffer i klimaet. Epistemic: stottet / direkte / institusjonell.",
+    "how": "Buffer role: the ocean as heat buffer in the climate. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2883,7 +2883,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "NOAA-stasjonsnettet som konsensus-kanal"
+        "The NOAA station network as a consensus channel"
       ]
     ],
     "cond": []
@@ -2903,7 +2903,7 @@ export const NODES = [
     "ghost": false,
     "one": "Perspective: consensus. arts-tellinger (planteriket)",
     "what": "taksonomisk soek \u2014 proxy chain: soek -> telling -> fotavtrykk",
-    "how": "Buffer role: biosfaeren som energiflyt-buffer. Epistemic: stottet / proxy / institusjonell.",
+    "how": "Buffer role: the biosphere as energy-flow buffer. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2921,7 +2921,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GBIF-taksonomien som konsensus-kanal"
+        "The GBIF taxonomy as consensus channel"
       ]
     ],
     "cond": []
@@ -2941,7 +2941,7 @@ export const NODES = [
     "ghost": false,
     "one": "Perspective: consensus. vulkantilstand",
     "what": "statusliste (alertLevel) \u2014 proxy chain: alertLevel -> aktivitet -> regime-status",
-    "how": "Buffer role: vulkaner som jordas termiske buffer. Epistemic: stottet / direkte / institusjonell.",
+    "how": "Buffer role: volcanoes as the thermal buffer of the Earth. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2959,7 +2959,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "USGS-statuslisten som konsensus-kanal"
+        "The USGS status list as consensus channel"
       ]
     ],
     "cond": []
@@ -2977,9 +2977,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. temperatur, vind, trykk, skydekke og fuktighet",
-    "what": "ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding \u2014 proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per st",
-    "how": "Buffer role: atmosfaeren som buffer mellom prognose og virkelighet. Epistemic: stottet / direkte / institusjonell.",
+    "one": "Perspective: consensus. temperature, wind, pressure, cloud cover and humidity",
+    "what": "one place in one validity window; both expected and outcome in the same message \u2014 proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per st",
+    "how": "Buffer role: the atmosphere as buffer between prediction and reality. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -2997,7 +2997,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "MET Norway-prognose mot METAR-maaling \u2014 to uavhengige institusjonelle kanaler"
+        "MET Norway forecast against METAR measurement \u2014 two independent institutional channels"
       ]
     ],
     "cond": []
@@ -3015,9 +3015,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: consensus. treffsannsynlighet og Palermo-kumulativ per objekt",
-    "what": "Sentry-listen selv; oppgjoeret leser hele listen som fasit \u2014 proxy chain: bane -> treffsannsynlighet (prediksjon) -> liste -> revidert/utelukket (oppgjoer)",
-    "how": "Buffer role: Sentry-listen er bufferen som holder risikobildet stabilt mellom revisjoner. Epistemic: stottet / proxy / institusjonell.",
+    "one": "Perspective: consensus. impact probability and Palermo cumulative per object",
+    "what": "The Sentry list itself; the reconciliation reads the whole list as the answer key \u2014 proxy chain: bane -> treffsannsynlighet (prediksjon) -> liste -> revidert/utelukket (oppgjoer)",
+    "how": "Buffer role: The Sentry list is the buffer that keeps the risk picture stable between revisio. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -3035,7 +3035,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "JPL Sentry som konsensus-kanal"
+        "JPL Sentry as consensus channel"
       ]
     ],
     "cond": []
@@ -3053,9 +3053,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot",
-    "what": "EFCBackgroundSolver (efc_inference/engine/efc_background.py) \u2014 proxy chain: parametre (alpha, k0, omega_crit, gamma0, V0) -> ODE-system -> ODE-system -> tilstand (a, ",
-    "how": "Buffer role: lambda er bufferen: responsfeltet som holder flyt-regnskapet naar phi ikke kan b. Epistemic: hypotese / ingen / minoritet.",
+    "one": "Perspective: paradigm. H(z) and the background fields phi, phi_dot, rho_m, lambda_dot",
+    "what": "EFCBackgroundSolver (efc_inference/engine/efc_background.py) \u2014 proxy chain: parameters (alpha, k0, omega_crit, gamma0, V0) -> ODE system -> ODE system -> state (a, E,",
+    "how": "Buffer role: lambda is the buffer: the response field that keeps the flow accounting when phi. Epistemic: hypotese / ingen / minoritet.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -3073,7 +3073,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar egen ramme \u2014 baeres av oss, ikke av feltet"
+        "our own frame \u2014 carried by us, not by the field"
       ]
     ],
     "cond": [
@@ -3093,8 +3093,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. strukturen som energy-flow-feltet holder oppe",
-    "what": "ingen direkte \u2014 strukturen er avledet fra feltet, ikke maalt som struktur \u2014 proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur -> rotasjonskurv",
+    "one": "Perspective: paradigm. the structure that the energy-flow field holds up",
+    "what": "none directly \u2014 the structure is derived from the field, not measured as structure \u2014 proxy chain: energy-flow-felt -> tetthetsgradient -> potensial -> struktur -> struktur -> rotasjonskurv",
     "how": "Buffer role: haloen selv er bufferen: den holder formen mens feltet varierer under. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S>0",
@@ -3113,7 +3113,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar ramme \u2014 erstatter mork materie, som er et MINORITETSstandpunkt mot LCDM"
+        "our frame \u2014 replaces dark matter, which is a MINORITY position against LCDM"
       ]
     ],
     "cond": []
@@ -3131,9 +3131,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. energy-flow-feltet J_mu og dets divergens",
+    "one": "Perspective: paradigm. the energy-flow field J_mu and its divergence",
     "what": "aksjonen (master-spec, eq. 1) \u2014 proxy chain: aksjon -> feltligning -> J_mu -> ekspansjonshistorie -> J_mu -> Sigma (kildeledd)",
-    "how": "Buffer role: F(phi) og K(rho) demper avvik fra LCDM avhengig av feltverdi. Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: F(phi) and K(rho) damp deviations from LCDM depending on the field value. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S>0",
       "sector": "D",
@@ -3151,7 +3151,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar ramme \u2014 erstatter mork energi, som er konsensus i LCDM"
+        "our frame \u2014 replaces dark energy, which is consensus in LCDM"
       ]
     ],
     "cond": []
@@ -3169,9 +3169,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "Perspective: paradigm. entropi-feltet S og dets grenser",
-    "what": "ingen direkte \u2014 S er et felt, ikke en maaling \u2014 proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C (FALSIFI",
-    "how": "Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen naa. Epistemic: hypotese / proxy / minoritet.",
+    "one": "Perspective: paradigm. the entropy field S and its boundaries",
+    "what": "none directly \u2014 S is a field, not a measurement \u2014 proxy chain: S -> Omega-hat (differentiation) and kappa-hat (integration) -> Omega x kappa -> C (FALSIF",
+    "how": "Buffer role: entropy itself: it absorbs energy without the structure changing, until the limi. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
       "regime": "S->1",
       "sector": "C",
@@ -3189,7 +3189,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "vaar ramme \u2014 broen kosmologi-til-kognisjon er ikke etablert"
+        "our frame \u2014 the cosmology-to-cognition bridge is not established"
       ]
     ],
     "cond": []
@@ -3207,8 +3207,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
-    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "one": "Perspective: consensus. alerts on transients in real time, from ground and space",
+    "what": "Fermi, Swift and ground-based telescopes \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
     "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3227,7 +3227,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GCN varsler naar noe DETEKTERES; andelen maaler instrumentets dekning, ikke himmelens aktivitet"
+        "GCN alerts when something is DETECTED; the fraction measures the coverage of the instrument, not the activity of the sky"
       ]
     ],
     "cond": []
@@ -3245,7 +3245,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3265,7 +3265,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Det interstellare er kjent fra et faatall objekter; andelen hviler paa en haandfull maalinger"
+        "The interstellar is known from a few objects; the fraction rests on a handful of measurements"
       ]
     ],
     "cond": []
@@ -3283,7 +3283,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden",
+    "one": "Perspective: consensus. orbit positions computed from the DE441 ephemeris",
     "what": "DE441-ephemeriden; ingen instrument leste av \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon",
     "how": "Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
@@ -3303,7 +3303,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Samme ephemeride som planetsystemet \u2014 to domener, ett regnestykke"
+        "The same ephemeris as the planetary system \u2014 two domains, one calculation"
       ]
     ],
     "cond": []
@@ -3321,8 +3321,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
-    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "one": "Perspective: consensus. alerts on transients in real time, from ground and space",
+    "what": "Fermi, Swift and ground-based telescopes \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
     "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3341,7 +3341,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Noytrinodeteksjon er en haandfull anlegg verden over \u2014 andelen maaler anleggene, ikke fluksene"
+        "Neutrino detection is a handful of facilities worldwide \u2014 the fraction measures the facilities, not the fluxes"
       ]
     ],
     "cond": []
@@ -3359,7 +3359,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden",
+    "one": "Perspective: consensus. orbit positions computed from the DE441 ephemeris",
     "what": "DE441-ephemeriden; ingen instrument leste av \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon",
     "how": "Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
@@ -3379,7 +3379,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "JPL DE441 er en TILPASNING til historiske observasjoner; andelen maaler ephemeriden, ikke himmelen"
+        "JPL DE441 is a FIT to historical observations; the fraction measures the ephemeris, not the sky"
       ]
     ],
     "cond": []
@@ -3397,8 +3397,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
-    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "one": "Perspective: consensus. alerts on transients in real time, from ground and space",
+    "what": "Fermi, Swift and ground-based telescopes \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
     "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3417,7 +3417,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Roentgentransienter krever instrumenter som ser i det baandet; uten dem finnes de ikke i dataene"
+        "X-ray transients require instruments that see in that band; without them they do not exist in the data"
       ]
     ],
     "cond": []
@@ -3435,7 +3435,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3455,7 +3455,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Oppskytingsdata er institusjonelle og nasjonale; det som ikke annonseres, telles ikke"
+        "Launch data are institutional and national; what is not announced is not counted"
       ]
     ],
     "cond": []
@@ -3473,7 +3473,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3493,7 +3493,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Stjernedata kommer fra surveyer med hver sin seleksjon; andelen baerer surveyens blikk"
+        "Stellar data come from surveys each with its own selection; the proportion carries the survey's gaze"
       ]
     ],
     "cond": []
@@ -3511,8 +3511,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
-    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "one": "Perspective: consensus. alerts on transients in real time, from ground and space",
+    "what": "Fermi, Swift and ground-based telescopes \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
     "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3531,7 +3531,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Det uklassifiserte er definert ved at det IKKE passer \u2014 andelen maaler skjemaets grense, ikke fenomenet"
+        "The unclassified is defined by the fact that it does NOT fit \u2014 the proportion measures the schema's boundary, not the ph"
       ]
     ],
     "cond": []
@@ -3549,7 +3549,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. arbeidsmarkeds- og sosialstatistikk for Europa",
+    "one": "Perspective: consensus. labour market and social statistics for Europe",
     "what": "nasjonale statistikkbyr\u00e5er, harmonisert \u2014 proxy chain: nasjonal statistikk -> harmonisering -> indikator",
     "how": "Buffer role: Eurostat er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3569,7 +3569,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Eurostat og ILO maaler formell arbeidskraft; den uformelle okonomien er strukturelt fravaerende"
+        "Eurostat and ILO measure formal labour; the informal economy is structurally absent"
       ]
     ],
     "cond": []
@@ -3587,7 +3587,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3607,7 +3607,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Folkeregistre er ujevnt utbygd; andelen maaler registreringen like mye som befolkningen"
+        "Population registers are unevenly developed; the proportion measures the registration as much as the population"
       ]
     ],
     "cond": []
@@ -3625,7 +3625,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3663,7 +3663,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3683,7 +3683,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Geopolitikk er et spraak om maktforhold; kodingsskjemaet velger hva som faar en etikett"
+        "Geopolitics is a language of power relations; the coding scheme chooses what gets a label"
       ]
     ],
     "cond": []
@@ -3701,7 +3701,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3721,7 +3721,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Handel telles over grenser med tollskjema \u2014 tjenester og digitalt bytte faller utenfor"
+        "Trade is counted across borders with customs forms \u2014 services and digital exchange fall outside"
       ]
     ],
     "cond": []
@@ -3739,7 +3739,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3759,7 +3759,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "WHO og nasjonale helseregistre setter hva som telles som helse; det som ikke rapporteres, finnes ikke i andelen"
+        "WHO and national health registries define what counts as health; what is not reported does not exist in the share"
       ]
     ],
     "cond": []
@@ -3777,7 +3777,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3797,7 +3797,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Infrastruktur telles naar den bygges og naar den feiler; den stille virkerdag er usynlig"
+        "Infrastructure is counted when it is built and when it fails; the quiet working day is invisible"
       ]
     ],
     "cond": []
@@ -3815,7 +3815,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3835,7 +3835,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Mediedekning er skjevt fordelt \u2014 rike land melder mer, saa andelen maaler mediet, ikke hendelsen"
+        "Media coverage is unevenly distributed \u2014 rich countries report more, so the share measures the medium, not the event"
       ]
     ],
     "cond": []
@@ -3853,7 +3853,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3873,7 +3873,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Lovgivning registreres naar den vedtas, ikke naar den virker \u2014 og ikke i land uten frie registre"
+        "Legislation is registered when it is adopted, not when it takes effect \u2014 and not in countries without free registers"
       ]
     ],
     "cond": []
@@ -3891,7 +3891,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3911,7 +3911,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Milit\u00e6re forhold rapporteres av statene selv; det hemmelige er usynlig i korpuset, ikke i verden"
+        "Military matters are reported by the states themselves; the secret is invisible in the corpus, not in the world"
       ]
     ],
     "cond": []
@@ -3929,7 +3929,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3949,7 +3949,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GDELT koder verdens nyhetsstroem \u2014 andelen maaler hva som BLE skrevet om, ikke hva som skjedde"
+        "GDELT encodes the world's news stream \u2014 the proportion measures what was WRITTEN about, not what happened"
       ]
     ],
     "cond": []
@@ -3967,7 +3967,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -3987,7 +3987,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Sikkerhetshendelser rapporteres naar de er spektakulaere; den stille hverdagen telles ikke"
+        "Safety incidents are reported when they are spectacular; the quiet everyday is not counted"
       ]
     ],
     "cond": []
@@ -4005,7 +4005,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4025,7 +4025,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Teknologinyheter er framtidsorientert: andelen maaler forventning, ikke utbredelse"
+        "Technology news is future-oriented: the share measures expectation, not adoption"
       ]
     ],
     "cond": []
@@ -4043,7 +4043,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4063,7 +4063,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Transport maales der den registreres \u2014 uformell og lokal transport er usynlig"
+        "Transport is measured where it is registered \u2014 informal and local transport is invisible"
       ]
     ],
     "cond": []
@@ -4081,7 +4081,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "one": "Perspective: consensus. global news streams coded to topic, actor and place",
     "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
     "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4101,7 +4101,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Utdanningsstatistikk maaler skolegang, ikke laering \u2014 og land som ikke rapporterer, blir usynlige i samme andel"
+        "Education statistics measure schooling, not learning \u2014 and countries that do not report become invisible in the same fra"
       ]
     ],
     "cond": []
@@ -4119,7 +4119,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. astronomiske observasjoner og katalogiserte kilder",
+    "one": "Perspective: consensus. astronomical observations and catalogued sources",
     "what": "MAST CAOM observasjonskatalog \u2014 proxy chain: instrumentmetadata -> CAOM-observasjon -> katalogisert astronomisk kilde",
     "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4139,7 +4139,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "MAST/CAOM b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "MAST/CAOM carries the measurement practice and the stream makes it available; this is a social channel, not the truth it"
       ]
     ],
     "cond": []
@@ -4158,7 +4158,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "Perspective: consensus. klimarelatert omtale kodet i globale nyhetsdokumenter",
-    "what": "GDELT GKG-koding av dokument, tema, akt\u00f8r og sted \u2014 proxy chain: nyhetsdokument -> GKG-koder -> klimarelatert observasjon",
+    "what": "GDELT GKG coding of document, topic, actor and place \u2014 proxy chain: nyhetsdokument -> GKG-koder -> klimarelatert observasjon",
     "how": "Buffer role: GDELT-korpuset holder kodingen mellom meldinger. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4177,7 +4177,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GDELT-prosjektet b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "the GDELT project carries the measurement practice and the stream makes it available; this is a social channel, not the "
       ]
     ],
     "cond": []
@@ -4195,8 +4195,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. klima- og utviklingsindikatorer per land og \u00e5r",
-    "what": "World Bank-indikatorenes innrapporterte og harmoniserte datasett \u2014 proxy chain: nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding",
+    "one": "Perspective: consensus. climate and development indicators per country and year",
+    "what": "the World Bank indicators' reported and harmonised datasets \u2014 proxy chain: nasjonal rapportering -> harmonisering -> indikatorverdi -> tilstandsmelding",
     "how": "Buffer role: harmoniserte indikatorserier holder tilstanden mellom \u00e5rlige oppdateringer. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4215,7 +4215,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer klimaets institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette e"
+        "World Bank carries the climate's institutional measurement practice; the stream makes the country and year indicators av"
       ]
     ],
     "cond": []
@@ -4253,7 +4253,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "MGnify b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "MGnify carries the measurement practice and the stream makes it available; this is a social channel, not the truth itsel"
       ]
     ],
     "cond": []
@@ -4291,7 +4291,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GDELT b\u00e6rer milj\u00f8ets nyhetsm\u00e5lepraksis; str\u00f8mmen gj\u00f8r kodet omtale tilgjengelig, men dette er ikke sannheten selv"
+        "GDELT carries the environment's news measurement practice; the stream makes coded coverage available, but this is not th"
       ]
     ],
     "cond": []
@@ -4329,7 +4329,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "World Bank b\u00e6rer \u00f8konomiens institusjonelle m\u00e5lepraksis; str\u00f8mmen gj\u00f8r land- og \u00e5rsindikatorene tilgjengelige, men dette"
+        "World Bank carries the economy's institutional measurement practice; the stream makes the country and year indicators av"
       ]
     ],
     "cond": []
@@ -4367,7 +4367,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "IMF DataMapper b\u00e6rer m\u00e5lepraksisen og str\u00f8mmen gj\u00f8r den tilgjengelig; dette er en sosial kanal, ikke sannheten selv"
+        "IMF DataMapper carries the measurement practice and the stream makes it available; this is a social channel, not the tru"
       ]
     ],
     "cond": []
@@ -4405,7 +4405,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "GDELT b\u00e6rer \u00f8konomiens nyhetsm\u00e5lepraksis; str\u00f8mmen gj\u00f8r kodet omtale tilgjengelig, men dette er ikke sannheten selv"
+        "GDELT carries the economy's news measurement practice; the stream makes coded coverage available, but this is not the tr"
       ]
     ],
     "cond": []
@@ -4423,7 +4423,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. Kp-tilstand og stormniv\u00e5",
+    "one": "Perspective: consensus. Kp state and storm level",
     "what": "SWPC Kp-m\u00e5ling \u2014 proxy chain: tilstand.swpc-kp -> instrumentavlesning -> atlasobservasjon",
     "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4443,7 +4443,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "SWPCs operative Kp-skala og romvaerprognoser baerer praksisen; str\u00f8mmen gj\u00f8r tilstanden lesbar, men ikke sannheten selv."
+        "SWPC's operational Kp scale and space weather forecasts carry the practice; the stream makes the state readable, but not"
       ]
     ],
     "cond": []
@@ -4461,7 +4461,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "Perspective: consensus. GOES r\u00f8ntgenfluks og flareklasse",
+    "one": "Perspective: consensus. GOES X-ray flux and flare class",
     "what": "GOES X-ray instrument \u2014 proxy chain: tilstand.swpc-goes-xray -> instrumentavlesning -> atlasobservasjon",
     "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4481,7 +4481,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "NOAA GOES-instrumenteringen og solfysikkens varslingsfellesskap baerer X-ray-m\u00e5lingen; observasjonen er et avgrenset vin"
+        "NOAA's GOES instrumentation and solar physics' alerting community carry the X-ray measurement; the observation is a deli"
       ]
     ],
     "cond": []
@@ -4519,7 +4519,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "ALeRCEs \u00e5pne transientfellesskap og varslingspipeline baerer denne optiske str\u00f8mmen; klassifisering er ikke identitet."
+        "ALeRCE's open transient community and alert pipeline carry this optical stream; classification is not identity."
       ]
     ],
     "cond": []
@@ -4557,7 +4557,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "DESI-samarbeidet og BAO-praksisen er den ventede sosiale kanalen; frav\u00e6r av str\u00f8m er rapportert eksplisitt."
+        "The DESI collaboration and the BAO practice are the expected social channel; the absence of a stream is reported explici"
       ]
     ],
     "cond": []
@@ -4595,7 +4595,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "Glasiologiens felt- og fjernm\u00e5lingsfellesskap er den ventede kanalen; isbreobservasjonen finnes ikke i bussen enn\u00e5."
+        "Glaciology's field and remote-sensing community is the expected channel; the glacier observation does not exist on the b"
       ]
     ],
     "cond": []

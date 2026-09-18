@@ -40,7 +40,7 @@ def test_paradigme_tid_har_to_valgte_rammer():
     to ulike valgte rammer."""
     n = _node("efc.selv.paradigme_tid")
     alt = n["maale_paradigme"]["alternativer"]
-    assert any("romtid" in a for a in alt), \
+    assert any("spacetime" in a for a in alt), \
         "romtid-rammen mangler i alternativene"
 
 
@@ -49,7 +49,7 @@ def test_paradigme_masse_skiller_gravitasjons_rammene():
     n = _node("efc.selv.paradigme_masse")
     alt = n["maale_paradigme"]["alternativer"]
     assert any("entropi" in a for a in alt), "EFC-rammen mangler"
-    assert any("SPESIALTILFELLE" in a for a in alt), \
+    assert any("SPECIAL CASE" in a for a in alt), \
         "LCDM er ikke deklarert som spesialtilfelle"
 
 
@@ -60,7 +60,7 @@ def test_kosmologi_motorene_deklarerer_romtid_veving():
                 "efc.growth_engine", "efc.mu_kz_engine"):
         n = _node(nid)
         alt = n["maale_paradigme"]["alternativer"]
-        assert any("romtid" in a for a in alt), nid
+        assert any("spacetime" in a for a in alt), nid
 
 
 def test_efc_motorene_deklarerer_entropi_rammen():
@@ -69,7 +69,7 @@ def test_efc_motorene_deklarerer_entropi_rammen():
     for nid in ("efc.growth_engine", "efc.mu_kz_engine"):
         n = _node(nid)
         assumes = n["ontology"]["assumes"]
-        assert any("entropi" in a for a in assumes), nid
+        assert any("entropy" in a for a in assumes), nid
 
 
 def test_lcdm_motorene_deklarerer_spesialtilfelle():
@@ -88,7 +88,7 @@ def test_mu_kz_koblingen_er_deklarert_som_plan():
     noden skal si det eksplisitt, ikke late som koden kobler."""
     n = _node("efc.mu_kz_engine")
     assumes = n["ontology"]["assumes"]
-    assert any("IKKE implementert" in a for a in assumes), (
+    assert any("NOT implemented" in a for a in assumes), (
         "mu_kz-noden overpåstår koblingen til growth")
 
 
@@ -97,5 +97,5 @@ def test_egentid_er_metrikk_og_verdenslinje():
     masse er kilde til metrikken, ikke direkte kinematisk variabel."""
     n = _node("efc.selv.paradigme_tid")
     alt = n["maale_paradigme"]["alternativer"]
-    assert any("METRIKKEN" in a and "verdenslinjen" in a for a in alt), (
+    assert any("METRIC" in a and "worldline" in a for a in alt), (
         "formuleringen av egentiden er upresis")

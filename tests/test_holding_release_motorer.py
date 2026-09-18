@@ -107,7 +107,7 @@ def test_solarflare_regime_node_selvbeskrivelse():
     assert node["id"] == "efc.solar_flare_engine"
     assert "holding" in node["regime"]["validity"].lower()
     assert "release" in node["regime"]["validity"].lower() or \
-           "utlos" in node["regime"]["validity"].lower()
+           "released" in node["regime"]["validity"].lower()
     assert node["regime"]["law_form"].strip()
 
 
@@ -150,7 +150,7 @@ def test_solarflare_validity_deklarerer_ugyldig_inngang():
     """Vinduet er motorens egen paastand. Staar kontrakten ikke der, er
     den stille — samme feilklasse som «NaN -> holding» var maalt som."""
     v = SolarFlareEngine().regime_node(SOLFLARE_PARAMS)["regime"]["validity"]
-    assert "utenfor vinduet" in v
+    assert "outside the window" in v
     assert "NaN" in v
     assert "negativ" in v
 
@@ -207,7 +207,7 @@ def test_jordskjelv_regime_node_selvbeskrivelse():
     assert node["id"] == "efc.jordskjelv_engine"
     assert "holding" in node["regime"]["validity"].lower()
     assert "release" in node["regime"]["validity"].lower() or \
-           "utlos" in node["regime"]["validity"].lower()
+           "released" in node["regime"]["validity"].lower()
     assert node["regime"]["law_form"].strip()
 
 
@@ -233,7 +233,7 @@ def test_jordskjelv_validity_deklarerer_ugyldig_inngang():
     """Vinduet er motorens egen paastand — kontrakten skal staa der."""
     v = JordskjelvEngine().regime_node(
         JORDSKJELV_PARAMS)["regime"]["validity"]
-    assert "utenfor vinduet" in v
+    assert "outside the window" in v
     assert "NaN" in v
     assert "negativ" in v
 
@@ -397,10 +397,10 @@ def test_transient_regime_node_selvbeskrivelse():
     assert node["id"] == "efc.transient_engine"
     assert "holding" in node["regime"]["validity"].lower()
     assert "release" in node["regime"]["validity"].lower() or \
-           "utlos" in node["regime"]["validity"].lower()
+           "released" in node["regime"]["validity"].lower()
     assert node["regime"]["law_form"].strip()
     tekst = json.dumps(node, ensure_ascii=False)
-    assert "IDEALISERT" in tekst
+    assert "IDEALISED" in tekst
     # De tre andre holding->release-endepunktene skal vaere navngitt.
     for endepunkt in ("homo.aksjonspotensial", "efc.solar_flare_engine",
                       "efc.jordskjelv_engine"):
@@ -408,7 +408,7 @@ def test_transient_regime_node_selvbeskrivelse():
     assert "ANALOGOUS_TO" in tekst
     # Scoping: motoren koder kollaps-grenen, ikke hendelsesstrommen.
     assert "kosmos.transienter" in tekst
-    assert "hendelsesstr" in tekst.lower() or "ikke ett regime" in tekst.lower()
+    assert "event stream" in tekst.lower()
 
 
 def test_transient_regime_node_er_gyldig_etter_skjemaet():

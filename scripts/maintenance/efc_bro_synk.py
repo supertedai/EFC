@@ -43,7 +43,7 @@ ATLAS = ROT / K.ATLAS[0] / K.ATLAS[1]
 #: Filformatet atlaset er skrevet i. Skriving som IKKE reproduserer de
 #: eksisterende bytes nektes — en generator skal ikke reformatere 289 kB
 #: for aa endre to felt.
-FORMAT = dict(indent=1, ensure_ascii=False)
+FORMAT = dict(indent=2, ensure_ascii=False)
 
 #: node-id -> (motormodul, motorklasse, testmodul med de kanoniske
 #: parametrene). Registeret ER registeret: enhver EFCEngine med

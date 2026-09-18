@@ -1,32 +1,32 @@
-"""EnerFlytEngine — samfunnet som energiflyt (L-052).
+"""EnerFlytEngine — society as energy flow (L-052).
 
-Mortens prinsipp (f): hele samfunnet er et energiflyt-diagram i alle
-akser. SIR-motoren modellerer epidemiologiens fraksjonsfluks; denne
-modellerer ENERGI-fluksen:
+Morten's principle (f): the whole of society is an energy-flow diagram on
+every axis. The SIR engine models the fraction flux of epidemiology; this
+one models the ENERGY flux:
 
     dS/dt = P - C - L
 
-der P = produksjon, C = forbruk, L = tap, S = bufferen (lageret).
+where P = production, C = consumption, L = loss, S = the buffer (the store).
 
-Regimene er bufferterskelens tre tilstander:
-    overflod : P > C + L — bufferen fylles
-    balanse  : P ~ C + L — bufferen står stille
-    knapphet : C + L > P — bufferen tømmes; under terskelen er
-               release-regimet (rasjonering/omfordeling)
+The regimes are the three states of the buffer threshold:
+    abundance : P > C + L — the buffer fills
+    balance   : P ~ C + L — the buffer stands still
+    scarcity  : C + L > P — the buffer empties; below the threshold is
+               the release regime (rationing/redistribution)
 
-ÆRLIGHETSKLAUSULER (review-disippel fra økonomi-/samfunns-motorene):
-- Dette er ÉN akse av samfunnet. Penger, oppmerksomhet og tillit er
-  andre valutaer med eksplisitt IKKE-konservering — de er ikke i
-  denne modellen, og det sies eksplisitt.
-- Motoren predikerer IKKE når kriser inntreffer — den sier når
-  bufferen krysser terskelen i modellen. Samfunnets faktiske kriser
-  har aktører, politikk og normer som ikke er i flytligningen.
-- Produksjon og forbruk er idealiserte skalarer — virkelige samfunn
-  har sektorer, nettverk og makt som fordeler fluksene.
+HONESTY CLAUSES (review discipline from the economy/society engines):
+- This is ONE axis of society. Money, attention and trust are
+  other currencies with explicit NON-conservation — they are not in
+  this model, and that is said explicitly.
+- The engine does NOT predict when crises arrive — it says when
+  the buffer crosses the threshold in the model. Society's actual crises
+  have actors, politics and norms that are not in the flow equation.
+- Production and consumption are idealized scalars — real societies
+  have sectors, networks and power that distribute the fluxes.
 
-Fraksjonsinvariant: regimet er invariant under per-kapita-skala —
-samme flyt per person gir samme regime (skalaen er et valg, ikke en
-fysikk-endring).
+Fraction invariant: the regime is invariant under per-capita scaling —
+the same flow per person gives the same regime (the scale is a choice,
+not a physics change).
 """
 from __future__ import annotations
 
@@ -36,12 +36,12 @@ from efc_inference.engine.base_engine import EFCEngine
 
 
 class EnerFlytEngine(EFCEngine):
-    """Samfunnets energiflyt — buffer-balanse med tre regimer."""
+    """Society's energy flow — buffer balance with three regimes."""
 
     REQUIRED_PARAMS = [
-        "produksjon",  # P — energi/tid
-        "forbruk",     # C — energi/tid
-        "buffer",      # S0 — startbeholdningen
+        "produksjon",  # P — energy/time
+        "forbruk",     # C — energy/time
+        "buffer",      # S0 — the initial holding
     ]
 
     @property
@@ -50,7 +50,7 @@ class EnerFlytEngine(EFCEngine):
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt (produksjon, forbruk)-par, returner dS/dt per punkt."""
+        """Given (production, consumption) pairs, return dS/dt per point."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
         koord = np.asarray(coordinates, dtype=float)
@@ -64,10 +64,11 @@ class EnerFlytEngine(EFCEngine):
         return np.array(ut)
 
     def vurder(self, params: dict) -> dict:
-        """Returnerer flyt-vurderingen for gitte parametre.
+        """Returns the flow assessment for the given parameters.
 
-        Buffer under terskelen med negativ drift gir buffer_etter =
-        NaN (ikke stille klipping — mønsteret fra OekonomiEngine).
+        A buffer below the threshold with negative drift gives
+        buffer_etter = NaN (not silent clamping — the pattern from
+        OekonomiEngine).
         """
         p = float(params["produksjon"])
         c = float(params["forbruk"])
@@ -101,98 +102,99 @@ class EnerFlytEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "regime": {
                 "name": u["regime"],
-                "validity": ("overflod: P > C + L — bufferen fylles; "
-                             "balanse: P ~ C + L; knapphet: C + L > P — "
-                             "bufferen toemmes og release-regimet er "
-                             "rasjonering/omfordeling. Predikerer IKKE "
-                             "naar krisen inntreffer — bare naer "
-                             "bufferen krysser terskelen i modellen."),
+                "validity": ("abundance: P > C + L — the buffer fills; "
+                             "balance: P ~ C + L; scarcity: C + L > P — "
+                             "the buffer empties and the release regime "
+                             "is rationing/redistribution. Does NOT "
+                             "predict when the crisis arrives — only "
+                             "where the buffer crosses the threshold in "
+                             "the model."),
             },
             "phase": u["regime"],
             "measure": {
-                "target": "bufferen S og driften dS/dt = P - C - L",
-                "measurer": "energistatistikk — produksjon, forbruk, "
-                            "lager (samfunnsregnskap)",
-                "instrument": "statistikkbyraaer og nettoperatoerer",
-                "proxy_chain": ["registrert produksjon -> forbruk -> "
-                                "bufferanslag — alle er regnskaps-"
-                                "proxyer, ikke direkte maalinger"],
-                "placement": "samfunnets eget regnskap",
-                "compression": "hele samfunnet komprimeres til tre "
-                               "tall per tidsenhet",
+                "target": "the buffer S and the drift dS/dt = P - C - L",
+                "measurer": "energy statistics — production, consumption, "
+                            "stores (national accounts)",
+                "instrument": "statistics agencies and grid operators",
+                "proxy_chain": ["registered production -> consumption -> "
+                                "buffer estimate — all are accounting "
+                                "proxies, not direct measurements"],
+                "placement": "society's own accounts",
+                "compression": "the whole of society is compressed into "
+                               "three numbers per unit of time",
             },
-            "episenter": ("energiregnskapets ramme: knapphet er en "
-                          "lesning i P-C-L-rammen, ikke en egenskap "
-                          "ved samfunnet i seg selv"),
+            "episenter": ("the energy-accounting frame: scarcity is a "
+                          "reading in the P-C-L frame, not a property "
+                          "of society in itself"),
             "buffer": {
-                "role": "S er samfunnets energibuffer — holdingen som "
-                        "absorberer ubalansen mellom produksjon og "
-                        "forbruk",
-                "note": "samme bufferlogikk som batteriet og "
-                        "hjemostasen — pa samfunnsskala",
+                "role": "S is society's energy buffer — the holding that "
+                        "absorbs the imbalance between production and "
+                        "consumption",
+                "note": "the same buffer logic as the battery and "
+                        "homeostasis — at societal scale",
             },
             "ontology": {
                 "assumes": [
-                    "energi er EN akse av samfunnet — penger, "
-                    "oppmerksomhet og tillit er andre valutaer med "
-                    "eksplisitt IKKE-konservering og er ikke i modellen",
-                    "produksjon og forbruk er idealiserte skalarer — "
-                    "virkelige samfunn har sektorer, nettverk og makt",
-                    "dS/dt = P - C - L er en idealisert "
-                    "flytligning, ikke en sosial lov",
+                    "energy is ONE axis of society — money, "
+                    "attention and trust are other currencies with "
+                    "explicit NON-conservation and are not in the model",
+                    "production and consumption are idealized scalars — "
+                    "real societies have sectors, networks and power",
+                    "dS/dt = P - C - L is an idealised "
+                    "flow equation, not a social law",
                 ],
-                "source": "energiregnskapets konservering; EFC "
-                          "bufferlogikk (analogi til batteri og "
-                          "hjemostase — ikke identitet)",
+                "source": "the conservation of the energy budget; EFC "
+                          "buffer logic (analogy to battery and "
+                          "homeostasis — not identity)",
             },
             "observer": {
-                "bandwidth": "samfunnets eget regnskap — bare det som "
-                             "registreres og rapporteres; svart "
-                             "økonomi og uregistrerte flukser er "
-                             "usynlige for dette instrumentet",
+                "bandwidth": "society's own accounting — only what is "
+                             "registered and reported; the black "
+                             "economy and unregistered fluxes are "
+                             "invisible to this instrument",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "produksjon -> buffer -> forbruk -> "
-                        "produksjonsinsentiver — loopen holder "
-                        "samfunnets energisystem gaende",
+                "loop": "production -> buffer -> consumption -> "
+                        "production incentives — the loop keeps "
+                        "society's energy system going",
                 "properties": ["overflod", "balanse", "knapphet"],
             },
             "fractal": {
-                "pattern": "celle -> kropp -> husholdning -> samfunn: "
-                           "samme bufferbalanse pa hver skala",
-                "note": "homeostase er den biologiske versjonen av "
-                        "samme flytlogikk",
+                "pattern": "cell -> body -> household -> society: the "
+                           "same buffer balance at every scale",
+                "note": "homeostasis is the biological version of the "
+                        "same flow logic",
             },
             "coupling": {
-                "local": "hver husholdning balanserer lokalt",
-                "global": "samfunnets energibuffer er kollektivet — "
-                          "knapphet kopler alle",
-                "empathy_note": "knappheten rammer ikke likt — "
-                                "modellen har ingen fordeling, og "
-                                "det er et bevisst hull",
+                "local": "every household balances locally",
+                "global": "society's energy buffer is the collective — "
+                          "scarcity couples everyone",
+                "empathy_note": "the scarcity does not strike equally — "
+                                "the model has no distribution, and "
+                                "that is a deliberate gap",
             },
             "perspektiv": "paradigme",
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vaar egen ramme — baeres av oss, "
-                                     "ikke av feltet",
+                "sosial_mekanisme": "our own frame — carried by us, "
+                                    "not by the field",
                 "konsensus_er_ikke_sannhet": True,
             },
             "maale_paradigme": {
                 "koordinater": ["energi", "tid", "fraksjon"],
-                "enheter": "energi/tid, per-kapita-fraksjoner",
+                "enheter": "energy/time, per-capita fractions",
                 "status": "proxy",
                 "alternativer": ["penger, oppmerksomhet, tillit — "
                                  "ikke-konserverte valutaer utenfor "
                                  "modellen"],
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nonetheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": "homo.fluxus",
@@ -200,19 +202,19 @@ class EnerFlytEngine(EFCEngine):
                 "lengdeskala": "domene"
             },            "stipulasjoner": {
                 "stipulert_av_oss": True,
-                "terskler": [("terskelen er buffergrensen VI setter — "
-                              "knapphet er vaar definisjon, ikke "
-                              "naturens linje")],
+                "terskler": [("the threshold is the buffer boundary WE "
+                              "set — scarcity is our definition, not "
+                              "nature's line")],
                 "motor": "enerflyt",
             },
             "analogi": {
                 "avbildning": ("buffer -> batterilager/hjemostase, "
                                "knapphet -> utladning/feber, "
                                "produksjon -> lading/inntak"),
-                "bryter_der": ("samfunnet er ikke en organisme: "
-                               "ingen sentral regulator, fordelingen "
-                               "er politisk, og aktorene har "
-                               "intensjoner — flytligningen har "
-                               "ingen av dem"),
+                "bryter_der": ("society is not an organism: "
+                               "no central regulator, the distribution "
+                               "is political, and the actors have "
+                               "intentions — the flow equation has "
+                               "none of them"),
             },
         }

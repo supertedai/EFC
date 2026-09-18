@@ -36,7 +36,7 @@ solar-driven charging with variable power.
 
 Data contract: the engine takes time series INJECTED via params — it
 never reads live data or any site configuration. (Live VRM history is a
-Hetzner-side data source; see trinn 6/8 notes.)
+Hetzner-side data source; see step 6/8 notes.)
 
 Engine contract (EFCEngine):
   compute(params, coordinates) -> np.ndarray of regime labels (0/1),
@@ -50,8 +50,8 @@ from efc_inference.engine.base_engine import EFCEngine
 
 
 class VictronChargeEngine(EFCEngine):
-    #: Bundet til et privat, instrumentert anlegg — noden
-    #: holdes utenfor GitHub Pages (regel 16).
+    #: Bound to a private, instrumented installation — the node
+    #: is kept out of GitHub Pages (rule 16).
     SYNLIGHET = "intern"
     """Locate the CC->CV charge-regime knee in a V/I time series."""
 
@@ -76,8 +76,8 @@ class VictronChargeEngine(EFCEngine):
         n = t.size
         out = np.zeros(n, dtype=int)
 
-        # Lukket håndtering: None-params, ikke-endelige/ikke-positive
-        # terskler, eller uordnede/ikke-endelige tider gir ingen overgang.
+        # Closed handling: None params, non-finite/non-positive
+        # thresholds, or unordered/non-finite times give no transition.
         if not isinstance(params_dict, dict):
             return out
         if t.ndim != 1 or not np.all(np.isfinite(t)):
@@ -92,8 +92,8 @@ class VictronChargeEngine(EFCEngine):
         for thr in (tol, di_thr, flat_thr):
             if not (np.isfinite(thr) and thr >= 0):
                 return out
-        min_cc = 5  # CC-plataaet kreves over minst 5 bins foer kneet
-        cv_win, cv_need = 3, 2  # bekreftelsesvindu ETTER kandidaten
+        min_cc = 5  # the CC plateau is required over at least 5 bins before the knee
+        cv_win, cv_need = 3, 2  # confirmation window AFTER the candidate
 
         if v.size != n or i.size != n or n < min_cc + cv_win + 1:
             return out
@@ -105,9 +105,9 @@ class VictronChargeEngine(EFCEngine):
         pad = np.concatenate(([i[0]], i, [i[-1]]))
         i_s = np.convolve(pad, np.ones(3) / 3.0, mode="valid")
 
-        # dI/dt via central differences delt paa FAKTISK dt (terskelen er
-        # per tidsenhet, ikke per sample) — samme kurve gir samme kne
-        # uansett samplingsintervall.
+        # dI/dt via central differences divided by the ACTUAL dt (the
+        # threshold is per time unit, not per sample) — the same curve gives
+        # the same knee regardless of the sampling interval.
         di = np.zeros(n)
         dt_mid = t[2:] - t[:-2]
         di[1:-1] = (i_s[2:] - i_s[:-2]) / dt_mid
@@ -116,18 +116,18 @@ class VictronChargeEngine(EFCEngine):
         labels = np.zeros(n, dtype=int)
         knee_idx = None
         for k in range(min_cc, n - cv_win):
-            # CC-fasen: strømmen skal ha vaert FLAT (median |dI/dt| under
-            # flat_thr) over de foregaaende min_cc binnene — ellers er
-            # avtagningen kildeeffekt (solkurve), ikke CV-start.
+            # The CC phase: the current must have been FLAT (median |dI/dt|
+            # below flat_thr) over the preceding min_cc bins — otherwise the
+            # decay is source power (a solar curve), not the CV start.
             plateau = np.median(np.abs(di[k - min_cc:k])) < flat_thr
             decaying = di[k] < -di_thr
             near_limit = v[k] >= v_max - tol
             if not (plateau and decaying and near_limit):
                 continue
-            # Bekreftelsesvindu: overgangen maa HOLDE — minst cv_need av
-            # de neste cv_win binnene avtar fortsatt og spenningen holder
-            # seg nær grensen. En enkeltstaaende spike eller et rebound
-            # (soltopp) bekreftes ikke, og soeket fortsetter.
+            # Confirmation window: the transition must HOLD — at least
+            # cv_need of the next cv_win bins still decay and the voltage
+            # stays near the limit. A one-off spike or a rebound
+            # (a solar peak) is not confirmed, and the search continues.
             window = range(k + 1, k + 1 + cv_win)
             dec = sum(1 for j in window
                       if di[j] < -di_thr and v[j] >= v_max - tol)
@@ -174,7 +174,7 @@ class VictronChargeEngine(EFCEngine):
         return out
 
     # ------------------------------------------------------------------
-    # regime_node() bridge (trinn 4 pattern): the engine describes
+    # regime_node() bridge (step 4 pattern): the engine describes
     # itself as a RegimeNode instance. Validity numbers derived from
     # the effective parameters — never hard-coded.
     # ------------------------------------------------------------------
@@ -182,89 +182,91 @@ class VictronChargeEngine(EFCEngine):
         tol = float(params_dict.get("v_knee_tol", np.inf))
         di_thr = float(params_dict.get("di_threshold", np.inf))
         validity = (
-            "CC->CV-kneet: foerste tidspunkt der strømmen avtar "
-            f"(dI/dt < -{di_thr}) mens spenningen er innenfor "
-            f"{tol} av sitt maksimum — lest som laderegimets fasegrense"
+            "The CC->CV knee: the first instant at which the current falls "
+            f"(dI/dt < -{di_thr}) while the voltage is within "
+            f"{tol} of its maximum — read as the phase boundary of the "
+            "charge regime"
         )
         return {
             "id": "efc.victron_cccv_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["batteriets lade-/tømmeterskler — anleggsspesifikke — driftsgrenser"],
+            "terskler": ["the battery's charge/drain thresholds — installation-specific — operating limits"],
             "motor": "victron"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["elektrisk_potensial", "energi", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The
+            # field must still stand here because RegimeNode requires it — the
+            # test binds them.
             "nivaa": {
                 "indeks": 2,
                 "forelder": "batteri.lading",
                 "tidsskala": "s",
                 "lengdeskala": "anlegg"
             },            "regime": {
-                "name": "Victron lademotor — CC/CV-kneet",
+                "name": "Victron charge engine — the CC/CV knee",
                 "validity": validity,
                 "law_form": (
-                    "CC: I konstant, V stigende. CV: V konstant, I "
-                    "avtagende. Kneet leses som overgangen — analogi "
-                    "(ikke identitet) til H2Os trippelpunkt."
+                    "CC: I constant, V rising. CV: V constant, I "
+                    "falling. The knee is read as the transition — analogy "
+                    "(not identity) to H2O's triple point."
                 ),
             },
             "phase": "regime_engine",
             "measure": {
-                "target": "ladekurven V(t), I(t)",
-                "measurer": "VictronChargeEngine (injiserbar tidsserie)",
-                "instrument": "V/I-tidsserie — motoren leser aldri live-data selv",
+                "target": "the charge curve V(t), I(t)",
+                "measurer": "VictronChargeEngine (injectable time series)",
+                "instrument": "V/I time series — the engine never reads live data itself",
                 "proxy_chain": [
                     "V(t), I(t) -> regime-labels (0=CC, 1=CV)",
-                    "foerste CV-label -> kneet (t_k, V_k, I_k)",
+                    "first CV label -> the knee (t_k, V_k, I_k)",
                 ],
-                "placement": "motoren klassifiserer regimet langs tiden — samme moenster som WaterPhaseEngine i P-T-rommet",
-                "compression": "hundrevis av V/I-maalinger -> ett kne-punkt",
+                "placement": "the engine classifies the regime along time — the same pattern as WaterPhaseEngine in P-T space",
+                "compression": "hundreds of V/I measurements -> one knee point",
             },
-            "episenter": "kne-rammen: CC->CV leses som laderegimets faseovergang — trippelpunkt-analogien i elektrisk form",
+            "episenter": "the knee frame: CC->CV is read as the phase transition of the charge regime — the triple-point analogy in electrical form",
             "buffer": {
-                "role": "batteriets elektrokjemi er bufferen som gjør overgangen mulig — CV-fasen tolkes som bufferens metning",
-                "note": "motoren maaler overgangen; bufferen er det som mettes.",
+                "role": "the battery's electrochemistry is the buffer that makes the transition possible — the CV phase is interpreted as the buffer's saturation",
+                "note": "the engine measures the transition; the buffer is what saturates.",
             },
             "ontology": {
                 "assumes": [
-                    "CC/CV-protokollen er den kanoniske ladeprotokollen",
-                    "kneet er lesbart i V og I alene (ingen SOC kreves)",
+                    "CC/CV protocol is the canonical charge protocol",
+                    "the knee is readable in V and I alone (no SOC required)",
                 ],
-                "source": ("CC/CV-ladeprotokoll; motor-kontrakt "
+                "source": ("CC/CV charge protocol; engine contract "
                            "efc_inference/engine/base_engine.py"),
             },
             "observer": {
-                "bandwidth": "motoren ser bare V og I — to kanaler; SOC er ikke paakrevd for kneet",
+                "bandwidth": "the engine sees only V and I — two channels; SOC is not required for the knee",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "CC -> kne -> CV -> metning — ladeløypas tre-trinns emergence",
+                "loop": "CC -> knee -> CV -> saturation — the charge loop's three-stage emergence",
                 "properties": ["t_knee", "v_knee", "i_knee"],
             },
             "fractal": {
-                "pattern": "kneet er samme overgangsmonster som H2Os trippelpunkt og L1->L2 — tre domener, ett monster (analogi, ikke identitet: ladning og fase er ikke samme storrelse)",
-                "note": "motoren er overgangens egen maaler.",
+                "pattern": "the knee is the same transition pattern as the triple point of H2O and L1->L2 — three domains, one pattern (analogy, not identity: charge and phase are not the same quantity)",
+                "note": "the engine is the transition's own measurer.",
             },
             "coupling": {
-                "local": "motoren arbeider lokalt paa én ladekurve av gangen",
-                "global": "motorens kne kobles til batteri.lading-noden i atlaset (CARRIES) — maalingen baerer regimets overgang",
-                "empathy_note": "motoren vet hvilken atlas-node den baerer — broen testes maskinelt.",
+                "local": "the engine works locally on one charge curve at a time",
+                "global": "the engine's knee is coupled to the battery.charging node in the atlas (CARRIES) — the measurement carries the regime's transition",
+                "empathy_note": "the engine knows which atlas node it carries — the bridge is tested mechanically.",
             },
         }
 

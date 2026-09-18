@@ -84,13 +84,13 @@ def test_ingen_krise_prediksjon_deklarert():
     e = EnerFlytEngine()
     n = e.regime_node(BASE)
     hel = json.dumps(n, ensure_ascii=False)
-    assert "Predikerer IKKE" in hel
+    assert "Does NOT predict" in hel
 
 
 def test_er_merket_idealisert():
     n = EnerFlytEngine().regime_node(BASE)
     hel = json.dumps(n, ensure_ascii=False)
-    assert "idealiser" in hel
+    assert "idealized" in hel or "idealised" in hel
 
 
 def test_en_akse_av_mange_deklarert():
@@ -98,4 +98,4 @@ def test_en_akse_av_mange_deklarert():
     eksplisitt ikke-konserverte."""
     n = EnerFlytEngine().regime_node(BASE)
     tekst = json.dumps(n["ontology"], ensure_ascii=False)
-    assert "penger" in tekst and "tillit" in tekst
+    assert "money" in tekst and "trust" in tekst
