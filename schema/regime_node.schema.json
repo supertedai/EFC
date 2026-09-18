@@ -62,7 +62,7 @@
     "nodes": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/RegimeNode"
+        "$ref": "#/$defs/AtlasNode"
       }
     },
     "relations": {
@@ -73,6 +73,28 @@
     }
   },
   "$defs": {
+    "AtlasNode": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/RegimeNode"
+        },
+        {
+          "oneOf": [
+            {
+              "required": [
+                "ville_falsifisere"
+              ]
+            },
+            {
+              "required": [
+                "ikke_falsifiserbar_grunn"
+              ]
+            }
+          ]
+        }
+      ],
+      "description": "En node I ATLASET — ikke motorens egen selvbeskrivelse. Kravene atlaset kan oppfylle og motoren ikke ligger her, ikke i RegimeNode: motoren vet ikke hva som er kuratert om den (feltene i ATLAS_EIDE, se docs/bro-konvensjon.md), og bro-testene validerer motoren mot RegimeNode alene — maalt 2026-09-18: la kravet paa RegimeNode, og fem motortester felt. Det første kravet er falsifiserbarhet: hver node i atlaset skal ha TATT STILLING — en falsifikator eller en skriftlig grunn til at den ikke finnes. Maalt samme dag (kort t_c11ffa45): 82 av 113 noder hadde gjort verken eller, fordi skjemaet gjorde feltet valgfritt."
+    },
     "RegimeNode": {
       "type": "object",
       "required": [
@@ -93,18 +115,6 @@
         "maale_paradigme",
         "nivaa",
         "synlighet"
-      ],
-      "oneOf": [
-        {
-          "required": [
-            "ville_falsifisere"
-          ]
-        },
-        {
-          "required": [
-            "ikke_falsifiserbar_grunn"
-          ]
-        }
       ],
       "properties": {
         "id": {

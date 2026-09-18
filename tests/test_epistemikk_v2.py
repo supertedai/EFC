@@ -102,20 +102,27 @@ def test_motor_nodene_har_motor_referanse():
 def test_skjemaet_krever_en_falsifiseringsavgjorelse():
     """Skjemaet skal ikke bare TILLATE feltet — det skal kreve ett av de to.
 
-    Kravet bor i skjemaet og ikke bare i testene: `additionalProperties:
-    false` betyr at et felt skjemaet ikke nevner er et hull, og en regel
-    som bare staar i en test kan fjernes uten at noen ser at kravet forsvant.
+    Kravet staar paa `AtlasNode`, ikke paa `RegimeNode`: motoren beskriver
+    seg selv og kan ikke vite hva atlaset har kuratert om den, saa et krav
+    paa RegimeNode feller fem motortester (maalt 2026-09-18). Atlaset er
+    dokumentet `nodes`-lista er en del av — der hoerer kravet hjemme.
     """
-    node = _skjema()["$defs"]["RegimeNode"]
+    defs = _skjema()["$defs"]
+    node = defs["RegimeNode"]
     for felt in ("ville_falsifisere", "ikke_falsifiserbar_grunn"):
         assert felt in node["properties"], f"skjemaet kjenner ikke {felt}"
-    grener = [set(g.get("required") or []) for g in node.get("oneOf") or []]
+    atlas = defs.get("AtlasNode")
+    assert atlas, "skjemaet har ingen AtlasNode — kravet er borte"
+    grener = [set(g.get("required") or []) for g in atlas["allOf"][1]["oneOf"]]
     assert {"ville_falsifisere"} in grener, (
         "skjemaet krever ikke en falsifikator — da er feltet valgfritt igjen")
     assert {"ikke_falsifiserbar_grunn"} in grener, (
         "skjemaet krever ikke en grunn — en node kan tie om falsifiserbarhet")
     assert len(grener) == 2, (
         f"oneOf har {len(grener)} grener — en node kan oppfylle to samtidig")
+    inst = _skjema()["properties"]["nodes"]["items"]["$ref"]
+    assert inst == "#/$defs/AtlasNode", (
+        f"atlasets nodes peker paa {inst!r} — kravet naar ikke instansen")
 
 
 def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
