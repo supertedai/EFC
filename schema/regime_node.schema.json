@@ -205,24 +205,52 @@
             },
             "proveniens": {
               "type": "object",
-              "required": ["kilder", "begrensning", "fullstendig"],
+              "required": [
+                "kilder",
+                "begrensning",
+                "fullstendig"
+              ],
               "properties": {
                 "kilder": {
                   "type": "array",
                   "minItems": 1,
                   "items": {
                     "type": "object",
-                    "required": ["type", "ref", "hentet"],
+                    "required": [
+                      "type",
+                      "ref",
+                      "hentet"
+                    ],
                     "properties": {
-                      "type": {"enum": ["doi", "url", "stroem", "laerebok", "artikkel", "intern"]},
-                      "ref": {"type": "string", "minLength": 1},
-                      "hentet": {"type": "string", "minLength": 1}
+                      "type": {
+                        "enum": [
+                          "doi",
+                          "url",
+                          "stroem",
+                          "laerebok",
+                          "artikkel",
+                          "intern"
+                        ]
+                      },
+                      "ref": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "hentet": {
+                        "type": "string",
+                        "minLength": 1
+                      }
                     },
                     "additionalProperties": false
                   }
                 },
-                "begrensning": {"type": "string", "minLength": 1},
-                "fullstendig": {"type": "boolean"}
+                "begrensning": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "fullstendig": {
+                  "type": "boolean"
+                }
               },
               "additionalProperties": false
             }
@@ -526,12 +554,24 @@
             },
             "s_regime": {
               "type": "string",
-              "enum": ["Low-S", "S->0", "S~0", "S>0", "S->1", "high_s"],
+              "enum": [
+                "Low-S",
+                "S->0",
+                "S~0",
+                "S>0",
+                "S->1",
+                "high_s",
+                "S~0.5"
+              ],
               "description": "EBE-S-regimet som noden er gyldig i; en eksplisitt, roterbar S-koordinat."
             },
             "sektor": {
               "type": "string",
-              "enum": ["S", "D", "C"],
+              "enum": [
+                "S",
+                "D",
+                "C"
+              ],
               "description": "EFC-sektor: strukturell, dynamisk eller kapasitet."
             },
             "ebe_function": {
@@ -547,14 +587,29 @@
         },
         "rcmp": {
           "type": "object",
-          "required": ["instrument", "observabel", "teori", "overlap"],
+          "required": [
+            "instrument",
+            "observabel",
+            "teori",
+            "overlap"
+          ],
           "additionalProperties": false,
           "properties": {
-            "instrument": {"type": "string"},
-            "observabel": {"type": "string"},
-            "teori": {"type": "string"},
-            "overlap": {"const": true},
-            "deklarasjon": {"type": "string"}
+            "instrument": {
+              "type": "string"
+            },
+            "observabel": {
+              "type": "string"
+            },
+            "teori": {
+              "type": "string"
+            },
+            "overlap": {
+              "const": true
+            },
+            "deklarasjon": {
+              "type": "string"
+            }
           },
           "description": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
         },
@@ -894,24 +949,52 @@
     },
     "Proveniens": {
       "type": "object",
-      "required": ["kilder", "begrensning", "fullstendig"],
+      "required": [
+        "kilder",
+        "begrensning",
+        "fullstendig"
+      ],
       "properties": {
         "kilder": {
           "type": "array",
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["type", "ref", "hentet"],
+            "required": [
+              "type",
+              "ref",
+              "hentet"
+            ],
             "properties": {
-              "type": {"enum": ["doi", "url", "stroem", "laerebok", "artikkel", "intern"]},
-              "ref": {"type": "string", "minLength": 1},
-              "hentet": {"type": "string", "minLength": 1}
+              "type": {
+                "enum": [
+                  "doi",
+                  "url",
+                  "stroem",
+                  "laerebok",
+                  "artikkel",
+                  "intern"
+                ]
+              },
+              "ref": {
+                "type": "string",
+                "minLength": 1
+              },
+              "hentet": {
+                "type": "string",
+                "minLength": 1
+              }
             },
             "additionalProperties": false
           }
         },
-        "begrensning": {"type": "string", "minLength": 1},
-        "fullstendig": {"type": "boolean"}
+        "begrensning": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fullstendig": {
+          "type": "boolean"
+        }
       },
       "additionalProperties": false
     },

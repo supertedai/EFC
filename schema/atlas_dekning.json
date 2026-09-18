@@ -173,12 +173,13 @@
       ]
     },
     "kosmos.romvaer": {
-      "status": "delvis",
-      "meldinger": 166,
+      "status": "dekket",
+      "meldinger": 171,
       "noder": [
-        "efc.romvaer_engine"
+        "efc.romvaer_engine",
+        "kosmos.romvaer_swpc"
       ],
-      "begrunnelse": "romvaer-motoren beskriver korrelasjoner; tilstand.swpc-kp har ingen egen instrumentnode.",
+      "begrunnelse": "romvaer-motoren beregner korrelasjoner; instrumentnoden leser tilstand.swpc-kp.",
       "emner": [
         "tilstand.swpc-kp"
       ]
@@ -197,12 +198,13 @@
       ]
     },
     "kosmos.sol": {
-      "status": "delvis",
-      "meldinger": 3906,
+      "status": "dekket",
+      "meldinger": 4081,
       "noder": [
-        "efc.solar_flare_engine"
+        "efc.solar_flare_engine",
+        "kosmos.sol_goes"
       ],
-      "begrunnelse": "solflaremotoren beskriver flare-regimer; swpc-goes-xray og nasa-donki har ingen egne instrumentnoder.",
+      "begrunnelse": "solflaremotoren beskriver flare-regimer; instrumentnoden leser swpc-goes-xray.",
       "emner": [
         "tilstand.swpc-goes-xray",
         "hendelse.nasa-donki"
@@ -220,12 +222,13 @@
       ]
     },
     "kosmos.transienter": {
-      "status": "delvis",
-      "meldinger": 23477,
+      "status": "dekket",
+      "meldinger": 24990,
       "noder": [
-        "efc.transient_engine"
+        "efc.transient_engine",
+        "kosmos.transienter_alerce"
       ],
-      "begrunnelse": "transientmotoren beskriver kollapsregimet; alerce-strømmen har ingen egen instrumentnode.",
+      "begrunnelse": "transientmotoren beskriver kollapsregimet; instrumentnoden leser alerce-hendelser.",
       "emner": [
         "hendelse.alerce"
       ]

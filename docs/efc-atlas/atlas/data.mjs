@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '111' },
+  stats: [{ k: 'Nodes', v: '116' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 111 nodes, 19 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -1715,7 +1715,7 @@ export const NODES = [
     "what": "hf1\u2013hf5-observasjonskravene (falsifiserbare p\u00e5stander i rammeverket) \u2014 proxy chain: kohrens-proxyer \u2192 R (inferens) -> R \u2192 flytobjekt/flytsubjekt (terskel)",
     "how": "Buffer role: kroppens buffere (termisk, kjemisk, nevral) holder flytm\u00f8nsteret stabilt under t. Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1753,7 +1753,7 @@ export const NODES = [
     "what": "fysiologiske sensorer; her er noden beskrivelse, ikke sensor \u2014 proxy chain: sensor \u2192 avvik -> avvik \u2192 kompensasjonsrespons",
     "how": "Buffer role: selve bufferen: kapasitet som demper endring \u2014 den brede logikken i ren form. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1791,7 +1791,7 @@ export const NODES = [
     "what": "termometer + pyrogen-mark\u00f8rer; her beskrivelse \u2014 proxy chain: pyrogener \u2192 setpunktsskifte -> temperatur \u2192 avstand til nytt setpunkt",
     "how": "Buffer role: bufferen bytter TARGET, ikke kapasitet \u2014 det er selve regimeskiftet. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1829,7 +1829,7 @@ export const NODES = [
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: ionestr\u00f8mmer \u2192 V(t) -> V(t) mot V_th \u2192 spike",
     "how": "Buffer role: membranen er bufferen: gradienten lades og holdes til utl\u00f8sning. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1867,7 +1867,7 @@ export const NODES = [
     "what": "fysiologisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EKG \u2192 elektrisk syklus -> ekko \u2192 mekanisk syklus",
     "how": "Buffer role: ventriklene er bufferne: de fylles og t\u00f8mmes rytmisk \u2014 aldri til null, aldri ove. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1905,7 +1905,7 @@ export const NODES = [
     "what": "sekvensering; her beskrivelse av reguleringslogikken \u2014 proxy chain: TF-binding \u2192 uttrykk -> epigenetisk merke \u2192 terskelskifte",
     "how": "Buffer role: genomet holder reguleringsprogrammene lagret \u2014 en kapasitet som demper tilfeldig. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1943,7 +1943,7 @@ export const NODES = [
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: DNA-innhold \u2192 fase -> CDK/cyklin \u2192 sjekkpunkt-status",
     "how": "Buffer role: sjekkpunktene er bufferne: de holder syklusen til betingelsene er oppfylt. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -1981,7 +1981,7 @@ export const NODES = [
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: O\u2082-forbruk \u2192 fluks -> ATP/ADP \u2192 reguleringsstatus",
     "how": "Buffer role: ATP-poolen og glykogenet er bufferne: kort- og langtidslager som demper svingnin. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -2095,7 +2095,7 @@ export const NODES = [
     "what": "laboratoriem\u00e5ling; her beskrivelse \u2014 proxy chain: faresignaler + antigenkonsentrasjon -> aktivering -> titer -> hukommelse",
     "how": "Buffer role: hukommelsen er bufferen: den senker terskelen og gj\u00f8r neste respons raskere. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -2133,7 +2133,7 @@ export const NODES = [
     "what": "klinisk m\u00e5ling; her beskrivelse \u2014 proxy chain: EEG-synkroni -> stadium -> v\u00e5kenhetsvarighet -> homeostatisk trykk",
     "how": "Buffer role: s\u00f8vnbehovet er bufferen: det akkumuleres i v\u00e5ken og t\u00f8mmes i s\u00f8vn \u2014 hjernens d\u00f8g. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -2171,7 +2171,7 @@ export const NODES = [
     "what": "\u00f8kologisk overv\u00e5king; her beskrivelse \u2014 proxy chain: n\u00e6ringsstoffer -> tilstand -> dekning -> regime",
     "how": "Buffer role: \u00f8kosystemets bufferevne (resiliens) demper forstyrrelser \u2014 til bufferen er brukt. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -2209,7 +2209,7 @@ export const NODES = [
     "what": "paleontologisk/genomisk m\u00e5ling; her beskrivelse \u2014 proxy chain: fossilrekke -> morfologisk rate -> molekyl\u00e6r avstand -> tid siden splitt",
     "how": "Buffer role: stasis er holding: seleksjon og utviklingsbegrensninger holder fenotypen \u2014 til r. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
-      "regime": null,
+      "regime": "S~0.5",
       "sector": null,
       "ebe": null,
       "rcmp": null
@@ -4409,6 +4409,196 @@ export const NODES = [
       ]
     ],
     "cond": []
+  },
+  {
+    "id": "kosmos-romvaer-swpc",
+    "code": "RK",
+    "name": "kosmos.romvaer_swpc",
+    "short": "romvaer swpc",
+    "group": "kosmos",
+    "gx": 8.7,
+    "gy": 45.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. Kp-tilstand og stormniv\u00e5",
+    "what": "SWPC Kp-m\u00e5ling \u2014 proxy chain: tilstand.swpc-kp -> instrumentavlesning -> atlasobservasjon",
+    "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "SWPCs operative Kp-skala og romvaerprognoser baerer praksisen; str\u00f8mmen gj\u00f8r tilstanden lesbar, men ikke sannheten selv."
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-sol-goes",
+    "code": "SG",
+    "name": "kosmos.sol_goes",
+    "short": "sol goes",
+    "group": "kosmos",
+    "gx": 11.1,
+    "gy": 45.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. GOES r\u00f8ntgenfluks og flareklasse",
+    "what": "GOES X-ray instrument \u2014 proxy chain: tilstand.swpc-goes-xray -> instrumentavlesning -> atlasobservasjon",
+    "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "NOAA GOES-instrumenteringen og solfysikkens varslingsfellesskap baerer X-ray-m\u00e5lingen; observasjonen er et avgrenset vin"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-transienter-alerce",
+    "code": "TA",
+    "name": "kosmos.transienter_alerce",
+    "short": "transienter al",
+    "group": "kosmos",
+    "gx": 13.5,
+    "gy": 45.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. optiske transienthendelser",
+    "what": "ALeRCE alert stream \u2014 proxy chain: hendelse.alerce -> instrumentavlesning -> atlasobservasjon",
+    "how": "Buffer role: str\u00f8mmen holder kildens m\u00e5ling. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "ALeRCEs \u00e5pne transientfellesskap og varslingspipeline baerer denne optiske str\u00f8mmen; klassifisering er ikke identitet."
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-kosmologi-desi-bao",
+    "code": "DB",
+    "name": "kosmos.kosmologi_desi_bao",
+    "short": "kosmologi desi",
+    "group": "kosmos",
+    "gx": 1.5,
+    "gy": 48.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. DESI BAO-observasjoner n\u00e5r str\u00f8mmen finnes",
+    "what": "venter p\u00e5 konnektor \u2014 proxy chain: observasjon.desi-bao -> (venter p\u00e5 str\u00f8m)",
+    "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "DESI-samarbeidet og BAO-praksisen er den ventede sosiale kanalen; frav\u00e6r av str\u00f8m er rapportert eksplisitt."
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-klima-isbre",
+    "code": "IB",
+    "name": "verden.klima_isbre",
+    "short": "klima isbre",
+    "group": "samfunn",
+    "gx": 3.9,
+    "gy": 48.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. isbre/glasiologi-observasjoner n\u00e5r str\u00f8mmen finnes",
+    "what": "venter p\u00e5 konnektor \u2014 proxy chain: observasjon.isbre -> (venter p\u00e5 str\u00f8m)",
+    "how": "Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.",
+    "sAxis": {
+      "regime": null,
+      "sector": null,
+      "ebe": null,
+      "rcmp": null
+    },
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Glasiologiens felt- og fjernm\u00e5lingsfellesskap er den ventede kanalen; isbreobservasjonen finnes ikke i bussen enn\u00e5."
+      ]
+    ],
+    "cond": []
   }
 ];
 
@@ -4510,10 +4700,14 @@ export const CH = [
       "kosmos-romfart",
       "kosmos-stjerner",
       "kosmos-uklassifisert",
-      "kosmos-galakser-mast"
+      "kosmos-galakser-mast",
+      "kosmos-romvaer-swpc",
+      "kosmos-sol-goes",
+      "kosmos-transienter-alerce",
+      "kosmos-kosmologi-desi-bao"
     ],
     "lede": "Chapter 3 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-cluster-engine, efc-growth-engine, efc-hubble-engine, efc-klima-engine, efc-lensing-engine, efc-mu-kz-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-tidevann-engine, efc-transient-engine, kosmos-galakser-mast, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert.</p>",
+    "story": "<p>Revealed: efc-cluster-engine, efc-growth-engine, efc-hubble-engine, efc-klima-engine, efc-lensing-engine, efc-mu-kz-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-tidevann-engine, efc-transient-engine, kosmos-galakser-mast, kosmos-gammaglimt, kosmos-interstellart, kosmos-kosmologi-desi-bao, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-romvaer-swpc, kosmos-sol-goes, kosmos-stjerner, kosmos-transienter-alerce, kosmos-uklassifisert.</p>",
     "flow": null
   },
   {
@@ -4567,10 +4761,11 @@ export const CH = [
       "verden-miljo-gdelt",
       "verden-oekonomi-worldbank",
       "verden-oekonomi-imf",
-      "verden-oekonomi-gdelt"
+      "verden-oekonomi-gdelt",
+      "verden-klima-isbre"
     ],
     "lede": "Chapter 6 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-worldbank, verden-kommunikasjon, verden-lov, verden-militaer, verden-miljo-gdelt, verden-miljo-mikrobiom, verden-oekonomi-gdelt, verden-oekonomi-imf, verden-oekonomi-worldbank, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
+    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-klima-gdelt, verden-klima-isbre, verden-klima-worldbank, verden-kommunikasjon, verden-lov, verden-militaer, verden-miljo-gdelt, verden-miljo-mikrobiom, verden-oekonomi-gdelt, verden-oekonomi-imf, verden-oekonomi-worldbank, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
     "flow": null
   },
   {
@@ -4647,7 +4842,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 111 nodes, 79 relations.",
+    "lede": "Everything at once \u2014 116 nodes, 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }
