@@ -142,12 +142,12 @@ class TestFalsifiserbarhet:
         avventer = sum(1 for n in off
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
-        assert len(off) == 76, f"offentlige endret: {len(off)}"
-        assert kan == 19, (
+        assert len(off) == 79, f"offentlige endret: {len(off)}"
+        assert kan == 22, (
             f"kan felles: {kan} — forventet 19. 27 var feil: 2 stubber og 6 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
         assert avventer == 9, (
             f"avventer: {avventer} — forventet 9 (2 stubber + 7 uten fastsatt terskel)")
-        assert kan + avventer == 28, (
+        assert kan + avventer == 31, (
             f"{kan} + {avventer} = {kan + avventer}, men det er 28 EFC-noder "
             f"blant de offentlige")

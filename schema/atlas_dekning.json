@@ -78,6 +78,9 @@
         "efc.efc_background_engine",
         "efc.growth_engine",
         "efc.hubble_engine",
+        "efc.lag_c0",
+        "efc.lag_d",
+        "efc.lag_s",
         "efc.lensing_engine",
         "efc.mu_kz_engine",
         "obs.bao",
@@ -97,7 +100,7 @@
         "obs.s8",
         "obs.w0wa"
       ],
-      "begrunnelse": "20 node(r) navngir domenet via buss_domene. efc.efc_background_engine (L-033) kom til 2026-09-17.",
+      "begrunnelse": "20 node(r) navngir domenet via buss_domene. efc.efc_background_engine (L-033) kom til 2026-09-17. EFC-S, EFC-D og EFC-C0 (de tre koblede baselagene fra master-spec) kom til 2026-09-18 — de bar aksjonen og grensetilstandene S=0/S=1 som ingen node eide.",
       "emner": [
         "prediksjon.efc-fs8",
         "tilstand.efc-fs8",
