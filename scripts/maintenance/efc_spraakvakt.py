@@ -20,6 +20,16 @@ WHAT IT DOES
    guarded file with hits that the baseline does not know, is a finding. Debt
    below the baseline is reported as slack so the baseline can be tightened,
    never as a failure.
+
+   ``--referanse REV`` measures the scan against that revision instead of the
+   record. The failure rule then belongs to the change under test -- a PR is not
+   responsible for Norwegian that landed on its base branch before it, which is
+   the wedged-gate failure this card was written about -- and debt above the
+   record is reported on every run, never failed. The reference tree is read
+   through ``git archive`` and scanned with the same scanner, so there is no
+   second rule about the same words. A reference that cannot be read is exit 2
+   (could not measure): falling back to the record would blame this change for
+   the base branch's debt, which is the failure this mode exists to prevent.
 2. ``--commits RANGE``    The commit SUBJECTS in the range. No baseline and no
    window: this is the source-level rule, and it is where a violation is
    cheapest to fix (in the commit that creates it). It is the repair for the
@@ -85,10 +95,14 @@ could not be made is a finding, not an empty answer).
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import re
+import shutil
 import subprocess
 import sys
+import tarfile
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -306,34 +320,83 @@ def scan_tree(root: Path, words: list[str], labels: set[str],
             "skipped_binary": skipped_binary, "exempt": exempt, "areas": areas}
 
 
-def compare(counts: dict[str, int], baseline: dict,
+def reference_counts(root: Path, rev: str, words: list[str],
+                     labels: set[str]) -> tuple[dict[str, int] | None, str]:
+    """Per-file counts in a reference revision, read through ``git archive``.
+
+    The failure rule has to belong to the change under test. A PR is not
+    responsible for Norwegian that landed on its base branch before it, and a
+    gate that blames every PR for the base branch is the wedged-gate failure
+    this card was written about (measured 2026-09-17 on 7c7e30b7, which made
+    changelog-sync unsatisfiable for everyone).
+
+    So the reference answers "did THIS change grow the guard", while the record
+    (the committed baseline) answers "how much debt is there" and is reported on
+    every run. The reference is read from a git archive, so the same scanner
+    reads it and there is no second rule.
+    """
+    try:
+        ls = subprocess.run(["git", "ls-tree", "--name-only", rev], cwd=root,
+                            capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.SubprocessError) as exc:
+        return None, f"the reference could not be read: {exc}"
+    if ls.returncode != 0:
+        return None, ("the reference could not be read: "
+                      + ls.stderr.strip()[:200])
+    tops = set(ls.stdout.split())
+    prefixes = [p for p in GUARDED if p.split("/", 1)[0] in tops]
+    if not prefixes:
+        return {}, ""
+    try:
+        r = subprocess.run(["git", "archive", "--format=tar", rev, "--", *prefixes],
+                           cwd=root, capture_output=True, timeout=300)
+    except (OSError, subprocess.SubprocessError) as exc:
+        return None, f"the reference could not be read: {exc}"
+    if r.returncode != 0:
+        return None, ("the reference could not be read: "
+                      + r.stderr.decode("utf-8", "replace").strip()[:200])
+    tmp = tempfile.mkdtemp(prefix="spraak-referanse-")
+    try:
+        with tarfile.open(fileobj=io.BytesIO(r.stdout)) as tar:
+            try:
+                tar.extractall(path=tmp, filter="data")
+            except TypeError:            # Python before 3.12
+                tar.extractall(path=tmp)
+        return scan_tree(Path(tmp), words, labels)["counts"], ""
+    except (tarfile.TarError, OSError) as exc:
+        return None, f"the reference could not be read: {exc}"
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def compare(counts: dict[str, int], expected: dict[str, int],
             present: set[str] | None = None) -> dict:
     """The ratchet: growth is a finding, a reduction is slack, a deleted file
-    is a baseline entry to drop.
+    is an expectation to drop.
 
-    ``present`` is the set of paths still in the tree, so a file whose hits
-    went to zero can be told apart from a file that was removed.
+    ``expected`` is either the reference revision (what the change is measured
+    against) or the committed record (what the tree is measured against).
+    ``present`` is the set of paths still in the tree, so a file whose hits went
+    to zero can be told apart from a file that was removed.
     """
-    known = {f: int(v.get("count") or 0)
-             for f, v in (baseline.get("files") or {}).items()}
     new, slack, gone = [], [], []
-    for rel in sorted(set(counts) | set(known)):
+    for rel in sorted(set(counts) | set(expected)):
         found = counts.get(rel, 0)
-        if rel not in known:
+        if rel not in expected:
             if found:
-                new.append({"file": rel, "count": found, "baseline": None,
+                new.append({"file": rel, "count": found, "expected": None,
                             "excess": found})
             continue
-        expected = known[rel]
-        if found > expected:
-            new.append({"file": rel, "count": found, "baseline": expected,
-                        "excess": found - expected})
-        elif found < expected:
+        want = expected[rel]
+        if found > want:
+            new.append({"file": rel, "count": found, "expected": want,
+                        "excess": found - want})
+        elif found < want:
             if present is not None and rel not in present:
                 gone.append(rel)
             else:
-                slack.append({"file": rel, "count": found, "baseline": expected,
-                              "freed": expected - found})
+                slack.append({"file": rel, "count": found, "expected": want,
+                              "freed": want - found})
     return {"new": new, "slack": slack, "gone": gone}
 
 
@@ -352,31 +415,72 @@ def unlisted_areas(areas: dict[str, int]) -> list[dict]:
 # the three modes
 # --------------------------------------------------------------------------
 
-def run_scan(root: Path, baseline_path: Path) -> tuple[int, dict]:
+def read_record(path: Path) -> dict:
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return {f: int(v.get("count") or 0)
+            for f, v in (data.get("files") or {}).items()
+            if isinstance(v, dict)}
+
+
+def run_scan(root: Path, baseline_path: Path,
+             reference: str | None = None) -> tuple[int, dict]:
     words, labels = read_vocabulary(vocabulary_path(root))
     files = tree_files(root)
     scanned = scan_tree(root, words, labels, files)
-    try:
-        baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        baseline = {}
-    verdict = compare(scanned["counts"], baseline, set(files))
+    record = read_record(baseline_path)
+
+    ref_counts, ref_error = (None, "")
+    if reference:
+        ref_counts, ref_error = reference_counts(root, reference, words, labels)
+        if ref_counts is None:
+            # Measuring against the record here would blame this change for
+            # whatever the base branch did -- the failure this mode exists to
+            # prevent. So it is reported as a measurement that could not be
+            # made, exactly like any other failed measurement in this house.
+            return 2, {"mode": "scan", "root": str(root),
+                       "reference": reference, "reference_error": ref_error,
+                       "error": ref_error}
+    expected = ref_counts if ref_counts is not None else record
+    measured_against = ("the reference " + str(reference)
+                        if ref_counts is not None else "the committed record")
+
+    verdict = compare(scanned["counts"], expected, set(files))
     unlisted = unlisted_areas(scanned["areas"])
+    delta = [{"file": f,
+              "count": scanned["counts"].get(f, 0),
+              "recorded": record.get(f)}
+             for f in sorted(set(scanned["counts"]) | set(record))
+             if scanned["counts"].get(f, 0) != record.get(f, 0)]
+    limits = []
+    if reference and ref_counts is not None:
+        limits.append("the failure rule is relative to the reference: debt "
+                      "above the record is reported, not failed, because it "
+                      "belongs to the base revision and not to this change")
     return 1 if (verdict["new"] or scanned["unreadable_text"]) else 0, {
         "mode": "scan",
         "root": str(root),
         "guard": list(GUARDED),
         "files_in_guard": sum(1 for f in files if is_guarded(f)),
+        "reference": reference,
+        "reference_error": ref_error or None,
+        "measured_against": measured_against,
         "hits_per_area": {a: n for a, n in sorted(scanned["areas"].items()) if n},
         "new": verdict["new"],
         "slack": verdict["slack"],
-        "gone_from_baseline": verdict["gone"],
+        "gone_from_expectation": verdict["gone"],
+        "record_delta": delta,
+        "undeclared_growth": [d for d in delta if (d["recorded"] or 0) < d["count"]],
         "unlisted_areas": unlisted,
         "unreadable_text": scanned["unreadable_text"],
         "skipped_binary": scanned["skipped_binary"],
         "exempt": scanned["exempt"],
         "debt": {"files": len(scanned["counts"]),
                  "hits": sum(scanned["counts"].values())},
+        "record": {"files": len(record), "hits": sum(record.values())},
+        "declared_limits": limits,
     }
 
 
@@ -536,12 +640,17 @@ def write_baseline(root: Path, baseline_path: Path) -> dict:
 # --------------------------------------------------------------------------
 
 def print_scan(result: dict) -> None:
-    print(f"language scan (spraakvakt): {len(result['new'])} new finding(s), "
-          f"{result['debt']['files']} file(s) with declared debt, "
-          f"{result['debt']['hits']} hits")
+    print(f"language scan (spraakvakt): {len(result['new'])} new finding(s) "
+          f"against {result['measured_against']}; {result['debt']['files']} "
+          f"file(s) / {result['debt']['hits']} hit(s) of debt, record "
+          f"{result['record']['files']} / {result['record']['hits']}")
     for f in result["new"]:
         print(f"  NEW: {f['file']}  {f['count']} hit(s), "
-              f"baseline {f['baseline']}, excess {f['excess']}")
+              f"expected {f['expected']}, excess {f['excess']}")
+    for d in result["undeclared_growth"][:10]:
+        print(f"  INFO growth above the record (belongs to the base revision, "
+              f"not to this change): {d['file']} {d['count']} > "
+              f"recorded {d['recorded']}")
     for u in result["unlisted_areas"]:
         print(f"  INFO outside the guard, not named in the scope table: "
               f"{u['area']} has {u['count']} hit(s)")
@@ -554,20 +663,17 @@ def print_scan(result: dict) -> None:
         print(f"  exempt (declared): {e['file']} — {e['count']} hit(s): "
               f"{e['reason']}")
     if result["slack"]:
-        print(f"  slack (debt below the baseline, the baseline can shrink): "
+        print(f"  slack (below what is expected, so the record can shrink): "
               f"{len(result['slack'])} file(s)")
         for s in result["slack"][:5]:
-            print(f"    {s['file']}: {s['count']} < {s['baseline']}")
-    if result["gone_from_baseline"]:
-        print(f"  baseline entries for files that no longer carry hits: "
-              f"{len(result['gone_from_baseline'])} "
-              f"(run --oppdater-baseline)")
+            print(f"    {s['file']}: {s['count']} < {s['expected']}")
+    if result["gone_from_expectation"]:
+        print(f"  expectations for files that are gone or carry no hits: "
+              f"{len(result['gone_from_expectation'])} (run --oppdater-baseline)")
+    for line in result["declared_limits"]:
+        print(f"  limit: {line}")
     if not result["new"]:
         print("  OK: no new Norwegian in the guarded paths")
-        if result["unlisted_areas"]:
-            print(f"  scope note: {len(result['unlisted_areas'])} area(s) "
-                  f"outside the guard are not named in the scope table "
-                  f"(counted, INFO; see --grenser)")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -578,6 +684,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--baseline", default=str(BASELINE))
     p.add_argument("--commits", metavar="RANGE",
                    help="check commit subjects in the range, e.g. origin/main..HEAD")
+    p.add_argument("--referanse", metavar="REV",
+                   help="measure the scan against this revision (the base of a "
+                        "change) instead of the committed record; debt above "
+                        "the record is then reported, never failed")
     p.add_argument("--changelog", action="store_true")
     p.add_argument("--vindu", type=int, default=30,
                    help="changelog entries read from the newest end (default 30)")
@@ -608,7 +718,7 @@ def main(argv: list[str] | None = None) -> int:
             result = run_limits(root)
             rc = 0
         else:
-            rc, result = run_scan(root, Path(a.baseline))
+            rc, result = run_scan(root, Path(a.baseline), a.referanse)
     except (OSError, ValueError) as exc:
         print(f"could not measure: {exc}", file=sys.stderr)
         return 2

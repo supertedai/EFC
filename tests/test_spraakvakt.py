@@ -171,7 +171,7 @@ def test_a_guarded_file_the_baseline_never_saw_is_a_finding(tmp_path, capsys):
                  {"files": {}})
     rc, out = _scan(root, capsys)
     assert rc == 1, out
-    assert out["new"][0]["baseline"] is None
+    assert out["new"][0]["expected"] is None
     assert out["new"][0]["file"] == GUARDED
 
 
@@ -181,8 +181,8 @@ def test_debt_below_the_baseline_is_slack_not_a_failure(tmp_path, capsys):
                  {"files": {GUARDED: {"count": 5}}})
     rc, out = _scan(root, capsys)
     assert rc == 0, out
-    assert out["slack"] == [{"file": GUARDED, "count": 0, "baseline": 5,
-                            "freed": 5}]
+    assert out["slack"] == [{"file": GUARDED, "count": 0, "expected": 5,
+                             "freed": 5}]
 
 
 def test_the_two_rules_are_clamped_from_both_sides(tmp_path, capsys):
@@ -309,6 +309,91 @@ def test_the_changelog_window_is_reported_not_implied(tmp_path, capsys):
     assert out["entries_outside_window"] == 0
 
 
+def _git_tree(tmp_path: Path) -> tuple[Path, dict]:
+    """A temp git repo with the vocabulary, ready for content commits."""
+    root = tmp_path / "repo"
+    (root / "scripts" / "maintenance").mkdir(parents=True, exist_ok=True)
+    (root / "scripts" / "maintenance" / "spraak-ord.json").write_text(
+        (MAINT / "spraak-ord.json").read_text(encoding="utf-8"), encoding="utf-8")
+    env = {"GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@example.invalid",
+           "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@example.invalid",
+           "PATH": "/usr/local/bin:/usr/bin:/bin", "HOME": str(tmp_path)}
+    subprocess.run(["git", "init", "-q", "-b", "main"], cwd=root, check=True,
+                   stdout=subprocess.DEVNULL)
+    return root, env
+
+
+def _commit(root: Path, env: dict, message: str, files: dict[str, str]) -> None:
+    for rel, text in files.items():
+        path = root / rel
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text, encoding="utf-8")
+    subprocess.run(["git", "add", "-A"], cwd=root, check=True, env=env)
+    subprocess.run(["git", "commit", "-q", "-m", message], cwd=root, check=True,
+                   env=env, stdout=subprocess.DEVNULL)
+
+
+def test_a_reference_puts_the_failure_on_the_change_not_on_the_base(tmp_path, capsys):
+    """Measured, 2026-09-18, on this gate's own first CI run (PR #530).
+
+    The PR was red for `scripts/atlas_lesing.py` +2 and
+    `scripts/maintenance/efc_bro_konvensjon.py` +2 -- files it had never
+    touched, because main had grown underneath it after the record was written.
+    A gate that blames every PR for its base branch blocks every PR (the wedged
+    condition this card was written about). With a reference the rule belongs to
+    the change -- and the drift is still REPORTED, never silenced.
+    """
+    root, env = _git_tree(tmp_path)
+    (root / "baseline.json").write_text(json.dumps({"files": {}}),
+                                        encoding="utf-8")
+    guarded = "public/graph/page.yaml"
+    _commit(root, env, "feat: a page with one line",
+            {guarded: f"title: a page\nnote: one {WORD} line\n"})
+
+    # Absolute, against a record that never saw the file: a finding.
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 1, out
+    assert out["new"][0]["file"] == guarded
+
+    # Relative to the commit that carries it: green, and the debt is reported.
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--referanse", "HEAD", "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 0, out
+    assert out["new"] == []
+    assert out["undeclared_growth"] == [{"file": guarded, "count": 1,
+                                         "recorded": None}]
+    assert out["measured_against"] == "the reference HEAD"
+
+    # A second commit that makes the file worse IS this change's finding.
+    _commit(root, env, "feat: another line",
+            {guarded: f"title: a page\nnote: one {WORD} line\nmore: {WORD}\n"})
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--referanse", "HEAD^", "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 1, out
+    assert out["new"] == [{"file": guarded, "count": 2, "expected": 1,
+                           "excess": 1}]
+
+
+def test_an_unreadable_reference_is_a_finding_not_a_false_blame(tmp_path, capsys):
+    """Falling back to the record would blame this change for the base branch's
+    debt -- the exact failure the reference exists to prevent. So a reference
+    that cannot be read is exit 2: could not measure."""
+    root, env = _git_tree(tmp_path)
+    (root / "baseline.json").write_text(json.dumps({"files": {}}),
+                                        encoding="utf-8")
+    _commit(root, env, "feat: one", {"public/graph/page.yaml": "clean\n"})
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--referanse", "no-such-ref", "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 2, out
+    assert "could not be read" in out["error"]
+    assert "new" not in out, "nothing may be blamed on the change"
+
+
 def test_baseline_generator_records_what_the_scan_finds(tmp_path, capsys):
     """--oppdater-baseline is the generator side of the ratchet. If it writes
     anything other than what the scan found, the gate and the debt drift."""
@@ -341,33 +426,47 @@ def test_the_declared_limits_cover_the_guard_and_name_the_rest(tmp_path, capsys)
     assert set(out["exception"]) == set(gate.EXEMPT)
 
 
-def test_the_real_tree_is_green_against_its_committed_baseline(capsys):
-    """The acceptance criterion, run in CI: green on the tree it guards.
+def test_this_change_does_not_grow_the_guard_against_its_parent(capsys):
+    """The acceptance criterion, run in CI: this change adds no Norwegian.
 
-    This is the declaration that the committed baseline IS today's residual.
-    It does not claim the residual is zero -- the numbers are in the report.
+    The parent revision is the reference. In a PR checkout HEAD is the merge
+    commit whose first parent is the base branch tip, so the check answers «did
+    this change grow the guard» -- and never «is the base branch clean», which
+    would wedge every PR the moment something landed there.
     """
-    rc = gate.main(["--json"])
+    parent = subprocess.run(["git", "rev-parse", "--verify", "HEAD^"], cwd=ROOT,
+                            capture_output=True, text=True)
+    if parent.returncode != 0:
+        pytest.skip("no parent revision in this checkout (shallow clone)")
+    rc = gate.main(["--json", "--referanse", "HEAD^"])
     out = json.loads(capsys.readouterr().out)
     assert rc == 0, out["new"]
     assert out["new"] == []
     assert out["unreadable_text"] == []
-    assert out["debt"]["files"] > 0
-    committed = json.loads((MAINT / "spraak-baseline.json").read_text(
-        encoding="utf-8"))
-    assert committed["files"], "the baseline must name the files it records"
-    assert committed["measured_scope"]["debt_recorded"] == out["debt"]["hits"]
 
 
-def test_the_committed_baseline_covers_every_guarded_file_with_hits(capsys):
-    gate.main(["--json"])
+def test_the_report_accounts_for_every_hit_against_the_record(capsys):
+    """No hit may be invisible, and none may be invented.
+
+    debt - record == the sum of the per-file deltas, exactly. That is the
+    property that makes «recorded, never silenced» checkable when the tree is
+    allowed to carry debt above the record (a base branch that grew after the
+    record was written).
+    """
+    rc = gate.main(["--json"])
     out = json.loads(capsys.readouterr().out)
+    assert rc in (0, 1), out
+    delta = sum(d["count"] - (d["recorded"] or 0) for d in out["record_delta"])
+    assert out["debt"]["hits"] - out["record"]["hits"] == delta, (
+        f"the report does not explain itself: {out['debt']['hits']} debt minus "
+        f"{out['record']['hits']} recorded is not {delta}")
+    for d in out["undeclared_growth"]:
+        assert d["recorded"] is None or d["recorded"] < d["count"]
     committed = json.loads((MAINT / "spraak-baseline.json").read_text(
         encoding="utf-8"))
-    assert out["debt"]["files"] == len(committed["files"]), (
-        "the gate and its committed baseline disagree about how many files "
-        "carry debt: run --oppdater-baseline")
-    assert out["debt"]["hits"] == sum(v["count"] for v in committed["files"].values())
+    assert committed["files"], "the record must name the files it records"
+    assert committed["measured_scope"]["debt_recorded"] == sum(
+        v["count"] for v in committed["files"].values())
 
 
 def test_the_workflow_runs_on_the_paths_the_gate_guards():
@@ -384,6 +483,9 @@ def test_the_workflow_runs_on_the_paths_the_gate_guards():
         assert f"{guarded}**" in paths, f"{guarded} is guarded but not watched"
     assert "efc_spraakvakt.py" in text
     assert "--commits" in text, "the source-level rule must run in CI"
+    assert "--referanse" in text, (
+        "the scan must be measured against the base revision of the change, or "
+        "every PR is blamed for whatever landed on the base branch")
     assert "git push" not in text and "git commit" not in text
 
 

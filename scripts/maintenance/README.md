@@ -249,11 +249,12 @@ while it sat inside that 30-entry window.
 
 `efc_spraakvakt.py` adds the missing enforcement, in three modes:
 
-| Mode | What it reads | Baseline | Window |
-|------|---------------|----------|--------|
-| `--skann` (default) | file content in the guarded paths | yes, per file | none |
-| `--commits RANGE` | commit subjects in the range | no | the range |
-| `--changelog` | changelog entries, newest first | no | declared, default 30 |
+| Mode | What it reads | Measured against | Window |
+|------|---------------|------------------|--------|
+| `--skann` (default) | file content in the guarded paths | the committed record | none |
+| `--skann --referanse REV` | file content in the guarded paths | revision `REV` (the base of the change) | none |
+| `--commits RANGE` | commit subjects in the range | nothing | the range |
+| `--changelog` | changelog entries, newest first | nothing | declared, default 30 |
 
 House interfaces: `--json`, a `make full-check` line, and the workflow
 `.github/workflows/efc-spraak.yml`. Exit codes: 0 clean, 1 findings, 2 could
@@ -263,6 +264,17 @@ answer).
 The vocabulary is `scripts/maintenance/spraak-ord.json` — the same alternation
 the changelog step inlines. `tests/test_spraakvakt.py` fails when the two drift
 apart, so the two rules cannot disagree about what is Norwegian.
+
+**The failure rule belongs to the change, not to the branch it sits on.**
+In CI the scan runs with `--referanse origin/<base>` (a push: the previous tip),
+so it answers «did THIS change add Norwegian» and never «is the base branch
+clean». Measured on the gate's own first CI run (PR #530, 2026-09-18): without a
+reference it went red for two files the PR had never touched, because `main` had
+grown under it — the same wedged-gate condition this card was written about for
+the changelog. Debt that already sits on the base branch is *reported* on every
+run (`undeclared_growth`), never failed, and never silenced. A reference that
+cannot be read is exit 2 (could not measure) — never a fallback that blames the
+change for its base branch.
 
 **The residual is recorded, never silenced.** `spraak-baseline.json` holds the
 measured count per file (131 files, 6254 hits, measured 2026-09-18 on

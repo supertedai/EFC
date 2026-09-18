@@ -9,12 +9,18 @@ name: EFC language gate
 # queue, and this workflow is what stops it growing.
 #
 # Two enforcement points are added here:
-#   1. the file scan over the guarded paths, ratcheted against the committed
-#      baseline: it does not pretend the existing debt is zero, and it fails on
-#      anything new;
+#   1. the file scan over the guarded paths, measured against the revision this
+#      change is based on: it fails on anything THIS change adds, and it reports
+#      debt that was already on the base branch instead of blaming the PR for it
+#      (a gate that blames every PR wedges every PR -- measured on its own first
+#      run, where main had grown two files the PR never touched);
 #   2. the commit SUBJECTS of this change, with no baseline and no window, so a
 #      violation is caught in the commit that creates it instead of 30
 #      changelog entries later (the way 7c7e30b7 was caught, if at all).
+#
+# The committed record (scripts/maintenance/spraak-baseline.json) is reported on
+# every run: it is the debt and the work queue, and the size of it is the
+# distance to a clean tree.
 
 on:
   push:
@@ -55,11 +61,7 @@ jobs:
         run: |
           python3 -m pip install --quiet "pytest>=8,<9" "PyYAML>=6"
           python3 -m pytest tests/test_spraakvakt.py -q
-      - name: Language scan over the guarded paths (declared baseline)
-        run: python3 scripts/maintenance/efc_spraakvakt.py --json
-      - name: Declared limits, with the measured count outside the guard
-        run: python3 scripts/maintenance/efc_spraakvakt.py --grenser
-      - name: Commit subjects in this change
+      - name: Resolve the reference revision this change is measured against
         env:
           BASE_REF: ${{ github.base_ref }}
           BEFORE: ${{ github.event.before }}
@@ -69,12 +71,31 @@ jobs:
           if [ -n "${BASE_REF}" ]; then
             git fetch --quiet --no-tags origin "+refs/heads/${BASE_REF}:refs/remotes/origin/${BASE_REF}" || true
             RANGE="origin/${BASE_REF}..HEAD"
+            REF="origin/${BASE_REF}"
           elif [ -n "${BEFORE:-}" ] && [ "${BEFORE}" != "0000000000000000000000000000000000000000" ]; then
             RANGE="${BEFORE}..${HEAD_SHA}"
+            REF="${BEFORE}"
           else
             RANGE="HEAD~1..HEAD"
+            REF=""
           fi
           echo "commit range under the language rule: ${RANGE}"
-          python3 scripts/maintenance/efc_spraakvakt.py --commits "${RANGE}" --json
+          echo "scan reference: ${REF:-none (the committed record)}"
+          {
+            echo "SPRAAK_RANGE=${RANGE}"
+            echo "SPRAAK_REF=${REF}"
+          } >> "${GITHUB_ENV}"
+      - name: Language scan over the guarded paths (change-relative)
+        run: |
+          set -euo pipefail
+          if [ -n "${SPRAAK_REF}" ]; then
+            python3 scripts/maintenance/efc_spraakvakt.py --json --referanse "${SPRAAK_REF}"
+          else
+            python3 scripts/maintenance/efc_spraakvakt.py --json
+          fi
+      - name: Declared limits, with the measured count outside the guard
+        run: python3 scripts/maintenance/efc_spraakvakt.py --grenser
+      - name: Commit subjects in this change
+        run: python3 scripts/maintenance/efc_spraakvakt.py --commits "${SPRAAK_RANGE}" --json
       - name: Changelog entries, window declared
         run: python3 scripts/maintenance/efc_spraakvakt.py --changelog --json
