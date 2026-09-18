@@ -44,6 +44,7 @@ Ingen av dem var en feil i atlaset — alle var en feil i grensesnittet.
     kjent_hull(repo, emne, ref)     -> dict | None
     naboer/hop/hop_stier/fragment   -> koblingsgrafen
     maaleformer/proxy_kjeder        -> hva maaler, via hva
+    sjekk_usikkerhet(atlas, repo)   -> list[str]  hver post mot sin egen kilde
 
 REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
 «ATLASET VET IKKE» heller enn aa gi et loest treff; `plasser` svarer
@@ -176,6 +177,178 @@ def _har_falsifikator(node: dict) -> bool:
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
+
+# ---------------------------------------------------------------------------
+# USIKKERHETSLAGET — hvert tall skal kunne bære hvor sikkert det er
+#
+# ADR-086 §3.1: feltet er valgfritt, lukket og additivt. Kilden HAR
+# informasjonen (k = 0.415 ± 0.029 står i sitt eget paper); atlaset mistet den
+# i overføringen. Diagnosen er derfor ikke «skaff usikkerhet», men «slutt å
+# kaste den» — og da er den ene regelen som gjør laget verdt noe: EN VERDI HAR
+# ALLTID EN KILDE.
+#
+# Sjekkeren står her og ikke i skjemaet, med vilje. Skjemaet sier hva en post
+# ER; denne sier om posten STÅR SEG mot kilden sin. Og C10-gaten kan ikke
+# kreve feltet før den endres med menneskeord (`t_2e60afa6`) — et krav som
+# ikke kan stilles i skjemaet må stilles der det faktisk kjører.
+# ---------------------------------------------------------------------------
+
+# Postens og kildens nøkler. Samme tre i skjemaet ($defs/Usikkerhetspost,
+# $defs/Usikkerhetskilde) — to lister ville driftet, og den ene ville tiet.
+USIKKERHETSPOST_NOKLER = ("storrelse", "verdi", "feilgrense", "kilde")
+USIKKERHETSKILDE_NOKLER = ("fil", "linje", "ordrett")
+
+_TALL_RE = re.compile(r"[0-9]+(?:\.[0-9]+)?")
+_GRENSE_RE = re.compile(r"±\s*([0-9]+(?:\.[0-9]+)?)")
+
+
+def _tall_i(tekst: str) -> list[float]:
+    return [float(t) for t in _TALL_RE.findall(tekst)]
+
+
+def _grenser_pa(tekst: str) -> list[float]:
+    """Tallene som står rett etter et ± — KILDENS egne feilgrenser."""
+    return [float(g) for g in _GRENSE_RE.findall(tekst)]
+
+
+def _like_tall(a: float, b: float) -> bool:
+    """0.029 skrevet som 0.029 og som 2.9e-2 er samme grense for et menneske."""
+    return abs(a - b) <= 1e-9 * max(1.0, abs(a), abs(b))
+
+
+def _sporet(repo: Path, fil: str) -> bool:
+    """Er filen i repoet? En usporet «kilde» finnes ikke som kilde."""
+    p = subprocess.run(["git", "-C", str(repo), "ls-files", "--error-unmatch",
+                        "--", fil], capture_output=True, text=True)
+    return p.returncode == 0
+
+
+def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]:
+    """Én post mot sin egen kildefil. Hver vei ut navngir hvorfor."""
+    hvor = f"{node_id}/usikkerhet/{nr}"
+    if not isinstance(post, dict):
+        return [f"{hvor}: posten er ikke et objekt"]
+    if isinstance(post.get("storrelse"), str) and post["storrelse"].strip():
+        hvor = f"{hvor} «{post['storrelse']}»"
+
+    # Typevakt FØRST: en manglende nøkkel skal ikke gi en TypeError i
+    # diagnosegrenen — da krasjer leseren nettopp der den skal si hva som er galt.
+    mangler = [k for k in USIKKERHETSPOST_NOKLER if k not in post]
+    if mangler:
+        return [f"{hvor}: mangler {', '.join(mangler)}"]
+
+    verdi, grense = post["verdi"], post["feilgrense"]
+    for navn, v in (("verdi", verdi), ("feilgrense", grense)):
+        if isinstance(v, bool) or not isinstance(v, (int, float, type(None))):
+            return [f"{hvor}: {navn} er ikke et tall eller null"]
+    kilde = post["kilde"]
+    if not isinstance(kilde, dict):
+        return [f"{hvor}: usikkerhet uten kilde"]
+    mangler = [k for k in USIKKERHETSKILDE_NOKLER if k not in kilde]
+    if mangler:
+        return [f"{hvor}: kilde mangler {', '.join(mangler)}"]
+
+    fil, linje, ordrett = kilde["fil"], kilde["linje"], kilde["ordrett"]
+    if not isinstance(fil, str) or not fil.strip():
+        return [f"{hvor}: kilde.fil er tom"]
+    if fil.startswith("/") or ".." in fil.split("/"):
+        return [f"{hvor}: kilde.fil maa vaere en sti i repoet, ikke {fil!r}"]
+    if not _sporet(repo, fil):
+        return [f"{hvor}: kilde.fil {fil} er ikke sporet i repoet"]
+    if isinstance(linje, bool) or not isinstance(linje, int) or linje < 1:
+        return [f"{hvor}: kilde.linje er ikke et positivt heltall"]
+    try:
+        linjer = (repo / fil).read_text(encoding="utf-8").splitlines()
+    except OSError as e:
+        return [f"{hvor}: {fil} kunne ikke leses — {e}"]
+    if linje > len(linjer):
+        return [f"{hvor}: {fil} har {len(linjer)} linjer, posten viser til {linje}"]
+    tekst = linjer[linje - 1]
+
+    ut: list[str] = []
+    if not isinstance(ordrett, str) or not ordrett.strip():
+        ut.append(f"{hvor}: kilde.ordrett er tom — et sitat maa kunne leses")
+    elif ordrett not in tekst:
+        ut.append(f"{hvor}: ordrett staar ikke paa {fil}:{linje}: {ordrett!r}")
+
+    if isinstance(verdi, (int, float)) and not any(_like_tall(verdi, t)
+                                                  for t in _tall_i(tekst)):
+        ut.append(f"{hvor}: verdi {verdi} staar ikke paa {fil}:{linje}")
+
+    grenser = _grenser_pa(tekst)
+    if grense is None:
+        if grenser:
+            ut.append(f"{hvor}: kilden OPPGIR en feilgrense ({grenser}) paa "
+                      f"{fil}:{linje} — posten sier den ikke gjoer det")
+    elif not grenser:
+        ut.append(f"{hvor}: feilgrense {grense} er oppgitt, men {fil}:{linje} "
+                  f"oppgir ingen (ingen ±) — 0 og gjetting er ikke et svar")
+    elif not any(_like_tall(grense, g) for g in grenser):
+        ut.append(f"{hvor}: feilgrense {grense} er ikke den kilden oppgir "
+                  f"({grenser}) paa {fil}:{linje}")
+    return ut
+
+
+def sjekk_usikkerhet(atlas: dict, repo: str | Path | None = None) -> list[str]:
+    """Hver post i usikkerhetslaget mot SIN EGEN kilde. Tom liste = rent.
+
+    Returnerer problemer, ikke en dom: hvert problem navngir noden, posten og
+    hva som ikke stemte, slik at svaret kan leses som en rettelse.
+
+    Reglene, alle maalt mot kilden og ingen mot skjemaet:
+
+      * posten maa ha `storrelse` og en `kilde` med fil, linje og et ORDRETT
+        utsnitt av linjen;
+      * filen maa vaere sporet i repoet, og linjen maa finnes der;
+      * `verdi` maa staa paa linjen posten viser til;
+      * `feilgrense` er enten et tall kilden oppgir etter et ± PAA DEN LINJEN,
+        eller `null` — og `null` krever at linjen ikke oppgir noen.
+
+    Det siste er hele grunnen til at `null` er et svar og 0 ikke er det: en
+    feilgrense paa 0 som kilden ikke sier, er en gjetning skrevet som en
+    maaling. `β = 0.16 (free amplitude)` er prøven — den skal staa som hull.
+
+    `repo` faller tilbake til `atlas['repo']` (som `les_atlas` setter), og
+    mangler begge, reiser vi: en sjekk uten kilder ville svart «alt vel» paa
+    hver post, og det svaret ser ut som kunnskap.
+    """
+    sti = repo if repo is not None else atlas.get("repo")
+    if not sti:
+        raise AtlasLesingFeil(
+            "usikkerhetslaget kan ikke sjekkes uten repo: hverken 'repo' eller "
+            "atlas['repo'] finnes — da er det ingen kilder aa lese")
+    repo = Path(sti)
+
+    # Baade atlas-laget ('noder', fra les_atlas) og raafila ('nodes') leses.
+    # Et atlas UTEN nodenoekkel REISER her, og det er med vilje: en sjekk som
+    # ikke finner nodene ville svart «alt vel» paa hver post, og det svaret ser
+    # ut som kunnskap — noeyaktig feilmodusen dette laget finnes for aa hindre.
+    noder = atlas.get("noder")
+    if noder is None:
+        noder = atlas.get("nodes")
+    if noder is None:
+        raise AtlasLesingFeil(
+            "atlaset har hverken 'noder' eller 'nodes' — da er det ingen poster "
+            "aa sjekke, og «ingen problemer» ville vaert et tomt svar")
+
+    ut: list[str] = []
+    for node in noder or []:
+        if not isinstance(node, dict):
+            continue
+        node_id = str(node.get("id") or "?")
+        usikkerhet = node.get("usikkerhet")
+        if usikkerhet is None:
+            continue  # VALGFRITT: en node uten laget er ikke et problem
+        if not isinstance(usikkerhet, dict):
+            ut.append(f"{node_id}: usikkerhet er ikke et objekt")
+            continue
+        poster = usikkerhet.get("poster")
+        if not isinstance(poster, list) or not poster:
+            ut.append(f"{node_id}: usikkerhet uten poster — tomt felt som ser fylt ut")
+            continue
+        for nr, post in enumerate(poster):
+            ut.extend(_sjekk_usikkerhetspost(node_id, nr, post, repo))
+    return ut
 
 
 def _dekning(repo: Path, ref: str, hent: bool) -> dict:
@@ -368,31 +541,44 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    if not treff:
-        registrert = _navnerom(Path(repo), ref, emne)
-        if registrert:
-            treff = [{
-                "trefftype": "navnerom",
-                "id": post["id"],
-                "synlighet": None,
-                "perspektiv": None,
-                "fase": None,
-                "buss_domene": None,
-                "har_prediksjon": False,
-                "har_oppgjoer": False,
-                "har_falsifikator": False,
-                # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
-                # ga en ikke-tom treffliste, og en leser (eller et
-                # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
-                # noden — det har begrepet i navnerommet. De to feltene sier
-                # det uten at noen maa lese prosaen.
-                "har_node": False,
-                "dekning": "navnerom_uten_node",
-                "grunn": (f"registrert i {post['kilde']}, men er ikke en "
-                          "node i schema/regime_nodes.jsonld"),
-            } for post in registrert]
-    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
-             "navnerom": 4}
+    # Registrerte begreper svarer ALLTID med navneromstreffet — ogsaa naar en
+    # node nevner ordene.
+    #
+    # Foerste utgave la navneromstreffet inn BARE naar ingen node traff, og
+    # det var en stille avhengighet av innholdet. Maalt 2026-09-18
+    # (t_af77c6da): usikkerhetslagets `kilde.fil` skrev
+    # «docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/
+    # index.json» inn i obs.bao — og svaret paa «Energy-Flow Cosmology» gikk
+    # fra «registrert begrep: efc:EFC» til «ord i obs.bao». Registeret er
+    # atlasets svar paa «eier jeg dette begrepet?», og det svaret skal ikke
+    # avhenge av hvilke noder som tilfeldigvis siterer en fil.
+    registrert = _navnerom(Path(repo), ref, emne)
+    if registrert:
+        treff.extend({
+            "trefftype": "navnerom",
+            "id": post["id"],
+            "synlighet": None,
+            "perspektiv": None,
+            "fase": None,
+            "buss_domene": None,
+            "har_prediksjon": False,
+            "har_oppgjoer": False,
+            "har_falsifikator": False,
+            # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
+            # ga en ikke-tom treffliste, og en leser (eller et
+            # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
+            # noden — det har begrepet i navnerommet. De to feltene sier
+            # det uten at noen maa lese prosaen.
+            "har_node": False,
+            "dekning": "navnerom_uten_node",
+            "grunn": (f"registrert i {post['kilde']}, men er ikke en "
+                      "node i schema/regime_nodes.jsonld"),
+        } for post in registrert)
+    # Presisjonen er rekkefoelgen: en node som BAERER ordet i id-en eller som
+    # DEKKER domenet sier mer enn registeret gjor; registeret sier mer enn et
+    # loest ord i en tekst. Navneromstreffet staar derfor mellom dem — ikke
+    # sist, som var en arv fra da det bare var en fallback.
+    _rang = {"id": 0, "domene": 1, "navnerom": 2, "ord": 3, "delstreng": 4}
     # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
     # det publiserte atlaset; de interne er kontekst.
     treff.sort(key=lambda x: (_rang[x["trefftype"]],
@@ -877,30 +1063,55 @@ def fragment(atlas: dict, node_id: str) -> dict:
     }
 
 
-#: Hva slags svar et felt krever av den som plasserer noe nytt.
-#: Avklart med Morten 2026-09-18, etter et innspill som ville gjort `--plasser`
-#: om til «struktur beregnes, vurderinger foreslaas, paastander kreves».
+#: What kind of answer each field demands of whoever places something new.
+#: Settled with Morten 2026-09-18, after an input that wanted `--plasser` to
+#: become "structure is computed, assessments are proposed, claims are required".
 #:
-#:   struktur  — utledbar fra fragmentets plass i kjeden. Fylles, med grunn.
-#:   vurdering — beregnbar som kandidat, men semantikken maa godkjennes.
-#:   paastand  — kan ikke utledes av noe. Den ER nodens innhold.
+#:   struktur  — derivable from the fragment's place in the chain. Filled, with grounds.
+#:   vurdering — computable as a candidate, but the semantics must be approved.
+#:   paastand  — cannot be derived from anything. It IS the node's content.
 #:
-#: `phase` ble foreslaatt gjort til enum. Maalt 2026-09-18: 26 verdier, hvorav
-#: 19 brukt én gang («solid (ice Ih)», «coexistence (solid + liquid + gas)»);
-#: kjernen er sju verdier og dekker 107 av 126 noder. Et lukket enum ville
-#: avvist 19 ekte verdier. Fasen er derfor delt — kjerne + rest — ikke lukket.
+#: `phase` was proposed as an enum. Measured 2026-09-18: 26 values, of which 19
+#: used once ("solid (ice Ih)", "coexistence (solid + liquid + gas)"); the core
+#: is seven values and covers 107 of 126 nodes. A closed enum would have
+#: rejected 19 real values. The phase is therefore core + residue, not closed.
 FELTKLASSE = {
     "id": "struktur", "synlighet": "struktur", "buss_domene": "struktur",
-    "nivaa": "struktur",
-    "phase": "struktur", "sektor": "struktur",
+    "nivaa": "struktur", "phase": "struktur", "sektor": "struktur",
     "perspektiv": "vurdering", "maale_paradigme": "vurdering",
     "rcmp": "vurdering",
 }
-#: Felt skjemaet ikke krever, men som huset feller paa. Maalt 2026-09-18 laa
-#: `buss_domene` og `falsifiserbarhet` blant de hardkodede unntakene i denne
-#: funksjonen, altsaa stikk i strid med hva resten av huset bygger paa.
+#: Fields the schema does NOT require, but which the house falls on. Measured
+#: 2026-09-18 these were on the hardcoded exemption list in this function —
+#: exactly inverted from what the rest of the house is built on.
 HUSETS_KRAV = ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
                "prediction", "settlement")
+
+
+FELT_REFERANSER: dict[str, tuple[int, int]] = {
+    "id": (101, 103), "regime": (24, 71), "prediction": (27, 5),
+    "measure": (20, 20), "phase": (13, 15), "ontology": (12, 18),
+    "synlighet": (8, 15), "rcmp": (7, 2), "observer": (6, 9),
+    "coupling": (6, 9), "maale_paradigme": (6, 7), "buss_domene": (6, 13),
+    "buffer": (5, 18), "stipulasjoner": (5, 16), "epistemikk": (5, 15),
+    "nivaa": (5, 10), "perspektiv": (4, 13), "episenter": (4, 6),
+    "open_questions": (4, 2), "lagdeling": (4, 2),
+    "emergence": (3, 5), "fractal": (3, 4), "ville_falsifisere": (3, 8),
+    "settlement": (3, 5), "falsifiserbarhet": (2, 8),
+}
+
+#: Below this limit the field is referenced by next to nothing. The limit is
+#: CHOSEN, not measured, and it is set low on purpose: with the broad
+#: measurement NO requirement qualifies as unused, and it stays that way until
+#: a measurement says otherwise.
+GRENSE_SKRIPT = 2
+GRENSE_TESTER = 2
+
+
+def baerer_feltet_noe(felt: str) -> bool:
+    """Does anything reference the field — in scripts or in tests?"""
+    skript, tester = FELT_REFERANSER.get(felt, (0, 0))
+    return skript >= GRENSE_SKRIPT or tester >= GRENSE_TESTER
 
 
 #: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
@@ -1035,11 +1246,17 @@ def plasser(atlas: dict, tekst: str) -> dict:
     for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
                                         if x not in krav_fra_skjemaet]:
         klasse = FELTKLASSE.get(f, "paastand")
+        skript, tester = FELT_REFERANSER.get(f, (0, 0))
         post = {"felt": f,
                 "klasse": klasse,
                 "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
                 "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
+                "referert_i_skript": skript, "referert_i_tester": tester,
+                "baerer": baerer_feltet_noe(f),
                 "forslag": None, "grunn": None}
+        if not post["baerer"]:
+            post["grunn"] = (f"schema requires it, but it is referenced in "
+                             f"{skript} scripts and {tester} tests")
         if klasse == "struktur":
             post["forslag"], post["grunn"] = _utled_struktur(
                 f, tekst, noder, treff_domener,
@@ -1059,6 +1276,9 @@ def plasser(atlas: dict, tekst: str) -> dict:
             "struktur": sum(1 for k in krav if k["klasse"] == "struktur"),
             "vurdering": sum(1 for k in krav if k["klasse"] == "vurdering"),
             "paastand": sum(1 for k in krav if k["klasse"] == "paastand"),
+            "baerer": sum(1 for k in krav if k["baerer"]),
+            "uten_leser": sum(1 for k in krav if not k["baerer"]),
+            "uten_leser_felt": [k["felt"] for k in krav if not k["baerer"]],
         },
         "aksene": {k: alle[k][1][:6] for k in
                    ("perspektiv", "phase", "synlighet") if k in alle},
@@ -1067,11 +1287,10 @@ def plasser(atlas: dict, tekst: str) -> dict:
 
 def _utled_struktur(felt: str, tekst: str, noder: list,
                     treff_domener: list, synlighet: list) -> tuple:
-    """Utled et strukturfelt — eller si hvorfor det ikke kunne utledes.
+    """Derive a structure field — or say why it could not be derived.
 
-    Aldri en gjetning presentert som en verdi. Kan vi ikke utlede det,
-    sier vi det, for det er noeyaktig her et fragment blir til en fasit
-    hvis vi tier.
+    Never a guess presented as a value. If it cannot be derived we say so:
+    this is exactly where a fragment silently turns into a fact.
     """
     if felt == "id":
         if len(treff_domener) == 1:
@@ -1778,6 +1997,11 @@ if __name__ == "__main__":
               f"{o.get('struktur', 0)} struktur (utledes), "
               f"{o.get('vurdering', 0)} vurdering (foreslaas), "
               f"{o.get('paastand', 0)} paastand (kreves eksplisitt)")
+        print(f"  hvorav {o.get('baerer', 0)} baerer noe i dag, og "
+              f"{o.get('uten_leser', 0)} refereres nesten ikke: "
+              f"{', '.join(o.get('uten_leser_felt', []))}")
+        print("    (skjemaet krever dem fortsatt — aa fjerne dem fra `required` "
+              "er en beslutning, ikke en koderegel)")
         for k in p_.get("krav", []):
             merke = "SKJEMA" if k["kilde"] == "skjema" else "HUSET "
             if k.get("forslag"):

@@ -10,8 +10,13 @@ som en VALIDERBAR INVARIANT, ikke som fritekst:
 2. Stipulasjons-eksplisitthet: motorenes terskler skal kunne
    deklareres i noden med `stipulert_av_oss: true` — og en node kan
    referere motoren som holder terskelen.
-3. Falsifiseringsbetingelse: hver node kan bære `ville_falsifisere`
-   og `revisjon` (logg over endrede terskler/antakelser).
+3. Falsifiseringsbetingelse: hver node SKAL ha tatt stilling — en
+   falsifikator (`ville_falsifisere`), en fastsatt
+   `falsifiserbarhet`-status, eller en skriftlig grunn
+   (`stipulasjoner.ikke_falsifiserbar_grunn`). «Kan bære» var feilen:
+   feltet var valgfritt, og maalt 2026-09-18 svarte 82 av 113 noder
+   verken ja eller nei. `revisjon` er loggen over endrede
+   terskler/antakelser.
 4. Observatøren i systemet: `observer.er_del_av_systemet` er
    OBLIGATORISK og skal være true for alle noder — vi er
    måleinstrumentet, ikke en gud utenfor.
@@ -93,3 +98,51 @@ def test_motor_nodene_har_motor_referanse():
         if n["id"].startswith("efc.") and "_engine" in n["id"]:
             assert n["stipulasjoner"].get("motor"), (
                 f"{n['id']}: mangler motor-referanse i stipulasjoner")
+
+
+def test_skjemaet_kjenner_falsifiseringsavgjorelsen():
+    """Feltet skal være DEKLARERT, og en tom streng skal ikke telle som svar.
+
+    Skjemaet kan ikke KREVE svaret. Det tredje svaret ligger inne i
+    `stipulasjoner`, og JSON Schema kan ikke kreve et navngitt felt i et
+    underobjekt fra forelderen uten et underskjema med `properties` — som
+    C10-gaten (`efc_schema_check.py`) da melder som «aapen», fordi den ikke
+    skiller «beskriver et objekt» fra «stiller et krav til ett felt». Maalt
+    2026-09-18 (kort t_c11ffa45), med kravet forsøkt på både RegimeNode og
+    en egen AtlasNode:
+
+        schema at /$defs/AtlasNode/allOf[1]/oneOf[2] is open
+
+    Kravet holdes derfor som for `buss_status`/`motor_status`/`alene_status`
+    (#511/#513/#515, samme mønster): `test_atlas_avgjorelse.py` maaler at
+    noen HAR svart, `test_atlas_motsigelse.py` at bare ÉN har svart.
+    Skjemaet sier hva som KAN skrives — med minLength 1, saa en tom streng
+    aldri er et svar.
+    """
+    node = _skjema()["$defs"]["RegimeNode"]
+    vf = node["properties"].get("ville_falsifisere")
+    assert vf, "skjemaet kjenner ikke ville_falsifisere"
+    assert vf.get("minLength") == 1, (
+        "uten minLength er en tom streng et gyldig svar i skjemaet")
+    st = node["properties"]["stipulasjoner"]["properties"]
+    assert "ikke_falsifiserbar_grunn" in st, (
+        "stipulasjoner kjenner ikke grunnen — da er det ingen steder aa skrive den")
+    assert st["ikke_falsifiserbar_grunn"].get("minLength") == 1, (
+        "uten minLength er en tom grunn et gyldig svar i skjemaet")
+
+
+def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
+    """Teller noder som BAERER en avgjorelse — ikke noder som KAN baere en.
+
+    113 av 113. Feltet skal vaere til stede, ogsaa naar svaret er nei: en
+    node uten svar svarer ikke, og et svar som ikke finnes kan ikke leses.
+    """
+    noder = _atlas()["nodes"]
+    uten = [n["id"] for n in noder
+            if not (n.get("ville_falsifisere") or n.get("falsifiserbarhet")
+                    or (n.get("stipulasjoner") or {})
+                    .get("ikke_falsifiserbar_grunn"))]
+    assert not uten, (
+        f"{len(uten)} av {len(noder)} node(r) har ikke tatt stilling: {uten[:8]}")
+    assert len(noder) - len(uten) == 113, (
+        f"dekningen skal vaere 113 av 113, er {len(noder) - len(uten)}")

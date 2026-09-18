@@ -64,3 +64,55 @@ def test_ingen_status_sier_imot_sitt_eget_felt(noder: list[dict]) -> None:
     assert not motsigelser, (
         f"{len(motsigelser)} node(r) sier baade at de HAR en buss og at de "
         f"IKKE har det: {motsigelser[:6]}")
+
+
+# --- Falsifiserbarhet: en avgjoerelse staar alene (kort t_c11ffa45) ---------
+#
+# Samme regel som over, for de tre svarene som ble maalt 2026-09-18:
+# `ville_falsifisere`, `falsifiserbarhet` og `stipulasjoner.
+# ikke_falsifiserbar_grunn`. En node som har TO av dem sier to ting samtidig
+# — samme feil som #514: leseren faar ett svar uten aa vite at det finnes et
+# annet. `test_atlas_avgjorelse.py` maaler at ingen node TIER (>= 1 svar);
+# her maales at ingen svarer to ganger (<= 1).
+
+def _antall_svar(n: dict) -> int:
+    return (bool(n.get("ville_falsifisere"))
+            + bool(n.get("falsifiserbarhet"))
+            + bool((n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn")))
+
+
+def test_ingen_node_har_to_falsifiseringssvar(noder: list[dict]) -> None:
+    begge = [n["id"] for n in noder if _antall_svar(n) > 1]
+    assert not begge, (
+        f"{len(begge)} node(r) har mer enn ett svar paa om de kan felles. "
+        f"En avgjoerelse staar alene: {begge[:6]}")
+
+
+def test_falsifikator_og_ikke_falsifiserbar_grunn_utelukker_hverandre(
+        noder: list[dict]) -> None:
+    """Den direkte motsigelsen: «her er hva som ville felle meg» OG «jeg kan
+    ikke felles» i samme node."""
+    begge = [n["id"] for n in noder
+             if n.get("ville_falsifisere")
+             and (n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn")]
+    assert not begge, (
+        f"{len(begge)} node(r) har BEGGE: en falsifikator og en grunn til aa "
+        f"ikke ha en: {begge[:6]}")
+
+
+def test_en_tom_verdi_er_ikke_en_avgjoerelse(noder: list[dict]) -> None:
+    """«Kan ikke felles» er et svar; en tom streng er en utelatelse.
+
+    Samme regel som `test_statusene_sier_noe_om_hvorfor` over: feltet skal
+    vaere FYLT eller FRAVAERENDE, aldri fylt med ingenting. En tom streng
+    tilfredsstiller «feltet finnes» og svarer ikke paa spoersmaalet — det er
+    noeyaktig feilklassen `test_falsifiserbarhet.py` har felt tre ganger.
+    """
+    tomme = []
+    for n in noder:
+        s = n.get("stipulasjoner") or {}
+        for felt in ("ville_falsifisere", "ikke_falsifiserbar_grunn"):
+            verdi = n.get(felt) if felt == "ville_falsifisere" else s.get(felt)
+            if verdi is not None and not str(verdi).strip():
+                tomme.append(f"{n['id']}.{felt}")
+    assert not tomme, f"tomme avgjoerelser: {tomme[:6]}"
