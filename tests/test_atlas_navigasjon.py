@@ -384,3 +384,56 @@ class TestFalsifiserbarhetsSkillet:
         assert "maaler_eller_observert" in e, "instrumentnodene er ikke navngitt"
         n, t_ = e["maaler_eller_observert"]
         assert n == t_ == 85, f"forventet 80/80, fikk {n}/{t_}"
+
+
+class TestMotornavnetErEntydig:
+    """Motor -> node maa vaere en REGEL, ikke en tilfeldig rekkefoelge.
+
+    Maalt 2026-09-18: `node_ider` var et SETT, og oppslaget tok den foerste
+    noden som inneholdt motornavnet. `klima` matcher fire noder
+    (`efc.klima_engine` MED buss-domene og tre `verden.klima_*` uten), saa
+    svaret avhang av PYTHONHASHSEED: samme kommando paa samme ref ga
+    «31/32 naar fram · HULL klima» i to av fem kjoeringer og «32/32» i tre.
+    Et hull som kommer og gaar blir ikke trodd naar det er ekte.
+    """
+
+    def test_samme_svar_uansett_hashseed(self):
+        """To prosesser, to fro, ETT svar. Dette er hele kravet."""
+        kode = (
+            "import json, sys; sys.path.insert(0, 'scripts');"
+            "import atlas_navigasjon as N;"
+            "d = N.naviger('.', 'HEAD');"
+            "print(json.dumps({'hull': d['hull']['motorer_uten_buss'],"
+            " 'dekning': d['dekning']['motorer'],"
+            " 'kart': d['kobling']['motor_til_node']}, sort_keys=True))"
+        )
+        svar = []
+        for froe in ("0", "1", "12345"):
+            r = subprocess.run(
+                [sys.executable, "-c", kode], cwd=REPO,
+                capture_output=True, text=True, timeout=120,
+                env={"PYTHONHASHSEED": froe, "PATH": "/usr/bin:/bin"})
+            assert r.returncode == 0, r.stderr[-400:]
+            svar.append(r.stdout.strip())
+        assert len(set(svar)) == 1, (
+            "samme spoersmaal, ulike svar:\n" + "\n".join(svar))
+
+    def test_motornavnet_peker_paa_motornoden(self):
+        d = atlas_navigasjon.naviger(REPO, "HEAD")
+        kart = d["kobling"]["motor_til_node"]
+        assert kart.get("klima") == "efc.klima_engine", kart.get("klima")
+        # Motornavnene peker ikke bare inn i efc-navnerommet: homo-regimets
+        # motorer peker paa `homo.*`-nodene, og det er riktig. Kravet er at
+        # hver peker lander paa en node som FINNES — en doed peker er et svar
+        # som ser ut som en kobling.
+        kjente = {n["id"] for n in atlas_navigasjon.les_noder(REPO, "HEAD")}
+        doede = {m: nid for m, nid in kart.items() if nid not in kjente}
+        assert not doede, doede
+
+    def test_flertydige_navn_meldes(self):
+        """En regel som velger skal ogsaa si hva den valgte mellom."""
+        d = atlas_navigasjon.naviger(REPO, "HEAD")
+        assert "motor_flertydig" in d["kobling"], "flertydigheten er usynlig"
+        for m, kandidater in d["kobling"]["motor_flertydig"].items():
+            assert len(kandidater) > 1, (m, kandidater)
+            assert d["kobling"]["motor_til_node"][m] in kandidater
