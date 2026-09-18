@@ -360,6 +360,12 @@ def _bla(sti: str, v, ut: dict) -> None:
             _bla(f"{sti}.{k}", x, ut)
     elif isinstance(v, list):
         ut.setdefault(sti, []).extend(str(x) for x in v)
+    elif v is None:
+        # `None` er ikke en verdi. `str(None)` ble bokstavelig talt «None»,
+        # som er truthy — og gjorde `nivaa.forelder` til en akse med 113
+        # noder som svarte 33, med «None» som en tilbudt verdi.
+        # Maalt 2026-09-18.
+        return
     else:
         ut.setdefault(sti, []).append(str(v))
 
@@ -377,6 +383,11 @@ def akser(atlas: dict) -> dict[str, tuple[int, list[str]]]:
         for k, v in n.items():
             _bla(k, v, blad)
         for sti, verdier in blad.items():
+            # En akse finnes bare hvis den har en VERDI. `nivaa.forelder` er
+            # `None` paa 80 av 113 noder; aa telle dem som en verdi gjorde at
+            # aksen tilboed 113 og svarte med 33. Maalt 2026-09-18.
+            if not any(v for v in verdier):
+                continue
             antall[sti] = antall.get(sti, 0) + 1
             raa.setdefault(sti, set()).update(v for v in verdier if v)
     return {sti: (antall[sti], sorted(raa[sti])[:6]) for sti in antall}
@@ -506,7 +517,10 @@ def roter_akse(atlas: dict, akse: str, verdi: str | None = None) -> list[dict]:
     ut = []
     for n in atlas.get("noder") or []:
         v = _les_sti(n, akse)
-        if v is None:
+        # Tom liste og tom streng er ikke en verdi. `emergence.properties`
+        # er `[]` paa 99 av 113 noder; aa telle dem gjorde at aksen svarte
+        # 113 der den hadde 99. Maalt 2026-09-18.
+        if v is None or (isinstance(v, (list, str, dict)) and not v):
             continue
         if verdi is None:
             ut.append(n)
