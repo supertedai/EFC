@@ -146,10 +146,12 @@ class TestFalsifiserbarhet:
                        in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 79, f"offentlige endret: {len(off)}"
         assert kan == 27, (
-            f"kan felles: {kan} — forventet 19. 27 var feil: 2 stubber og 6 "
+            f"kan felles: {kan} — forventet 27. 19 var feil: 2 stubber og 6 "
             f"rammeverk-noder uten fastsatt terskel kunne ikke felles")
-        assert avventer == 9, (
-            f"avventer: {avventer} — forventet 9 (2 stubber + 7 uten fastsatt terskel)")
+        assert avventer == 4, (
+            f"avventer: {avventer} — forventet 4 (2 stubber + 2 uten fastsatt "
+            f"terskel). Fem noder fikk kriterium skrevet og er dermed FASTSATT; "
+            f"de to kategoriene er disjoint.")
         assert kan + avventer == 31, (
             f"{kan} + {avventer} = {kan + avventer}, men det er 28 EFC-noder "
             f"blant de offentlige")
