@@ -1,0 +1,55 @@
+{
+  "versjon": "B-minimalt-evidenslag-1",
+  "beskrivelse": "Sidefil for de åtte nodene i key.json; ingen skjemaendring.",
+  "usikkerhet": {
+    "obs.bao": [
+      {"navn": "r_d", "verdi": 147.09, "enhet": "Mpc", "usikkerhet": null, "kilde": "docs/papers/efc/A_structural_closure_of_growth_sector_couplings/index.json:69", "slag": "systematisk"},
+      {"navn": "beta", "verdi": 0.16, "enhet": "dimensjonsløs fri amplitude", "usikkerhet": null, "kilde": "docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/index.json:55", "slag": "modell"}
+    ],
+    "obs.fsigma8": [
+      {"navn": "fsigma8_efc", "verdi": 0.43, "enhet": "dimensjonsløs", "usikkerhet": null, "kilde": "schema/regime_nodes.jsonld:2557 (prediction.expected)", "slag": "modell"}
+    ],
+    "efc.growth_engine": [
+      {"navn": "fsigma8_efc", "verdi": 0.43, "enhet": "dimensjonsløs", "usikkerhet": null, "kilde": "schema/regime_nodes.jsonld:4707 (prediction.expected)", "slag": "modell"}
+    ],
+    "efc.rotation_engine": [],
+    "efc.lag_c0": [
+      {"navn": "K", "verdi": 4.4, "enhet": "dimensjonsløs", "usikkerhet": 0.6, "kilde": "docs/papers/efc/Closing_the_EFC_Consciousness_Bridge/index.json:46", "slag": "statistisk"}
+    ],
+    "h2o.droplet": [
+      {"navn": "brytningsindeks", "verdi": 1.33, "enhet": "dimensjonsløs", "usikkerhet": null, "kilde": "schema/regime_nodes.jsonld:687 (measure.proxy_chain)", "slag": "systematisk"}
+    ],
+    "homo.aksjonspotensial": [],
+    "homo.hjerte_syklus": []
+  },
+  "kanter": [
+    {
+      "subject": "efc.growth_engine",
+      "predicate": "STOETTER",
+      "object": "efc.mu_kz_engine",
+      "grunnlag": "schema/regime_nodes.jsonld:4707 (growth coupling og sealed prediction); støtte er proxy, ikke direkte måling",
+      "styrke": "proxy"
+    },
+    {
+      "subject": "efc.growth_engine",
+      "predicate": "MOTSIGER",
+      "object": "lcdm.baseline",
+      "grunnlag": "docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/index.json:71 (β-modellen avviker fra LCDM i sen tid)",
+      "styrke": "proxy"
+    },
+    {
+      "subject": "homo.aksjonspotensial",
+      "predicate": "MOTSIGER",
+      "object": "homo.hjerte_syklus",
+      "grunnlag": "schema/regime_nodes.jsonld:5415 og :5537 (ANALOGOUS_TO er uttrykkelig analogi, ikke identitet)",
+      "styrke": "analogi-avvist"
+    },
+    {
+      "subject": "homo.hjerte_syklus",
+      "predicate": "MOTSIGER",
+      "object": "homo.aksjonspotensial",
+      "grunnlag": "schema/regime_nodes.jsonld:5415 og :5537 (ANALOGOUS_TO er uttrykkelig analogi, ikke identitet)",
+      "styrke": "analogi-avvist"
+    }
+  ]
+}
