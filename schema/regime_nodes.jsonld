@@ -5362,7 +5362,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "atlaset -> noder -> beskrivelsen av atlaset -> ny node; selvbeskrivelsen ER selv en node, saa loopen lukker seg gjennom seg selv",
     "properties": []
    },
    "fractal": {
@@ -5440,7 +5440,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "skjemaet -> validerer noder -> en node beskriver skjemaet -> skjemaet maa validere sin egen beskrivelse",
     "properties": []
    },
    "fractal": {
@@ -5519,7 +5519,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "koordinatet velges -> alle noder maaler i det -> maalingene bekrefter valget -> valget staar som gitt",
     "properties": []
    },
    "fractal": {
@@ -5600,7 +5600,7 @@
     "er_del_av_systemet": true
    },
    "emergence": {
-    "loop": "",
+    "loop": "begrepet velges -> lovene formuleres i det -> lovene bekrefter begrepet -> begrepet staar som gitt",
     "properties": []
    },
    "fractal": {
@@ -6996,7 +6996,7 @@
    "episenter": "lesning av havtemperatur — instrument-vinduet",
    "buffer": {
     "role": "havet som varmebuffer i klimaet",
-    "note": "broen mater klima-motoren (0D-proxy, aarlig)"
+    "note": "broen mater klima-motoren (0D-proxy, aarlig). MOTORSTATUS: ingen egen motor — proxy-mater (klima)"
    },
    "ontology": {
     "assumes": [
@@ -7047,7 +7047,7 @@
     "terskler": [
      "ingen terskler — maalingsnode"
     ],
-    "motor": "klima (proxy-mater)"
+    "motor": ""
    },
    "nivaa": {
     "indeks": 0,
@@ -7078,7 +7078,7 @@
    "episenter": "lesning av arts-tellinger — instrument-vinduet",
    "buffer": {
     "role": "biosfaeren som energiflyt-buffer",
-    "note": "broen mater enerflyt-motoren (fotavtrykk)"
+    "note": "broen mater enerflyt-motoren (fotavtrykk). MOTORSTATUS: ingen egen motor — proxy-mater (energiflyt)"
    },
    "ontology": {
     "assumes": [
@@ -7128,7 +7128,7 @@
     "terskler": [
      "ingen terskler — maalingsnode"
     ],
-    "motor": "enerflyt (proxy-mater)"
+    "motor": ""
    },
    "nivaa": {
     "indeks": 0,
@@ -7159,7 +7159,7 @@
    "episenter": "lesning av vulkantilstand — instrument-vinduet",
    "buffer": {
     "role": "vulkaner som jordas termiske buffer",
-    "note": "slektning av seismikk-noden; broen er KANDIDAT inntil konnektor-deploy"
+    "note": "slektning av seismikk-noden; broen er KANDIDAT inntil konnektor-deploy. MOTORSTATUS: KANDIDAT — broen venter paa konnektor-deploy"
    },
    "ontology": {
     "assumes": [
@@ -7209,7 +7209,7 @@
     "terskler": [
      "ingen terskler — maalingsnode"
     ],
-    "motor": "KANDIDAT (broen venter paa konnektor-deploy)"
+    "motor": ""
    },
    "nivaa": {
     "indeks": 0,

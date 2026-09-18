@@ -2,7 +2,7 @@
 
 _**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._
 
-_Question status: **7 open · 1 resolved**._
+_Question status: **7 open · 0 resolved**._
 
 ## One paragraph
 
@@ -204,10 +204,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — USGS-statuslisten som konsensus-kanal
-
-**Questions.**
-
-- **Q-VU1** kosmos.jord.vulkan: motor waits for connector deploy → _connector deploy (human step)_
 
 ### Structures — H2O and chemistry
 
@@ -1219,7 +1215,6 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 - **Q-GM1** (GM) efc.grid_mikrofysikk: no evidence yet — hypothesis marked honestly
 - **Q-GE1** (GE) efc.grid_mikro_engine: no evidence yet — hypothesis marked honestly
 - **Q-SH1** (SH) efc.sort_hull: no evidence yet — hypothesis marked honestly
-- **Q-VU1** (VU) kosmos.jord.vulkan: motor waits for connector deploy
 - **Q-EF1** (EF) efc.efc_background_engine: no evidence yet — hypothesis marked honestly
 
 ## What the platform gives vs what we own
