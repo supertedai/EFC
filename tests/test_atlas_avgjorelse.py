@@ -71,4 +71,6 @@ def test_de_interne_forklarer_seg_selv(noder: list[dict]) -> None:
     assert interne, "forutsetning: det finnes interne noder"
     for n in interne:
         s = n.get("stipulasjoner") or {}
-        assert s.get("buss_status"), f"{n['id']} er intern uten begrunnelse"
+        assert n.get("buss_domene") or s.get("buss_status"), (
+            f"{n['id']} er intern uten begrunnelse — den maa ha et "
+            f"buss_domene eller en skriftlig grunn til aa ikke ha det")
