@@ -13,67 +13,67 @@ source_path: docs/data/sparc-175/README.md
 
 # SPARC 175 Galaxy Database + EFC-R Analysis
 
-## Oversikt
+## Overview
 
-Komplett datasett fra SPARC-databasen (175 galakser) med integrert EFC-R metodikk for rotasjonskurve-analyse.
+Complete dataset from the SPARC database (175 galaxies) with integrated EFC-R methodology for rotation-curve analysis.
 
-## Kilder
+## Sources
 
-| Kilde | Referanse |
+| Source | Reference |
 |-------|-----------|
 | SPARC Database | https://astroweb.case.edu/SPARC/ |
 | SPARC Paper | Lelli+2016 (DOI: 10.3847/0004-6256/152/6/157) |
 | EFC-R Paper | Magnusson 2026 (DOI: 10.6084/m9.figshare.31007248) |
 
-## Innhold
+## Contents
 
-### Datasett (fra SPARC)
+### Dataset (from SPARC)
 ```
-rotation_models/     # 175 rotasjonskurver (.dat)
-photometry/          # 219 fotometri-profiler
-bulge_disk/          # 177 bulge/disk-dekomposisjoner
-archives/            # Original zip-filer
+rotation_models/     # 175 rotation curves (.dat)
+photometry/          # 219 photometry profiles
+bulge_disk/          # 177 bulge/disk decompositions
+archives/            # Original zip files
 ```
 
-### Hovedtabeller
-| Fil | Beskrivelse |
+### Main tables
+| File | Description |
 |-----|-------------|
-| Table1_Galaxy_Sample.mrt | 175 galakser med egenskaper |
-| Table2_Mass_Models.mrt | Rotasjonskurver + baryoniske bidrag |
-| Radial_Acceleration_Relation_*.mrt | RAR data (2630 punkter) |
+| Table1_Galaxy_Sample.mrt | 175 galaxies with properties |
+| Table2_Mass_Models.mrt | Rotation curves + baryonic contributions |
+| Radial_Acceleration_Relation_*.mrt | RAR data (2630 points) |
 | Baryonic_Tully_Fisher_*.mrt | BTFR data |
 
-### Analyser
-| Fil | Innhold |
+### Analyses
+| File | Content |
 |-----|---------|
-| EFC-R_METHOD.md | EFC-R metodikk |
-| efc_r_n20_results.json | Resultater fra N=20 analyse |
-| N175_ANALYSIS_PLAN.md | Plan for utvidet analyse |
-| ANALYSIS_REPORT.md | Komplett analyserapport |
+| EFC-R_METHOD.md | EFC-R methodology |
+| efc_r_n20_results.json | Results from the N=20 analysis |
+| N175_ANALYSIS_PLAN.md | Plan for the extended analysis |
+| ANALYSIS_REPORT.md | Complete analysis report |
 
 ## EFC-R Status
 
-| Metrikk | N=20 | Forventet N=175 |
+| Metric | N=20 | Expected N=175 |
 |---------|------|-----------------|
-| Suksessrate | 80% | 75-85% |
+| Success rate | 80% | 75-85% |
 | Mean ∇S | 0.082 kpc⁻¹ | ~0.08 kpc⁻¹ |
-| Overlapp med N=175 | - | 19 galakser |
-| Nye galakser | - | 156 galakser |
+| Overlap with N=175 | - | 19 galaxies |
+| New galaxies | - | 156 galaxies |
 
-## Bruk
+## Usage
 
 ```python
-# Les rotasjonskurve
+# Read rotation curve
 import numpy as np
 data = np.loadtxt('rotation_models/NGC2403_rotmod.dat')
 r, v_obs, v_err, v_gas, v_disk, v_bul, sb = data.T
 ```
 
-## Relaterte prosjekter
+## Related projects
 
-- **sparc-n20**: Original EFC-R analyse (publisert)
-- **sparc-n175**: Utvidet analyse (pågående)
-- **halo-model**: Entropi-halo prediksjoner
+- **sparc-n20**: Original EFC-R analysis (published)
+- **sparc-n175**: Extended analysis (in progress)
+- **halo-model**: Entropy-halo predictions
 
 ---
-*Sist oppdatert: 2026-01-10*
+*Last updated: 2026-01-10*

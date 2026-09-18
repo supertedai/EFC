@@ -34,7 +34,7 @@ def test_innta_skriver_ekte_plassering_med_kilde_og_tidspunkt(tmp_path: Path) ->
     resultat = kjør_inntak(tmp_path, "vulkansk aske i stratosfaeren", "samtale")
 
     assert resultat.returncode == 0, resultat.stderr
-    assert "skrevet til" in resultat.stdout
+    assert "written to" in resultat.stdout
     record = les_linjene(fil)[0]
     assert record["tekst"] == "vulkansk aske i stratosfaeren"
     assert record["kilde"] == "samtale"
