@@ -247,6 +247,84 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
     }
 
 
+# ---------------------------------------------------------------------------
+# ROTASJON — aa se strukturen fra alle vinkler, ikke bare slaa opp et emne
+#
+# Maalt 2026-09-17: verktoeyet hadde fire flagg (`--emne`, `--ref`, `--hent`,
+# `--alle`). Det kunne slaa opp og liste. Det kunne IKKE filtrere paa
+# perspektiv, ikke skille en maalt node fra en avledet, ikke vise
+# proxy-kjeder. Rotasjonen fantes ikke.
+# ---------------------------------------------------------------------------
+
+#: Faser der noden MAALER noe — den har et instrument i verden.
+_MAALENDE_FASER = frozenset({"instrument", "observasjon"})
+
+#: Faser der noden er AVLEDET — regnet, ikke maalt.
+_AVLEDEDE_FASER = frozenset({"regime_engine", "computation_engine",
+                             "teoretisk", "stabil"})
+
+
+def roter(atlas: dict, *, node: str | None = None,
+          perspektiv: str | None = None, fase: str | None = None,
+          domene: str | None = None) -> list[dict]:
+    """Roter i atlaset paa tvers av feltene.
+
+    Ett kall, én vinkel. `node` gir HELE noden — alle felt, ikke et utvalg.
+    `KeyError` naar noden ikke finnes: et tomt svar ville skjult at navnet
+    var feil.
+    """
+    noder = atlas.get("noder") or []
+    if node is not None:
+        funn = [n for n in noder if n.get("id") == node]
+        if not funn:
+            raise KeyError(f"noden `{node}` finnes ikke i atlaset")
+        return funn
+    if perspektiv is not None:
+        noder = [n for n in noder if n.get("perspektiv") == perspektiv]
+    if fase is not None:
+        noder = [n for n in noder if n.get("phase") == fase]
+    if domene is not None:
+        noder = [n for n in noder if n.get("buss_domene") == domene]
+    return noder
+
+
+def maaleformer(atlas: dict) -> dict[str, list[str]]:
+    """Skill hva som MAALER fra hva som er avledet.
+
+    «maaler eller er etablert» var ETT tall for 47 svaert ulike noder. Det
+    skiller ikke et termometer fra en numerisk loeser. Her deles de.
+    """
+    ut: dict[str, list[str]] = {"instrument": [], "avledet": [], "ingen": []}
+    for n in atlas.get("noder") or []:
+        fase = n.get("phase")
+        m = n.get("measure") or {}
+        if fase in _MAALENDE_FASER:
+            ut["instrument"].append(n["id"])
+        elif fase in _AVLEDEDE_FASER or fase == "regime_engine":
+            ut["avledet"].append(n["id"])
+        elif m.get("instrument"):
+            ut["instrument"].append(n["id"])
+        else:
+            ut["ingen"].append(n["id"])
+    return ut
+
+
+def proxy_kjeder(atlas: dict) -> dict[str, list[str]]:
+    """Hva gaar via hva — i alle ledd.
+
+    `measure.proxy_chain` sier hvilke ledd som skiller det maalte fra det
+    konkluderte. En node uten kjede sier at den leser direkte; en med tre
+    ledd sier at tre ting maa holde.
+    """
+    ut: dict[str, list[str]] = {}
+    for n in atlas.get("noder") or []:
+        kjede = ((n.get("measure") or {}).get("proxy_chain")) or []
+        if kjede:
+            ut[n["id"]] = list(kjede)
+    return ut
+
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -257,7 +335,52 @@ if __name__ == "__main__":
     p.add_argument("--ref", default=STANDARD_REF, help=f"git-ref (standard: {STANDARD_REF})")
     p.add_argument("--hent", action="store_true", help="hent origin foerst")
     p.add_argument("--alle", action="store_true", help="vis alle treff, ikke bare de sterkeste")
+    p.add_argument("--node", help="roter rundt EN node — vis alle felt")
+    p.add_argument("--perspektiv", help="roter: filtrer paa perspektiv (paradigme/konsensus/akademia)")
+    p.add_argument("--fase", help="roter: filtrer paa fase (instrument/regime_engine/...)")
+    p.add_argument("--domene", help="roter: filtrer paa buss_domene")
+    p.add_argument("--maaleform", action="store_true",
+                   help="roter: skill hva som MAALER fra hva som er avledet")
+    p.add_argument("--proxy", action="store_true", help="roter: vis alle proxy-kjeder")
     a = p.parse_args()
+
+    # ROTASJON — de fire vinklene som ikke fantes 2026-09-17
+    if a.node or a.perspektiv or a.fase or a.domene or a.maaleform or a.proxy:
+        atlas = les_atlas(a.repo, ref=a.ref)
+        if a.node:
+            try:
+                treff = roter(atlas, node=a.node)
+            except KeyError as e:
+                print(f"FEIL: {e}")
+                sys.exit(1)
+            for n in treff:
+                print(f"=== {n['id']} ===")
+                for felt, v in n.items():
+                    if felt == "id":
+                        continue
+                    if isinstance(v, (dict, list)):
+                        print(f"  {felt}: {json.dumps(v, ensure_ascii=False)[:200]}")
+                    else:
+                        print(f"  {felt}: {v}")
+        elif a.maaleform:
+            for form, ider in sorted(maaleformer(atlas).items()):
+                print(f"{form:12} ({len(ider)}): {', '.join(ider[:6])}"
+                      f"{' ...' if len(ider) > 6 else ''}")
+        elif a.proxy:
+            kj = proxy_kjeder(atlas)
+            print(f"{len(kj)} noder med proxy-kjede:")
+            for nid, ledd in sorted(kj.items()):
+                print(f"  {nid}: {' -> '.join(ledd)}")
+        else:
+            treff = roter(atlas, perspektiv=a.perspektiv, fase=a.fase, domene=a.domene)
+            print(f"{len(treff)} noder"
+                  + (f" perspektiv={a.perspektiv}" if a.perspektiv else "")
+                  + (f" fase={a.fase}" if a.fase else "")
+                  + (f" domene={a.domene}" if a.domene else ""))
+            for n in treff:
+                ep = (n.get("episenter") or "")[:56]
+                print(f"  {n['id']:34} {n.get('phase','?'):18} {ep}")
+        sys.exit(0)
 
     if a.emne:
         s = finn(a.repo, a.emne, ref=a.ref, hent=a.hent)
