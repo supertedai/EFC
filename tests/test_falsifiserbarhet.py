@@ -127,7 +127,7 @@ class TestFalsifiserbarhet:
                     if n["id"].startswith("efc.")
                     and (n.get("falsifiserbarhet") or {}).get("status")
                     in ("terskel_ikke_fastsatt", "stub")]
-        assert len(avventer) == 4, f"forventet 4 EFC-noder uten terskel, fikk {len(avventer)}"
+        assert len(avventer) == 4, f"forventet 4 EFC-noder uten fastsatt terskel, fikk {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
