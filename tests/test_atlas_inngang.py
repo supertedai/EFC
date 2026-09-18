@@ -64,7 +64,11 @@ class TestInngangen:
     def test_plasser_gir_aksene_fragmentet_maa_utfylle(self, atlas: dict) -> None:
         """Inngangen er ikke et hull — den er en liste over hva som maa fylles."""
         p = atlas_lesing.plasser(atlas, "PAH i interstellar støv")
-        paakrevd = set((atlas.get("noder") or [{}])[0].keys())
+        # unionen av alle noders felt — ikke den foerste nodens, som kan
+        # mangle et felt de andre har (lagdeling kom 2026-09-18).
+        paakrevd = set()
+        for n in atlas.get("noder") or []:
+            paakrevd |= set(n.keys())
         assert p["mangler"], "forslaget sier ikke hva som gjenstaar"
         assert set(p["mangler"]) <= paakrevd
 

@@ -5,10 +5,10 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '79' },
+  stats: [{ k: 'Nodes', v: '103' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 79 nodes, 19 engines, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 103 nodes, 19 engines, NATS bridges.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -2599,6 +2599,774 @@ export const NODES = [
       ]
     ],
     "cond": []
+  },
+  {
+    "id": "kosmos-gammaglimt",
+    "code": "KG",
+    "name": "kosmos.gammaglimt",
+    "short": "gammaglimt",
+    "group": "kosmos",
+    "gx": 3.9,
+    "gy": 32.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "GCN varsler naar noe DETEKTERES; andelen maaler instrumentets dekning, ikke himmelens aktivitet"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-interstellart",
+    "code": "KI",
+    "name": "kosmos.interstellart",
+    "short": "interstellart",
+    "group": "kosmos",
+    "gx": 6.3,
+    "gy": 32.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Det interstellare er kjent fra et faatall objekter; andelen hviler paa en haandfull maalinger"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-maane",
+    "code": "MA",
+    "name": "kosmos.maane",
+    "short": "maane",
+    "group": "kosmos",
+    "gx": 8.7,
+    "gy": 32.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden",
+    "what": "DE441-ephemeriden; ingen instrument leste av \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon",
+    "how": "Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / proxy / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Samme ephemeride som planetsystemet \u2014 to domener, ett regnestykke"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-noeytrinoer",
+    "code": "NO",
+    "name": "kosmos.noeytrinoer",
+    "short": "noeytrinoer",
+    "group": "kosmos",
+    "gx": 11.1,
+    "gy": 32.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Noytrinodeteksjon er en haandfull anlegg verden over \u2014 andelen maaler anleggene, ikke fluksene"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-planetsystem",
+    "code": "PL",
+    "name": "kosmos.planetsystem",
+    "short": "planetsystem",
+    "group": "kosmos",
+    "gx": 13.5,
+    "gy": 32.800000000000004,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. baneposisjoner regnet fra DE441-ephemeriden",
+    "what": "DE441-ephemeriden; ingen instrument leste av \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> posisjon",
+    "how": "Buffer role: JPL Horizons er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / proxy / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / proxy / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "JPL DE441 er en TILPASNING til historiske observasjoner; andelen maaler ephemeriden, ikke himmelen"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-roentgentransienter",
+    "code": "KR",
+    "name": "kosmos.roentgentransienter",
+    "short": "roentgentransi",
+    "group": "kosmos",
+    "gx": 1.5,
+    "gy": 35.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Roentgentransienter krever instrumenter som ser i det baandet; uten dem finnes de ikke i dataene"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-romfart",
+    "code": "RF",
+    "name": "kosmos.romfart",
+    "short": "romfart",
+    "group": "kosmos",
+    "gx": 3.9,
+    "gy": 35.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Oppskytingsdata er institusjonelle og nasjonale; det som ikke annonseres, telles ikke"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-stjerner",
+    "code": "ST",
+    "name": "kosmos.stjerner",
+    "short": "stjerner",
+    "group": "kosmos",
+    "gx": 6.3,
+    "gy": 35.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Stjernedata kommer fra surveyer med hver sin seleksjon; andelen baerer surveyens blikk"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "kosmos-uklassifisert",
+    "code": "UK",
+    "name": "kosmos.uklassifisert",
+    "short": "uklassifisert",
+    "group": "kosmos",
+    "gx": 8.7,
+    "gy": 35.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. varsler om transienter i sanntid, fra bakke og rom",
+    "what": "Fermi, Swift og bakkebaserte teleskoper \u2014 proxy chain: fotoner inn -> detektorterskel -> varsel ut",
+    "how": "Buffer role: GCN \u2014 Gamma-ray Coordinates Network er bufferen: den holder tilstanden mellom op. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Det uklassifiserte er definert ved at det IKKE passer \u2014 andelen maaler skjemaets grense, ikke fenomenet"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-arbeid",
+    "code": "AR",
+    "name": "verden.arbeid",
+    "short": "arbeid",
+    "group": "samfunn",
+    "gx": 11.1,
+    "gy": 35.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. arbeidsmarkeds- og sosialstatistikk for Europa",
+    "what": "nasjonale statistikkbyr\u00e5er, harmonisert \u2014 proxy chain: nasjonal statistikk -> harmonisering -> indikator",
+    "how": "Buffer role: Eurostat er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Eurostat og ILO maaler formell arbeidskraft; den uformelle okonomien er strukturelt fravaerende"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-demografi",
+    "code": "DE",
+    "name": "verden.demografi",
+    "short": "demografi",
+    "group": "samfunn",
+    "gx": 13.5,
+    "gy": 35.4,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Folkeregistre er ujevnt utbygd; andelen maaler registreringen like mye som befolkningen"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-finans",
+    "code": "FI",
+    "name": "verden.finans",
+    "short": "finans",
+    "group": "samfunn",
+    "gx": 1.5,
+    "gy": 38.0,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Finansielle stroemmer beveger seg raskere enn statistikken; andelen er et etterslep"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-geopolitikk",
+    "code": "VG",
+    "name": "verden.geopolitikk",
+    "short": "geopolitikk",
+    "group": "samfunn",
+    "gx": 3.9,
+    "gy": 38.0,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Geopolitikk er et spraak om maktforhold; kodingsskjemaet velger hva som faar en etikett"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-handel",
+    "code": "VH",
+    "name": "verden.handel",
+    "short": "handel",
+    "group": "samfunn",
+    "gx": 6.3,
+    "gy": 38.0,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Handel telles over grenser med tollskjema \u2014 tjenester og digitalt bytte faller utenfor"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-helse",
+    "code": "HE",
+    "name": "verden.helse",
+    "short": "helse",
+    "group": "samfunn",
+    "gx": 8.7,
+    "gy": 38.0,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "WHO og nasjonale helseregistre setter hva som telles som helse; det som ikke rapporteres, finnes ikke i andelen"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-infrastruktur",
+    "code": "VI",
+    "name": "verden.infrastruktur",
+    "short": "infrastruktur",
+    "group": "samfunn",
+    "gx": 11.1,
+    "gy": 38.0,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Infrastruktur telles naar den bygges og naar den feiler; den stille virkerdag er usynlig"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-kommunikasjon",
+    "code": "KO",
+    "name": "verden.kommunikasjon",
+    "short": "kommunikasjon",
+    "group": "samfunn",
+    "gx": 13.5,
+    "gy": 38.0,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Mediedekning er skjevt fordelt \u2014 rike land melder mer, saa andelen maaler mediet, ikke hendelsen"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-lov",
+    "code": "LO",
+    "name": "verden.lov",
+    "short": "lov",
+    "group": "samfunn",
+    "gx": 1.5,
+    "gy": 40.6,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Lovgivning registreres naar den vedtas, ikke naar den virker \u2014 og ikke i land uten frie registre"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-militaer",
+    "code": "MI",
+    "name": "verden.militaer",
+    "short": "militaer",
+    "group": "samfunn",
+    "gx": 3.9,
+    "gy": 40.6,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Milit\u00e6re forhold rapporteres av statene selv; det hemmelige er usynlig i korpuset, ikke i verden"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-politikk",
+    "code": "PO",
+    "name": "verden.politikk",
+    "short": "politikk",
+    "group": "samfunn",
+    "gx": 6.3,
+    "gy": 40.6,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "GDELT koder verdens nyhetsstroem \u2014 andelen maaler hva som BLE skrevet om, ikke hva som skjedde"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-sikkerhet",
+    "code": "SI",
+    "name": "verden.sikkerhet",
+    "short": "sikkerhet",
+    "group": "samfunn",
+    "gx": 8.7,
+    "gy": 40.6,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Sikkerhetshendelser rapporteres naar de er spektakulaere; den stille hverdagen telles ikke"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-teknologi",
+    "code": "TE",
+    "name": "verden.teknologi",
+    "short": "teknologi",
+    "group": "samfunn",
+    "gx": 11.1,
+    "gy": 40.6,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Teknologinyheter er framtidsorientert: andelen maaler forventning, ikke utbredelse"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-transport",
+    "code": "VT",
+    "name": "verden.transport",
+    "short": "transport",
+    "group": "samfunn",
+    "gx": 13.5,
+    "gy": 40.6,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Transport maales der den registreres \u2014 uformell og lokal transport er usynlig"
+      ]
+    ],
+    "cond": []
+  },
+  {
+    "id": "verden-utdanning",
+    "code": "UT",
+    "name": "verden.utdanning",
+    "short": "utdanning",
+    "group": "samfunn",
+    "gx": 1.5,
+    "gy": 43.2,
+    "w": 2,
+    "d": 2,
+    "h": 34,
+    "kind": "box",
+    "ghost": false,
+    "one": "Perspective: consensus. globale nyhetsstr\u00f8mmer kodet til tema, akt\u00f8r og sted",
+    "what": "GKG-pipelinen; kodede dokumenter per tema \u2014 proxy chain: r\u00e5 nyhetstekst -> GKG-koder (tema, akt\u00f8r, sted) -> andel per domene",
+    "how": "Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.",
+    "steps": [
+      [
+        "Perspective",
+        "consensus"
+      ],
+      [
+        "Epistemics",
+        "stottet / direkte / institusjonell"
+      ],
+      [
+        "Social mechanism",
+        "Utdanningsstatistikk maaler skolegang, ikke laering \u2014 og land som ikke rapporterer, blir usynlige i samme andel"
+      ]
+    ],
+    "cond": []
   }
 ];
 
@@ -2690,10 +3458,19 @@ export const CH = [
       "efc-orbital-engine",
       "efc-klima-engine",
       "efc-tidevann-engine",
-      "efc-transient-engine"
+      "efc-transient-engine",
+      "kosmos-gammaglimt",
+      "kosmos-interstellart",
+      "kosmos-maane",
+      "kosmos-noeytrinoer",
+      "kosmos-planetsystem",
+      "kosmos-roentgentransienter",
+      "kosmos-romfart",
+      "kosmos-stjerner",
+      "kosmos-uklassifisert"
     ],
     "lede": "Chapter 3 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-cluster-engine, efc-growth-engine, efc-hubble-engine, efc-klima-engine, efc-lensing-engine, efc-mu-kz-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-tidevann-engine, efc-transient-engine.</p>",
+    "story": "<p>Revealed: efc-cluster-engine, efc-growth-engine, efc-hubble-engine, efc-klima-engine, efc-lensing-engine, efc-mu-kz-engine, efc-orbital-engine, efc-romvaer-engine, efc-rotation-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert.</p>",
     "flow": null
   },
   {
@@ -2725,10 +3502,25 @@ export const CH = [
     "reveal": [
       "efc-oekonomi-engine",
       "efc-samfunn-engine",
-      "efc-enerflyt-engine"
+      "efc-enerflyt-engine",
+      "verden-arbeid",
+      "verden-demografi",
+      "verden-finans",
+      "verden-geopolitikk",
+      "verden-handel",
+      "verden-helse",
+      "verden-infrastruktur",
+      "verden-kommunikasjon",
+      "verden-lov",
+      "verden-militaer",
+      "verden-politikk",
+      "verden-sikkerhet",
+      "verden-teknologi",
+      "verden-transport",
+      "verden-utdanning"
     ],
     "lede": "Chapter 6 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine.</p>",
+    "story": "<p>Revealed: efc-enerflyt-engine, efc-oekonomi-engine, efc-samfunn-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning.</p>",
     "flow": null
   },
   {
@@ -2805,7 +3597,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 79 nodes, 72 relations.",
+    "lede": "Everything at once \u2014 103 nodes, 72 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p>",
     "flow": null
   }
