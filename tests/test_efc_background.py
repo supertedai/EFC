@@ -1,31 +1,31 @@
-"""Tester for den foerste selvkonsistente EFC-bakgrunnsloeseren (L-033).
+"""Tests for the first self-consistent EFC background solver (L-033).
 
-Kilde — aksjonspapiret (docs/papers/efc/EFC_Relativistic_Action_Field_
-Equations_Perturbation_Theory_and_Extraction), seksjon 4.1:
+Source — the action paper (docs/papers/efc/EFC_Relativistic_Action_Field_
+Equations_Perturbation_Theory_and_Extraction), section 4.1:
 
     3 M_Pl^2 F(phi_bar) H^2 = rho_bar_m + 1/2 K(rho_bar) phi_dot_bar^2
                               + V(phi_bar) + 3 M_Pl^2 H F_dot
                               + lambda_dot_bar phi_dot_bar            (12)
     phi_bar_ddot + 3 H phi_dot_bar = Gamma(rho_bar)                      (13)
 
-AERLIGHET — dette er den FOERSTE bakgrunnen, ikke en Boltzmann-kode:
-    * Loeseren integrerer (12) og (13) sammen med materie-bevaring og
-      responsfeltet lambda (eq. 10). CMB, perturbaSJONER og EFCLASS er
-      ikke implementert.
-    * V(phi) er uspesifisert i papiret. Vi velger V = const (Lambda-lik)
-      fordi LCDM-grensen (kortets falsifikator) krever et Lambda-ledd.
-    * K0 er blind i bakgrunnens phi-dynamikk naar phi_dot = Gamma = 0 —
-      flyt-betingelsen (13) er geometrisk og inneholder ikke K.
+HONESTY — this is the FIRST background, not a Boltzmann code:
+    * The solver integrates (12) and (13) together with matter conservation
+      and the response field lambda (eq. 10). CMB, PERTURBATIONS and EFCLASS
+      are not implemented.
+    * V(phi) is unspecified in the paper. We choose V = const (Lambda-like)
+      because the LCDM limit (the card's falsifier) needs a Lambda term.
+    * K0 is blind in the background's phi dynamics when phi_dot = Gamma = 0 —
+      the flow condition (13) is geometric and does not contain K.
 
-MAALTE TOLERANSER (denne testfilen er der de staar):
-    * LCDM-grensen:        maks relativ feil ~1e-10  (assert < 1e-8)
-    * H(z)-konsistens:     ~2e-6 ved z_max = 2       (assert < 1e-5)
-    * constraint-residual: ~4e-6 ved z_max = 2       (assert < 1e-4)
-    Residualen er STRUKTURELL (uendret fra rtol 1e-8 til 1e-11) og skalerer
-    som K'(rho) = k0/(omega_crit(1-x)^2) — papirets egen neglisjering av
-    delta K/delta g^mu_nu (seksjon 2.1, "Note on delta K"). Det testes.
+MEASURED TOLERANCES (this test file is where they live):
+    * LCDM limit:          max relative error ~1e-10  (assert < 1e-8)
+    * H(z) consistency:    ~2e-6 at z_max = 2         (assert < 1e-5)
+    * constraint residual: ~4e-6 at z_max = 2         (assert < 1e-4)
+    The residual is STRUCTURAL (unchanged from rtol 1e-8 to 1e-11) and scales
+    as K'(rho) = k0/(omega_crit(1-x)^2) — the paper's own neglect of
+    delta K/delta g^mu_nu (section 2.1, "Note on delta K"). It is tested.
 
-TDD: skrevet foer efc_inference/engine/efc_background.py fantes.
+TDD: written before efc_inference/engine/efc_background.py existed.
 """
 from __future__ import annotations
 
@@ -56,52 +56,53 @@ except ImportError:  # pragma: no cover
     jsonschema = None
 
 requires_jsonschema = pytest.mark.skipif(
-    jsonschema is None, reason="jsonschema ikke installert")
+    jsonschema is None, reason="jsonschema is not installed")
 
 
 # ---------------------------------------------------------------------------
-# Parametre
+# Parameters
 # ---------------------------------------------------------------------------
 
-# Papirets egne referansevalg der de finnes: alpha = 0.01 (papirets default),
-# K0 = 1 (referansekoden). LCDM-grensen: alpha = gamma0 = 0 og
-# phi_dot = lambda_dot = 0 ved z=0.
+# The paper's own reference choices where they exist: alpha = 0.01 (the
+# paper's default), K0 = 1 (the reference code). LCDM limit: alpha = gamma0 = 0
+# and phi_dot = lambda_dot = 0 at z=0.
 LCDM = {
     "alpha": 0.0,
     "k0": 1.0,
     "omega_crit": 1.0e3,
     "gamma0": 0.0,
     "Omega_m": 0.3,
-    "V0": None,          # None -> V0 settes av z=0-normaliseringen (flat lukning)
+    "V0": None,          # None -> V0 from the z=0 normalization (flat closure)
     "phi0": 0.0,
     "phi_dot0": 0.0,
     "lam0": 0.0,
     "lam_dot0": 0.0,
 }
 
-# Aktiv EFC-bakgrunn: ikke-minimal kobling OG flyt-betingelse virker.
+# Active EFC background: non-minimal coupling AND flow condition active.
 EFC = {**LCDM, "alpha": 0.01, "gamma0": 0.05}
 
 
 def bro_kanoniske() -> dict:
-    """Kanoniske parametre for motorens ATLAS-NODE.
+    """Canonical parameters for the engine's ATLAS NODE.
 
-    Én kilde for testen og bro-synken (scripts/maintenance/efc_bro_synk.py).
-    ``H0`` er med fordi ``compute()`` maaler H(z) i km/s/Mpc; ``regime_node()``
-    leser bare den dimensjonsloese kjernen, og vet at kilden er denne fila —
-    ikke et gjett paa hvilket modulnivaa-dict som er «det kanoniske».
+    One source for the test and the bridge sync (scripts/maintenance/
+    efc_bro_synk.py). ``H0`` is included because ``compute()`` measures H(z)
+    in km/s/Mpc; ``regime_node()`` reads only the dimensionless core, and
+    knows the source is this file — not a guess at which module-level dict is
+    "the canonical one".
     """
     return {**EFC, "H0": 70.0}
 
 
 def _lcdm_E(z, Omega_m=0.3, V0=0.7):
-    """Standard flat LCDM (uten straling): E^2 = Omega_m(1+z)^3 + Omega_L."""
+    """Flat LCDM (no radiation): E^2 = Omega_m(1+z)^3 + Omega_L."""
     z = np.asarray(z, dtype=float)
     return np.sqrt(Omega_m * (1.0 + z) ** 3 + V0)
 
 
 def _lcdm_kurve(z, **kw):
-    """Varierer omega_crit/k0 og returnerer residualen fra loesningen."""
+    """Varies omega_crit/k0 and returns the residual from the solution."""
     params = {**EFC, "alpha": 0.0, "gamma0": 0.0, "phi_dot0": 0.05,
               "omega_crit": 1.0e3, "k0": 1.0, **kw}
     sol = EFCBackgroundSolver(params).solve(z_max=1.0, n_points=51,
@@ -110,14 +111,14 @@ def _lcdm_kurve(z, **kw):
 
 
 # ---------------------------------------------------------------------------
-# 1. Aksjonens responsfunksjoner (eq. 2, 47, 48)
+# 1. The action's response functions (eq. 2, 47, 48)
 # ---------------------------------------------------------------------------
 
 def test_K_divergerer_ved_rho_crit_eq2():
-    """K(rho) = K0/(1 - rho/rho_crit) — divergerer ved rho >= rho_crit.
+    """K(rho) = K0/(1 - rho/rho_crit) — diverges at rho >= rho_crit.
 
-    Samme grenseoppfoersel som mu_kz.k_rho (og referansekoden
-    efc_relativistic.py:26-29): stivheten er ikke definert utenfor.
+    Same boundary behaviour as mu_kz.k_rho (and the reference code
+    efc_relativistic.py:26-29): the stiffness is not defined outside.
     """
     assert np.isclose(kinetic_stiffness(1.0, 0.0), 1.0)
     assert np.isclose(kinetic_stiffness(1.0, 0.5), 2.0)
@@ -126,9 +127,9 @@ def test_K_divergerer_ved_rho_crit_eq2():
 
 
 def test_gamma_og_gamma_prime_eq47_48():
-    """Gamma og Gamma' er noeyaktig eq. 47/48 — og identiske med
-    mu(k,z)-modulens funksjoner for samme parametre. Bakgrunnen og
-    mu(k,z) maa ikke kunne gli fra hverandre i formlene sine."""
+    """Gamma and Gamma' are exactly eq. 47/48 — and identical to the
+    mu(k,z) module's functions for the same parameters. The background and
+    mu(k,z) must not be able to drift apart in their formulas."""
     from efc_inference.engine.mu_kz import gamma_rho, gamma_prime_rho
 
     g0, x = 0.7, 0.4
@@ -139,37 +140,37 @@ def test_gamma_og_gamma_prime_eq47_48():
 
 
 # ---------------------------------------------------------------------------
-# 2. LCDM-grensetesten (kortets falsifikator)
+# 2. The LCDM limit test (the card's falsifier)
 # ---------------------------------------------------------------------------
 
 def test_lcdm_grensen_reproduserer_standard_friedmann():
     """alpha = gamma0 = 0, phi_dot = lambda_dot = 0, V = const:
-    loeseren skal reprodusere standard flat LCDM innenfor maalt toleranse.
+    the solver must reproduce standard flat LCDM within the measured tolerance.
 
-    Dette ER falsifikatoren: en bakgrunnsloeser som ikke tar LCDM-grensen
-    er feil, uansett hvor pen den er i det andre regimet. Toleransen
-    rapporteres (sol.lcdm_max_rel_error) — ikke bare pastass at den er liten.
+    This IS the falsifier: a background solver that does not take the LCDM
+    limit is wrong, however elegant it looks in the other regime. The tolerance
+    is reported (sol.lcdm_max_rel_error) — not merely claimed to be small.
     """
     sol = EFCBackgroundSolver(LCDM).solve(z_max=3.0, n_points=301)
     assert sol.status == "ok"
     feil = float(np.max(np.abs(sol.E / _lcdm_E(sol.z) - 1.0)))
-    assert feil < 1e-8, f"malt avvik fra LCDM: {feil:.3e}"
+    assert feil < 1e-8, f"measured deviation from LCDM: {feil:.3e}"
     assert sol.lcdm_max_rel_error is not None
     assert sol.lcdm_max_rel_error < 1e-8
-    # og loeseren skal ikke skryte: den rapporterer det maalte tallet
+    # and the solver must not boast: it reports the measured number
     assert np.isclose(sol.lcdm_max_rel_error, feil, rtol=1e-3, atol=1e-12)
 
 
 def test_lcdm_grensen_er_ikke_definert_naar_phi_dot_er_ikke_null():
-    """Med phi_dot != 0 er bakgrunnen IKKE LCDM (stiv kinetisk energi) —
-    da skal loeseren si 'ikke definert', ikke rapportere et tall."""
+    """With phi_dot != 0 the background is NOT LCDM (stiff kinetic energy) —
+    then the solver must say 'not defined', not report a number."""
     params = {**LCDM, "phi_dot0": 0.05}
     sol = EFCBackgroundSolver(params).solve(z_max=1.0, n_points=51)
     assert sol.lcdm_max_rel_error is None
 
 
 def test_z0_normalisering_H0_og_a0():
-    """a(z=0) = 1 og H(z=0) = H0 — normaliseringen er en del av kontrakten."""
+    """a(z=0) = 1 and H(z=0) = H0 — the normalization is in the contract."""
     for params in (LCDM, EFC):
         sol = EFCBackgroundSolver(params).solve(z_max=2.0, n_points=101)
         assert np.isclose(sol.a[0], 1.0, rtol=0, atol=1e-12)
@@ -178,22 +179,22 @@ def test_z0_normalisering_H0_og_a0():
 
 
 def test_a_er_noeyaktig_en_over_en_pluss_z():
-    """a = 1/(1+z) er en eksakt invariant, ikke noe integratoren skal drive.
-    (Feil klasse som ble funnet i utviklingen: en manglende E-faktor i
-    d rho_m/dz og da/dz — residualen avsloerte den, denne testen hindrer
-    gjentakelse.)"""
+    """a = 1/(1+z) is an exact invariant, not something the integrator may
+    drift. (Error class found during development: a missing E factor in
+    d rho_m/dz and da/dz — the residual exposed it, this test prevents
+    a repeat.)"""
     sol = EFCBackgroundSolver(EFC).solve(z_max=2.0, n_points=101)
     assert np.allclose(sol.a, 1.0 / (1.0 + sol.z), rtol=1e-9, atol=1e-12)
 
 
 def test_k0_er_blind_i_bakgrunnen_naar_phi_dot_og_gamma_er_null():
-    """Strukturell aerlighet: K0 gaar IKKE inn i phi-dynamikken.
+    """Structural honesty: K0 does NOT enter the phi dynamics.
 
-    Flyt-betingelsen (13) er geometrisk — K(rho) staar bare i
-    energitettheten (12) og i lambda-ligningen (10), begge multiplisert
-    med phi_dot. Med phi_dot = Gamma = 0 er bakgrunnen derfor identisk
-    for K0 = 1 og K0 = 1e6. Det er en egenskap ved papirets ligninger,
-    ikke ved koden — og den skal vaere maalt, ikke antatt.
+    The flow condition (13) is geometric — K(rho) appears only in the
+    energy density (12) and in the lambda equation (10), both multiplied
+    by phi_dot. With phi_dot = Gamma = 0 the background is therefore
+    identical for K0 = 1 and K0 = 1e6. That is a property of the paper's
+    equations, not of the code — and it must be measured, not assumed.
     """
     a = EFCBackgroundSolver({**LCDM, "k0": 1.0}).solve(z_max=2.0, n_points=51)
     b = EFCBackgroundSolver({**LCDM, "k0": 1.0e6}).solve(z_max=2.0, n_points=51)
@@ -201,17 +202,18 @@ def test_k0_er_blind_i_bakgrunnen_naar_phi_dot_og_gamma_er_null():
 
 
 # ---------------------------------------------------------------------------
-# 3. Indre konsistens: loeserens H(z) mot modified Friedmann direkte (12)
+# 3. Internal consistency: solver H(z) vs modified Friedmann directly (12)
 # ---------------------------------------------------------------------------
 
 def test_h_z_stemmer_med_modified_friedmann_direkte():
-    """Kortets krav 3: H(z) fra den integrerte loesningen skal stemme med
-    H(z) fra eq. (12) evaluert DIREKTE paa loesningens tilstand.
+    """The card's requirement 3: H(z) from the integrated solution must agree
+    with H(z) from eq. (12) evaluated DIRECTLY on the solution's state.
 
-    Integrasjonen driver E via akselerasjonsligningen (eq. 7, (i,j)-delen);
-    (12) brukes bare som startbetingelse. At residualen holder seg liten
-    langs hele loesningen er derfor en ekte konsistensmaaling — ikke en
-    tautologi. Maalt for referanseparametrene: storrelsesorden 1e-6.
+    The integration drives E through the acceleration equation (eq. 7, the
+    (i,j) part); (12) is used only as an initial condition. That the residual
+    stays small along the whole solution is therefore a real consistency
+    measurement — not a tautology. Measured for the reference parameters:
+    order of magnitude 1e-6.
     """
     sol = EFCBackgroundSolver(EFC).solve(z_max=2.0, n_points=201)
     assert sol.status == "ok"
@@ -219,8 +221,8 @@ def test_h_z_stemmer_med_modified_friedmann_direkte():
 
 
 def test_constraint_residualen_rapporteres_med_definisjon():
-    """(12) skal holdes langs loesningen — residualen er maalt, navngitt og
-    definert i klartekst."""
+    """(12) must hold along the solution — the residual is measured, named and
+    defined in plain language."""
     sol = EFCBackgroundSolver(EFC).solve(z_max=2.0, n_points=201)
     d = sol.diagnostics
     assert "constraint_residual_max" in d
@@ -231,11 +233,11 @@ def test_constraint_residualen_rapporteres_med_definisjon():
 
 
 def test_constraint_residualen_er_strukturell_ikke_numerisk():
-    """Residualen skal vaere en egenskap ved LIGNINGENE, ikke ved
-    integratoren: strammere rtol skal ikke fjerne den.
+    """The residual must be a property of the EQUATIONS, not of the
+    integrator: a tighter rtol must not remove it.
 
-    Baseline (alpha = 0, phi_dot = 0) er paa integrasjonsniva (~1e-11).
-    Med EFC-leddene i sving er den ~1e-6 — fem storrelsesordener opp.
+    The baseline (alpha = 0, phi_dot = 0) sits at integration level (~1e-11).
+    With the EFC terms active it is ~1e-6 — five orders of magnitude up.
     """
     stram = EFCBackgroundSolver(EFC).solve(z_max=1.0, n_points=51,
                                           rtol=1e-11, atol=1e-13)
@@ -251,13 +253,13 @@ def test_constraint_residualen_er_strukturell_ikke_numerisk():
 
 
 def test_constraint_residualen_skalerer_som_K_prime():
-    """Den malte AARSAKEN: residualen skalerer som K'(rho).
+    """The measured CAUSE: the residual scales as K'(rho).
 
-    Papiret sier selv (seksjon 2.1, "Note on delta K"): siden K avhenger av
-    rho, som avhenger av metrikken, gir delta K/delta g^mu_nu tilleggsledd
-    som NEGLISJERES. Residualen er nettopp maalt til aa foelge
-    K' = k0/(omega_crit (1-x)^2): proporsjonal med 1/omega_crit, med k0 og
-    med phi_dot^2 — og null naar phi_dot = 0.
+    The paper says so itself (section 2.1, "Note on delta K"): since K depends
+    on rho, which depends on the metric, delta K/delta g^mu_nu contributes
+    extra terms that are NEGLECTED. The residual is precisely measured to
+    follow K' = k0/(omega_crit (1-x)^2): proportional to 1/omega_crit, to k0
+    and to phi_dot^2 — and zero when phi_dot = 0.
     """
     r_3 = _lcdm_kurve(None, omega_crit=1.0e3)
     r_4 = _lcdm_kurve(None, omega_crit=1.0e4)
@@ -272,15 +274,15 @@ def test_constraint_residualen_skalerer_som_K_prime():
 
 
 # ---------------------------------------------------------------------------
-# 4. rho_crit-domenet: K divergerer — loeseren skal stoppe aerlig
+# 4. The rho_crit domain: K diverges — the solver must stop honestly
 # ---------------------------------------------------------------------------
 
 def test_rho_crit_domenet_stopper_aerlig():
-    """rho_crit = 0.45 * 3 M_Pl^2 H0^2 med Omega_m = 0.3: rho_bar naar
-    rho_crit ved (1+z)^3 = 1.5, altsaa z = 0.1447.
+    """rho_crit = 0.45 * 3 M_Pl^2 H0^2 with Omega_m = 0.3: rho_bar reaches
+    rho_crit at (1+z)^3 = 1.5, that is z = 0.1447.
 
-    Loeseren skal stoppe der og si det — ikke returnere tall den ikke har
-    dekning for. Alt etter krysset skal vaere NaN.
+    The solver must stop there and say so — not return numbers it has no
+    coverage for. Everything after the crossing must be NaN.
     """
     params = {**LCDM, "omega_crit": 0.45, "Omega_m": 0.3}
     sol = EFCBackgroundSolver(params).solve(z_max=2.0, n_points=201)
@@ -292,13 +294,13 @@ def test_rho_crit_domenet_stopper_aerlig():
     assert np.all(np.isfinite(sol.E[gyldig]))
     assert not np.any(np.isfinite(sol.E[~gyldig]))
     assert sol.diagnostics["rho_crit_reached"] is True
-    # rho ved siste gyldige GRIDPUNKT — ikke noeyaktig rho_crit, fordi
-    # krysset faller mellom to gridpunkter (dz = 0.01 -> ~2 % i rho her).
+    # rho at the last valid GRID POINT — not exactly rho_crit, because the
+    # crossing falls between two grid points (dz = 0.01 -> ~2 % in rho here).
     assert sol.diagnostics["rho_crit_rho"] == pytest.approx(0.45, rel=0.02)
 
 
 def test_rho_over_rho_crit_i_loesningen_er_aldri_over_en():
-    """Ingen punkt i den returnerte loesningen skal ha rho >= rho_crit."""
+    """No point in the returned solution may have rho >= rho_crit."""
     params = {**LCDM, "omega_crit": 0.45, "Omega_m": 0.3}
     sol = EFCBackgroundSolver(params).solve(z_max=2.0, n_points=201)
     x = (sol.rho_m / params["omega_crit"])[np.isfinite(sol.E)]
@@ -307,7 +309,7 @@ def test_rho_over_rho_crit_i_loesningen_er_aldri_over_en():
 
 
 def test_ugyldig_starttilstand_gir_ingen_tall():
-    """Omega_m > omega_crit allerede ved z=0: ingen dekning, ingen tall."""
+    """Omega_m > omega_crit already at z=0: no coverage, no numbers."""
     params = {**LCDM, "omega_crit": 0.25, "Omega_m": 0.3}
     sol = EFCBackgroundSolver(params).solve(z_max=1.0, n_points=21)
     assert sol.status == "invalid_state"
@@ -315,11 +317,11 @@ def test_ugyldig_starttilstand_gir_ingen_tall():
 
 
 # ---------------------------------------------------------------------------
-# 5. Selvbeskrivelse: regime_node() — aerlige gyldighetsomraader
+# 5. Self-description: regime_node() — honest validity ranges
 # ---------------------------------------------------------------------------
 
 def test_regime_node_er_en_gyldig_regime_node():
-    """Motorens selvbeskrivelse skal validere mot RegimeNode-skjemaet."""
+    """Self-description must validate against the RegimeNode schema."""
     node = EFCBackgroundEngine().regime_node(EFC)
     assert node["id"] == "efc.efc_background_engine"
     if jsonschema is not None:
@@ -331,23 +333,24 @@ def test_regime_node_er_en_gyldig_regime_node():
 
 
 def test_regime_node_deklarerer_at_bakgrunnen_er_foerste_og_boltzmann_aapen():
-    """AErlighetskravet: noden skal si hva den IKKE er. En bakgrunn uten
-    Boltzmann/CMB som ikke sier det, blir lest som en full loesning."""
+    """The honesty requirement: the node must say what it is NOT. A background
+    without Boltzmann/CMB that does not say so is read as a full solution."""
     node = EFCBackgroundEngine().regime_node(EFC)
     tekst = json.dumps(node, ensure_ascii=False).lower()
     assert "foerste" in tekst or "første" in tekst
     assert "boltzmann" in tekst
     assert "aapen" in tekst or "åpen" in tekst
-    # V-valget skal staa i klartekst (papiret spesifiserer ikke V(phi))
+    # the V choice must be in plain language (the paper gives no V(phi))
     assert "v = const" in tekst or "v=const" in tekst
-    # og regimet skal deklarere gyldighet + lovform
+    # and the regime must declare validity + law form
     assert node["regime"]["validity"]
     assert "3 M_Pl" in node["regime"]["law_form"]
 
 
 def test_regime_node_beskriver_de_effektive_parametrene():
-    """Selvbeskrivelsen skal komme fra de EFFEKTIVE parametrene, ikke fra
-    kanoniske tall — samme krav som motor-broen stilte til water-motoren."""
+    """The self-description must come from the EFFECTIVE parameters, not from
+    canonical numbers — the same requirement the engine bridge put on the
+    water engine."""
     alt = {**EFC, "alpha": 0.02, "gamma0": 0.11, "Omega_m": 0.27}
     node = EFCBackgroundEngine().regime_node(alt)
     tekst = node["regime"]["validity"]
@@ -358,7 +361,7 @@ def test_regime_node_beskriver_de_effektive_parametrene():
 
 
 def test_honesty_feltet_faar_ikke_lov_aa_skryte():
-    """Loevningen baerer sine egne forbehold — maskinlesbart."""
+    """The solution carries its own caveats — machine-readable."""
     sol = EFCBackgroundSolver(EFC, nonminimal_sign=NONMINIMAL_SIGN_PAPER
                               ).solve(z_max=1.0, n_points=51)
     h = sol.honesty
@@ -371,13 +374,13 @@ def test_honesty_feltet_faar_ikke_lov_aa_skryte():
 
 
 # ---------------------------------------------------------------------------
-# 6. Konvensjonene er eksplisitte og maalte
+# 6. The conventions are explicit and measured
 # ---------------------------------------------------------------------------
 
 def test_sign_konvensjonen_er_eksplisitt():
-    """Papirets eq. (12) har +3 M_Pl^2 H F_dot; den direkte variasjonen av
-    aksjonen (eq. 1) i samme signatur gir -3 M_Pl^2 H F_dot. Begge maa
-    kunne velges EKSPLISITT — ingen stille konvensjonsendring."""
+    """The paper's eq. (12) has +3 M_Pl^2 H F_dot; the direct variation of the
+    action (eq. 1) in the same signature gives -3 M_Pl^2 H F_dot. Both must be
+    selectable EXPLICITLY — no silent convention change."""
     assert NONMINIMAL_SIGN_PAPER == 1.0
     assert NONMINIMAL_SIGN_STANDARD == -1.0
     a = EFCBackgroundSolver(EFC,
@@ -386,20 +389,20 @@ def test_sign_konvensjonen_er_eksplisitt():
     b = EFCBackgroundSolver(EFC,
                             nonminimal_sign=NONMINIMAL_SIGN_STANDARD
                             ).solve(z_max=1.0, n_points=51)
-    # Tegnet er ikke kosmetisk: med alpha != 0 gir de to konvensjonene
-    # maalbart ulik H(z).
+    # The sign is not cosmetic: with alpha != 0 the two conventions give
+    # measurably different H(z).
     assert not np.allclose(a.E, b.E, rtol=1e-9)
     assert a.honesty["nonminimal_sign"] != b.honesty["nonminimal_sign"]
 
 
 def test_den_maalte_dommen_over_sign_konvensjonen():
-    """Hvilken sign holder sin egen bakgrunnsligning best? Det MAALES.
+    """Which sign closes its own background equation best? It is MEASURED.
 
-    Residualen til (12) langs loesningen er den maalbare dommen. Maalt for
-    referanseparametrene (alpha=0.01, gamma0=0.05, z_max=1):
-    papirets trykte fortegn gir ~2.5e-7, den direkte variasjonen ~4.7e-7.
-    Papirets fortegn er derfor default — ikke fordi det staar i papiret,
-    men fordi det maales som det som lukker best.
+    The residual of (12) along the solution is the measurable verdict.
+    Measured for the reference parameters (alpha=0.01, gamma0=0.05, z_max=1):
+    the paper's printed sign gives ~2.5e-7, the direct variation ~4.7e-7.
+    The paper's sign is therefore the default — not because it is printed in
+    the paper, but because it measures as the one that closes best.
     """
     res = {}
     for navn, sign in (("papir", NONMINIMAL_SIGN_PAPER),
@@ -412,9 +415,9 @@ def test_den_maalte_dommen_over_sign_konvensjonen():
 
 
 def test_lambda_stress_formene_er_eksplisitte_og_maalte():
-    """Papirets eq. (12) har bare lambda_dot phi_dot; full eq. (6) har ogsaa
-    lambda-leddene. Papirets eget notat (2.1) sier formene skiller seg med
-    randledd — hvilken som lukker best er maalt, ikke antatt."""
+    """The paper's eq. (12) has only lambda_dot phi_dot; the full eq. (6) also
+    has the lambda terms. The paper's own note (2.1) says the forms differ by
+    boundary terms — which one closes best is measured, not assumed."""
     from efc_inference.engine.efc_background import LAMBDA_STRESS_FORMS
 
     assert set(LAMBDA_STRESS_FORMS) == {"paper_eq12", "full_eq6"}
@@ -424,20 +427,20 @@ def test_lambda_stress_formene_er_eksplisitte_og_maalte():
             z_max=1.0, n_points=51, rtol=1e-11, atol=1e-13)
         ut[form] = sol.diagnostics["constraint_residual_max"]
         assert np.isfinite(ut[form]) and ut[form] < 1e-5, ut
-    # Maalt: full eq. (6) gir mindre residual enn papirets trykte form.
+    # Measured: full eq. (6) gives a smaller residual than the paper form.
     assert ut["full_eq6"] < ut["paper_eq12"], ut
 
 
 def test_ukjent_konvensjon_avvises():
-    """Ingen stille fallback paa konvensjonsvalg."""
+    """No silent fallback on convention choices."""
     with pytest.raises(ValueError):
         EFCBackgroundSolver(EFC, nonminimal_sign=0.5)
     with pytest.raises(ValueError):
-        EFCBackgroundSolver(EFC, lambda_stress="noe-annet")
+        EFCBackgroundSolver(EFC, lambda_stress="something-else")
 
 
 def test_engine_compute_gir_H_i_km_s_Mpc_og_nan_utenfor_domenet():
-    """Motorflaten: H(z) = H0 * E(z). H0 er bare enhetsomregning ut."""
+    """The engine surface: H(z) = H0 * E(z). H0 is a unit conversion out."""
     e = EFCBackgroundEngine()
     params = {**LCDM, "H0": 70.0}
     z = np.array([0.0, 0.5, 1.0])
@@ -445,11 +448,11 @@ def test_engine_compute_gir_H_i_km_s_Mpc_og_nan_utenfor_domenet():
     assert H.shape == z.shape
     assert np.all(np.isfinite(H))
     assert np.isclose(H[0], 70.0, rtol=1e-9)
-    # og den skal stemme med loeserens E(z)
+    # and it must agree with the solver E(z)
     sol = EFCBackgroundSolver(LCDM).solve(z_max=1.0, n_points=2001)
     assert np.allclose(H, 70.0 * np.interp(z, sol.z, sol.E), rtol=1e-6)
 
-    # utenfor rho_crit: ingen dekning -> NaN, ikke ekstrapolasjon
+    # outside rho_crit: no coverage -> NaN, not extrapolation
     params2 = {**LCDM, "H0": 70.0, "omega_crit": 0.45}
     H2 = e.compute(params2, np.array([0.05, 1.5]))
     assert np.isfinite(H2[0])
@@ -457,7 +460,7 @@ def test_engine_compute_gir_H_i_km_s_Mpc_og_nan_utenfor_domenet():
 
 
 def test_engine_avviser_manglende_parametre():
-    """validate_params skal fange manglende noekler for den kaster."""
+    """validate_params must catch missing keys before it raises."""
     e = EFCBackgroundEngine()
     assert not e.validate_params({**LCDM, "H0": 70.0, "alpha": np.nan})
     H = e.compute({**LCDM, "H0": 70.0, "alpha": np.nan}, np.array([0.1]))
@@ -465,12 +468,12 @@ def test_engine_avviser_manglende_parametre():
 
 
 # ---------------------------------------------------------------------------
-# 7. Bakgrunnen mater mu(k,z)-modulen (kortets formaal)
+# 7. The background feeds the mu(k,z) module (the card's purpose)
 # ---------------------------------------------------------------------------
 
 def test_bakgrunnen_mater_mu_kz_modulen():
-    """L-033s formaal: bakgrunns-inngangene (phi_bar, phi_dot_bar, rho_bar,
-    lambda_dot_bar) skal komme FRA loesningen — ikke fra luften.
+    """L-033's purpose: the background inputs (phi_bar, phi_dot_bar, rho_bar,
+    lambda_dot_bar) must come FROM the solution — not out of thin air.
     """
     from efc_inference.engine.mu_kz import MuKZEngine
 
@@ -488,8 +491,8 @@ def test_bakgrunnen_mater_mu_kz_modulen():
 
 
 def test_mu_kz_inngangene_utenfor_domenet_er_nan():
-    """Etter rho_crit finnes ingen bakgrunn — da skal inngangene vaere NaN,
-    ikke ekstrapolerte."""
+    """After rho_crit there is no background — then the inputs must be NaN,
+    not extrapolated."""
     params = {**LCDM, "omega_crit": 0.45, "Omega_m": 0.3}
     sol = EFCBackgroundSolver(params).solve(z_max=1.0, n_points=101)
     innganger = sol.mu_kz_inputs(z=1.0)

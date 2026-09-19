@@ -1,12 +1,12 @@
-"""TO GAPER.
+"""TWO GAPS.
 
-1. SOEKET normaliserer ikke bindestrek mot mellomrom. Maalt 2026-09-18:
-   `--emne "energy-flow"` traff, `--emne "energy flow"` gav 0 treff.
-   Ordene Morten bruker har begge former.
+1. THE SEARCH does not normalize hyphen against space. Measured 2026-09-18:
+   `--emne "energy-flow"` hit, `--emne "energy flow"` gave 0 hits.
+   The words Morten uses have both forms.
 
-2. INNGANGEN. Vi kan rotere rundt alt som ALT ER i atlaset. Men naar vi
-   gjoer en NY observasjon finnes det ingen vei fra den og inn i kartet.
-   Koblingene er der; inngangen for nye fragmenter er det ikke.
+2. THE ENTRY POINT. We can rotate around everything that IS ALREADY in the atlas. But when we
+   make a NEW observation there is no path from it and into the map.
+   The couplings are there; the entry point for new fragments is not.
 """
 from __future__ import annotations
 
@@ -31,9 +31,9 @@ class TestSoeketNormaliserer:
     def test_bindestrek_og_mellomrom_er_samme_ord(self, atlas: dict) -> None:
         a = atlas_lesing.finn(REPO, "energy-flow", "HEAD")
         b = atlas_lesing.finn(REPO, "energy flow", "HEAD")
-        assert {x["id"] for x in a["treff"]}, "energy-flow traff ingenting"
+        assert {x["id"] for x in a["treff"]}, "energy-flow hit nothing"
         assert {x["id"] for x in a["treff"]} == {x["id"] for x in b["treff"]}, \
-            "bindestrek og mellomrom gir ulike treff"
+            "hyphen and space give different hits"
 
     def test_understrek_er_ogsaa_samme(self, atlas: dict) -> None:
         a = atlas_lesing.finn(REPO, "energi-flyt", "HEAD")
@@ -47,29 +47,29 @@ class TestSoeketNormaliserer:
 
 
 class TestInngangen:
-    """Plasser en NY observasjon i atlaset og rotér rundt den."""
+    """Place a NEW observation in the atlas and rotate around it."""
 
     def test_plasser_foreslaar_hjem_for_et_fragment(self, atlas: dict) -> None:
         p = atlas_lesing.plasser(atlas, "PAH i interstellar støv")
-        assert p["forslag"], "ingen forslag til hvor fragmentet horer"
+        assert p["forslag"], "no suggestion for where the fragment belongs"
         forslag = p["forslag"][0]
         assert "domene" in forslag and "noder" in forslag
 
     def test_plasser_sier_hva_som_MANGLER(self, atlas: dict) -> None:
-        """Et fragment ingen node eier skal ikke skjules — det er et funn."""
+        """A fragment no node owns shall not be hidden — it is a finding."""
         p = atlas_lesing.plasser(atlas, "xylofonstemning i mars")
         assert p["status"] in ("uten_hjem", "svakt")
         assert p.get("naere_noder") is not None
 
     def test_plasser_gir_aksene_fragmentet_maa_utfylle(self, atlas: dict) -> None:
-        """Inngangen er ikke et hull — den er en liste over hva som maa fylles."""
+        """The entry point is not a hole — it is a list of what must be filled in."""
         p = atlas_lesing.plasser(atlas, "PAH i interstellar støv")
-        # unionen av alle noders felt — ikke den foerste nodens, som kan
-        # mangle et felt de andre har (lagdeling kom 2026-09-18).
+        # the union of all nodes' fields — not the first node's, which can
+        # lack a field the others have (layering arrived 2026-09-18).
         paakrevd = set()
         for n in atlas.get("noder") or []:
             paakrevd |= set(n.keys())
-        assert p["mangler"], "forslaget sier ikke hva som gjenstaar"
+        assert p["mangler"], "the suggestion does not say what remains"
         assert set(p["mangler"]) <= paakrevd
 
     def test_ukjent_tekst_feiler_ikke(self, atlas: dict) -> None:

@@ -1,10 +1,10 @@
-"""Tester for TidevannEngine — periodisk gravitasjonskopling (L-039).
+"""Tests for TidevannEngine — periodic gravitational coupling (L-039).
 
-Tidevann er periodisk energiflyt-kopling: månen løfter og senker
-jordas hav i en uendelig lade/tøm-syklus. Fase-låsing (månen viser
-alltid samme side) er tidevannsbremsingens holding. Motoren er en
-IDEALISERT likevektsmodell (ingen hav-basseng-dynamikk, ingen
-resonansforsterkning) — det står i selvbeskrivelsen.
+The tide is a periodic energy-flow coupling: the Moon lifts and lowers
+the Earth's oceans in an endless charge/discharge cycle. Phase locking
+(the Moon always shows the same face) is the holding of tidal braking.
+The engine is an IDEALISED equilibrium model (no ocean-basin dynamics,
+no resonance amplification) — it says so in its self-description.
 """
 from __future__ import annotations
 
@@ -13,20 +13,20 @@ import pytest
 
 from efc_inference.engine.tidevann import TidevannEngine
 
-# Jord-måne-systemet
+# The Earth-Moon system
 PARAMS = {
     "G": 6.67430e-11,          # m^3/(kg s^2)
-    "M_sentral": 5.9722e24,    # kg — jorden
-    "m_objekt": 7.342e22,      # kg — månen
-    "avstand": 3.844e8,        # m — jord-måne-avstand
-    "radius_sentral": 6.371e6,  # m — jordas radius
-    "rho_sentral": 5514.0,      # kg/m^3 — jordas tetthet
-    "rho_objekt": 3344.0,       # kg/m^3 — månens tetthet
+    "M_sentral": 5.9722e24,    # kg — the Earth
+    "m_objekt": 7.342e22,      # kg — the Moon
+    "avstand": 3.844e8,        # m — Earth-Moon distance
+    "radius_sentral": 6.371e6,  # m — the Earth's radius
+    "rho_sentral": 5514.0,      # kg/m^3 — Earth density
+    "rho_objekt": 3344.0,       # kg/m^3 — Moon density
 }
 
 
 def test_tidevannskraft_maten():
-    """Tidevannsakselerasjonen ~ 2GMm/(r^3) * R."""
+    """The tidal acceleration ~ 2GMm/(r^3) * R."""
     e = TidevannEngine()
     a = e.tidevannsakselerasjon(PARAMS)
     forventet = (2 * PARAMS["G"] * PARAMS["m_objekt"]
@@ -35,25 +35,25 @@ def test_tidevannskraft_maten():
 
 
 def test_tidevannshoyde_fysikalsk_skala():
-    """Tidevannshøyden i åpent hav er ~0.5 m for jord-måne —
-    størrelsesorden, ikke eksakt (basseng-resonans utelatt)."""
+    """The tidal height in open ocean is ~0.5 m for the Earth-Moon —
+    order of magnitude, not exact (basin resonance omitted)."""
     e = TidevannEngine()
     h = e.tidevannshoyde(PARAMS)
-    assert 0.2 < h < 2.0  # åpen-hav-skalaen er ~0.5 m
+    assert 0.2 < h < 2.0  # the open-ocean scale is ~0.5 m
 
 
 def test_roche_grense_er_terskelen():
-    """Roche-grensen: under den brytes sammenhengen — motoren skal
-    beregne den fra tetthetene (idealisert flytende legeme)."""
+    """The Roche limit: below it the cohesion breaks apart — the engine
+    computes it from the densities (idealised fluid body)."""
     e = TidevannEngine()
     r_roche = e.roche_grense(PARAMS)
-    # For jord-måne: ~2.4 jordradier (flytende)
+    # For the Earth-Moon: ~2.4 Earth radii (fluid)
     assert 2.0 * PARAMS["radius_sentral"] < r_roche < 3.5 * PARAMS["radius_sentral"]
 
 
 def test_faselaasing_er_holding():
-    """Fase-låsing: når rotasjonen er tidevannsbremset til synkron,
-    er systemet holdt i resonans — holding."""
+    """Phase locking: when the rotation is tidally braked to synchronous,
+    the system is held in resonance — holding."""
     e = TidevannEngine()
     assert e.er_faselaast(PARAMS, rotasjonsperiode=27.32 * 86400.0,
                           omlopsperiode=27.32 * 86400.0) is True
@@ -66,7 +66,7 @@ def test_compute_rapporterer_tidevannskraft_per_avstand():
     avstander = np.array([3.844e8, 3.0e8])
     ut = e.compute(PARAMS, avstander)
     assert ut.shape == (2,)
-    assert ut[1] > ut[0]  # nærmere = sterkere tidevann
+    assert ut[1] > ut[0]  # closer = stronger tide
     assert np.all(np.isfinite(ut))
 
 

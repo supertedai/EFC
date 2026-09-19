@@ -144,7 +144,7 @@ _Quantitative fits against real observational data._
 | 10 | CT-01: Entropy Gradient-Consciousness Correlation | High-density EEG (>=64 ch) or source-reconstructed MEG; propofol/sevoflurane sedation datasets (Chennu et al. 2016), sleep polysomnography, psilocybin/LSD open datasets | r(\|∇(δS/δρ)\|_cortex, C_measured) > 0.5 at p < 0.01 across >= 4 consciousness states | Planned |
 | 11 | CT-03: Parietal Dominance Replication | Independent propofol or sevoflurane sedation EEG dataset (N >= 20, >= 64 channels). Current baseline: Chennu Overlap-12 d_parietal = 2.10 vs d_global = 0.63 | d_parietal > d_global with d_parietal > 1.0 in an independent dataset | Planned |
 | 12 | Cluster TNG mass-only regime model: NOT SUPPORTED | TNG-Cluster 352 halos z=0, 4 mass bins. Grid: A_M [0.2-5.0], Xi_eff [-2.0-4.0], Delta_Xi [0.05-2.0]. Null models: constant, linear, step. | EFC predicts mass-driven regime transition producing sign flip in rho(ne_slope, K0). RESULT: Not observed within TNG mass bins [14.0-15.3 log M_sun]. All bins show rho ≈ -0.87 (constant). Regime varia | Planned |
-| 13 | DES Y6 S8 — DAMAGE Test L2 (Cosmic Shear + 3×2pt) | arXiv:2602.10065 (DES Y6 Cosmic Shear) + arXiv:2601.14559 (DES Y6 3×2pt) | EFC forseglet: S8=0.847 (DAMAGE, preregistered, mu_lt_1_L2). DES Y6 CS: 0.798; 3×2pt: 0.789±0.012. Suppresjon er i riktig retning men ~6% under EFC-prediksjon. | Planned |
+| 13 | DES Y6 S8 — DAMAGE Test L2 (Cosmic Shear + 3×2pt) | arXiv:2602.10065 (DES Y6 Cosmic Shear) + arXiv:2601.14559 (DES Y6 3×2pt) | EFC sealed: S8=0.847 (DAMAGE, preregistered, mu_lt_1_L2). DES Y6 CS: 0.798; 3×2pt: 0.789±0.012. Suppression is in the right direction but ~6% below the EFC prediction. | Planned |
 | 14 | DESI DR2 BAO α-constraint (post-prediction) | DESI DR2 BAO (arXiv:2503.14738), 13 measurements, 7 z-bins, full covariance | EFC BAO-only: α consistent with 0. Strong α (\|α\| > 0.4) excluded by DESI DR2 precision at z > 0.9. EFC signal, if present, must live in growth/regime sector, not background expansion. | Planned |
 | 15 | DESI DR2 BAO — L2 Validation Ledger Row | arXiv:2503.14738 + DOI:10.1038/s41550-025-02669-6 | EFC: BAO NO_SIGNAL (alpha→0, deltaLogL +0.129), w0wa posterior alpha=−0.14. DESI DR2: w0=−0.838±0.054, wa=−0.62±0.23 — consistent with EFC S_flow-to-latent shape. | Planned |
 | 16 | EEG scalp entropy gradient dissipation test (Chennu propofol) | Chennu et al. (2016) propofol sedation EEG dataset, DOI: 10.17863/CAM.690. N=20 subjects, 91-channel EGI HydroCel GSN, 250 Hz, 4 conditions per subject (baseline, mild sedation, moderate sedation, rec | EFC-C predicts corr(\|∇S\|², dS/dt) < 0 in cortex during consciousness transitions. Under the mapping S → Ω̂ (spectral entropy of scalp EEG PSD, 0.5-45 Hz), with spatial gradient computed on parietal  | Planned |
@@ -168,7 +168,7 @@ _Quantitative fits against real observational data._
 | 34 | Shadow-mode v2: TDCOSMO PEMD+NFW time-delay consistency | TDCOSMO-2025 (Shajib+2025, arXiv:2506.03023): 8 quadruply-lensed quasars with published γ', θ_E, σ_v, time delays, and NFW halo parameters. | EFC predicts temporal potential deviation < 0.1% from GR for all TDCOSMO lenses, with ε ~ 0.005 and η > 0.95. The prediction is independent of lens profile choice (PL vs composite) because temporal sa | Planned |
 | 35 | T_CMB(z) deviation from (1+z) scaling — SZ-cluster test | Hurier+2014 SZ T(z) compilation, Luzzi+2015 cluster sample, Saro+2014, de Martino+2015 high-z absorber excitation temperatures | SZ-effect-derived T_CMB measurements in the redshift range z=0.5–2 should show monotonic deviation from T_0(1+z) at the ~0.5–2% level by z=1, of the form T(z) = T_0(1+z)·f(S(z)) with f monotonic and b | Planned |
 | 36 | Verlinde relation a₀~cH₀ emergent from bulk entropy | Bulk entropy reservoir term F_bulk with μ=β²Λ, tested over 7 Λ-values | EFC predicts Verlinde relation a₀ = c²√Λ emerges from graph functional with bulk entropy reservoir, without free parameters beyond Λ itself. | Planned |
-| 37 | Whitening WP4 komponent w5 — hardest-constrained direction hit | BOSS DR12 full-shape power spectrum, whitening-dekomposisjon WP4 (se figshare 31304980) | EFC forutsier at Δχ²_w5 skal være stor og negativ fordi den mest begrensede kovariansretningen i BOSS-data korresponderer med den skalaavhengige vekstmodifikasjonen μ(k,z) som EFC beskriver. Verdien Δ | COLLAPSED |
+| 37 | Whitening WP4 component w5 — hardest-constrained direction hit | BOSS DR12 full-shape power spectrum, whitening-dekomposisjon WP4 (se figshare 31304980) | EFC predicts that Δχ²_w5 shall be large and negative because the most constrained covariance direction in the BOSS data corresponds to the scale-dependent growth modification μ(k,z) that EFC describes | COLLAPSED |
 | 38 | χ-monotonicity in galaxy cluster radial profiles | eROSITA ER1 cluster catalog + XMM/Chandra gold subsample for X-ray T(r) profiles. HSC/KiDS/DES cluster WL mass profiles for Φ_N(r) reconstruction. Classification: cool-core vs non-cool-core from X-ray | χ(r) is monotonically increasing (Spearman ρ < -0.8 between r and χ) from 1.0 R₅₀₀ to 0.05 R₅₀₀ in both cool-core and non-cool-core clusters, with ≤1 sign change in dχ/dr after Savitzky-Golay smoothin | Planned |
 
 
@@ -219,7 +219,7 @@ _Temporary parameterizations pending replacement by field-derived coupling._
 | 9 | Axiom-0 S_hat(z) regime boundary test (BAO N=10) | BAO: 6dF, MGS, BOSS DR12 (LOWZ, CMASS, HIGHZ), eBOSS (LRG, ELG), DESI DR1 (z=0.7, z=1.0), Lyman-alpha. Locked sources: Madau-Dickinson (2014), Tacconi/PHIBSS Table 3b beta=2. | EFC predicts BAO anomalies cluster near regime transitions in S_hat space. Primary test (N=10): p=1.0 (no significant clustering — test statistic is degenerate with 10 permuted S_hat values). Secondar | Planned |
 | 10 | BAO DESI Y1 — EFC vs ΛCDM (pending real data) | DESI DR1 BAO (bao_desi_y1 dataset) | Pending real DESI DR1/DR2 BAO: the current bao_desi_y1 data file is placeholder (unphysical DH(z), z-bins not DESI's). No EFC-vs-ΛCDM verdict until real DESI BAO values are sourced. | Planned |
 | 11 | Case A S₈ direction (v1.4) | — | Phenomenological lensing amplitude modification (Σ²) drives S₈lower, increasing CMB tension.         Case A cannot resolve S₈ discrepancy; Case B (consistent MG) required for tension resolution test. | — |
-| 12 | Cluster TNG — EFC passform-test (χ²_red=0.000) | IllustrisTNG cluster simulation data (cluster_tng) | EFC gir χ²_red≈0 på IllustrisTNG-klyngedata — indikerer god modell-passform ved cluster-skala | Planned |
+| 12 | Cluster TNG — EFC goodness-of-fit test (χ²_red=0.000) | IllustrisTNG cluster simulation data (cluster_tng) | EFC yields χ²_red≈0 on IllustrisTNG cluster data — indicating good model fit at cluster scale | Planned |
 | 13 | Cluster core-state regime: f_SCC as regime variable (cross-sample N=2) | TNG-Cluster (352 halos, z=0, Lehle+2024) + ACCEPT (239 clusters, Cavagnolo+2009). Cross-sample analysis with f_SCC as coordinate. Grid search: 80k evaluations. Sensitivity scan on ACCEPT f_SCC (0.12-0 | EFC predicts that the entropy-structure coupling sign (rho) is driven by core-state composition: NCC-dominated samples (low f_SCC) show negative rho (S0 frozen regime), while SCC-rich samples (high f_ | Planned |
 | 14 | EFC-C-003: κ Universality Across Anesthetic Agents | Chennu et al. (2014) sedation dataset (propofol) + Cambridge consciousness database (sevoflurane, ketamine, xenon) | Frozen κ = 0.37 ± 0.04 produces consistent C-values across propofol, sevoflurane, ketamine, and xenon. Cross-agent to within-agent residual variance ratio σ_cross/σ_within < 2.0. KILL if ratio exceeds | Planned |
 | 15 | P4 S8: EFC 0.847 vs 2026 weak lensing (DES Y6 + KiDS-Legacy) — DAMAGE + sign caveat | DES Y6 cosmic shear (arXiv:2602.10065, clustering+lensing 2601.14559): S8=0.789±0.012. KiDS-Legacy cosmic shear (arXiv:2503.19441): S8=0.815(+0.016/−0.021), 0.73σ from Planck. KiDS-Legacy+DES Y3 joint | EFC S8 = 0.847 ± 0.015 (current canonical, Σ>1 / ξ+ +8%, DOI 32013738). Confronted with 2026 weak-lensing data: DES Y6 cosmic shear S8 = 0.789 ± 0.012 → 3.0σ high; KiDS-Legacy S8 = 0.815 (+0.016/−0.02 | Planned |
@@ -9362,151 +9362,151 @@ _Claims are ONLY marked SUPPORTED when Result data warrants it. "Claims must nev
 | 8958 | — | ❓ falsified | None |
 | 8959 | — | ❓ falsified | None |
 | 8960 | — | ❓ falsified | None |
-| 8961 | Aktivering av høyeffekt-apparat — Noen apparater som varmtvannstanker, store ovner, eller industr... | ❓ pending | None |
-| 8962 | Aktivering av høyeffekt-kjøkkenutstyr (f.eks. induksjon + ovn) — Kombinasjonen av induksjonstoppe... | ❓ pending | None |
-| 8963 | Aktivering av høyeffekt-kjøkkenutstyr eller varmekabler — Kombinasjonen av en induksjonsovn (3-4 ... | ❓ pending | None |
-| 8964 | Aktivering av høyeffekt-komfyr eller ovn — Kjøkkenutstyr (komfyr/ovn) kan trekke 3-7 kW alene. Ko... | ❓ pending | None |
-| 8965 | Aktivering av høyeffekt-varmeovn eller varmekabler — Hvis huset har direkte elektrisk oppvarming ... | ❓ pending | None |
-| 8966 | Aktivering av varmekabler eller stor hvitvare — Kombinasjonen av varmekabler i gulv/trapp (som ka... | ❓ pending | None |
-| 8967 | Aktivering av varmepumpe/ovn i kombinasjon med andre laster — Selv om det er 1. juli, kan det ha ... | ❓ pending | None |
-| 8968 | Batteri-inverter feil (falsk ladning/utladning signal) — Batteriet har SOC 98% og lader (negativ ... | ❓ pending | None |
-| 8969 | Batteri-ladegrense eller feil — Batteriet er ved 98% SOC (max). battery_power viser negative verd... | ❓ pending | None |
-| 8970 | Batteridemping eller feilaktig innsprøytning — Hvis batteristyringen feilaktig tolket en signalen... | ❓ pending | None |
-| 8971 | Batterikontroller feil (ukontrollert utladning/innlasting) — Batteriet var ved 98% SOC. Hvis kont... | ❓ pending | None |
-| 8972 | Batterikontroller feil i lade-logikk — Batteriet lader (positiv power) opptil 3.77 kW i vinduet. ... | ❓ pending | None |
-| 8973 | Batteristyring feil (invertersynkronisering) — Batteriet viser negativ effekt (lading) på -3.3 kW... | ❓ pending | None |
-| 8974 | Batteristyring feilaktig eksport/import-regning — Hvis batteriet ble ladet fra nettet samtidig so... | ❓ pending | None |
-| 8975 | ESS-gridlimit aktiv og batteriet inaktivt — Import 4.14 kW mens batteriet hverken lader eller yte... | ❓ pending | None |
-| 8976 | ESS-struping pga. grid-limiter eller fast setpunkt — Grid-import på 4.14 kW samtidig som solcelle... | ❓ pending | None |
-| 8977 | EV-lader startet uventet eller med høy effekt — En elbil som lader med 11 kW (3-fase) eller 7.4 k... | ❓ pending | None |
-| 8978 | EV-lading initiert manuelt eller automatisk — Nett-topp på 6.235 kW overstiger forbruk (max ~2.55... | ❓ pending | None |
-| 8979 | EV-lading startet uventet — Nett-topp (5.36 kW) overstiger intern forbruk (max 3.1 kW) med ~2.2 k... | ❓ pending | None |
-| 8980 | Ekstern hendelse eller nabo-målerfeil — Hvis måleren er felles eller hvis det er en feil i oppstr... | ❓ pending | None |
-| 8981 | Ekstern hendelse i nettet — En hendelse i det lokale eller regionale nettet, som en feil eller en... | ❓ pending | None |
-| 8982 | Ekstern hendelse i strømnettet — Hvis det var en uventend hendelse i det lokale strømnettet (f.ek... | ❓ pending | None |
-| 8983 | Ekstern nettendring eller målerfeil fra leverandør — Hvis måleren er koblet til en felles install... | ❓ pending | None |
-| 8984 | Ekstern nettfaktor eller målerfeil fra leverandør — Noen ganger kan det oppstå feil i kommunikasj... | ❓ pending | None |
-| 8985 | Ekstern nettfaktor eller målerfeil oppstrøms — Hvis måleren er del av et større system eller hvis... | ❓ pending | None |
-| 8986 | Ekstern nettspenningssvingning eller feil fra nettselskapet — Selv om mindre sannsynlig for en sp... | ❓ pending | None |
-| 8987 | Ekstrem kulde (varmepumpe i full effekt) — Datoen er 3. juli, men hvis det var en ekstremt kald n... | ❓ pending | None |
-| 8988 | Ekstrem kulde med feil i varmepumpe-termostat — Hvis det var ekstremt kaldt i Oslo natt til 01.07... | ❓ pending | None |
-| 8989 | Ekstrem værforhold med lav solproduksjon — Hvis det var skyet eller regnfulle forhold, kan solcel... | ❓ pending | None |
-| 8990 | Ekstremt varmekrav pga. temperaturstøt — Hvis det var en plutselig temperaturnedgang eller skydek... | ❓ pending | None |
-| 8991 | Elbil-lading startet manuelt eller feilaktig — En elbil-lader kan trekke 7-11 kW. Hvis ladingen i... | ❓ pending | None |
-| 8992 | Elbil-lading startet uventet — En elbil som starter lading ved 23:09 kan trekke 11-22 kW. Her ser... | ❓ pending | None |
-| 8993 | Elbil-lading utenfor tidsvindu eller feil konfigurasjon — 8.1 kW tilsvarer typisk ladestyrke for ... | ❓ pending | None |
-| 8994 | Endring i tariffvinduer — Hvis det var en endring i tariffvinduer (f.eks. fra lavpris til høypris... | ❓ pending | None |
-| 8995 | Feil i batteri-kontrolllogikk (eksport/innlastning) — Hvis batterikontrolleren misforsto et signa... | ❓ pending | None |
-| 8996 | Feil i batterikontroll/SCADA (falsk signal) — Batteriet rapporterer utladning/lading på 4.07 kW m... | ❓ pending | None |
-| 8997 | Feil i batteristyring (BMS) som tillot eksport/innkjøp samtidig — Hvis batteriet laddes fra nette... | ❓ pending | None |
-| 8998 | Feil i batteristyring (inverter) — Hvis batteristyringen feilaktig tolker en grid-signal eller in... | ❓ pending | None |
-| 8999 | Feil i batteristyring (invertersync) — Hvis batteri-inverteren feilaktig tolket et signal om 'eks... | ❓ pending | None |
-| 9000 | Feil i batteristyring (simultan lading fra nett og last) — Hvis batteristyringen feilaktig tillot... | ❓ pending | None |
-| 9001 | Feil i batteristyring (simultan lading/avlading eller feil signatur) — Hvis batteristyringen feil... | ❓ pending | None |
-| 9002 | Feil i batteristyring eller inverter — Hvis batteriet feilaktig injiserer effekt i nettet i stede... | ❓ pending | None |
-| 9003 | Feil i batteristyring eller inverter — Hvis systemet har et batteri, kan en feil i styringslogikk... | ❓ pending | None |
-| 9004 | Feil i batteristyring som førte til uventet utladning — Hvis batteristyringen feilaktig initierte... | ❓ pending | None |
-| 9005 | Feil i batteristyring som pumper ut strøm til nettet samtidig som lasten er høy — Hvis batteristy... | ❓ pending | None |
-| 9006 | Feil i batteristyring — Batteriet kan ha begynt å lade raskt fra nettet i stedet for å bruke sole... | ❓ pending | None |
-| 9007 | Feil i batteristyring — Hvis batteristyringen feilaktig kommanderte en rask utladning eller ladin... | ❓ pending | None |
-| 9008 | Feil i batteristyring — Hvis batteristyringen har en feil, kan den ha startet en uventet ladepros... | ❓ pending | None |
-| 9009 | Feil i batteristyringslogikk — Hvis batterikontrolleren feilaktig tolker et signal og begynner å ... | ❓ pending | None |
-| 9010 | Feil i nett-tariff-vindu eller setpunkt-logikk — Hvis systemet feilaktig tolket tidspunktet som e... | ❓ pending | None |
-| 9011 | Feil i nettleverandørens data eller oppstrøms måling — Hvis målepunktet er felles med naboen elle... | ❓ pending | None |
-| 9012 | Feil i netto-forbruksmåler (sensorfeil) — Likningen P_grid = P_consumption - P_solar - P_battery ... | ❓ pending | None |
-| 9013 | Feil i nettselskapets måledata (upstream) — Noen ganger sender nettselskapet feilaktige data elle... | ❓ pending | None |
-| 9014 | Feil i prognosemodellen som ikke tok hensyn til en ny installert enhet — Prognosen forventet lav ... | ❓ pending | None |
-| 9015 | Feil i solprognose vs. faktisk produksjon — Hvis skydekke plutselig forsvant og PV-produksjonen h... | ❓ pending | None |
-| 9016 | Feil i strømsensor eller målerkommunikasjon — Hvis ingen store forbrukere er aktive, kan en feila... | ❓ pending | None |
-| 9017 | Feil i tariff-vindu eller nettleie-logging — Hvis systemet feilaktig har klassifisert denne perio... | ❓ pending | None |
-| 9018 | Feil i tariff-vindu eller prisdata fra leverandør (grid_upstream) — Hvis prisdataene som strategi... | ❓ pending | None |
-| 9019 | Feil i tariffvinduer eller prisbasert styring — Hvis det var en endring i tariffvinduer eller pri... | ❓ pending | None |
-| 9020 | Feilaktig beregning av forbruk pga. sensorfeil — Data viser et fysisk umulig energibalanse: Grid ... | ❓ pending | None |
-| 9021 | Feilaktig målepunkt eller kalibreringsfeil i smartmeter — En plutselig økning fra 1.8 kW til 8.12... | ❓ pending | None |
-| 9022 | Feilaktig målepunkt eller kalibreringssvikt — Differansen mellom målt topp (8.128 kW) og setpunkt... | ❓ pending | None |
-| 9023 | Feilaktig målepunkt eller sensor-drift — Et plutselig hopp fra ~6.7 kW til 13.2 kW uten tilhørend... | ❓ pending | None |
-| 9024 | Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.1 kW uten korrespond... | ❓ pending | None |
-| 9025 | Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.1 kW uten korrespond... | ❓ pending | None |
-| 9026 | Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.1 kW uten tilhørende... | ❓ pending | None |
-| 9027 | Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.128 kW uten korrespo... | ❓ pending | None |
-| 9028 | Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.128 kW uten korrespo... | ❓ pending | None |
-| 9029 | Feilaktig målepunkt eller sensorfeil — En øyeblikkelig stigning fra 1.8 kW til 8.1 kW uten korres... | ❓ pending | None |
-| 9030 | Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 1.8 kW til 8.128 kW uten tilhørende ... | ❓ pending | None |
-| 9031 | Feilaktig måling eller sensorfeil — Det er ingen indikasjon på at noen av de kjente lastene (EV, ... | ❓ pending | None |
-| 9032 | Feilaktig måling eller sensorfeil — En plutselig og uventet topp på 13.272 kW, nesten dobbelt så ... | ❓ pending | None |
-| 9033 | Feilaktig måling eller sensorfeil — En plutselig økning fra 1.8 kW til 8.128 kW uten forutsetning... | ❓ pending | None |
-| 9034 | Feilaktig måling eller sensorfeil — En plutselig økning fra 6.71 kW til 13.272 kW uten tilhørende... | ❓ pending | None |
-| 9035 | Feilaktig måling fra smartmåler (sensorfeil) — Hvis alle andre laster (varme, hvitevarer) er inak... | ❓ pending | None |
-| 9036 | Feilaktig prisprognose (kveldskjøp) — Strategien kjøper dyrt om kvelden fordi den feilslår i å fo... | ❓ pending | None |
-| 9037 | Feilaktig proxy-vekt i optimalisering (tier-hold prioriteres over spotpris) — Regret på 121.6 kr ... | ❓ pending | None |
-| 9038 | Feilkoblet eller defekt måler (sensorfeil) — Et plutselig hopp fra 1.8 kW til 8.128 kW uten tilhø... | ❓ pending | None |
-| 9039 | Feilkoblet eller defekt måler som registrerer naboens last — Spikeren (8.128 kW) er nesten 4.5x s... | ❓ pending | None |
-| 9040 | For aggressiv solsalg i dagtid — Strategien selger solstrøm billig midt på dagen for å oppfylle '... | ❓ pending | None |
-| 9041 | Høy intern forbruk (varmtvannsbereder/ovn) — Data viser at consumption_power maksimerte ved 5143.... | ❓ pending | None |
-| 9042 | Høy intern last (varmtvann/ovn) — Forbruk (consumption_power) øker til snitt 4979 W, mens batteri... | ❓ pending | None |
-| 9043 | Inverter i beskyttelsesmodus etter overstrøm eller spenningssprang fra nettet — Systemet importer... | ❓ pending | None |
-| 9044 | Kommunikasjonsfeil mellom sol-inverter og Venus OS — Inverter kan sende feil data til Victron når... | ❓ pending | None |
-| 9045 | Kortslutning eller jordfeil i installasjonen — En elektrisk feil som trekker stor strøm før sikri... | ❓ pending | None |
-| 9046 | MPPT-strengfeil eller delvis avkoblet streng — Solinnstråling målt til 700 W/m² burde gitt 7.3 kW... | ❓ pending | None |
-| 9047 | MPPT-strengfeil eller delvis avkoblet streng — Solinnstråling på 706 W/m² burde gitt nær 7 kW ved... | ❓ pending | None |
-| 9048 | Midler­tidig nett-ubalanse eller spenningshev fra nettselskapet — Dersom nettet lokalt har høy sp... | ❓ pending | None |
-| 9049 | Målefeil eller feil sensor-tilordning mellom Ecowitt og Victron — Hvis solmåler rapporterer 706 W... | ❓ pending | None |
-| 9050 | Naboen lader elbil med høy effekt — I Oslo er det vanlig med felles ladestasjoner eller naboer me... | ❓ pending | None |
-| 9051 | Nedstrøms feil eller kortslutning i installasjonen — En elektrisk feil nedstrøms om målepunktet (... | ❓ pending | None |
-| 9052 | Nett-spenningsregulering eller transformatorhendelse — En plutselig økning i nett-strøm uten tils... | ❓ pending | None |
-| 9053 | Nettselskapets midlertidige grenseendring (upstream) — Hvis nettselskapet midlertidig hevet den t... | ❓ pending | None |
-| 9054 | Nettselskapets måler oppdaterer med forsinkelse/akkumulering — Hvis nettmåleren sender data med l... | ❓ pending | None |
-| 9055 | Nettspenning/regulering fra leverandør — Uventet topp i grid_power kan skyldes at nettselskapet l... | ❓ pending | None |
-| 9056 | Nettsvingning eller spenningstopp fra leverandør — Hvis det var en kortvarig spenningstap eller f... | ❓ pending | None |
-| 9057 | Nettsvingning/Spente-toppl fra oppstrøms nett — I sjeldne tilfeller kan lokale nettsvingninger el... | ❓ pending | None |
-| 9058 | Overbelastet AC-gren eller høy lokal last som gir spenningsløft og kutter solinnmating — Ved 4.14... | ❓ pending | None |
-| 9059 | PV-temperaturoverstyring eller termisk 'derating' — Høy modultemperatur (>60 °C) reduserer effekt... | ❓ pending | None |
-| 9060 | Prisforventningssvikt i kveldssone — Regret (77.3 kr) skyldes at strategien kjøper fra nett til h... | ❓ pending | None |
-| 9061 | Rask lading av elbil i hjemmet — En nett-topp på 8.128 kW er konsistent med en 11 kW eller 22 kW ... | ❓ pending | None |
-| 9062 | Samtidig aktivering av flere store apparater — Kombinasjonen av varmtvannsbereder (3-6 kW), ovn/k... | ❓ pending | None |
-| 9063 | Samtidig lading av elbil og høy grunnlast — Hvis en elbil startet lading med høy effekt (f.eks. 7... | ❓ pending | None |
-| 9064 | Sensorfeil eller målebrudd — Et plutselig hopp fra 1.8 kW til 8.128 kW uten korresponderende endr... | ❓ pending | None |
-| 9065 | Sensorfeil i forbruksmåler — consumption_power rapporterer 4979 W snitt, men grid_power + battery... | ❓ pending | None |
-| 9066 | Sensorfeil i forbruksmåling — Hvis forbrukssensoren rapporterer lavere forbruk enn faktisk i dagt... | ❓ pending | None |
-| 9067 | Sensorfeil i nett-måler (falsk topp) — Batteriet viser ingen utladning (avg -308 W) og solen er l... | ❓ pending | None |
-| 9068 | Sensorfeil i nett-måler (grid_power) — Det er en liten diskrepans mellom beregnet netto forbruk (... | ❓ pending | None |
-| 9069 | Sensorfeil i solproduksjonsmåling — Hvis solmåleren underregistrerer produksjon midt på dagen, tr... | ❓ pending | None |
-| 9070 | Sensorfeil på nett-måler (CT-saturasjon eller feil kalibrering) — Summen av målte komponenter (Fo... | ❓ pending | None |
-| 9071 | SoC-tak (95%) hindrer optimal lagring — Det harde taket på 95% SoC tvinger batteriet til å slutte... | ❓ pending | None |
-| 9072 | Suboptimal SoC-håndtering (frossen timer) — SoC-taket på 95% kombineres med 'frossen timer', noe ... | ❓ pending | None |
-| 9073 | Tariffvindus-feil (feil tidspunkt for kjøp/salg) — Systemet kan ha feil konfigurerte tariffvindue... | ❓ pending | None |
-| 9074 | Tidsstempel-feil i datastrøm — Toppene i Grid og Consumption er ikke perfekt synkronisert. Hvis C... | ❓ pending | None |
-| 9075 | Uforutsatt elektrisk bil-lading — En EV-lader kan trekke 11-22 kW. Hvis en bil ble koblet til og ... | ❓ pending | None |
-| 9076 | Uforutsett høy last fra varmekabler eller varmtvann — I Oslo kan rask nedkjøling eller feilaktig ... | ❓ pending | None |
-| 9077 | Uforutsett stor husholdningslast — En stor elektrisk apparat, som en varmekedel eller tørketromme... | ❓ pending | None |
-| 9078 | Ukjent elbil-lading — Hvis en elbil ble koblet til og startet lading uten at systemet var oppdate... | ❓ pending | None |
-| 9079 | Ukjent eller uforutsagt høy last fra apparater om kvelden (occupancy/load shift) — Hvis det var e... | ❓ pending | None |
-| 9080 | Ukjent høy effekt-last (f.eks. elbil eller varmeovn) — Hvis Consumption-data er korrekt (2.4 kW),... | ❓ pending | None |
-| 9081 | Ukjent høyeffekt-apparat (f.eks. varmekabell eller vaskemaskin) — Forbrukstopp er 3.1 kW. Hvis de... | ❓ pending | None |
-| 9082 | Ukjent stor elektrisk last (f.eks. varmtvannsbereder eller gulvvarme) — Hvis batteriet faktisk la... | ❓ pending | None |
-| 9083 | Ukjent stor last aktivert manuelt — Differansen på ca. 6.3 kW (8.1 - 1.8) samsvarer med typisk ef... | ❓ pending | None |
-| 9084 | Ukorrekt estimering av naiv selvforsyning (underestimering av potensielt unngått nettinntak) — Hv... | ❓ pending | None |
-| 9085 | Uplanlagt aktivering av stor varmepumpe eller el-komfyr — Datoen 01.07 er tidlig sommer, men Oslo... | ❓ pending | None |
-| 9086 | Uplanlagt el-bil lading — En el-bil lader med 11 kW (3-fase) eller 7.4 kW (1-fase) kan enkelt dri... | ❓ pending | None |
-| 9087 | Uplanlagt elektrisk bil-lading — 8.1 kW tilsvarer typisk effekt for en 1-fas eller lav-effekt 3-f... | ❓ pending | None |
-| 9088 | Uplanlagt høy effekt-laster (f.eks. varmepumpe eller elbil) — Differansen på ca. 6.3 kW (8.1 - 1.... | ❓ pending | None |
-| 9089 | Uplanlagt høy last fra hvitevarer — Oppvarming av vann i en stor varmtvannsbereder eller start av... | ❓ pending | None |
-| 9090 | Uplanlagt høy last fra varmekabler eller varmtvann — I Oslo i juli kan det forekomme uventet kjøl... | ❓ pending | None |
-| 9091 | Uplanlagt lading av elbil (EV) — Selvom consumption er høy, er det mulig at EV-laderen ble aktive... | ❓ pending | None |
-| 9092 | Uplanlagt lading av elbil med høy effekt — 8.1 kW tilsvarer typisk ladeeffekt for en elbil på en ... | ❓ pending | None |
-| 9093 | Uplanlagt oppvarming av elbil (pre-conditioning) — 8.1 kW er en typisk effekt for rask lading ell... | ❓ pending | None |
-| 9094 | Uplanlagt oppvarming av varmtvannstank (boiler) — Varmtvannsberedere har ofte høy effekt (2-3 kW)... | ❓ pending | None |
-| 9095 | Uplanlagt start av høyeffekt-lading (EV) — Differansen på ca. 6.5 kW samsvarer med typisk ladeeff... | ❓ pending | None |
-| 9096 | Uplanlagt varmepumpe- eller oppvarmingstopp — 23:22 i Oslo (vinter/høst) er typisk for høy varmep... | ❓ pending | None |
-| 9097 | Uregistrert stor last (f.eks. varmekabler eller vaskemaskin) — Forbruksmåleren (consumption_power... | ❓ pending | None |
-| 9098 | Uventet EV-lading — Elbil-lading kan raskt trekke store mengder strøm (opptil 11 kW eller mer). H... | ❓ pending | None |
-| 9099 | Uventet høy forbruk fra hvitevarer — En kombinasjon av hvitevarer (f.eks. vaskemaskin, oppvaskmas... | ❓ pending | None |
-| 9100 | Uventet høy forbruk om kvelden — Hvis beboerne bruker mer energi om kvelden enn modellen forutser... | ❓ pending | None |
-| 9101 | Uventet høy last fra elbil-lader — En elbil-lader på 11 kW (3-fase) eller 7.4 kW (1-fase) kan enk... | ❓ pending | None |
-| 9102 | Uventet høy last fra elektrisk kjøretøy-lading — Hvis det var en EV-lader koblet til systemet, ka... | ❓ pending | None |
-| 9103 | Uventet høy last fra en elektrisk bil — En elektrisk bil kan trekke opptil 11 kW eller mer, noe s... | ❓ pending | None |
-| 9104 | Uventet høy last fra store apparater — Hvis flere store apparater (f.eks. vaskemaskin, tørketromm... | ❓ pending | None |
-| 9105 | Uventet høy nettpris om kvelden kombineret med lav solproduksjon (væravhengig) — Hvis været var d... | ❓ pending | None |
+| 8961 | Activation of high-power appliance — Some appliances such as water heaters, large ovens, or indus... | ❓ pending | None |
+| 8962 | Activation of high-power kitchen equipment (e.g. induction + oven) — The combination of induction... | ❓ pending | None |
+| 8963 | Activation of high-power kitchen equipment or heating cables — The combination of an induction st... | ❓ pending | None |
+| 8964 | Activation of high-power stove or oven — Kitchen equipment (stove/oven) can draw 3-7 kW alone. Co... | ❓ pending | None |
+| 8965 | Activation of high-power heater or heating cables — If the house has direct electric heating (hea... | ❓ pending | None |
+| 8966 | Activation of heating cables or large white goods — The combination of heating cables in floor/st... | ❓ pending | None |
+| 8967 | Activation of heat pump/heater in combination with other loads — Although it is 1 July, it may ha... | ❓ pending | None |
+| 8968 | Battery-inverter fault (false charging/discharging signal) — The battery has SOC 98% and is charg... | ❓ pending | None |
+| 8969 | Battery charging limit or fault — The battery is at 98% SOC (max). battery_power shows negative v... | ❓ pending | None |
+| 8970 | Battery damping or erroneous injection — If the battery management erroneously interpreted a sign... | ❓ pending | None |
+| 8971 | Battery controller error (uncontrolled discharge/charge) — The battery was at 98% SOC. If the con... | ❓ pending | None |
+| 8972 | Battery controller error in the charge logic — The battery charges (positive power) up to 3.77 kW... | ❓ pending | None |
+| 8973 | Battery management fault (inverter synchronization) — The battery shows negative power (charging)... | ❓ pending | None |
+| 8974 | Battery management incorrect export/import accounting — If the battery was charged from the grid ... | ❓ pending | None |
+| 8975 | ESS grid limit active and battery inactive — Import 4.14 kW while the battery neither charges nor... | ❓ pending | None |
+| 8976 | ESS throttling due to grid limiter or fixed setpoint — Grid import of 4.14 kW while the solar cel... | ❓ pending | None |
+| 8977 | EV charger started unexpectedly or at high power — An electric car charging at 11 kW (3-phase) or... | ❓ pending | None |
+| 8978 | EV charging initiated manually or automatically — Grid peak of 6.235 kW exceeds consumption (max ... | ❓ pending | None |
+| 8979 | EV charging started unexpectedly — Grid peak (5.36 kW) exceeds internal consumption (max 3.1 kW) ... | ❓ pending | None |
+| 8980 | External event or neighbor meter error — If the meter is shared or if there is an error in the up... | ❓ pending | None |
+| 8981 | External event in the grid — An event in the local or regional grid, such as a fault or an unexpe... | ❓ pending | None |
+| 8982 | External event in the power grid — If there was an unexpected event in the local power grid (e.g.... | ❓ pending | None |
+| 8983 | External grid change or meter fault from supplier — If the meter is connected to a shared install... | ❓ pending | None |
+| 8984 | External grid factor or meter fault from the supplier — Sometimes faults can arise in the communi... | ❓ pending | None |
+| 8985 | External grid factor or meter error upstream — If the meter is part of a larger system or if ther... | ❓ pending | None |
+| 8986 | External grid voltage fluctuation or fault from the grid company — Even though less likely for a ... | ❓ pending | None |
+| 8987 | Extreme cold (heat pump at full power) — The date is 3 July, but if it was an extremely cold nigh... | ❓ pending | None |
+| 8988 | Extreme cold with a fault in the heat pump thermostat — If it was extremely cold in Oslo on the n... | ❓ pending | None |
+| 8989 | Extreme weather conditions with low solar production — If there were cloudy or rainy conditions, ... | ❓ pending | None |
+| 8990 | Extreme heating demand due to temperature drop — If there was a sudden temperature drop or cloud ... | ❓ pending | None |
+| 8991 | EV charging started manually or erroneously — An EV charger can draw 7-11 kW. If the charging was... | ❓ pending | None |
+| 8992 | EV charging started unexpectedly — An electric car that starts charging at 23:09 can draw 11-22 k... | ❓ pending | None |
+| 8993 | EV charging outside the time window or wrong configuration — 8.1 kW corresponds typically to the ... | ❓ pending | None |
+| 8994 | Change in tariff windows — If there was a change in tariff windows (e.g. from low price to high p... | ❓ pending | None |
+| 8995 | Fault in battery control logic (export/charge) — If the battery controller misunderstood a signal... | ❓ pending | None |
+| 8996 | Error in battery control/SCADA (false signal) — The battery reports discharge/charge at 4.07 kW w... | ❓ pending | None |
+| 8997 | Fault in battery management (BMS) that allowed export/purchase simultaneously — If the battery wa... | ❓ pending | None |
+| 8998 | Fault in battery management (inverter) — If the battery management erroneously interprets a grid ... | ❓ pending | None |
+| 8999 | Fault in battery management (invertersync) — If the battery inverter erroneously interpreted a si... | ❓ pending | None |
+| 9000 | Error in battery control (simultaneous charging from grid and load) — If the battery control erro... | ❓ pending | None |
+| 9001 | Error in battery control (simultaneous charging/discharging or wrong signature) — If the battery ... | ❓ pending | None |
+| 9002 | Fault in battery management or inverter — If the battery erroneously injects power into the grid ... | ❓ pending | None |
+| 9003 | Fault in battery management or inverter — If the system has a battery, a fault in the control log... | ❓ pending | None |
+| 9004 | Fault in battery management that led to unexpected discharge — If the battery management erroneou... | ❓ pending | None |
+| 9005 | Fault in battery control that pumps power out to the grid at the same time as the load is high — ... | ❓ pending | None |
+| 9006 | Fault in battery management — The battery may have started charging rapidly from the grid instead... | ❓ pending | None |
+| 9007 | Fault in battery management — If the battery management incorrectly commanded a rapid discharge o... | ❓ pending | None |
+| 9008 | Fault in battery management — If the battery management has a fault, it may have started an unexp... | ❓ pending | None |
+| 9009 | Fault in battery management logic — If the battery controller erroneously interprets a signal and... | ❓ pending | None |
+| 9010 | Fault in grid tariff window or setpoint logic — If the system incorrectly interpreted the time as... | ❓ pending | None |
+| 9011 | Fault in the grid supplier's data or upstream measurement — If the measurement point is shared wi... | ❓ pending | None |
+| 9012 | Error in the net consumption meter (sensor error) — The equation P_grid = P_consumption - P_solar... | ❓ pending | None |
+| 9013 | Error in the grid company's measurement data (upstream) — Sometimes the grid company sends errone... | ❓ pending | None |
+| 9014 | Error in the forecast model that did not account for a newly installed unit — The forecast expect... | ❓ pending | None |
+| 9015 | Fault in solar forecast vs. actual production — If cloud cover suddenly disappeared and PV produc... | ❓ pending | None |
+| 9016 | Fault in the current sensor or meter communication — If no large consumers are active, an erroneo... | ❓ pending | None |
+| 9017 | Fault in tariff window or grid tariff logging — If the system has incorrectly classified this per... | ❓ pending | None |
+| 9018 | Fault in tariff window or price data from supplier (grid_upstream) — If the price data on which t... | ❓ pending | None |
+| 9019 | Error in tariff windows or price-based control — If there was a change in tariff windows or price... | ❓ pending | None |
+| 9020 | Erroneous calculation of consumption due to sensor fault — Data show a physically impossible ener... | ❓ pending | None |
+| 9021 | Incorrect metering point or calibration fault in the smart meter — A sudden increase from 1.8 kW ... | ❓ pending | None |
+| 9022 | Erroneous measurement point or calibration failure — The difference between measured peak (8.128 ... | ❓ pending | None |
+| 9023 | Incorrect metering point or sensor drift — An abrupt jump from ~6.7 kW to 13.2 kW without a corre... | ❓ pending | None |
+| 9024 | Incorrect metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.1 kW without a ... | ❓ pending | None |
+| 9025 | Incorrect metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.1 kW without a ... | ❓ pending | None |
+| 9026 | Erroneous metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.1 kW without as... | ❓ pending | None |
+| 9027 | Erroneous metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.128 kW without ... | ❓ pending | None |
+| 9028 | Erroneous measurement point or sensor fault — An instantaneous jump from 1.8 kW to 8.128 kW witho... | ❓ pending | None |
+| 9029 | Erroneous measurement point or sensor fault — An instantaneous rise from 1.8 kW to 8.1 kW without... | ❓ pending | None |
+| 9030 | Erroneous measurement point or sensor fault — A sudden jump from 1.8 kW to 8.128 kW without a cor... | ❓ pending | None |
+| 9031 | Erroneous measurement or sensor fault — There is no indication that any of the known loads (EV, b... | ❓ pending | None |
+| 9032 | Erroneous measurement or sensor fault — A sudden and unexpected peak of 13.272 kW, almost twice a... | ❓ pending | None |
+| 9033 | Erroneous measurement or sensor fault — A sudden increase from 1.8 kW to 8.128 kW without basis i... | ❓ pending | None |
+| 9034 | Erroneous measurement or sensor fault — A sudden increase from 6.71 kW to 13.272 kW without corre... | ❓ pending | None |
+| 9035 | Erroneous measurement from the smart meter (sensor fault) — If all other loads (heating, white go... | ❓ pending | None |
+| 9036 | Erroneous price forecast (evening purchase) — The strategy buys expensively in the evening becaus... | ❓ pending | None |
+| 9037 | Incorrect proxy weight in optimization (tier-hold prioritized over spot price) — Regret of 121.6 ... | ❓ pending | None |
+| 9038 | Miswired or defective meter (sensor fault) — A sudden jump from 1.8 kW to 8.128 kW without a corr... | ❓ pending | None |
+| 9039 | Incorrectly wired or defective meter that registers the neighbor's load — The spike (8.128 kW) is... | ❓ pending | None |
+| 9040 | Too aggressive solar selling during daytime — The strategy sells solar power cheaply in the middl... | ❓ pending | None |
+| 9041 | High internal consumption (hot water tank/heater) — Data show that consumption_power maximized at... | ❓ pending | None |
+| 9042 | High internal load (hot water/heater) — Consumption (consumption_power) increases to an average o... | ❓ pending | None |
+| 9043 | Inverter in protection mode after overcurrent or voltage surge from the grid — The system imports... | ❓ pending | None |
+| 9044 | Communication fault between the solar inverter and Venus OS — The inverter can send erroneous dat... | ❓ pending | None |
+| 9045 | Short circuit or ground fault in the installation — An electrical fault that draws a large curren... | ❓ pending | None |
+| 9046 | MPPT string fault or partially disconnected string — Solar irradiance measured at 700 W/m² should... | ❓ pending | None |
+| 9047 | MPPT string fault or partially disconnected string — Solar irradiance of 706 W/m² should have giv... | ❓ pending | None |
+| 9048 | Temporary grid imbalance or voltage rise from the grid company — If the grid locally has high vol... | ❓ pending | None |
+| 9049 | Measurement error or wrong sensor assignment between Ecowitt and Victron — If the solar meter rep... | ❓ pending | None |
+| 9050 | The neighbor charges an electric car at high power — In Oslo, shared charging stations or neighbo... | ❓ pending | None |
+| 9051 | Downstream fault or short circuit in the installation — An electrical fault downstream of the met... | ❓ pending | None |
+| 9052 | Grid voltage regulation or transformer event — A sudden increase in grid current without correspo... | ❓ pending | None |
+| 9053 | The grid company's temporary limit change (upstream) — If the grid company temporarily raised the... | ❓ pending | None |
+| 9054 | The grid company's meter updates with delay/accumulation — If the grid meter sends data at low fr... | ❓ pending | None |
+| 9055 | Grid voltage/regulation from supplier — An unexpected peak in grid_power may be because the grid ... | ❓ pending | None |
+| 9056 | Grid fluctuation or voltage spike from supplier — If there was a brief voltage loss or frequency ... | ❓ pending | None |
+| 9057 | Grid oscillation/voltage peak from the upstream grid — In rare cases, local grid oscillations or ... | ❓ pending | None |
+| 9058 | Overloaded AC branch or high local load that produces a voltage rise and cuts solar infeed — At 4... | ❓ pending | None |
+| 9059 | PV temperature override or thermal 'derating' — High module temperature (>60 °C) reduces power. U... | ❓ pending | None |
+| 9060 | Price expectation failure in the evening zone — The regret (77.3 kr) is due to the strategy buyin... | ❓ pending | None |
+| 9061 | Fast charging of EV in the home — A grid peak of 8.128 kW is consistent with an 11 kW or 22 kW ch... | ❓ pending | None |
+| 9062 | Simultaneous activation of several large appliances — The combination of hot-water heater (3-6 kW... | ❓ pending | None |
+| 9063 | Simultaneous charging of an EV and high base load — If an EV started charging at high power (e.g.... | ❓ pending | None |
+| 9064 | Sensor fault or measurement break — A sudden jump from 1.8 kW to 8.128 kW without a corresponding... | ❓ pending | None |
+| 9065 | Sensor fault in the consumption meter — consumption_power reports 4979 W average, but grid_power ... | ❓ pending | None |
+| 9066 | Sensor fault in consumption measurement — If the consumption sensor reports lower consumption tha... | ❓ pending | None |
+| 9067 | Sensor error in the grid meter (false peak) — The battery shows no discharge (avg -308 W) and the... | ❓ pending | None |
+| 9068 | Sensor error in the grid meter (grid_power) — There is a small discrepancy between calculated net... | ❓ pending | None |
+| 9069 | Sensor fault in the solar production measurement — If the solar meter under-records production in... | ❓ pending | None |
+| 9070 | Sensor fault on the grid meter (CT saturation or incorrect calibration) — The sum of the measured... | ❓ pending | None |
+| 9071 | SoC cap (95%) prevents optimal storage — The hard cap at 95% SoC forces the battery to stop charg... | ❓ pending | None |
+| 9072 | Suboptimal SoC handling (frozen timer) — The SoC ceiling of 95% combined with a 'frozen timer', w... | ❓ pending | None |
+| 9073 | Tariff window error (wrong time point for buying/selling) — The system may have incorrectly confi... | ❓ pending | None |
+| 9074 | Timestamp error in the data stream — The peaks in Grid and Consumption are not perfectly synchron... | ❓ pending | None |
+| 9075 | Unplanned electric car charging — An EV charger can draw 11-22 kW. If a car was plugged in and st... | ❓ pending | None |
+| 9076 | Unforeseen high load from heating cables or hot water — In Oslo, rapid cooling or incorrect contr... | ❓ pending | None |
+| 9077 | Unforeseen large household load — A large electrical appliance, such as a kettle or a tumble drye... | ❓ pending | None |
+| 9078 | Unknown EV charging — If an EV was connected and started charging without the system being update... | ❓ pending | None |
+| 9079 | Unknown or unforeseen high load from appliances in the evening (occupancy/load shift) — If there ... | ❓ pending | None |
+| 9080 | Unknown high-power load (e.g. EV or space heater) — If the Consumption data is correct (2.4 kW), ... | ❓ pending | None |
+| 9081 | Unknown high-power appliance (e.g. heating cable or washing machine) — The consumption peak is 3.... | ❓ pending | None |
+| 9082 | Unknown large electrical load (e.g. hot water heater or underfloor heating) — If the battery is i... | ❓ pending | None |
+| 9083 | Unknown large load activated manually — The difference of approx. 6.3 kW (8.1 - 1.8) corresponds ... | ❓ pending | None |
+| 9084 | Incorrect estimation of naive self-sufficiency (underestimation of potentially avoided grid impor... | ❓ pending | None |
+| 9085 | Unplanned activation of a large heat pump or electric stove — The date 01.07 is early summer, but... | ❓ pending | None |
+| 9086 | Unplanned EV charging — An EV charging at 11 kW (3-phase) or 7.4 kW (1-phase) can easily drive co... | ❓ pending | None |
+| 9087 | Unplanned electric car charging — 8.1 kW corresponds to typical power for a 1-phase or low-power ... | ❓ pending | None |
+| 9088 | Unplanned high-power loads (e.g. heat pump or EV) — The difference of approx. 6.3 kW (8.1 - 1.8) ... | ❓ pending | None |
+| 9089 | Unplanned high load from white goods — Heating water in a large water heater or starting a tumble... | ❓ pending | None |
+| 9090 | Unplanned high load from heating cables or hot water — In Oslo in July, unexpected cooling or hot... | ❓ pending | None |
+| 9091 | Unplanned charging of an electric car (EV) — Even though consumption is high, it is possible that... | ❓ pending | None |
+| 9092 | Unplanned charging of an EV at high power — 8.1 kW corresponds to typical charging power for an E... | ❓ pending | None |
+| 9093 | Unplanned pre-conditioning of EV — 8.1 kW is a typical power for fast charging or intensive heati... | ❓ pending | None |
+| 9094 | Unplanned heating of the hot water tank (boiler) — Hot water heaters often have high power (2-3 k... | ❓ pending | None |
+| 9095 | Unplanned start of high-power charging (EV) — The difference of approx. 6.5 kW corresponds to typ... | ❓ pending | None |
+| 9096 | Unplanned heat pump or heating peak — 23:22 in Oslo (winter/autumn) is typical for high heat pump... | ❓ pending | None |
+| 9097 | Unregistered large load (e.g. heating cables or washing machine) — The consumption meter (consump... | ❓ pending | None |
+| 9098 | Unexpected EV charging — EV charging can quickly draw large amounts of power (up to 11 kW or more... | ❓ pending | None |
+| 9099 | Unexpectedly high consumption from white goods — A combination of white goods (e.g. washing machi... | ❓ pending | None |
+| 9100 | Unexpectedly high consumption in the evening — If the occupants use more energy in the evening th... | ❓ pending | None |
+| 9101 | Unexpectedly high load from EV charger — An EV charger of 11 kW (3-phase) or 7.4 kW (1-phase) can... | ❓ pending | None |
+| 9102 | Unexpected high load from electric vehicle charging — If there was an EV charger connected to the... | ❓ pending | None |
+| 9103 | Unexpected high load from an electric car — An electric car can draw up to 11 kW or more, which c... | ❓ pending | None |
+| 9104 | Unexpected high load from large appliances — If several large appliances (e.g. washing machine, t... | ❓ pending | None |
+| 9105 | Unexpected high grid price in the evening combined with low solar production (weather-dependent) ... | ❓ pending | None |
 | 9106 | — | ❓ pending | None |
 | 9107 | — | ❓ pending | None |
 | 9108 | — | ❓ pending | None |
@@ -25531,31 +25531,31 @@ _Claims are ONLY marked SUPPORTED when Result data warrants it. "Claims must nev
 | 25127 | — | ❓ refuted | None |
 | 25128 | — | ❓ refuted | None |
 | 25129 | — | ❓ refuted | None |
-| 25130 | Batterikontrolleren tillot eksport/innlastning feilaktig — Hvis batterikontrolleren misforstod se... | ❓ supported | None |
-| 25131 | Batteristyringen justerte seg uventet — Batteristyringen kan ha justert seg uventet, noe som vill... | ❓ supported | None |
-| 25132 | Feil i batterikontroll eller inverter — Hvis batteriet ble satt til å lade fra nettet (grid charg... | ❓ supported | None |
-| 25133 | Feil i batteristyring (BMS) eller inverter — Hvis batteriet var i en tilstand hvor det skulle lad... | ❓ supported | None |
-| 25134 | Feil i batteristyring (BMS) som tvinger lading fra nett — Hvis batteristyringen feilaktig tolket ... | ❓ supported | None |
-| 25135 | Feil i batteristyring (inverter driftsmode) — Hvis batteri-inverteren feilaktig går inn i 'grid-f... | ❓ supported | None |
-| 25136 | Feil i batteristyring (inverter feil) — Hvis inverteren feilaktig tolker et signal om å levere ma... | ❓ supported | None |
-| 25137 | Feil i batteristyring (inverter feilfunksjon eller feil kalibrering) — Hvis batteri-inverteren fe... | ❓ supported | None |
-| 25138 | Feil i batteristyring (inverter) som eksporterer eller trekker feilaktig — Hvis batteriet er i en... | ❓ supported | None |
-| 25139 | Feil i batteristyring (inverterfeil) — Hvis batteriinverters kommunikasjonsbrytes eller feiler, k... | ❓ supported | None |
-| 25140 | Feil i batteristyring (simultan lading og forbruk) — Hvis batteristyringen feilaktig kommanderer ... | ❓ supported | None |
-| 25141 | Feil i batteristyring eller grid-upstream-problemer — Hvis batteristyringen feilaktig eksporterte... | ❓ supported | None |
-| 25142 | Feil i batteristyring eller ladeprosess — Batteriet kan ha blitt ladd med høyere effekt enn forve... | ❓ supported | None |
-| 25143 | Feil i batteristyring som tillot eksport/import utenfor setpunkt — Hvis batteristyringsalgoritmen... | ❓ supported | None |
-| 25144 | Feil i batteristyring — Batteristyringen kan ha misforstått et signal og lastet batteriet raskt f... | ❓ supported | None |
-| 25145 | Feil i batteristyring — Hvis batteristyringen feilaktig lastet batteriet fra nettet i stedet for ... | ❓ supported | None |
-| 25146 | Feil i batteristyring — Hvis batteristyringen feilaktig lastet ut batteriet raskt, kan dette ha f... | ❓ supported | None |
-| 25147 | Feil i batteristyring — Hvis batteristyringen har en feil som fører til at batteriet trekker mer ... | ❓ supported | None |
-| 25148 | Feil i batteristyringen — Batteriet kan ha begynt å lade seg opp uventet, noe som førte til et øk... | ❓ supported | None |
-| 25149 | Feil i batteristyringen — Batteriet kan ha startet å lade seg opp fra nettet i stedet for å bruke... | ❓ supported | None |
-| 25150 | Feil i batteristyringen — Hvis batteristyringen feilet og ikke reduserte lasten som forventet, ka... | ❓ supported | None |
-| 25151 | Feil i batteristyringsalgoritmen (BMS) — Hvis batteristyringen feilaktig tolket en behovssignal e... | ❓ supported | None |
-| 25152 | Feil i batteristyringslogikk (ukontrollert utladning eller lade-feil) — Hvis batterikontrolleren ... | ❓ supported | None |
-| 25153 | Feil i prognosemodellen eller setpunkt-konfigurasjon — Hvis setpunktet på 6.71 kW var feil konfig... | ❓ supported | None |
-| 25154 | Vedlikehold eller feil i batteristyring — Batteriet kan ha startet å lade fra nettet i stedet for... | ❓ supported | None |
+| 25130 | The battery controller erroneously permitted export/import — If the battery controller misunderst... | ❓ supported | None |
+| 25131 | Battery management adjusted unexpectedly — The battery management may have adjusted unexpectedly,... | ❓ supported | None |
+| 25132 | Fault in battery control or inverter — If the battery was set to charge from the grid (grid charg... | ❓ supported | None |
+| 25133 | Fault in battery management (BMS) or inverter — If the battery was in a state where it was suppos... | ❓ supported | None |
+| 25134 | Fault in battery management (BMS) forcing charging from the grid — If the battery management erro... | ❓ supported | None |
+| 25135 | Error in battery control (inverter operating mode) — If the battery inverter incorrectly enters '... | ❓ supported | None |
+| 25136 | Fault in battery management (inverter fault) — If the inverter erroneously interprets a signal to... | ❓ supported | None |
+| 25137 | Fault in battery management (inverter malfunction or incorrect calibration) — If the battery inve... | ❓ supported | None |
+| 25138 | Error in battery control (inverter) that exports or draws incorrectly — If the battery is in a fa... | ❓ supported | None |
+| 25139 | Fault in battery management (inverter fault) — If the battery inverter's communication is broken ... | ❓ supported | None |
+| 25140 | Error in battery control (simultaneous charging and consumption) — If the battery control erroneo... | ❓ supported | None |
+| 25141 | Fault in battery management or grid-upstream problems — If the battery management incorrectly exp... | ❓ supported | None |
+| 25142 | Fault in battery management or charging process — The battery may have been charged at higher pow... | ❓ supported | None |
+| 25143 | Fault in battery management that allowed export/import outside the setpoint — If the battery mana... | ❓ supported | None |
+| 25144 | Fault in battery management — The battery management may have misinterpreted a signal and charged... | ❓ supported | None |
+| 25145 | Fault in battery management — If the battery management incorrectly charged the battery from the ... | ❓ supported | None |
+| 25146 | Fault in battery management — If the battery management incorrectly discharged the battery rapidl... | ❓ supported | None |
+| 25147 | Fault in battery management — If the battery management has a fault that causes the battery to dr... | ❓ supported | None |
+| 25148 | Error in the battery control — The battery may have started charging unexpectedly, which led to i... | ❓ supported | None |
+| 25149 | Fault in the battery management — The battery may have started charging itself from the grid inst... | ❓ supported | None |
+| 25150 | Error in the battery control — If the battery control failed and did not reduce the load as expec... | ❓ supported | None |
+| 25151 | Fault in the battery management algorithm (BMS) — If the battery management erroneously interpret... | ❓ supported | None |
+| 25152 | Fault in battery management logic (uncontrolled discharge or charging fault) — If the battery con... | ❓ supported | None |
+| 25153 | Error in the forecast model or setpoint configuration — If the setpoint of 6.71 kW was configured... | ❓ supported | None |
+| 25154 | Maintenance or fault in battery control — The battery may have started charging from the grid ins... | ❓ supported | None |
 | 25155 | — | ❓ theoretical_prediction | None |
 | 25156 | — | ❓ theoretical_prediction | None |
 | 25157 | — | ❓ untested | None |
@@ -26224,109 +26224,109 @@ _Claims are ONLY marked SUPPORTED when Result data warrants it. "Claims must nev
 | 25820 | — | ❓ verified | None |
 | 25821 | — | ❓ verified | None |
 | 25822 | — | ❓ weak support | None |
-| 25823 | Aktivering av en stor apparatlast — En stor apparatlast, som f.eks. en varmepumpe eller tørketrom... | ❓ weakened | None |
-| 25824 | Aktivering av høyeffekt-ovn eller varmekabelfelt — Ved Oslo-temperaturer kan det være behov for e... | ❓ weakened | None |
-| 25825 | Aktivering av høyeffekt-varmepumpe eller varmekabler — Kombinasjonen av eksisterende last og en n... | ❓ weakened | None |
-| 25826 | Aktivering av høyeffektapparater — Apparater som varmtvannsbereder, vaskemaskiner eller ovner kan... | ❓ weakened | None |
-| 25827 | Aktivering av kraftkrevende hvitevarer eller varmeanlegg — Hvis huset har store motorkrevende app... | ❓ weakened | None |
-| 25828 | Aktivering av kraftkrevende varmeelement — Hvis et stort varmeelement (f.eks. gulvvarme eller var... | ❓ weakened | None |
-| 25829 | Aktivering av stor varmelast (f.eks. gulvvarme eller poolpumpe) — Hvis det er en varmekilde som b... | ❓ weakened | None |
-| 25830 | Aktivering av store apparater — Aktivering av store apparater som varmtvannsbereder, vaskemaskin ... | ❓ weakened | None |
-| 25831 | Ekstern faktorer som vær eller sol — Selv om det var kveldstid, kan det ha vært en uventet endrin... | ❓ weakened | None |
-| 25832 | Ekstern hendelse eller nabo-målerfeil (nett-side) — Hvis måleren er del av et felles system eller... | ❓ weakened | None |
-| 25833 | Ekstern hendelse i det lokale strømnettet — Det er mulig at det var en midlertidig hendelse i det... | ❓ weakened | None |
-| 25834 | Ekstern hendelse i nettselskapets system — En hendelse i det overordnede nettsystemet kan ha ført... | ❓ weakened | None |
-| 25835 | Ekstern nettendring eller feil i grenseverdier fra leverandør — Hvis nettselskapet midlertidig en... | ❓ weakened | None |
-| 25836 | Ekstern nettforklaring eller oppstrøms hendelse — Selv om mindre sannsynlig for en enkeltkunde, k... | ❓ weakened | None |
-| 25837 | Ekstern nettspenningssvingning eller feil i oppstrøms måling — Hvis den lokale måleren er følsom ... | ❓ weakened | None |
-| 25838 | Elbil-lading startet med høy effekt — En økning på ~6.5 kW er typisk for en AC-lader (Type 2) som... | ❓ weakened | None |
-| 25839 | Elbil-lading startet uventet eller med høy effekt — En elbil-lader kan trekke 11-22 kW. Hvis en b... | ❓ weakened | None |
-| 25840 | En stor apparatlast ble aktivert — Et stort apparat, som en vaskemaskin eller oppvaskmaskin, kan ... | ❓ weakened | None |
-| 25841 | Endring i nettleie eller tariffvinduer — Hvis det var en endring i nettleie eller tariffvinduer s... | ❓ weakened | None |
-| 25842 | Feil i batteristyring (inverter drift) — Hvis batteriet feilaktig går fra lading til utlading ell... | ❓ weakened | None |
-| 25843 | Feil i elbil-lading — En elbil kan ha begynt å lade seg opp uventet, noe som førte til et plutsel... | ❓ weakened | None |
-| 25844 | Feil i nettleverandørens måling — Hvis nettleverandørens måleinstrument har en feil, kan dette ha... | ❓ weakened | None |
-| 25845 | Feil i nettregulering eller oppstrøms hendelse — Det kan ha vært en hendelse i det lokale nettet ... | ❓ weakened | None |
-| 25846 | Feil i nettselskapets oppgjørsmåler eller dataleveranse — Hvis Symbioses interne måling (sub-måle... | ❓ weakened | None |
-| 25847 | Feil i prognosemodell (feil antagelse om solproduksjon) — Hvis skydekke var verre enn forventet, ... | ❓ weakened | None |
-| 25848 | Feil i prognosemodell (solproduksjon) — Hvis solcellene produserte betydelig mindre enn forventet... | ❓ weakened | None |
-| 25849 | Feil i prognosemodell eller setpunkt-konfigurasjon — Hvis setpunktet 6.71 kW var feil konfigurert... | ❓ weakened | None |
-| 25850 | Feil i prognosemodell eller setpunkt-konfigurasjon — Hvis setpunktet på 6.71 kW faktisk var feil ... | ❓ weakened | None |
-| 25851 | Feil i prognosemodell — Prognosemodellen kan ha feilet i å forutsi en plutselig endring i forbruk... | ❓ weakened | None |
-| 25852 | Feil i prognosemodellen (ikke faktisk topp) — Hvis 'nett-topp' er beregnet basert på en feilaktig... | ❓ weakened | None |
-| 25853 | Feil i prognosemodellen — Prognosen kan ha undervurdert forbruket basert på feil antakelser om væ... | ❓ weakened | None |
-| 25854 | Feil i solcelleprodusjon eller værforhold — Solcellene kan ha produsert mindre enn forventet på g... | ❓ weakened | None |
-| 25855 | Feil i tariffvinduer eller priser — Det er mulig at det var en uventet endring i tariffvinduer el... | ❓ weakened | None |
-| 25856 | Feilaktig målepunkt eller sensorfeil — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hv... | ❓ weakened | None |
-| 25857 | Feilaktig målepunkt eller sensorfeil — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hv... | ❓ weakened | None |
-| 25858 | Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten korrespon... | ❓ weakened | None |
-| 25859 | Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten korrespon... | ❓ weakened | None |
-| 25860 | Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørend... | ❓ weakened | None |
-| 25861 | Feilaktig måling eller sensorfeil på nettgrensen — Et hopp fra 6.71 kW til 13.272 kW er nesten en... | ❓ weakened | None |
-| 25862 | Feilaktig måling eller sensorfeil på nettmåleren — Et plutselig hopp fra 6.71 kW til 13.272 kW ut... | ❓ weakened | None |
-| 25863 | Feilaktig måling eller sensorfeil — En plutselig og uventet topp på 13,272 kW, nesten dobbelt så ... | ❓ weakened | None |
-| 25864 | Feilaktig måling eller sensorfeil — En plutselig topp på 13.272 kW, nesten dobbelt så høy som set... | ❓ weakened | None |
-| 25865 | Feilaktig måling eller sensorfeil — En plutselig økning fra 4.8 kW til 13.182 kW uten tydelig for... | ❓ weakened | None |
-| 25866 | Feilaktig måling eller sensorfeil — En plutselig økning fra 4.8 kW til 13.272 kW uten tydelig for... | ❓ weakened | None |
-| 25867 | Feilaktig måling eller sensorfeil — Et plutselig hopp fra 6,71 kW til 13,272 kW uten tilhørende e... | ❓ weakened | None |
-| 25868 | Feilaktig måling eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende e... | ❓ weakened | None |
-| 25869 | Feilaktig måling eller sensorfeil — Oppmålt verdi (13.272 kW) er nesten dobbelt så høy som setpun... | ❓ weakened | None |
-| 25870 | Feilaktig måling eller sensorfeil — Plutselig økning fra 6.71 kW til 13.272 kW uten tydelig årsak... | ❓ weakened | None |
-| 25871 | Feilaktig måling eller sensorfeil — Siden det ikke finnes data i 'data_window_rundt_hendelsen' fo... | ❓ weakened | None |
-| 25872 | Feilaktig måling eller sensorfeil — Siden det ikke finnes noen dokumentert hendelse eller last so... | ❓ weakened | None |
-| 25873 | Feilaktig måling pga. sensorfeil eller kalibreringsdrift — En øyeblikkelig hopp fra 6.71 kW til 1... | ❓ weakened | None |
-| 25874 | Feilaktig sign-invertering i smartmåler — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhør... | ❓ weakened | None |
-| 25875 | Feilaktig signatur eller kalibrering av nett-måler — Et hopp fra 6.71 kW til 13.272 kW represente... | ❓ weakened | None |
-| 25876 | Feilkalibrert eller defekt strømavleser (CT-klemme) — En plutselig dobling av målt effekt (13.2 k... | ❓ weakened | None |
-| 25877 | Feilkoblet eller defekt CT-sensor (falsk positiv) — Et plutselig hopp fra 6.71 kW til 13.272 kW u... | ❓ weakened | None |
-| 25878 | Feilkoblet eller defekt CT-sensor (strømmåler) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten... | ❓ weakened | None |
-| 25879 | Feilkoblet eller defekt måler (sensorfeil) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten til... | ❓ weakened | None |
-| 25880 | Feilkoblet eller defekt strømavleser (CT-klemme) — Et plutselig hopp fra setpunktet 6.71 kW til 1... | ❓ weakened | None |
-| 25881 | Feilkobling eller drift av EV-lader i høy effekt — En nettopp på 13,272 kW er konsistent med to e... | ❓ weakened | None |
-| 25882 | Høy forbruk fra varmeanlegg — Varmeanlegg, spesielt varmepumper, kan trekke mye strøm. Hvis det v... | ❓ weakened | None |
-| 25883 | Høy solcelleproduksjon kombinert med lavt forbruk — Hvis solcelleanlegget produserte mer energi e... | ❓ weakened | None |
-| 25884 | Nedstrøms feil i nettleverandørdata (upstream) — Dersom Opus henter data fra en fellesmåler eller... | ❓ weakened | None |
-| 25885 | Nedstrøms feil i nettselskapets målepunkt — Hvis det er en feil i nettselskapets måler eller komm... | ❓ weakened | None |
-| 25886 | Nettoperatør-justering eller målerfeil oppstrøms — Hvis måleren som rapporterer 'nett-topp' er en... | ❓ weakened | None |
-| 25887 | Oppstrøms nettfeil eller spenningssvikt som påvirker måling — Et plutselig spenningsfall eller fr... | ❓ weakened | None |
-| 25888 | Plutselig høy last fra varmepumpe eller varmekabler — Varmepumper og varmekabler har høy effektbe... | ❓ weakened | None |
-| 25889 | Plutselig nedgang i solproduksjon pga. skydekke — Hvis huset har solcelleanlegg, og det plutselig... | ❓ weakened | None |
-| 25890 | Samtidig drift av høyeffekt-apparater (f.eks. varmekumulerendeovn + vaskemaskin) — I Oslo kan det... | ❓ weakened | None |
-| 25891 | Sensorfeil eller kommunikasjonstap i målerpunktet — En brå, uforklart topp som ikke er forutsagt ... | ❓ weakened | None |
-| 25892 | Simultan aktivering av store varmeelementer — Hvis flere høyeffekt-apparater (f.eks. oppvaskmaski... | ❓ weakened | None |
-| 25893 | Solcelle-produksjon falt bratt mens lasten var høy — Hvis solcelle-produksjonen falt bratt (f.eks... | ❓ weakened | None |
-| 25894 | Solcelleanlegget produserte mer enn forventet — Hvis solcelleanlegget produserte mer energi enn p... | ❓ weakened | None |
-| 25895 | Solenergi-systemet produserte mer enn forventet — Hvis solenergi-systemet produserte mer strøm en... | ❓ weakened | None |
-| 25896 | Uforutsett høy forbruk fra hvitevarer — Hvis flere store apparater (f.eks. vaskemaskin, tørketrom... | ❓ weakened | None |
-| 25897 | Uforutsett høy last fra varmekabler/ovn — 13.272 kW tilsvarer ca. 13-14 kW varmeeffekt. Dette er ... | ❓ weakened | None |
-| 25898 | Ukjent stor last (f.eks. varmepumpe i defrost) — Varmepumper kan trekke betydelig strøm under def... | ❓ weakened | None |
-| 25899 | Uplanlagt EV-lading startet — En elbil som lader med 11 kW (3-fase) eller 7.4 kW (1-fase) lagt op... | ❓ weakened | None |
-| 25900 | Uplanlagt EV-lading — Elbil-lading er den vanligste årsaken til utilsiktede netttopper i boliger.... | ❓ weakened | None |
-| 25901 | Uplanlagt aktivering av stor elektrisk varme eller poolpumpe — Differansen på ca. 6.5 kW samsvare... | ❓ weakened | None |
-| 25902 | Uplanlagt elbil-lading — 13.272 kW tilsvarer typisk ladeeffekt for en 3-faset lader (ca. 11-22 kW... | ❓ weakened | None |
-| 25903 | Uplanlagt elektrisk bil-lading startet manuelt — El-biler har ofte høy effekt (7-11 kW). Hvis en ... | ❓ weakened | None |
-| 25904 | Uplanlagt hurtiglading av elbil — 13.272 kW tilsvarer en typisk AC-ladeeffekt på 11-22 kW (3-fase... | ❓ weakened | None |
-| 25905 | Uplanlagt høy varmepumpe- eller oppvarmingslast — Hvis det var en brå temperaturendring eller fei... | ❓ weakened | None |
-| 25906 | Uplanlagt lading av elbil med høy effekt — 13.272 kW tilsvarer typisk 3-fase lading på ca. 11-22 ... | ❓ weakened | None |
-| 25907 | Uplanlagt lading av elbil med høy effekt — Elbiler kan trekke 11 kW eller mer. Hvis en bil ble ko... | ❓ weakened | None |
-| 25908 | Uplanlagt lading av elbil med høy effekt — En elbil som starter lading med maks effekt (f.eks. 11... | ❓ weakened | None |
-| 25909 | Uplanlagt lading av elbil med høy effekt — En elbil-lader kan trekke 11 kW (3-fase). Hvis en bil ... | ❓ weakened | None |
-| 25910 | Uplanlagt lading av elbil — Elbiler kan trekke 11-22 kW. En ukjent lading (f.eks. gjest eller fei... | ❓ weakened | None |
-| 25911 | Uplanlagt start av stor elektrisk last (f.eks. EV-lader eller varmepumpe) — Økningen på ca. 6.5 k... | ❓ weakened | None |
-| 25912 | Uplanlagt start av stor elektrisk last (f.eks. varmekumulativ oppvarming eller EV-lader) — Differ... | ❓ weakened | None |
-| 25913 | Uventet høy apparatlast i huset — Noen store apparater som varmekabler, oppvaskmaskin eller tørke... | ❓ weakened | None |
-| 25914 | Uventet høy belastning fra en stor apparat — En stor apparat som varmtvannsbereder, vaskemaskin e... | ❓ weakened | None |
-| 25915 | Uventet høy forbruk fra elektrisk lading — Elektrisk lading kan føre til store strømtopper. Hvis ... | ❓ weakened | None |
-| 25916 | Uventet høy forbrukslast fra husholdningen — Det er mulig at en stor elektrisk apparat, som f.eks... | ❓ weakened | None |
-| 25917 | Uventet høy last fra elbil-lading — Elbil-lading kan bidra med høy effekt (opptil 11-22 kW avheng... | ❓ weakened | None |
-| 25918 | Uventet høy last fra elbil-lading — Elbil-lading kan trekke store strømer, spesielt hvis flere bi... | ❓ weakened | None |
-| 25919 | Uventet høy last fra elektrisk bil-lading — Hvis en EV-lader startet i denne perioden, kan det fo... | ❓ weakened | None |
-| 25920 | Uventet høy last fra elektrisk lading — Hvis det var en elbil som startet lading i huset, kan det... | ❓ weakened | None |
-| 25921 | Uventet høy last fra en elektrisk lader — En elektrisk bil kan ha startet lading med høy effekt, ... | ❓ weakened | None |
-| 25922 | Uventet stor apparatlast — Det er mulig at et høyforbrukende apparat (f.eks. varmtvannsbereder, o... | ❓ weakened | None |
-| 25923 | Uventet økning i elbil-lading — Elbiler med høy effekt kan trekke store mengder strøm, og hvis fl... | ❓ weakened | None |
-| 25924 | Værrelatert økning i varmepumpe-effekt (uforutsett temperaturfall) — Hvis det var en brå temperat... | ❓ weakened | None |
-| 25925 | Økt forbruk fra store apparater — Aktivering av flere store apparater samtidig (f.eks. ovn, vaske... | ❓ weakened | None |
+| 25823 | Activation of a large appliance load — A large appliance load, such as a heat pump or tumble drye... | ❓ weakened | None |
+| 25824 | Activation of high-power oven or heating cable field — At Oslo temperatures there may be a need f... | ❓ weakened | None |
+| 25825 | Activation of high-power heat pump or heating cables — The combination of existing load and a new... | ❓ weakened | None |
+| 25826 | Activation of high-power appliances — Appliances such as water heater, washing machines or ovens ... | ❓ weakened | None |
+| 25827 | Activation of power-intensive white goods or heating systems — If the house has large motor-drive... | ❓ weakened | None |
+| 25828 | Activation of a power-intensive heating element — If a large heating element (e.g. underfloor hea... | ❓ weakened | None |
+| 25829 | Activation of a large heat load (e.g. underfloor heating or pool pump) — If there is a heat sourc... | ❓ weakened | None |
+| 25830 | Activation of large appliances — Activation of large appliances such as hot-water heater, washing... | ❓ weakened | None |
+| 25831 | External factors such as weather or sun — Even though it was evening, there may have been an unex... | ❓ weakened | None |
+| 25832 | External event or neighbor meter error (grid side) — If the meter is part of a shared system, or ... | ❓ weakened | None |
+| 25833 | External event in the local power grid — It is possible that there was a temporary event in the l... | ❓ weakened | None |
+| 25834 | External event in the grid company's system — An event in the overarching grid system may have le... | ❓ weakened | None |
+| 25835 | External grid change or fault in limit values from the supplier — If the grid company temporarily... | ❓ weakened | None |
+| 25836 | External grid explanation or upstream event — Although less likely for a single customer, a fault... | ❓ weakened | None |
+| 25837 | External grid voltage fluctuation or fault in upstream measurement — If the local meter is sensit... | ❓ weakened | None |
+| 25838 | EV charging started at high power — An increase of ~6.5 kW is typical for an AC charger (Type 2) ... | ❓ weakened | None |
+| 25839 | EV charging started unexpectedly or at high power — An EV charger can draw 11-22 kW. If a car was... | ❓ weakened | None |
+| 25840 | A large appliance load was activated — A large appliance, such as a washing machine or dishwasher... | ❓ weakened | None |
+| 25841 | Change in grid tariff or tariff windows — If there was a change in grid tariff or tariff windows ... | ❓ weakened | None |
+| 25842 | Fault in battery management (inverter operation) — If the battery erroneously goes from charging ... | ❓ weakened | None |
+| 25843 | Error in EV charging — An electric car may have started charging unexpectedly, which led to a sud... | ❓ weakened | None |
+| 25844 | Fault in the grid supplier's measurement — If the grid supplier's metering instrument has a fault... | ❓ weakened | None |
+| 25845 | Fault in grid regulation or upstream event — There may have been an event in the local grid that ... | ❓ weakened | None |
+| 25846 | Fault in the grid company's settlement meter or data delivery — If Symbiose's internal measuremen... | ❓ weakened | None |
+| 25847 | Error in the forecast model (wrong assumption about solar production) — If cloud cover was worse ... | ❓ weakened | None |
+| 25848 | Fault in the forecast model (solar production) — If the solar cells produced significantly less t... | ❓ weakened | None |
+| 25849 | Error in the forecast model or setpoint configuration — If the setpoint 6.71 kW was configured in... | ❓ weakened | None |
+| 25850 | Fault in forecast model or setpoint configuration — If the setpoint of 6.71 kW was in fact miscon... | ❓ weakened | None |
+| 25851 | Fault in forecast model — The forecast model may have failed to predict a sudden change in consum... | ❓ weakened | None |
+| 25852 | Fault in the forecast model (not an actual peak) — If 'grid peak' is calculated based on an incor... | ❓ weakened | None |
+| 25853 | Fault in the forecast model — The forecast may have underestimated consumption based on wrong ass... | ❓ weakened | None |
+| 25854 | Fault in solar production or weather conditions — The solar cells may have produced less than exp... | ❓ weakened | None |
+| 25855 | Fault in tariff windows or prices — It is possible that there was an unexpected change in tariff ... | ❓ weakened | None |
+| 25856 | Incorrect metering point or sensor fault — A jump from 6.71 kW to 13.272 kW is almost a doubling.... | ❓ weakened | None |
+| 25857 | Incorrect metering point or sensor fault — A jump from 6.71 kW to 13.272 kW is almost a doubling.... | ❓ weakened | None |
+| 25858 | Erroneous metering point or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without corres... | ❓ weakened | None |
+| 25859 | Erroneous metering point or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without corres... | ❓ weakened | None |
+| 25860 | Erroneous measuring point or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without a cor... | ❓ weakened | None |
+| 25861 | Incorrect measurement or sensor error at the grid boundary — A jump from 6.71 kW to 13.272 kW is ... | ❓ weakened | None |
+| 25862 | Incorrect measurement or sensor fault at the grid meter — A sudden jump from 6.71 kW to 13.272 kW... | ❓ weakened | None |
+| 25863 | Erroneous measurement or sensor fault — A sudden and unexpected peak of 13,272 kW, almost twice a... | ❓ weakened | None |
+| 25864 | Erroneous measurement or sensor fault — A sudden peak of 13.272 kW, almost twice as high as the s... | ❓ weakened | None |
+| 25865 | Erroneous measurement or sensor fault — A sudden increase from 4.8 kW to 13.182 kW without a clea... | ❓ weakened | None |
+| 25866 | Erroneous measurement or sensor fault — A sudden increase from 4.8 kW to 13.272 kW without clear ... | ❓ weakened | None |
+| 25867 | Incorrect measurement or sensor fault — A sudden jump from 6,71 kW to 13,272 kW without correspon... | ❓ weakened | None |
+| 25868 | Erroneous measurement or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without a corresp... | ❓ weakened | None |
+| 25869 | Erroneous measurement or sensor fault — The measured value (13.272 kW) is almost twice as high as... | ❓ weakened | None |
+| 25870 | Erroneous measurement or sensor fault — A sudden increase from 6.71 kW to 13.272 kW without clear... | ❓ weakened | None |
+| 25871 | Erroneous measurement or sensor fault — Since there are no data in 'data_window_rundt_hendelsen' ... | ❓ weakened | None |
+| 25872 | Erroneous measurement or sensor fault — Since there is no documented event or load that can expla... | ❓ weakened | None |
+| 25873 | Erroneous measurement due to sensor fault or calibration drift — An instantaneous jump from 6.71 ... | ❓ weakened | None |
+| 25874 | Incorrect sign inversion in the smart meter — An abrupt jump from 6.71 kW to 13.272 kW without a ... | ❓ weakened | None |
+| 25875 | Incorrect signature or calibration of grid meter — A jump from 6.71 kW to 13.272 kW represents an... | ❓ weakened | None |
+| 25876 | Miscalibrated or defective current reader (CT clamp) — A sudden doubling of measured power (13.2 ... | ❓ weakened | None |
+| 25877 | Miswired or defective CT sensor (false positive) — A sudden jump from 6.71 kW to 13.272 kW withou... | ❓ weakened | None |
+| 25878 | Incorrectly wired or defective CT sensor (current meter) — A sudden jump from 6.71 kW to 13.272 k... | ❓ weakened | None |
+| 25879 | Miswired or defective meter (sensor fault) — A sudden jump from 6.71 kW to 13.272 kW without corr... | ❓ weakened | None |
+| 25880 | Miswired or defective current reader (CT clamp) — An abrupt jump from the setpoint 6.71 kW to 13.... | ❓ weakened | None |
+| 25881 | Miswiring or operation of EV charger at high power — A net peak of 13,272 kW is consistent with t... | ❓ weakened | None |
+| 25882 | High consumption from the heating system — Heating systems, especially heat pumps, can draw a lot... | ❓ weakened | None |
+| 25883 | High solar cell production combined with low consumption — If the solar cell installation produce... | ❓ weakened | None |
+| 25884 | Downstream fault in grid supplier data (upstream) — If Opus retrieves data from a shared meter or... | ❓ weakened | None |
+| 25885 | Downstream fault in the grid company's measurement point — If there is a fault in the grid compan... | ❓ weakened | None |
+| 25886 | Grid operator adjustment or meter fault upstream — If the meter reporting the 'grid peak' is a sh... | ❓ weakened | None |
+| 25887 | Upstream grid fault or voltage failure that affects measurement — A sudden voltage drop or freque... | ❓ weakened | None |
+| 25888 | Sudden high load from heat pump or heating cables — Heat pumps and heating cables have a high pow... | ❓ weakened | None |
+| 25889 | Sudden drop in solar production due to cloud cover — If the house has a solar panel system, and i... | ❓ weakened | None |
+| 25890 | Simultaneous operation of high-power appliances (e.g. heat-storage heater + washing machine) — In... | ❓ weakened | None |
+| 25891 | Sensor fault or loss of communication at the metering point — An abrupt, unexplained spike that i... | ❓ weakened | None |
+| 25892 | Simultaneous activation of large heating elements — If several high-power appliances (e.g. dishwa... | ❓ weakened | None |
+| 25893 | Solar cell production fell steeply while the load was high — If the solar cell production fell st... | ❓ weakened | None |
+| 25894 | The solar-cell installation produced more than expected — If the solar-cell installation produced... | ❓ weakened | None |
+| 25895 | The solar energy system produced more than expected — If the solar energy system produced more po... | ❓ weakened | None |
+| 25896 | Unforeseen high consumption from white goods — If several large appliances (e.g. washing machine,... | ❓ weakened | None |
+| 25897 | Unforeseen high load from heating cables/oven — 13.272 kW corresponds to approx. 13-14 kW of heat... | ❓ weakened | None |
+| 25898 | Unknown large load (e.g. heat pump in defrost) — Heat pumps can draw considerable power during de... | ❓ weakened | None |
+| 25899 | Unplanned EV charging started — An electric car charging at 11 kW (3-phase) or 7.4 kW (1-phase) o... | ❓ weakened | None |
+| 25900 | Unplanned EV charging — EV charging is the most common cause of unintended grid peaks in dwelling... | ❓ weakened | None |
+| 25901 | Unplanned activation of large electric heating or pool pump — The difference of approx. 6.5 kW co... | ❓ weakened | None |
+| 25902 | Unplanned EV charging — 13.272 kW corresponds to typical charging power for a 3-phase charger (ap... | ❓ weakened | None |
+| 25903 | Unplanned electric car charging started manually — Electric cars often have high power (7-11 kW).... | ❓ weakened | None |
+| 25904 | Unplanned fast charging of an EV — 13.272 kW corresponds to a typical AC charging power of 11-22 ... | ❓ weakened | None |
+| 25905 | Unplanned high heat pump or heating load — If there was a sudden temperature change or fault in t... | ❓ weakened | None |
+| 25906 | Unplanned charging of an EV at high power — 13.272 kW typically corresponds to 3-phase charging a... | ❓ weakened | None |
+| 25907 | Unplanned charging of an EV at high power — EVs can draw 11 kW or more. If a car was connected an... | ❓ weakened | None |
+| 25908 | Unplanned charging of electric car at high power — An electric car that starts charging at maximu... | ❓ weakened | None |
+| 25909 | Unplanned charging of electric car at high power — An EV charger can draw 11 kW (3-phase). If a c... | ❓ weakened | None |
+| 25910 | Unplanned EV charging — Electric cars can draw 11-22 kW. An unknown charging session (e.g. a gues... | ❓ weakened | None |
+| 25911 | Unplanned start of a large electrical load (e.g. EV charger or heat pump) — The increase of appro... | ❓ weakened | None |
+| 25912 | Unplanned start of a large electrical load (e.g. thermal-storage heating or EV charger) — The dif... | ❓ weakened | None |
+| 25913 | Unexpected high appliance load in the house — Some large appliances such as heating cables, dishw... | ❓ weakened | None |
+| 25914 | Unexpectedly high load from a large appliance — A large appliance such as a water heater, washing... | ❓ weakened | None |
+| 25915 | Unexpectedly high consumption from electric charging — Electric charging can lead to large power ... | ❓ weakened | None |
+| 25916 | Unexpectedly high consumption load from the household — It is possible that a large electrical ap... | ❓ weakened | None |
+| 25917 | Unexpectedly high load from EV charging — EV charging can contribute high power (up to 11-22 kW d... | ❓ weakened | None |
+| 25918 | Unexpectedly high load from EV charging — EV charging can draw large currents, especially if seve... | ❓ weakened | None |
+| 25919 | Unexpectedly high load from electric-car charging — If an EV charger started in this period, that... | ❓ weakened | None |
+| 25920 | Unexpectedly high load from electric charging — If there was an EV that started charging in the h... | ❓ weakened | None |
+| 25921 | Unexpectedly high load from an electric charger — An electric car may have started charging at hi... | ❓ weakened | None |
+| 25922 | Unexpectedly large appliance load — It is possible that a high-consumption appliance (e.g. water ... | ❓ weakened | None |
+| 25923 | Unexpected increase in EV charging — High-power EVs can draw large amounts of power, and if sever... | ❓ weakened | None |
+| 25924 | Weather-related increase in heat pump power (unforeseen temperature drop) — If there was an abrup... | ❓ weakened | None |
+| 25925 | Increased consumption from large appliances — Activation of several large appliances at the same ... | ❓ weakened | None |
 | 25926 | — | ❓ None | None |
 | 25927 | — | ❓ None | None |
 | 25928 | — | ❓ None | None |
@@ -28803,12 +28803,12 @@ _Tests whether G_eff(k,a) from the GRAV sector is compatible with cosmological l
 | 2 | 2D μ-Σ degeneracy valley: perturbation sector viability with gravitational slip | MGCAMB v1.5.2, 25-point (μ,Σ) grid, Planck 2018 TTTEEE+lowl+lensing | If EFC entropy gradients modify Ψ (matter potential) more than Φ+Ψ (lensing potential), the framework naturally produces μ&lt;1 with Σ≈1.05 — exactly the viable region found in this scan. | MARGINAL |
 | 3 | AQUAL void leakage: falsification test for L0/L1 regime screening | Void catalogs (BOSS/DESI void finder), ISW stacking on voids, weak lensing void profiles (DES Y6/KiDS), fσ₈ at k < 0.02 h/Mpc from DESI ELG | EFC regime framework predicts AQUAL remains screened in voids because even void interiors have \|∇Φ_background\|/a₀ >> 1 from the total cosmological potential. If this fails (μ_eff > 1.01 in voids at  | Planned |
 | 4 | Anti-EFE: constructive external field response in Graph-AQUAL | KT5 EFE sweep: g_ext/a₀ = [0, 0.3, 1, 2, 5] | EFC graph-AQUAL predicts constructive external field coupling (anti-EFE) where external field enhances rather than suppresses MOND-like boost. Testable against galaxy samples in external fields (e.g., | Planned |
-| 5 | BIG-SPARC Kill-Test v6 — pipeline re-kjøring seed=42 | arXiv:2411.13329 (BIG-SPARC) + arXiv:2601.00522 (konkurrent empirisk modell) | EFC Kill-Test v6: RAR og a0_scale native_prediction via entropy_flow_saturation. Forventet: universalitet holder over utvidet BIG-SPARC sample. Konkurrent arXiv:2601.00522 må ΔAIC-sammenlignes på SPAR | PIPELINE_NOT_READY |
+| 5 | BIG-SPARC Kill-Test v6 — pipeline re-run seed=42 | arXiv:2411.13329 (BIG-SPARC) + arXiv:2601.00522 (competing empirical model) | EFC Kill-Test v6: RAR and a0_scale native_prediction via entropy_flow_saturation. Expected: universality holds over the extended BIG-SPARC sample. Competitor arXiv:2601.00522 must be ΔAIC-compared on  | PIPELINE_NOT_READY |
 | 6 | Freeze v3: E_G(z=0.7) gravitational slip prediction | β=f/b from growth ODE + linear bias model, frozen α=-0.689 | EFC predicts E_G(z=0.7) differs from ΛCDM due to μ≠Σ. If μ<1 and Σ≈1, E_G should be systematically higher than ΛCDM. Exact value sealed with hash. | MARGINAL |
 | 7 | GRAV-to-cosmo μ_eff regime bridge test | Existing GRAV Graph-AQUAL runs (10 completed) + WP1a reference model | EFC regime framework predicts μ>1 at galactic scales (L2-L3) transitioning to μ<1 at cosmological linear scales (L1-L2). The transition should occur at scales k~0.01-0.1 h/Mpc where structure goes fro | Planned |
 | 8 | Gravitational slip η(a,k,ρ) from grid tension ansatz | EFCLASS perturbation code + DES Y6 / KiDS Legacy weak lensing + H0LiCOW/TDCOSMO strong lens time delays | η≠1 in L2 regime should: (1) resolve S₈ tension via differential Φ/Ψ coupling, (2) maintain strong lens time delay within observational bounds, (3) give specific η(z) profile derivable from χ control  | Planned |
-| 9 | JWST Bullet Cluster δκ — KILL-test data tilgjengelig, pipeline er bottleneck | arXiv:2503.21870 (JWST 146 SL+WL) + arXiv:2601.22245 (JWST mass map) | EFC pre-registrert: η=Φ/Ψ=0.9993 (KILL badge). MOND: 0 offset (feiler). LCDM: positivt offset (passerer). Pipeline figshare:31963668 må kjøres mot JWST-data fra 2503.21870. | Planned |
-| 10 | KT3 v3 — Entropy-first mass scaling test | SPARC175 rotasjonskurver (galaktisk skala) + klyngetermodata + BAO/fσ₈ kosmologisk skala — alle testet mot ρ_eff(S, ∇S) uten ΛCDM-prosesserte mellomledd | EFC predikerer at en effektiv massetetthet ρ_eff(S, ∇S) = ρ₀ · [1 + δ_M · S(a) · \|∇S/S\|] gir konsistent masseskalering fra galakseskala (SPARC) til klyngeskala til kosmologisk skala med de samme sig | Planned |
+| 9 | JWST Bullet Cluster δκ — KILL-test data available, pipeline is the bottleneck | arXiv:2503.21870 (JWST 146 SL+WL) + arXiv:2601.22245 (JWST mass map) | EFC pre-registered: η=Φ/Ψ=0.9993 (KILL badge). MOND: 0 offset (fails). LCDM: positive offset (passes). Pipeline figshare:31963668 must be run against JWST data from 2503.21870. | Planned |
+| 10 | KT3 v3 — Entropy-first mass scaling test | SPARC175 rotation curves (galactic scale) + cluster thermodynamics data + BAO/fσ₈ cosmological scale — all tested against ρ_eff(S, ∇S) without ΛCDM-processed intermediate steps | EFC predicts that an effective mass density ρ_eff(S, ∇S) = ρ₀ · [1 + δ_M · S(a) · \|∇S/S\|] gives consistent mass scaling from galaxy scale (SPARC) to cluster scale to cosmological scale with the same | Planned |
 | 11 | KT3b: Environmental mass-scaling test β(ρ_env) | SPARC 175 galaxies (Lelli+ 2017) cross-matched with environment catalogs: Tully (2015) galaxy group catalog for nearest-neighbor density, or Eridanus/Fornax void catalogs. Key observables: V_flat, g_o | At fixed baryonic mass, void galaxies (ρ_env ≪ ρ_crit) show systematically weaker gravitational enhancement (lower g_obs/g_bar at g_bar ~ a₀) than galaxies in filaments/groups (ρ_env ~ ρ_crit). Estima | Planned |
 
 
@@ -28850,18 +28850,18 @@ _Internal coherence mechanisms and structural exclusion arguments._
 | 6 | — | — | DESI DR2 confirms background sector consistent with LCDM. EFC signal, if real, must reside in growth/gravity/regime sector. KT3 v2 beta-convergence becomes decisive test. | — |
 | 7 | Action Integral Gap — Tier-1 theoretical obstruction | First-principles derivation attempt (Newtonian potential gradient vs a₀), comparison with k_NL from ΛCDM matter power spectra, validation ledger items E1, E3, E5-E7, L6 | EFC predicts that a well-posed action principle S_EFC would yield: (1) the growth gate as an equation of motion, (2) the AQUAL limit as a weak-field reduction, and (3) k* ≈ k_NL as a solution of the c | REQUIRES_EXTERNAL_TOOL |
 | 8 | Action Integral Gap — k* derivability test | First-principles derivation (Newtonian potential gradient vs a₀), k_NL from ΛCDM P(k), validation ledger E1/E3/E5-E7/L6. Document: efc_transition_scale.tex | A well-posed EFC action would yield: (1) the growth gate as an equation of motion, (2) AQUAL as a weak-field limit, (3) k* ≈ k_NL as a solution rather than input. Until constructed, k* remains an emer | REQUIRES_EXTERNAL_TOOL |
-| 9 | Axiom 0 Test: S-regime vs Friedmann-t i kosmologisk evolusjon | DESI DR1 BAO-data, BOSS fσ8-målinger, forseglet EFC-prediksjon 2026-02-18 (freeze_20260218_050713), SPARC175 regime-datasett | Hvis Aksiom 0 holder: (1) EFC reproduserer BAO-skalaer og fσ8-kurver med S-parameterisering uten Friedmann-t-bakgrunn. (2) De 2-3σ avvikene i DH_rd og fs8 fra forseglet prediksjon korresponderer med i | Planned |
+| 9 | Axiom 0 Test: S-regime vs Friedmann-t i kosmologisk evolusjon | DESI DR1 BAO data, BOSS fσ8 measurements, sealed EFC prediction 2026-02-18 (freeze_20260218_050713), SPARC175 regime dataset | If Axiom 0 holds: (1) EFC reproduces BAO scales and fσ8 curves with S parameterization without a Friedmann-t background. (2) The 2-3σ deviations in DH_rd and fs8 from the sealed prediction correspond  | Planned |
 | 10 | Axiom 0 meta-analysis v1.0-meta: alpha-Shat correlation | Neo4j Axiom0TestResult nodes (test_version=v1.0) from research_daemon (emcee) and gpu_nuts_daemon (NUTS) | If EFC regime structure is dynamically coupled to expansion-sector alpha, then alpha_mean should correlate with secondary_frac_pos (Spearman \|rho\|>=0.35, p<0.05) across independent MCMC cycles. If n | Planned |
 | 11 | Background gate sign constraint (EFCLASS Technical Note I) | CLASS v3.3.4 internal consistency (EFCLASS patch, 9-point numerical verification) | ΔE² ≤ 0 for all z>0 (sign-locked). Background channel cannot suppress structure growth. S₈ amelioration requires perturbation-level μ<1. | REQUIRES_EXTERNAL_TOOL |
 | 12 | CMB α–H₀ degeneracy corridor (structural constraint) | EFCLASS minimize scan: 11 α-values from 0 to −0.7, each with 7 free cosmological parameters, full Planck 2018 likelihood | Any late-time additive background gate E²=E²_LCDM+α·g(a) with smooth g(a) will produce α–H₀ degeneracy in CMB-only fits. CMB alone is structurally insufficient to constrain such modifications. | REQUIRES_EXTERNAL_TOOL |
 | 13 | CT-04: Cross-Domain Constant K Consistency | Galactic: SPARC rotation curves (k = 0.415 ± 0.029 from 174-galaxy calibration). Neural: entropy gradient amplitude from CT-01 EEG/MEG datasets | \|K_galactic - K_neural\| / σ_K < 3 | Planned |
 | 14 | Core Lock consistency enforcement (31223503) | — | Prevents parameter drift and cross-regime leakage; enforces frozen-parameter boundaries and explicit translation rules across L0–L3 | — |
-| 15 | DES Y6 vs KiDS-Legacy divergens som EFC-strukturprediksjon | DES Y6 3x2pt (S8=0.789±0.012), KiDS-Legacy (S8 lavere, innenfor CMB), Euclid DR1 (planlagt okt 2026) | EFC forutsier at DES Y6 og KiDS-Legacy *skal* gi ulike effektive S8-verdier fordi de prober ulike (k,z)-rom under et skalaavhengig gravitasjonsfelt. Under ΛCDM bør de konvergere; under EFC er divergen | Planned |
+| 15 | DES Y6 vs KiDS-Legacy divergence as an EFC structure prediction | DES Y6 3x2pt (S8=0.789±0.012), KiDS-Legacy (S8 lavere, innenfor CMB), Euclid DR1 (planlagt okt 2026) | EFC predicts that DES Y6 and KiDS-Legacy *shall* give different effective S8 values because they probe different (k,z) spaces under a scale-dependent gravitational field. Under ΛCDM they should conver | Planned |
 | 16 | Density Saturation Θ(ρ) (v1.3) | — | Enforces automatic GR recovery in high-density environments (Solar System, stellar interiors); physically bounds ΔF; provides derivation path for weak-lensing coupling; enables R(k,S,ρ) extension with | — |
-| 17 | Double-Slit as Grid-Resolution Phenomenon in GRC | Teoretisk derivasjon fra GRC-triaden. Fremtidig empirisk test via høy-presisjon dobbel-slitt-eksperimenter ved sub-nanometer spaltegeometri, eller indirekte via dekoherenstider i kvanteoptikk. | GRC predikerer at interferensmønsteret i dobbel-slitt-eksperimentet er begrenset av grid-skala l_g, slik at det eksisterer en geometri-avhengig cutoff i registreringsoppløsning som standard QM ikke ha | Planned |
+| 17 | Double-Slit as Grid-Resolution Phenomenon in GRC | Theoretical derivation from the GRC triad. Future empirical test via high-precision double-slit experiments at sub-nanometer slit geometry, or indirectly via decoherence times in quantum optics. | GRC predicts that the interference pattern in the double-slit experiment is limited by the grid scale l_g, so that a geometry-dependent cutoff exists in detection resolution that standard QM does not  | Planned |
 | 18 | EFC physics localization: perturbation sector, not background | Joint fit results + EFCLASS Technical Note I + WP1a σ8 suppression test | EFC background-only modifications cannot produce σ8 suppression or survive joint CMB+BAO constraints with α significantly different from zero. Observable EFC effects require perturbation-level μ≠1. | REQUIRES_EXTERNAL_TOOL |
 | 19 | Forbidden Pattern distance-to-trigger quantification | Existing validation ledger results + 5 forbidden pattern definitions | All 5 FPs should show >2σ distance to trigger (safe margin). If any FP is within 1σ of triggering, it becomes the highest-priority investigation target. Publication-ready falsifiability demonstration. | Planned |
-| 20 | G2: Operational Definition of Local S for P3 Testability | Teoretisk derivasjon først. Deretter: eksisterende dekoherensmålinger i kvanteoptikk og supraledende qubits der lokal termodynamisk entropi kan estimeres uavhengig av temperatur. | Minst én av de tre S-kandidatene (A, B, C) gir en operasjonell definisjon som predikerer målbar dekoherenstid τ_d ∝ C(S) = exp(-S/S_max) med en avhengighet som ikke kollapser til ren temperatur/miljøk | Planned |
+| 20 | G2: Operational Definition of Local S for P3 Testability | Theoretical derivation first. Then: existing decoherence measurements in quantum optics and superconducting qubits where local thermodynamic entropy can be estimated independently of temperature. | At least one of the three S candidates (A, B, C) gives an operational definition that predicts a measurable decoherence time τ_d ∝ C(S) = exp(-S/S_max) with a dependence that does not collapse to pure | Planned |
 | 21 | Gate transition zone anomaly concentration z~1 | Phase 2.2 E(z) deviation profile; gate function g(a,a_t) with n=6 | EFC predicts that cosmological anomalies relative to ΛCDM will be concentrated in z=0.7-1.3 (the gate transition zone), with amplitude ≤1.1% in E(z). High-z (z>2) and low-z (z<0.3) should show <0.3% d | Planned |
 | 22 | H0-resolution second-law no-go (Cataldo 2026) | arXiv:2604.17523 (theoretical / thermodynamic proof). Cross-check against Perez-Sudarsky-Wilson-Ewing (2021) and Landau et al (2022) as worked examples already covered. | EFC predicts H0 consistency via regime-transition of the energy-flow ratio α(z) and lensing-coupling K0, not via matter-to-Λ diffusion. Therefore EFC is structurally exempt from the Cataldo no-go. Fra | Planned |
 | 23 | IG-1: Identifiability gate (α degeneracy break with ≥3 probes) | Joint MCMC fit combining ≥3 independent probe classes: BAO (DESI), fσ8 (RSD), lensing tomography (KiDS/DES/Euclid), cluster counts (eROSITA/SPT). Existing EMCEE pipeline with extended probe set. | GRC predicts: α separable at >2σ when cluster counts (sensitive to G_eff via halo mass function) and lensing tomography binned by S-proxy (not just z) are added to joint fit. Expected degeneracy-break | COLLAPSED |

@@ -1,12 +1,12 @@
-"""Broer til de fem kosmologiske motorene (trinn 11).
+"""Bridges to the five cosmological engines (step 11).
 
-Samme moenster som water (trinn 4) og victron (trinn 8): hver motor
-beskriver seg selv som regime-node, og beskrivelsen skal stemme
-MASKINELT med atlas-noden i schema/regime_nodes.jsonld.
+The same pattern as water (step 4) and victron (step 8): each engine
+describes itself as a regime node, and the description must agree
+MACHINE-READABLY with the atlas node in schema/regime_nodes.jsonld.
 
-Kanoniske parametre brukes i testene (og i atlaset):
-Omega_m=0.3, H0=70, sigma8=0.8, alpha_cosmo=0.0, og rotation/lensing/
-cluster sine egne kanoniske.
+Canonical parameters are used in the tests (and in the atlas):
+Omega_m=0.3, H0=70, sigma8=0.8, alpha_cosmo=0.0, plus rotation/lensing/
+cluster's own canonical ones.
 """
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ KANONISKE = [
      "efc.cluster_engine"),
 ]
 
-# Eksakte koblinger som kreves av relasjonene i atlaset.
+# Exact couplings required by the relations in the atlas.
 FORVENTEDE_RELASJONER = {
     "efc.rotation_engine": [("COUPLED_TO", "efc.l2")],
     # K6 (10087393): the engine is observed THROUGH, so this edge lives on the
@@ -76,22 +76,22 @@ def test_hver_motor_har_regime_node_bro():
 
 
 def test_broer_matcher_atlas_maskinelt():
-    """Motorenes selvbeskrivelse skal stemme med atlas-nodene — samme
-    id, samme validity, samme law_form (med de kanoniske parametrene)."""
+    """The engines' self-description must agree with the atlas nodes — same
+    id, same validity, same law_form (with the canonical parameters)."""
     atlas = _atlas()
     atlas_noder = {n["id"]: n for n in atlas["nodes"]}
     for engine, params, node_id in KANONISKE:
         node = engine.regime_node(params)
-        assert node_id in atlas_noder, f"{node_id} mangler i atlaset"
+        assert node_id in atlas_noder, f"{node_id} is missing from the atlas"
         at = atlas_noder[node_id]
         assert at["regime"]["validity"] == node["regime"]["validity"]
         assert at["regime"]["law_form"] == node["regime"]["law_form"]
 
 
 def test_broer_tilfredsstiller_regime_node_skjemaet():
-    """Hver bro skal vaere en gyldig RegimeNode etter skjemaet."""
+    """Each bridge must be a valid RegimeNode per the schema."""
     if jsonschema is None:
-        pytest.skip("jsonschema ikke installert")
+        pytest.skip("jsonschema not installed")
     skjema = json.loads(SKJEMA.read_text(encoding="utf-8"))
     definisjon = skjema["$defs"]["RegimeNode"]
     validator = jsonschema.Draft202012Validator(definisjon)
@@ -101,23 +101,23 @@ def test_broer_tilfredsstiller_regime_node_skjemaet():
         if feil:
             meldinger = "; ".join(
                 f"{list(e.path)}: {e.message}" for e in feil[:3])
-            raise AssertionError(f"{node_id} feiler skjemaet: {meldinger}")
+            raise AssertionError(f"{node_id} fails the schema: {meldinger}")
 
 
 def test_validitet_endres_med_parametre():
-    """Validity-strengen skal baere de EFFEKTIVE parametrene — ikke
-    hardkodede tall (review-disiplin fra victron)."""
+    """The validity string must carry the EFFECTIVE parameters — not
+    hardcoded numbers (review discipline from victron)."""
     for engine, params, _ in KANONISKE:
         node_a = engine.regime_node(params)
-        endret = {k: (v + 1.0 if isinstance(v, float) else v)
-                  for k, v in params.items()}
-        node_b = engine.regime_node(endret)
+        changed = {k: (v + 1.0 if isinstance(v, float) else v)
+                   for k, v in params.items()}
+        node_b = engine.regime_node(changed)
         assert node_b["regime"]["validity"] != node_a["regime"]["validity"]
 
 
 def test_stub_motorer_sier_stub_og_kaster():
-    """Lensing og cluster er stubber: selvbeskrivelsen sier det, OG
-    compute() hever NotImplementedError — ingen numerisk output."""
+    """Lensing and cluster are stubs: the self-description says so, AND
+    compute() raises NotImplementedError — no numerical output."""
     import numpy as np
     for engine, params, node_id in KANONISKE:
         if node_id not in ("efc.lensing_engine", "efc.cluster_engine"):
@@ -129,8 +129,8 @@ def test_stub_motorer_sier_stub_og_kaster():
 
 
 def test_relasjoner_eksakte():
-    """Koblingene skal vaere NOEYAKTIG de forventede — ikke bare
-    peke til kjente noder."""
+    """The couplings must be EXACTLY the expected ones — not merely
+    point at known nodes."""
     atlas = _atlas()
     funnet = {}
     for rel in atlas.get("relations", []):
@@ -140,8 +140,8 @@ def test_relasjoner_eksakte():
                 (rel["predicate"], rel["object"]))
     for node_id, forventet in FORVENTEDE_RELASJONER.items():
         assert sorted(funnet.get(node_id, [])) == sorted(forventet), (
-            f"{node_id}: fant {sorted(funnet.get(node_id, []))}, "
-            f"forventet {sorted(forventet)}")
+            f"{node_id}: found {sorted(funnet.get(node_id, []))}, "
+            f"expected {sorted(forventet)}")
 
 
 def test_the_edge_to_the_engine_lives_on_the_observation() -> None:

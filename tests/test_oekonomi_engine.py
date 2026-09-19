@@ -1,11 +1,11 @@
-"""Tester for OekonomiEngine — Minskys finansregimer (L-041).
+"""Tests for OekonomiEngine — Minsky's finance regimes (L-041).
 
-Minskys finansielle ustabilitetshypotese er holding→release i
-finans: stabilitet avler tillit -> gjeld vokser -> hedge ->
-spekulativ -> Ponzi -> krise. De stabile årene ER holdingen som
-bygger bufferen til utløsningen. Motoren er en IDEALISERT
-regime-klassifisering — IKKE en økonomisk modell-konkurrent, og
-det står i selvbeskrivelsen.
+Minsky's financial instability hypothesis is holding to release in
+finance: stability breeds confidence -> debt grows -> hedge ->
+speculative -> Ponzi -> crisis. The stable years ARE the holding that
+builds the buffer for the release. The engine is an IDEALISED regime
+classification — NOT an economic model competitor, and it says so in
+its self-description.
 """
 from __future__ import annotations
 
@@ -15,16 +15,16 @@ import pytest
 from efc_inference.engine.oekonomi import OekonomiEngine
 
 PARAMS = {
-    "rente": 0.05,           # 1/år — lånerenten
-    "inntektsavkastning": 0.08,  # 1/år — avkastningen på inntekten
-    "gjeldsgrad_hedge": 2.0,  # terskel: gjeld/inntekt for hedge->spekulativ
-    "gjeldsgrad_ponzi": 5.0,  # terskel: spekulativ->ponzi
+    "rente": 0.05,           # 1/year — the lending rate
+    "inntektsavkastning": 0.08,  # 1/year — the return on income
+    "gjeldsgrad_hedge": 2.0,  # threshold: debt/income for hedge->speculative
+    "gjeldsgrad_ponzi": 5.0,  # threshold: speculative->ponzi
 }
 
 
 def test_regime_klassifisering():
-    """Hedge: inntektene dekker gjeld OG renter. Spekulativ: dekker
-    rentene, må rulle gjelden. Ponzi: dekker ingen av delene."""
+    """Hedge: income covers debt AND interest. Speculative: covers the
+    interest, must roll over the debt. Ponzi: covers neither."""
     e = OekonomiEngine()
     assert e.regime(PARAMS, gjeldsgrad=1.0) == "hedge"
     assert e.regime(PARAMS, gjeldsgrad=3.0) == "spekulativ"
@@ -32,17 +32,17 @@ def test_regime_klassifisering():
 
 
 def test_gjeldsgraden_drifter_i_stabile_perioder():
-    """Minsky-momentet: i stabile perioder vokser gjelden raskere enn
-    inntekten — gjeldsgraden drifter oppover mot tersklene."""
+    """The Minsky moment: in stable periods the debt grows faster than
+    the income — the leverage drifts upward towards the thresholds."""
     e = OekonomiEngine()
     g0 = 1.5
     g_etter = e.gjeldsgrad_drift(PARAMS, g0, stabile_aar=10)
-    assert g_etter > g0  # stabilitet bygger bufferen til krisen
+    assert g_etter > g0  # stability builds the buffer for the crisis
 
 
 def test_minsky_momentet_er_maalet():
-    """Momentet: desto lengre stabilitet, desto nærmere terskelen —
-    «stabilitet er destabiliserende» som en målbar drift."""
+    """The moment: the longer the stability, the closer the threshold —
+    "stability is destabilising" as a measurable drift."""
     e = OekonomiEngine()
     kort = e.gjeldsgrad_drift(PARAMS, 1.5, stabile_aar=2)
     lang = e.gjeldsgrad_drift(PARAMS, 1.5, stabile_aar=20)
@@ -50,8 +50,8 @@ def test_minsky_momentet_er_maalet():
 
 
 def test_utlosning_ved_ponzi_terskel():
-    """Krisen er utløsningen: når gjeldsgraden krysser ponzi-terskelen,
-    rapporterer motoren regimeskiftet (holding -> release)."""
+    """The crisis is the release: when the leverage crosses the ponzi
+    threshold, the engine reports the regime shift (holding -> release)."""
     e = OekonomiEngine()
     g = 1.0
     for _ in range(30):
@@ -63,7 +63,7 @@ def test_compute_rapporterer_regime_per_gjeldsgrad():
     e = OekonomiEngine()
     ut = e.compute(PARAMS, np.array([1.0, 3.0, 6.0]))
     assert ut.shape == (3,)
-    # koder: 0=hedge, 1=spekulativ, 2=ponzi
+    # codes: 0=hedge, 1=speculative, 2=ponzi
     assert ut[0] == 0 and ut[1] == 1 and ut[2] == 2
 
 
@@ -79,9 +79,9 @@ def test_regime_node_selvbeskrivelse():
 
 
 def test_avgresning_minsky_og_ikke_prediksjon():
-    """Blokkerende krav fra review: Minsky er ÉN tradisjon blant
-    flere, og modellen predikerer IKKE krisers tidspunkt — begge
-    deler skal stå i selvbeskrivelsen og ontology.source."""
+    """Blocking requirement from review: Minsky is ONE tradition among
+    several, and the model does NOT predict the timing of crises — both
+    parts must appear in the self-description and ontology.source."""
     e = OekonomiEngine()
     node = e.regime_node(PARAMS)
     tekst = json.dumps(node, ensure_ascii=False).lower()
@@ -91,10 +91,10 @@ def test_avgresning_minsky_og_ikke_prediksjon():
 
 
 def test_negativ_drift_er_aerlig_nan():
-    """Uten positiv drift er Minsky-momentet udefinert — NaN, ikke
-    stille klipping til stillstand."""
+    """Without positive drift the Minsky moment is undefined — NaN, not
+    a silent clipping to a standstill."""
     e = OekonomiEngine()
-    umulig = {**PARAMS, "inntektsavkastning": 0.20}  # gapet > tillitsleddet
+    umulig = {**PARAMS, "inntektsavkastning": 0.20}  # the gap > the confidence term
     ut = e.gjeldsgrad_drift(umulig, 1.5, stabile_aar=10)
     assert np.isnan(ut)
 

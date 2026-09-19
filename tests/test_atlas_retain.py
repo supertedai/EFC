@@ -1,15 +1,17 @@
-"""Ekte CLI-tester for atlasets retain-inngang — koeen, terskelen og sloyfa.
+"""Real CLI tests for the atlas retain intake — the queue, the threshold and
+the loop.
 
-Tre lag, tre sporsmaal (kort t_3fdc14b7):
+Three layers, three questions (card t_3fdc14b7):
 
-  1. KOEEN.    Kommer fragmentet inn i keen med kilde og tidspunkt?
-               (PR #529 — testene under er de samme.)
-  2. TERSKELEN. Er svaret node-verdig EKSPLISITT, og sier det nei med en
-               grunn naar svaret er nei? En terskel som ikke kan leses, er
-               en paaminnelse — ikke en terskel.
-  3. SLOYFA.   Kan den som la inn fragmentet BEKREFTE at det kom inn — mot
-               atlaset, ikke mot keen? Koeen er arbeidsminnet; atlaset er
-               sannheten. Uten dette leddet er inntaket et notat.
+  1. THE QUEUE.     Does the fragment enter the queue with its source and its
+                    timestamp? (PR #529 — the tests below are the same ones.)
+  2. THE THRESHOLD. Is the node-worthy answer EXPLICIT, and does it say no
+                    with a reason when the answer is no? A threshold that
+                    cannot be read is a reminder — not a threshold.
+  3. THE LOOP.      Can the one who entered the fragment CONFIRM that it came
+                    in — against the atlas, not against the queue? The queue
+                    is the working memory; the atlas is the truth. Without
+                    that link the intake is a note.
 """
 from __future__ import annotations
 
@@ -36,8 +38,8 @@ def kjør_inntak(tmp_path: Path, tekst: str, kilde: str) -> subprocess.Completed
     """Run the real CLI against an isolated intake area."""
     data = tmp_path / "data"
     data.mkdir(exist_ok=True)
-    # CLI-en bruker repoets data/inntak; testens repo er derfor en kopi av
-    # bare inntaksomraadet via miljøvariabelen i den offentlige funksjonen.
+    # The CLI uses the repo data/inntak; the test repo is therefore a copy
+    # of the intake area alone, through the public function environment.
     return subprocess.run(
         [PYTHON, str(CLI), str(REPO), "--ref", "HEAD", "--innta", tekst,
          "--kilde", kilde, "--inntak-fil", str(data / "atlas_fragmenter.jsonl")],

@@ -1,10 +1,10 @@
-"""Tester for RomvaerEngine — magnetosfærens Kp-buffer (L-038).
+"""Tests for RomvaerEngine — the magnetosphere's Kp buffer (L-038).
 
-Kp-indeksen (0-9) er magnetosfærens utladningsnivå: bufferen lades
-av solvinden (sørvendt Bz er ladestrømmen) og utløses i
-geomagnetiske stormer. Motoren er en KORRELASJONSMODELL
-(solvind -> Kp), ikke fysikk fra bunnen — formens kobling til
-solens flares er EFC-bidraget, og det står i selvbeskrivelsen.
+The Kp index (0-9) is the magnetosphere's discharge level: the buffer is charged
+by the solar wind (southward Bz is the charging current) and released in
+geomagnetic storms. The engine is a CORRELATION MODEL
+(solar wind -> Kp), not physics from the ground up — the shape's coupling to
+the Sun's flares is the EFC contribution, and that is stated in the self-description.
 """
 from __future__ import annotations
 
@@ -14,15 +14,15 @@ import pytest
 from efc_inference.engine.romvaer import RomvaerEngine
 
 PARAMS = {
-    "lade_koeffisient": 0.7,       # Kp per (nT/10 * 100 km/s) — kalibrert
-                                   # så Bz=-12/v=600 gir Kp≈5 (G1)
-    "utladningsrate": 0.25,        # Kp per 3t-tikk — bufferens utladning
-    "storm_terskel": 5.0,          # Kp — G1-stormgrensen
+    "lade_koeffisient": 0.7,       # Kp per (nT/10 * 100 km/s) — calibrated
+                                   # so that Bz=-12/v=600 gives Kp≈5 (G1)
+    "utladningsrate": 0.25,        # Kp per 3h tick — the buffer's discharge
+    "storm_terskel": 5.0,          # Kp — the G1 storm threshold
 }
 
 
 def test_forventet_kp_fra_solvind():
-    """Sørvendt Bz lader: Kp stiger med |Bz| og hastighet."""
+    """Southward Bz charges: Kp rises with |Bz| and speed."""
     e = RomvaerEngine()
     kp_rolig = e.forventet_kp(PARAMS, bz=2.0, hastighet=350.0)
     kp_storm = e.forventet_kp(PARAMS, bz=-12.0, hastighet=600.0)
@@ -32,14 +32,14 @@ def test_forventet_kp_fra_solvind():
 
 
 def test_nordvendt_bz_lader_ikke():
-    """Nordvendt Bz er skjermende: bufferen lades ikke."""
+    """Northward Bz is shielding: the buffer is not charged."""
     e = RomvaerEngine()
     kp_nord = e.forventet_kp(PARAMS, bz=12.0, hastighet=600.0)
     assert kp_nord < 3.0
 
 
 def test_storm_niva_fra_kp():
-    """G1-G5-stormnivåene: Kp 5->G1, 6->G2, 7->G3, 8->G4, 9->G5."""
+    """The G1-G5 storm levels: Kp 5->G1, 6->G2, 7->G3, 8->G4, 9->G5."""
     e = RomvaerEngine()
     assert e.storm_niva(PARAMS, 5.0) == "G1"
     assert e.storm_niva(PARAMS, 7.0) == "G3"
@@ -48,7 +48,7 @@ def test_storm_niva_fra_kp():
 
 
 def test_buffer_utlades_over_tid():
-    """Utladningen: Kp faller med utladningsraten per 3t-tikk."""
+    """The discharge: Kp falls by the discharge rate per 3h tick."""
     e = RomvaerEngine()
     kp0 = 7.0
     kp1 = e.utlad(kp0, PARAMS, tikk=1)

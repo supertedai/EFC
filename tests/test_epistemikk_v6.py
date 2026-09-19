@@ -1,19 +1,19 @@
-"""Tester for epistemikk v6 — rekursjonen som STRUKTUR (krav b).
+"""Tests for epistemology v6 — recursion as STRUCTURE (requirement b).
 
-Tre-linsers-granskingen: «fractal er en påstand om rekursjon i én
-streng, ikke en rekursiv struktur. Skjemaet er flatt.»
+The three-liner review: "fractal is a claim about recursion in one string, not
+a recursive structure. The schema is flat."
 
-nivaa-feltet gjør platåene til en graf:
-- indeks: hvilket platå noden er på (0 = substrat, økende = mer
-  emergert)
-- forelder: node-id-en til platået under — eller null for roten
-- tidsskala / lengdeskala: platåets karakteristiske mål
+The nivaa field turns the plateaus into a graph:
+- indeks: which plateau the node is on (0 = substrate, increasing = more
+  emerged)
+- forelder: the node id of the plateau below — or null for the root
+- tidsskala / lengdeskala: the plateau's characteristic scale
 
-Validator-kravene:
-- alle noder har nivaa
-- forelder peker på en eksisterende node eller er null
-- ingen selv-forelder (syklus på ett trinn)
-- h2o-kjeden er sammenhengende (molekyl -> dråpe -> hav -> klima)
+The validator requirements:
+- all nodes have nivaa
+- forelder points at an existing node or is null
+- no self-forelder (a cycle of one step)
+- the h2o chain is connected (molecule -> droplet -> ocean -> climate)
 """
 from __future__ import annotations
 
@@ -47,13 +47,13 @@ def test_alle_noder_har_nivaa():
 
 
 def test_foreldre_peker_paa_eksisterende_noder():
-    """Grafen skal være lukket — forelder er en ekte node eller null."""
+    """The graph must be closed — forelder is a real node or null."""
     atlas = _atlas()
     noder = {n["id"] for n in atlas["nodes"]}
     for n in atlas["nodes"]:
         forelder = n["nivaa"]["forelder"]
         assert forelder is None or forelder in noder, (
-            f"{n['id']}: forelder {forelder!r} finnes ikke")
+            f"{n['id']}: forelder {forelder!r} does not exist")
 
 
 def test_ingen_selv_forelder():
@@ -62,8 +62,8 @@ def test_ingen_selv_forelder():
 
 
 def test_h2o_kjeden_er_sammenhengende():
-    """Molekyl -> dråpe -> hav -> klima skal danne en faktisk
-    forelder-barn-kjede i grafen — ikke bare i prosaen."""
+    """Molecule -> droplet -> ocean -> climate must form a real
+    parent-child chain in the graph — not just in the prose."""
     atlas = _atlas()
     noder = {n["id"]: n for n in atlas["nodes"]}
     for barn, forelder in (
@@ -74,20 +74,20 @@ def test_h2o_kjeden_er_sammenhengende():
 
 
 def test_forelder_har_lavere_indeks():
-    """Platå-retningen: forelderen er platået UNDER — dens indeks skal
-    være lavere enn barnets (review-krav PR #449 r1)."""
+    """The plateau direction: the parent is the plateau BELOW — its indeks must
+    be lower than the child's (review requirement PR #449 r1)."""
     atlas = _atlas()
     noder = {n["id"]: n for n in atlas["nodes"]}
     for n in atlas["nodes"]:
         far = n["nivaa"]["forelder"]
         if far is not None:
             assert noder[far]["nivaa"]["indeks"] < n["nivaa"]["indeks"], (
-                f"{n['id']}: forelder {far} har indeks "
+                f"{n['id']}: forelder {far} has indeks "
                 f"{noder[far]['nivaa']['indeks']} >= {n['nivaa']['indeks']}")
 
 
 def test_grafen_er_asyklisk():
-    """DFS fra hver node — ingen sykler i forelder-grafen."""
+    """DFS from every node — no cycles in the forelder graph."""
     atlas = _atlas()
     noder = {n["id"]: n for n in atlas["nodes"]}
     for start in noder:
@@ -95,14 +95,14 @@ def test_grafen_er_asyklisk():
         nid = start
         while nid is not None:
             if nid in sett:
-                raise AssertionError(f"syklus fra {start}")
+                raise AssertionError(f"cycle from {start}")
             sett.add(nid)
             nid = noder[nid]["nivaa"]["forelder"]
 
 
 def test_atlas_og_motor_nivaa_stemmer():
-    """Samfunns-motorenes nivaa i atlaset skal stemme med motorenes
-    regime_node() (review-krav: de var uenige)."""
+    """The society engines' nivaa in the atlas must agree with the engines'
+    regime_node() (review requirement: they disagreed)."""
     import importlib
     for motor, nid in (("samfunn", "efc.samfunn_engine"),
                        ("oekonomi", "efc.oekonomi_engine"),

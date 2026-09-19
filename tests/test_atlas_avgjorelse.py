@@ -1,16 +1,17 @@
-"""AVGJOERELSEN: en node skal ha TATT STILLING, ikke bare utelatt feltet.
+"""THE DECISION: a node must have TAKEN A POSITION, not just omitted the field.
 
-Maalt 2026-09-18 (kort t_fc25238b): `plasser()` ble kalt fra ETT sted —
-CLI-en selv. Ingen hook, ingen CI. Inngangen fantes og sto ubrukt, og
-hver av nattens fire lukkinger endte i samme setning: «jeg maa fortsatt
-huske aa gjoere det».
+Measured 2026-09-18 (card t_fc25238b): `plasser()` was called from ONE
+place — the CLI itself. No hook, no CI. The entry point existed and sat
+unused, and each of the night's four closings ended in the same sentence:
+"I still have to remember to do it".
 
-Generatoren har alt to vakter som FELLER: koder (#476) og PLASSERING
-(#507). Begge felte sin egen forfatter i natt. Det er malen.
+The generator already has two guards that FAIL: codes (#476) and
+PLACEMENT (#507). Both caught their own author tonight. That is the
+pattern.
 
-Den tredje vakten er annerledes: den skal ikke kreve at en node er
-FERDIG — den skal kreve at VALGET er tatt. En instrument-node trenger
-ingen motor. Men den skal si det, ikke tie.
+The third guard is different: it must not require a node to be DONE — it
+must require that the CHOICE has been made. An instrument node needs no
+engine. But it must say so, not stay silent.
 """
 from __future__ import annotations
 
@@ -20,122 +21,126 @@ from pathlib import Path
 
 import pytest
 
-ROT = Path(__file__).resolve().parents[1]
-ATLAS = ROT / "schema" / "regime_nodes.jsonld"
+ROOT = Path(__file__).resolve().parents[1]
+ATLAS = ROOT / "schema" / "regime_nodes.jsonld"
 
 
 @pytest.fixture(scope="module")
-def noder() -> list[dict]:
+def nodes() -> list[dict]:
     d = json.loads(ATLAS.read_text(encoding="utf-8"))
     return d["nodes"]
 
 
-def test_hver_node_har_tatt_stilling_til_buss_domene(noder: list[dict]) -> None:
-    """Enten et domene, eller en skriftlig grunn til aa ikke ha et."""
-    uten = []
-    for n in noder:
+def test_hver_node_har_tatt_stilling_til_buss_domene(nodes: list[dict]) -> None:
+    """Either a domain, or a written reason for not having one."""
+    missing = []
+    for n in nodes:
         if n.get("buss_domene"):
             continue
         s = n.get("stipulasjoner") or {}
         if not s.get("buss_status"):
-            uten.append(n["id"])
-    assert not uten, (
-        f"{len(uten)} node(r) har verken buss_domene eller buss_status: {uten[:8]}")
+            missing.append(n["id"])
+    assert not missing, (
+        f"{len(missing)} node(s) have neither buss_domene nor buss_status: {missing[:8]}")
 
 
-def test_hver_node_har_tatt_stilling_til_motor(noder: list[dict]) -> None:
-    """Samme for motor: en fungerende motor, eller en grunn til aa ikke ha en."""
-    uten = []
-    for n in noder:
+def test_hver_node_har_tatt_stilling_til_motor(nodes: list[dict]) -> None:
+    """Same for engine: a working engine, or a reason for not having one."""
+    missing = []
+    for n in nodes:
         s = n.get("stipulasjoner") or {}
         if s.get("motor"):
             continue
         if not s.get("motor_status"):
-            uten.append(n["id"])
-    assert not uten, (
-        f"{len(uten)} node(r) har verken motor eller motor_status: {uten[:8]}")
+            missing.append(n["id"])
+    assert not missing, (
+        f"{len(missing)} node(s) have neither motor nor motor_status: {missing[:8]}")
 
 
-def test_statusene_sier_noe_om_hvorfor(noder: list[dict]) -> None:
-    """«ingen» er et svar; en tom streng er en utelatelse."""
-    for n in noder:
+def test_statusene_sier_noe_om_hvorfor(nodes: list[dict]) -> None:
+    """"none" is an answer; an empty string is an omission."""
+    for n in nodes:
         s = n.get("stipulasjoner") or {}
-        for felt in ("buss_status", "motor_status"):
-            v = s.get(felt)
+        for field in ("buss_status", "motor_status"):
+            v = s.get(field)
             if v is not None:
-                assert v.strip(), f"{n['id']}.{felt} er tom — si hvorfor"
+                assert v.strip(), f"{n['id']}.{field} is empty — say why"
 
 
-def test_de_interne_forklarer_seg_selv(noder: list[dict]) -> None:
-    """De interne nodene er ikke en feil — de er et valg som skal staa."""
-    interne = [n for n in noder if n.get("synlighet") == "intern"]
-    assert interne, "forutsetning: det finnes interne noder"
-    for n in interne:
+def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
+    """The internal nodes are not an error — they are a choice that must stand."""
+    internal = [n for n in nodes if n.get("synlighet") == "intern"]
+    assert internal, "precondition: internal nodes exist"
+    for n in internal:
         s = n.get("stipulasjoner") or {}
         assert n.get("buss_domene") or s.get("buss_status"), (
-            f"{n['id']} er intern uten begrunnelse — den maa ha et "
-            f"buss_domene eller en skriftlig grunn til aa ikke ha det")
+            f"{n['id']} is internal without justification — it must have a "
+            f"buss_domene or a written reason for not having one")
 
 
-# --- Falsifiserbarhet: samme regel som buss og motor (kort t_c11ffa45) ------
+# --- Falsifiability: the same rule as for bus and engine (card t_c11ffa45) --
 #
-# Maalt 2026-09-18 fra landet main: `ville_falsifisere` manglet paa 82 av 113
-# Maalt 2026-09-19: 126 noder (13 nye siden), 31 kan felles, 4 med status, 91 med klasse.
-# noder, og skjemaet gjorde feltet VALGFRITT. Atlaset testet at hver node KAN
-# baere feltet — aldri at den HAR tatt stilling. Suiten var groenn likevel,
-# ogsaa for `obs.bao` — noden som baerer motbeviset mot vaart eget regime.
+# Measured 2026-09-18 from landed main: `ville_falsifisere` was missing on 82
+# of 113 nodes, and the schema made the field OPTIONAL. The atlas tested that
+# every node CAN carry the field — never that it HAS taken a position. The
+# suite was green anyway, also for `obs.bao` — the node that carries the
+# counter-evidence to our own regime.
 #
-# Regelen er den samme som for buss og motor: valget skal vaere TATT. En
-# instrument-node kan ikke felles av en observasjon — det er et gyldig svar.
-# Et tomt felt er ikke et svar, og en tekst som gaar igjen paa femti noder er
-# heller ikke det. Denne filen maaler at ingen node TIER (>= 1 svar);
-# `test_atlas_motsigelse.py` maaler at ingen svarer to ganger (<= 1).
+# Measured 2026-09-19: 126 nodes (13 new since), 31 can be felled, 4 with a
+# status, 91 with a written class.
+#
+# The rule is the same as for bus and engine: the choice must be TAKEN. An
+# instrument node cannot be felled by an observation — that is a valid answer.
+# An empty field is not an answer, and a text that recurs on fifty nodes is
+# neither. This file measures that no node is SILENT (>= 1 answer);
+# `test_atlas_motsigelse.py` measures that nobody answers twice (<= 1).
 
 GRUNN = "ikke_falsifiserbar_grunn"
 
-#: Tekster som ser ut som et svar uten aa vaere det.
+#: Texts that look like an answer without being one.
 PLASSHOLDERE = ("vet ikke", "ukjent", "ikke relevant", "n/a", "todo",
                 "fylles ut", "kommer", "tbd", "-")
 
 
 def _grunn(n: dict) -> str | None:
-    """Grunnen bor under `stipulasjoner`, som `buss_status` og `motor_status`."""
+    """The reason lives under `stipulasjoner`, like `buss_status` and
+    `motor_status`."""
     return (n.get("stipulasjoner") or {}).get(GRUNN)
 
 
-def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(noder: list[dict]) -> None:
-    """Hver node svarer: en falsifikator, en fastsatt status — eller en grunn.
+def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> None:
+    """Every node answers: a falsifier, a fixed status — or a reason.
 
-    Populasjonen er ALLE 126 noder, ikke bare de offentlige. Tallene er
-    pinnet fordi begge utfall er ekte: en node som mister falsifikatoren
-    sin, og en node som blir omklassifisert, skal vaere et valg noen har
-    tatt — ikke noe som skjer mens ingen ser det.
+    The population is ALL 126 nodes, not only the public ones. The numbers are
+    pinned because both outcomes are real: a node that loses its falsifier, and
+    a node that is reclassified, must be a choice someone has made — not
+    something that happens while nobody looks.
     """
     def avgjort(n: dict) -> bool:
         return bool(n.get("ville_falsifisere") or n.get("falsifiserbarhet")
                     or _grunn(n))
 
-    uten = [n["id"] for n in noder if not avgjort(n)]
+    uten = [n["id"] for n in nodes if not avgjort(n)]
     assert not uten, (
-        f"{len(uten)} av {len(noder)} node(r) har ikke tatt stilling til om "
-        f"de kan felles: {uten[:8]}")
-    kan = [n["id"] for n in noder if n.get("ville_falsifisere")]
-    skylder = [n["id"] for n in noder if n.get("falsifiserbarhet")]
-    maa = [n["id"] for n in noder if _grunn(n)]
-    assert len(noder) == 126, f"atlaset endret storrelse: {len(noder)}"
+        f"{len(uten)} of {len(nodes)} node(s) have not taken a position on "
+        f"whether they can be felled: {uten[:8]}")
+    kan = [n["id"] for n in nodes if n.get("ville_falsifisere")]
+    skylder = [n["id"] for n in nodes if n.get("falsifiserbarhet")]
+    maa = [n["id"] for n in nodes if _grunn(n)]
+    assert len(nodes) == 126, f"the atlas changed size: {len(nodes)}"
     assert len(kan) == 31, (
-        f"falsifiserbare: {len(kan)} — forventet 31 (27 offentlige + 4 "
-        f"interne). Gikk tallet ned, mistet en node sin falsifikator")
+        f"falsifiable: {len(kan)} — expected 31 (27 public + 4 "
+        f"internal). If the number fell, a node lost its falsifier")
     assert len(skylder) == 4, (
-        f"med falsifiserbarhet-status: {len(skylder)} — forventet 4")
+        f"with a falsifiability status: {len(skylder)} — expected 4")
     assert len(maa) == 91, (
-        f"med skriftlig grunn: {len(maa)} — forventet 91. Gikk tallet ned, "
-        f"har en node faatt en falsifikator; det skal noen ha bestemt")
-    assert len(kan) + len(skylder) + len(maa) == len(noder), (
-        "minst en node har svart to ganger — se test_atlas_motsigelse.py")
+        f"with a written reason: {len(maa)} — expected 91. If the number fell, "
+        f"a node has been given a falsifier; someone must have decided that")
+    assert len(kan) + len(skylder) + len(maa) == len(nodes), (
+        "at least one node has answered twice — see test_atlas_motsigelse.py")
 
 
-def test_grunnen_er_en_deklarert_klasse(noder: list[dict]) -> None:
+def test_grunnen_er_en_deklarert_klasse(nodes: list[dict]) -> None:
     """A shared reason must be a DECLARED class, not a silent copy.
 
     Measured 2026-09-19: 91 of the 126 nodes carry a rationale, and they use
@@ -150,15 +155,15 @@ def test_grunnen_er_en_deklarert_klasse(noder: list[dict]) -> None:
     the same statement in two spellings.
     """
     tekster: dict[str, list[str]] = {}
-    for n in noder:
+    for n in nodes:
         t = _grunn(n)
         if t is None:
             continue
-        assert t.strip(), f"{n['id']}.{GRUNN} er tom — si hvorfor"
+        assert t.strip(), f"{n['id']}.{GRUNN} is empty — say why"
         assert len(t) >= 40, (
-            f"{n['id']}.{GRUNN} er {len(t)} tegn — for kort til aa bety noe")
+            f"{n['id']}.{GRUNN} is {len(t)} characters — too short to mean anything")
         assert t.strip().lower() not in PLASSHOLDERE, (
-            f"{n['id']}.{GRUNN} er en plassholder: {t!r}")
+            f"{n['id']}.{GRUNN} is a placeholder: {t!r}")
         tekster.setdefault(t, []).append(n["id"])
 
     def _nok(t: str) -> str:
@@ -178,15 +183,16 @@ def test_grunnen_er_en_deklarert_klasse(noder: list[dict]) -> None:
         f"the classes changed: {klasse} - expected [27, 63]. A node moved "
         f"between classes; that is a decision someone must make")
 
-def test_grunnen_navngir_ikke_feltet_den_erstatter(noder: list[dict]) -> None:
-    """`atlas_lesing._har_falsifikator` leser noden som TEKST.
+def test_grunnen_navngir_ikke_feltet_den_erstatter(nodes: list[dict]) -> None:
+    """`atlas_lesing._har_falsifikator` reads the node as TEXT.
 
-    Den spoer om strengen `ville_falsifisere` finnes i `json.dumps(node)` —
-    saa en grunn som skriver feltnavnet sitt ville telt som en falsifikator
-    baade i oppslaget og i navigasjonens `kan_felles`. Vakten staar her fordi
-    den er usynlig i dataene: den fyrer foerst naar noen omformulerer seg.
+    It asks whether the string `ville_falsifisere` occurs in
+    `json.dumps(node)` — so a reason that writes its own field name would
+    count as a falsifier both in the lookup and in the navigation's
+    `kan_felles`. The guard stands here because it is invisible in the data:
+    it fires only when someone rephrases.
     """
-    lekkasje = [n["id"] for n in noder if "ville_falsifisere" in (_grunn(n) or "")]
+    lekkasje = [n["id"] for n in nodes if "ville_falsifisere" in (_grunn(n) or "")]
     assert not lekkasje, (
-        f"{len(lekkasje)} node(r) skriver feltnavnet i grunnen sin og ville "
-        f"blitt talt som falsifiserbare: {lekkasje[:6]}")
+        f"{len(lekkasje)} node(s) write the field name in their reason and "
+        f"would be counted as falsifiable: {lekkasje[:6]}")

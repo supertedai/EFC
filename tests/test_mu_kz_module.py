@@ -1,15 +1,15 @@
-"""Tester for mu(k,z)-modulen (L-029).
+"""Tests for the mu(k,z) module (L-029).
 
-Modulen porterer aksjonspapirets lukkede uttrykk (eq. 24-31, 47-48,
-2) fra docs/papers/efc/EFC_Relativistic_Action.../src/
-efc_relativistic.py inn i motorlaget, saa growth-motoren kan
-sammenlignes mot den AVREDEDE mu(k,z) — ikke bare ansatzen mu(a).
+The module ports the action paper's closed-form expressions (eq. 24-31, 47-48,
+2) from docs/papers/efc/EFC_Relativistic_Action.../src/
+efc_relativistic.py into the engine layer, so the growth engine can be compared
+against the DERIVED mu(k,z) — not just the ansatz mu(a).
 
-Viktig aerlighet: modulen beregner mu(k,z) fra BAKGRUNNS-INNGANGER
-(phi_bar, phi_dot_bar, rho_bar, lambda_dot_bar). Den loser ikke
-bakgrunnsligningene — aksjonspapiret sier selv at en fullt
-selvkonsistent EFC-bakgrunn ikke finnes ennaa. Modulen ma derfor
-deklarere inngangene eksplisitt og aldri late som de er avledet.
+Important honesty: the module computes mu(k,z) from BACKGROUND INPUTS
+(phi_bar, phi_dot_bar, rho_bar, lambda_dot_bar). It does not solve the
+background equations — the action paper says itself that a fully
+self-consistent EFC background does not exist yet. The module must therefore
+declare the inputs explicitly and never pretend they are derived.
 """
 from __future__ import annotations
 
@@ -31,15 +31,15 @@ from efc_inference.engine.mu_kz import (
     gamma_prime_rho,
 )
 
-# Papir-eksempelparametre (defaults fra aksjonspapirets kode):
-# alpha = 0.01, og en bakgrunn valgt slik at mu ~ 0.94 (papirets
-# typiske verdi) ved de gitte a, k.
+# Paper example parameters (defaults from the action paper's code):
+# alpha = 0.01, and a background chosen so that mu ~ 0.94 (the paper's
+# typical value) at the given a, k.
 PARAMS = {
     "alpha": 0.01,
     "K0": 1.0,
     "rho_crit": 1.0,
     "gamma0": 1.0,
-    "M_Pl": 1.0,          # enheter: M_Pl^2 skalerer eps-ene
+    "M_Pl": 1.0,          # units: M_Pl^2 scales the epsilons
     "phi_bar": 0.5,
     "phi_dot_bar": 0.1,
     "lambda_dot_bar": 0.05,
@@ -105,8 +105,8 @@ def test_stiffness_response_eq29():
 
 
 def test_mu_eq28_og_stiffness_dominans():
-    """mu = (1 + eps_F + eps_K_resp) / (F * (1 + R)) — og for
-    stiffness-dominerte bakgrunner er mu < 1 (papirets prediksjon)."""
+    """mu = (1 + eps_F + eps_K_resp) / (F * (1 + R)) — and for
+    stiffness-dominated backgrounds mu < 1 (the paper's prediction)."""
     a, k = 0.7, 0.1
     K_bar = PARAMS["K0"] / (1 - PARAMS["rho_bar"] / PARAMS["rho_crit"])
     F_bar = 1.0 + PARAMS["alpha"] * PARAMS["phi_bar"]
@@ -120,7 +120,7 @@ def test_mu_eq28_og_stiffness_dominans():
     mu = compute_mu(eps_F, eps_K, F_bar, R)
     forventet = (1.0 + eps_F + eps_K) / (F_bar * (1.0 + R))
     assert np.isclose(mu, forventet)
-    # Stiffness-dominans: K_bar stor -> R dominerer -> mu < 1.
+    # Stiffness dominance: K_bar large -> R dominates -> mu < 1.
     K_stor = 10.0
     R2 = compute_stiffness_response(K_stor, gp, PARAMS["phi_dot_bar"],
                                     PARAMS["M_Pl"], F_bar, a, k)
@@ -141,12 +141,12 @@ def test_eta_og_sigma_eq27_31():
 
 
 def test_mukz_engine_compute_returnerer_mu_grid():
-    """Motoren tar (a, k)-koordinater og returnerer mu per punkt —
-    og deklarerer at bakgrunnen er INNGANG, ikke avledning."""
+    """The engine takes (a, k) coordinates and returns mu per point — and
+    declares that the background is INPUT, not derivation."""
     e = MuKZEngine()
     a_grid = np.array([0.5, 0.7, 0.9])
     k_grid = np.array([0.1, 0.2])
-    # coordinates: (a, k)-par
+    # coordinates: (a, k) pairs
     koordinater = np.array([[0.7, 0.1], [0.7, 0.2], [0.9, 0.1]])
     mu = e.compute(PARAMS, koordinater)
     assert mu.shape == (3,)
@@ -155,8 +155,8 @@ def test_mukz_engine_compute_returnerer_mu_grid():
 
 
 def test_mukz_engine_deklarerer_bakgrunn_som_inngang():
-    """Modulen skal aldri late som bakgrunnen er avledet — den er en
-    eksplisitt inngang inntil en selvkonsistent bakgrunn finnes."""
+    """The module must never pretend the background is derived — it is an
+    explicit input until a self-consistent background exists."""
     e = MuKZEngine()
     node = e.regime_node(PARAMS)
     tekst = json.dumps(node, ensure_ascii=False).lower()
@@ -166,8 +166,8 @@ def test_mukz_engine_deklarerer_bakgrunn_som_inngang():
 
 
 def test_k_rho_grenseoppforsel():
-    """K(rho) divergerer ved kritisk tetthet (inf for rho >= rho_crit)
-    — samme oppforsel som referansekoden efc_relativistic.py:26-29."""
+    """K(rho) diverges at the critical density (inf for rho >= rho_crit)
+    — same behaviour as the reference code efc_relativistic.py:26-29."""
     from efc_inference.engine.mu_kz import k_rho
     assert np.isinf(k_rho(PARAMS, PARAMS["rho_crit"]))
     assert np.isinf(k_rho(PARAMS, PARAMS["rho_crit"] * 1.5))
@@ -176,8 +176,8 @@ def test_k_rho_grenseoppforsel():
 
 
 def test_eps_er_dimensjonslose_skalering():
-    """Dimensjonsloshets-verifisering: eps_F skalerer som 1/k^2 og R
-    som 1/k^4 — forholdene er noyaktige, som dokumentasjonen pastar."""
+    """Dimensionlessness verification: eps_F scales as 1/k^2 and R as 1/k^4
+    — the ratios are exact, as the documentation claims."""
     a = 0.7
     F_bar = 1.0 + PARAMS["alpha"] * PARAMS["phi_bar"]
     K_bar = PARAMS["K0"] / (1 - PARAMS["rho_bar"] / PARAMS["rho_crit"])

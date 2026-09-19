@@ -1,8 +1,8 @@
-# DEPRECATED (2026-09-17, publish-fanout deleg_f566784a): denne er
-# GitHub-only og kjenner ikke Figshare/DOI/release-binding/menneskegaten.
-# KANONISK: efc-preprint-release-helperen (/opt/agent-work/Hetzner/hermes-skills/
-# efc-preprint-release/scripts/efc_release_helper.py) via efc-publisering-MCP.
-# Ikke bruk denne for nye releases; fjernes når callere er migrert.
+# DEPRECATED (2026-09-17, publish-fanout deleg_f566784a): this one is
+# GitHub-only and knows nothing of Figshare/DOI/release binding/human gate.
+# CANONICAL: the efc-preprint-release helper (/opt/agent-work/Hetzner/hermes-skills/
+# efc-preprint-release/scripts/efc_release_helper.py) via the efc-publisering MCP.
+# Do not use this for new releases; removed once callers are migrated.
 #!/usr/bin/env python3
 """Fail-closed GitHub publisher for a verified EFC release candidate.
 

@@ -99,9 +99,9 @@ class Rigg(unittest.TestCase):
         self.assertIn("x1.json: not a valid schema", problems[0])
 
     def test_vandreren_ser_bar_type_object_tomt_skjema_og_typet_map_men_ikke_et_navn(self):
-        """Reviewfunn runde 1: `{"type":"object"}`, `{}` og `additionalProperties: {schema}`
-        slapp oppfunne noekler gjennom, mens et property som HETER `properties`
-        ble flagget som skjema."""
+        """Review finding round 1: `{"type":"object"}`, `{}` and `additionalProperties: {schema}`
+        let invented keys through, while a property that is NAMED `properties`
+        was flagged as a schema."""
         sch = json.loads(json.dumps(CLOSED))
         sch["properties"]["bare"] = {"type": "object"}
         sch["properties"]["anything"] = {}

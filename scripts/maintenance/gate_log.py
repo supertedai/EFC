@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""gate_log.py — ekstern audit-logg for sikkerhetskritiske hendelser.
+"""gate_log.py — external audit log for security-critical events.
 
-Repo-loggen er en lesbar projeksjon; DENNE loggen ligger UTENFOR repoet
-(/opt/opus-ledger/efc-gate-hendelser.jsonl) og er det en repo-admin
-ikke kan omskrive usett. Skriver append-only, atomisk, med monoton
-sekvens.
+The repo log is a readable projection; THIS log lives OUTSIDE the repo
+(/opt/opus-ledger/efc-gate-hendelser.jsonl) and is what a repo admin
+cannot rewrite unseen. Writes append-only, atomically, with a monotonic
+sequence.
 
-Bruk: python3 scripts/maintenance/gate_log.py <gate_type> <kort> <utfall> [beskrivelse]
-Exit: 0 = skrevet og lest tilbake, 1 = feil.
+Usage: python3 scripts/maintenance/gate_log.py <gate_type> <kort> <utfall> [beskrivelse]
+Exit: 0 = written and read back, 1 = error.
 """
 from __future__ import annotations
 
@@ -18,47 +18,47 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-STI = Path(os.environ.get("EFC_GATE_LOGG", "/opt/opus-ledger/efc-gate-hendelser.jsonl"))
+LOG_PATH = Path(os.environ.get("EFC_GATE_LOGG", "/opt/opus-ledger/efc-gate-hendelser.jsonl"))
 
 
-def hoved() -> int:
+def main() -> int:
     if len(sys.argv) < 4:
-        print("bruk: gate_log.py <gate_type> <kort> <utfall> [beskrivelse]", file=sys.stderr)
+        print("usage: gate_log.py <gate_type> <kort> <utfall> [beskrivelse]", file=sys.stderr)
         return 2
-    gate_type, kort, utfall = sys.argv[1], sys.argv[2], sys.argv[3]
-    beskrivelse = sys.argv[4] if len(sys.argv) > 4 else ""
-    hendelse = {
+    gate_type, card, outcome = sys.argv[1], sys.argv[2], sys.argv[3]
+    description = sys.argv[4] if len(sys.argv) > 4 else ""
+    event = {
         "sekvens": None, "ts": datetime.now(timezone.utc).isoformat(),
-        "gate": gate_type, "kort": kort, "utfall": utfall,
-        "beskrivelse": beskrivelse, "skrevet_av": os.environ.get("USER", "ukjent"),
+        "gate": gate_type, "kort": card, "utfall": outcome,
+        "beskrivelse": description, "skrevet_av": os.environ.get("USER", "unknown"),
     }
     try:
-        if STI.is_file():
-            linjer = [l for l in STI.read_text(encoding="utf-8").splitlines() if l.strip()]
-            siste = json.loads(linjer[-1]) if linjer else {"sekvens": 0}
-            hendelse["sekvens"] = int(siste.get("sekvens") or 0) + 1
+        if LOG_PATH.is_file():
+            lines = [l for l in LOG_PATH.read_text(encoding="utf-8").splitlines() if l.strip()]
+            last = json.loads(lines[-1]) if lines else {"sekvens": 0}
+            event["sekvens"] = int(last.get("sekvens") or 0) + 1
         else:
-            STI.parent.mkdir(parents=True, exist_ok=True)
-            hendelse["sekvens"] = 1
-        # atomisk: temp-fil i samme katalog, så rename
-        fd, tmp = tempfile.mkstemp(dir=str(STI.parent), prefix=".gate-", suffix=".tmp")
+            LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+            event["sekvens"] = 1
+        # atomic: temp file in the same directory, then rename
+        fd, tmp = tempfile.mkstemp(dir=str(LOG_PATH.parent), prefix=".gate-", suffix=".tmp")
         with os.fdopen(fd, "w", encoding="utf-8") as f:
-            f.write(json.dumps(hendelse, ensure_ascii=False) + "\n")
-        with open(STI, "a", encoding="utf-8") as f:
-            f.write(json.dumps(hendelse, ensure_ascii=False) + "\n")
+            f.write(json.dumps(event, ensure_ascii=False) + "\n")
+        with open(LOG_PATH, "a", encoding="utf-8") as f:
+            f.write(json.dumps(event, ensure_ascii=False) + "\n")
         os.unlink(tmp)
         # readback
-        lest = [l for l in STI.read_text(encoding="utf-8").splitlines() if l.strip()]
-        ok = json.loads(lest[-1]).get("sekvens") == hendelse["sekvens"]
+        read = [l for l in LOG_PATH.read_text(encoding="utf-8").splitlines() if l.strip()]
+        ok = json.loads(read[-1]).get("sekvens") == event["sekvens"]
         if not ok:
-            print("readback feilet — linja sto ikke på disk", file=sys.stderr)
+            print("readback failed — the line was not on disk", file=sys.stderr)
             return 1
-        print(f"gate-hendelse {hendelse['sekvens']}: {gate_type} {kort} {utfall}")
+        print(f"gate-event {event['sekvens']}: {gate_type} {card} {outcome}")
         return 0
     except OSError as e:
-        print(f"feil: {e}", file=sys.stderr)
+        print(f"error: {e}", file=sys.stderr)
         return 1
 
 
 if __name__ == "__main__":
-    raise SystemExit(hoved())
+    raise SystemExit(main())

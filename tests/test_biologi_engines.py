@@ -1,14 +1,14 @@
-"""Maalebaserte tester for fysiologiske/okologiske lag.
+"""Measurement-based tests for the physiological/ecological layers.
 
-Referanser (uavhengige av motorens beregning):
-* Janeway's Immunobiology, 9th ed., ch. 11: sekundær antistoffrespons er
-  omtrent 10--100 ganger større og raskere enn primærresponsen (5--10 døgn
-  mot 1--3 døgn).
-* Borbely (1982), Hum Neurobiol 1:195--204, og Carskadon & Dement (2011):
-  søvnsyklus omtrent 90 min, 4--6 sykluser/natt, NREM ca. 75--80 %.
-* Scheffer et al. (2001), Nature 413:591--596: alternative stabile
-  økosystemtilstander; Lotka--Volterra-perioden er 2π/sqrt(alpha*delta)
-  for den målbare idealiserte modellen (ikke en universell naturkonstant).
+References (independent of the engine's computation):
+* Janeway's Immunobiology, 9th ed., ch. 11: the secondary antibody
+  response is roughly 10--100 times larger and faster than the primary
+  response (5--10 days versus 1--3 days).
+* Borbely (1982), Hum Neurobiol 1:195--204, and Carskadon & Dement (2011):
+  sleep cycle about 90 min, 4--6 cycles/night, NREM ca. 75--80 %.
+* Scheffer et al. (2001), Nature 413:591--596: alternative stable
+  ecosystem states; the Lotka--Volterra period is 2π/sqrt(alpha*delta)
+  for the measurable idealised model (not a universal natural constant).
 """
 import numpy as np
 

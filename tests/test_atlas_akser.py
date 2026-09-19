@@ -1,20 +1,20 @@
-"""ALLE akser — ikke de seks jeg tilfeldigvis bygde.
+"""ALL axes — not the six I happened to build.
 
-Morten, 2026-09-17: «Episenter, vektor, felt, domene, kryssdomene,
-isomorphisme, hva som maales, hvem maaler, hvor maales, hvilke
-maaleinstrument, via proxyer, fraktaler av totalbildet, emergence ala
-regnbuen og BAO, loops, bevisstheten, paradigme, konsensus, akademia osv
-osv... let og finn alle her og paase at du kan rotere rundt alle akser og
-hele atlaset saa du kan navigere deg rundt effektivt».
+Morten, 2026-09-17: «Epicentre, vector, field, domain, cross-domain,
+isomorphism, what is measured, who measures, where it is measured, which
+measuring instrument, via proxies, fractals of the whole picture, emergence à la
+the rainbow and BAO, loops, consciousness, paradigm, consensus, academia etc.
+etc... search and find them all here and make sure you can rotate around all axes and
+the whole atlas so that you can navigate around efficiently».
 
-MAALT: atlaset bar 21 toppnivaa-felt, ALLE obligatoriske paa alle 86 noder.
-Rotasjonen dekket SEKS. De femten andre — emergence.loop, fractal.pattern,
+MEASURED: the atlas carried 21 top-level fields, ALL mandatory on all 86 nodes.
+The rotation covered SIX. The other fifteen — emergence.loop, fractal.pattern,
 coupling, observer, epistemikk, maale_paradigme, nivaa, stipulasjoner,
-buffer, ontology, analogi (isomorfismen), falsifiserbarhet, prediction,
-settlement, synlighet — fantes i dataene og var usynlige for verktoeyet.
+buffer, ontology, analogi (the isomorphism), falsifiserbarhet, prediction,
+settlement, synlighet — were in the data and were invisible to the tool.
 
-Loesningen er ikke tjue flagg. Det er én generisk rotasjon som finner
-aksene selv, saa en akse som legges til i morgen ogsaa virker i morgen.
+The solution is not twenty flags. It is one generic rotation that finds the
+axes itself, so an axis added tomorrow also works tomorrow.
 """
 from __future__ import annotations
 
@@ -42,7 +42,7 @@ class TestAkselisten:
                      "ontology", "observer", "emergence", "fractal",
                      "coupling", "perspektiv", "stipulasjoner", "epistemikk",
                      "maale_paradigme", "nivaa", "synlighet"):
-            assert felt in a, f"aksen `{felt}` er usynlig for verktoeyet"
+            assert felt in a, f"the axis `{felt}` is invisible to the tool"
 
     def test_hver_akse_har_antall_og_eksempelverdier(self, atlas: dict) -> None:
         a = atlas_lesing.akser(atlas)
@@ -51,30 +51,30 @@ class TestAkselisten:
         assert set(verdier) <= {"paradigme", "konsensus", "akademia", "agnostikk"}
 
     def test_nestede_akser_naas_med_dotted_sti(self, atlas: dict) -> None:
-        """Emergence, epistemikk og nivaa er ikke toppnivaa-verdier."""
+        """Emergence, epistemikk and nivaa are not top-level values."""
         a = atlas_lesing.akser(atlas)
         for sti in ("emergence.loop", "epistemikk.sannhetsstatus",
                     "maale_paradigme.koordinater", "nivaa.tidsskala",
                     "measure.placement", "observer.awareness"):
-            assert sti in a, f"den nestede aksen `{sti}` er usynlig"
+            assert sti in a, f"the nested axis `{sti}` is invisible"
 
 
 class TestGeneriskRotasjon:
 
     def test_roter_paa_en_akse_med_verdi(self, atlas: dict) -> None:
-        """Verdien kommer fra dataene, ikke fra min antakelse om dem."""
+        """The value comes from the data, not from my assumption about them."""
         verdier = atlas_lesing.akser(atlas)["perspektiv"][1]
-        assert verdier, "perspektiv-aksen har ingen verdier"
+        assert verdier, "the perspektiv axis has no values"
         t = atlas_lesing.roter_akse(atlas, "perspektiv", verdier[0])
-        assert t, f"fant ingen noder med perspektiv={verdier[0]}"
+        assert t, f"found no nodes with perspektiv={verdier[0]}"
         assert all(n["perspektiv"] == verdier[0] for n in t)
 
     def test_roter_paa_nested_sti(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "emergence.loop", None)
-        assert len(t) == len(atlas["noder"]), "alle noder har en loekke"
+        assert len(t) == len(atlas["noder"]), "all nodes have a loop"
 
     def test_roter_paa_isomorfismen(self, atlas: dict) -> None:
-        """«isomorphisme» — det heter `analogi` i atlaset. 14 noder."""
+        """«isomorphisme» — it is called `analogi` in the atlas. 14 nodes."""
         t = atlas_lesing.roter_akse(atlas, "analogi", None)
         assert len(t) == 14, f"analogi: {len(t)}"
 
@@ -85,20 +85,20 @@ class TestGeneriskRotasjon:
 
     def test_ukjent_akse_feiler_med_forslag(self, atlas: dict) -> None:
         with pytest.raises(KeyError) as e:
-            atlas_lesing.roter_akse(atlas, "finnes.ikke", None)
-        assert "Nærliggende" in str(e.value), "feilen skal foreslaa alternativer"
+            atlas_lesing.roter_akse(atlas, "no.such.axis", None)
+        assert "Nærliggende" in str(e.value), "the error must suggest alternatives"
 
     def test_ukjent_verdi_paa_kjent_akse_gir_tomt_ikke_feil(self, atlas: dict) -> None:
-        t = atlas_lesing.roter_akse(atlas, "perspektiv", "finnes-ikke")
+        t = atlas_lesing.roter_akse(atlas, "perspektiv", "no-such-value")
         assert t == []
 
 
 class TestNavnelaget:
-    """MORTENS navn mot ATLASETS stier — tre ulike klasser.
+    """MORTEN'S names against the ATLAS'S paths — three different classes.
 
-    Maalt 2026-09-17: `isomorphisme` er `analogi`, `loop` er
-    `emergence.loop`, og `paradigme` er en VERDI av `perspektiv` — ikke en
-    akse. Uten dette laget ser alle tre like ut: «finnes ikke».
+    Measured 2026-09-17: `isomorphisme` is `analogi`, `loop` is
+    `emergence.loop`, and `paradigme` is a VALUE of `perspektiv` — not an
+    axis. Without this layer all three look alike: «does not exist».
     """
 
     def test_alias_isomorphisme_er_analogi(self, atlas: dict) -> None:
@@ -110,7 +110,7 @@ class TestNavnelaget:
         assert len(t) == len(atlas["noder"])
 
     def test_verdi_paradigme_loeses_som_perspektiv_verdi(self, atlas: dict) -> None:
-        """TREDJE KLASSE: `paradigme` er ikke en akse. Det er en verdi."""
+        """THIRD CLASS: `paradigme` is not an axis. It is a value."""
         t = atlas_lesing.roter_akse(atlas, "paradigme")
         assert t
         assert all(n["perspektiv"] == "paradigme" for n in t)
@@ -121,35 +121,35 @@ class TestNavnelaget:
                           ("hvem_maaler", "measure.measurer"),
                           ("hvor_maales", "measure.placement"),
                           ("maaleinstrument", "measure.instrument")):
-            assert sti in a, f"{navn} -> {sti} mangler"
+            assert sti in a, f"{navn} -> {sti} is missing"
 
     def test_ukjent_navn_feiler_fortsatt(self, atlas: dict) -> None:
         with pytest.raises(KeyError):
-            atlas_lesing.roter_akse(atlas, "finnes.ikke.her")
+            atlas_lesing.roter_akse(atlas, "no.such.axis.here")
 
 
 class TestOversikten:
-    """«ALT dette skal vaere globalt i atlaset og du skal umiddelbart vite
-    hva som er hva hvor osv.» — ikke et soek. Tilstanden."""
+    """«ALL of this must be global in the atlas and you must immediately know
+    what is what where etc.» — not a search. The state."""
 
     def test_oversikt_gir_aksene_som_skiller(self, atlas: dict) -> None:
         o = dict(atlas_lesing.oversikt(atlas))
         for sti in ("perspektiv", "synlighet", "epistemikk.sannhetsstatus",
                     "nivaa.indeks", "stipulasjoner.stipulert_av_oss"):
-            assert sti in o, f"oversikten skjuler `{sti}`"
+            assert sti in o, f"the overview hides `{sti}`"
 
     def test_oversikten_utelater_konstanter(self, atlas: dict) -> None:
-        """En akse med én verdi skiller ingenting — den skal bort."""
+        """An axis with one value separates nothing — it must go."""
         o = dict(atlas_lesing.oversikt(atlas))
         for sti, ford in o.items():
-            assert len(ford) > 1, f"`{sti}` er en konstant og skal ikke vises"
+            assert len(ford) > 1, f"`{sti}` is a constant and must not be shown"
 
     def test_oversikten_utelater_fritekst(self, atlas: dict) -> None:
-        """«Umiddelbart» betyr at det maa kunne leses paa én linje."""
+        """«Immediately» means it must be readable on one line."""
         o = dict(atlas_lesing.oversikt(atlas))
         for sti, ford in o.items():
             for v, _ in ford[:8]:
-                assert len(v) <= 34, f"`{sti}` har fritekstverdien {v[:40]!r}"
+                assert len(v) <= 34, f"`{sti}` has the free-text value {v[:40]!r}"
 
     def test_tellingen_stemmer_med_nodene(self, atlas: dict) -> None:
         o = dict(atlas_lesing.oversikt(atlas))
@@ -157,4 +157,4 @@ class TestOversikten:
         fra_data = {}
         for n in atlas["noder"]:
             fra_data[n["perspektiv"]] = fra_data.get(n["perspektiv"], 0) + 1
-        assert persp == fra_data, "oversikten og dataene er uenige"
+        assert persp == fra_data, "the overview and the data disagree"

@@ -1,16 +1,16 @@
-"""Kan atlaset ROTERES — ikke bare slaaS opp?
+"""Can the atlas be ROTATED — not just looked up?
 
-Morten, 2026-09-17: «du skal umiddelbart se episenter, felt, domene,
-paradigme, konsensus, akademia, vektor, maal, maaler, maaleinstrument,
-emergence, proxy, osv i alle ledd for alt som ligger der saa du kan
-navigere deg enkelt rundt».
+Morten, 2026-09-17: «you must immediately see epicentre, field, domain,
+paradigm, consensus, academia, vector, goal, measurer, measuring instrument,
+emergence, proxy, etc. in every link for everything that lies there, so that
+you can navigate easily around».
 
-Maalt: `atlas_lesing.py` hadde fire flagg — `--emne`, `--ref`, `--hent`,
-`--alle`. Den kunne slaa opp et emne og liste alt. Den kunne ikke filtrere
-paa `perspektiv`, ikke vise proxy-kjeder, ikke skille en maalt node fra en
-avledet. Rotasjonen fantes ikke.
+Measured: `atlas_lesing.py` had four flags — `--emne`, `--ref`, `--hent`,
+`--alle`. It could look up a topic and list everything. It could not filter
+on `perspektiv`, not show proxy chains, not distinguish a measured node from a
+derived one. The rotation did not exist.
 
-Denne filen laaser den.
+This file locks it.
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ class TestRotasjon:
 
     def test_filtrer_paa_perspektiv(self, atlas: dict) -> None:
         p = atlas_lesing.roter(atlas, perspektiv="paradigme")
-        assert p, "ingen noder med perspektiv=paradigme"
+        assert p, "no nodes with perspektiv=paradigme"
         assert all(n.get("perspektiv") == "paradigme" for n in p)
 
     def test_filtrer_paa_fase(self, atlas: dict) -> None:
@@ -48,31 +48,31 @@ class TestRotasjon:
         assert all(n.get("buss_domene") == "kosmos.kosmologi" for n in d)
 
     def test_maaleform_skiller_maalt_fra_avledet(self, atlas: dict) -> None:
-        """Det du spurte om: hvilke MAALER, og med hva."""
+        """What you asked about: which MEASURE, and with what."""
         former = atlas_lesing.maaleformer(atlas)
         assert set(former) >= {"instrument", "avledet", "ingen"}, set(former)
-        assert former["instrument"], "ingen instrument-noder funnet"
+        assert former["instrument"], "no instrument nodes found"
 
     def test_proxy_kjeder_kan_listes(self, atlas: dict) -> None:
-        """Hva gaar via hva — i alle ledd."""
+        """What goes via what — in every link."""
         kjeder = atlas_lesing.proxy_kjeder(atlas)
-        assert kjeder, "ingen proxy-kjeder funnet"
+        assert kjeder, "no proxy chains found"
         navn, ledd = next(iter(kjeder.items()))
         assert isinstance(ledd, list) and len(ledd) > 0
 
     def test_roter_rundt_en_node_gir_alle_felt(self, atlas: dict) -> None:
-        """Kjernen: én node, ALLE felt — ikke bare de tre jeg husker."""
+        """The core: one node, ALL fields — not just the three I remember."""
         r = atlas_lesing.roter(atlas, node="efc.growth_engine")
-        assert r, "fant ikke noden"
+        assert r, "did not find the node"
         n = r[0]
         for felt in ("episenter", "regime", "measure", "emergence", "coupling",
                      "observer", "buffer", "fractal", "ontology", "epistemikk",
                      "maale_paradigme", "stipulasjoner", "nivaa"):
-            assert felt in n, f"roter() skjuler {felt}"
+            assert felt in n, f"roter() hides {felt}"
 
     def test_ukjent_node_feiler_hoeyt(self, atlas: dict) -> None:
         with pytest.raises(KeyError):
-            atlas_lesing.roter(atlas, node="finnes.ikke")
+            atlas_lesing.roter(atlas, node="no.such.node")
 
     def test_s_akse_roterer_med_regimer(self, atlas: dict) -> None:
         treff = atlas_lesing.roter_akse(atlas, "S")

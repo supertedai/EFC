@@ -100,9 +100,9 @@ class Rigg(unittest.TestCase):
         self.assertTrue(any("efc:B is not declared" in p for p in problems), problems)
 
     def test_fragmentanker_kreves_og_maa_peke_paa_riktige_linjer(self):
-        """t_91579b0e: «delstreng hvor som helst i fila» er ikke evidens i en
-        fil paa tusenvis av linjer. Ankeret er en GitHub-lenke, saa
-        identifikatoren er den klikkbare evidensen."""
+        """t_91579b0e: «a substring anywhere in the file» is not evidence in a
+        file of thousands of lines. The anchor is a GitHub link, so
+        the identifier is the clickable evidence."""
         (self.tmp / "README.md").write_text("intro\nAlpha is the first.\ntail\n", encoding="utf-8")
         q = self.reg["@graph"][1]["skos:definition"]["@value"]
         for anker, ventet in ((GH + "README.md", "needs a line fragment"), (GH + "README.md#L1", "lines 1-1"), (GH + "README.md#L99", "but README.md has")):
@@ -153,7 +153,7 @@ class Rigg(unittest.TestCase):
         self.assertEqual(self.mod.check(self.tmp), [])
 
     def test_definisjon_som_ikke_er_ordrett_eller_mangler_quotedFrom_er_et_problem(self):
-        """ADR-024-vernet i PORTEN: en parafrasert eller forfattet definisjon feller."""
+        """The ADR-024 protection in the GATE: a paraphrased or authored definition fails."""
         (self.tmp / "README.md").write_text("Alpha is the first.\n", encoding="utf-8")
         _write(self.tmp / "figshare" / "doi-map.json", {"papers": [{"doi": "10.6084/m9.figshare.1"}, {"doi": "10.6084/m9.figshare.2"}]})
         self.mod.apply(self.tmp)
@@ -235,10 +235,10 @@ class Rigg(unittest.TestCase):
         self.assertEqual(b["definition_status"], "gap")
 
     def test_kanonisk_status_og_finere_type_krever_attestasjon(self):
-        """t_5112246d, og reviewens funn: den første utgaven fritok
-        entityType `concept` som «sant per konstruksjon», og da kunne en
-        modell registrere et PAPIR som begrep og fylle alt annet mekanisk.
-        Registermedlemskap er nettopp det en modell kan gi seg selv."""
+        """t_5112246d, and the review's finding: the first version exempted
+        entityType `concept` as «true by construction», and then a
+        model could register a PAPER as a concept and fill everything else mechanically.
+        Registry membership is precisely what a model can grant itself."""
         c = self.reg["@graph"][1]
         att = {"efc:attests": {"@id": "efc:registryStatus"}, "efc:attestedValue": "canonical",
                "efc:attestedBy": {"@id": self.mod.ATTESTER_FALLBACK}, "dcterms:date": "2026-09-06",
@@ -282,10 +282,10 @@ class Rigg(unittest.TestCase):
         self.assertEqual(self.mod.check(self.tmp), [])
 
     def test_attestorene_er_alle_forfattere_i_citation_cff(self):
-        """Review, to runder: den første utgaven tok FØRSTE orcid-linje i fila.
-        Da var docstringens løfte om at en utvidet forfatterliste utvider hvem
-        som kan signere usant, og en `references:`-blokk kunne kapre
-        signaturmyndigheten."""
+        """Review, two rounds: the first version took the FIRST orcid line in the file.
+        Then the docstring's promise that an extended author list extends who
+        can sign was untrue, and a `references:` block could capture the
+        signing authority."""
         (self.tmp / "CITATION.cff").unlink()
         who, note = self.mod.attesters(self.tmp)
         self.assertEqual((who, bool(note)), ({self.mod.ATTESTER_FALLBACK}, True), "no CITATION.cff is reported, not silent")

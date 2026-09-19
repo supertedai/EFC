@@ -1,25 +1,25 @@
-"""Låser navbar-kontrakten på skriveveiene til de offentlige sidene (t_41d80135).
+"""Locks the navbar contract on the write paths of the public pages (t_41d80135).
 
-Navbaren har én eier: ``efc_navbar_sync.py``. Den rendrer den kanoniske
-blokken for GJELDENDE side — med den røde «du er her»-markeringen
-(``color:#c22``). ``_nav_helper.ensure_nav()`` bar tidligere sin egen kopi av
-navbaren UTEN markeringen, så enhver skriver som kalte den gjorde en kanonisk
-side om til ``navbar_drift``: målt 2026-09-17 kom ``EFC_Changelog.html`` ut av
-skriveveien uten ``color:#c22;`` og ``efc_navbar_sync.py --check`` svarte rc=2.
-Driften var usynlig for side-innholdssjekkene fordi de ikke ser navbaren.
+The navbar has one owner: ``efc_navbar_sync.py``. It renders the canonical
+block for the CURRENT page — with the red "you are here" marker
+(``color:#c22``). ``_nav_helper.ensure_nav()`` previously carried its own copy of
+the navbar WITHOUT the marker, so any writer that called it turned a canonical
+page into ``navbar_drift``: measured 2026-09-17, ``EFC_Changelog.html`` came out of the
+write path without ``color:#c22;`` and ``efc_navbar_sync.py --check`` answered rc=2.
+The drift was invisible to the page-content checks because they do not see the navbar.
 
-Det som låses her:
-  1. ``ensure_nav`` uten sidens navn rører ikke navbaren i det hele tatt.
-  2. ``ensure_nav`` med sidens navn gjenoppretter nøyaktig den kanoniske
-     blokken for den siden, og er idempotent.
-  3. En skriving fra hver av de to skriverne (``efc_ai_brain.write_page`` og
-     ``efc_ledger_autofill.skriv_side``) til en driftet side etterlater den
-     EKTE gaten grønn: ``efc_navbar_sync.main(["--check"]) == 0``.
-  4. ``efc_ledger_autofill.main`` skriver begge sidene gjennom ``skriv_side``,
-     så veien om det kanoniske navnet ikke kan omgås.
+What is locked here:
+  1. ``ensure_nav`` without the page's name does not touch the navbar at all.
+  2. ``ensure_nav`` with the page's name restores exactly the canonical
+     block for that page, and is idempotent.
+  3. A write from each of the two writers (``efc_ai_brain.write_page`` and
+     ``efc_ledger_autofill.skriv_side``) to a drifted page leaves the
+     REAL gate green: ``efc_navbar_sync.main(["--check"]) == 0``.
+  4. ``efc_ledger_autofill.main`` writes both pages through ``skriv_side``,
+     so the path via the canonical name cannot be bypassed.
 
-Skrivingene går til en sandkasse-kopi av ``docs/public``; verken repoet eller
-de ekte sidene berøres.
+The writes go to a sandbox copy of ``docs/public``; neither the repo nor
+the real pages are touched.
 """
 from __future__ import annotations
 
@@ -41,7 +41,7 @@ SIDEN = "EFC_Changelog.html"
 
 
 def _legacy_nav() -> str:
-    """Navbaren slik den gamle `_nav_helper`-kopien skrev den (uten markering)."""
+    """The navbar as the old `_nav_helper` copy wrote it (without the marker)."""
     linjer = [sync.NAV_OPEN]
     for i, (href, label) in enumerate(sync.NAV_ENTRIES):
         style = ("font-weight:600;" if i == len(sync.NAV_ENTRIES) - 1
@@ -52,14 +52,14 @@ def _legacy_nav() -> str:
 
 
 def _driftet(tekst: str, side: str) -> str:
-    """Bytt ut den kanoniske navbaren med den gamle, markeringsløse varianten."""
+    """Replace the canonical navbar with the old, marker-less variant."""
     kanonisk = sync.render_nav(side)
-    assert kanonisk in tekst, f"{side}: fant ingen kanonisk navbar å drifte fra"
+    assert kanonisk in tekst, f"{side}: found no canonical navbar to drift from"
     return tekst.replace(kanonisk, _legacy_nav(), 1)
 
 
 def _sandkasse(tmp_path: Path) -> Path:
-    """Kopi av docs/public med alle sidene gaten sjekker."""
+    """Copy of docs/public with all the pages the gate checks."""
     pub = tmp_path / "docs" / "public"
     pub.mkdir(parents=True, exist_ok=True)
     for side in sync.ALL_PAGES:
@@ -69,30 +69,30 @@ def _sandkasse(tmp_path: Path) -> Path:
 
 
 def test_ensure_nav_uten_side_rorer_ikke_navbaren():
-    """Uten sidens navn kan en skriver ikke vite hvilken markering som gjelder."""
+    """Without the page's name a writer cannot know which marker applies."""
     tekst = (PUBLIC / SIDEN).read_text(encoding="utf-8")
-    etter = _nav_helper.ensure_nav(tekst)
-    assert etter == tekst
-    assert sync.render_nav(SIDEN) in etter
+    rendered = _nav_helper.ensure_nav(tekst)
+    assert rendered == tekst
+    assert sync.render_nav(SIDEN) in rendered
 
 
 def test_ensure_nav_med_side_reparerer_drift_og_er_idempotent():
     tekst = (PUBLIC / SIDEN).read_text(encoding="utf-8")
     driftet = _driftet(tekst, SIDEN)
-    assert sync.render_nav(SIDEN) not in driftet, "fixturen er ikke ekte drift"
+    assert sync.render_nav(SIDEN) not in driftet, "the fixture is not real drift"
 
     reparert = _nav_helper.ensure_nav(driftet, SIDEN)
     assert sync.render_nav(SIDEN) in reparert
-    assert "color:#c22;" in reparert, "markeringen for gjeldende side mangler"
-    assert reparert == tekst, "reparasjonen ga ikke den kanoniske siden tilbake"
+    assert "color:#c22;" in reparert, "the marker for the current page is missing"
+    assert reparert == tekst, "the repair did not give the canonical page back"
     assert _nav_helper.ensure_nav(reparert, SIDEN) == reparert
 
-    # Full sti er også en gyldig sidereferanse.
+    # A full path is also a valid page reference.
     assert _nav_helper.ensure_nav(driftet, str(PUBLIC / SIDEN)) == tekst
 
 
 def test_nav_helper_har_ingen_egen_navbar():
-    """Rotårsaken: modulen skal ikke lenger bære sin egen navbar-kopi."""
+    """The root cause: the module shall no longer carry its own navbar copy."""
     kilde = (MAINT / "_nav_helper.py").read_text(encoding="utf-8")
     assert "CANONICAL_NAV_HTML" not in kilde
     assert 'href="EFC_Elevator_Pitch.html"' not in kilde
@@ -106,7 +106,7 @@ def test_ai_brain_skriving_holder_navbaren_kanonisk(tmp_path, monkeypatch):
     monkeypatch.setattr(sync, "PUBLIC_ROOT", pub)
     monkeypatch.setattr(brain, "PUBLIC_PAGES", {"changelog": str(sti)})
 
-    assert sync.main(["--check"]) == 2, "gaten skal stå rødt på fixturen før skriving"
+    assert sync.main(["--check"]) == 2, "the gate shall stand red on the fixture before writing"
 
     brain.write_page("changelog", brain.read_page("changelog") + "\n<li>nytt</li>\n")
 
@@ -126,7 +126,7 @@ def test_ledger_autofill_skriving_holder_navbaren_kanonisk(tmp_path, monkeypatch
     monkeypatch.setattr(autofill, "LEDGER", str(pub / sider[0]))
     monkeypatch.setattr(autofill, "CHANGELOG", str(pub / sider[1]))
 
-    assert sync.main(["--check"]) == 2, "gaten skal stå rødt på fixturen før skriving"
+    assert sync.main(["--check"]) == 2, "the gate shall stand red on the fixture before writing"
 
     for sti in (autofill.LEDGER, autofill.CHANGELOG):
         tekst = Path(sti).read_text(encoding="utf-8")
@@ -139,7 +139,7 @@ def test_ledger_autofill_skriving_holder_navbaren_kanonisk(tmp_path, monkeypatch
 
 
 def test_autofill_main_skriver_begge_sidene_gjennom_skriv_side():
-    """main() skal ikke ha sin egen skrivevei forbi det kanoniske navnet."""
+    """main() shall not have its own write path past the canonical name."""
     tre = ast.parse((MAINT / "efc_ledger_autofill.py").read_text(encoding="utf-8"))
     main = next(n for n in ast.walk(tre)
                 if isinstance(n, ast.FunctionDef) and n.name == "main")
@@ -156,4 +156,4 @@ def test_autofill_main_skriver_begge_sidene_gjennom_skriv_side():
         and len(k.args) > 1
         and isinstance(k.args[1], ast.Constant) and k.args[1].value == "w"
     ]
-    assert egne_skrivinger == [], "main() skriver en offentlig side utenom skriv_side()"
+    assert egne_skrivinger == [], "main() writes a public page outside skriv_side()"

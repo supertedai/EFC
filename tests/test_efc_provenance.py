@@ -1,25 +1,26 @@
-"""Tester for scripts/maintenance/efc_provenance_check.py — C13.
+"""Tests for scripts/maintenance/efc_provenance_check.py — C13.
 
-Kortet t_20a3c257: fire DOI-er har et maalt avvik mellom doi.org sitt arkiv og
-repo-pakken. Avviket registreres i pakken (metadata.json -> provenance), og
-denne testen er det som hindrer at registreringen blir dekorasjon.
+Card t_20a3c257: four DOIs have a measured discrepancy between doi.org's
+archive and the repo package. The discrepancy is registered in the package
+(metadata.json -> provenance), and this test is what keeps the registration
+from becoming decoration.
 
-Det som ikke faar raatne:
+What must not rot:
 
-  - et provenance-felt UTEN arkivert tittel eller dato er et problem
-    (kortets akseptansekriterium 3);
-  - `title_matches_archive` og `date_matches_repo` er ikke meninger — de maa
-    stemme med `title`/`date` i SAMME fil. En pakke kan ikke paastaa et
-    samsvar den ikke har, og ikke benekte et den har;
-  - `archive_doi` maa vaere pakkens egen DOI, saa en kopiert blokk ikke kan
-    paastaa en annen artikkels arkiv;
-  - de fire registrerte DOI-ene maa FORTSATT ha en provenance-blokk.
+  - a provenance field WITHOUT an archived title or date is a problem
+    (the card's acceptance criterion 3);
+  - `title_matches_archive` and `date_matches_repo` are not opinions — they
+    must match `title`/`date` in the SAME file. A package cannot claim a
+    match it does not have, nor deny one it does have;
+  - `archive_doi` must be the package's own DOI, so a copied block cannot
+    claim another article's archive;
+  - the four registered DOIs must STILL have a provenance block.
 
-Hva testen IKKE maaler, og det er med vilje: om arkivtittelen burde vaert en
-annen. Omtitulering av en publisert post er et menneskeord (kortets human
-gate), og arkivtittelen kan derfor endre seg lovlig. Gaten krever at
-registreringen FINNES og er internt konsistent — den fryser ikke de maalte
-verdiene.
+What the test does NOT measure, and that is deliberate: whether the archive
+title should have been a different one. Retitling a published record is a
+human decision (the card's human gate), so the archive title may legally
+change. The gate requires that the registration EXISTS and is internally
+consistent — it does not freeze the measured values.
 """
 from __future__ import annotations
 
@@ -62,7 +63,7 @@ def _load():
 
 
 class Rigg(unittest.TestCase):
-    """Syntetiske pakker: gaten maa FELLE, ikke bare si OK paa ekte tre."""
+    """Synthetic packages: the gate must FAIL, not just say OK on the real tree."""
 
     def setUp(self):
         self.mod = _load()
@@ -70,18 +71,19 @@ class Rigg(unittest.TestCase):
         self.addCleanup(self._td.cleanup)
         self.tmp = Path(self._td.name)
 
-    def _skriv(self, navn: str, doc) -> None:
-        d = self.tmp / "docs" / "papers" / "efc" / navn
+    def _write(self, name: str, doc) -> None:
+        d = self.tmp / "docs" / "papers" / "efc" / name
         d.mkdir(parents=True, exist_ok=True)
         (d / "metadata.json").write_text(json.dumps(doc, indent=2, ensure_ascii=False),
                                          encoding="utf-8")
 
     def _problem(self, mutations=()) -> list[str]:
-        """Strukturregelen alene — `scan`, ikke `check`.
+        """The structure rule alone — `scan`, not `check`.
 
-        `check` legger til registerregelen (de fire maalte DOI-ene), og en
-        syntetisk tre med EEN pakke ville felt de tre andre DOI-ene hver gang.
-        Den regelen proeves i `test_registeret_krever_blokk_for_hver_doi`.
+        `check` adds the register rule (the four measured DOIs), and a
+        synthetic tree with ONE package would fail on the three other DOIs
+        every time. That rule is exercised in
+        `test_registeret_krever_blokk_for_hver_doi`.
         """
         doc = json.loads(json.dumps(BUNDLE))
         for key, value in mutations:
@@ -90,7 +92,7 @@ class Rigg(unittest.TestCase):
                 tgt.pop(key, None)
             else:
                 tgt[key] = value
-        self._skriv("A_Package", doc)
+        self._write("A_Package", doc)
         return self.mod.scan(str(self.tmp))[0]
 
     def test_komplett_blokk_er_groenn_naar_booleans_stemmer(self):
@@ -105,26 +107,26 @@ class Rigg(unittest.TestCase):
         self.assertTrue(any("archive_date" in p for p in problems), problems)
 
     def test_tom_arkivtittel_er_et_problem(self):
-        """En tom streng er ikke en registrering — den ser bare ut som en."""
-        for tom in ("", "   "):
-            problems = self._problem([("archive_title", tom)])
-            self.assertTrue(any("archive_title" in p for p in problems), (tom, problems))
+        """An empty string is not a registration — it only looks like one."""
+        for empty in ("", "   "):
+            problems = self._problem([("archive_title", empty)])
+            self.assertTrue(any("archive_title" in p for p in problems), (empty, problems))
 
     def test_arkivtittel_og_dato_uten_kilde_er_et_problem(self):
-        for nokkel in ("source", "measured_at", "archive_doi", "note"):
-            problems = self._problem([(nokkel, None)])
-            self.assertTrue(any(nokkel in p for p in problems), (nokkel, problems))
+        for key in ("source", "measured_at", "archive_doi", "note"):
+            problems = self._problem([(key, None)])
+            self.assertTrue(any(key in p for p in problems), (key, problems))
 
     def test_paastatt_samsvar_som_ikke_finnes_felles(self):
-        """`title_matches_archive: true` mot en tittel som ikke er lik."""
+        """`title_matches_archive: true` against a title that is not equal."""
         problems = self._problem([("title_matches_archive", True)])
         self.assertTrue(any("title_matches_archive" in p for p in problems), problems)
 
     def test_benektet_samsvar_som_faktisk_finnes_felles(self):
-        """...og motsatt: lik tittel med `false` er ogsaa feil."""
+        """...and the opposite: an equal title with `false` is also wrong."""
         doc = json.loads(json.dumps(BUNDLE))
         doc["provenance"]["archive_title"] = doc["title"]
-        self._skriv("A_Package", doc)
+        self._write("A_Package", doc)
         problems = self.mod.scan(str(self.tmp))[0]
         self.assertTrue(any("title_matches_archive" in p for p in problems), problems)
 
@@ -133,9 +135,9 @@ class Rigg(unittest.TestCase):
         self.assertTrue(any("date_matches_repo" in p for p in problems), problems)
 
     def test_boolean_maa_vaere_boolean(self):
-        for nokkel in ("title_matches_archive", "date_matches_repo"):
-            problems = self._problem([(nokkel, "false")])
-            self.assertTrue(any(nokkel in p and "boolean" in p for p in problems), (nokkel, problems))
+        for key in ("title_matches_archive", "date_matches_repo"):
+            problems = self._problem([(key, "false")])
+            self.assertTrue(any(key in p and "boolean" in p for p in problems), (key, problems))
 
     def test_kopiert_blokk_fra_en_annen_pakke_felles(self):
         problems = self._problem([("archive_doi", "10.6084/m9.figshare.99999999")])
@@ -144,28 +146,28 @@ class Rigg(unittest.TestCase):
     def test_blokk_som_ikke_er_et_objekt_felles(self):
         doc = json.loads(json.dumps(BUNDLE))
         doc["provenance"] = "2024-12-30"
-        self._skriv("A_Package", doc)
+        self._write("A_Package", doc)
         problems = self.mod.scan(str(self.tmp))[0]
         self.assertTrue(any("not an object" in p for p in problems), problems)
 
     def test_pakke_uten_provenance_er_ikke_i_seg_selv_et_problem(self):
-        """Fravær er ikke lovbrudd — bare de REGISTRERTE DOI-ene krever en blokk.
+        """Absence is not a violation — only the REGISTERED DOIs require a block.
 
-        Ellers ville gaten felt ~160 pakker den ikke har maalt.
+        Otherwise the gate would fail ~160 packages it has not measured.
         """
         doc = json.loads(json.dumps(BUNDLE))
         doc.pop("provenance")
-        self._skriv("A_Package", doc)
+        self._write("A_Package", doc)
         problems = self.mod.scan(str(self.tmp))[0]
         self.assertEqual([p for p in problems if "A_Package" in p], [], problems)
 
     def test_registeret_krever_blokk_for_hver_doi(self):
-        """Registerregelen: de fire DOI-ene maa ha blokk — og bare de fire."""
+        """The register rule: the four DOIs must have a block — and only the four."""
         for doi in self.mod.REGISTERED:
             doc = json.loads(json.dumps(BUNDLE))
             doc["doi"] = doi
             doc["provenance"]["archive_doi"] = doi
-            self._skriv("pkg_" + doi.rsplit(".", 1)[1], doc)
+            self._write("pkg_" + doi.rsplit(".", 1)[1], doc)
         self.assertEqual(self.mod.check(str(self.tmp)), [])
 
     def test_en_registrert_doi_uten_blokk_navngis(self):
@@ -175,11 +177,11 @@ class Rigg(unittest.TestCase):
             doc["provenance"]["archive_doi"] = doi
             if doi == "10.6084/m9.figshare.28098314":
                 doc.pop("provenance")
-            self._skriv("pkg_" + doi.rsplit(".", 1)[1], doc)
+            self._write("pkg_" + doi.rsplit(".", 1)[1], doc)
         problems = self.mod.check(str(self.tmp))
         self.assertEqual(len(problems), 1, problems)
         self.assertIn("10.6084/m9.figshare.28098314", problems[0])
-        self.assertEqual(len(self.mod.REGISTERED), 4, "de fire maalte avvikene skal staa i registeret")
+        self.assertEqual(len(self.mod.REGISTERED), 4, "the four measured discrepancies must stand in the register")
 
     def test_uleselig_metadata_er_et_problem_ikke_et_krasj(self):
         d = self.tmp / "docs" / "papers" / "efc" / "A_Package"
@@ -190,7 +192,7 @@ class Rigg(unittest.TestCase):
 
 
 class Registeret(unittest.TestCase):
-    """Hver registrert rad skal baere en grunn — en rad uten grunn er en skjult feil."""
+    """Every registered row must carry a reason — a row without a reason is a hidden error."""
 
     def test_hver_rad_har_en_grunn(self):
         for doi, why in _load().REGISTERED.items():
@@ -205,9 +207,9 @@ class Repoet(unittest.TestCase):
     def test_de_fire_registrerte_doi_ene_har_blokk_med_tittel_og_dato(self):
         _, by_doi = _load().scan()
         for doi in _load().REGISTERED:
-            self.assertIn(doi, by_doi, f"{doi} mangler provenance-blokk")
-        for doi, navn in by_doi.items():
-            meta = json.loads((ROOT / "docs" / "papers" / "efc" / navn / "metadata.json")
+            self.assertIn(doi, by_doi, f"{doi} is missing a provenance block")
+        for doi, name in by_doi.items():
+            meta = json.loads((ROOT / "docs" / "papers" / "efc" / name / "metadata.json")
                               .read_text(encoding="utf-8"))
             prov = meta["provenance"]
             self.assertTrue(prov["archive_title"].strip(), doi)
@@ -216,22 +218,23 @@ class Repoet(unittest.TestCase):
 
 
 class GatenKjoererISelv(unittest.TestCase):
-    """En test som ikke kjoeres er dokumentasjon. efc-verify.yml rører
-    docs/papers/efc/** — det er der pakkene endres, saa det er der gaten
-    hoerer. efc-schema.yml kjoerer pytest-filene, denne maa staa der."""
+    """A test that is not run is documentation. efc-verify.yml touches
+    docs/papers/efc/** — that is where the packages change, so that is where
+    the gate belongs. efc-schema.yml runs the pytest files; this one must
+    stand there."""
 
     def test_verify_workflowen_kjoerer_skriptet(self):
         tekst = VERIFY_WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("scripts/maintenance/efc_provenance_check.py", tekst,
-                      "gaten kjoeres ikke i efc-verify.yml — da er den ikke en gate")
+                      "the gate is not run in efc-verify.yml — then it is not a gate")
 
     def test_denne_filen_staar_i_ci_pytest_kommandoen(self):
         import re
-        skjema = (ROOT / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
-        m = re.search(r"python3 -m pytest ([^\n]+)", skjema)
-        self.assertIsNotNone(m, "fant ingen pytest-kommando i efc-schema.yml")
+        schema = (ROOT / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
+        m = re.search(r"python3 -m pytest ([^\n]+)", schema)
+        self.assertIsNotNone(m, "found no pytest command in efc-schema.yml")
         self.assertIn("test_efc_provenance.py", m.group(1),
-                      f"denne testfilen kjoeres ikke i CI: {m.group(1)}")
+                      f"this test file is not run in CI: {m.group(1)}")
 
 
 if __name__ == "__main__":

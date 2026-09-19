@@ -1,30 +1,31 @@
 #!/usr/bin/env python3
-"""efc_bro_konvensjon — eierkonvensjonen for motor↔atlas-broene.
+"""efc_bro_konvensjon — the ownership convention for the engine↔atlas bridges.
 
-ÉN kilde for hvem som eier hvilket felt når en motors ``regime_node()`` og
-atlas-noden i ``schema/regime_nodes.jsonld`` er uenige. Lest av
+ONE source for who owns which field when an engine's ``regime_node()`` and
+the atlas node in ``schema/regime_nodes.jsonld`` disagree. Read by
 
-    scripts/maintenance/efc_bro_synk.py     (skriver motorens felt)
-    scripts/maintenance/bro_drift_audit.py  (maaler hele klassen)
-    tests/test_bro_konvensjon.py            (binder dem maskinelt)
+    scripts/maintenance/efc_bro_synk.py     (writes the engine's fields)
+    scripts/maintenance/bro_drift_audit.py  (measures the whole class)
+    tests/test_bro_konvensjon.py            (binds them mechanically)
 
-Bakgrunn (maalt 2026-09-17, t_2dcd2d82): 20 motorer, 20 noder, drift paa
-tvers av hele klassen, og avvikene gikk i BEGGE retninger. «Motoren vinner»
-er derfor ikke et svar. Regelen er:
+Background (measured 2026-09-17, t_2dcd2d82): 20 engines, 20 nodes, drift
+across the whole class, and the deviations went in BOTH directions. "The
+engine wins" is therefore not an answer. The rule is:
 
-  MOTOREN EIER felt som er avledet av motorens parametre eller av maaten
-  motoren regner paa. De skrives FRA motoren til atlaset (efc_bro_synk).
+  THE ENGINE OWNS fields derived from the engine's parameters or from the way
+  the engine computes. They are written FROM the engine to the atlas
+  (efc_bro_synk).
 
-  ATLASET EIER felt som er kuraterte paastander OM noden i atlaset: hvor
-  den hoerer i plataaet, hvordan konsensusen baeres, hvilke analogier den
-  er knyttet til, hva den ikke sier, og hvilken kilde plasseringen hviler
-  paa. Motoren kan ikke utlede dem av parametrene sine; naar den likevel
-  utsteder dem, maa den si det SAMME som atlaset — og naar de to gaar fra
-  hverandre, er det motoren som rettes.
+  THE ATLAS OWNS fields that are curated claims ABOUT the node in the atlas:
+  where it belongs in the plateau, how the consensus is carried, which
+  analogies it is tied to, what it does not say, and which source the
+  placement rests on. The engine cannot derive them from its parameters; when
+  it emits them anyway, it must say the SAME thing as the atlas — and when the
+  two drift apart, it is the engine that is corrected.
 
-Ingen tredje eier. Et felt motoren utsteder som ikke staar i noen av
-tabellene er et HULL, ikke en tredje konvensjon: da stopper baade audit og
-test til noen har tatt stilling.
+No third owner. A field the engine emits that is in neither table is a HOLE,
+not a third convention: then both the audit and the test stop until someone
+has taken a position.
 """
 from __future__ import annotations
 
@@ -36,8 +37,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
-#: Feltstier motoren eier. En liste er EEN verdi her — hele lista
-#: sammenlignes og skrives som enhet; bare dict-er flattenes videre.
+#: Field paths the engine owns. A list is ONE value here — the whole list
+#: is compared and written as a unit; only dicts are flattened further.
 MOTOR_EIDE: tuple[str, ...] = (
     "/synlighet",
     "/regime/name",
@@ -71,11 +72,11 @@ MOTOR_EIDE: tuple[str, ...] = (
     "/stipulasjoner/motor",
 )
 
-#: Feltstier atlaset eier. Utsteder motoren feltet, maa verdien vaere
-#: atlasets; utsteder den det ikke, er det atlaset som baerer det alene.
-#: Unntak fra likhet: `/ontology/assumes` er en DELMENGDE — atlaset faar
-#: baere kuraterte antakelser motoren ikke kjenner, men motoren faar ikke
-#: paastaa noe atlaset ikke har tatt stilling til.
+#: Field paths the atlas owns. If the engine emits the field, the value must
+#: be the atlas's; if it does not, the atlas carries it alone.
+#: Exception from equality: `/ontology/assumes` is a SUBSET — the atlas may
+#: carry curated assumptions the engine does not know, but the engine may not
+#: claim anything the atlas has not taken a position on.
 ATLAS_EIDE: tuple[str, ...] = (
     "/id",
     "/nivaa",
@@ -110,7 +111,7 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/settlement",
 )
 
-#: Stier der motoren faar utstede en DELMENGDE av atlasets liste.
+#: Paths where the engine may emit a SUBSET of the atlas's list.
 DELMENGDE: tuple[str, ...] = ("/ontology/assumes", "/maale_paradigme/alternativer")
 
 #: Field paths the SCHEMA can express that NO bridge owns — each with the
@@ -157,10 +158,10 @@ UTENFOR_BROEN: dict[str, str] = {
         "registered bridges do"),
 }
 
-#: Motor-klasser som er VARIANTER av en registrert bros node: de arver
-#: regime_node() og utsteder SAMME node-id, saa de kan ikke faa hver sin
-#: bro. Deklarasjonen er sjekkbar — varianten skal peke paa den noden den
-#: varierer, ikke paa en egen.
+#: Engine classes that are VARIANTS of a registered bridge's node: they
+#: inherit regime_node() and emit the SAME node id, so they cannot each have
+#: their own bridge. The declaration is checkable — the variant must point at
+#: the node it varies, not at one of its own.
 VARIANTER: dict[str, str] = {
     "SolarFlareEngineBrakdel": "efc.solar_flare_engine",
 }
@@ -334,7 +335,7 @@ def har_motorform(motor: Any) -> bool:
 
 
 def _normaliser(sti: str) -> str:
-    """`/a[0]` -> `/a[]`; lar undertre-stier staa."""
+    """`/a[0]` -> `/a[]`; leaves subtree paths alone."""
     ut, i = [], 0
     while i < len(sti):
         if sti[i] == "[":
@@ -348,11 +349,11 @@ def _normaliser(sti: str) -> str:
 
 
 def eier(sti: str) -> str | None:
-    """Hvem eier feltstien — «motor», «atlas», eller None naar den er uklassifisert.
+    """Who owns the field path — "motor", "atlas", or None when unclassified.
 
-    En oppfoering uten skraastrek eier ogsaa undertreet sitt: `/nivaa` dekker
-    `/nivaa/indeks`. `additionalProperties: false` i skjemaet betyr at et
-    felt som ikke er navngitt her, er et hull — ikke en tredje eier.
+    An entry with no trailing slash also owns its subtree: `/nivaa` covers
+    `/nivaa/indeks`. `additionalProperties: false` in the schema means a field
+    not named here is a hole — not a third owner.
     """
     n = _normaliser(sti)
     for sti_liste, navn in ((MOTOR_EIDE, "motor"), (ATLAS_EIDE, "atlas")):
@@ -363,9 +364,9 @@ def eier(sti: str) -> str | None:
 
 
 def flat(node: Any, sti: str = "") -> dict:
-    """Bladsti -> verdi. Dict-er flattenes; LISTER er blad — en liste er én
-    verdi, slik at to noder med ulikt antall elementer gir et ekte avvik i
-    stedet for et indekssammenfalt."""
+    """Leaf path -> value. Dicts are flattened; LISTS are leaves — a list is
+    one value, so two nodes with different element counts give a real
+    deviation instead of an index collapse."""
     ut: dict = {}
     if isinstance(node, dict):
         for k, v in node.items():
@@ -376,15 +377,16 @@ def flat(node: Any, sti: str = "") -> dict:
 
 
 def uklassifiserte(node: dict) -> list[str]:
-    """Feltstier i `node` som ingen eier tar stilling til."""
+    """Field paths in `node` that no owner has taken a position on."""
     return sorted(p for p in set(flat(node)) if eier(p) is None)
 
 
 # --------------------------------------------------------------------------
-# Kanoniske parametre: testmodulen som eier dem er kilden — ogsaa for synken
+# Canonical parameters: the test module that owns them is the source — the
+# sync uses it too
 # --------------------------------------------------------------------------
 
-#: Elementer i en modulnivaa-liste vi kan lese parametre ut av.
+#: Elements in a module-level list we can read parameters out of.
 def _kandidat(v: Any, krav: set) -> dict | None:
     if isinstance(v, dict) and all(isinstance(k, str) for k in v) and krav <= set(v):
         return v
@@ -392,53 +394,53 @@ def _kandidat(v: Any, krav: set) -> dict | None:
 
 
 def _last_modul(sti: Path, navn: str):
-    """Laster en modul fra fil. Returnerer (modul, feil) — feilen beholdes i
-    stedet for aa svelges: en resolver som melder «kunne ikke importeres»
-    uten aa si hva som feilet, sender neste leser paa jakt etter feil ting.
+    """Loads a module from a file. Returns (module, error) — the error is kept
+    instead of swallowed: a resolver that reports "could not be imported"
+    without saying what failed sends the next reader hunting the wrong thing.
     """
     spec = importlib.util.spec_from_file_location(navn, sti)
     if spec is None or spec.loader is None:
-        return None, f"{sti}: kunne ikke lages en modulspesifikasjon"
+        return None, f"{sti}: could not build a module spec"
     mod = importlib.util.module_from_spec(spec)
     sys.modules[navn] = mod
     try:
         spec.loader.exec_module(mod)
-    except Exception as exc:  # noqa: BLE001 — feilen skal VIDEREFORMIDLES
+    except Exception as exc:  # noqa: BLE001 — the error must be PASSED ON
         return None, f"{sti}: {type(exc).__name__}: {exc}"
     return mod, None
 
 
 def kanoniske_parametre(repo: Path, modul_sti: str, klasse: str,
                         test_sti: str) -> tuple[str, dict]:
-    """(kildenavn, parametre) for en motor, lest fra testmodulen.
+    """(source name, parameters) for an engine, read from the test module.
 
-    Rekkefoelgen er med vilje eksplisitt, ikke en gjetning:
+    The order is deliberately explicit, not a guess:
 
-      1. ``bro_kanoniske()`` — testmodulens egen nullargument-bygger. Den
-         formen finnes for motorer der parametrene KONSTRUERES (victron:
-         serier -> params_for), og for motorer hvis kanoniske dict ligger
-         inne i en annen (bakgrunnen: EFC = {**LCDM, ...}).
-      2. ``BRO_KANONISKE`` — navnet paa en modulnivaa-dict, naar
-         auto-finn ikke peker paa den riktige.
-      3. modulnivaa-dict som inneholder ALLE motor.noekler (faerrest
-         noekler vinner — et tilfeldig dict som «builtins» kan ikke brukes).
-      4. element i en modulnivaa-liste/tuppel (de fem kosmologiske ligger
-         slik, som ``KANONISKE = [(motor, params, node_id), ...]``).
+      1. ``bro_kanoniske()`` — the test module's own zero-argument builder.
+         That form exists for engines whose parameters are CONSTRUCTED
+         (victron: series -> params_for), and for engines whose canonical dict
+         sits inside another (the background: EFC = {**LCDM, ...}).
+      2. ``BRO_KANONISKE`` — the name of a module-level dict, when
+         auto-discovery does not point at the right one.
+      3. module-level dict holding ALL of engine.REQUIRED_PARAMS (fewest keys
+         wins — a random dict such as "builtins" cannot be used).
+      4. member of a module-level list/tuple (the five cosmological ones sit
+         like that, as ``KANONISKE = [(engine, params, node_id), ...]``).
 
-    Kaster SystemExit naar ingen finnes: da mangler kilden, og den skal
-    meldes, ikke gjettes.
+    Raises SystemExit when none is found: then the source is missing, and it
+    must be reported, not guessed.
     """
     if str(repo) not in sys.path:
-        # Testmodulene importerer motorene som pakkemoduler
-        # (efc_inference.engine.*), saa roten maa ligge paa stien FOER
-        # testmodulen lastes — ikke bare foer motoren importeres.
+        # The test modules import the engines as package modules
+        # (efc_inference.engine.*), so the root must be on the path BEFORE the
+        # test module is loaded — not just before the engine is imported.
         sys.path.insert(0, str(repo))
     mod, feil = _last_modul(repo / test_sti, "bro_kanon_" + Path(test_sti).stem)
     if mod is None:
         raise SystemExit(
-            f"{test_sti}: kunne ikke importeres — {feil}\n"
-            "  (testmodulene eier de kanoniske parametrene og importerer "
-            "motorene: kjør med testvenv-en, ikke en bar python3)")
+            f"{test_sti}: could not be imported — {feil}\n"
+            "  (the test modules own the canonical parameters and import the "
+            "engines: run with the test venv, not a bare python3)")
 
     motor = getattr(importlib.import_module(modul_sti[:-3].replace("/", ".")), klasse)()
     krav = set(getattr(motor, "REQUIRED_PARAMS", []) or [])
@@ -453,8 +455,8 @@ def kanoniske_parametre(repo: Path, modul_sti: str, klasse: str,
     if isinstance(navn, str):
         p = _kandidat(getattr(mod, navn, None), krav)
         if p is None:
-            raise SystemExit(f"{test_sti}: BRO_KANONISKE={navn!r} inneholder "
-                             f"ikke {sorted(krav)}")
+            raise SystemExit(f"{test_sti}: BRO_KANONISKE={navn!r} does not "
+                             f"contain {sorted(krav)}")
         return f"{navn} ({test_sti})", p
 
     dict_kand: list[tuple[str, dict]] = []
@@ -481,8 +483,8 @@ def kanoniske_parametre(repo: Path, modul_sti: str, klasse: str,
     if liste_kand:
         return f"{liste_kand[0][0]} ({test_sti})", liste_kand[0][1]
     raise SystemExit(
-        f"{klasse}: fant ingen kanoniske parametre i {test_sti} "
-        f"(krever {sorted(krav)}) — legg til en bro_kanoniske() der")
+        f"{klasse}: found no canonical parameters in {test_sti} "
+        f"(requires {sorted(krav)}) — add a bro_kanoniske() there")
 
 
 def les_atlas(repo: Path) -> dict:
@@ -494,7 +496,7 @@ def atlas_noder(repo: Path) -> dict:
 
 
 def main() -> int:
-    """--dekning: hvilke feltstier motorene utsteder, og hvem som eier dem."""
+    """--dekning: which field paths the engines emit, and who owns them."""
     import argparse
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--dekning", action="store_true")
@@ -504,7 +506,7 @@ def main() -> int:
 
     repo = Path(a.repo).resolve()
     sys.path.insert(0, str(repo / "scripts" / "maintenance"))
-    import efc_bro_synk  # noqa: E402  (samme katalog som denne fila)
+    import efc_bro_synk  # noqa: E402  (same directory as this file)
 
     brukt: dict[str, list[str]] = {}
     for nid in sorted(efc_bro_synk.BROER):
@@ -518,7 +520,7 @@ def main() -> int:
         print(json.dumps(brukt, ensure_ascii=False, indent=1))
         return 0
     for sti in sorted(brukt):
-        e = eier(sti) or "UKLASSIFISERT"
+        e = eier(sti) or "UNCLASSIFIED"
         print(f"  {e:<14} {sti}")
     return 0
 

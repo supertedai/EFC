@@ -1,26 +1,28 @@
 #!/usr/bin/env python3
-"""efc_watch — én fil per overvåket kilde, i stedet for én lang liste.
+"""efc_watch — one file per watched source, instead of one long list.
 
-Samme oppskrift som `efc_4b.py`, og av samme grunn — men ett hakk lenger.
+Same recipe as `efc_4b.py`, and for the same reason — but one notch further.
 
-Målt 2026-08-23: tre arbeidere kjørte parallelt for første gang etter at §4b
-ble datadrevet. §4b holdt. Men **alle tre** rørte `external_research_watch.json`
-og kolliderte der i stedet. Å gjøre §4b til data flyttet grensen ett hakk; den
-forsvant ikke.
+Measured 2026-08-23: three workers ran in parallel for the first time after
+§4b became data-driven. §4b held. But **all three** touched
+`external_research_watch.json` and collided there instead. Making §4b data
+moved the boundary one notch; it did not remove it.
 
-For §4b holdt det å samle radene i én JSON-fil, fordi arbeiderne der la til
-tekstblokker som ellers havnet i samme `<ul>`. Her er kilden allerede JSON —
-og den kolliderer likevel, fordi to tillegg i **samme array** treffer samme
-linjer. En felles fil hjelper ikke når konflikten er tekstlig.
+For §4b it was enough to gather the rows in one JSON file, because the workers
+there added text blocks that would otherwise land in the same `<ul>`. Here the
+source is already JSON — and it still collides, because two additions to **the
+same array** hit the same lines. A shared file does not help when the conflict
+is textual.
 
-Derfor: **én fil per kilde** under `docs/public/external_research_watch/`.
-To arbeidere som legger til hver sin kilde rører aldri samme fil, og git har
-ingenting å slå sammen. `external_research_watch.json` blir generert, og
-beholdes fordi monitorens prompt leser den.
+Therefore: **one file per source** under
+`docs/public/external_research_watch/`.
+Two workers that each add their own source never touch the same file, and git
+has nothing to merge. `external_research_watch.json` becomes generated, and is
+kept because the monitor's prompt reads it.
 
-    efc_watch.py hent    engangs: split den lange lista i én fil per kilde
-    efc_watch.py bygg    delene → external_research_watch.json
-    efc_watch.py sjekk   exit 1 hvis den genererte fila har drevet fra delene
+    efc_watch.py hent    one-off: split the long list into one file per source
+    efc_watch.py bygg    the parts → external_research_watch.json
+    efc_watch.py sjekk   exit 1 if the generated file drifted from the parts
 """
 from __future__ import annotations
 
@@ -36,11 +38,11 @@ DELER = ROOT / "docs/public/external_research_watch"
 
 
 def _navn(post: dict, i: int) -> str:
-    """Filnavn fra nøkkelen. `arXiv:2607.18234` → `2607.18234.json`.
+    """File name from the key. `arXiv:2607.18234` → `2607.18234.json`.
 
-    Nøkkelen er identiteten: to arbeidere som finner samme kilde skriver til
-    samme fil og kolliderer — som de skal. Det er bare *ulike* kilder som skal
-    kunne gå parallelt.
+    The key is the identity: two workers that find the same source write to the
+    same file and collide — as they should. Only *different* sources must be
+    able to run in parallel.
     """
     k = str(post.get("key") or "").strip()
     s = re.sub(r"^arxiv:", "", k, flags=re.I)
@@ -58,42 +60,42 @@ def hent(rydd: bool) -> int:
     sett: set[str] = set()
     for i, p in enumerate(poster):
         n = _navn(p, i)
-        if n in sett:                        # samme nøkkel to ganger
+        if n in sett:                        # the same key twice
             n = f"{n[:-5]}-{i:03d}.json"
         sett.add(n)
         (DELER / n).write_text(
             json.dumps(p, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8")
-    print(f"[watch] delte {len(poster)} kilder → {DELER.relative_to(ROOT)}/")
+    print(f"[watch] split {len(poster)} sources → {DELER.relative_to(ROOT)}/")
 
-    # Deler som IKKE står i den samlede fila. To helt ulike ting ser like ut
-    # her, og det er derfor den ikke sletter av seg selv:
+    # Parts that are NOT in the combined file. Two completely different things
+    # look alike here, which is why it does not clean up by itself:
     #
-    #   a) etterlatenskaper — posten er fjernet fra den samlede fila, og
-    #      uten opprydding smetter den inn igjen ved neste `bygg`
-    #   b) FERSK ARBEID — en arbeider la nettopp til en kilde som ennå ikke
-    #      er bygget inn. Hele poenget med én fil per kilde er at det skal
-    #      gå an.
+    #   a) leftovers — the post was removed from the combined file, and without
+    #      cleanup it sneaks back in at the next `bygg`
+    #   b) FRESH WORK — a worker just added a source that has not been folded
+    #      in yet. One file per source exists precisely so that this can
+    #      happen.
     #
-    # Å slette blindt ville tatt (b) med (a). Å la være ville latt (a) leve.
-    # Derfor: navngi dem og feil lukket. `bygg` folder (b) inn i den samlede
-    # fila; deretter er det som står igjen per definisjon (a), og `--rydd`
-    # fjerner det.
+    # Deleting blindly would take (b) with (a). Leaving it alone would let (a)
+    # live. Therefore: name them and fail closed. `bygg` folds (b) into the
+    # combined file; after that what remains is by definition (a), and `--rydd`
+    # removes it.
     ukjent = sorted(f.name for f in DELER.glob("*.json")
                     if f.name != "_hode.json" and f.name not in sett)
     if ukjent:
         if rydd:
             for n in ukjent:
                 (DELER / n).unlink()
-            print(f"[watch] ryddet {len(ukjent)} del(er) uten post i den "
-                  f"samlede fila: {', '.join(ukjent)}")
+            print(f"[watch] cleaned {len(ukjent)} part(s) without a post in "
+                  f"the combined file: {', '.join(ukjent)}")
             return 0
-        print(f"[watch] {len(ukjent)} del(er) staar ikke i den samlede fila:",
+        print(f"[watch] {len(ukjent)} part(s) are not in the combined file:",
               file=sys.stderr)
         for n in ukjent:
             print(f"          {n}", file=sys.stderr)
-        print("[watch] enten er de fersk arbeid — kjoer `bygg` foerst — "
-              "eller etterlatenskaper: `hent --rydd`.", file=sys.stderr)
+        print("[watch] either they are fresh work — run `bygg` first — "
+              "or leftovers: `hent --rydd`.", file=sys.stderr)
         return 1
     return 0
 
@@ -105,18 +107,18 @@ def _samle() -> dict:
         if f.name == "_hode.json":
             continue
         par.append((f.name, json.loads(f.read_text(encoding="utf-8"))))
-    # Stabil rekkefølge: nyest sett først, så `key` — og filnavnet når `key`
-    # mangler. Alle 109 postene har unik `key` i dag, så fallbacken endrer
-    # ingen rekkefølge nå; den finnes for at en framtidig post uten `key`
-    # ikke skal la filsystemets svar avgjøre ordenen. Da ville generatoren
-    # laget en ny diff uten at noe var endret — samme støy som
-    # tidsstempel-commitene i ADR-024 §6.
+    # Stable order: most recently seen first, then `key` — and the file name
+    # when `key` is missing. All 109 posts have a unique `key` today, so the
+    # fallback changes no order now; it exists so that a future post without
+    # `key` does not let the filesystem's answer decide the order. That would
+    # make the generator produce a new diff without anything having changed —
+    # the same noise as the timestamp commits in ADR-024 §6.
     #
-    # Å sortere på filnavn i stedet ville vært like stabilt, men ville
-    # stokket om alle 109 radene nå (filnavnet stripper «arXiv:»-prefikset
-    # som `key` beholder). Denne PR-en lover at delene bygger den samlede
-    # fila BYTE FOR BYTE tilbake; en omstokking ville brutt nettopp det
-    # løftet for å vinne robusthet ingen post trenger ennå.
+    # Sorting by file name instead would be equally stable, but would reshuffle
+    # all 109 rows now (the file name strips the "arXiv:" prefix that `key`
+    # keeps). This PR promises that the parts rebuild the combined file BYTE
+    # FOR BYTE; a reshuffle would break exactly that promise to gain robustness
+    # no post needs yet.
     par.sort(key=lambda fp: (str(fp[1].get("date_seen") or ""),
                              str(fp[1].get("key") or "") or fp[0]),
              reverse=True)
@@ -125,29 +127,29 @@ def _samle() -> dict:
 
 def bygg(bare_sjekk: bool) -> int:
     if not (DELER / "_hode.json").exists():
-        print(f"[watch] delene mangler: {DELER}", file=sys.stderr)
+        print(f"[watch] the parts are missing: {DELER}", file=sys.stderr)
         return 2
-    samlet = _samle()                       # én gang: den leser hver del
+    samlet = _samle()                       # once: it reads every part
     ny = json.dumps(samlet, ensure_ascii=False, indent=2) + "\n"
     gml = SAMLET.read_text(encoding="utf-8") if SAMLET.exists() else ""
-    # `status` staar i skjemaet, men to poster paa main mangler det. Det er
-    # arvet data, ikke noe denne generatoren innfoerte — derfor VARSEL og
-    # ikke feil. En generator som begynner aa avvise data den selv fikk
-    # utlevert, stopper vedlikeholdet i stedet for aa baere det.
+    # `status` is in the schema, but two posts on main are missing it. That is
+    # inherited data, not something this generator introduced — hence WARNING
+    # and not an error. A generator that starts rejecting data it was handed
+    # itself stops the maintenance instead of carrying it.
     mangler = [str(x.get("key") or "?") for x in samlet["items"]
                if "status" not in x]
     if mangler:
-        print(f"[watch] VARSEL: {len(mangler)} post(er) uten 'status': "
+        print(f"[watch] WARNING: {len(mangler)} post(s) without 'status': "
               f"{', '.join(mangler)}", file=sys.stderr)
     if ny == gml:
-        print("[watch] uendret")
+        print("[watch] unchanged")
         return 0
     if bare_sjekk:
-        print("[watch] AVVIK: den samlede fila stemmer ikke med delene. "
-              "Kjør `efc_watch.py bygg`.", file=sys.stderr)
+        print("[watch] DEVIATION: the combined file does not match the parts. "
+              "Run `efc_watch.py bygg`.", file=sys.stderr)
         return 1
     SAMLET.write_text(ny, encoding="utf-8")
-    print(f"[watch] skrev {len(samlet['items'])} kilder til "
+    print(f"[watch] wrote {len(samlet['items'])} sources to "
           f"{SAMLET.relative_to(ROOT)}")
     return 0
 
@@ -156,8 +158,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("handling", choices=("hent", "bygg", "sjekk"))
     ap.add_argument("--rydd", action="store_true",
-                    help="slett deler som ikke staar i den samlede fila "
-                         "(kjoer `bygg` foerst, ellers ryker fersk arbeid)")
+                    help="delete parts that are not in the combined file "
+                         "(run `bygg` first, otherwise fresh work is lost)")
     a = ap.parse_args()
     if a.handling == "hent":
         return hent(a.rydd)

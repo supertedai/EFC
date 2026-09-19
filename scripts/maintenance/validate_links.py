@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""validate_links.py — døde interne og eksterne lenker i de offentlige sidene.
+"""validate_links.py — dead internal and external links in the public pages.
 
-Interne (relative) lenker må peke på filer som finnes i repoet — HARD feil.
-Eksterne sjekkes med HEAD (GET-fallback) med tak; 4xx/5xx telles som funn
-(ikke harde — eksterne sider har rate-limits og uekte 403-er). Antall
-eksterne per kjøring er kapret for å holde CI snill.
+Internal (relative) links must point at files that exist in the repo — HARD error.
+External ones are checked with HEAD (GET fallback) with a ceiling; 4xx/5xx count
+as findings (not hard — external sites have rate limits and false 403s). The number
+of external ones per run is capped to keep CI friendly.
 
-Bruk: python3 scripts/maintenance/validate_links.py [--json] [--maks-eksterne N]
+Usage: python3 scripts/maintenance/validate_links.py [--json] [--maks-eksterne N]
 """
 from __future__ import annotations
 
@@ -27,27 +27,27 @@ HREF = re.compile(r'(?:href|src)=["\']([^"\'#]+)["\']')
 UA = "hermes-efc-links/1.0 (+supertedai/EFC)"
 
 
-def _sikker_vert(url: str) -> bool:
-    """SSRF-vakt: bare http/https, ingen credentials, og ALLE oppløste
-    IP-er må være globalt rutbare (ikke loopback/private/link-local/
-    reservert/multicast/metadata). URL-ene kommer fra repoets egne
-    HTML-filer — og det er nettopp derfor de er angriperstyrte i en PR."""
+def _safe_host(url: str) -> bool:
+    """SSRF guard: only http/https, no credentials, and ALL resolved
+    IPs must be globally routable (not loopback/private/link-local/
+    reserved/multicast/metadata). The URLs come from the repo's own
+    HTML files — and that is precisely why they are attacker-controlled in a PR."""
     p = urllib.parse.urlsplit(url)
     if p.scheme not in ("http", "https"):
         return False
     if p.username or p.password:
         return False
-    vert = p.hostname
-    if not vert:
+    host = p.hostname
+    if not host:
         return False
-    if vert == "169.254.169.254":
+    if host == "169.254.169.254":
         return False
     try:
-        ip = ip_address(vert)  # er det en IP-literal?
+        ip = ip_address(host)  # is it an IP literal?
     except ValueError:
         try:
             ip = None
-            infos = socket.getaddrinfo(vert, None, socket.AF_UNSPEC, socket.SOCK_STREAM)
+            infos = socket.getaddrinfo(host, None, socket.AF_UNSPEC, socket.SOCK_STREAM)
             for info in infos:
                 adr = ip_address(info[4][0])
                 if not (adr.is_global and not adr.is_reserved and not adr.is_multicast):
@@ -59,39 +59,39 @@ def _sikker_vert(url: str) -> bool:
 
 
 class _SikkerHandler(urllib.request.HTTPRedirectHandler):
-    """Følger maks 3 redirects og validerer HVER ny vert på nytt."""
+    """Follows at most 3 redirects and re-validates EVERY new host."""
     MAKS_HOPP = 3
 
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         if not hasattr(req, "_ssrf_hopp"):
             req._ssrf_hopp = 0
         if req._ssrf_hopp >= self.MAKS_HOPP:
-            raise urllib.error.HTTPError(req.full_url, code, "for mange redirects",
+            raise urllib.error.HTTPError(req.full_url, code, "too many redirects",
                                          headers, fp)
-        if not _sikker_vert(newurl):
-            raise urllib.error.HTTPError(req.full_url, code, "utrygg redirect-destinasjon",
+        if not _safe_host(newurl):
+            raise urllib.error.HTTPError(req.full_url, code, "unsafe redirect destination",
                                          headers, fp)
         req._ssrf_hopp += 1
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
 def _aapner():
-    """Opener UTEN proxy (HTTP_PROXY/HTTPS_PROXY kan omgå den validerte
-    nettverksstien) og med SSRF-validerende redirect-handler."""
+    """Opener WITHOUT proxy (HTTP_PROXY/HTTPS_PROXY can bypass the validated
+    network path) and with an SSRF-validating redirect handler."""
     return urllib.request.build_opener(_SikkerHandler(),
                                        urllib.request.ProxyHandler({}))
 
 
 def _sjekk_ekstern(url: str, tidsfrist: int = 8) -> tuple[str, int | None]:
-    if not _sikker_vert(url):
-        return url, -1  # blokkert av SSRF-vakten
+    if not _safe_host(url):
+        return url, -1  # blocked by the SSRF guard
     try:
         req = urllib.request.Request(url, method="HEAD",
                                      headers={"User-Agent": UA})
         with _aapner().open(req, timeout=tidsfrist) as r:
             return url, r.status
     except urllib.error.HTTPError as e:
-        if e.code in (403, 405):  # HEAD nektet — prøv GET
+        if e.code in (403, 405):  # HEAD refused — try GET
             try:
                 req = urllib.request.Request(url, headers={"User-Agent": UA})
                 with _aapner().open(req, timeout=tidsfrist) as r2:
@@ -141,12 +141,12 @@ def hoved() -> int:
                           "eksterne_sjekket": min(len(sett), a.maks_eksterne),
                           "eksterne_totalt": len(sett)}, ensure_ascii=False, indent=1))
     else:
-        print(f"lenker: {len(harde)} harde (interne døde), {len(funn)} eksterne funn "
-              f"({min(len(sett), a.maks_eksterne)} av {len(sett)} sjekket)")
+        print(f"links: {len(harde)} hard (internal dead), {len(funn)} external findings "
+              f"({min(len(sett), a.maks_eksterne)} of {len(sett)} checked)")
         for f in harde[:15]:
-            print("  HARDT:", f)
+            print("  HARD:", f)
         for f in funn[:10]:
-            print("  FUNN:", f)
+            print("  FOUND:", f)
     return 1 if harde else 0
 
 

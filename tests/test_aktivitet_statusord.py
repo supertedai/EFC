@@ -1,10 +1,10 @@
-"""Tester for statusordene i aktivitetsloggen (t_882cfca, fase 1).
+"""Tests for the status words in the activity log (t_882cfca, phase 1).
 
-Kontrakten: «maskinelt kontrollert», «eksternt verifisert» og «faglig
-godkjent» er tre GYLDIGE verdier i `statusord`, og ingen av dem impliserer de
-to andre. Derfor testes både at hvert ord alene er nok, og at vakten ikke
-legger til eller krever ord som ikke står i posten. Det ene kravet som
-håndheves er at «faglig godkjent» er menneskets.
+The contract: "maskinelt kontrollert", "eksternt verifisert" and "faglig
+godkjent" are three VALID values in `statusord`, and none of them implies
+the other two. So we test both that each word alone is enough, and that
+the guard does not add or require words that are not in the record. The
+one requirement enforced is that "faglig godkjent" belongs to the human.
 """
 from __future__ import annotations
 
@@ -37,15 +37,15 @@ def test_ordene_er_gyldige_hver_for_seg():
 
 
 def test_ordene_impliserer_ikke_hverandre():
-    """Én verdi er nok — vakten legger aldri til og krever aldri de andre."""
+    """One value is enough — the guard never adds and never requires the others."""
     e = _post(statusord=["maskinelt kontrollert"])
     forste = dict(e)
     feil = val.sjekk_statusord(e, 1)
     assert feil == []
-    assert e == forste, "vakten skal ikke skrive i posten"
+    assert e == forste, "the guard must not write into the record"
     assert "eksternt verifisert" not in e["statusord"]
     assert "faglig godkjent" not in e["statusord"]
-    # og feltet er valgfritt: en post uten statusord er ikke en feil
+    # and the field is optional: a record without statusord is not an error
     assert val.sjekk_statusord(_post(), 1) == []
 
 
@@ -68,8 +68,8 @@ def test_faglig_godkjent_er_menneskets():
 
 
 def test_loggen_i_treet_er_gyldig_og_feltet_er_valgfritt():
-    """Readback: de eksisterende linjene har ikke statusord, og skal fortsatt
-    validere — et påkrevd felt ville vært en usignert arv vi ikke har."""
+    """Readback: the existing lines have no statusord, and must still
+    validate — a required field would be an unsigned inheritance."""
     import subprocess
     r = subprocess.run([sys.executable, str(SCRIPT), "--json"],
                        capture_output=True, text=True, timeout=60)
