@@ -48,7 +48,7 @@ Each row is generated from the same bank as the atlas.
 - **KG · kosmos.gammaglimt** — alerts on transients in real time, from ground and space
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **KI · kosmos.interstellart** — archival observations — instrument-borne raw data from space…
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
+  perspective=consensus · engine=not specified · bus=the domain carries no messages in the… · S-axis=not measured · questions=0 · group=yes
 - **MA · kosmos.maane** — orbit positions computed from the DE441 ephemeris
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **NO · kosmos.noeytrinoer** — alerts on transients in real time, from ground and space

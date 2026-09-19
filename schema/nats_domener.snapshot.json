@@ -1,55 +1,54 @@
 {
   "_proveniens": {
-    "kilde": "The NATS bus, verden_domener (MCP) — subjects and message counts read from the JetStream streams' own state.subjects",
-    "maalt": "2026-09-17T18:41:27Z",
-    "lest_av": "faber (scripts/atlas_volum.py)",
-    "merknad": "Per-subject counts ARE available: `state.subjects` in STREAM.INFO carries the count per subject. The earlier note here said the opposite — it was an assumption about NATS' monitoring API, not a measurement of the JetStream API. The numbers here are measured, and the coverage file's `meldinger` is their sum."
+    "kilde": "NATS-bussen, verden_domener (MCP) — emner og antall meldinger lest av JetStream-stroemmenes eget state.subjects",
+    "maalt": "2026-09-19T08:23:30Z",
+    "lest_av": "default (scripts/atlas_volum.py)",
+    "merknad": "Per-emne-tall ER tilgjengelig: `state.subjects` i STREAM.INFO bærer antall per emne. Den tidligere merknaden her sa det motsatte — den var en antakelse om NATS' overvåkings-API, ikke en måling av JetStream-API-et. Tallene her er målte, og dekningsfilens `meldinger` er summen av dem."
   },
   "domener": {
     "kosmos.asteroider": {
       "emner": {
-        "observasjon.mast-caom": 4,
         "oppgjoer.jpl-sentry": 2,
-        "prediksjon.jpl-cneos": 182,
-        "prediksjon.jpl-sentry": 40
+        "prediksjon.jpl-cneos": 196,
+        "prediksjon.jpl-sentry": 41
+      }
+    },
+    "kosmos.exoplanet": {
+      "emner": {
+        "observasjon.mast-caom": 63
       }
     },
     "kosmos.galakser": {
       "emner": {
-        "observasjon.mast-caom": 19
+        "observasjon.mast-caom": 27
       }
     },
     "kosmos.gammaglimt": {
       "emner": {
-        "diskusjon.gcn": 146
+        "diskusjon.gcn": 163
       }
     },
     "kosmos.hoper": {
       "emner": {
-        "observasjon.mast-caom": 44
-      }
-    },
-    "kosmos.interstellart": {
-      "emner": {
-        "observasjon.mast-caom": 54
+        "observasjon.mast-caom": 67
       }
     },
     "kosmos.jord": {
       "emner": {
-        "tilstand.usgs-seismikk": 1910,
+        "tilstand.usgs-seismikk": 2194,
         "tilstand.usgs-vulkan": 1
       }
     },
     "kosmos.kosmologi": {
       "emner": {
-        "diskusjon.arxiv": 266,
+        "diskusjon.arxiv": 289,
         "prediksjon.efc-fs8": 1,
         "tilstand.efc-fs8": 12
       }
     },
     "kosmos.maane": {
       "emner": {
-        "prediksjon.jpl-horizons": 311
+        "prediksjon.jpl-horizons": 349
       }
     },
     "kosmos.noeytrinoer": {
@@ -59,61 +58,62 @@
     },
     "kosmos.planetsystem": {
       "emner": {
-        "prediksjon.jpl-horizons": 2177
+        "observasjon.mast-caom": 28,
+        "prediksjon.jpl-horizons": 2443
       }
     },
     "kosmos.roentgentransienter": {
       "emner": {
-        "diskusjon.gcn": 32,
-        "observasjon.heasarc": 27
+        "diskusjon.gcn": 40,
+        "observasjon.heasarc": 44
       }
     },
     "kosmos.romfart": {
       "emner": {
-        "hendelse.launch-library": 52,
-        "oppgjoer.launch-library": 55,
-        "prediksjon.launch-library": 87
+        "hendelse.launch-library": 57,
+        "oppgjoer.launch-library": 56,
+        "prediksjon.launch-library": 98
       }
     },
     "kosmos.romvaer": {
       "emner": {
-        "tilstand.swpc-kp": 171
+        "tilstand.swpc-kp": 178
       }
     },
     "kosmos.satellitter": {
       "emner": {
-        "tilstand.celestrak-katalog": 11,
-        "tilstand.celestrak-stasjoner": 221
+        "tilstand.celestrak-katalog": 13,
+        "tilstand.celestrak-stasjoner": 261
       }
     },
     "kosmos.sol": {
       "emner": {
         "hendelse.nasa-donki": 28,
-        "tilstand.swpc-goes-xray": 4053
+        "tilstand.swpc-goes-xray": 4331
       }
     },
     "kosmos.stjerner": {
       "emner": {
-        "observasjon.mast-caom": 26
+        "observasjon.mast-caom": 32
       }
     },
     "kosmos.transienter": {
       "emner": {
-        "hendelse.alerce": 24990
+        "hendelse.alerce": 27324
       }
     },
     "kosmos.uklassifisert": {
       "emner": {
         "diskusjon.gcn": 3,
-        "observasjon.mast-caom": 27
+        "observasjon.mast-caom": 852
       }
     },
     "opus.dommekraft": {
       "emner": {
         "hendelse.lukkeliste": 75,
-        "oppgjoer.handlingsledger": 4000,
-        "prediksjon.handlingsledger": 2481,
-        "tilstand.broer": 16,
+        "oppgjoer.handlingsledger": 4234,
+        "prediksjon.handlingsledger": 2531,
+        "tilstand.broer": 52,
         "tilstand.domeneinventar": 7,
         "tilstand.efc-lcdm-sammenligning": 1,
         "tilstand.lukkeliste": 41
@@ -121,8 +121,8 @@
     },
     "verden.arbeid": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1248,
-        "hendelse.gdelt-export": 1198,
+        "diskusjon.gdelt-mentions": 1396,
+        "hendelse.gdelt-export": 1339,
         "observasjon.gdelt-gkg": 96,
         "tilstand.eurostat": 4,
         "tilstand.world-bank": 24
@@ -130,8 +130,8 @@
     },
     "verden.demografi": {
       "emner": {
-        "diskusjon.gdelt-mentions": 833,
-        "hendelse.gdelt-export": 697,
+        "diskusjon.gdelt-mentions": 931,
+        "hendelse.gdelt-export": 780,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 30
       }
@@ -139,23 +139,23 @@
     "verden.energi": {
       "emner": {
         "observasjon.gdelt-gkg": 96,
-        "prediksjon.entsoe-dayahead": 4134,
+        "prediksjon.entsoe-dayahead": 4422,
         "tilstand.entsoe-dayahead": 474,
-        "tilstand.tibber": 1770,
-        "tilstand.victron": 1770,
+        "tilstand.tibber": 1998,
+        "tilstand.victron": 1998,
         "tilstand.world-bank": 15
       }
     },
     "verden.finans": {
       "emner": {
         "observasjon.gdelt-gkg": 96,
-        "tilstand.ecb-data": 110
+        "tilstand.ecb-data": 120
       }
     },
     "verden.geopolitikk": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 6
       }
@@ -168,8 +168,8 @@
     },
     "verden.helse": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1251,
-        "hendelse.gdelt-export": 1211,
+        "diskusjon.gdelt-mentions": 1402,
+        "hendelse.gdelt-export": 1354,
         "observasjon.gdelt-gkg": 96,
         "tilstand.who-gho": 36,
         "tilstand.world-bank": 12
@@ -177,8 +177,8 @@
     },
     "verden.infrastruktur": {
       "emner": {
-        "diskusjon.gdelt-mentions": 687,
-        "hendelse.gdelt-export": 599,
+        "diskusjon.gdelt-mentions": 785,
+        "hendelse.gdelt-export": 678,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 18
       }
@@ -186,49 +186,49 @@
     "verden.klima": {
       "emner": {
         "observasjon.gdelt-gkg": 96,
-        "tilstand.noaa-tides": 2,
+        "tilstand.noaa-tides": 20,
         "tilstand.world-bank": 6
       }
     },
     "verden.kommunikasjon": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 15
       }
     },
     "verden.lov": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1260,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1411,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 3
       }
     },
     "verden.militaer": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 24
       }
     },
     "verden.miljo": {
       "emner": {
-        "diskusjon.gdelt-mentions": 483,
-        "hendelse.gdelt-export": 386,
+        "diskusjon.gdelt-mentions": 544,
+        "hendelse.gdelt-export": 437,
         "observasjon.gdelt-gkg": 96,
-        "tilstand.ecowitt": 295,
-        "tilstand.gbif-planter": 1,
+        "tilstand.ecowitt": 333,
+        "tilstand.gbif-planter": 2,
         "tilstand.mgnify-mikrobiom": 1,
         "tilstand.world-bank": 18
       }
     },
     "verden.oekonomi": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "prediksjon.imf-datamapper": 24,
         "tilstand.world-bank": 24
@@ -236,23 +236,23 @@
     },
     "verden.politikk": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 9
       }
     },
     "verden.sikkerhet": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 12
       }
     },
     "verden.teknologi": {
       "emner": {
-        "diskusjon.arxiv-quant": 1,
+        "diskusjon.arxiv-quant": 3,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 21
       }
@@ -265,8 +265,8 @@
     },
     "verden.utdanning": {
       "emner": {
-        "diskusjon.gdelt-mentions": 1261,
-        "hendelse.gdelt-export": 1219,
+        "diskusjon.gdelt-mentions": 1412,
+        "hendelse.gdelt-export": 1362,
         "observasjon.gdelt-gkg": 96,
         "tilstand.world-bank": 26
       }
@@ -274,10 +274,10 @@
     "verden.vaer": {
       "emner": {
         "observasjon.gdelt-gkg": 96,
-        "oppgjoer.metno": 78247,
-        "prediksjon.metno": 82646,
-        "tilstand.ecowitt": 4130,
-        "tilstand.metar": 25651
+        "oppgjoer.metno": 88173,
+        "prediksjon.metno": 92850,
+        "tilstand.ecowitt": 4662,
+        "tilstand.metar": 28719
       }
     }
   }
