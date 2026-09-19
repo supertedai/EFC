@@ -20,7 +20,7 @@ def test_motor_only_domenene_har_instrumentnoder():
         assert node["buss_domene"] == domene
         assert node["ontology"]["source"] == stroem
         assert node["ontology"]["proveniens"]["kilder"][0]["type"] == "stroem"
-        assert node["stipulasjoner"]["motor_status"] == "instrument — trenger ingen motor"
+        assert node["stipulasjoner"]["motor_status"] == "instrument — needs no engine"
 
 
 def test_ventenodene_er_aerlige_og_uten_bussdomene():
@@ -28,14 +28,14 @@ def test_ventenodene_er_aerlige_og_uten_bussdomene():
     for node_id in ("kosmos.kosmologi_desi_bao", "verden.klima_isbre"):
         node = noder[node_id]
         assert "buss_domene" not in node
-        assert "stroemmen finnes ikke" in node["stipulasjoner"]["buss_status"]
+        assert "the stream does not exist" in node["stipulasjoner"]["buss_status"]
         assert node["ontology"]["proveniens"]["kilder"][0]["type"] == "intern"
 
 
 def test_homo_nodene_ligger_i_s_regime():
     assert all(node["maale_paradigme"]["s_regime"] == "S~0.5"
                for node in NODER if node["id"].startswith("homo."))
-    assert all("C(S) ved S~0.5" in node["maale_paradigme"]["klarhetsfunksjon"]
+    assert all("C(S) at S~0.5" in node["maale_paradigme"]["klarhetsfunksjon"]
                for node in NODER if node["id"].startswith("homo."))
 
 

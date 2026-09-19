@@ -1,5 +1,5 @@
 {
-  "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris. `meldinger` er UTLEDT som summen av de MÅLTE per-emne-tallene i schema/nats_domener.snapshot.json, og måles på nytt med `scripts/atlas_volum.py --maal` — aldri skrevet for hånd. Volumet finnes fordi et hull på 190 000 meldinger og ett på 200 ellers leses likt: `atlas_volum.py --hull` sorterer ikke_dekket etter det. `status` og `begrunnelse` er MENNESKETS stillingtagen og utledes aldri.",
+  "_form": "Every domain that carries messages must stand here. `noder` is DERIVED from the nodes' own `buss_domene` field — not written by hand — so that declaration and atlas cannot fall out of step. A `dekket`/`delvis` without a node is a claim that cannot be redeemed. `meldinger` is DERIVED as the sum of the MEASURED per-subject numbers in schema/nats_domener.snapshot.json, and is measured anew with `scripts/atlas_volum.py --maal` — never written by hand. The volume exists because a gap of 190 000 messages and one of 200 are otherwise read alike: `atlas_volum.py --hull` sorts ikke_dekket by it. `status` and `begrunnelse` are the HUMAN's position and are never derived.",
   "domener": {
     "kosmos.asteroider": {
       "status": "delvis",
@@ -7,7 +7,7 @@
       "noder": [
         "kosmos.asteroider"
       ],
-      "begrunnelse": "1 node navngir domenet via buss_domene. Sloeyfa er delt: prediksjon.jpl-sentry og oppgjoer.jpl-sentry er speilet i noden, men de to meldingene deler IKKE korrelasjonsnoekkel (29075 mot 2026 RO10) — sloeyfa er Systems, ikke per objekts. observasjon.mast-caom og prediksjon.jpl-cneos er ikke eid.",
+      "begrunnelse": "1 node names the domain via buss_domene. The loop is split: prediksjon.jpl-sentry and oppgjoer.jpl-sentry are mirrored in the node, but the two messages do NOT share a correlation key (29075 vs 2026 RO10) — the loop is Systems, not per object. observasjon.mast-caom and prediksjon.jpl-cneos are not owned.",
       "emner": [
         "observasjon.mast-caom",
         "oppgjoer.jpl-sentry",
@@ -23,7 +23,7 @@
         "obs.jwst_ems",
         "kosmos.galakser_mast"
       ],
-      "begrunnelse": "jwst-ems dekker massefunksjonen; mast-caom kobler den målte observasjonsstrømmen til domenet.",
+      "begrunnelse": "jwst-ems covers the mass function; mast-caom couples the measured observation stream to the domain.",
       "emner": [
         "observasjon.mast-caom"
       ]
@@ -34,7 +34,7 @@
       "noder": [
         "kosmos.gammaglimt"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "diskusjon.gcn"
       ]
@@ -47,7 +47,7 @@
         "obs.cluster_hmf",
         "obs.cluster_mass"
       ],
-      "begrunnelse": "klyngemasse og halomassetetthet; mast-caom-observasjonen mangler",
+      "begrunnelse": "cluster mass and halo mass density; the mast-caom observation is missing",
       "emner": [
         "observasjon.mast-caom"
       ]
@@ -58,7 +58,7 @@
       "noder": [
         "kosmos.interstellart"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.mast-caom"
       ]
@@ -70,7 +70,7 @@
         "efc.jordskjelv_engine",
         "kosmos.jord.vulkan"
       ],
-      "begrunnelse": "2 node(r) navngir domenet via buss_domene",
+      "begrunnelse": "2 node(s) name the domain via buss_domene",
       "emner": [
         "tilstand.usgs-seismikk",
         "tilstand.usgs-vulkan"
@@ -107,7 +107,7 @@
         "obs.s8",
         "obs.w0wa"
       ],
-      "begrunnelse": "20 node(r) navngir domenet via buss_domene. efc.efc_background_engine (L-033) kom til 2026-09-17. EFC-S, EFC-D og EFC-C0 (de tre koblede baselagene fra master-spec) kom til 2026-09-18 — de bar aksjonen og grensetilstandene S=0/S=1 som ingen node eide.",
+      "begrunnelse": "20 node(s) name the domain via buss_domene. efc.efc_background_engine (L-033) arrived on 2026-09-17. EFC-S, EFC-D and EFC-C0 (the three coupled base layers from the master spec) arrived on 2026-09-18 — they carried the action and the boundary states S=0/S=1 that no node owned.",
       "emner": [
         "prediksjon.efc-fs8",
         "tilstand.efc-fs8",
@@ -120,7 +120,7 @@
       "noder": [
         "kosmos.maane"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "prediksjon.jpl-horizons"
       ]
@@ -131,7 +131,7 @@
       "noder": [
         "kosmos.noeytrinoer"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "diskusjon.gcn"
       ]
@@ -142,7 +142,7 @@
       "noder": [
         "kosmos.planetsystem"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "prediksjon.jpl-horizons"
       ]
@@ -153,7 +153,7 @@
       "noder": [
         "kosmos.roentgentransienter"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.heasarc",
         "diskusjon.gcn"
@@ -165,7 +165,7 @@
       "noder": [
         "kosmos.romfart"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "oppgjoer.launch-library",
         "prediksjon.launch-library",
@@ -179,7 +179,7 @@
         "efc.romvaer_engine",
         "kosmos.romvaer_swpc"
       ],
-      "begrunnelse": "romvaer-motoren beregner korrelasjoner; instrumentnoden leser tilstand.swpc-kp.",
+      "begrunnelse": "the space-weather engine computes correlations; the instrument node reads tilstand.swpc-kp.",
       "emner": [
         "tilstand.swpc-kp"
       ]
@@ -191,7 +191,7 @@
         "efc.orbital_engine",
         "obs.satellites"
       ],
-      "begrunnelse": "celestrak-katalog og -stasjoner dekkes av obs.satellites; banemekanikken av orbital-motoren",
+      "begrunnelse": "celestrak catalogue and -stations are covered by obs.satellites; the orbital mechanics by the orbital engine",
       "emner": [
         "tilstand.celestrak-katalog",
         "tilstand.celestrak-stasjoner"
@@ -204,7 +204,7 @@
         "efc.solar_flare_engine",
         "kosmos.sol_goes"
       ],
-      "begrunnelse": "solflaremotoren beskriver flare-regimer; instrumentnoden leser swpc-goes-xray.",
+      "begrunnelse": "the solar-flare engine describes flare regimes; the instrument node reads swpc-goes-xray.",
       "emner": [
         "tilstand.swpc-goes-xray",
         "hendelse.nasa-donki"
@@ -216,7 +216,7 @@
       "noder": [
         "kosmos.stjerner"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.mast-caom"
       ]
@@ -228,7 +228,7 @@
         "efc.transient_engine",
         "kosmos.transienter_alerce"
       ],
-      "begrunnelse": "transientmotoren beskriver kollapsregimet; instrumentnoden leser alerce-hendelser.",
+      "begrunnelse": "the transient engine describes the collapse regime; the instrument node reads alerce events.",
       "emner": [
         "hendelse.alerce"
       ]
@@ -239,7 +239,7 @@
       "noder": [
         "kosmos.uklassifisert"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.mast-caom",
         "diskusjon.gcn"
@@ -251,7 +251,7 @@
       "noder": [
         "opus.dommekraft"
       ],
-      "begrunnelse": "1 node navngir domenet via buss_domene. Sloeyfa er delt: oppgjoer.handlingsledger og prediksjon.handlingsledger er speilet i noden, hendelse.lukkeliste og de fire ovrige emnene er ikke.",
+      "begrunnelse": "1 node names the domain via buss_domene. The loop is split: oppgjoer.handlingsledger and prediksjon.handlingsledger are mirrored in the node, hendelse.lukkeliste and the four remaining topics are not.",
       "emner": [
         "hendelse.lukkeliste",
         "oppgjoer.handlingsledger",
@@ -268,7 +268,7 @@
       "noder": [
         "verden.arbeid"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.eurostat",
@@ -283,7 +283,7 @@
       "noder": [
         "verden.demografi"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -302,7 +302,7 @@
         "efc.enerflyt_engine",
         "efc.victron_cccv_engine"
       ],
-      "begrunnelse": "entsoe (baade prediksjon og tilstand), tibber og world-bank mangler node; tilstandskilden for entsoe stanset 2026-09-04 (t_395dc396)",
+      "begrunnelse": "entsoe (both prediction and state), tibber and world-bank lack a node; the state source for entsoe stopped 2026-09-04 (t_395dc396)",
       "emner": [
         "observasjon.gdelt-gkg",
         "prediksjon.entsoe-dayahead",
@@ -318,7 +318,7 @@
       "noder": [
         "verden.finans"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.ecb-data"
@@ -330,7 +330,7 @@
       "noder": [
         "verden.geopolitikk"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -344,7 +344,7 @@
       "noder": [
         "verden.handel"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank"
@@ -367,7 +367,7 @@
         "homo.sovn_vaaken",
         "verden.helse"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.who-gho",
@@ -382,7 +382,7 @@
       "noder": [
         "verden.infrastruktur"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -400,7 +400,7 @@
         "verden.klima_gdelt",
         "verden.klima_worldbank"
       ],
-      "begrunnelse": "noaa-tides dekker havtilstanden; gdelt-gkg kobler klimaobservasjon og world-bank kobler land- og årsindikatorer til domenet.",
+      "begrunnelse": "noaa-tides covers the ocean state; gdelt-gkg couples climate observation and world-bank couples country and year indicators to the domain.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.noaa-tides",
@@ -413,7 +413,7 @@
       "noder": [
         "verden.kommunikasjon"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -427,7 +427,7 @@
       "noder": [
         "verden.lov"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -441,7 +441,7 @@
       "noder": [
         "verden.militaer"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -460,7 +460,7 @@
         "verden.miljo_gdelt",
         "verden.miljo_mikrobiom"
       ],
-      "begrunnelse": "gbif-planter og ecowitt er dekket; mgnify-mikrobiom måler mikrobiomtilstanden og gdelt-gkg måler miljøomtale.",
+      "begrunnelse": "gbif-planter and ecowitt are covered; mgnify-mikrobiom measures the microbiome state and gdelt-gkg measures environment coverage.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.ecowitt",
@@ -480,7 +480,7 @@
         "verden.oekonomi_imf",
         "verden.oekonomi_worldbank"
       ],
-      "begrunnelse": "motoren dekker økonomiregimet; world-bank dekker tilstandsindikatorer, imf-datamapper dekker prognoser, og gdelt-gkg dekker økonomisk omtale.",
+      "begrunnelse": "the engine covers the economy regime; world-bank covers state indicators, imf-datamapper covers forecasts, and gdelt-gkg covers economic coverage.",
       "emner": [
         "observasjon.gdelt-gkg",
         "prediksjon.imf-datamapper",
@@ -495,7 +495,7 @@
       "noder": [
         "verden.politikk"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -509,7 +509,7 @@
       "noder": [
         "verden.sikkerhet"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -523,7 +523,7 @@
       "noder": [
         "verden.teknologi"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -536,7 +536,7 @@
       "noder": [
         "verden.transport"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank"
@@ -548,7 +548,7 @@
       "noder": [
         "verden.utdanning"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(s) name the domain via buss_domene. Built 2026-09-18 from the measured figures in this file — the source is institutional, the share reading is ours.",
       "emner": [
         "observasjon.gdelt-gkg",
         "tilstand.world-bank",
@@ -562,7 +562,7 @@
       "noder": [
         "verden.vaer"
       ],
-      "begrunnelse": "1 node navngir domenet via buss_domene. Sloeyfa er delt: metno-paret (prediksjon + oppgjoer) er speilet i noden, ecowitt/tilstand eies av broen, og observasjon.gdelt-gkg eies av ingen — den rutes inn i tjue domener uten en node",
+      "begrunnelse": "1 node names the domain via buss_domene. The loop is split: the metno pair (prediction + settlement) is mirrored in the node, ecowitt/tilstand is owned by the bridge, and observasjon.gdelt-gkg is owned by no one — it is routed into twenty domains without a node",
       "emner": [
         "observasjon.gdelt-gkg",
         "oppgjoer.metno",

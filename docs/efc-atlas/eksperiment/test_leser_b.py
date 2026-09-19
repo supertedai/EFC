@@ -4,9 +4,9 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).parent
-# Pinnet til den RETTEDE nokkelen (67938617). Den forrige pinningen pekte paa
-# d3fd75b6, som inneholdt fire tellefeil funnet av to uavhengige spor.
-# Formaalet er det samme: en stille endring av nokkelen skal feile her.
+# Pinned to the CORRECTED key (67938617). The previous pinning pointed at
+# d3fd75b6, which contained four counting errors found by two independent tracks.
+# The purpose is the same: a silent change of the key must fail here.
 KEY_SHA256 = "f3e4b880a2c474608053fc553c4f80580a636069066751425fd66d49e1d094f9"
 
 
@@ -67,11 +67,12 @@ def test_q7_is_zero_and_explains_bank_has_no_uncertainty_field():
 
 
 def test_q4_finds_a_reversed_observed_in_edge_men_ikke_alle():
-    """B finner ÉN invertert kant. Det finnes TRE blant de atte.
+    """B finds ONE inverted edge. There are THREE among the eight.
 
-    Assertsjonen under beskriver hva B faktisk gjor, ikke hva den burde
-    gjore. Den ble bygget mot nokkelen for rettingen (som sa «1 kant»), og
-    gapet er matt: 1 av 3. Det staar i RESULTAT.md, ikke skjult her.
+    The assertion below describes what B actually does, not what it ought to
+    do. It was built against the key from before the correction (which said
+    "1 edge"), and the gap is measured: 1 of 3. That stands in RESULTAT.md,
+    not hidden here.
     """
     bank, key, evidence = load_fixture()
     row = answer(load_reader().svar(bank, key, evidence), "Q4")
@@ -85,12 +86,12 @@ def test_key_is_unchanged():
 
 
 def test_q5_reports_the_measured_row_count():
-    """Paret har 2 rader — én per retning.
+    """The pair has 2 rows — one per direction.
 
-    Denne testen krevde opprinnelig 4 rader, fordi den ble pinnet til min
-    feilaktige nokkel. Banken har aldri hatt 4: den har 2. En test som arver
-    en gal fasit, vokter den gale fasiten — det er derfor tallet staar her
-    med maalingen bak.
+    This test originally required 4 rows, because it was pinned to my
+    erroneous key. The bank has never had 4: it has 2. A test that inherits
+    a wrong answer key guards the wrong answer key — that is why the number
+    stands here with the measurement behind it.
     """
     bank, key, evidence = load_fixture()
     row = answer(load_reader().svar(bank, key, evidence), "Q5")

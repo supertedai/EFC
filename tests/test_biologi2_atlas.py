@@ -49,8 +49,8 @@ def test_immunologi_har_aktiveringsterskel():
     hukommelse skal sta i noden."""
     node = _node("homo.immunologi")
     tekst = json.dumps(node, ensure_ascii=False)
-    assert "terskel" in tekst.lower()
-    assert "hukommelse" in tekst.lower() or "minne" in tekst.lower()
+    assert "threshold" in tekst.lower()
+    assert "memory" in tekst.lower()
 
 
 def test_sovn_vaaken_er_regimeskifte():

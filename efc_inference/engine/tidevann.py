@@ -1,19 +1,19 @@
-"""EFC Tidevann Engine — periodisk gravitasjonskopling (L-039).
+"""EFC Tidevann Engine — periodic gravitational coupling (L-039).
 
-Tidevann er den periodiske flyt-formen i gravitasjonskopling: månen
-løfter og senker jordas hav i en uendelig lade/tøm-syklus, og
-tidevannsbremsingen fase-låser systemet (månen viser alltid samme
-side — holding i resonans).
+The tide is the periodic flow form of gravitational coupling: the moon
+lifts and lowers Earth's ocean in an endless charge/drain cycle, and
+tidal braking phase-locks the system (the moon always shows the same
+side — holding in resonance).
 
-Modellen er en IDEALISERT likevektsmodell: ingen hav-basseng-
-dynamikk, ingen kystresonansforsterkning (Bay of Fundy osv.), ingen
-energidissipasjonshistorikk. Tidevannshøyden er åpen-hav-skalaen.
+The model is an IDEALIZED equilibrium model: no ocean-basin dynamics,
+no coastal resonance amplification (Bay of Fundy etc.), no energy
+dissipation history. The tidal height is the open-ocean scale.
 
-Fysikken:
-    Tidevannsakselerasjon: a_t ~ 2 G M_obj R / r^3
-    Tidevannshøyde (åpent hav): h ~ a_t * R / g
-    Roche-grensen (flytende): d = 2.44 R (rho_sentral/rho_objekt)^(1/3)
-    Fase-låsing: rotasjonsperiode == omløpsperiode
+The physics:
+    Tidal acceleration: a_t ~ 2 G M_obj R / r^3
+    Tidal height (open ocean): h ~ a_t * R / g
+    The Roche limit (fluid): d = 2.44 R (rho_sentral/rho_objekt)^(1/3)
+    Phase locking: rotation period == orbital period
 """
 from __future__ import annotations
 
@@ -23,16 +23,16 @@ from .base_engine import EFCEngine
 
 
 class TidevannEngine(EFCEngine):
-    """Tidevannskopling med lade/tøm-syklus og fase-låsing (idealisert)."""
+    """Tidal coupling with a charge/drain cycle and phase locking (idealized)."""
 
     REQUIRED_PARAMS = [
         "G",               # m^3/(kg s^2)
         "M_sentral",       # kg
         "m_objekt",        # kg
-        "avstand",         # m — avstanden mellom legemene
-        "radius_sentral",  # m — sentralkroppens radius
-        "rho_sentral",     # kg/m^3 — sentralkroppens tetthet
-        "rho_objekt",      # kg/m^3 — objektets tetthet
+        "avstand",         # m — the distance between the bodies
+        "radius_sentral",  # m — the radius of the central body
+        "rho_sentral",     # kg/m^3 — the density of the central body
+        "rho_objekt",      # kg/m^3 — the density of the object
     ]
 
     @property
@@ -40,147 +40,147 @@ class TidevannEngine(EFCEngine):
         return "tidevann"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
     def tidevannsakselerasjon(self, params: dict) -> float:
-        """a_t = 2 G m_obj R / r^3 — den differensielle gravitasjonen
-        over sentralkroppens radius."""
+        """a_t = 2 G m_obj R / r^3 — the differential gravity
+        across the radius of the central body."""
         return float(2 * params["G"] * params["m_objekt"]
                      * params["radius_sentral"]
                      / params["avstand"] ** 3)
 
     def tidevannshoyde(self, params: dict) -> float:
-        """Åpent-hav-skalaen: h ~ a_t * R / g med g = G M/R^2."""
+        """The open-ocean scale: h ~ a_t * R / g with g = G M/R^2."""
         a_t = self.tidevannsakselerasjon(params)
         g = params["G"] * params["M_sentral"] / params["radius_sentral"] ** 2
         return float(a_t * params["radius_sentral"] / g)
 
     def roche_grense(self, params: dict) -> float:
-        """d = 2.44 R (rho_sentral/rho_objekt)^(1/3) — terskelen der
-        tidevannet bryter sammenhengen (idealisert flytende legeme)."""
-        forhold = params["rho_sentral"] / params["rho_objekt"]
-        return float(2.44 * params["radius_sentral"] * forhold ** (1 / 3))
+        """d = 2.44 R (rho_sentral/rho_objekt)^(1/3) — the threshold where
+        the tide breaks the cohesion (idealized fluid body)."""
+        ratio = params["rho_sentral"] / params["rho_objekt"]
+        return float(2.44 * params["radius_sentral"] * ratio ** (1 / 3))
 
     def er_faselaast(self, params: dict, rotasjonsperiode: float,
                      omlopsperiode: float) -> bool:
-        """Fase-låsing: rotasjon synkronisert med omløp (1 % toleranse)."""
+        """Phase locking: rotation synchronized with the orbit (1 % tolerance)."""
         return bool(abs(rotasjonsperiode - omlopsperiode)
                     / max(omlopsperiode, 1e-12) < 0.01)
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt avstander (m), returner tidevannsakselerasjonen (m/s^2)."""
+        """Given distances (m), return the tidal acceleration (m/s^2)."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        avstander = np.asarray(coordinates, dtype=float)
-        ut = []
-        for r in avstander:
+        distances = np.asarray(coordinates, dtype=float)
+        out = []
+        for r in distances:
             p = {**params_dict, "avstand": float(r)}
             if float(r) <= 0:
-                ut.append(np.nan)
+                out.append(np.nan)
             else:
-                ut.append(self.tidevannsakselerasjon(p))
-        return np.array(ut)
+                out.append(self.tidevannsakselerasjon(p))
+        return np.array(out)
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
         h = self.tidevannshoyde(params)
         r_roche = self.roche_grense(params)
         validity = (
-            "Tidevannsregime: periodisk lade/tøm-syklus — månen løfter "
-            "og senker sentralkroppens hav hvert omløp; fase-låsing er "
-            "tidevannsbremsingens holding (rotasjon synkronisert med "
-            "omløp). IDEALISERT likevektsmodell: ingen hav-basseng-"
-            "dynamikk, ingen kystresonansforsterkning, ingen "
-            "dissipasjonshistorikk. Roche-grensen ("
-            + f"{r_roche:.3e}" + " m) er terskelen der tidevannet "
-            "bryter sammenhengen."
+            "Tidal regime: periodic charge/drain cycle — the moon lifts "
+            "and lowers the central body's ocean every orbit; phase "
+            "locking is the holding of tidal braking (rotation "
+            "synchronized with orbit). IDEALIZED equilibrium model: no "
+            "ocean-basin dynamics, no coastal resonance amplification, "
+            "no dissipation history. The Roche limit ("
+            + f"{r_roche:.3e}" + " m) is the threshold where the tide "
+            "breaks the cohesion."
         )
         law_form = ("a_t = 2 G m_obj R / r^3; h ~ a_t R / g; "
                     "d_roche = 2.44 R (rho_s/rho_o)^(1/3); "
-                    "fase-låsing: P_rot = P_omløp")
+                    "phase locking: P_rot = P_orbit")
         return {
             "id": "efc.tidevann_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["Roche-grensen ~ 2.44 R — brytningsgrense — idealisert"],
+            "terskler": ["the Roche limit ~ 2.44 R — break-up boundary — idealized"],
             "motor": "tidevann"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "masse", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
-                "name": "Tidevann — periodisk gravitasjonskopling",
+                "name": "The tide — periodic gravitational coupling",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "tidevannsakselerasjon, tidevannshøyde, Roche-grense, fase-låsingsstatus",
-                "measurer": "analytisk tidevannsmodell",
+                "target": "tidal acceleration, tidal height, Roche limit, phase-lock status",
+                "measurer": "analytic tidal model",
                 "instrument": "TidevannEngine (efc_inference/engine/tidevann.py)",
                 "proxy_chain": [
-                    "m_obj, r -> a_t (differensiell gravitasjon)",
-                    "a_t -> h (åpent-hav-proxy)",
-                    "perioder -> fase-låsingsstatus",
+                    "m_obj, r -> a_t (differential gravity)",
+                    "a_t -> h (open-ocean proxy)",
+                    "periods -> phase-lock status",
                 ],
-                "placement": "ett avstands-punkt om gangen i tolegeme-tidevannet",
-                "compression": "(r, perioder) -> (a_t, h, Roche, låst?)",
+                "placement": "one distance point at a time in the two-body tide",
+                "compression": "(r, periods) -> (a_t, h, Roche, locked?)",
             },
-            "episenter": "Roche-grensen: punktet der den periodiske koplingen blir for sterk og sammenhengen brytes — tidevannets regimeskifte",
+            "episenter": "The Roche limit: the point where the periodic coupling becomes too strong and the connection breaks — the tidal regime shift",
             "buffer": {
-                "role": "havet er bufferen: det løftes og senkes i den periodiske syklusen uten å bryte — helt til Roche-grensen",
-                "note": "ANALOGI til hjertets fyll-press-syklus og banens periodiske holding — ikke identitet: tidevannet er tvunget av en ytre periode, hjertet setter sin egen.",
+                "role": "the sea is the buffer: it is raised and lowered in the periodic cycle without breaking — right up to the Roche limit",
+                "note": "ANALOGY to the heart's fill-pressure cycle and the orbit's periodic holding — not identity: the tide is forced by an external period, the heart sets its own.",
             },
             "ontology": {
                 "assumes": [
-                    "likevekts-tidevann (ingen basseng-resonans)",
-                    "Roche-grensen for flytende legeme (2.44-faktoren) med forenklet tetthetsforhold",
+                    "equilibrium tide (no basin resonance)",
+                    "The Roche limit for a fluid body (the 2.44 factor) with a simplified density ratio",
                 ],
-                "source": "standard tidevannsteori (differensiell gravitasjon, Roche); analogi-merkingen er atlasets egen",
+                "source": "standard tidal theory (differential gravitation, Roche); the analogy marking is the atlas's own",
             },
             "observer": {
-                "bandwidth": "motoren ser bare avstand og perioder — ingen bassenggeometri, ingen dissipasjonsmåling",
+                "bandwidth": "the engine sees only distance and periods — no basin geometry, no dissipation measurement",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "omløp -> løft -> omløp -> senk — tidevannets uendelige loop",
-                "properties": ["a_t", "h", "Roche-avstand", "låsingsstatus"],
+                "loop": "orbit -> lift -> orbit -> lower — the tide's endless loop",
+                "properties": ["a_t", "h", "Roche distance", "lock status"],
             },
             "fractal": {
-                "pattern": "periodisk lade/tøm-syklus: tidevann, hjertesyklus, ladesyklus (analogi)",
-                "note": "ett mønster, tre domener.",
+                "pattern": "periodic charge/drain cycle: the tide, the cardiac cycle, the charge cycle (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "ett legemepar, én tidevannssyklus",
-                "global": "tidevannet kobler månen og jorden — ANALOGOUS_TO homo.hjerte_syklus og efc.orbital_engine",
-                "empathy_note": "havet spør ikke hvorfor det løftes — det bare følger, to ganger om dagen, for alltid.",
+                "local": "one body pair, one tidal cycle",
+                "global": "the tide couples the moon and Earth — ANALOGOUS_TO homo.hjerte_syklus and efc.orbital_engine",
+                "empathy_note": "the sea does not ask why it is lifted — it just follows, twice a day, forever.",
             },
         }

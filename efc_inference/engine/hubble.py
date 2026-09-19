@@ -94,99 +94,99 @@ class EFCHubble(EFCEngine):
         return result
 
     # ------------------------------------------------------------------
-    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset
+    # regime_node() bridge (step 11): the engine describes itself in the atlas
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
         h0 = params_dict["H0"]
         om = params_dict["Omega_m"]
         al = params_dict["alpha_cosmo"]
         validity = (
-            f"H(z) for z >= 0 — EFC-deformert ekspansjon: Omega_m={om}, "
-            f"H0={h0}, alpha_cosmo={al} (alpha=0 = LCDM-baseline); motoren "
-            "BEREGNER raten via den injiserte bakgrunnsmodellen — den "
-            "klassifiserer ingen regimegrense selv"
+            f"H(z) for z >= 0 — EFC-deformed expansion: Omega_m={om}, "
+            f"H0={h0}, alpha_cosmo={al} (alpha=0 = the LCDM baseline); the "
+            "engine COMPUTES the rate via the injected background model — "
+            "it classifies no regime boundary itself"
         )
         law_form = ("E²(a) = Om*a^-3 + (1-Om) + alpha*[g(a)-g(1)] — "
-                    "EFCVariantA-bakgrunnen (default; motoren aksepterer "
-                    "ogsaa andre injiserte modeller — denne lovformen "
-                    "beskriver bare default-en)")
+                    "the EFCVariantA background (default; the engine "
+                    "accepts other injected models too — this law form "
+                    "describes only the default)")
         return {
             "id": "efc.hubble_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["fσ8-målingene (Stage-III, 7 stk) — datagrunnlag"],
+            "terskler": ["the fσ8 measurements (Stage-III, 7 of them) — the data basis"],
             "motor": "hubble"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": "efc.efc_background_engine",
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
-            },            "regime": {"name": "Hubble-motoren — ekspansjonen",
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
+            },            "regime": {"name": "The Hubble engine — the expansion",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {
-                "target": "H(z) — ekspansjonsraten",
-                "measurer": "EFCHubble (EFCVariantA-cosmologi)",
-                "instrument": "observasjonssiden er BAO/kronometer; "
-                              "motoren regner raten",
-                "proxy_chain": ["BAO/SNIa -> H(z) (observasjon)",
-                                "H(z) -> EFC-parametre (inferens)"],
-                "placement": "motoren beregner ekspansjonsraten langs z — "
-                             "r_d-kalibreringen er L1-ankeret (observasjons-"
-                             "siden, ikke motorens egen klassifisering)",
-                "compression": "hele H(z) -> tre EFC-parametre",
+                "target": "H(z) — the expansion rate",
+                "measurer": "EFCHubble (the EFCVariantA cosmology)",
+                "instrument": "the observation side is BAO/chronometers; "
+                              "the engine computes the rate",
+                "proxy_chain": ["BAO/SNIa -> H(z) (observation)",
+                                "H(z) -> EFC parameters (inference)"],
+                "placement": "the engine computes the expansion rate along z — "
+                             "the r_d calibration is the L1 anchor (the observation "
+                             "side, not the engine's own classification)",
+                "compression": "all of H(z) -> three EFC parameters",
             },
-            "episenter": "z-rammen: H(z)-kurven er regimets ryggrad — "
-                         "observasjonene baeres av den",
+            "episenter": "the z frame: the H(z) curve is the backbone of "
+                         "the regime — the observations are carried by it",
             "buffer": {
-                "role": "bakgrunnsenergien er bufferen som holder "
-                        "ekspansjonen — modellert, ikke målt direkte",
-                "note": "bufferen er bakgrunnens, ikke motorens.",
+                "role": "the background energy is the buffer that holds "
+                        "the expansion — modelled, not measured directly",
+                "note": "the buffer belongs to the background, not the engine.",
             },
             "ontology": {
-                "assumes": ["bakgrunnen er homogen og isotrop",
-                            "E²(a) er den riktige deformasjonen"],
+                "assumes": ["the background is homogeneous and isotropic",
+                            "E²(a) is the correct deformation"],
                 "source": "EFCVariantA; efc_inference/engine/hubble.py",
             },
             "observer": {
-                "er_del_av_systemet": True,"bandwidth": "motoren ser bare H(z) — én kanal "
-                                     "av ekspansjonens fulle tilstand",
+                "er_del_av_systemet": True,"bandwidth": "the engine sees only H(z) — one channel "
+                                     "of the full state of the expansion",
                          "awareness": "instrument_window"},
             "emergence": {
-                "loop": "tetthet -> ekspansjon -> rødforskyvning — "
-                        "H(z) er loopens avlesning",
+                "loop": "density -> expansion -> redshift — "
+                        "H(z) is the read-out of the loop",
                 "properties": ["H0", "Omega_m", "alpha_cosmo"],
             },
             "fractal": {
-                "pattern": "ekspansjonens regimekne — samme overgangs-"
-                           "monster som CC->CV-kneet (analogi, ikke "
-                           "identitet)",
-                "note": "ett monster, to domener.",
+                "pattern": "the regime knee of expansion — the same transition "
+                           "pattern as the CC->CV knee (analogy, not "
+                           "identity)",
+                "note": "one pattern, two domains.",
             },
             "coupling": {
-                "local": "motoren arbeider langs z-aksen",
-                "global": "H(z) baerer L1->L2-overgangen — koblet til "
-                          "growth (veksten foeler ekspansjonen) og "
+                "local": "the engine works along the z axis",
+                "global": "H(z) carries the L1->L2 transition — coupled to "
+                          "growth (the growth feels the expansion) and "
                           "obs.bao (COUPLED_TO/OBSERVED_IN)",
-                "empathy_note": "ekspansjonen vet ikke selv at den "
-                                "observeres — men motoren vet hva den "
-                                "baerer.",
+                "empathy_note": "the expansion does not itself know that it "
+                                "is observed — but the engine knows what it "
+                                "carries.",
             },
         }

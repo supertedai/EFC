@@ -1,17 +1,17 @@
-"""EFC mu(k,z)-modul — aksjonens avledede Poisson-kobling (L-029).
+"""EFC mu(k,z) module — the action's derived Poisson coupling (L-029).
 
-Porterer de lukkede uttrykkene fra aksjonspapiret
+Ports the closed expressions from the action paper
 (docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_
-Theory_and_Extraction, eq. 2, 24-31, 47-48) inn i motorlaget, saa
-growth-motoren kan sammenlignes mot den AVREDEDE mu(k,z) — ikke bare
-den fenomenologiske ansatzen mu(a) = 1 - B*g(a).
+Theory_and_Extraction, eq. 2, 24-31, 47-48) into the engine layer, so
+the growth engine can be compared against the DERIVED mu(k,z) — not just
+the phenomenological ansatz mu(a) = 1 - B*g(a).
 
-Aksjon (papirets eq. 1):
+Action (the paper's eq. 1):
     S = ∫ d4x sqrt(-g) [ M_Pl^2/2 F(phi) R
                        - 1/2 K(rho) d_mu phi d^mu phi - V(phi)
                        - lambda (box phi - Gamma(rho)) ]
 
-Kvasi-statisk sub-horisont-regime (papirets eq. 24-31):
+Quasi-static sub-horizon regime (the paper's eq. 24-31):
     eps_F      = F' a^2 Gamma' / (F k^2)                       (24)
     eps_lambda = lambda_dot a^2 Gamma' / (M_Pl^2 F k^2)        (25)
     eps_K      = K phi_dot a^2 Gamma' / (M_Pl^2 F k^2)         (26)
@@ -20,12 +20,12 @@ Kvasi-statisk sub-horisont-regime (papirets eq. 24-31):
     eta        = 1 + 2 (eps_F + eps_lambda + eps_lambda_resp)  (27)
     Sigma      = mu (1 + eta) / 2                              (31)
 
-AERLIGHET om bakgrunnen: phi_bar, phi_dot_bar, rho_bar og
-lambda_dot_bar er INNGANGER til modulen. Modulen loser IKKE
-bakgrunnsligningene — aksjonspapiret sier selv at en fullt
-selvkonsistent EFC-bakgrunn ikke finnes ennaa (boltzmann-CMB og
-forsteprinsipper mangler). Ansatzen mu(a) forblir derfor referansen i
-growth-motoren inntil bakgrunnen er lost.
+HONESTY about the background: phi_bar, phi_dot_bar, rho_bar and
+lambda_dot_bar are INPUTS to the module. The module does NOT solve
+the background equations — the action paper itself says that a fully
+self-consistent EFC background does not exist yet (Boltzmann-CMB and
+first principles are missing). The ansatz mu(a) therefore remains the
+reference in the growth engine until the background is solved.
 """
 from __future__ import annotations
 
@@ -35,24 +35,24 @@ from .base_engine import EFCEngine
 
 
 # ---------------------------------------------------------------------------
-# Aksjonens responsfunksjoner (eq. 2, 47-48)
+# The action's response functions (eq. 2, 47-48)
 # ---------------------------------------------------------------------------
 
 def k_rho(params: dict, rho: float) -> float:
     """Eq. 2: K(rho) = K0 / (1 - rho/rho_crit).
 
-    ENHETER (natural units, c = 1; aksjonspapirets konvensjon):
-        M_Pl : masse (Planck-masse)
-        k    : 1/lengde (komovende bølgetall)
-        rho  : masse^4 (energitetthet)
-        Gamma og Gamma' : dimensjoner bestemt av flyt-betingelsen
-        phi_dot, lambda_dot : bakgrunns-derivater
-    Alle eps-uttrykk (24-26, 29) er DIMENSJONSLOSE i denne
-    konvensjonen — testene verifiserer skaleringen.
+    UNITS (natural units, c = 1; the action paper's convention):
+        M_Pl : mass (Planck mass)
+        k    : 1/length (comoving wavenumber)
+        rho  : mass^4 (energy density)
+        Gamma and Gamma' : dimensions fixed by the flow condition
+        phi_dot, lambda_dot : background derivatives
+    All eps expressions (24-26, 29) are DIMENSIONLESS in this
+    convention — the tests verify the scaling.
 
-    Grenseoppforsel (som referansekoden efc_relativistic.py:26-29):
-    for rho >= rho_crit returneres +inf — stivheten divergerer ved
-    kritisk tetthet, og modellen er ikke definert utenfor.
+    Boundary behaviour (as in the reference code efc_relativistic.py:26-29):
+    for rho >= rho_crit +inf is returned — the stiffness diverges at
+    critical density, and the model is not defined beyond it.
     """
     if rho >= params["rho_crit"]:
         return np.inf
@@ -72,12 +72,12 @@ def gamma_prime_rho(params: dict, rho: float) -> float:
 
 
 def f_phi(params: dict, phi: float) -> float:
-    """F(phi) = 1 + alpha*phi (ikke-minimal kobling)."""
+    """F(phi) = 1 + alpha*phi (non-minimal coupling)."""
     return 1.0 + params["alpha"] * phi
 
 
 # ---------------------------------------------------------------------------
-# Perturbasjonsparametre (eq. 24-26, 29)
+# Perturbation parameters (eq. 24-26, 29)
 # ---------------------------------------------------------------------------
 
 def compute_epsilon_F(alpha: float, phi_bar: float, F_bar: float,
@@ -109,7 +109,7 @@ def compute_stiffness_response(K_bar: float, Gamma_prime: float,
 
 
 # ---------------------------------------------------------------------------
-# Observabler (eq. 27, 28, 31)
+# Observables (eq. 27, 28, 31)
 # ---------------------------------------------------------------------------
 
 def compute_mu(eps_F: float, eps_K_resp: float, F_bar: float,
@@ -130,27 +130,27 @@ def compute_sigma(mu: float, eta: float) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Motor
+# Engine
 # ---------------------------------------------------------------------------
 
 class MuKZEngine(EFCEngine):
-    """Beregner mu(k,z) fra aksjonens lukkede uttrykk.
+    """Computes mu(k,z) from the action's closed expressions.
 
-    Innganger: bakgrunns-kvantitetene (phi_bar, phi_dot_bar, rho_bar,
-    lambda_dot_bar) er PARAMETRE — ikke avledet. En selvkonsistent
-    bakgrunn finnes ikke ennaa (se aksjonspapirets egen begrensning).
+    Inputs: the background quantities (phi_bar, phi_dot_bar, rho_bar,
+    lambda_dot_bar) are PARAMETERS — not derived. A self-consistent
+    background does not exist yet (see the action paper's own limitation).
     """
 
     REQUIRED_PARAMS = [
-        "alpha",           # ikke-minimal kobling F = 1 + alpha*phi
-        "K0",              # kinetisk stivhet K(rho) = K0/(1-rho/rho_crit)
-        "rho_crit",        # kritisk tetthet i K og Gamma
-        "gamma0",          # flyt-betingelsens amplitude
-        "M_Pl",            # Planck-masse (skalerer eps-ene)
-        "phi_bar",         # bakgrunns-phi — INNGANG, ikke avledet
-        "phi_dot_bar",     # bakgrunns-phi_dot — INNGANG
-        "lambda_dot_bar",  # bakgrunns-lambda_dot — INNGANG
-        "rho_bar",         # bakgrunns-tetthet — INNGANG
+        "alpha",           # non-minimal coupling F = 1 + alpha*phi
+        "K0",              # kinetic stiffness K(rho) = K0/(1-rho/rho_crit)
+        "rho_crit",        # critical density in K and Gamma
+        "gamma0",          # the flow condition's amplitude
+        "M_Pl",            # Planck mass (scales the eps terms)
+        "phi_bar",         # background phi — INPUT, not derived
+        "phi_dot_bar",     # background phi_dot — INPUT
+        "lambda_dot_bar",  # background lambda_dot — INPUT
+        "rho_bar",         # background density — INPUT
     ]
 
     @property
@@ -158,7 +158,7 @@ class MuKZEngine(EFCEngine):
         return "mu_kz"
 
     def mu_at(self, params: dict, a: float, k: float) -> float:
-        """mu(k,z) for ett (a, k)-punkt via eq. 24-29, 28."""
+        """mu(k,z) for one (a, k) point via eq. 24-29, 28."""
         F_bar = f_phi(params, params["phi_bar"])
         K_bar = k_rho(params, params["rho_bar"])
         gp = gamma_prime_rho(params, params["rho_bar"])
@@ -172,7 +172,7 @@ class MuKZEngine(EFCEngine):
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt (a, k)-par (N x 2), returner mu per punkt."""
+        """Given (a, k) pairs (N x 2), return mu per point."""
         koord = np.asarray(coordinates, dtype=float)
         if koord.ndim == 1:
             koord = koord.reshape(1, -1)
@@ -188,90 +188,90 @@ class MuKZEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["rho >= rho_crit -> K divergerer — stivhetsgrense", "regimebetingelse: k/a >> H — gyldighetsgrense", "mu < 1 -> stivhetsdominert — regimebetingelse"],
+            "terskler": ["rho >= rho_crit -> K diverges — stiffness boundary", "regime condition: k/a >> H — validity boundary", "mu < 1 -> stiffness-dominated — regime condition"],
             "motor": "mu_kz"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "masse", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the staircase its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
-                "name": "Aksjonens avledede Poisson-kobling mu(k,z)",
+                "name": "The action's derived Poisson coupling mu(k,z)",
                 "validity": (
-                    "Kvasi-statisk sub-horisont-regime (eq. 24-31), "
-                    "betingelse: k/a >> H — modusene ligger dypt "
-                    "innenfor horisonten slik at tidsderiverte kan "
-                    "neglisjeres. BAKGRUNNEN ER INNGANG, IKKE AVLEDET: "
-                    "phi_bar, phi_dot_bar, rho_bar og lambda_dot_bar "
-                    "er parametre — en selvkonsistent EFC-bakgrunn er "
-                    "ikke lost (aksjonspapirets egen begrensning). "
-                    "Ansatzen mu(a) forblir referansen i growth-"
-                    "motoren inntil bakgrunnen finnes. mu < 1 gjelder "
-                    "KUN i stivhetsdominert regime med F > 0, eps-ledd "
-                    "små mot 1 og R > 0 — ikke universelt."
+                    "Quasi-static sub-horizon regime (eq. 24-31), "
+                    "condition: k/a >> H — the modes lie deep "
+                    "inside the horizon so that time derivatives can "
+                    "be neglected. THE BACKGROUND IS INPUT, NOT DERIVED: "
+                    "phi_bar, phi_dot_bar, rho_bar and lambda_dot_bar "
+                    "are parameters — a self-consistent EFC background is "
+                    "not solved (the action paper's own limitation). "
+                    "The ansatz mu(a) remains the reference in the growth "
+                    "engine until the background is found. mu < 1 applies "
+                    "ONLY in the stiffness-dominated regime with F > 0, eps "
+                    "terms small against 1 and R > 0 — not universally."
                 ),
                 "law_form": (
-                    "mu = (1 + eps_F + eps_K) / (F (1 + R)) med "
+                    "mu = (1 + eps_F + eps_K) / (F (1 + R)) with "
                     "eps_F (24), eps_K (26), R (29); F = 1 + alpha*phi; "
                     "K = K0/(1-rho/rho_crit); Gamma' per eq. 48"
                 ),
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "mu(k,z) — effektiv Poisson-kobling",
-                "measurer": "lukkede kvasi-statiske uttrykk (eq. 24-31)",
+                "target": "mu(k,z) — the effective Poisson coupling",
+                "measurer": "closed quasi-static expressions (eq. 24-31)",
                 "instrument": "MuKZEngine (efc_inference/engine/mu_kz.py)",
                 "proxy_chain": [
-                    "bakgrunns-innganger -> eps_F, eps_K, R",
+                    "background inputs -> eps_F, eps_K, R",
                     "eps_F, eps_K, R -> mu (eq. 28)",
                 ],
-                "placement": "ett (a, k)-punkt om gangen i kvasi-statisk regime",
-                "compression": "bakgrunn + (a,k) -> mu",
+                "placement": "one (a, k) point at a time in the quasi-static regime",
+                "compression": "background + (a,k) -> mu",
             },
-            "episenter": "stivhetens dominans: naar R dominerer nevneren (med F > 0, eps-ledd smaa mot 1, R > 0) er mu < 1 — papirets prediksjon, naa beregnbart i motorlaget",
+            "episenter": "the dominance of stiffness: when R dominates the denominator (with F > 0, eps terms small against 1, R > 0) mu < 1 — the paper's prediction, now computable in the engine layer",
             "buffer": {
-                "role": "gyldighetsomraadet er modulens buffer: kvasi-statisk sub-horisont — utenfor det deklarerer den det ikke",
-                "note": "modulen deklarerer bakgrunnen som inngang i stedet for aa late som den er avledet.",
+                "role": "the validity range is the module's buffer: quasi-static sub-horizon — outside it the module declares nothing",
+                "note": "the module declares the background as input instead of pretending it is derived.",
             },
             "ontology": {
                 "assumes": [
-                    "aksjonen (eq. 1) og de kvasi-statiske uttrykkene (eq. 24-31) er korrekt avledet i papiret",
-                    "bakgrunns-kvantitetene er gitt utenfra — modulen avleder dem ikke",
+                    "the action (eq. 1) and the quasi-static expressions (eq. 24-31) are correctly derived in the paper",
+                    "the background quantities are given from outside — the module does not derive them",
                 ],
-                "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — portert fra papirets src/efc_relativistic.py",
+                "source": "EFC Relativistic Action (eq. 2, 24-31, 47-48) — ported from the paper's src/efc_relativistic.py",
             },
             "observer": {
-                "bandwidth": "modulen ser bare bakgrunns-inngangene og (a,k) — ingen felt-dynamikk",
+                "bandwidth": "the module sees only the background inputs and (a,k) — no field dynamics",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "bakgrunn -> eps-er -> mu -> growth-motorens fσ8 — koblingen L-029 ba om",
+                "loop": "background -> eps terms -> mu -> the growth engine's fσ8 — the coupling L-029 asked for",
                 "properties": ["mu", "eta", "Sigma"],
             },
             "fractal": {
-                "pattern": "samme lov i hvert (a,k)-punkt — motoren er en instans av aksjonens kvasi-statiske regime",
-                "note": "en lov, alle skalaer.",
+                "pattern": "the same law at every (a,k) point — the engine is an instance of the action's quasi-static regime",
+                "note": "one law, all scales.",
             },
             "coupling": {
-                "local": "hvert (a,k)-punkt beregnes lokalt",
-                "global": "modulen mater growth-motoren med den avledede mu — COUPLED_TO efc.growth_engine",
-                "empathy_note": "modulen vet hva den ikke vet: bakgrunnen.",
+                "local": "each (a,k) point is computed locally",
+                "global": "the module feeds the growth engine with the derived mu — COUPLED_TO efc.growth_engine",
+                "empathy_note": "the module knows what it does not know: the background.",
             },
         }

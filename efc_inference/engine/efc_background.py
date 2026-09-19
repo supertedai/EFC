@@ -1,10 +1,10 @@
-"""EFC-bakgrunnsloeseren — den FOERSTE selvkonsistente FRW-bakgrunnen (L-033).
+"""The EFC background solver — the FIRST self-consistent FRW background (L-033).
 
-Kilde — aksjonspapiret
+Source — the action paper
 (docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_
 Theory_and_Extraction), DOI 10.6084/m9.figshare.31876324.
 
-Aksjonen (papirets eq. 1)::
+The action (the paper's eq. 1)::
 
     S = int d^4x sqrt(-g) [ 1/2 M_Pl^2 F(phi) R
                             - 1/2 K(rho) d_mu phi d^mu phi
@@ -16,60 +16,60 @@ Aksjonen (papirets eq. 1)::
     Gamma(rho) = gamma0 (rho/rho_crit) / (1 + rho/rho_crit)   (eq. 47)
     Gamma'(rho) = gamma0 / (rho_crit (1 + rho/rho_crit)^2)    (eq. 48)
 
-Bakgrunnsligningene er papirets egne (seksjon 4.1, FRW-metrikk eq. 11)::
+The background equations are the paper's own (section 4.1, FRW metric eq. 11)::
 
     3 M_Pl^2 F(phi) H^2 = rho_m + 1/2 K(rho) phi_dot^2 + V(phi)
                           + 3 M_Pl^2 H F_dot + lambda_dot phi_dot     (12)
     phi_ddot + 3 H phi_dot = Gamma(rho)                                (13)
 
-og responsfeltet lambda fra eq. 10::
+and the response field lambda from eq. 10::
 
     box lambda = V'(phi) - 1/2 M_Pl^2 F'(phi) R
                  - nabla_mu (K(rho) nabla^mu phi)                      (10)
 
-VARFOR (12) OG (13) ER NOK SOM KRAV: (13) er flyt-betingelsen — den
-bestemmer phi-dynamikken, og lambda absorberer resten (papirets egen
-formulering: lambda er et RESPONSFELT). (12) er den modifiserte
-Friedmann-ligningen og brukes her som STARTBETINGELSE for H. Evolusjonen
-drives av akselerasjonsligningen — (i,j)-delen av eq. 7 — og residualen
-til (12) langs loesningen rapporteres som en maalt indre konsistens.
+WHY (12) AND (13) ARE ENOUGH AS A REQUIREMENT: (13) is the flow condition — it
+determines the phi dynamics, and lambda absorbs the rest (the paper's own
+wording: lambda is a RESPONSE FIELD). (12) is the modified
+Friedmann equation and is used here as the INITIAL CONDITION for H. The evolution
+is driven by the acceleration equation — the (i,j) part of eq. 7 — and the residual
+of (12) along the solution is reported as a measured internal consistency.
 
-TRE KONVENSJONER SOM ER GJORT EKSPLISITTE (ingen stille valg):
+THREE CONVENTIONS MADE EXPLICIT (no silent choices):
 
-1. TEGNET PAA IKKE-MINIMALT-LEDDET. Papirets eq. (12) skriver
-   ``+ 3 M_Pl^2 H F_dot``. Den direkte variasjonen av eq. (1) i den
-   signaturen papiret selv oppgir (eq. 11: ds^2 = -dt^2 + a^2 dx^2) gir
-   ``- 3 M_Pl^2 H F_dot`` — det er ogsaa den standarde formen for
-   F(phi)R-gravitasjon. Begge kan velges med ``nonminimal_sign``
-   (NONMINIMAL_SIGN_PAPER = +1, NONMINIMAL_SIGN_STANDARD = -1), og
-   forskjellen maales i ``diagnostics``. LCDM-grensen skiller dem IKKE
-   (der er F_dot = 0), saa valget er ikke skjult i falsifikatoren —
-   det staar i tallet.
+1. THE SIGN OF THE NON-MINIMAL TERM. The paper's eq. (12) writes
+   ``+ 3 M_Pl^2 H F_dot``. The direct variation of eq. (1) in the
+   signature the paper itself states (eq. 11: ds^2 = -dt^2 + a^2 dx^2) gives
+   ``- 3 M_Pl^2 H F_dot`` — that is also the standard form for
+   F(phi)R gravity. Both can be chosen with ``nonminimal_sign``
+   (NONMINIMAL_SIGN_PAPER = +1, NONMINIMAL_SIGN_STANDARD = -1), and
+   the difference is measured in ``diagnostics``. The LCDM limit does NOT
+   distinguish them (there F_dot = 0), so the choice is not hidden in the
+   falsifier — it stands in the number.
 
-2. V(phi). Papiret spesifiserer ikke potensialet (framework.json lister
-   ``V_phi: false`` bare for TENSOR-sektoren, ikke som V = 0). Vi velger
-   V = const, fordi LCDM-grensen — kortets falsifikator — krever et
-   Lambda-liknende ledd. Da er V/(3 M_Pl^2 H0^2) = Omega_Lambda når
-   normaliseringen under brukes. Alternativet V = 0 gir Einstein-de
-   Sitter, ikke LCDM; det er dokumentert, ikke skjult.
+2. V(phi). The paper does not specify the potential (framework.json lists
+   ``V_phi: false`` only for the TENSOR sector, not as V = 0). We choose
+   V = const, because the LCDM limit — the card's falsifier — requires a
+   Lambda-like term. Then V/(3 M_Pl^2 H0^2) = Omega_Lambda when the
+   normalisation below is used. The alternative V = 0 gives Einstein-de
+   Sitter, not LCDM; that is documented, not hidden.
 
-3. ENHETER. Alt er dimensjonsloest med ``H0 = M_Pl = 1``: tid maales i
-   1/H0, tetthet i 3 M_Pl^2 H0^2, ``k0 = K0/M_Pl^2`` (K har masse^2),
-   ``lambda_tilde = lambda/M_Pl^2`` og ``V0 = V/(3 M_Pl^2 H0^2)``.
-   ``omega_crit = rho_crit/(3 M_Pl^2 H0^2)``. E(z) = H/H0 er
-   enhetsoverflaten ut — den er den samme i alle enheter.
+3. UNITS. Everything is dimensionless with ``H0 = M_Pl = 1``: time is measured in
+   1/H0, density in 3 M_Pl^2 H0^2, ``k0 = K0/M_Pl^2`` (K has mass^2),
+   ``lambda_tilde = lambda/M_Pl^2`` and ``V0 = V/(3 M_Pl^2 H0^2)``.
+   ``omega_crit = rho_crit/(3 M_Pl^2 H0^2)``. E(z) = H/H0 is
+   the unit surface out — it is the same in every unit.
 
-AERLIGHET — DETTE ER DEN FOERSTE BAKGRUNNEN, IKKE EN BOLTZMANN-KODE:
-    * Ingen CMB, ingen perturbaSJONER, ingen EFCLASS. ``mu(k,z)``-modulen
-      tar fortsatt bakgrunnen som INNGANG — men den faar den naa FRA
-      denne loesningen (``mu_kz_inputs``) i stedet for fra luften.
-    * Loeseren er definert bare for ``rho_m < rho_crit``: K divergerer
-      (eq. 2), og loeseren stopper ved krysset og sier det
-      (``status = "rho_crit_reached"``). Den fyller ikke inn tall.
-    * Super-horisont og full ADM/Hamilton-analyse er aapent i papiret.
-      Vi gjor ingen stabilitetspaastand ut over det som maales her.
-    * Stråling er utelatt: E^2 inneholder Omega_m og Omega_Lambda, ikke
-      Omega_r. Det er greit for z <~ 3, ikke for CMB-epoken.
+HONESTY — THIS IS THE FIRST BACKGROUND, NOT A BOLTZMANN CODE:
+    * No CMB, no PERTURBATIONS, no EFCLASS. The ``mu(k,z)`` module
+      still takes the background as INPUT — but it now gets it FROM
+      this solution (``mu_kz_inputs``) instead of from thin air.
+    * The solver is defined only for ``rho_m < rho_crit``: K diverges
+      (eq. 2), and the solver stops at the crossing and says so
+      (``status = "rho_crit_reached"``). It does not fill in numbers.
+    * Super-horizon and a full ADM/Hamilton analysis are open in the paper.
+      We make no stability claim beyond what is measured here.
+    * Radiation is omitted: E^2 contains Omega_m and Omega_Lambda, not
+      Omega_r. That is fine for z <~ 3, not for the CMB epoch.
 """
 from __future__ import annotations
 
@@ -81,22 +81,22 @@ from scipy.integrate import solve_ivp
 from .base_engine import EFCEngine
 
 # ---------------------------------------------------------------------------
-# Konvensjoner (se modul-docstringen, punkt 1)
+# Conventions (see the module docstring, point 1)
 # ---------------------------------------------------------------------------
 
-#: Papirets eq. (12) som trykket: + 3 M_Pl^2 H F_dot.
+#: The paper's eq. (12) as printed: + 3 M_Pl^2 H F_dot.
 NONMINIMAL_SIGN_PAPER = 1.0
 
-#: Direkte variasjon av eq. (1) i papirets egen signatur (og standard
-#: scalar-tensor-form): - 3 M_Pl^2 H F_dot.
+#: Direct variation of eq. (1) in the paper's own signature (and the standard
+#: scalar-tensor form): - 3 M_Pl^2 H F_dot.
 NONMINIMAL_SIGN_STANDARD = -1.0
 
-#: Standardvalget. Begrunnelsen er MAALT, ikke smakt: se
-#: ``BackgroundSolution.diagnostics["constraint_residual_max"]`` og testen
+#: The default choice. The rationale is MEASURED, not tasted: see
+#: ``BackgroundSolution.diagnostics["constraint_residual_max"]`` and the test
 #: ``test_sign_konvensjonen_er_maalt_mot_constraint_residualen``.
 NONMINIMAL_SIGN_DEFAULT = NONMINIMAL_SIGN_PAPER
 
-#: Nokkelnavn loeseren krever. V0 kan vaere None (flat lukning).
+#: Key names the solver requires. V0 can be None (flat closure).
 PAKREVDE = ("alpha", "k0", "omega_crit", "gamma0", "Omega_m")
 VALGFRIE_DEFAULTS = {
     "V0": None,
@@ -106,39 +106,40 @@ VALGFRIE_DEFAULTS = {
     "lam_dot0": 0.0,
 }
 
-#: Hvordan T^(lambda) (eq. 6) fores inn i bakgrunnsligningene.
+#: How T^(lambda) (eq. 6) is fed into the background equations.
 #:
-#: "paper_eq12": papirets trykte form. Eq. (12) har bare ``lambda_dot phi_dot``
-#:     — dvs. det andrederiverte leddet ``lambda(nabla nabla phi - g box phi)``
-#:     i eq. (6) er droppet (papirets eget notat i seksjon 2.1 sier at
-#:     varianter skiller seg med randledd og forskyver bidrag mellom
-#:     Einstein- og phi-ligningen "without changing the physical content").
-#: "full_eq6": hele eq. (6) med metrisk d'Alembert-operator:
+#: "paper_eq12": the paper's printed form. Eq. (12) has only ``lambda_dot phi_dot``
+#:     — i.e. the second-derivative term ``lambda(nabla nabla phi - g box phi)``
+#:     in eq. (6) is dropped (the paper's own note in section 2.1 says that
+#:     variants differ by boundary terms and shift contributions between
+#:     the Einstein and phi equations "without changing the physical content").
+#: "full_eq6": the whole of eq. (6) with the metric d'Alembert operator:
 #:     rho_lambda = lambda_dot phi_dot - 3 H lambda phi_dot,
-#:     p_lambda   = lambda_dot phi_dot + lambda Gamma  (ved eq. 13).
-#:     De to MAALES mot hverandre — constraint-residualen er dommen, ikke
-#:     en paastand i en kommentar. Er de ikke ekvivalente, er det et funn.
+#:     p_lambda   = lambda_dot phi_dot + lambda Gamma  (at eq. 13).
+#:     The two are MEASURED against each other — the constraint residual is the
+#:     verdict, not a claim in a comment. If they are not equivalent, that is a
+#:     finding.
 LAMBDA_STRESS_FORMS = ("paper_eq12", "full_eq6")
 LAMBDA_STRESS_DEFAULT = "paper_eq12"
 
 KONSTRAINT_RESIDUAL_DEF = (
     "max |F E^2 - [rho_m + K phi_dot^2/(6(1-x)) + V0 + sigma E alpha phi_dot "
-    "+ lambda_dot phi_dot/3]| / E^2 langs loesningen; x = rho_m/omega_crit. "
-    "E er integrert via (i,j)-ligningen (eq. 7), ikke satt fra (12) — "
-    "residualen er derfor en ekte maaling, ikke en tautologi."
+    "+ lambda_dot phi_dot/3]| / E^2 along the solution; x = rho_m/omega_crit. "
+    "E is integrated via the (i,j) equation (eq. 7), not set from (12) — "
+    "the residual is therefore a real measurement, not a tautology."
 )
 
 
 # ---------------------------------------------------------------------------
-# Aksjonens responsfunksjoner (eq. 2, 47, 48)
+# The action's response functions (eq. 2, 47, 48)
 # ---------------------------------------------------------------------------
 
 def kinetic_stiffness(k0: float, rho_over_crit: float) -> float:
-    """Eq. 2 i enheter av M_Pl^2: K(rho)/M_Pl^2 = k0/(1 - rho/rho_crit).
+    """Eq. 2 in units of M_Pl^2: K(rho)/M_Pl^2 = k0/(1 - rho/rho_crit).
 
-    Divergerer ved rho -> rho_crit og er ikke definert for rho >= rho_crit
-    (+inf), som i referansekoden (efc_relativistic.py:26-29) og i
-    mu_kz.k_rho. Stivheten er modellens domene-vegg, ikke en advarsel.
+    Diverges at rho -> rho_crit and is not defined for rho >= rho_crit
+    (+inf), as in the reference code (efc_relativistic.py:26-29) and in
+    mu_kz.k_rho. The stiffness is the model's domain wall, not a warning.
     """
     if rho_over_crit >= 1.0:
         return np.inf
@@ -146,59 +147,59 @@ def kinetic_stiffness(k0: float, rho_over_crit: float) -> float:
 
 
 def gamma_of_rho(gamma0: float, rho_over_crit: float) -> float:
-    """Eq. 47, dimensjonsloes: Gamma/(H0^2) = gamma0 x/(1+x), x = rho/rho_crit."""
+    """Eq. 47, dimensionless: Gamma/(H0^2) = gamma0 x/(1+x), x = rho/rho_crit."""
     x = rho_over_crit
     return gamma0 * x / (1.0 + x)
 
 
 def gamma_prime_of_rho(gamma0: float, rho_over_crit: float) -> float:
-    """Eq. 48, i enheter av rho_crit: dGamma/dx = gamma0/(1+x)^2.
+    """Eq. 48, in units of rho_crit: dGamma/dx = gamma0/(1+x)^2.
 
-    Samme tall som mu_kz.gamma_prime_rho naar den kalles med
-    ``rho_crit = 1`` — testen ``test_gamma_og_gamma_prime_eq47_48``
-    holder de to modulene sammen, slik at de ikke kan gli fra hverandre.
+    The same number as mu_kz.gamma_prime_rho when it is called with
+    ``rho_crit = 1`` — the test ``test_gamma_og_gamma_prime_eq47_48``
+    holds the two modules together, so they cannot slide apart.
     """
     x = rho_over_crit
     return gamma0 / (1.0 + x) ** 2
 
 
-#: Numerisk vegg: K og 1/(1-x)-leddene klippes denne avstanden innenfor
-#: rho_crit. Uten den ville integratoren proeve et steg forbi domenet og
-#: krasje i det ugylidge omraadet i stedet for aa stoppe ved veggen.
-#: Klippingen er en numerisk vakt, ikke fysikk: loeseren RAPPORTERER at den
-#: stoppet ved rho_crit (status + z_rho_crit), og punktene etter er NaN.
+#: Numerical wall: K and the 1/(1-x) terms are clipped this distance inside
+#: rho_crit. Without it the integrator would try a step past the domain and
+#: crash in the invalid region instead of stopping at the wall.
+#: The clipping is a numerical guard, not physics: the solver REPORTS that it
+#: stopped at rho_crit (status + z_rho_crit), and the points after are NaN.
 VEGG_EPS = 1e-9
 
 
 def _x_num(rho_over_crit: float) -> float:
-    """rho/rho_crit klippet til veggen (VEGG_EPS innenfor rho_crit)."""
+    """rho/rho_crit clipped to the wall (VEGG_EPS inside rho_crit)."""
     return min(rho_over_crit, 1.0 - VEGG_EPS)
 
 
-def _normaliser(params: dict) -> dict:
-    """Fyller inn defaults og sjekker at det som maa finnes, finnes."""
+def _normalise(params: dict) -> dict:
+    """Fills in the defaults and checks that what must be there is there."""
     mangler = [k for k in PAKREVDE if k not in params]
     if mangler:
-        raise KeyError(f"mangler bakgrunnsparametre: {mangler}")
+        raise KeyError(f"missing background parameters: {mangler}")
     p = {**VALGFRIE_DEFAULTS, **params}
     if p["omega_crit"] <= 0:
-        raise ValueError("omega_crit maa vaere > 0 (K divergerer ved rho_crit)")
+        raise ValueError("omega_crit must be > 0 (K diverges at rho_crit)")
     if p["Omega_m"] <= 0:
-        raise ValueError("Omega_m maa vaere > 0")
+        raise ValueError("Omega_m must be > 0")
     return p
 
 
 def _V0_fra_lukning(params: dict, nonminimal_sign: float,
                     lambda_stress: str = LAMBDA_STRESS_DEFAULT) -> float:
-    """V0 = V/(3 M_Pl^2 H0^2) naar den skal settes av z=0-normaliseringen.
+    """V0 = V/(3 M_Pl^2 H0^2) when it is to be set by the z=0 normalisation.
 
-    E(0) = 1 (flat lukning) gir, med eq. (12) evaluert ved z = 0:
+    E(0) = 1 (flat closure) gives, with eq. (12) evaluated at z = 0:
 
         V0 = F(phi0) - Omega_m - K(0) phi_dot0^2/6
              - sigma alpha phi_dot0 - rho_lambda0/3
 
-    Samme konvensjon som EFC-hubble-motoren og LCDM-grensen krever; for en
-    statisk phi ved z=0 er V0 = Omega_Lambda.
+    The same convention as the EFC hubble engine and the LCDM limit require; for a
+    static phi at z=0, V0 = Omega_Lambda.
     """
     p = params
     if p["V0"] is not None:
@@ -216,17 +217,17 @@ def _V0_fra_lukning(params: dict, nonminimal_sign: float,
 
 
 # ---------------------------------------------------------------------------
-# Loesningen
+# The solution
 # ---------------------------------------------------------------------------
 
 @dataclass
 class BackgroundSolution:
-    """Bakgrunnen paa en z-grid. NaN der loeseren ikke har dekning."""
+    """The background on a z-grid. NaN where the solver has no coverage."""
 
     z: np.ndarray
     a: np.ndarray
     E: np.ndarray              # H/H0
-    rho_m: np.ndarray          # i enheter av 3 M_Pl^2 H0^2
+    rho_m: np.ndarray          # in units of 3 M_Pl^2 H0^2
     phi: np.ndarray
     phi_dot: np.ndarray        # d phi/d tau, tau = H0 t
     lam: np.ndarray            # lambda/M_Pl^2
@@ -238,101 +239,101 @@ class BackgroundSolution:
     params: dict
     nonminimal_sign: float
 
-    # -- avledede, navngitte maal ------------------------------------------
+    # -- derived, named measures -------------------------------------------
 
     @property
     def lcdm_max_rel_error(self) -> float | None:
-        """Maks |E_loeser/E_LCDM - 1| — bare definert naar loesningen ER
-        LCDM-grensen: alpha = gamma0 = 0 OG phi_dot = lambda_dot = 0 ved
-        z = 0 (ellers er den stive kinetiske energien ikke null og
-        bakgrunnen er ikke LCDM). Ellers None — ikke 0."""
+        """Max |E_solver/E_LCDM - 1| — only defined when the solution IS
+        the LCDM limit: alpha = gamma0 = 0 AND phi_dot = lambda_dot = 0 at
+        z = 0 (otherwise the stiff kinetic energy is not zero and the
+        background is not LCDM). Otherwise None — not 0."""
         return self.diagnostics.get("lcdm_max_rel_error")
 
     @property
     def h_consistency_max_rel(self) -> float:
-        """Maks |E_integert - E_fra_eq12|/E langs loesningen."""
+        """Max |E_integrated - E_from_eq12|/E along the solution."""
         return self.diagnostics["h_consistency_max_rel"]
 
     def mu_kz_inputs(self, z: float) -> dict:
-        """Bakgrunns-inngangene mu(k,z)-modulen trenger, ved roedforskyvning z.
+        """The background inputs the mu(k,z) module needs, at redshift z.
 
-        Enheter: loeserens egne (H0 = M_Pl = 1) — phi_dot_bar og
-        lambda_dot_bar er per tau = H0 t. Enhetsbyttet til mu_kz' naturlige
-        enheter er kallerens ansvar og er ikke gjort her.
+        Units: the solver's own (H0 = M_Pl = 1) — phi_dot_bar and
+        lambda_dot_bar are per tau = H0 t. The unit conversion to mu_kz's
+        natural units is the caller's responsibility and is not done here.
 
-        Dette er L-033s formaal: inngangene kommer fra loesningen, ikke
-        fra luften. De er fortsatt bare definert der loesningen er det.
+        This is L-033's purpose: the inputs come from the solution, not
+        from thin air. They are still only defined where the solution is.
         """
-        def _ved(arr):
+        def _at_z(arr):
             return float(np.interp(z, self.z, arr))
 
-        gyldig = np.isfinite(self.E)
-        nokler = ("phi_bar", "phi_dot_bar", "rho_bar", "lambda_dot_bar")
-        if not np.any(gyldig) or z > float(np.nanmax(self.z[gyldig])):
-            return {k: float("nan") for k in nokler}
+        valid = np.isfinite(self.E)
+        keys = ("phi_bar", "phi_dot_bar", "rho_bar", "lambda_dot_bar")
+        if not np.any(valid) or z > float(np.nanmax(self.z[valid])):
+            return {k: float("nan") for k in keys}
         return {
-            "phi_bar": _ved(self.phi),
-            "phi_dot_bar": _ved(self.phi_dot),
-            "rho_bar": _ved(self.rho_m),
-            "lambda_dot_bar": _ved(self.lam_dot),
+            "phi_bar": _at_z(self.phi),
+            "phi_dot_bar": _at_z(self.phi_dot),
+            "rho_bar": _at_z(self.rho_m),
+            "lambda_dot_bar": _at_z(self.lam_dot),
         }
 
 
 # ---------------------------------------------------------------------------
-# Loeseren
+# The solver
 # ---------------------------------------------------------------------------
 
 class EFCBackgroundSolver:
-    """Integrerer (12)-(13) + materie-bevaring + responsfeltet (10).
+    """Integrates (12)-(13) + matter conservation + the response field (10).
 
-    Tilstand: (a, E, rho_m, phi, phi_dot, lambda, lambda_dot) i
-    z = roedforskyvning. E er H/H0 og integreres via
-    akselerasjonsligningen (eq. 7, (i,j)-delen); eq. (12) settes som
-    startbetingelse og maales langs hele loesningen.
+    State: (a, E, rho_m, phi, phi_dot, lambda, lambda_dot) in
+    z = redshift. E is H/H0 and is integrated via the
+    acceleration equation (eq. 7, the (i,j) part); eq. (12) is set as the
+    initial condition and measured along the whole solution.
     """
 
     def __init__(self, params: dict,
                  nonminimal_sign: float = NONMINIMAL_SIGN_DEFAULT,
                  lambda_stress: str = LAMBDA_STRESS_DEFAULT):
-        self.params = _normaliser(params)
+        self.params = _normalise(params)
         if nonminimal_sign not in (NONMINIMAL_SIGN_PAPER,
                                    NONMINIMAL_SIGN_STANDARD):
             raise ValueError(
-                "nonminimal_sign maa vaere NONMINIMAL_SIGN_PAPER eller "
+                "nonminimal_sign must be NONMINIMAL_SIGN_PAPER or "
                 "NONMINIMAL_SIGN_STANDARD")
         if lambda_stress not in LAMBDA_STRESS_FORMS:
             raise ValueError(
-                f"lambda_stress maa vaere en av {LAMBDA_STRESS_FORMS}")
+                f"lambda_stress must be one of {LAMBDA_STRESS_FORMS}")
         self.nonminimal_sign = float(nonminimal_sign)
         self.lambda_stress = str(lambda_stress)
         self._V0 = _V0_fra_lukning(self.params, self.nonminimal_sign,
                                    self.lambda_stress)
 
-    # -- T^(lambda): energitetthet og trykk (eq. 6 vs eq. 12) --------------
+    # -- T^(lambda): energy density and pressure (eq. 6 vs eq. 12) ---------
 
-    def _lambda_ledd(self, E, lam, u, w, G):
-        """(rho_lambda, p_lambda), begge i enheter av 3 M_Pl^2 H0^2.
+    def _lambda_term(self, E, lam, u, w, G):
+        """(rho_lambda, p_lambda), both in units of 3 M_Pl^2 H0^2.
 
-        ``rho_lambda`` er leddet som gaar inn i eq. (12); ``p_lambda`` er
-        det som gaar inn i (i,j)-ligningen (som trykk). Gamma kommer inn
-        via flyt-betingelsen (13), phi_ddot + 3 H phi_dot = Gamma.
+        ``rho_lambda`` is the term that enters eq. (12); ``p_lambda`` is
+        the one that enters the (i,j) equation (as pressure). Gamma enters
+        via the flow condition (13), phi_ddot + 3 H phi_dot = Gamma.
 
-        Skillet mellom formene er dokumentert ved LAMBDA_STRESS_FORMS;
-        hvilken som lukker systemet er et MAALT spoersmaal
-        (constraint-residualen), ikke et valg begrunnet i prosa.
+        The difference between the forms is documented at LAMBDA_STRESS_FORMS;
+        which one closes the system is a MEASURED question
+        (the constraint residual), not a choice argued in prose.
         """
         if self.lambda_stress == "full_eq6":
             return (w * u - 3.0 * E * lam * u, w * u + lam * G)
         return (w * u, w * u)
 
-    # -- E fra den modifiserte Friedmann-ligningen (eq. 12) ----------------
+    # -- E from the modified Friedmann equation (eq. 12) -------------------
 
-    def _E_fra_constraint(self, rho_m, phi, u, w, lam=0.0):
-        """Eq. (12) loest for H/H0 — den er kvadratisk naar alpha != 0.
+    def _E_from_constraint(self, rho_m, phi, u, w, lam=0.0):
+        """Eq. (12) solved for H/H0 — it is quadratic when alpha != 0.
 
         F E^2 - sigma alpha phi_dot E - X = 0,
         X = rho_m + K phi_dot^2/6 + V0 + rho_lambda/3.
-        Den fysiske roten (E > 0) velges. Ingen reell rot -> NaN.
+        The physical root (E > 0) is chosen. No real root -> NaN.
         """
         p, pr = self.params, self.nonminimal_sign
         x = _x_num(rho_m / p["omega_crit"])
@@ -343,7 +344,7 @@ class EFCBackgroundSolver:
             return np.nan
         K = kinetic_stiffness(p["k0"], x)
         G = gamma_of_rho(p["gamma0"], x)
-        rho_lam, _ = self._lambda_ledd(1.0, lam, u, w, G)
+        rho_lam, _ = self._lambda_term(1.0, lam, u, w, G)
         X = rho_m + K * u ** 2 / 6.0 + self._V0 + rho_lam / 3.0
         b = pr * p["alpha"] * u
         disk = b ** 2 + 4.0 * F * X
@@ -351,23 +352,23 @@ class EFCBackgroundSolver:
             return np.nan
         return (b + np.sqrt(disk)) / (2.0 * F)
 
-    # -- integrasjonen ----------------------------------------------------
+    # -- the integration ---------------------------------------------------
 
     def _dy_dz(self, z, y):
-        """Hoyresiden. y = (a, E, rho_m, phi, u, lam, w), ' = d/dtau."""
+        """The right-hand side. y = (a, E, rho_m, phi, u, lam, w), ' = d/dtau."""
         p, pr = self.params, self.nonminimal_sign
-        # (i,j)-leddet er ikke-minimalt-leddet i eq. (7), som papiret
-        # skriver med MINUS — motsatt av plusset i eq. (12). De to er
-        # konsistente med hverandre: sigma' = -sigma.
+        # the (i,j) term is the non-minimal term in eq. (7), which the paper
+        # writes with a MINUS — the opposite of the plus in eq. (12). The two
+        # are consistent with each other: sigma' = -sigma.
         sign7 = -pr
         a, E, rho_m, phi, u, lam, w = y
         x = _x_num(rho_m / p["omega_crit"])
         F = 1.0 + p["alpha"] * phi
         if F <= 0.0 or E <= 0.0:
-            raise RuntimeError("feltene forlot sitt gyldighetsomraade")
+            raise RuntimeError("the fields left their domain of validity")
         K = kinetic_stiffness(p["k0"], x)
         G = gamma_of_rho(p["gamma0"], x)
-        _, p_lam = self._lambda_ledd(E, lam, u, w, G)
+        _, p_lam = self._lambda_term(E, lam, u, w, G)
 
         # (i,j): -F(2E' + 3E^2) = K u^2/2 - 3 V0 + 3 p_lambda + sign7 alpha Gamma
         D = (-3.0 * F * E ** 2 - K * u ** 2 / 2.0 + 3.0 * self._V0
@@ -396,61 +397,63 @@ class EFCBackgroundSolver:
     def solve(self, z_max: float = 3.0, n_points: int = 201,
               rtol: float = 1e-10, atol: float = 1e-12
               ) -> BackgroundSolution:
-        """Loes bakgrunnen fra z=0 til z_max paa et grid av n_points.
+        """Solve the background from z=0 to z_max on a grid of n_points.
 
-        Stopper aerlig ved rho_m = rho_crit (K divergerer): punktene etter
-        krysset er NaN og ``status`` sier hvorfor.
+        Stops honestly at rho_m = rho_crit (K diverges): the points after
+        the crossing are NaN and ``status`` says why.
         """
         if z_max <= 0:
-            raise ValueError("z_max maa vaere > 0")
+            raise ValueError("z_max must be > 0")
         p = self.params
         n_points = max(int(n_points), 2)
         z_grid = np.linspace(0.0, float(z_max), n_points)
 
         honesty = {
             "status": "first_self_consistent_background",
-            "boltzmann_cmb": "open — ingen Boltzmann/CMB-implementasjon",
+            "boltzmann_cmb": "open — no Boltzmann/CMB implementation",
             "V_choice_note": (
-                "V(phi) er uspesifisert i aksjonspapiret; V = const er "
-                "valgt fordi LCDM-grensen krever et Lambda-liknende ledd. "
-                f"V0 = {self._V0:.6g} i enheter av 3 M_Pl^2 H0^2"
-                + (" (satt av z=0-normaliseringen)" if p["V0"] is None
-                   else " (oppgitt av kaller)")),
+                "V(phi) is unspecified in the action paper; V = const is "
+                "chosen because the LCDM limit requires a Lambda-like term. "
+                f"V0 = {self._V0:.6g} in units of 3 M_Pl^2 H0^2"
+                + (" (set by the z=0 normalisation)" if p["V0"] is None
+                   else " (given by the caller)")),
             "nonminimal_sign": self.nonminimal_sign,
             "nonminimal_sign_note": (
-                "papirets eq. 12 skriver +3 M_Pl^2 H F_dot; direkte "
-                "variasjon av eq. 1 i papirets egen signatur (eq. 11) gir "
-                "-3 M_Pl^2 H F_dot. Begge kan velges eksplisitt. MAALT: "
-                "papirets trykte fortegn gir mindre constraint-residual enn "
-                "den direkte variasjonen (se diagnostics) — derfor default."),
+                "the paper's eq. 12 writes +3 M_Pl^2 H F_dot; direct "
+                "variation of eq. 1 in the paper's own signature (eq. 11) "
+                "gives -3 M_Pl^2 H F_dot. Both can be chosen explicitly. "
+                "MEASURED: the paper's printed sign gives a smaller "
+                "constraint residual than the direct variation "
+                "(see diagnostics) — hence the default."),
             "lambda_stress": self.lambda_stress,
             "lambda_stress_note": (
-                "T^(lambda) (eq. 6) kan fores inn som papirets eq. 12 "
-                "(bare lambda_dot phi_dot) eller i full eq. 6-form; "
-                "papirets eget notat i 2.1 sier at formene skiller seg med "
-                "randledd. MAALT: ingen av dem lukker eksakt — begge gir en "
-                "strukturell residual (~1e-7 for referanseparametrene, "
-                "aarsak i diagnostics); full eq. 6-form gir den minste."),
-            "units": ("H0 = M_Pl = 1: tid i 1/H0, tetthet i 3 M_Pl^2 H0^2, "
+                "T^(lambda) (eq. 6) can be fed in as the paper's eq. 12 "
+                "(only lambda_dot phi_dot) or in the full eq. 6 form; "
+                "the paper's own note in 2.1 says that the forms differ by "
+                "boundary terms. MEASURED: neither of them closes exactly — "
+                "both give a structural residual (~1e-7 for the reference "
+                "parameters, cause in diagnostics); the full eq. 6 form "
+                "gives the smallest."),
+            "units": ("H0 = M_Pl = 1: time in 1/H0, density in 3 M_Pl^2 H0^2, "
                       "k0 = K0/M_Pl^2, lambda_tilde = lambda/M_Pl^2, "
                       "V0 = V/(3 M_Pl^2 H0^2)"),
             "not_valid_for": [
-                "perturbasjoner og CMB (Boltzmann-krever — egen post)",
-                "rho_m >= rho_crit (K divergerer, eq. 2)",
-                "z der straling betyr noe (Omega_r er ikke med)",
-                "super-horisont/ADM-stabilitet (aapent i papiret)",
+                "perturbations and CMB (Boltzmann requirements — its own card)",
+                "rho_m >= rho_crit (K diverges, eq. 2)",
+                "z where radiation matters (Omega_r is not included)",
+                "super-horizon/ADM stability (open in the paper)",
             ],
         }
 
-        # -- startbetingelse: eq. (12) settes ved z = 0 -------------------
+        # -- initial condition: eq. (12) is set at z = 0 -------------------
         x0 = p["Omega_m"] / p["omega_crit"]
         F0 = 1.0 + p["alpha"] * p["phi0"]
-        E0 = self._E_fra_constraint(p["Omega_m"], p["phi0"],
-                                    p["phi_dot0"], p["lam_dot0"],
-                                    p["lam0"])
+        E0 = self._E_from_constraint(p["Omega_m"], p["phi0"],
+                                     p["phi_dot0"], p["lam_dot0"],
+                                     p["lam0"])
         if not np.isfinite(E0) or x0 >= 1.0 or F0 <= 0.0:
-            return self._tomt_grid(z_grid, honesty, status="invalid_state",
-                                   z_rho_crit=None)
+            return self._empty_grid(z_grid, honesty, status="invalid_state",
+                                    z_rho_crit=None)
 
         y0 = np.array([1.0, E0, p["Omega_m"], p["phi0"], p["phi_dot0"],
                        p["lam0"], p["lam_dot0"]])
@@ -466,9 +469,9 @@ class EFCBackgroundSolver:
                             method="RK45", rtol=rtol, atol=atol,
                             events=[_rho_crit_event], dense_output=True)
         except (RuntimeError, ValueError, FloatingPointError) as exc:
-            return self._tomt_grid(z_grid, honesty,
-                                   status=f"integration_failed: {exc}",
-                                   z_rho_crit=None)
+            return self._empty_grid(z_grid, honesty,
+                                    status=f"integration_failed: {exc}",
+                                    z_rho_crit=None)
 
         z_rho_crit = None
         if res.t_events and len(res.t_events[0]) > 0:
@@ -477,24 +480,24 @@ class EFCBackgroundSolver:
         if not res.success and status == "ok":
             status = f"integration_failed: {res.message}"
 
-        gyldig = z_grid <= (z_rho_crit if z_rho_crit is not None
-                            else float(z_max) + 1e-12)
-        ut = self._tomt_grid(z_grid, honesty, status=status,
-                             z_rho_crit=z_rho_crit)
-        if np.any(gyldig):
-            Y = res.sol(z_grid[gyldig])
-            ut.a[gyldig] = Y[0]
-            ut.E[gyldig] = Y[1]
-            ut.rho_m[gyldig] = Y[2]
-            ut.phi[gyldig] = Y[3]
-            ut.phi_dot[gyldig] = Y[4]
-            ut.lam[gyldig] = Y[5]
-            ut.lam_dot[gyldig] = Y[6]
+        valid = z_grid <= (z_rho_crit if z_rho_crit is not None
+                           else float(z_max) + 1e-12)
+        out = self._empty_grid(z_grid, honesty, status=status,
+                               z_rho_crit=z_rho_crit)
+        if np.any(valid):
+            Y = res.sol(z_grid[valid])
+            out.a[valid] = Y[0]
+            out.E[valid] = Y[1]
+            out.rho_m[valid] = Y[2]
+            out.phi[valid] = Y[3]
+            out.phi_dot[valid] = Y[4]
+            out.lam[valid] = Y[5]
+            out.lam_dot[valid] = Y[6]
 
-        ut.diagnostics = self._diagnostikk(ut)
-        return ut
+        out.diagnostics = self._diagnostics(out)
+        return out
 
-    def _tomt_grid(self, z_grid, honesty, status, z_rho_crit
+    def _empty_grid(self, z_grid, honesty, status, z_rho_crit
                    ) -> BackgroundSolution:
         nan = np.full_like(z_grid, np.nan, dtype=float)
         return BackgroundSolution(
@@ -504,25 +507,26 @@ class EFCBackgroundSolver:
             diagnostics={}, honesty=honesty, params=dict(self.params),
             nonminimal_sign=self.nonminimal_sign)
 
-    # -- maalingene -------------------------------------------------------
+    # -- the measurements --------------------------------------------------
 
-    def _diagnostikk(self, sol: BackgroundSolution) -> dict:
-        """Residualer langs loesningen — den maalte dommen over loesningen."""
+    def _diagnostics(self, sol: BackgroundSolution) -> dict:
+        """Residuals along the solution — the measured verdict on the solution."""
         p = self.params
         ok = np.isfinite(sol.E)
         d = {
             "constraint_residual_definition": KONSTRAINT_RESIDUAL_DEF,
             "constraint_residual_cause": (
-                "MAALT: residualen er strukturell (uendret fra rtol 1e-8 til "
-                "1e-11) og skalerer som K'(rho) = k0/(omega_crit(1-x)^2) — "
-                "dvs. som papirets egen neglisjering av delta K/delta g^mu_nu "
-                "(seksjon 2.1, 'Note on delta K'): den vokser med k0, med "
-                "phi_dot^2 og som 1/omega_crit, og er null naar phi_dot = 0. "
-                "Se testen test_constraint_residualen_skalerer_som_K_prime."),
+                "MEASURED: the residual is structural (unchanged from rtol "
+                "1e-8 to 1e-11) and scales as K'(rho) = "
+                "k0/(omega_crit(1-x)^2) — i.e. as the paper's own neglect of "
+                "delta K/delta g^mu_nu (section 2.1, 'Note on delta K'): "
+                "it grows with k0, with phi_dot^2 and as 1/omega_crit, and "
+                "is zero when phi_dot = 0. See the test "
+                "test_constraint_residualen_skalerer_som_K_prime."),
             "h_consistency_definition": (
-                "max |E_integert - E_fra_eq12| / E: (12) loest for E paa "
-                "hver tilstand i loesningen og sammenlignet med den "
-                "integrerte E."),
+                "max |E_integrated - E_from_eq12| / E: (12) solved for E at "
+                "each state in the solution and compared with the "
+                "integrated E."),
             "rho_crit_reached": sol.status == "rho_crit_reached",
             "z_rho_crit": sol.z_rho_crit,
         }
@@ -546,14 +550,14 @@ class EFCBackgroundSolver:
                + self.nonminimal_sign * E * p["alpha"] * u)
         d["constraint_residual_max"] = float(
             np.max(np.abs(F * E ** 2 - rhs) / E ** 2))
-        E_c = np.array([self._E_fra_constraint(r, f, uu, ww, ll)
+        E_c = np.array([self._E_from_constraint(r, f, uu, ww, ll)
                         for r, f, uu, ww, ll in zip(rho, phi, u, w, lam)])
         d["h_consistency_max_rel"] = float(
             np.max(np.abs(E - E_c) / E))
         d["rho_crit_rho"] = float(np.nanmax(sol.rho_m))
         d["rho_over_crit_max"] = float(np.nanmax(x))
 
-        # LCDM-grensen maales bare der den faktisk er grensen.
+        # The LCDM limit is measured only where it actually is the limit.
         p_er_grense = (p["alpha"] == 0.0 and p["gamma0"] == 0.0
                        and p["phi_dot0"] == 0.0 and p["lam_dot0"] == 0.0)
         if p_er_grense:
@@ -566,22 +570,23 @@ class EFCBackgroundSolver:
 
 
 # ---------------------------------------------------------------------------
-# Motorflaten (samme moenster som mu_kz og hubble)
+# The engine surface (the same pattern as mu_kz and hubble)
 # ---------------------------------------------------------------------------
 
 class EFCBackgroundEngine(EFCEngine):
-    """H(z) fra den selvkonsistente EFC-bakgrunnen (eq. 12-13).
+    """H(z) from the self-consistent EFC background (eq. 12-13).
 
-    Enhetene er loeserens (H0 = M_Pl = 1); ``H0`` i params brukes bare
-    som enhetsomregning ut til km/s/Mpc.
+    The units are the solver's (H0 = M_Pl = 1); ``H0`` in params is used
+    only as a unit conversion out to km/s/Mpc.
     """
 
     REQUIRED_PARAMS = ["H0", "alpha", "k0", "omega_crit", "gamma0", "Omega_m"]
 
-    #: Motoren eier sin egen publiseringsflate (se base_engine). Noden ER i
-    #: atlaset (``efc.efc_background_engine``) og genereres til GitHub Pages —
-    #: «intern» var sann mens noden ikke fantes, og ble staende etter at den
-    #: kom inn. Rettet mot maalt tilstand 2026-09-18 (bro-auditen).
+    #: The engine owns its own publication surface (see base_engine). The node
+    #: IS in the atlas (``efc.efc_background_engine``) and is generated to
+    #: GitHub Pages — «intern» was true while the node did not exist, and it
+    #: stayed after the node arrived. Corrected against the measured state
+    #: 2026-09-18 (the bridge audit).
     SYNLIGHET = "offentlig"
 
     @property
@@ -589,7 +594,7 @@ class EFCBackgroundEngine(EFCEngine):
         return "efc_background"
 
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
-        """H(z) = H0 * E(z) i km/s/Mpc naar H0 er gitt i km/s/Mpc."""
+        """H(z) = H0 * E(z) in km/s/Mpc when H0 is given in km/s/Mpc."""
         if not self.validate_params(params_dict):
             return np.full_like(np.asarray(coordinates, dtype=float), np.nan)
         z = np.asarray(coordinates, dtype=float)
@@ -605,35 +610,35 @@ class EFCBackgroundEngine(EFCEngine):
         return params_dict["H0"] * E
 
     # ------------------------------------------------------------------
-    # regime_node(): motorens selvbeskrivelse i atlaset
+    # regime_node(): the engine's self-description in the atlas
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
-        p = _normaliser(params_dict)
+        p = _normalise(params_dict)
         sign = float(params_dict.get("nonminimal_sign",
                                      NONMINIMAL_SIGN_DEFAULT))
         V0 = _V0_fra_lukning(p, sign)
         validity = (
-            f"Bakgrunnsloeser for FLAT FRW med EFC-aksjonen (eq. 1): "
+            f"Background solver for FLAT FRW with the EFC action (eq. 1): "
             f"alpha={p['alpha']}, k0={p['k0']}, "
             f"omega_crit={p['omega_crit']}, gamma0={p['gamma0']}, "
             f"Omega_m={p['Omega_m']}, V0={V0:.4g}, "
-            f"nonminimal_sign={sign:+.0f}. Dette er den FOERSTE "
-            f"selvkonsistente EFC-bakgrunnen: phi drives av "
-            f"flyt-betingelsen (13), H av (12) og lambda er et "
-            f"responsfelt (eq. 10). Boltzmann/CMB er AAPEN — "
-            f"ingen perturbasjoner, ingen EFCLASS. Gyldig bare for "
-            f"rho_m < rho_crit (K divergerer, eq. 2), for z der "
-            f"stråling er neglisjerbar, og med V = const valgt fordi "
-            f"papiret ikke spesifiserer V(phi). Super-horisont og "
-            f"ADM-stabilitet er aapent i papiret."
+            f"nonminimal_sign={sign:+.0f}. This is the FIRST "
+            f"self-consistent EFC background: phi is driven by the "
+            f"flow condition (13), H by (12) and lambda is a "
+            f"response field (eq. 10). Boltzmann/CMB is OPEN — "
+            f"no perturbations, no EFCLASS. Valid only for "
+            f"rho_m < rho_crit (K diverges, eq. 2), for z where "
+            f"radiation is negligible, and with V = const chosen because "
+            f"the paper does not specify V(phi). Super-horizon and "
+            f"ADM stability are open in the paper."
         )
         law_form = (
             "3 M_Pl^2 F(phi) H^2 = rho_m + K phi_dot^2/2 + V(phi) "
             "+ sigma 3 M_Pl^2 H F_dot + lambda_dot phi_dot (eq. 12); "
             "phi_ddot + 3 H phi_dot = Gamma(rho) (eq. 13); "
             "F = 1 + alpha phi; K = k0/(1 - rho/rho_crit) (eq. 2); "
-            "Gamma per eq. 47 — sigma = +1 er papirets trykte form, "
-            "-1 er den direkte variasjonen av eq. 1."
+            "Gamma per eq. 47 — sigma = +1 is the paper's printed form, "
+            "-1 is the direct variation of eq. 1."
         )
         return {
             "id": "efc.efc_background_engine",
@@ -642,111 +647,112 @@ class EFCBackgroundEngine(EFCEngine):
             "stipulasjoner": {
                 "stipulert_av_oss": True,
                 "terskler": [
-                    "rho >= rho_crit -> K divergerer — modellen er ikke "
-                    "definert utenfor (eq. 2), loeseren stopper der",
-                    "V = const — vaart valg, ikke papirets (V(phi) er "
-                    "uspesifisert i kilden)",
-                    f"nonminimal_sign = {sign:+.0f} — valgt eksplisitt, "
-                    "forskjellen er maalt",
+                    "rho >= rho_crit -> K diverges — the model is not "
+                    "defined beyond (eq. 2), the solver stops there",
+                    "V = const — our choice, not the paper's (V(phi) is "
+                    "unspecified in the source)",
+                    f"nonminimal_sign = {sign:+.0f} — chosen explicitly, "
+                    "the difference is measured",
                 ],
                 "motor": "efc_background"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
-                # Evidensstatus eies av ATLASET: bakgrunnsloeseren er en
-                # hypotese uten maalt evidens (SYSTEM.md: «no evidence yet»).
-                # Motoren sa «proxy» om en avledning som ikke er maalt.
+                # The evidence status is owned by the ATLAS: the background
+                # solver is a hypothesis without measured evidence (SYSTEM.md:
+                # «no evidence yet»). The engine said «proxy» about a
+                # derivation that is not measured.
                 "evidensstatus": "ingen",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vaar egen ramme — baeres av oss, "
-                                     "ikke av feltet",
+                "sosial_mekanisme": "our own frame — carried by us, "
+                                    "not by the field",
                 "konsensus_er_ikke_sannhet": True,
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "tid", "masse"],
-                "enheter": "dimensjonsloes (H0 = M_Pl = 1); E = H/H0 ut",
+                "enheter": "dimensionless (H0 = M_Pl = 1); E = H/H0 out",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer",
-                                 "anderledes normalisering av a(t)"],
+                "alternativer": ["coordinate-free formulations",
+                                 "a different normalisation of a(t)"],
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren er SUBSTRATET under de andre kosmologimotorene, og
-            # nivaaet staar i atlaset — ikke i en egen kopi her.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine is the SUBSTRATE beneath the other cosmology engines, and
+            # the level stands in the atlas — not in a separate copy here.
             "nivaa": {
                 "indeks": 0,
                 "forelder": None,
-                "tidsskala": "kosmisk tid",
-                "lengdeskala": "Hubbleskala",
+                "tidsskala": "cosmic time",
+                "lengdeskala": "Hubble scale",
             },
             "regime": {
-                "name": "Selvkonsistent EFC-bakgrunn (FLAT FRW)",
+                "name": "Self-consistent EFC background (FLAT FRW)",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "H(z) og bakgrunns-feltene phi, phi_dot, "
+                "target": "H(z) and the background fields phi, phi_dot, "
                           "rho_m, lambda_dot",
-                "measurer": "numerisk integrasjon av (12)-(13) + eq. 10",
+                "measurer": "numerical integration of (12)-(13) + eq. 10",
                 "instrument": "EFCBackgroundSolver "
                               "(efc_inference/engine/efc_background.py)",
                 "proxy_chain": [
-                    "parametre (alpha, k0, omega_crit, gamma0, V0) -> "
-                    "ODE-system",
-                    "ODE-system -> tilstand (a, E, rho_m, phi, phi_dot, "
+                    "parameters (alpha, k0, omega_crit, gamma0, V0) -> "
+                    "ODE system",
+                    "ODE system -> state (a, E, rho_m, phi, phi_dot, "
                     "lambda, lambda_dot)",
-                    "tilstand -> mu_kz_inputs -> mu(k,z) (kandidat-kobling)",
+                    "state -> mu_kz_inputs -> mu(k,z) (candidate coupling)",
                 ],
-                "placement": "loesningen finnes paa et z-grid fra 0 til "
-                             "z_max, og stopper ved rho_crit",
-                "compression": "bakgrunn -> syv tilstandsvariabler + "
-                               "maalt constraint-residual",
+                "placement": "the solution exists on a z-grid from 0 to "
+                             "z_max, and stops at rho_crit",
+                "compression": "the background -> seven state variables + "
+                               "measured constraint residual",
             },
-            "episenter": "flyt-betingelsen (13) er det som gjor dette til "
-                         "en EFC-bakgrunn og ikke en vilkaarlig "
-                         "scalar-tensor: phi har ingen fri "
-                         "startbevegelse uten Gamma, og lambda betaler "
-                         "for ledgerskapet",
+            "episenter": "the flow condition (13) is what makes this an "
+                         "EFC background and not an arbitrary "
+                         "scalar-tensor: phi has no free "
+                         "starting motion without Gamma, and lambda pays "
+                         "for the ledger",
             "buffer": {
-                "role": "lambda er bufferen: responsfeltet som holder "
-                        "flyt-regnskapet naar phi ikke kan bevege seg fritt",
-                "note": "loeseren deklarerer hva den ikke er (Boltzmann, "
-                        "stråling, super-horisont) i stedet for aa la "
-                        "E(z) se ut som en full loesning.",
+                "role": "lambda is the buffer: the response field that keeps "
+                        "the flow accounting when phi cannot move freely",
+                "note": "the solver declares what it is not (Boltzmann, "
+                        "radiation, super-horizon) instead of letting "
+                        "E(z) look like a full solution.",
             },
             "ontology": {
                 "assumes": [
-                    "aksjonen (eq. 1) og bakgrunnsligningene (12)-(13) er "
-                    "korrekt utledet i papiret",
-                    "V(phi) = const — vaart valg, fordi papiret ikke "
-                    "spesifiserer potensialet og LCDM-grensen krever et "
-                    "Lambda-liknende ledd",
-                    "materie er stov som bevares separat (rho ~ a^-3)",
+                    "the action (eq. 1) and the background equations (12)-(13) "
+                    "are correctly derived in the paper",
+                    "V(phi) = const — our choice, because the paper does not "
+                    "specify the potential and the LCDM limit requires a "
+                    "Lambda-like term",
+                    "matter is dust that is conserved separately (rho ~ a^-3)",
                 ],
                 "source": "DOI 10.6084/m9.figshare.31876324 (Magnusson, "
                           "2025/2026)",
             },
             "observer": {
-                "bandwidth": "loeseren ser bakgrunnen — ingen "
-                             "perturbasjoner, ingen CMB",
+                "bandwidth": "the solver sees the background — no "
+                             "perturbations, no CMB",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "rho_m -> Gamma -> phi-dynamikk -> K phi_dot^2 og "
+                "loop": "rho_m -> Gamma -> phi dynamics -> K phi_dot^2 and "
                         "H F_dot -> H -> rho_m",
                 "properties": ["H(z)", "phi(z)", "lambda(z)"],
             },
             "fractal": {
-                "pattern": "samme bakgrunnsligning holdes langs hele "
-                           "z-aksen — loesningen er en instans av (12)",
-                "note": "en lov, alle z.",
+                "pattern": "the same background equation holds along the whole "
+                           "z axis — the solution is an instance of (12)",
+                "note": "one law, every z.",
             },
             "coupling": {
-                "local": "hvert z-punkt er en tilstand paa loesningen",
-                "global": "mater mu(k,z)-modulen med bakgrunns-inngangene "
-                          "— COUPLED_TO efc.mu_kz_engine (kandidat: "
-                          "injeksjonen i growth er ikke implementert)",
-                "empathy_note": "bakgrunnen vet hva den ikke er: den er "
-                                "ingen Boltzmann-kode.",
+                "local": "every z point is a state on the solution",
+                "global": "feeds the mu(k,z) module with the background inputs "
+                          "— COUPLED_TO efc.mu_kz_engine (candidate: "
+                          "the injection into growth is not implemented)",
+                "empathy_note": "the background knows what it is not: it is "
+                                "no Boltzmann code.",
             },
         }

@@ -169,8 +169,8 @@ details > *:not(summary){margin-top:8px}
 const TW=72, TH=36;
 function P(gx,gy,z=0){ return [(gx-gy)*TW/2, (gx+gy)*TH/2 - z]; }
 function pts(a){ return a.map(p=>p.join(',')).join(' '); }
-// Hoppene baerer KODER (FLOWS: «HA -> KL»), nodene baerer id-er.
-// Uten begge navnerom i samme oppslag er hvert hopp uopploeselig.
+// The hops carry CODES (FLOWS: «HA -> KL»); the nodes carry ids.
+// Without both namespaces in the same lookup every hop is unresolvable.
 const byId = Object.fromEntries(NODES.flatMap(n=>[[n.id,n],[n.code,n]]));
 const center = n => [n.gx+n.w/2, n.gy+n.d/2];
 const NS='http://www.w3.org/2000/svg';

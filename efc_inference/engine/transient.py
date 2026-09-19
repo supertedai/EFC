@@ -1,28 +1,28 @@
-"""EFC Transient Engine — stjernedodens holding->release-motor (L-036).
+"""EFC Transient Engine — stellar death's holding->release engine (L-036).
 
-Koder formen som ble funnet i recon-en av kosmos.transienter
-(ALeRCE/ZTF-hendelseslaget): den kompakte kjernen er en buffer som HOLDER
-saa lenge gravitasjonsbindingen baerer den, og som SLIPPER naar massen
-krysser stabilitetsgrensen — kollaps, transient (supernova/GRB), rest.
+Encodes the form found in the recon of kosmos.transienter (the ALeRCE/ZTF
+event kind): the compact core is a buffer that HOLDS as long as the
+gravitational binding carries it, and that RELEASES when the mass crosses
+the stability limit — collapse, transient (supernova/GRB), remnant.
 
-Modellen er IDEALISERT (kollaps-buffer): bindingsenergien E = G*M^2/R
-bygges med kjernemassen, og ved stabilitetsgrensen frigjores
-bindingsenergien ved den LOKALE massen. Den PASTAAR ikke prediksjonskraft
-for enkelthendelser — den regner formens observabler: holdetid, utlost
-energi og lettkurvens form (rask stigning, eksponensiell hale).
+The model is IDEALISED (collapse buffer): the binding energy E = G*M^2/R
+is built with the core mass, and at the stability limit the binding energy
+is released at the LOCAL mass. It does NOT claim predictive power for
+single events — it computes the form's observables: hold time, released
+energy and the lightcurve's shape (rapid rise, exponential tail).
 
-Den fjerde instansen av formen som allerede er bygget for solens flares
-(SolarFlareEngine), jordas skjelv (JordskjelvEngine) og nevronet
+The fourth instance of the form already built for the Sun's flares
+(SolarFlareEngine), the Earth's quakes (JordskjelvEngine) and the neuron
 (homo.aksjonspotensial).
 
-ATLAS-KOBLINGEN ER LANDET: noden efc.transient_engine staar i
-schema/regime_nodes.jsonld med de tre ANALOGOUS_TO-endepunktene
+THE ATLAS LINK IS LANDED: the node efc.transient_engine stands in
+schema/regime_nodes.jsonld with the three ANALOGOUS_TO endpoints
 (homo.aksjonspotensial, efc.solar_flare_engine, efc.jordskjelv_engine) —
-samme monster som sol/jord/nevron. Vakten som ventet paa
-kollisjonsrekkefolgen er byttet mot bro-testen
+the same pattern as sun/earth/neuron. The guard that waited on the
+collision order has been replaced by the bridge test
 tests/test_holding_release_motorer.py::test_transient_atlas_node_bro_test,
-som holder atlas-nodens regime (validity + law_form) IDENTISK med
-regime_node() her — maskinelt, ikke prosa-likt.
+which holds the atlas node's regime (validity + law_form) IDENTICAL to
+regime_node() here — mechanically, not prose-alike.
 """
 from __future__ import annotations
 
@@ -32,16 +32,16 @@ from .base_engine import EFCEngine
 
 
 class TransientEngine(EFCEngine):
-    """Holding->release-motor for kollaps-bufferen i en kompakt kjerne (idealisert)."""
+    """Holding->release engine for the collapse buffer in a compact core (idealised)."""
 
     REQUIRED_PARAMS = [
-        "G",                  # m^3 kg^-1 s^-2 — gravitasjonskonstanten (inngang)
-        "terskelmasse",       # kg — stabilitetsgrensen (Chandrasekhar-stil modellparameter)
-        "radius",             # m — kjerneradius der bindingsenergien regnes
-        "vekstrate",          # kg/s — massetilvekst (oppladningen)
-        "stigningstid_dager",  # dager — rask stigning i lettkurven
-        "haletid_dager",      # dager — eksponensiell hale
-        "stigningseksponent",  # — formparameter for stigningen (alpha)
+        "G",                  # m^3 kg^-1 s^-2 — the gravitational constant (input)
+        "terskelmasse",       # kg — the stability limit (Chandrasekhar-style model parameter)
+        "radius",             # m — core radius at which the binding energy is computed
+        "vekstrate",          # kg/s — mass growth (the charging)
+        "stigningstid_dager",  # days — rapid rise in the lightcurve
+        "haletid_dager",      # days — exponential tail
+        "stigningseksponent",  # — shape parameter for the rise (alpha)
     ]
 
     @property
@@ -49,96 +49,97 @@ class TransientEngine(EFCEngine):
         return "transient"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
-    def _gyldig_masse(self, masse: np.ndarray) -> np.ndarray:
-        """Motorens fail-closed-kontrakt for masse — EEN kilde.
+    def _valid_mass(self, mass: np.ndarray) -> np.ndarray:
+        """The engine's fail-closed contract for mass — ONE source.
 
-        Gyldig masse er ENDELIG og IKKE-NEGATIV. Alt annet er utenfor
-        vinduet: det gir NaN, aldri en gjetning. Predikatet er skilt ut
-        fordi baade compute() og bindingsenergi() maa holde samme kontrakt
-        — to kopier driver fra hverandre (PR #435).
+        Valid mass is FINITE and NON-NEGATIVE. Anything else is outside
+        the window: it yields NaN, never a guess. The predicate is
+        separated out because both compute() and bindingsenergi() must
+        keep the same contract — two copies drift apart (PR #435).
         """
-        return np.isfinite(masse) & (masse >= 0.0)
+        return np.isfinite(mass) & (mass >= 0.0)
 
-    def bindingsenergi(self, params: dict, masse: np.ndarray) -> np.ndarray:
-        """Gravitasjonsbindingen E = G * M^2 / R (J) — bufferens energi.
+    def bindingsenergi(self, params: dict, mass: np.ndarray) -> np.ndarray:
+        """The gravitational binding E = G * M^2 / R (J) — the buffer's energy.
 
-        Ugyldig inngang (negativ eller ikke-endelig masse) er utenfor
-        vinduet og gir NaN — aldri en gjetning. Kvadreringen ville ellers
-        gjort energien POSITIV for negativ masse, saa en direkte kallende
-        part fikk et tall der compute() gir NaN.
+        Invalid input (negative or non-finite mass) is outside the window
+        and yields NaN — never a guess. The squaring would otherwise have
+        made the energy POSITIVE for negative mass, so a direct caller got
+        a number where compute() yields NaN.
         """
-        m = np.asarray(masse, dtype=float)
-        ut = np.full(m.shape, np.nan)
-        gyldig = self._gyldig_masse(m)
-        ut[gyldig] = params["G"] * m[gyldig] ** 2 / params["radius"]
-        return ut
+        m = np.asarray(mass, dtype=float)
+        out = np.full(m.shape, np.nan)
+        valid = self._valid_mass(m)
+        out[valid] = params["G"] * m[valid] ** 2 / params["radius"]
+        return out
 
     def holdetid(self, params: dict) -> float:
-        """Tid fra M=0 til stabilitetsgrensen ved konstant vekstrate (s)."""
+        """Time from M=0 to the stability limit at constant growth rate (s)."""
         return float(params["terskelmasse"] / params["vekstrate"])
 
     def utlost_energi(self, params: dict) -> float:
-        """Energien som frigjores VED stabilitetsgrensen (J).
+        """The energy released AT the stability limit (J).
 
-        Dette er energien ved terskelen — ikke en enkelthendelses malte
-        energi. compute() bruker den LOKALE massen (se docstringen der).
+        This is the energy at the threshold — not a single event's
+        measured energy. compute() uses the LOCAL mass (see the docstring
+        there).
         """
         return float(self.bindingsenergi(
             params, np.array([params["terskelmasse"]]))[0])
 
-    def lettkurve(self, params: dict, tider_dager: np.ndarray) -> np.ndarray:
-        """Normalisert lettkurve-form (maks 1.0 ved stigningstid_dager).
+    def lettkurve(self, params: dict, times_dager: np.ndarray) -> np.ndarray:
+        """Normalised lightcurve shape (maximum 1.0 at stigningstid_dager).
 
-        Formen er PARAMETRISERT, ikke avledet: en rask stigning
-        (t/t_stig)^alpha fram til kneet, deretter en eksponensiell hale
-        exp(-(t-t_stig)/t_hale). Kneet er SATT av stigningstid_dager —
-        det er ikke detektert fra en serie, og formen hevder ingen
-        regimeendring ut over den parametriserte maksimumsverdien.
+        The shape is PARAMETERISED, not derived: a rapid rise
+        (t/t_stig)^alpha up to the knee, then an exponential tail
+        exp(-(t-t_stig)/t_hale). The knee is SET by stigningstid_dager —
+        it is not detected from a series, and the shape claims no regime
+        change beyond the parameterised maximum value.
 
-        Tider i DAGER (parameterne heter _dager); negative eller ikke-
-        endelige tider er utenfor vinduet og gir NaN.
+        Times in DAYS (the parameters are named _dager); negative or
+        non-finite times are outside the window and yield NaN.
         """
-        t = np.asarray(tider_dager, dtype=float)
+        t = np.asarray(times_dager, dtype=float)
         t_stig = float(params["stigningstid_dager"])
         t_hale = float(params["haletid_dager"])
         alpha = float(params["stigningseksponent"])
-        ut = np.full(t.shape, np.nan)
-        gyldig = np.isfinite(t) & (t >= 0.0)
-        stigning = gyldig & (t < t_stig)
-        hale = gyldig & (t >= t_stig)
-        ut[stigning] = (t[stigning] / t_stig) ** alpha
-        ut[hale] = np.exp(-(t[hale] - t_stig) / t_hale)
-        return ut
+        out = np.full(t.shape, np.nan)
+        valid = np.isfinite(t) & (t >= 0.0)
+        rise_mask = valid & (t < t_stig)
+        tail_mask = valid & (t >= t_stig)
+        out[rise_mask] = (t[rise_mask] / t_stig) ** alpha
+        out[tail_mask] = np.exp(-(t[tail_mask] - t_stig) / t_hale)
+        return out
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict, coordinates: np.ndarray) -> np.ndarray:
-        """Gitt kjernemasse (kg), returner frigjort energi (J).
+        """Given core mass (kg), return released energy (J).
 
-        Holding: masse < terskelmasse -> kjernen holdes oppe, utlosning = 0.
-        Release: masse >= terskelmasse -> bindingsenergien ved den LOKALE
-        massen frigjores (idealisert: hele bufferen slippes). Konvensjonen
-        er den samme som SolarFlareEngine.compute(): energien folger det
-        lokale punktet, ikke den deklarerte terskelverdien.
+        Holding: mass < terskelmasse -> the core is held up, release = 0.
+        Release: mass >= terskelmasse -> the binding energy at the LOCAL
+        mass is released (idealised: the whole buffer is let go). The
+        convention is the same as SolarFlareEngine.compute(): the energy
+        follows the local point, not the declared threshold value.
 
-        Ugyldig inngang (negativ eller ikke-endelig masse) er utenfor
-        vinduet og gir NaN — aldri en gjetning.
+        Invalid input (negative or non-finite mass) is outside the window
+        and yields NaN — never a guess.
         """
-        masse = np.asarray(coordinates, dtype=float)
-        ut = np.full(masse.shape, np.nan)
-        gyldig = self._gyldig_masse(masse)
-        ut[gyldig] = 0.0
-        kritisk = gyldig & (masse >= params_dict["terskelmasse"])
-        ut[kritisk] = self.bindingsenergi(params_dict, masse[kritisk])
-        return ut
+        mass = np.asarray(coordinates, dtype=float)
+        out = np.full(mass.shape, np.nan)
+        valid = self._valid_mass(mass)
+        out[valid] = 0.0
+        critical = valid & (mass >= params_dict["terskelmasse"])
+        out[critical] = self.bindingsenergi(params_dict, mass[critical])
+        return out
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
@@ -151,104 +152,104 @@ class TransientEngine(EFCEngine):
         t_hale = params["haletid_dager"]
         alpha = params["stigningseksponent"]
         validity = (
-            "holding: masse < " + str(terskelmasse) + " kg — kjernen holdes "
-            "oppe, ingen utlosning; release: masse >= " + str(terskelmasse)
-            + " kg — bindingsenergien ved den LOKALE massen frigjores "
-            "(energien ved terskelen er " + str(e_ut) + " J). IDEALISERT "
-            "regime-modell (kollaps-buffer): hele bindingsenergien "
-            "G*M^2/R slippes ved stabilitetsgrensen, med radius "
-            + str(radius) + " m og vekstrate " + str(vekstrate) + " kg/s "
-            "(holdetid " + str(t_hold) + " s). Ekte supernovaer fordeler "
-            "energien mellom noeytrinoer, kinetisk energi og straaling, og "
-            "bare en brakdel blir lys. Stabilitetsgrensen er en "
-            "MODELLPARAMETER (Chandrasekhar-stil): den virkelige grensen "
-            "avhenger av sammensetning, rotasjon og omgivelsene. "
-            "Lettkurven er en PARAMETRISERT form — stigning over "
-            + str(t_stig) + " dager med eksponent " + str(alpha)
-            + ", deretter eksponensiell hale med tidsskala " + str(t_hale)
-            + " dager; kneet er SATT av formen, ikke detektert fra en "
-            "serie. Predikerer IKKE enkelthendelser."
+            "holding: mass < " + str(terskelmasse) + " kg — the core is "
+            "held up, no release; release: mass >= " + str(terskelmasse)
+            + " kg — the binding energy at the LOCAL mass is released "
+            "(the energy at the threshold is " + str(e_ut) + " J). IDEALISED "
+            "regime model (collapse buffer): the whole binding energy "
+            "G*M^2/R is released at the stability limit, with radius "
+            + str(radius) + " m and growth rate " + str(vekstrate) + " kg/s "
+            "(hold time " + str(t_hold) + " s). Real supernovae distribute "
+            "the energy among neutrinos, kinetic energy and radiation, and "
+            "only a fraction becomes light. The stability limit is a "
+            "MODEL PARAMETER (Chandrasekhar style): the real limit "
+            "depends on composition, rotation and the surroundings. "
+            "The lightcurve is a PARAMETERISED form — a rise over "
+            + str(t_stig) + " days with exponent " + str(alpha)
+            + ", then an exponential tail with timescale " + str(t_hale)
+            + " days; the knee is SET by the form, not detected from a "
+            "series. Does NOT predict individual events."
         )
         law_form = (
-            "E_bind = G*M^2/R; holdetid = terskelmasse / vekstrate; "
-            "utlosning ved masse = terskelmasse; lettkurve: (t/t_stig)^alpha "
-            "fram til kneet, exp(-(t-t_stig)/t_hale) etter"
+            "E_bind = G*M^2/R; hold time = threshold mass / growth rate; "
+            "trigger at mass = threshold mass; light curve: (t/t_stig)^alpha "
+            "up to the knee, exp(-(t-t_stig)/t_hale) after"
         )
         return {
             "id": "efc.transient_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["E_bind = G*M^2/R — kollapsbufferen — terskelstyrt holding->release"],
+            "terskler": ["E_bind = G*M^2/R — the collapse buffer — threshold-governed holding->release"],
             "motor": "transient"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["masse", "rom", "tid", "energi"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # still stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
-                "name": "Stjernedodens holding->release (kollaps-buffer)",
+                "name": "Stellar death's holding->release (collapse buffer)",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "holdetid, utlost energi, lettkurvens form",
-                "measurer": "analytisk kollaps-buffer-modell (G*M^2/R) + parametrisert lettkurve",
+                "target": "hold time, released energy, the lightcurve's form",
+                "measurer": "analytic collapse-buffer model (G*M^2/R) + parameterised lightcurve",
                 "instrument": "TransientEngine (efc_inference/engine/transient.py)",
                 "proxy_chain": [
-                    "kjernemasse -> bindingsenergi (E = G*M^2/R)",
-                    "bindingsenergi -> utlost energi ved stabilitetsgrensen",
-                    "utlost energi + stignings-/haletid -> lettkurvens normaliserte form",
+                    "core mass -> binding energy (E = G*M^2/R)",
+                    "binding energy -> released energy at the stability limit",
+                    "released energy + rise/tail time -> the lightcurve's normalised shape",
                 ],
-                "placement": "kollaps-bufferen i den kompakte kjernen — motoren regner ett masse-punkt om gangen",
-                "compression": "masse + stabilitetsgrense + vekstrate + lettkurve-tider -> (t_hold, E_ut, form)",
+                "placement": "the collapse buffer in the compact core — the engine computes one mass point at a time",
+                "compression": "mass + stability limit + growth rate + lightcurve times -> (t_hold, E_ut, form)",
             },
-            "episenter": "stabilitetsgrensen: punktet der kjernen slipper det den har holdt — analogien til nevronets V_th, solens b_crit og forkastningens terskel er formens egen",
+            "episenter": "the stability limit: the point where the core releases what it has held — the analogy to the neuron's V_th, the Sun's b_crit and the rejection threshold is the form's own",
             "buffer": {
-                "role": "kjernen er bufferen: massen bygges og holdes oppe til stabilitetsgrensen krysses",
-                "note": "ANALOGI til homo.aksjonspotensial, solens magnetiske buffer og forkastningens spenningsoppbygging — holding->release, fire domener, ikke identitet.",
+                "role": "the core is the buffer: the mass is built up and held up until the stability limit is crossed",
+                "note": "ANALOGY to homo.aksjonspotensial, the Sun's magnetic buffer and the fault's stress build-up — holding->release, four domains, not identity.",
             },
             "ontology": {
                 "assumes": [
-                    "bindingsenergien skalerer som G*M^2/R",
-                    "utlosning skjer naar massen krysser en stabilitetsgrense (idealisering: grensen er en modellparameter, og ekte kollaps avhenger ogsa av rotasjon og sammensetning)",
-                    "lettkurvens form er parametrisert, ikke avledet av en stralingstransportmodell",
+                    "the binding energy scales as G*M^2/R",
+                    "release happens when the mass crosses a stability limit (idealisation: the limit is a model parameter, and a real collapse also depends on rotation and composition)",
+                    "the lightcurve's form is parameterised, not derived from a radiation transport model",
                 ],
-                "source": "kollaps-buffer-bildet (supernova/GRB som frigjoring av gravitasjonsbinding); Chandrasekhar-stil masse-grense som modellparameter; lettkurvens stigning/hale som formvalg; idealiseringene er motorens egne",
+                "source": "the collapse-buffer picture (supernova/GRB as release of gravitational binding); Chandrasekhar-style mass limit as model parameter; the light curve's rise/tail as a shape choice; the idealizations are the engine's own",
             },
             "observer": {
-                "bandwidth": "motoren ser bare kjernemasse og en massetilvekst — ingen rotasjon, ingen metallisitet, ingen forloperstruktur; lettkurven ser den normaliserte formen, ikke spekteret eller en lysstyrkeskala",
+                "bandwidth": "the engine sees only core mass and a mass growth — no rotation, no metallicity, no progenitor structure; the light curve sees the normalised shape, not the spectrum or a luminosity scale",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "masse bygges -> stabilitetsgrensen krysses -> kollaps -> transient -> resten star igjen — stjernedodens syklus",
-                "properties": ["t_hold", "E_ut", "lettkurve-form"],
+                "loop": "mass is built -> the stability limit is crossed -> collapse -> transient -> the remnant is left — stellar death's cycle",
+                "properties": ["t_hold", "E_ut", "lightcurve shape"],
             },
             "fractal": {
-                "pattern": "holding->release: stjernedodens transient, solens flares, nevronets spike, forkastningens skjelv — samme form, fire domener (analogi)",
-                "note": "ett monster, fire domener.",
+                "pattern": "holding->release: stellar death's transient, the Sun's flares, the neuron's spike, the fault's quakes — the same form, four domains (analogy)",
+                "note": "one pattern, four domains.",
             },
             "coupling": {
-                "local": "en kjerne, en buffer",
-                "global": "kosmos.transienter er et HENDELSESLAG — ALeRCE/ZTF-avlesninger av mange transientklassers overganger; denne motoren koder KOLLAPS-grenen (stjernedod: supernova/GRB), ikke hendelsesstrommen som helhet. RAMMEVERKETS PLASSERING: ANALOGOUS_TO homo.aksjonspotensial, efc.solar_flare_engine og efc.jordskjelv_engine — formens fjerde domene, ikke identitet.",
-                "empathy_note": "stjernen holder og holder — til den ikke kan holde mer. Som alle buffere.",
+                "local": "one core, one buffer",
+                "global": "kosmos.transienter is an EVENT KIND — ALeRCE/ZTF readings of many transient classes' transitions; this engine encodes the COLLAPSE branch (stellar death: supernova/GRB), not the event stream as a whole. THE FRAMEWORK'S PLACEMENT: ANALOGOUS_TO homo.aksjonspotensial, efc.solar_flare_engine and efc.jordskjelv_engine — the form's fourth domain, not identity.",
+                "empathy_note": "the star holds and holds — until it can hold no more. Like all buffers.",
             },
         }

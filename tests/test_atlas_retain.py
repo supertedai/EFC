@@ -175,7 +175,7 @@ def test_bekreft_sier_ikke_inne_for_et_fragment_atlaset_ikke_baerer() -> None:
 
 def test_bekreft_sier_inne_og_navngir_noden_med_kode_og_kilde() -> None:
     """Et ekte fragment atlaset baerer: vannets trippelpunkt."""
-    sv = L.bekreft_fra_ref(REPO, "trippelpunktet for vann", ref="HEAD")
+    sv = L.bekreft_fra_ref(REPO, "the triple point of water", ref="HEAD")
     assert sv["dom"] == "inne" and sv["kom_inn"] is True
     node = sv["noder"][0]
     assert node["synlig"], "noden er ikke synlig, men dommen sier «inne»"
@@ -201,7 +201,7 @@ def test_andelsterskelen_er_grunnen_til_at_vulkansk_aske_ikke_er_inne() -> None:
 def test_uten_baseline_paastaas_ikke_at_treffet_er_nytt() -> None:
     """Uten inntakets commit finnes ingen «for» — og da sier svaret ingenting
     om nyhet i stedet for aa gjette."""
-    sv = L.bekreft_fra_ref(REPO, "trippelpunktet for vann", ref="HEAD")
+    sv = L.bekreft_fra_ref(REPO, "the triple point of water", ref="HEAD")
     assert sv["for"] is None
     assert all(d["ny_siden_inntaket"] is None for d in sv["noder"])
 
@@ -303,7 +303,7 @@ def test_ulesbar_koelinje_kaster_i_stedet_for_aa_bli_stille_hoppet_over(
 def test_cli_bekrefter_hele_koeen(tmp_path: Path) -> None:
     """Ett kall: keen lest tilbake og hvert fragment bekreftet mot refen."""
     fil = tmp_path / "data" / "atlas_fragmenter.jsonl"
-    kjør_inntak(tmp_path, "trippelpunktet for vann", "samtale")
+    kjør_inntak(tmp_path, "the triple point of water", "samtale")
     kjør_inntak(tmp_path, "kwisatz haderach", "samtale")
 
     r = subprocess.run(

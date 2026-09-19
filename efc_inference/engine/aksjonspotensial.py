@@ -58,9 +58,9 @@ class ActionPotentialEngine(EFCEngine):
     def regime_node(self, params: dict) -> dict:
         d, r, q = (params[k] for k in ("depolarization_ms", "repolarization_ms", "refractory_ms"))
         return {"id": "homo.aksjonspotensial", "synlighet": self.SYNLIGHET,
-                "phase": "regime_engine", "regime": {"name": "aksjonspotensial",
-                "validity": f"t i [0, {d+r+q}] ms; utenfor NaN",
-                "law_form": "Na+-depolarisering, K+-repolarisering, refraktaer gjenoppretting"},
-                "measure": {"target": "membranpotensial V(t) [mV]", "instrument": "patch-clamp"},
-                "emergence": {"loop": "hvile -> depolarisering -> repolarisering -> refraktaer -> hvile",
-                              "properties": ["terskel", "spike", "refraktaertid"]}}
+                "phase": "regime_engine", "regime": {"name": "action potential",
+                "validity": f"t in [0, {d+r+q}] ms; NaN outside",
+                "law_form": "Na+ depolarisation, K+ repolarisation, refractory recovery"},
+                "measure": {"target": "membrane potential V(t) [mV]", "instrument": "patch-clamp"},
+                "emergence": {"loop": "rest -> depolarisation -> repolarisation -> refractory -> rest",
+                              "properties": ["threshold", "spike", "refractory time"]}}

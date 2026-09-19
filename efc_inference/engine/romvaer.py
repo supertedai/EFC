@@ -1,22 +1,23 @@
-"""EFC Romvær Engine — magnetosfærens Kp-buffer (L-038).
+"""EFC Romvaer Engine — the Kp buffer of the magnetosphere (L-038).
 
-Kp-indeksen (0-9) er magnetosfærens utladningsnivå: solvinden lader
-bufferen (sørvendt Bz er ladestrømmen — magnetisk gjenkobling åpner
-porten), og bufferen utlades i geomagnetiske stormer over noen døgn.
+The Kp index (0-9) is the discharge level of the magnetosphere: the solar
+wind charges the buffer (southward Bz is the charging current — magnetic
+reconnection opens the gate), and the buffer discharges in geomagnetic
+storms over a few days.
 
-Dette er en KORRELASJONSMODELL (solvind -> Kp), ikke fysikk fra
-bunnen — geomagnetisk stormfysikk er et eget fag. Den virkelige
-solvind-Kp-koblingen er betydelig mer kompleks enn den lineære
-formen her (se f.eks. Newell-koblingen og andre fluks-koblinger);
-den lineære lade-formen er en IDEALISERT forenkling, kalibrert så
-Bz=-12/v=600 gir Kp~5. EFC-bidraget er formens kobling: solens
-flares (SolarFlareEngine) lader jordas buffer (denne motoren) — to
-domener, én kjede (samme kilde, SWPC).
+This is a CORRELATION MODEL (solar wind -> Kp), not physics from the
+ground up — geomagnetic storm physics is a field of its own. The real
+solar wind-Kp coupling is considerably more complex than the linear form
+here (see e.g. the Newell coupling and other flux couplings); the linear
+charging form is an IDEALISED simplification, calibrated so that
+Bz=-12/v=600 gives Kp~5. The EFC contribution is the chain of the form:
+the sun's flares (SolarFlareEngine) charge Earth's buffer (this engine) —
+two domains, one chain (the same source, SWPC).
 
-Idealisert lade-/utladningsmodell:
-    lading:  Kp_opp ~ koeffisient * (-Bz_sør/10) * (v/100)
-    utlading: Kp(t+1) = Kp(t) - utladningsrate per 3t-tikk
-Stormnivåene (NOAA-skalaen): Kp 5 = G1, 6 = G2, 7 = G3, 8 = G4,
+Idealised charging/discharging model:
+    charging:   Kp_up ~ coefficient * (-Bz/10) * (v/100) for southward Bz
+    discharging: Kp(t+1) = Kp(t) - discharge rate per 3 h tick
+The storm levels (the NOAA scale): Kp 5 = G1, 6 = G2, 7 = G3, 8 = G4,
 9 = G5.
 """
 from __future__ import annotations
@@ -27,12 +28,12 @@ from .base_engine import EFCEngine
 
 
 class RomvaerEngine(EFCEngine):
-    """Kp-buffermotor for magnetosfæren (korrelasjonsmodell, idealisert)."""
+    """Kp buffer engine for the magnetosphere (correlation model, idealized)."""
 
     REQUIRED_PARAMS = [
-        "lade_koeffisient",  # Kp per (nT/10 * 100 km/s) — kalibreringsproxy
-        "utladningsrate",    # Kp per 3t-tikk — bufferens utladning
-        "storm_terskel",     # Kp — G1-stormgrensen (5)
+        "lade_koeffisient",  # Kp per (nT/10 * 100 km/s) — calibration proxy
+        "utladningsrate",    # Kp per 3 h tick — the discharge of the buffer
+        "storm_terskel",     # Kp — the G1 storm threshold (5)
     ]
 
     @property
@@ -40,138 +41,139 @@ class RomvaerEngine(EFCEngine):
         return "romvaer"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
     def forventet_kp(self, params: dict, bz: float,
                      hastighet: float) -> float:
-        """Ladestrømmen: sørvendt Bz (negativ) lader; nordvendt
-        skjermer. Kp ~ koeffisient * (-Bz/10) * (v/100) for Bz < 0."""
+        """The charging current: southward Bz (negative) charges;
+        northward shields. Kp ~ coefficient * (-Bz/10) * (v/100) for
+        Bz < 0."""
         if bz >= 0:
-            ladning = 0.0
+            charging_current = 0.0
         else:
-            ladning = (params["lade_koeffisient"]
-                       * (-bz / 10.0) * (hastighet / 100.0))
-        # Tak ved 9 — skalaens maksimum
-        return float(min(9.0, ladning))
+            charging_current = (params["lade_koeffisient"]
+                                * (-bz / 10.0) * (hastighet / 100.0))
+        # Cap at 9 — the maximum of the scale
+        return float(min(9.0, charging_current))
 
     def utlad(self, kp: float, params: dict, tikk: int = 1) -> float:
-        """Bufferen utlades: Kp faller med utladningsraten per tikk."""
+        """The buffer discharges: Kp falls with the discharge rate per tick."""
         return float(max(0.0, kp - params["utladningsrate"] * tikk))
 
     def storm_niva(self, params: dict, kp: float) -> str:
-        """NOAA G-skalaen: Kp 5=G1, 6=G2, 7=G3, 8=G4, 9=G5."""
+        """The NOAA G scale: Kp 5=G1, 6=G2, 7=G3, 8=G4, 9=G5."""
         if kp < params["storm_terskel"]:
             return "ingen"
-        niva = {5: "G1", 6: "G2", 7: "G3", 8: "G4", 9: "G5"}
-        return niva.get(int(np.floor(kp)), "G5")
+        levels = {5: "G1", 6: "G2", 7: "G3", 8: "G4", 9: "G5"}
+        return levels.get(int(np.floor(kp)), "G5")
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt (Bz, hastighet)-par (N x 2), returner forventet Kp."""
-        koord = np.asarray(coordinates, dtype=float)
-        if koord.ndim == 1:
-            koord = koord.reshape(1, -1)
+        """Given (Bz, speed) pairs (N x 2), return the expected Kp."""
+        coords = np.asarray(coordinates, dtype=float)
+        if coords.ndim == 1:
+            coords = coords.reshape(1, -1)
         return np.array([
-            self.forventet_kp(params_dict, float(rad[0]), float(rad[1]))
-            for rad in koord
+            self.forventet_kp(params_dict, float(row[0]), float(row[1]))
+            for row in coords
         ])
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
         validity = (
-            "Kp-bufferregime: solvinden lader magnetosfæren (sørvendt "
-            "Bz = ladestrøm), bufferen utlades i stormer over noen "
-            "døgn. KORRELASJONSMODELL (solvind -> Kp) — IKKE fysikk "
-            "fra bunnen; den virkelige koblingen er mer kompleks "
-            "(Newell-koblingen m.fl.) og den lineære lade-formen er "
-            "en IDEALISERT forenkling. NOAA G-skalaen (Kp 5=G1 ... "
-            "9=G5). EFC-bidraget er formens kjede: solens flares "
-            "lader jordas buffer."
+            "Kp buffer regime: the solar wind charges the magnetosphere "
+            "(southward Bz = charging current), the buffer discharges in "
+            "storms over a few days. CORRELATION MODEL (solar wind -> Kp) "
+            "— NOT physics from the ground up; the real coupling is more "
+            "complex (the Newell coupling et al.) and the linear charging "
+            "form is an IDEALISED simplification. The NOAA G scale (Kp "
+            "5=G1 ... 9=G5). The EFC contribution is the chain of the "
+            "form: the sun's flares charge Earth's buffer."
         )
-        law_form = ("lading: Kp ~ koeffisient * (-Bz_sør/10) * (v/100) "
-                    "for Bz < 0; utlading: Kp(t+1) = Kp(t) - rate per "
-                    "3t-tikk; G-nivåer ved Kp 5-9")
+        law_form = ("charging: Kp ~ coefficient * (-Bz_south/10) * (v/100) "
+                    "for Bz < 0; discharging: Kp(t+1) = Kp(t) - rate per "
+                    "3 h tick; G levels at Kp 5-9")
         return {
             "id": "efc.romvaer_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["NOAA G-skala: 5=G1 ... 9=G5 — varslingsskala", "Bz=-12/v=600 -> Kp 5.04 — lineaer korrelasjon — Newell-caveat: virkelig kobling mer kompleks"],
+            "terskler": ["the NOAA G scale: 5=G1 ... 9=G5 — warning scale", "Bz=-12/v=600 -> Kp 5.04 — linear correlation — Newell caveat: the real coupling is more complex"],
             "motor": "romvaer"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["magnetfelt", "tid", "hastighet"],
                 "enheter": "motorspesifikke (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
-                "name": "Magnetosfærens Kp-buffer",
+                "name": "The magnetosphere's Kp buffer",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "forventet Kp, stormnivå, utladningsbane",
-                "measurer": "korrelasjonsmodell solvind -> Kp",
+                "target": "expected Kp, storm level, discharge trajectory",
+                "measurer": "correlation model solar wind -> Kp",
                 "instrument": "RomvaerEngine (efc_inference/engine/romvaer.py)",
                 "proxy_chain": [
-                    "Bz, v -> ladestrøm (korrelasjonsproxy)",
-                    "Kp -> G-nivå (NOAA-skalaen)",
+                    "Bz, v -> charging current (correlation proxy)",
+                    "Kp -> G level (the NOAA scale)",
                 ],
-                "placement": "magnetosfærens buffer — ett (Bz, v)-punkt om gangen",
-                "compression": "solvind-tilstand -> (Kp, G-nivå)",
+                "placement": "the magnetosphere's buffer — one (Bz, v) point at a time",
+                "compression": "solar wind state -> (Kp, G level)",
             },
-            "episenter": "stormterskelen Kp=5: punktet der bufferen går fra holding til release — magnetosfærens regimeskifte",
+            "episenter": "the storm threshold Kp=5: the point where the buffer goes from holding to release — the magnetosphere's regime shift",
             "buffer": {
-                "role": "magnetosfæren er bufferen: den holder ladningen fra solvinden til stormen utløses",
-                "note": "ANALOGI til solens magnetiske buffer (SolarFlareEngine) — ikke identitet: jordas buffer utlades gradvis, solens utløses brått.",
+                "role": "the magnetosphere is the buffer: it holds the charge from the solar wind until the storm is released",
+                "note": "ANALOGY to the sun's magnetic buffer (SolarFlareEngine) — not identity: the Earth's buffer discharges gradually, the sun's is released abruptly.",
             },
             "ontology": {
                 "assumes": [
-                    "korrelasjonen Bz/v -> Kp er stabil i den idealiserte formen",
-                    "G-skalaen (NOAA) er den riktige storm-klassifiseringen",
+                    "the correlation Bz/v -> Kp is stable in the idealised form",
+                    "the G scale (NOAA) is the correct storm classification",
                 ],
-                "source": "romvær-korrelasjoner (etablert praksis); NOAA G-skalaen; analogi-merkingen er atlasets egen",
+                "source": "space weather correlations (established practice); the NOAA G scale; the analogy labelling is the atlas's own",
             },
             "observer": {
-                "bandwidth": "motoren ser bare (Bz, v) — ingen magnetopause-dynamikk, ingen ringstrøm",
+                "bandwidth": "the engine sees only (Bz, v) — no magnetopause dynamics, no ring current",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "solvind lader -> terskel -> storm utlader -> rolig — magnetosfærens loop",
-                "properties": ["Kp", "G-nivå", "utladningsbane"],
+                "loop": "solar wind charges -> threshold -> storm discharges -> quiet — the magnetosphere's loop",
+                "properties": ["Kp", "G level", "discharge trajectory"],
             },
             "fractal": {
-                "pattern": "lade/utlad-buffer med terskel: magnetosfære, solens flares, batteriet (analogi)",
-                "note": "ett mønster, tre domener.",
+                "pattern": "charge/discharge buffer with threshold: the magnetosphere, the sun's flares, the battery (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "én solvind-tilstand, ett Kp",
-                "global": "solens utløsninger lader jordas buffer — COUPLED_TO efc.solar_flare_engine via SWPC-kjeden",
-                "empathy_note": "jorda holder solens vrede i sitt magnetiske favn — til den slipper.",
+                "local": "one solar wind state, one Kp",
+                "global": "the sun's releases charge Earth's buffer — COUPLED_TO efc.solar_flare_engine via the SWPC chain",
+                "empathy_note": "the Earth holds the Sun's wrath in its magnetic embrace — until it lets go.",
             },
         }

@@ -43,7 +43,7 @@ def build_placeholders(args) -> dict:
         normalized = normalized.replace("_", "-")
         bibkey = f"{normalized}_{args.year}"
 
-    # Generic relations (kan finpusses manuelt etterpå)
+    # Generic relations (can be polished by hand afterwards)
     theory_rel = args.theory_rel or "Connects to the formal EFC theoretical layer."
     dynamics_rel = args.dynamics_rel or "Relates to entropy, flow and grid-level dynamics."
     meta_rel = args.meta_rel or "Links to the meta / cognition layer where applicable."
@@ -68,9 +68,9 @@ def render_template(raw: str, placeholders: dict) -> str:
     out = raw
     for key, value in placeholders.items():
         if key == "PLACEHOLDER_KEYWORDS":
-            # Malen har «["{PLACEHOLDER_KEYWORDS}"]» — bytt ut HELE
-            # listen slik at resultatet er gyldig JSON-liste, ikke en
-            # dobbel-sitert streng.
+            # The template has «["{PLACEHOLDER_KEYWORDS}"]» — replace the WHOLE
+            # list so the result is a valid JSON list, not a
+            # double-quoted string.
             out = out.replace('["{' + key + '}"]',
                               "[" + value + "]")
         else:
@@ -140,7 +140,7 @@ def main():
 
     args = parser.parse_args()
 
-    # Finn repo-root fra denne filen: <root>/scripts/generate_paper.py
+    # Find the repo root from this file: <root>/scripts/generate_paper.py
     script_path = Path(__file__).resolve()
     repo_root = script_path.parent.parent
     template_dir = repo_root / "scripts" / "templates" / "paper_template"
@@ -156,7 +156,7 @@ def main():
 
     placeholders = build_placeholders(args)
 
-    # Malfilene
+    # The template files
     templates = {
         "README.md": "template_readme.md",
         f"{args.id}.jsonld": "template.jsonld",

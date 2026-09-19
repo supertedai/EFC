@@ -54,102 +54,101 @@ class EFCCluster(EFCEngine):
         )
 
     # ------------------------------------------------------------------
-    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset.
-    # Ærlig om stubben: fysikken er ikke implementert — kontrakten
-    # beskrives, ikke en beregning.
+    # regime_node() bridge (step 11): the engine describes itself in the atlas.
+    # Honest about the stub: the physics is not implemented — the contract
+    # is described, not a computation.
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
         om = params_dict["Omega_m"]
         s8 = params_dict["sigma8"]
         ac = params_dict["alpha_cluster"]
         validity = (
-            f"STUB: mass funksjonen n(M,z) — fysikken er IKKE "
-            f"implementert (Omega_m={om}, sigma8={s8}, "
-            f"alpha_cluster={ac}); motoren beskriver kontrakten, ikke "
-            "beregningen — ingen maaling er påstått"
+            f"STUB: the mass function n(M,z) — the physics is NOT "
+            f"implemented (Omega_m={om}, sigma8={s8}, "
+            f"alpha_cluster={ac}); the engine describes the contract, not "
+            "the computation — no measurement is claimed"
         )
-        law_form = ("(kontrakt: n(M,z) fra Omega_m/sigma8/alpha_cluster "
-                    "— venter på implementering)")
+        law_form = ("(contract: n(M,z) from Omega_m/sigma8/alpha_cluster "
+                    "— awaiting implementation)")
         return {
             "id": "efc.cluster_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["telling som regime — observert, ikke modellert — stubbegrense"],
+            "terskler": ["counting as regime — observed, not modelled — stub limit"],
             "motor": "cluster"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "masse", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
-            },            "regime": {"name": "Hopemotoren — n(M,z) [stub]",
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
+            },            "regime": {"name": "The cluster engine — n(M,z) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {
-                "target": "n(M,z) — halomassefunksjonen",
-                "measurer": "EFCCluster (stub — compute() hever "
+                "target": "n(M,z) — the halo mass function",
+                "measurer": "EFCCluster (stub — compute() raises "
                             "NotImplementedError)",
-                "instrument": "observasjonssiden er hopetellinger; "
-                              "motoren regner ingenting ennå",
-                "proxy_chain": ["hopetelling -> n(M,z) (observasjon)",
-                                "n(M,z) -> EFC-parametre (venter på "
-                                "fysikken)"],
-                "placement": "motorens plass i L2 er reservert, ikke "
-                             "inntatt",
-                "compression": "ingen kompresjon ennå — kontrakten er "
-                               "definert, verdien ikke",
+                "instrument": "the observation side is halo counts; "
+                              "the engine computes nothing yet",
+                "proxy_chain": ["halo counts -> n(M,z) (observation)",
+                                "n(M,z) -> EFC parameters (awaiting "
+                                "the physics)"],
+                "placement": "the place of the engine in L2 is reserved, "
+                             "not taken",
+                "compression": "no compression yet — the contract is "
+                               "defined, the value is not",
             },
-            "episenter": "masse-rommet: halomassefunksjonen er L2-"
-                         "strukturens telling — kontrakten står, "
-                         "fysikken venter",
+            "episenter": "the mass space: the halo mass function is the "
+                         "count of the L2 structure — the contract "
+                         "stands, the physics waits",
             "buffer": {
-                "role": "hopene er strukturens tetteste buffere — "
-                        "observert, ikke modellert her ennå",
-                "note": "bufferen er virkelighetens, ikke motorens.",
+                "role": "the halos are the structure's densest buffers — "
+                        "observed, not modelled here yet",
+                "note": "the buffer belongs to reality, not to the engine.",
             },
             "ontology": {
-                "assumes": ["halomassefunksjonen er et gyldig "
-                            "strukturinstrument", "EFC-deformasjonen "
-                            "lar seg oversette til n(M,z) — uverifisert"],
+                "assumes": ["the halo mass function is a valid structure instrument", "The EFC deformation "
+                            "can be translated into n(M,z) — unverified"],
                 "source": "stub-kontrakt; efc_inference/engine/"
                           "cluster.py",
             },
             "observer": {
-                "er_del_av_systemet": True,"bandwidth": "ingen — motoren observerer ikke "
-                                     "ennå",
+                "er_del_av_systemet": True,"bandwidth": "none — the engine does not observe "
+                                     "yet",
                          "awareness": "instrument_window"},
             "emergence": {
-                "loop": "tetthet -> kollaps -> hoper — loopen er "
-                        "observert, ikke modellert her",
+                "loop": "density -> collapse -> clusters — the loop is "
+                        "observed, not modelled here",
                 "properties": [],
             },
             "fractal": {
-                "pattern": "telling som regime — samme mønster som "
-                           "observasjonskjedene i atlaset (analogi)",
-                "note": "stubben bærer mønsteret uten beregningen.",
+                "pattern": "counting as regime — the same pattern as "
+                           "the observation chains in the atlas (analogy)",
+                "note": "the stub carries the pattern without the computation.",
             },
             "coupling": {
-                "local": "kontrakten er lokal per massebin",
-                "global": "n(M,z) er L2-strukturens telling — koblet til "
-                          "obs.klynger (OBSERVED_IN, når fysikken "
-                          "finnes)",
-                "empathy_note": "stubben vet hva den ikke kan — og sier "
-                                "det.",
+                "local": "the contract is local per mass bin",
+                "global": "n(M,z) is the count of the L2 structure — "
+                          "coupled to obs.klynger (OBSERVED_IN, when the "
+                          "physics exists)",
+                "empathy_note": "the stub knows what it cannot do — and says "
+                                "so.",
             },
         }

@@ -186,12 +186,12 @@ def summarize(label, param_names, chain, logprob, n_data):
     print(f"{'='*60}")
 
     for i, name in enumerate(param_names):
-        med = np.median(chain[:, i])
+        median = np.median(chain[:, i])
         mean = np.mean(chain[:, i])
         std = np.std(chain[:, i])
         lo, hi = np.percentile(chain[:, i], [2.5, 97.5])
         print(f"  {name:18s}: {mean:.4f} ± {std:.4f}  "
-              f"median={med:.4f}  95%CI=[{lo:.4f}, {hi:.4f}]")
+              f"median={median:.4f}  95%CI=[{lo:.4f}, {hi:.4f}]")
 
     # Significance of alpha if present
     if "alpha_cosmo" in param_names:

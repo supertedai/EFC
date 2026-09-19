@@ -78,7 +78,7 @@ def test_noden_deklarerer_doi_kildene():
 def test_noden_deklarerer_hypotese_ikke_konsensus():
     n = GridMikroEngine().regime_node(P)
     assert n["epistemikk"]["sannhetsstatus"] == "hypotese"
-    assert "HYPOTESE" in n["ontology"]["assumes"][2]
+    assert "HYPOTHESIS" in n["ontology"]["assumes"][2]
 
 
 def test_compute_returnerer_gamma_per_punkt():

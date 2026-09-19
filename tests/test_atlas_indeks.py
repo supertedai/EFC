@@ -47,7 +47,7 @@ def test_hver_node_har_navngitte_detaljer():
     detaljer = [line for line in _index_lines() if line.startswith("  ")]
     assert detaljer, "ingen detaljlinjer"
     for linje in detaljer:
-        assert "perspektiv=" in linje and "gruppe=" in linje, linje
+        assert "perspective=" in linje and "group=" in linje, linje
     # ingen bar «1 · nei»-kolonne igjen
     assert not any(re.search(r"·\s*\d+\s*·\s*(ja|nei)\s*$", l)
                    for l in _index_lines())
@@ -63,16 +63,16 @@ def test_overskriftens_tall_er_utledet_fra_banken():
     grunn = generator.uten_gruppe_grunner(public)
     evidence = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen" for node in public)
     questions = sum(len(node.get("open_questions") or []) for node in public)
-    expected = (f"> {len(public)} publiserte noder · {ghost} uten gruppe ennaa "
-                f"({grunn['observasjon']} observasjoner, {grunn['regime']} regimenoder, "
-                f"{grunn['har_motor']} med motor, {grunn['ovrige']} ovrige) · "
-                f"{evidence} mangler evidens · {questions} aapne spoersmaal")
+    expected = (f"> {len(public)} published nodes · {ghost} with no group yet "
+                f"({grunn['observasjon']} observations, {grunn['regime']} regime nodes, "
+                f"{grunn['har_motor']} with an engine, {grunn['ovrige']} other) · "
+                f"{evidence} without evidence · {questions} open questions")
     assert expected in text
 
 
 def test_hver_gruppelos_node_er_navngitt_med_grunn():
     text = INDEKS.read_text(encoding="utf-8")
-    section = text.split("## Uten gruppe ennaa", 1)[1]
+    section = text.split("## With no group yet", 1)[1]
     import sys
     sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
     import efc_atlas_generator as generator
@@ -90,7 +90,7 @@ def test_indeks_uten_trailing_whitespace():
 
 
 def test_spliten_summerer_og_flaten_pastaar_ingen_byggestatus():
-    """K2: de gruppelose har ingen GRUPPE, ikke en byggestatus.
+    """K2: the group-less have no GROUP, not a build status.
 
     The split is read positionally from the generator's own accounting
     (observasjon, regime, har_motor, ovrige — in that insertion order), so this
@@ -108,8 +108,8 @@ def test_spliten_summerer_og_flaten_pastaar_ingen_byggestatus():
     gruppelose = sum(generator._gruppe(n["id"]) == "ghost" for n in public)
     assert sum(grunn.values()) == gruppelose, (grunn, gruppelose)
     assert gruppelose > 0, "ingen gruppelose noder — testen er blind"
-    # hvorfor de mangler, ikke bare at de mangler
-    talla = [int(x) for x in __import__("re").findall(r"(\d+) [a-z]+", text.split("uten gruppe ennaa", 1)[1].split(")")[0])]
+    # why they are missing, not just that they are
+    talla = [int(x) for x in __import__("re").findall(r"(\d+) [a-z]+", text.split("with no group yet", 1)[1].split(")")[0])]
     assert talla == list(grunn.values()), (talla, list(grunn.values()))
     for flate in ("docs/efc-atlas/SYSTEM.md", "docs/efc-atlas/atlas.html",
                   "docs/efc-atlas/atlas/data.mjs"):

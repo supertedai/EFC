@@ -82,96 +82,98 @@ class EFCRotation(EFCEngine):
             return np.full_like(coordinates, np.nan)
 
     # ------------------------------------------------------------------
-    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset
+    # regime_node() bridge (step 11): the engine describes itself in the atlas
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
         es = params_dict["entropy_scale"]
         ls = params_dict["length_scale"]
         vs = params_dict["velocity_scale"]
         validity = (
-            "rotasjonskurver v(r) fra EFC-kjernen (fallback: parametrisk) — "
-            f"entropiskala {es}, lengdeskala {ls}, hastighetsskala {vs}; "
-            "flat rotasjon UTEN moerk-materie-antakelse — lest som L2-"
-            "regimets lokale test (analogi, ikke bevist)"
+            "rotation curves v(r) from the EFC kernel (fallback: parametric) — "
+            f"entropy scale {es}, length scale {ls}, velocity scale {vs}; "
+            "flat rotation WITHOUT a dark-matter assumption — read as the L2 "
+            "regime's local test (analogy, not proven)"
         )
         law_form = ("v(r) via efc_core; fallback v = vs*sqrt(r/(r+ls)) — "
-                    "numerisk kurve, ingen tabell")
+                    "numerical curve, no table")
         return {
             "id": "efc.rotation_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["PPN gamma=1 — ledende orden — gyldighetsgrense"],
+            "terskler": ["PPN gamma=1 — leading order — validity boundary"],
             "motor": "rotation"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "masse", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
-            },            "regime": {"name": "Rotasjonsmotoren — galakserotasjon",
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
+            },            "regime": {"name": "The rotation engine — galaxy rotation",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {
-                "target": "v(r) — rotasjonshastighet som funksjon av radius",
-                "measurer": "EFCRotation (efc_core + parametrisk fallback)",
-                "instrument": "observasjonssiden er galaksespektre; motoren "
-                              "regner kurven",
-                "proxy_chain": ["spektrallinjer -> v(r) (observasjon)",
-                                "v(r) -> EFC-parametre (inferens)"],
-                "placement": "motoren klassifiserer L2-regimets lokale "
-                             "struktur — galaksen som gravitasjonsrom",
-                "compression": "en rotasjonskurve -> fire EFC-parametre",
+                "target": "v(r) — rotation velocity as a function of radius",
+                "measurer": "EFCRotation (efc_core + parametric fallback)",
+                "instrument": "the observation side is galaxy spectra; the "
+                              "engine computes the curve",
+                "proxy_chain": ["spectral lines -> v(r) (observation)",
+                                "v(r) -> EFC parameters (inference)"],
+                "placement": "the engine classifies the local "
+                             "structure of the L2 regime — the galaxy as "
+                             "gravitational space",
+                "compression": "one rotation curve -> four EFC parameters",
             },
-            "episenter": "radiusrammen: kurvens flathet er testen — "
-                         "hypotese, ikke dom",
+            "episenter": "the radius framework: the flatness of the curve "
+                         "is the test — hypothesis, not a verdict",
             "buffer": {
-                "role": "galaksens materie-buffer holder kurven flat "
-                        "gjennom koplingsfeltet — tolkning, ikke maaling",
-                "note": "bufferen er modellens, ikke motorens.",
+                "role": "the matter buffer of the galaxy keeps the curve "
+                        "flat through the coupling field — interpretation, "
+                        "not measurement",
+                "note": "the buffer belongs to the model, not to the engine.",
             },
             "ontology": {
-                "assumes": ["rotasjonskurver er et rent gravitasjons-"
-                            "maaleri", "EFC-kjernen er korrekt for "
-                            "galakseskalaen"],
-                "source": "efc_core; parametrisk fallback — "
+                "assumes": ["rotation curves are a pure gravitational measurement",
+                            "the EFC core is correct for the "
+                            "galaxy scale"],
+                "source": "efc_core; parametric fallback — "
                           "efc_inference/engine/rotation.py",
             },
             "observer": {
-                "er_del_av_systemet": True,"bandwidth": "motoren ser bare v(r) — én kanal "
-                                     "av galaksens fulle dynamikk",
+                "er_del_av_systemet": True,"bandwidth": "the engine sees only v(r) — one channel "
+                                     "of the galaxy's full dynamics",
                          "awareness": "instrument_window"},
             "emergence": {
-                "loop": "masse -> koplingsfelt -> flat rotasjon — "
-                        "kurvens flathet er loopens signatur",
+                "loop": "mass -> coupling field -> flat rotation — "
+                        "the flatness of the curve is the signature of the loop",
                 "properties": ["v_flat", "r_skala"],
             },
             "fractal": {
-                "pattern": "flathet som regime — samme observasjonsmonster "
-                           "som CC-plataaet og vannets faseplatåer (analogi)",
-                "note": "ett monster, tre domener — ikke identitet.",
+                "pattern": "flatness as regime — the same observation pattern "
+                           "as the CC plateau and water's phase plateaus (analogy)",
+                "note": "one pattern, three domains — not identity.",
             },
             "coupling": {
-                "local": "motoren arbeider på én galakse av gangen",
-                "global": "rotasjonskurver er L2-regimets lokale avlesning "
-                          "— koblet til vekst- og hubble-motorene via "
-                          "regimet (COUPLED_TO)",
-                "empathy_note": "hver galakse bærer hele regimet i sin "
-                                "egen kurve.",
+                "local": "the engine works on one galaxy at a time",
+                "global": "rotation curves are the L2 regime's local read-out "
+                          "— coupled to the growth and hubble engines via "
+                          "the regime (COUPLED_TO)",
+                "empathy_note": "every galaxy carries the whole regime in its "
+                                "own curve.",
             },
         }

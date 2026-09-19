@@ -94,9 +94,8 @@ def test_regime_node_selvbeskrivelse():
     node = e.regime_node(PARAMS)
     assert node["id"] == "efc.klima_engine"
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "idealiser" in tekst or "0d" in tekst
-    assert "ikke en klimamodell" in tekst or \
-           "ikke klimamodell" in tekst
+    assert "idealized" in tekst or "0d" in tekst
+    assert "not a climate-model competitor" in tekst
     assert node["regime"]["law_form"].strip()
 
 
@@ -122,17 +121,17 @@ def test_amoc_bryteren_er_bevisst_utelatt_ikke_glemt():
 
     doc = (modul.__doc__ or "").lower()
     assert "amoc" in doc, "moduldocstringen nevner ikke AMOC"
-    assert "utelatt" in doc, "moduldocstringen sier ikke at AMOC er utelatt"
+    assert "deliberately omitted" in doc, "moduldocstringen sier ikke at AMOC er utelatt"
 
     node = KlimaEngine().regime_node(PARAMS)
 
     assumes = " ".join(node["ontology"]["assumes"]).lower()
     assert "amoc" in assumes, "ontology.assumes nevner ikke AMOC"
-    assert "utelatt" in assumes, "ontology.assumes sier ikke UTELATT"
+    assert "deliberately omitted" in assumes, "ontology.assumes sier ikke UTELATT"
 
     validity = node["regime"]["validity"].lower()
     assert "amoc" in validity, "regime.validity nevner ikke AMOC"
-    assert "utelatt" in validity, "regime.validity sier ikke UTELATT"
+    assert "deliberately omitted" in validity, "regime.validity sier ikke UTELATT"
 
 
 def test_amoc_avgrensningen_oppgir_grunn_og_tilhørighet():
@@ -142,9 +141,9 @@ def test_amoc_avgrensningen_oppgir_grunn_og_tilhørighet():
     node = KlimaEngine().regime_node(PARAMS)
     tekst = (node["regime"]["validity"] + " "
              + " ".join(node["ontology"]["assumes"])).lower()
-    assert "sirkulasjon" in tekst, "grunnen (ingen sirkulasjon) mangler"
-    assert "ferskvann" in tekst, "driveren (ferskvannspåslag) mangler"
-    assert "egen motor" in tekst or "eget fag" in tekst, (
+    assert "overturning cell" in tekst, "grunnen (ingen sirkulasjon) mangler"
+    assert "freshwater" in tekst, "driveren (ferskvannspåslag) mangler"
+    assert "separate engine" in tekst or "own discipline" in tekst, (
         "avgrensningen sier ikke hvor AMOC-bryteren hører hjemme")
 
 

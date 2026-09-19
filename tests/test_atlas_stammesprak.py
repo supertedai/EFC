@@ -86,7 +86,7 @@ def test_defekt_begrepsregister_feiler_hoeyt(monkeypatch, tmp_path) -> None:
         raise atlas_lesing.AtlasLesingFeil("finnes ikke i dette testtreet")
 
     monkeypatch.setattr(atlas_lesing, "_git", falsk_git)
-    with pytest.raises(atlas_lesing.AtlasLesingFeil, match="gyldig JSON"):
+    with pytest.raises(atlas_lesing.AtlasLesingFeil, match="valid JSON"):
         atlas_lesing._navnerom(tmp_path, "HEAD", "ghf")
 
 

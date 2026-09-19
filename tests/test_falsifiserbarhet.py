@@ -137,7 +137,7 @@ class TestFalsifiserbarhet:
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} mangler terskel MEN har en falsifikator")
-            assert "IKKE fastsatt" in n["falsifiserbarhet"]["grunn"], (
+            assert "NOT fixed" in n["falsifiserbarhet"]["grunn"], (
                 f"{n['id']} sier ikke selv hva som mangler")
 
     def test_tallet_er_kjent(self):

@@ -1,20 +1,21 @@
-"""EFC Orbital Engine — Kepler og baneregimer (L-037).
+"""EFC Orbital Engine — Kepler and orbital regimes (L-037).
 
-Banemekanikk som EFC-former: en bundet bane er HOLDING (negativ
-spesifikk energi — objektet holdes i et regime), unbundet fly er
-RELEASE (bindingen brytes), resonans er periodelåsing (fase-holding),
-og Hill-sfæren er potensialbufferen som holder en måne mot sin
-sentralkropp.
+Orbital mechanics as EFC forms: a bound orbit is HOLDING (negative
+specific energy — the object is held in a regime), unbound flight is
+RELEASE (the binding breaks), resonance is period locking (phase
+holding), and the Hill sphere is the potential buffer that holds a moon
+against its central body.
 
-Modellen er IDEALISERT tolegeme-mekanikk (Kepler + vis-viva + Hill).
-Den er IKKE en N-kroppsimulator og predikerer ikke perturbasjoner —
-det står i selvbeskrivelsen. Formlene er de testbareste i hele
-motorlaget: prediksjoner på kjente objekter med kjente tall.
+The model is IDEALISED two-body mechanics (Kepler + vis-viva + Hill).
+It is NOT an N-body simulator and does not predict perturbations —
+that is stated in the self-description. The formulas are the most
+testable in the whole engine layer: predictions for known objects with
+known numbers.
 
-EFC-rolle: baneregimene er den periodiske flyt-formen — ANALOGI til
-hjertets fyll-press-syklus (periodisk holding->release) og
-ladeprosessen, ikke identitet: banemekanikken er konservativ og
-reversibel, hjertet er dissipativt.
+EFC role: the orbital regimes are the periodic flow form — ANALOGY to
+the heart's fill-pressure cycle (periodic holding->release) and the
+charging process, not identity: the orbital mechanics is conservative
+and reversible, the heart is dissipative.
 """
 from __future__ import annotations
 
@@ -24,14 +25,14 @@ from .base_engine import EFCEngine
 
 
 class OrbitalEngine(EFCEngine):
-    """Tolegeme banemekanikk med EFC-regime-klassifisering (idealisert)."""
+    """Two-body orbital mechanics with EFC regime classification (idealised)."""
 
     REQUIRED_PARAMS = [
-        "G",          # m^3/(kg s^2) — gravitasjonskonstanten
-        "M_sentral",  # kg — sentralkroppens masse
-        "a",          # m — store halvakse
-        "e",          # 1 — eksentrisitet
-        "m_objekt",   # kg — objektets masse
+        "G",          # m^3/(kg s^2) — the gravitational constant
+        "M_sentral",  # kg — the central body's mass
+        "a",          # m — the semi-major axis
+        "e",          # 1 — the eccentricity
+        "m_objekt",   # kg — the object's mass
     ]
 
     @property
@@ -39,14 +40,14 @@ class OrbitalEngine(EFCEngine):
         return "orbital"
 
     # ------------------------------------------------------------------
-    # Fysikk
+    # Physics
     # ------------------------------------------------------------------
 
     def _m_tot(self, params: dict) -> float:
         return params["M_sentral"] + params["m_objekt"]
 
     def periode(self, params: dict) -> float:
-        """Keplers tredje lov: T = 2π sqrt(a^3 / (G M_tot))."""
+        """Kepler's third law: T = 2π sqrt(a^3 / (G M_tot))."""
         return float(2 * np.pi
                      * np.sqrt(params["a"] ** 3
                                / (params["G"] * self._m_tot(params))))
@@ -57,67 +58,67 @@ class OrbitalEngine(EFCEngine):
                              * (2.0 / r - 1.0 / params["a"])))
 
     def spesifikk_energi(self, params: dict, r: float) -> float:
-        """eps = v^2/2 - GM/r = -GM/(2a) (konstant i banen)."""
+        """eps = v^2/2 - GM/r = -GM/(2a) (constant along the orbit)."""
         return float(-params["G"] * self._m_tot(params)
                      / (2.0 * params["a"]))
 
     def hill_sfaere(self, params: dict) -> float:
-        """r_H = a (m/(3M))^(1/3) — den TILNÆRMEDE innflytelses-/
-        stabilitetsgrensen mot sentralkroppen (ikke en garanti om
-        brutt binding — å krysse grensen gjør banen ustabil, ikke
-        nødvendigvis ubundet)."""
+        """r_H = a (m/(3M))^(1/3) — the APPROXIMATE influence/
+        stability boundary against the central body (not a guarantee
+        that the binding breaks — crossing the boundary makes the orbit
+        unstable, not necessarily unbound)."""
         return float(params["a"] * (params["m_objekt"]
                                     / (3 * params["M_sentral"])) ** (1 / 3))
 
     def resonans_forhold(self, periode_1: float, periode_2: float) -> float:
-        """Forholdet mellom to perioder (3:2-resonans gir 1.5)."""
+        """The ratio between two periods (a 3:2 resonance gives 1.5)."""
         return float(periode_1 / periode_2)
 
     # ------------------------------------------------------------------
-    # EFCEngine-kontrakten
+    # The EFCEngine contract
     # ------------------------------------------------------------------
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt (a, e)-par (N x 2), returner spesifikk energi (J/kg).
+        """Given (a, e) pairs (N x 2), return the specific energy (J/kg).
 
-        a > 0: elliptisk bane — negativ eps = bundet = HOLDING.
-        a < 0: hyperbolsk bane — positiv eps = ubundet = RELEASE
-        (konvensjonen for hyperbel er negativ store halvakse; eps =
-        -GM/(2a) gir da positiv verdi automatisk).
-        a == 0 eller ugyldige parametre: NaN.
+        a > 0: elliptical orbit — negative eps = bound = HOLDING.
+        a < 0: hyperbolic orbit — positive eps = unbound = RELEASE
+        (the hyperbolic convention is a negative semi-major axis; eps =
+        -GM/(2a) then gives a positive value automatically).
+        a == 0 or invalid parameters: NaN.
         """
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        koord = np.asarray(coordinates, dtype=float)
-        if koord.ndim == 1:
-            koord = koord.reshape(1, -1)
+        coords = np.asarray(coordinates, dtype=float)
+        if coords.ndim == 1:
+            coords = coords.reshape(1, -1)
         m_tot = params_dict["M_sentral"] + params_dict["m_objekt"]
-        ut = []
-        for rad in koord:
-            a = float(rad[0])
+        out = []
+        for row in coords:
+            a = float(row[0])
             if a == 0:
-                ut.append(np.nan)
+                out.append(np.nan)
             else:
-                ut.append(-params_dict["G"] * m_tot / (2.0 * a))
-        return np.array(ut)
+                out.append(-params_dict["G"] * m_tot / (2.0 * a))
+        return np.array(out)
 
     # ------------------------------------------------------------------
-    # Selvbeskrivelse
+    # Self-description
     # ------------------------------------------------------------------
 
     def regime_node(self, params: dict) -> dict:
         r_h = self.hill_sfaere(params)
         validity = (
-            "Tolegeme Kepler-regime: bundet bane (eps < 0) er HOLDING — "
-            "objektet holdes i regimet; ubundet fly (eps >= 0) er "
-            "RELEASE — bindingen er brutt (hyperbolske baner: negativ "
-            "a gir eps > 0). IDEALISERT: ingen perturbasjoner, ingen "
-            "N-kropp, ingen atmosfærisk brems. Hill-sfæren ("
-            + f"{r_h:.3e}" + " m) er den TILNÆRMEDE innflytelses-/"
-            "stabilitetsgrensen mot sentralkroppen — å krysse den gjør "
-            "banen ustabil, ikke nødvendigvis ubundet. Predikerer "
-            "enkeltbaner, IKKE N-kroppsdynamikk."
+            "Two-body Kepler regime: bound orbit (eps < 0) is HOLDING — "
+            "the object is held in the regime; unbound flight (eps >= 0) is "
+            "RELEASE — the binding is broken (hyperbolic orbits: negative "
+            "a gives eps > 0). IDEALISED: no perturbations, no "
+            "N-body, no atmospheric drag. The Hill sphere ("
+            + f"{r_h:.3e}" + " m) is the APPROXIMATE influence/"
+            "stability boundary against the central body — crossing it makes "
+            "the orbit unstable, not necessarily unbound. Predicts "
+            "single orbits, NOT N-body dynamics."
         )
         law_form = ("Kepler: T = 2π sqrt(a^3/(GM)); vis-viva: "
                     "v^2 = GM(2/r - 1/a); eps = -GM/(2a); "
@@ -127,75 +128,75 @@ class OrbitalEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["epsilon = -GM/(2a): a<0 (hyperbolsk) gir release — energigrense", "Hill-sfaeren — tilnaermet stabilitetsgrense — grense"],
+            "terskler": ["epsilon = -GM/(2a): a<0 (hyperbolic) gives release — energy boundary", "the Hill sphere — approximate stability boundary — boundary"],
             "motor": "orbital"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "masse", "tid", "hastighet"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the staircase its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 1,
                 "forelder": None,
-                "tidsskala": "motortid",
-                "lengdeskala": "domene"
+                "tidsskala": "motor time",
+                "lengdeskala": "domain"
             },            "regime": {
-                "name": "Baneregimer — Kepler og bindingsterskler",
+                "name": "Orbital regimes — Kepler and binding thresholds",
                 "validity": validity,
                 "law_form": law_form,
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "periode, hastighet, spesifikk energi, Hill-sfære",
-                "measurer": "analytisk tolegeme-mekanikk",
+                "target": "period, velocity, specific energy, Hill sphere",
+                "measurer": "analytical two-body mechanics",
                 "instrument": "OrbitalEngine (efc_inference/engine/orbital.py)",
                 "proxy_chain": [
                     "a, e -> T (Kepler)",
                     "a, r -> v (vis-viva)",
                     "eps = -GM/(2a) -> holding/release",
                 ],
-                "placement": "ett (a, e)-punkt om gangen i tolegeme-regimet",
-                "compression": "baneelementer -> (T, v, eps, r_H)",
+                "placement": "one (a, e) point at a time in the two-body regime",
+                "compression": "orbital elements -> (T, v, eps, r_H)",
             },
-            "episenter": "bindingsterskelen eps = 0: punktet der en bane går fra holdt til sluppet — fangst og unnslipning møtes der",
+            "episenter": "the binding threshold eps = 0: the point where an orbit goes from held to released — capture and escape meet there",
             "buffer": {
-                "role": "Hill-sfæren er banens TILNÆRMEDE stabilitetsbuffer: innenfor er sentralkroppens grep dominerende; utenfor blir banen ustabil (uten at bindingen nødvendigvis brytes)",
-                "note": "ANALOGI til hjertets fyll-press-syklus (periodisk holding->release) — ikke identitet: banemekanikken er konservativ og reversibel, hjertet er dissipativt.",
+                "role": "the Hill sphere is the orbit's APPROXIMATE stability buffer: inside it the central body's grip dominates; outside it the orbit becomes unstable (without the binding necessarily breaking)",
+                "note": "ANALOGY to the heart's fill-pressure cycle (periodic holding->release) — not identity: the orbital mechanics is conservative and reversible, the heart is dissipative.",
             },
             "ontology": {
                 "assumes": [
-                    "tolegeme-approksimasjonen gjelder (sentral masse dominerer)",
-                    "banene er Kepler-ellipser (ingen perturbasjoner)",
+                    "the two-body approximation holds (the central mass dominates)",
+                    "the orbits are Kepler ellipses (no perturbations)",
                 ],
-                "source": "Keplers lover, vis-viva, Hill-sfæren (standard himmelmekanikk); analogi-merkingen er atlasets egen",
+                "source": "Kepler's laws, vis-viva, the Hill sphere (standard celestial mechanics); the analogy labelling is the atlas's own",
             },
             "observer": {
-                "bandwidth": "motoren ser bare (a, e) — ingen resonans-kart, ingen perturbasjonshistorikk",
+                "bandwidth": "the engine sees only (a, e) — no resonance map, no perturbation history",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "bane -> periode -> fase -> neste omløp — banens uendelige loop",
+                "loop": "orbit -> period -> phase -> next revolution — the orbit's endless loop",
                 "properties": ["T", "v", "eps", "r_H"],
             },
             "fractal": {
-                "pattern": "periodisk flyt med bindingsterskel: bane, hjertesyklus, ladesyklus (analogi)",
-                "note": "ett mønster, tre domener.",
+                "pattern": "periodic flow with a binding threshold: orbit, cardiac cycle, charge cycle (analogy)",
+                "note": "one pattern, three domains.",
             },
             "coupling": {
-                "local": "ett objekt, én bane",
-                "global": "banene er planetsystemets og satellittenes regimer — ANALOGOUS_TO homo.hjerte_syklus",
-                "empathy_note": "banen spør ikke — den bare går, holdt av ingenting annet enn energien.",
+                "local": "one object, one orbit",
+                "global": "the orbits are the regimes of the planetary system and the satellites — ANALOGOUS_TO homo.hjerte_syklus",
+                "empathy_note": "the orbit does not ask — it just goes, held by nothing other than the energy.",
             },
         }
