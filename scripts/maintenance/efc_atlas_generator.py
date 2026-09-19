@@ -14,10 +14,26 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 
 ROT = pathlib.Path(__file__).resolve().parents[2]
 ATLAS_DIR = ROT / "docs" / "efc-atlas" / "atlas"
 JSONLD = ROT / "schema" / "regime_nodes.jsonld"
+
+#: The bus is a MEASUREMENT, not a table. `schema/nats_domener.snapshot.json`
+#: is written by `scripts/atlas_volum.py --maal` and carries its own provenance
+#: (`maalt`, `lest_av`); this generator may repeat what that file says and
+#: nothing else. Measured 2026-09-19: the node bank reached the atlas with the
+#: claim "NATS bridges", while 0 of the 16 workflow files in
+#: `.github/workflows` run the measurement — so the snapshot ages by itself and
+#: the atlas said nothing about it. A number typed in here would age exactly
+#: like the retired "82 nodes" headline did.
+BUS_SNAPSHOT = ROT / "schema" / "nats_domener.snapshot.json"
+WORKFLOW_DIR = ROT / ".github" / "workflows"
+
+#: The name a cadence would have to reference for the bus to be consumed in
+#: drift. The scan below looks for it with the `--maal` flag.
+MAALING = "atlas_volum"
 
 #: Koden er nodens KORTE IDENTIFIKATOR (1-2 tegn) — ikke en visuell etikett.
 #:
@@ -351,6 +367,140 @@ def uten_gruppe_frase(noder: list[dict], spraak: str = "en",
         return tekst
     return (f"{tekst} ({gr['observasjon']} observations, {gr['regime']} regime "
             f"nodes, {gr['har_motor']} with an engine, {gr['ovrige']} other)")
+
+
+def arbeidsflyt_filer(katalog: pathlib.Path | None = None) -> list[pathlib.Path]:
+    """The workflow files a cadence would have to live in.
+
+    Both extensions are read: GitHub Actions accepts `.yml` and `.yaml`, and a
+    scan that looked for only one of them would miss exactly the cadence it
+    exists to find.
+    """
+    katalog = katalog or WORKFLOW_DIR
+    if not katalog.is_dir():
+        return []
+    return sorted(list(katalog.glob("*.yml")) + list(katalog.glob("*.yaml")))
+
+
+def buss_fakta(noder: list[dict], snapshot: pathlib.Path | None = None,
+               workflows: pathlib.Path | None = None) -> dict:
+    """What reads the bus, what does not, and the numbers behind both.
+
+    Three separate claims, three separate measurements, no hand-written number:
+
+      * the MEASUREMENT — the domain count and the provenance (`maalt`,
+        `lest_av`) are read from the snapshot `--maal` wrote;
+      * the ROUTES — how many published nodes name a bus route, and how many
+        say nothing (a field on the node, counted here);
+      * the SCHEDULE — the workflow files that run the measurement. Measured
+        2026-09-19: none of them does.
+
+    The third one is why this function exists: "NATS bridges" is a claim about
+    consumption, and consumption is not a property of the bank. A missing
+    snapshot, or one without provenance, RAISES — a guessed number is
+    indistinguishable from a measurement once it is printed, and this atlas is
+    read by people who cannot see where the number came from.
+    """
+    sti = snapshot or BUS_SNAPSHOT
+    if not sti.exists():
+        raise SystemExit(
+            f"[efc-atlas] {sti} is missing — the bus is measured, never "
+            f"guessed. Run `python3 scripts/atlas_volum.py --maal` on a door "
+            f"that holds the bus key, then rebuild.")
+    maaling = json.loads(sti.read_text(encoding="utf-8"))
+    domener = maaling.get("domener") or {}
+    prov = maaling.get("_proveniens") or {}
+    if not domener or not prov.get("maalt") or not prov.get("lest_av"):
+        raise SystemExit(
+            f"[efc-atlas] {sti} carries no provenance (`maalt` / `lest_av`) "
+            f"or no domains — a snapshot without a date is a claim that ages "
+            f"in silence. Measure again instead of rebuilding the atlas.")
+
+    vei = [n for n in noder if (n.get("stipulasjoner") or {}).get("buss_status")]
+    filer = arbeidsflyt_filer(workflows)
+    kadenser = []
+    for fil in filer:
+        tekst = fil.read_text(encoding="utf-8")
+        if MAALING in tekst and "--maal" in tekst:
+            kadenser.append(fil.name)
+
+    return {
+        "domener": len(domener),
+        "maalt": str(prov["maalt"]),
+        "dato": str(prov["maalt"])[:10],
+        "lest_av": str(prov["lest_av"]),
+        "publiserte": len(noder),
+        "navngir_vei": len(vei),
+        "stille": len(noder) - len(vei),
+        "kadenser": kadenser,
+        "arbeidsflyter": len(filer),
+    }
+
+
+def buss_frase(f: dict) -> str:
+    """One sentence for the one-paragraph lede: what reads the bus, what does not.
+
+    It replaces "NATS bridges", which claimed consumption the tree does not
+    have. The sentence is a function of the facts, so a cadence that appears
+    later moves the text instead of contradicting it.
+    """
+    if f["kadenser"]:
+        kadens = ("scheduled by "
+                  + ", ".join(f"`.github/workflows/{n}`" for n in f["kadenser"]))
+    else:
+        kadens = (f"and no schedule runs that measurement "
+                  f"(0 of {f['arbeidsflyter']} workflow files)")
+    return (f"The NATS bus: {f['domener']} domains, measured {f['dato']} by "
+            f"{f['lest_av']} — read by measurement code, {kadens}.")
+
+
+def buss_tekst(f: dict) -> list[str]:
+    """The atlas's own holes, in its own words — one paragraph per claim.
+
+    `Known holes` is where the atlas names what it does NOT cover. The bus
+    belongs there, not in a capability list: it is read by code and consumed by
+    no runner, and those two statements can both be true at once. That is the
+    distinction this section exists to keep.
+    """
+    if f["kadenser"]:
+        kadens = ("The measurement IS scheduled: "
+                  + ", ".join(f"`.github/workflows/{n}`" for n in f["kadenser"])
+                  + " run `scripts/atlas_volum.py --maal`.")
+    else:
+        kadens = (f"No schedule runs that measurement: "
+                  f"{len(f['kadenser'])} of {f['arbeidsflyter']} workflow files "
+                  f"in `.github/workflows` reference it, so the snapshot ages "
+                  f"by itself.")
+    return [
+        ("**The bus is read by code, not consumed in drift.** "
+         f"`scripts/atlas_volum.py --maal` reads the JetStream streams' "
+         f"`state.subjects` through the house's own `verden_domener` (MCP) and "
+         f"writes `schema/nats_domener.snapshot.json` with its own provenance: "
+         f"{f['domener']} domains, measured {f['maalt']} by {f['lest_av']}. "
+         f"{kadens} Until a door holding the bus key measures again, the only "
+         f"alarm is "
+         f"`tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` "
+         f"at 90 days — a stale measurement that still answers, which is the "
+         f"failure mode the atlas exists to name."),
+        ("**Bus routes in the node bank.** "
+         f"{f['navngir_vei']} of the published nodes name a bus route; the "
+         f"other {f['stille']} say nothing. A named route is a connection the "
+         f"bank has taken a position on, not traffic the atlas has seen."),
+    ]
+
+
+def buss_html(f: dict) -> str:
+    """The same holes for the interactive view, which reads no markdown.
+
+    Backticks become <code>: HOW_HTML is a JS template literal, so a stray
+    backtick ends the string and the whole build fails on the parse. Measured —
+    the first build after this card was written died exactly there.
+    """
+    avsnitt = []
+    for p in buss_tekst(f):
+        p = re.sub(r"`([^`]*)`", r"<code>\1</code>", p).replace("**", "")
+        avsnitt.append(f"<p>{p}</p>")
+    return '<h3 class="sec">Known holes</h3>' + "".join(avsnitt)
 
 
 def _gruppe(navn: str) -> str:
@@ -785,6 +935,17 @@ def hoved() -> int:
     uten_gruppe_egne = uten_gruppe_frase(noder, "en", f"of the {len(noder)}")
     uten_gruppe_kort = uten_gruppe_frase(noder, "en", "", med_grunn=False)
 
+    # The bus, measured three ways: the snapshot's own numbers, the routes the
+    # bank names, and the schedules that run the measurement (measured
+    # 2026-09-19: none of them does). The readout is printed so the number in
+    # the surfaces can be traced to the run that produced it.
+    buss = buss_fakta(noder)
+    print(f"bus: {buss['domener']} domains measured {buss['maalt']} by "
+          f"{buss['lest_av']} · {buss['navngir_vei']} of {buss['publiserte']} "
+          f"nodes name a route · {buss['stille']} silent · "
+          f"{len(buss['kadenser'])} of {buss['arbeidsflyter']} workflows run "
+          f"the measurement")
+
     data = f"""// GENERERT av scripts/maintenance/efc_atlas_generator.py —
 // IKKE rediger for haand. Kilden er schema/regime_nodes.jsonld.
 export const META = {{
@@ -796,8 +957,9 @@ export const META = {{
           {{ k: 'S-axis', v: '{sakse_maalt} of {len(noder)} measured · {uten_gruppe_kort}' }},
           {{ k: 'Perspectives', v: 'paradigm / consensus / academia' }}],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engine nodes, NATS bridges. {uten_gruppe_egne}.`,
-  platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engine nodes. {buss_frase(buss)} {uten_gruppe_egne}.`,
+  platformGives: 'NATS bus (read by measurement code, scheduled by nothing — see Known holes), engines, review fan-out, the EFC bank.',
+  busHull: {json.dumps(buss_tekst(buss), indent=2)},
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
   filesystem: `schema/regime_nodes.jsonld\\n  efc_inference/engine/*.py\\n  efc_inference/bridge/*.py`,
@@ -820,7 +982,8 @@ export const CH = {json.dumps(ch, indent=2)};
 
 export const HOW_HTML = `<div class="eyebrow">EFC · generated</div><h1 class="t">How it's built</h1><div class="sub">one source, two views</div>
 <h3 class="sec">Source</h3><pre>schema/regime_nodes.jsonld — the atlas bank</pre>
-<h3 class="sec">Generator</h3><pre>scripts/maintenance/efc_atlas_generator.py</pre>`;
+<h3 class="sec">Generator</h3><pre>scripts/maintenance/efc_atlas_generator.py</pre>
+{buss_html(buss)}`;
 """
     # Trailing whitespace bryter git diff --check — stripp hver linje
     data = "\n".join(linje.rstrip() for linje in data.splitlines()) + "\n"
