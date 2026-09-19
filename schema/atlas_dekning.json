@@ -1,5 +1,5 @@
 {
-  "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris. `meldinger` er UTLEDT som summen av de MÅLTE per-emne-tallene i schema/nats_domener.snapshot.json, og måles på nytt med `scripts/atlas_volum.py --maal` — aldri skrevet for hånd. Volumet finnes fordi et hull på 190 000 meldinger og ett på 200 ellers leses likt: `atlas_volum.py --hull` sorterer ikke_dekket etter det. `status` og `begrunnelse` er MENNESKETS stillingtagen og utledes aldri.",
+  "_form": "Hvert domene som bærer meldinger skal stå her. `noder` er UTLEDT fra nodenes eget `buss_domene`-felt — ikke skrevet for hånd — slik at deklarasjon og atlas ikke kan gå i utakt. En `dekket`/`delvis` uten node er en påstand som ikke kan innfris. `meldinger` er UTLEDT som summen av de MÅLTE per-emne-tallene i schema/nats_domener.snapshot.json, og måles på nytt med `scripts/atlas_volum.py --maal` — aldri skrevet for hånd. Volumet finnes fordi et hull på 190 000 meldinger og ett på 200 ellers leses likt: `atlas_volum.py --hull` sorterer ikke_dekket etter det. `status` og `begrunnelse` er MENNESKETS stillingtagen og utledes aldri. `kilder` er den andre aksen, og den finnes fordi domeneaksen ikke kan se den: en kilde som rutes inn i mange domener er usynlig naar maalet er domenet alene. Hvert kildeledd bussen baerer staar der — leddet er det siste i emnenavnet, jf. docs/nats-koblingskart.md — med `domener`, `meldinger` og `lesere` UTLEDT av maalingen og av nodenes eget `lagdeling.kilde.kilde`, aldri skrevet. `navn` samler ledd som er ETT korpus (gdelt-gkg, gdelt-mentions og gdelt-export er tre bussemner og én kilde), `eiere` navngir en node som ER kilden, og en kilde som baeres av flere domener uten eier maa baere `begrunnelse`. Maalt 2026-09-18: GDELT GKG — 20 domener, 30 352 meldinger, 14 lesere, 0 eiere.",
   "domener": {
     "kosmos.asteroider": {
       "status": "delvis",
@@ -570,6 +570,547 @@
         "tilstand.ecowitt",
         "tilstand.metar"
       ]
+    }
+  },
+  "kilder": {
+    "alerce": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 24990,
+      "domener": [
+        "kosmos.transienter"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "arxiv": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 266,
+      "domener": [
+        "kosmos.kosmologi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "arxiv-quant": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1,
+      "domener": [
+        "verden.teknologi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "broer": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 16,
+      "domener": [
+        "opus.dommekraft"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "celestrak-katalog": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 11,
+      "domener": [
+        "kosmos.satellitter"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "celestrak-stasjoner": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 221,
+      "domener": [
+        "kosmos.satellitter"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "domeneinventar": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 7,
+      "domener": [
+        "opus.dommekraft"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "ecb-data": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 110,
+      "domener": [
+        "verden.finans"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "ecowitt": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 4425,
+      "domener": [
+        "verden.vaer",
+        "verden.miljo"
+      ],
+      "lesere": [],
+      "eiere": [],
+      "begrunnelse": "To domener (verden.vaer og verden.miljo). Ingen node navngir den: maalt 2026-09-17 eies tilstand.ecowitt av broen, ikke av en node — se begrunnelsen for verden.vaer."
+    },
+    "efc-fs8": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 13,
+      "domener": [
+        "kosmos.kosmologi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "efc-lcdm-sammenligning": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1,
+      "domener": [
+        "opus.dommekraft"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "entsoe-dayahead": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 4608,
+      "domener": [
+        "verden.energi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "eurostat": {
+      "navn": "Eurostat",
+      "status": "lest",
+      "meldinger": 4,
+      "domener": [
+        "verden.arbeid"
+      ],
+      "lesere": [
+        "verden.arbeid"
+      ],
+      "eiere": []
+    },
+    "gbif-planter": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1,
+      "domener": [
+        "verden.miljo"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "gcn": {
+      "navn": "GCN — Gamma-ray Coordinates Network",
+      "status": "lest",
+      "meldinger": 194,
+      "domener": [
+        "kosmos.gammaglimt",
+        "kosmos.roentgentransienter",
+        "kosmos.noeytrinoer",
+        "kosmos.uklassifisert"
+      ],
+      "lesere": [
+        "kosmos.gammaglimt",
+        "kosmos.noeytrinoer",
+        "kosmos.roentgentransienter",
+        "kosmos.uklassifisert"
+      ],
+      "eiere": [],
+      "begrunnelse": "Fire domener, fire noder som navngir den som sin kilde, ingen node som ER GCN. Kilden er et varselnettverk, ikke et arkiv: hvert varsel er en hendelse, og det finnes ingen samlet node for nettverket."
+    },
+    "gdelt-export": {
+      "navn": "GDELT GKG",
+      "status": "lest",
+      "meldinger": 13843,
+      "domener": [
+        "verden.geopolitikk",
+        "verden.kommunikasjon",
+        "verden.lov",
+        "verden.militaer",
+        "verden.oekonomi",
+        "verden.politikk",
+        "verden.sikkerhet",
+        "verden.utdanning",
+        "verden.helse",
+        "verden.arbeid",
+        "verden.demografi",
+        "verden.infrastruktur",
+        "verden.miljo"
+      ],
+      "lesere": [
+        "verden.demografi",
+        "verden.finans",
+        "verden.geopolitikk",
+        "verden.handel",
+        "verden.helse",
+        "verden.infrastruktur",
+        "verden.kommunikasjon",
+        "verden.lov",
+        "verden.militaer",
+        "verden.politikk",
+        "verden.sikkerhet",
+        "verden.teknologi",
+        "verden.transport",
+        "verden.utdanning"
+      ],
+      "eiere": [],
+      "begrunnelse": "Avledning av samme korpus som gdelt-gkg: export er den maskinelle uttrekksformen av den samme kodingen. Sammen med gdelt-mentions utgjør den 28 432 av GDELT-familiens 30 352 meldinger — tallet sier hvor mange ganger korpuset ble RUTET, ikke hvor mange hendelser det inneholder."
+    },
+    "gdelt-gkg": {
+      "navn": "GDELT GKG",
+      "status": "lest",
+      "meldinger": 1920,
+      "domener": [
+        "verden.arbeid",
+        "verden.demografi",
+        "verden.energi",
+        "verden.finans",
+        "verden.geopolitikk",
+        "verden.handel",
+        "verden.helse",
+        "verden.infrastruktur",
+        "verden.klima",
+        "verden.kommunikasjon",
+        "verden.lov",
+        "verden.militaer",
+        "verden.miljo",
+        "verden.oekonomi",
+        "verden.politikk",
+        "verden.sikkerhet",
+        "verden.teknologi",
+        "verden.transport",
+        "verden.utdanning",
+        "verden.vaer"
+      ],
+      "lesere": [
+        "verden.demografi",
+        "verden.finans",
+        "verden.geopolitikk",
+        "verden.handel",
+        "verden.helse",
+        "verden.infrastruktur",
+        "verden.kommunikasjon",
+        "verden.lov",
+        "verden.militaer",
+        "verden.politikk",
+        "verden.sikkerhet",
+        "verden.teknologi",
+        "verden.transport",
+        "verden.utdanning"
+      ],
+      "eiere": [],
+      "begrunnelse": "Ett korpus, tjue domener, og ingen eier. Maalt 2026-09-17 bar meldingene under verden-domenene identisk arkiv_sha, arkiv_fil og korrelasjon, og pekte med nyttelast_paa til verden.politikk.observasjon.gdelt-gkg: domenet er et FILTER over korpuset, ikke en egen kanal. Fjorten noder navngir kilden som sin; ingen node ER den. Om kilden skal ha sin egen node, og om den i saa fall er offentlig eller intern, er ikke avgjort (kort t_dbfb6d59)."
+    },
+    "gdelt-mentions": {
+      "navn": "GDELT GKG",
+      "status": "lest",
+      "meldinger": 14589,
+      "domener": [
+        "verden.geopolitikk",
+        "verden.kommunikasjon",
+        "verden.militaer",
+        "verden.oekonomi",
+        "verden.politikk",
+        "verden.sikkerhet",
+        "verden.utdanning",
+        "verden.lov",
+        "verden.helse",
+        "verden.arbeid",
+        "verden.demografi",
+        "verden.infrastruktur",
+        "verden.miljo"
+      ],
+      "lesere": [
+        "verden.demografi",
+        "verden.finans",
+        "verden.geopolitikk",
+        "verden.handel",
+        "verden.helse",
+        "verden.infrastruktur",
+        "verden.kommunikasjon",
+        "verden.lov",
+        "verden.militaer",
+        "verden.politikk",
+        "verden.sikkerhet",
+        "verden.teknologi",
+        "verden.transport",
+        "verden.utdanning"
+      ],
+      "eiere": [],
+      "begrunnelse": "Avledning av samme korpus som gdelt-gkg: mentions er GDELT-prosjektets egen dokument-til-dokument-kobling, ikke en ny kilde. Volumet (14 589) er 7,6x gkg sitt — nettopp derfor er andelen en LESNING av korpuset: én hendelse kan nevnes mange steder. Navnet er satt til GDELT GKG fordi tre bussemner deler ett korpus, og kildeaksen maaler dem som ett."
+    },
+    "handlingsledger": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 6481,
+      "domener": [
+        "opus.dommekraft"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "heasarc": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 27,
+      "domener": [
+        "kosmos.roentgentransienter"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "imf-datamapper": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 24,
+      "domener": [
+        "verden.oekonomi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "jpl-cneos": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 182,
+      "domener": [
+        "kosmos.asteroider"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "jpl-horizons": {
+      "navn": "JPL Horizons",
+      "status": "lest",
+      "meldinger": 2488,
+      "domener": [
+        "kosmos.planetsystem",
+        "kosmos.maane"
+      ],
+      "lesere": [
+        "kosmos.maane",
+        "kosmos.planetsystem"
+      ],
+      "eiere": [],
+      "begrunnelse": "To domener, to noder som navngir den, ingen eier. Kilden er REGNET, ikke maalt (DE441-ephemeriden) — den staar i kildetabellen som «JPL — regnet, ikke maalt»."
+    },
+    "jpl-sentry": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 42,
+      "domener": [
+        "kosmos.asteroider"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "launch-library": {
+      "navn": "Launch Library",
+      "status": "lest",
+      "meldinger": 194,
+      "domener": [
+        "kosmos.romfart"
+      ],
+      "lesere": [
+        "kosmos.romfart"
+      ],
+      "eiere": [],
+      "begrunnelse": "Ett domene (kosmos.romfart), tre emner: prediksjon, oppgjoer og hendelse. Ingen node navngir den — kosmos.romfart PAASTOD GDELT av samme grunn som kosmos.stjerner gjorde. Rettet 2026-09-18."
+    },
+    "lukkeliste": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 116,
+      "domener": [
+        "opus.dommekraft"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "mast-caom": {
+      "navn": "MAST/CAOM",
+      "status": "lest",
+      "meldinger": 174,
+      "domener": [
+        "kosmos.interstellart",
+        "kosmos.hoper",
+        "kosmos.uklassifisert",
+        "kosmos.stjerner",
+        "kosmos.galakser",
+        "kosmos.asteroider"
+      ],
+      "lesere": [
+        "kosmos.interstellart",
+        "kosmos.stjerner"
+      ],
+      "eiere": [],
+      "begrunnelse": "Arkivobservasjoner (MAST/CAOM), seks domener, ingen node navngir den som sin kilde. To noder PAASTOD at den var GDELT — kosmos.interstellart og kosmos.stjerner — fordi oppslaget i scripts/maintenance/bygg_kildenoder.py valgte det alfabetisk foerste emneleddet og falt tilbake paa GDELT naar leddet ikke stod i kildetabellen. Rettet 2026-09-18: kilden utledes naa av de maalte emnene i domenet selv, og en ukjent kilde feller generatoren."
+    },
+    "metar": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 25651,
+      "domener": [
+        "verden.vaer"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "metno": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 160893,
+      "domener": [
+        "verden.vaer"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "mgnify-mikrobiom": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1,
+      "domener": [
+        "verden.miljo"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "nasa-donki": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 28,
+      "domener": [
+        "kosmos.sol"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "noaa-tides": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 2,
+      "domener": [
+        "verden.klima"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "swpc-goes-xray": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 4053,
+      "domener": [
+        "kosmos.sol"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "swpc-kp": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 171,
+      "domener": [
+        "kosmos.romvaer"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "tibber": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1770,
+      "domener": [
+        "verden.energi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "usgs-seismikk": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1910,
+      "domener": [
+        "kosmos.jord"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "usgs-vulkan": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1,
+      "domener": [
+        "kosmos.jord"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "victron": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 1770,
+      "domener": [
+        "verden.energi"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "who-gho": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 36,
+      "domener": [
+        "verden.helse"
+      ],
+      "lesere": [],
+      "eiere": []
+    },
+    "world-bank": {
+      "navn": null,
+      "status": "unavngitt",
+      "meldinger": 302,
+      "domener": [
+        "verden.demografi",
+        "verden.utdanning",
+        "verden.arbeid",
+        "verden.handel",
+        "verden.militaer",
+        "verden.oekonomi",
+        "verden.teknologi",
+        "verden.infrastruktur",
+        "verden.miljo",
+        "verden.energi",
+        "verden.kommunikasjon",
+        "verden.transport",
+        "verden.helse",
+        "verden.sikkerhet",
+        "verden.politikk",
+        "verden.geopolitikk",
+        "verden.klima",
+        "verden.lov"
+      ],
+      "lesere": [],
+      "eiere": [],
+      "begrunnelse": "Den BREDESTE kilden paa bussen: 18 av 39 domener baerer tilstand.world-bank, og ingen node navngir den. Volumet er lite (302 meldinger) mens bredden er den stoerste — de to aksene sier hver sin ting, og det er derfor begge maales. Ingen node ER World Bank."
     }
   }
 }
