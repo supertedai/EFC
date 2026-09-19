@@ -78,6 +78,14 @@ function buildSystemMd() {
   out.push('## Questions — index', '', 'Reference by ID. ✓ resolved (with date) · otherwise open.', '');
   index.forEach(([id, code, c]) => out.push(c.r ? `- ~~**${id}**~~ (${code}) ✓ ${md(c.r)}` : `- **${id}** (${code}) ${md(c.q)}`));
   out.push('');
+  // The atlas's own holes, next to the questions it already declares. Carried
+  // as data (META.busHull) so the generator owns the numbers and this file owns
+  // only the heading — a section that counted anything here would be a second
+  // counter of one thing.
+  if (META.busHull && META.busHull.length) {
+    out.push('## Known holes', '');
+    META.busHull.forEach((p) => out.push(p, ''));
+  }
   if (META.platformGives || META.weOwn) out.push('## What the platform gives vs what we own', '', `**Platform gives:** ${META.platformGives||''}`, '', `**We own:** ${META.weOwn||''}`, '');
   if (META.filesystem) out.push('## Planned filesystem', '', '```', META.filesystem.trimEnd(), '```', '');
   out.push('## How this file is maintained', '', `Generated from \`${META.sourcePath||'atlas/data.mjs'}\` by \`${META.buildCmd||'bun atlas/build.mjs'}\`, which also builds the interactive atlas (\`atlas.html\`${META.artifactUrl?`, published at ${META.artifactUrl}`:''}). Edit the data file, rebuild, republish — never edit this file by hand.`, '');
