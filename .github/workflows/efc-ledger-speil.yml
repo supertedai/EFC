@@ -1,0 +1,107 @@
+name: EFC ledger twins
+
+# `docs/validation-ledger/data/ledger.json` is CANONICAL for the GRAV claim
+# texts. Two artifacts PROJECT it and may never be edited on their own:
+#
+#   data/grav.json   $.claims[i].text == ledger.json $.grav_pipeline.claims[i].text
+#   index.md §3      the "Physics Claim" cell == the canonical text[:97] + "..."
+#
+# The drift class is measured, not hypothetical: PR #460 translated ONE twin
+# and left the other, and nothing in the tree could see it — every other field
+# stayed identical, and a stopword count is always "0" of its own content.
+# `scripts/maintenance/efc_ledger_speil.py` is the single writer of the pair
+# and `tests/test_ledger_speil.py` is the lock, but neither had an automatic
+# path: a PR that changed ledger.json and forgot `--skriv` passed every check
+# green (measured 2026-09-19, card t_42ce76dd).
+#
+# THREE STEPS, ONE SOURCE — not three implementations:
+#   1. the mirror's own check — names the drift and the repair, exit 1
+#   2. the writer in fixpoint — the committed bytes must BE the emitter's
+#      bytes; this catches what the two identities cannot see (a re-encoded
+#      grav.json, a lost trailing newline in index.md)
+#   3. the locked identities — tests/test_ledger_speil.py, which carries the
+#      mutation proof that the check can go red at all — plus
+#      tests/test_ledger_speil_gate.py, which locks this file's shape
+#      (triggers, steps, read-only) and probes the command on a drifted tree
+#
+# Read-only in the git sense: the steps change only the disposable checkout
+# and fail on any difference — no step commits or pushes.
+#
+# Local equivalent:
+#     python3 scripts/maintenance/efc_ledger_speil.py          # check
+#     python3 scripts/maintenance/efc_ledger_speil.py --skriv  # repair
+#     python3 -m pytest tests/test_ledger_speil.py tests/test_ledger_speil_gate.py -q
+#
+# CHOSEN PATH (card t_42ce76dd, 2026-09-19): a PR-triggered workflow, not a
+# `make full-check` line. The drift is CREATED in a pull request, while the
+# maintenance round runs weekly and only after landing — a gate there measures
+# the class days later and in the wrong place. `push` to main carries the same
+# path list, so a drift that does get merged is named on main too.
+#
+# DECLARED LIMIT: the trigger set is the files that can drift. A commit that
+# rewrites them WITHOUT passing through a push to main (an Actions step
+# committing with GITHUB_TOKEN fires no workflow) would not start this job.
+# Measured 2026-09-19: no workflow step in this repo commits these paths.
+
+on:
+  pull_request:
+    paths:
+      - "docs/validation-ledger/data/ledger.json"
+      - "docs/validation-ledger/data/grav.json"
+      - "docs/validation-ledger/index.md"
+      - "scripts/maintenance/efc_ledger_speil.py"
+      - "tests/test_ledger_speil.py"
+      - "tests/test_ledger_speil_gate.py"
+      - ".github/workflows/efc-ledger-speil.yml"
+  push:
+    branches: [main]
+    paths:
+      # Same list as pull_request: a drift that is merged must be measured on
+      # main as well, not only inside the PR window.
+      - "docs/validation-ledger/data/ledger.json"
+      - "docs/validation-ledger/data/grav.json"
+      - "docs/validation-ledger/index.md"
+      - "scripts/maintenance/efc_ledger_speil.py"
+      - "tests/test_ledger_speil.py"
+      - "tests/test_ledger_speil_gate.py"
+      - ".github/workflows/efc-ledger-speil.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  ledger-speil:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: The mirror's check — the drift is named, exit 1
+        run: python3 scripts/maintenance/efc_ledger_speil.py
+      - name: The committed twins are byte-identical to the writer's output
+        run: |
+          python3 scripts/maintenance/efc_ledger_speil.py --skriv
+          git --no-pager diff --stat -- \
+            docs/validation-ledger/data/grav.json docs/validation-ledger/index.md
+          if ! git diff --quiet -- \
+              docs/validation-ledger/data/grav.json docs/validation-ledger/index.md; then
+            echo "::error::the committed twins are not what efc_ledger_speil.py emits. Run 'python3 scripts/maintenance/efc_ledger_speil.py --skriv' and commit the result in the same PR."
+            exit 1
+          fi
+      - name: Install the test runner for the locked identities
+        run: python3 -m pip install --quiet "pytest>=8,<9"
+      - name: The identities are locked, and the check is proven to fail on drift
+        run: python3 -m pytest tests/test_ledger_speil.py tests/test_ledger_speil_gate.py -q
+      - name: Summarise on failure
+        if: failure()
+        run: |
+          echo "::group::Failure summary"
+          echo "The ledger twins no longer project their canonical source:"
+          echo "  docs/validation-ledger/data/grav.json   (claims[].text)"
+          echo "  docs/validation-ledger/index.md         (Physics Claim cells)"
+          echo "  canonical: docs/validation-ledger/data/ledger.json"
+          echo
+          echo "Repair, then commit BOTH twins in the same PR:"
+          echo "  python3 scripts/maintenance/efc_ledger_speil.py --skriv"
+          echo "::endgroup::"
