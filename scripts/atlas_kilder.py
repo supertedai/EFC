@@ -186,7 +186,7 @@ def prosjekter(rader: list[dict]) -> list[dict]:
     """
     per: dict[str, dict] = {}
     for r in rader:
-        n = r["navn"] or f"(uten navn: {r['ledd']})"
+        n = r["navn"] or f"(unnamed: {r['ledd']})"
         p = per.setdefault(n, {"navn": n, "ledd": [], "meldinger": 0,
                                "domener": set(), "lesere": set(),
                                "eiere": set(), "status": set()})
