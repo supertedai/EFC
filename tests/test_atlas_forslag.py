@@ -1,4 +1,6 @@
-"""Tester innmatings-lytteren uten aa endre atlas-nodene."""
+"""Tests for the intake listener, without touching the atlas nodes.
+
+The fragments are English, like the atlas they are placed in (t_648190ca)."""
 from __future__ import annotations
 
 import json
