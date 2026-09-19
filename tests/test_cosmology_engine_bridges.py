@@ -51,15 +51,15 @@ KANONISKE = [
 # Eksakte koblinger som kreves av relasjonene i atlaset.
 FORVENTEDE_RELASJONER = {
     "efc.rotation_engine": [("COUPLED_TO", "efc.l2")],
+    # K6 (10087393): the engine is observed THROUGH, so this edge lives on the
+    # observation (`obs.bao OBSERVED_THROUGH efc.hubble_engine`), not on the
+    # engine. The inverted form was the defect, not an expectation.
     "efc.hubble_engine": [("COUPLED_TO", "efc.l1"),
-                          ("COUPLED_TO", "efc.l2"),
-                          ("OBSERVED_IN", "obs.bao")],
-    "efc.growth_engine": [("COUPLED_TO", "efc.l2"),
-                          ("OBSERVED_IN", "obs.fsigma8"),
-                          ("OBSERVED_IN", "obs.s8")],
-    "efc.lensing_engine": [("OBSERVED_IN", "obs.cmb_lensing")],
-    "efc.cluster_engine": [("OBSERVED_IN", "obs.cluster_hmf"),
-                           ("OBSERVED_IN", "obs.cluster_mass")],
+                          ("COUPLED_TO", "efc.l2")],
+    "efc.growth_engine": [("COUPLED_TO", "efc.l2"),],
+    # K6: the edge now lives on the observation (see the test below).
+    "efc.lensing_engine": [],
+    "efc.cluster_engine": [],
 }
 
 
@@ -142,3 +142,28 @@ def test_relasjoner_eksakte():
         assert sorted(funnet.get(node_id, [])) == sorted(forventet), (
             f"{node_id}: fant {sorted(funnet.get(node_id, []))}, "
             f"forventet {sorted(forventet)}")
+
+
+def test_the_edge_to_the_engine_lives_on_the_observation() -> None:
+    """K6 (10087393): `obs.X OBSERVED_THROUGH efc.Y`, not the other way round.
+
+    The six inverted `OBSERVED_IN` edges (engine as subject) were renamed to
+    `OBSERVED_THROUGH`, because the direction was the defect. This test holds
+    the corrected pairs where they now live, so removing them from the engines'
+    expectation lists above cannot silently drop the relation.
+    """
+    import json as _json
+    from pathlib import Path as _Path
+
+    atlas = _Path(__file__).resolve().parents[1] / "schema" / "regime_nodes.jsonld"
+    kanter = {(r["subject"], r["predicate"], r["object"])
+              for r in _json.loads(atlas.read_text(encoding="utf-8"))["relations"]}
+    par = [("obs.bao", "efc.hubble_engine"),
+           ("obs.fsigma8", "efc.growth_engine"),
+           ("obs.s8", "efc.growth_engine"),
+           ("obs.cmb_lensing", "efc.lensing_engine"),
+           ("obs.cluster_hmf", "efc.cluster_engine"),
+           ("obs.cluster_mass", "efc.cluster_engine")]
+    mangler = [x for x in par if (x[0], "OBSERVED_THROUGH", x[1]) not in kanter]
+    assert not mangler, (
+        f"these observations do not carry the edge to their engine: {mangler}")
