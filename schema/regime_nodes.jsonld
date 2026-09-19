@@ -10012,17 +10012,17 @@
     {
       "id": "kosmos.interstellart",
       "regime": {
-        "name": "interstellar — the state layer from GDELT GKG",
-        "validity": "applies to the part of GDELT GKG that covers interstellar. Measured volume: 54 messages over 1 topic(s). Further: the share is a READING of the corpus, not a separate measurement."
+        "name": "interstellart — the state layer from MAST/CAOM",
+        "validity": "applies to den delen av MAST/CAOM som dekker interstellart. Maalt volum: 54 messages over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
       },
       "phase": "instrument",
       "measure": {
-        "target": "global news streams coded to topic, actor and place",
-        "measurer": "the GDELT project — machine coding of the world's news stream",
-        "instrument": "the GKG pipeline; coded documents per topic",
+        "target": "archival observations — instrument-borne raw data from space telescopes",
+        "measurer": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "proxy_chain": [
-          "raw news text",
-          "GKG codes (theme, actor, place)",
+          "photons in",
+          "calibrated and archived observation",
           "share per domain"
         ],
         "placement": "observation",
@@ -10030,12 +10030,12 @@
       },
       "episenter": "where the corpus becomes a share for interstellar — the number does not exist in the source, it arises in the reading",
       "buffer": {
-        "role": "GDELT GKG is the buffer: it holds the state between updates",
+        "role": "MAST/CAOM is the buffer: it holds the state between updates",
         "note": "the source's, not the engine's"
       },
       "ontology": {
         "assumes": [
-          "GDELT GKG is available and complete enough for this fraction",
+          "MAST/CAOM is available and complete enough for this share",
           "the share is comparable over time",
           "the subject observasjon.mast-caom represents the domain"
         ],
@@ -10058,13 +10058,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
         "properties": [
           "54 messages"
         ]
       },
       "fractal": {
-        "pattern": "each theme is the whole corpus seen through one code; the same pattern in every share",
+        "pattern": "each domain is the whole archive seen through one selection — same corpus, different share",
         "note": "one domain, same corpus"
       },
       "coupling": {
@@ -10112,7 +10112,7 @@
       "lagdeling": {
         "kilde": {
           "status": "konsensus",
-          "kilde": "GDELT GKG",
+          "kilde": "MAST/CAOM",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -10587,17 +10587,17 @@
     {
       "id": "kosmos.romfart",
       "regime": {
-        "name": "spaceflight — the state layer from GDELT GKG",
-        "validity": "applies to the part of GDELT GKG that covers spaceflight. Measured volume: 194 messages over 3 topic(s). Further: the share is a READING of the corpus, not a separate measurement."
+        "name": "romfart — the state layer from Launch Library",
+        "validity": "applies to den delen av Launch Library som dekker romfart. Maalt volum: 194 messages over 3 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
       },
       "phase": "instrument",
       "measure": {
-        "target": "global news streams coded to topic, actor and place",
-        "measurer": "the GDELT project — machine coding of the world's news stream",
-        "instrument": "the GKG pipeline; coded documents per topic",
+        "target": "launch data — planned, flown and settled launches",
+        "measurer": "Launch Library — the aggregated launch catalogue, not the launch operator",
+        "instrument": "the operators' own announcements, collected into one catalogue",
         "proxy_chain": [
-          "raw news text",
-          "GKG codes (theme, actor, place)",
+          "announced manifest",
+          "launch event",
           "share per domain"
         ],
         "placement": "observation",
@@ -10605,12 +10605,12 @@
       },
       "episenter": "where the corpus becomes a share for spaceflight — the number does not exist in the source, it arises in the reading",
       "buffer": {
-        "role": "GDELT GKG is the buffer: it holds the state between updates",
+        "role": "Launch Library is the buffer: it holds the state between updates",
         "note": "the source's, not the engine's"
       },
       "ontology": {
         "assumes": [
-          "GDELT GKG is available and complete enough for this fraction",
+          "Launch Library is available and complete enough for this share",
           "the share is comparable over time",
           "the subject oppgjoer.launch-library represents the domain"
         ],
@@ -10633,13 +10633,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
+        "loop": "announced launch -> launch -> settled outcome -> next announcement",
         "properties": [
           "194 messages"
         ]
       },
       "fractal": {
-        "pattern": "each theme is the whole corpus seen through one code; the same pattern in every share",
+        "pattern": "each launch is the whole manifest in miniature — same operators, different orbit",
         "note": "one domain, same corpus"
       },
       "coupling": {
@@ -10687,7 +10687,7 @@
       "lagdeling": {
         "kilde": {
           "status": "konsensus",
-          "kilde": "GDELT GKG",
+          "kilde": "Launch Library",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -10702,17 +10702,17 @@
     {
       "id": "kosmos.stjerner",
       "regime": {
-        "name": "stars — the state layer from GDELT GKG",
-        "validity": "applies to the part of GDELT GKG that covers stars. Measured volume: 26 messages over 1 topic(s). Further: the share is a READING of the corpus, not a separate measurement."
+        "name": "stjerner — the state layer from MAST/CAOM",
+        "validity": "applies to den delen av MAST/CAOM som dekker stjerner. Maalt volum: 26 messages over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
       },
       "phase": "instrument",
       "measure": {
-        "target": "global news streams coded to topic, actor and place",
-        "measurer": "the GDELT project — machine coding of the world's news stream",
-        "instrument": "the GKG pipeline; coded documents per topic",
+        "target": "archival observations — instrument-borne raw data from space telescopes",
+        "measurer": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "proxy_chain": [
-          "raw news text",
-          "GKG codes (theme, actor, place)",
+          "photons in",
+          "calibrated and archived observation",
           "share per domain"
         ],
         "placement": "observation",
@@ -10720,12 +10720,12 @@
       },
       "episenter": "where the corpus becomes a share for stars — the number does not exist in the source, it arises in the reading",
       "buffer": {
-        "role": "GDELT GKG is the buffer: it holds the state between updates",
+        "role": "MAST/CAOM is the buffer: it holds the state between updates",
         "note": "the source's, not the engine's"
       },
       "ontology": {
         "assumes": [
-          "GDELT GKG is available and complete enough for this fraction",
+          "MAST/CAOM is available and complete enough for this share",
           "the share is comparable over time",
           "the subject observasjon.mast-caom represents the domain"
         ],
@@ -10748,13 +10748,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
         "properties": [
           "26 messages"
         ]
       },
       "fractal": {
-        "pattern": "each theme is the whole corpus seen through one code; the same pattern in every share",
+        "pattern": "each domain is the whole archive seen through one selection — same corpus, different share",
         "note": "one domain, same corpus"
       },
       "coupling": {
@@ -10802,7 +10802,7 @@
       "lagdeling": {
         "kilde": {
           "status": "konsensus",
-          "kilde": "GDELT GKG",
+          "kilde": "MAST/CAOM",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },

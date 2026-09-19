@@ -327,11 +327,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### KI · kosmos.interstellart
 
-**In one line.** global news streams coded to topic, actor and place · perspective: consensus
+**In one line.** archival observations — instrument-borne raw data from space… · perspective: consensus
 
-**What it does.** the GKG pipeline; coded documents per topic — proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain
+**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
 
-**How it's built.** Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
+**How it's built.** Buffer role: MAST/CAOM is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
 
 **Steps in execution.**
 
@@ -397,11 +397,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### RF · kosmos.romfart
 
-**In one line.** global news streams coded to topic, actor and place · perspective: consensus
+**In one line.** launch data — planned, flown and settled launches · perspective: consensus
 
-**What it does.** the GKG pipeline; coded documents per topic — proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain
+**What it does.** the operators' own announcements, collected into one catalogue — proxy chain: announced manifest -> launch event -> share per domain
 
-**How it's built.** Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
+**How it's built.** Buffer role: Launch Library is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
 
 **Steps in execution.**
 
@@ -411,11 +411,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### ST · kosmos.stjerner
 
-**In one line.** global news streams coded to topic, actor and place · perspective: consensus
+**In one line.** archival observations — instrument-borne raw data from space… · perspective: consensus
 
-**What it does.** the GKG pipeline; coded documents per topic — proxy chain: raw news text -> GKG codes (theme, actor, place) -> share per domain
+**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
 
-**How it's built.** Buffer role: GDELT GKG is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
+**How it's built.** Buffer role: MAST/CAOM is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
 
 **Steps in execution.**
 

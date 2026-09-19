@@ -47,7 +47,7 @@ Each row is generated from the same bank as the atlas.
   perspective=paradigm · engine=transient · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **KG · kosmos.gammaglimt** — alerts on transients in real time, from ground and space
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **KI · kosmos.interstellart** — global news streams coded to topic, actor and place
+- **KI · kosmos.interstellart** — archival observations — instrument-borne raw data from space…
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **MA · kosmos.maane** — orbit positions computed from the DE441 ephemeris
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
@@ -57,9 +57,9 @@ Each row is generated from the same bank as the atlas.
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **KR · kosmos.roentgentransienter** — alerts on transients in real time, from ground and space
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **RF · kosmos.romfart** — global news streams coded to topic, actor and place
+- **RF · kosmos.romfart** — launch data — planned, flown and settled launches
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **ST · kosmos.stjerner** — global news streams coded to topic, actor and place
+- **ST · kosmos.stjerner** — archival observations — instrument-borne raw data from space…
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **UK · kosmos.uklassifisert** — alerts on transients in real time, from ground and space
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
