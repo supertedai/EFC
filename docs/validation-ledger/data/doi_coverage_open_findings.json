@@ -1,0 +1,73 @@
+{
+ "name": "EFC DOI Consistency & Coverage — Open Findings",
+ "generated_at": "2026-09-19T20:23:37Z",
+ "generator": "wt/doi-atlas-audit (researcher night loop)",
+ "source_sha": "ec2d9ba9843dbe45cc3a5c9c3add366026356d80",
+ "findings": [
+  {
+   "id": "F1",
+   "title": "31942821 metadata-drift: derived-ansatz + sqrt-transkripsjon",
+   "location": "docs/papers/efc/Derivation_of_the_Entropy_Production/{index.json,src/entropy_production.py,PDF}",
+   "claim": "index.json description/main_finding presenterer phenomenological ansatz rho/(rho+rho_crit) som 'derived result'; key_result/kode/PDF Section 5-6 sier Scenario B rho^(3/2)/(rho+rho_crit) er den derived formen, ansatz ~20% avvik; i tillegg en sqrt-transkripsjonsfeil (g = sqrt(beta*rho/a0) vs beta*rho).",
+   "status": "potential_conflict",
+   "next": "Reconcile index.json metadata til å merke ansatz 'phenomenological approximation'; bekreft sqrt-formen i PDF Eq."
+  },
+  {
+   "id": "F2",
+   "title": "31876324 default-kode vs overlevelsesdal (pedagogisk, ikke etablert konflikt)",
+   "location": "docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/src/efc_relativistic.py",
+   "claim": "Standardkode gir epsilon ~ 1e-12..1e-18 => mu=Sigma=0.9995, eta=1.000000 overalt; overlevelsesdalen (mu in [0.93,0.96], eta ~ 1.1, Sigma in [1.03,1.07]) naas ikke. Koden er deklarert 'pedagogical implementation, not production-ready'. eta=1.000000 er avrunding under 6-desimal-opplosning, IKKE bevis for null slip.",
+   "status": "reviewed_no_conflict_found",
+   "note": "Pedagogisk default, men eta-1 maa rapporteres analytisk, ikke som 'ingen slip'.",
+   "next": "Ikke en feil; dokumenter at dalen krever målrettede parametre, ikke defaults."
+  },
+  {
+   "id": "F3",
+   "title": "eta skala-retning: eps propto k^-2 gjelder kun quasi-statisk",
+   "location": "31876324 Eq. 24-26 (compute_epsilon_*)",
+   "claim": "eps-leddene gaar som 1/k^2 (maalt ratio 10000.00 ved k/10). Tidligere paastand 'slip vokser mot store skalaer => strider mot motor-intuisjon' er en OVERtolking: k^-2 i quasi-statisk kan ikke ekstrapoleres til horisont/CMB.",
+   "status": "mapping_open",
+   "next": "Formuler eta(k,z) kun innenfor quasi-statisk gyldighetsomraade; ingen horizon-ekstrapolering uten full ADM/boltzmann."
+  },
+  {
+   "id": "F4",
+   "title": "a0: 6.5e-10 finnes ikke i noen index.json; avledet a0,eff=C^2 a0 ~ 5.4 a0 i to DOI-er",
+   "location": "figshare/doi-map.json + schema/framework_atlas.jsonld + EFC-VAL-2026-006/atlas_seed.json",
+   "claim": "Verdien 6.5e-10 (EFC a0) finnes KUN i framework_atlas.jsonld-note, VAL-seed og en testkommentar — ikke i noe papir-index.json. Papirene baerer 1.2e-10 (MOND). To DOI-er (Discrete_Entropic_Gravity 31348411, Regime_Structure 31348417) avleder a0,eff = C^2 a0 ~ 5.4 a0 (C ~ 2.32). '5x-divergens' er altsaa baade avledning og divergens-flag samtidig — uavklart, ikke lukket.",
+   "status": "potential_conflict",
+   "next": "Reconcile: er 6.5e-10 ment som a0,eff=C^2*a0, og er da 'divergens'-flaget en residual eller en aapen motsigelse? Menneskeport."
+  },
+  {
+   "id": "F5",
+   "title": "eta_grav (Phi/Psi) vs motorens 'etterslep' er en mapping-hypotese, ikke identitet",
+   "location": "31876324 observables.eta + samtale 2026-09-19",
+   "claim": "Gravitasjonsslip eta=Phi/Psi er et maalbart MG-parameter. At det ER motorens hastighets-etterslep (garn vs flyt) er en udeklarert hypotese. 'A->C uten B' — manglende mellomledd, ikke etablert.",
+   "status": "mapping_open",
+   "next": "Egen proof obligation: definer etterslepet operativt for det kan testes mot eta_grav."
+  },
+  {
+   "id": "F6",
+   "title": "'variabel c' vs c_T=c: kun propagasjonsfart er laast",
+   "location": "31876324 tensor_sector (c_T=c, FA3 PASSED) + variable-light-s0-s1 (30642497) + c_eff_parameterization (31305421)",
+   "claim": "c_T=c beviser kun lik propagasjonsfart for GW og lys (GW170817). 'Variabel c' som EFFEKTIV flyt-hastighet over garnet er udefinert og krysser c_T=c bare dersom den hevdes aa vaere signalfart. Som flyt-storrelse kan den leve, men da er det en annen storrelse som maa navngis.",
+   "status": "mapping_open",
+   "next": "Skille 'c' (signalfart, laast til c) fra 'v_flow' (effektiv flytfart, udefinert). Ingen sammenblanding."
+  },
+  {
+   "id": "F7",
+   "title": "Sigma=mu(1+eta)/2: typical-verdier gir 0.987, deklarert 1.05",
+   "location": "31876324 observables.sigma + survival_valley",
+   "claim": "Med mu=0.94, eta=1.10 gir Sigma=mu(1+eta)/2 = 0.987, men sigma.typical_value = 1.05 og survival_valley.sigma_range=[1.03,1.07]. Kandidat til same-scenario-inkonsistens; IKKE etablert konflikt for 'typical'-verdiene er bekreftet aa gjelde samme parameterpunkt.",
+   "status": "potential_conflict",
+   "next": "Verifiser om mu/eta/Sigma 'typical'-verdiene er ett felles punkt. Hvis ja, er deklarasjonen aritmetisk inkonsistent."
+  },
+  {
+   "id": "F8",
+   "title": "Schema-gap: ontology.source er single-string, ikke liste",
+   "location": "schema/regime_node.schema.json (ontology.source: type string)",
+   "claim": "Atlaset har ingen mekanisme for multi-DOI-proveniens per node. 'Legg alle 170 inn i atlaset' krever enten schema-endring (source -> array) eller et eget provenance-register. Schema-endring er gated (menneskeord).",
+   "status": "mapping_open",
+   "next": "Designbeslutning: utvid ontology.source til array, ELLER behold single-string og legg DOI-kjeden i eget register (denne PR leverer registeret, ikke schema-endringen)."
+  }
+ ]
+}
