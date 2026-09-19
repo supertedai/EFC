@@ -57,9 +57,26 @@ til noen har kuratert den inn i atlaset.
 
 Et felt motoren utsteder som ingen av tabellene nevner, er et HULL — ikke en
 fri sone. Baade testen og `--sjekk` stopper til noen har tatt stilling.
-Skjemaet rommer ogsaa node-typer som ikke er motornoder (`/settlement/*`,
-`/revisjon`, `/observer/maalepavirkning`); de er navngitt i `UTENFOR_BROEN`
-fordi en utelatelse skal være deklarert, ikke stille.
+
+Skjemaet rommer ogsaa felt som INGEN bro eier. De staar i `UTENFOR_BROEN` med
+**grunnen skrevet ned**: en utelatelse skal være navngitt OG begrunnet, ikke
+bare navngitt, for et navn uten grunn kan den neste ikke avgjøre om fortsatt
+gjelder.
+
+| Utenfor broen | Hvorfor (målt 2026-09-19) |
+|---|---|
+| `open_questions` | nodens EGEN tekst i banken: skrevet av migreringen fra `stipulasjoner.buss_status` og av kuratering — aldri av motoren (0 treff i `efc_inference/`) og aldri av generatoren (skjemaet sier det selv: «den ENESTE kilden til spørsmål i atlaset»). 21 noder bærer den, 0 av de 20 registrerte broene |
+| `lagdeling.*` | hører til de lagdelte biologi-nodene (33 noder i banken, 0 av de 20 broene); motoren har ingen lagdeling å utstede |
+| `revisjon` | husets egen bokføring, aldri en motornode; 0 noder bærer den i dag, men skjemaet kan uttrykke den |
+| `observer.maalepavirkning` | kuratert metaspørsmål om observatøren, ikke avledbart av motorens parametre; 0 noder bærer den i dag |
+
+`/settlement/*` er derimot IKKE utenfor broen: `efc.growth_engine` bærer den,
+og den er atlas-eid (tabellen over). En tidligere utgave av dette dokumentet
+navnga den som en node-type utenfor broen — det motsa `ATLAS_EIDE`, og fem
+slike oppføringer sto i `UTENFOR_BROEN` samtidig som de hadde en eier. De er
+fjernet, og `test_every_declared_omission_carries_its_reason` holder dem ute:
+en utelatelse som motsier eierskapet er ikke en utelatelse, den er en påstand
+om at feltet står uten regel — og den påstanden var usann.
 
 ## Hvorfor ikke bare regenerere alt fra motoren
 
@@ -76,7 +93,7 @@ kan ikke kurateres uten aa bli feil den dagen parametrene endres.
 | `efc_bro_synk.py --sjekk` | maaler hele klassen, delt paa eier; exit 1 ved avvik |
 | `efc_bro_synk.py --skriv` | skriver de motoreide feltene tilbake (idempotent, formatvakt) |
 | `efc_bro_synk.py --json` | maskinlesbar rapport (til vedlikeholdsrunden) |
-| `tests/test_bro_konvensjon.py` | binder hele klassen: dekning, feltvis likhet, ingen hull, skjema-dekning |
+| `tests/test_bro_konvensjon.py` | binder hele klassen: dekning, feltvis likhet, ingen hull, skjema-dekning, og at utelatelsene er begrunnet uten å motsi eierskapet |
 
 Kanoniske parametre leses fra testmodulen som eier dem — én kilde for testen
 og synken. Motorer der parametrene konstrueres (victron: serier ->
