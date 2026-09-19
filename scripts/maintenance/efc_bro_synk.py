@@ -24,6 +24,50 @@ Bruk:
     efc_bro_synk.py --sjekk     # rapportér avvik (exit 1 naar det finnes)
     efc_bro_synk.py --skriv     # skriv de motoreide feltene tilbake
     efc_bro_synk.py --json      # maskinlesbar rapport paa stdout
+
+COVERAGE — what this tool measures, and what it does not
+--------------------------------------------------------
+Measured 2026-09-19 (t_1f95225a). The register below is ONE of THREE tables.
+An EFCEngine with ``regime_node()`` stands in exactly one of them:
+
+  * ``BROER``            — field-compared by this sync (``--sjekk``/``--skriv``);
+  * ``K.VARIANTER``      — a variant of a registered bridge: it inherits
+                           ``regime_node()`` and issues the SAME node;
+  * ``K.IKKE_BRO_MOTORER`` — a DECLARED non-bridge: its own atlas contract.
+
+An engine in NONE of them is a HOLE, and ``--sjekk`` fails on it. Until this
+card the tool never looked, so it was green BY ABSENCE: it printed «ingen
+avvik mellom motor og atlas» while 12 engines with ``regime_node()`` were
+neither compared nor named. The register's own sentence was the drift — it
+declared that EVERY EFCEngine with ``regime_node()`` shall stand in it, which
+was true of the 20 bridges and silently false about the class.
+
+    Coverage: 33 engines with regime_node() = 20 registered bridges (field-compared) + 1 variant + 12 declared non-bridges (not field-compared).
+
+The line above is RENDERED by ``dekningslinje()`` from the live tables, and
+must appear VERBATIM in this docstring: ``tests/test_bro_konvensjon.py``
+asserts it. Change a table and the line changes — then the docstring follows,
+or the suite goes red. A count in prose that nothing reads is how the register
+came to disagree with the class it registers.
+
+Why the 12 are declared and NOT registered — the reason is measured:
+
+  * 11 of the 12 have required parameters with no canonical source
+    (``K.MOTOR_UTEN_PARAMKILDE``): there is no bridge pointing at their engine
+    file, and the canonical parameters are read FROM a bridge's test module.
+    This sync therefore cannot run them at all, and registering them would mean
+    inventing their parameters here — the one thing the convention refuses.
+  * the twelfth, ``HomeostaseBufferEngine``, has no required parameters and is
+    run by ``tests/test_motor_traaden.py``; its text deviation is declared in
+    ``K.MOTOR_TEKSTAVVIK``.
+  * and registering ANY of them would let ``--skriv`` write the engine's terse
+    strings over the bank's CURATED prose. Measured on ``homo.hjerte_syklus``:
+    ``/regime/validity`` is a paragraph in the bank and
+    ``t in [0, 0.8] s; NaN outside`` in the engine. That is a content
+    regression dressed as a sync, and it is the owner's decision to make.
+
+The gap is therefore declared and COUNTED instead of silent: ``--sjekk``
+prints the line and names the twelve.
 """
 from __future__ import annotations
 
@@ -46,12 +90,15 @@ ATLAS = ROT / K.ATLAS[0] / K.ATLAS[1]
 #: 2026-09-18: they did, and the guard below stayed red in silence).
 FORMAT = K.FORMAT
 
-#: node-id -> (motormodul, motorklasse, testmodul med de kanoniske
-#: parametrene). Registeret ER registeret: enhver EFCEngine med
-#: regime_node() skal staa her, og en ny motor som ikke gjoer det er et
-#: hull auditen melder. Hvilke parametre som er kanoniske pekes det ikke
-#: paa her — konvensjonsmodulen finner dem i testmodulen, slik at testen
-#: og synken har ÉN kilde.
+#: node-id -> (engine module, engine class, test module owning the canonical
+#: parameters). The register IS the register, but its COVERAGE is measured, not
+#: assumed: every EFCEngine with ``regime_node()`` stands in exactly one of
+#: three tables — this one, ``K.VARIANTER`` or ``K.IKKE_BRO_MOTORER``. An
+#: engine none of them names is a HOLE, and ``--sjekk`` fails on it (the
+#: coverage is measured by ``dekning()`` and stated in the docstring above).
+#: Which parameters are canonical is NOT pointed at here — the convention
+#: module finds them in the test module, so that the test and the sync have ONE
+#: source.
 BROER = {
     "efc.cluster_engine": (
         "efc_inference/engine/cluster.py", "EFCCluster",
@@ -272,6 +319,78 @@ def broer(tekst: str) -> dict:
     return ut
 
 
+#: The form the coverage line is written in. ``dekningslinje()`` renders it from
+#: the live tables, and the module docstring carries the rendered line — one
+#: source, and a test binds them (see the docstring).
+DEKNING_MAL = (
+    "Coverage: {motorer} engines with regime_node() = {broer} registered "
+    "bridges (field-compared) + {varianter} variant + {ikke_broer} declared "
+    "non-bridges (not field-compared).")
+
+
+def motorklasser() -> dict:
+    """Every EFCEngine subclass with ``regime_node()``, by class name.
+
+    The discovery rule is the SAME one ``tests/test_bro_konvensjon.py`` uses:
+    one rule for "which engines exist", so that the register and the test
+    cannot disagree about the denominator. ``BROER`` is a DECLARATION about
+    these engines; this is the other half of the same bookkeeping — without it
+    the register can be green because an engine fell out of the count.
+    """
+    if str(ROT) not in sys.path:
+        sys.path.insert(0, str(ROT))
+    base = importlib.import_module("efc_inference.engine.base_engine").EFCEngine
+    ut: dict = {}
+    for fil in sorted((ROT / "efc_inference" / "engine").glob("*.py")):
+        if fil.stem in ("__init__", "base_engine"):
+            continue
+        modul = importlib.import_module(f"efc_inference.engine.{fil.stem}")
+        for navn, verdi in vars(modul).items():
+            if (isinstance(verdi, type) and issubclass(verdi, base)
+                    and verdi.__module__ == modul.__name__
+                    and hasattr(verdi, "regime_node")):
+                ut[navn] = verdi
+    return ut
+
+
+def dekning(klasser: dict | None = None) -> dict:
+    """What the register covers, and what it declares as a gap.
+
+    ``klasser`` defaults to the measured set (``motorklasser()``). The test
+    passes a mutated dict, so that the classification can be killed without
+    touching a file.
+
+    ``uerklarte`` (engines no table names) and ``frafalte`` (a declaration for
+    a class that is gone) are the two HOLES; ``--sjekk`` fails on either.
+    """
+    if klasser is None:
+        klasser = motorklasser()
+    navn = set(klasser)
+    broer_navn = {klasse for _, klasse, _ in BROER.values()}
+    deklarert = broer_navn | set(K.VARIANTER) | K.IKKE_BRO_MOTORER
+    return {
+        "motorer": len(navn),
+        "broer": len(broer_navn & navn),
+        "varianter": len(set(K.VARIANTER) & navn),
+        "ikke_broer": sorted(K.IKKE_BRO_MOTORER & navn),
+        "uerklarte": sorted(navn - deklarert),
+        "frafalte": sorted(deklarert - navn),
+    }
+
+
+def dekningslinje(klasser: dict | None = None) -> str:
+    """The coverage line — RENDERED from the tables, never typed by hand.
+
+    The register's module docstring carries this line verbatim, and
+    ``tests/test_bro_konvensjon.py`` asserts it: a table that changes makes the
+    line change, so the docstring must follow or the suite goes red.
+    """
+    d = dekning(klasser)
+    return DEKNING_MAL.format(
+        motorer=d["motorer"], broer=d["broer"], varianter=d["varianter"],
+        ikke_broer=len(d["ikke_broer"]))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--sjekk", action="store_true",
@@ -303,30 +422,49 @@ def main() -> int:
         return 0
 
     funn = avvik(tekst)
+    dek = dekning()
+    hull = dek["uerklarte"] + dek["frafalte"]
     if a.json:
-        print(json.dumps(funn, ensure_ascii=False, indent=1))
-    elif funn:
-        for nid, u in funn.items():
-            print(f"  {nid}")
-            for gruppe in ("motoreide", "atlaseide", "uklassifisert",
-                           "mangler_i_atlaset", "hull"):
-                v = u.get(gruppe)
-                if not v:
-                    continue
-                print(f"    [{gruppe}]")
-                if isinstance(v, dict):
-                    for felt, par in v.items():
-                        print(f"      {felt}")
-                        print(f"        atlas : {par.get('atlas')}")
-                        print(f"        motor : {par.get('motor')}")
-                elif isinstance(v, list):
-                    for x in v:
-                        print(f"      {x}")
-                else:
-                    print(f"      {v}")
+        print(json.dumps({"dekning": dek, "avvik": funn},
+                         ensure_ascii=False, indent=1))
     else:
-        print("  ingen avvik mellom motor og atlas")
-    return 1 if funn else 0
+        if funn:
+            for nid, u in funn.items():
+                print(f"  {nid}")
+                for gruppe in ("motoreide", "atlaseide", "uklassifisert",
+                               "mangler_i_atlaset", "hull"):
+                    v = u.get(gruppe)
+                    if not v:
+                        continue
+                    print(f"    [{gruppe}]")
+                    if isinstance(v, dict):
+                        for felt, par in v.items():
+                            print(f"      {felt}")
+                            print(f"        atlas : {par.get('atlas')}")
+                            print(f"        motor : {par.get('motor')}")
+                    elif isinstance(v, list):
+                        for x in v:
+                            print(f"      {x}")
+                    else:
+                        print(f"      {v}")
+        else:
+            print("  ingen avvik mellom motor og atlas")
+
+        # The coverage: what was compared, and what is DECLARED not compared.
+        # Without this block the report was green BY ABSENCE — the class it
+        # does not measure was also the class it did not mention.
+        print(f"  {dekningslinje()}")
+        if dek["ikke_broer"]:
+            print("  declared non-bridges (K.IKKE_BRO_MOTORER — their own atlas "
+                  "contracts, not field-compared):")
+            for navn in dek["ikke_broer"]:
+                print(f"    {navn}")
+        if hull:
+            print("  ENGINE(S) NO TABLE NAMES — a hole in the register, not a "
+                  "third convention:")
+            for navn in hull:
+                print(f"    {navn}")
+    return 1 if (funn or hull) else 0
 
 
 if __name__ == "__main__":

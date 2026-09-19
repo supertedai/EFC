@@ -73,9 +73,9 @@ kan ikke kurateres uten aa bli feil den dagen parametrene endres.
 
 | Verktøy | Gjør |
 |---|---|
-| `efc_bro_synk.py --sjekk` | maaler hele klassen, delt paa eier; exit 1 ved avvik |
+| `efc_bro_synk.py --sjekk` | maaler hele klassen, delt paa eier; exit 1 ved avvik. Skriver ogsaa dekningslinja: hvor mange motorer med `regime_node()` som finnes, hvor mange som er maalt, og navnene paa de deklarerte ikke-broene. Exit 1 ogsaa naar en motor står i ingen av tabellene |
 | `efc_bro_synk.py --skriv` | skriver de motoreide feltene tilbake (idempotent, formatvakt) |
-| `efc_bro_synk.py --json` | maskinlesbar rapport (til vedlikeholdsrunden) |
+| `efc_bro_synk.py --json` | maskinlesbar rapport (til vedlikeholdsrunden): `dekning` + `avvik` |
 | `tests/test_bro_konvensjon.py` | binder hele klassen: dekning, feltvis likhet, ingen hull, skjema-dekning |
 
 Kanoniske parametre leses fra testmodulen som eier dem — én kilde for testen
@@ -83,6 +83,43 @@ og synken. Motorer der parametrene konstrueres (victron: serier ->
 `params_for`; bakgrunnen: `EFC = {**LCDM, ...}`) erklærer dem i en
 `bro_kanoniske()` i sin egen testmodul, slik at verken synken eller testen
 gjetter hvilket modulnivaa-dict som er «det kanoniske».
+
+## Den deklarerte ikke-bro-klassen — de tolv biologimotorene
+
+Registeret `BROER` dekker 20 broer. Tolv motorer definerer `regime_node()`
+uten å stå der; de står i `IKKE_BRO_MOTORER` fordi de har sine egne
+atlas-kontrakter og ikke er EFC-broer (#527): aksjonspotensial, hjerte-syklus,
+cellesyklus, evolusjon, feber-regime, fluxus, genregulering, homeostase-buffer,
+immunologi, metabolisme, økologi og søvn/våken.
+
+Fram til 2026-09-19 (t_1f95225a) var dette i praksis en **stille** utelatelse:
+`--sjekk` sammenlignet de 20 og skrev «ingen avvik mellom motor og atlas». Den
+så ikke at klassen den ikke målte, også var klassen den ikke nevnte — broen var
+grønn ved fravær. Nå skriver `--sjekk` dekningslinja og navngir de tolv, og
+tallet står i docstringen til `efc_bro_synk.py`, bundet maskinelt av
+`tests/test_bro_konvensjon.py` (docstringen og tallet kan ikke drive fra
+hverandre). En motor som ingen av de tre tabellene nevner, er et HULL:
+`--sjekk` feiler og navngir den.
+
+Hvorfor de ikke registreres — målt, ikke en smakssak:
+
+* 11 av 12 har parameterkrav uten kanonisk kilde (`MOTOR_UTEN_PARAMKILDE`): ingen
+  bro peker på motorfilen, og de kanoniske parametrene leses FRA en bros
+  testmodul. Synken kan altså ikke kjøre dem i det hele tatt, og å registrere
+  dem ville bety å dikte opp parametrene deres — nettopp det konvensjonen
+  nekter.
+* den tolvte (`HomeostaseBufferEngine`) kjøres uten parametre av
+  `tests/test_motor_traaden.py`, og dens tekstavvik ligger i `MOTOR_TEKSTAVVIK`.
+* og `--skriv` ville skrevet motorens knappe strenger over atlasets kuraterte
+  tekst. Målt på `homo.hjerte_syklus`: `/regime/validity` er et avsnitt i
+  banken og `t in [0, 0.8] s; NaN outside` i motoren. Det er en
+  innholdsregresjon kledd som synk, og den beslutningen er eierens.
+
+Hver av de tolv peker på nøyaktig én node i banken (motorfilens stammenavn er
+nodens `stipulasjoner.motor`), og den noden bærer grunnen — det er testen
+`test_every_declared_non_bridge_has_a_declared_reason` som holder: en
+unnlatelse skal være navngitt, ikke stille, og en liste som bare vokser er den
+stille toleransen konvensjonen finnes for å stoppe.
 
 ## Den gamle rekonosansen ble ikke et eget skript
 
