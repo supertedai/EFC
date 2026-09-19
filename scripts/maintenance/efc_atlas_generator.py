@@ -323,6 +323,36 @@ def uten_gruppe_grunner(noder: list[dict]) -> dict[str, int]:
     return tell
 
 
+def uten_gruppe_frase(noder: list[dict], spraak: str = "en",
+                      anker: str = "of them", med_grunn: bool = True) -> str:
+    """The group-less count, and why — derived once, carried by every surface.
+
+    A surface that states how many nodes the atlas has must state this number
+    in the same breath: "116 nodes" alone reads as a map fuller than it is.
+    Measured 2026-09-19: the count reached the index header and the chapter-9
+    lede, and not the one-paragraph lede or the atlas stat strip.
+
+    ONE derivation, and the call site only chooses the connective — several
+    wordings with their own numbers would drift apart, and a counter that is
+    almost right is worse than none. `med_grunn=False` is the compact form for
+    a nowrap stat card, where the split does not fit.
+    """
+    gr = uten_gruppe_grunner(noder)
+    antall = sum(gr.values())
+    if spraak == "nb":
+        tekst = f"{antall} uten gruppe ennaa"
+        if not med_grunn:
+            return tekst
+        return (f"{tekst} ({gr['observasjon']} observasjoner, {gr['regime']} "
+                f"regimenoder, {gr['har_motor']} med motor, {gr['ovrige']} "
+                f"ovrige)")
+    tekst = f"{antall}{' ' + anker if anker else ''} without a group yet"
+    if not med_grunn:
+        return tekst
+    return (f"{tekst} ({gr['observasjon']} observations, {gr['regime']} regime "
+            f"nodes, {gr['har_motor']} with an engine, {gr['ovrige']} other)")
+
+
 def _gruppe(navn: str) -> str:
     if navn not in PLASSERING:
         raise SystemExit(
@@ -573,17 +603,12 @@ def _indeks(noder: list[dict], rader: list[dict]) -> str:
               "broer": "Bridges", "struktur": "Structures",
               "samfunn": "Society", "epist": "Epistemics",
               "ghost": "No group yet"}
-    ghost = sum(rad["ghost"] for rad in rader)
-    _gr = uten_gruppe_grunner(noder)
-    g_obs, g_reg = _gr["observasjon"], _gr["regime"]
-    g_mot, g_ovr = _gr["har_motor"], _gr["ovrige"]
     evidens = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen"
                   for node in noder)
     spoersmaal = sum(len(node.get("open_questions") or []) for node in noder)
     lines = ["# Atlasindeks", "",
-             (f"> {len(noder)} publiserte noder · {ghost} uten gruppe ennaa "
-              f"({g_obs} observasjoner, {g_reg} regimenoder, {g_mot} med motor, "
-              f"{g_ovr} ovrige) · "
+             (f"> {len(noder)} publiserte noder · "
+              f"{uten_gruppe_frase(noder, 'nb')} · "
               f"{evidens} mangler evidens · {spoersmaal} aapne spoersmaal"), "",
              "Hver rad er generert fra samme bank som atlaset.", ""]
     for gruppe in ("roots", "grid", "kosmos", "broer", "struktur", "samfunn",
@@ -724,19 +749,13 @@ def hoved() -> int:
     # evidence. The split says WHY a node has no group: an observation is not
     # an unbuilt thing, and a node with an engine is not unbuilt either.
     # Both numbers are DERIVED here, never written by hand.
-    ikke_bygget = sum(1 for n in noder if _gruppe(n["id"]) == "ghost")
-    gruppe_grunn = uten_gruppe_grunner(noder)
     uten_evidens = sum(1 for n in noder
                        if (n.get("epistemikk") or {}).get("evidensstatus")
                        == "ingen")
     ch.append({
         "id": "all", "title": "The whole atlas",
         "reveal": [], "lede": f"Everything at once — {len(noder)} nodes, "
-                              f"{ikke_bygget} of them without a group yet "
-                              f"({gruppe_grunn['observasjon']} observations, "
-                              f"{gruppe_grunn['regime']} regime nodes, "
-                              f"{gruppe_grunn['har_motor']} with an engine, "
-                              f"{gruppe_grunn['ovrige']} other), "
+                              f"{uten_gruppe_frase(noder, 'en', 'of them')}, "
                               f"{len(relasjoner)} relations.",
         "story": "<p>Free exploration. Hover, click to pin, go inside.</p>"
                  f"<p>{uten_evidens} nodes carry no evidence yet — that is what "
@@ -758,6 +777,14 @@ def hoved() -> int:
     indeks = _indeks(noder, rader)
     (ATLAS_DIR.parent / "INDEKS.md").write_text(indeks, encoding="utf-8")
 
+    # The two remaining surfaces that count nodes: the one-paragraph lede and
+    # the atlas stat strip. Both carry the group-less count from the SAME
+    # derivation as the index header and the chapter-9 lede — the strip uses
+    # the compact form because a stat card is nowrap and the split does not fit.
+    uten_gruppe_en = uten_gruppe_frase(noder, "en", "of them")
+    uten_gruppe_egne = uten_gruppe_frase(noder, "en", f"of the {len(noder)}")
+    uten_gruppe_kort = uten_gruppe_frase(noder, "en", "", med_grunn=False)
+
     data = f"""// GENERERT av scripts/maintenance/efc_atlas_generator.py —
 // IKKE rediger for haand. Kilden er schema/regime_nodes.jsonld.
 export const META = {{
@@ -765,11 +792,11 @@ export const META = {{
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{{ k: 'Nodes', v: '{len(noder)}' }},
-          {{ k: 'S-axis', v: '{sakse_maalt} of {len(noder)} measured' }},
+  stats: [{{ k: 'Nodes', v: '{len(noder)} · {uten_gruppe_kort}' }},
+          {{ k: 'S-axis', v: '{sakse_maalt} of {len(noder)} measured · {uten_gruppe_kort}' }},
           {{ k: 'Perspectives', v: 'paradigm / consensus / academia' }}],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engine nodes, NATS bridges.`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engine nodes, NATS bridges. {uten_gruppe_egne}.`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
