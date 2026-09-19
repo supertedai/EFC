@@ -108,7 +108,7 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
         data = json.loads(raa)
     except json.JSONDecodeError as e:
         raise AtlasLesingFeil(
-            f"{ref}:{sti} i {repo} er ikke gyldig JSON: {e}") from e
+            f"{ref}:{sti} i {repo} is not valid JSON: {e}") from e
     if not isinstance(data, dict) or "nodes" not in data:
         raise AtlasLesingFeil(
             f"{ref}:{sti} i {repo} mangler 'nodes' — "
@@ -160,7 +160,7 @@ def _skjema_krav(repo: Path, ref: str,
     try:
         skjema = json.loads(raa)
     except json.JSONDecodeError as e:
-        raise AtlasLesingFeil(f"{ref}:{sti} er ikke gyldig JSON: {e}") from e
+        raise AtlasLesingFeil(f"{ref}:{sti} is not valid JSON: {e}") from e
     krav = ((skjema.get("$defs") or {}).get("RegimeNode") or {}).get("required")
     if not krav:
         raise AtlasLesingFeil(
@@ -235,7 +235,7 @@ def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]
     # diagnosegrenen — da krasjer leseren nettopp der den skal si hva som er galt.
     mangler = [k for k in USIKKERHETSPOST_NOKLER if k not in post]
     if mangler:
-        return [f"{hvor}: mangler {', '.join(mangler)}"]
+        return [f"{hvor}: missing {', '.join(mangler)}"]
 
     verdi, grense = post["verdi"], post["feilgrense"]
     for navn, v in (("verdi", verdi), ("feilgrense", grense)):
@@ -254,7 +254,7 @@ def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]
     if fil.startswith("/") or ".." in fil.split("/"):
         return [f"{hvor}: kilde.fil maa vaere en sti i repoet, ikke {fil!r}"]
     if not _sporet(repo, fil):
-        return [f"{hvor}: kilde.fil {fil} er ikke sporet i repoet"]
+        return [f"{hvor}: kilde.fil {fil} is not tracked in the repo"]
     if isinstance(linje, bool) or not isinstance(linje, int) or linje < 1:
         return [f"{hvor}: kilde.linje er ikke et positivt heltall"]
     try:
@@ -262,7 +262,7 @@ def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]
     except OSError as e:
         return [f"{hvor}: {fil} kunne ikke leses — {e}"]
     if linje > len(linjer):
-        return [f"{hvor}: {fil} har {len(linjer)} linjer, posten viser til {linje}"]
+        return [f"{hvor}: {fil} has {len(linjer)} lines, the entry points at {linje}"]
     tekst = linjer[linje - 1]
 
     ut: list[str] = []
@@ -278,13 +278,13 @@ def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]
     grenser = _grenser_pa(tekst)
     if grense is None:
         if grenser:
-            ut.append(f"{hvor}: kilden OPPGIR en feilgrense ({grenser}) paa "
+            ut.append(f"{hvor}: the source STATES an error bound ({grenser}) paa "
                       f"{fil}:{linje} — posten sier den ikke gjoer det")
     elif not grenser:
         ut.append(f"{hvor}: feilgrense {grense} er oppgitt, men {fil}:{linje} "
                   f"oppgir ingen (ingen ±) — 0 og gjetting er ikke et svar")
     elif not any(_like_tall(grense, g) for g in grenser):
-        ut.append(f"{hvor}: feilgrense {grense} er ikke den kilden oppgir "
+        ut.append(f"{hvor}: feilgrense {grense} is not the one the source states "
                   f"({grenser}) paa {fil}:{linje}")
     return ut
 
@@ -420,7 +420,7 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
         try:
             data = json.loads(_git(repo, "show", f"{ref}:{sti}"))
         except json.JSONDecodeError as feil:
-            raise AtlasLesingFeil(f"{sti} er ikke gyldig JSON: {feil}") from feil
+            raise AtlasLesingFeil(f"{sti} is not valid JSON: {feil}") from feil
         except AtlasLesingFeil:
             # Fila finnes ikke paa denne refen. Det er et maalt fravaer av et
             # VALGFRITT register, ikke en defekt — og det meldes ikke som treff.
@@ -1250,7 +1250,7 @@ def plasser(atlas: dict, tekst: str) -> dict:
     if not forslag and naere_noder:
         forslag.append({"domene": "(avledet)", "noder": naere_noder[:4],
                         "kobling": ("noder deler ord med fragmentet — "
-                                    "ORDLIKHET, ikke et plasseringsforslag")})
+                                    "WORD SIMILARITY — not a placement suggestion")})
     if not forslag:
         # ingen domene-streng matchet: bruk DOMENENE TIL DE NAERE NODENE.
         # Fallback-en skal ikke foreslaa alfabetet — den skal foreslaa det

@@ -1,21 +1,26 @@
-"""Retningen på en relasjon skal bety noe — og ett predikat skal ha én betydning.
+"""The direction of a relation must mean something — and one predicate must
+have one meaning.
 
-Målt på `main` 2026-09-18 (`t_efcfe7f0`, lukke K6 i lukkelista `t_7feb0525`):
+Measured on `main` 2026-09-18 (`t_efcfe7f0`, closing K6 in the closing list
+`t_7feb0525`):
 
-* **6 `OBSERVED_IN` har en motor som subjekt:** `efc.hubble_engine→obs.bao`,
+* **6 `OBSERVED_IN` have an engine as subject:** `efc.hubble_engine→obs.bao`,
   `efc.growth_engine→obs.fsigma8`, `efc.growth_engine→obs.s8`,
   `efc.lensing_engine→obs.cmb_lensing`, `efc.cluster_engine→obs.cluster_hmf`,
-  `efc.cluster_engine→obs.cluster_mass`. De øvrige 23 går observasjon → regime.
-  Samme ord, to betydninger: «observert i dette regimet» og «observert gjennom
-  denne motoren».
-* **Ett par har samme predikat i begge retninger:** `homo.aksjonspotensial` ↔
-  `homo.hjerte_syklus` (`ANALOGOUS_TO`, eksakt 2 rader).
+  `efc.cluster_engine→obs.cluster_mass`. The remaining 23 go observation →
+  regime. The same word, two meanings: «observed in this regime» and
+  «observed through this engine».
+* **One pair has the same predicate in both directions:**
+  `homo.aksjonspotensial` ↔ `homo.hjerte_syklus` (`ANALOGOUS_TO`, exactly 2
+  rows).
 
-`ANALOGOUS_TO` er den eneste som får være symmetrisk. Den skal da stå **én
-gang** per par, ikke to — symmetrien er en egenskap ved predikatet, ikke to
-påstander. Alle andre predikater er rettet og skal ha én retning.
+`ANALOGOUS_TO` is the only one allowed to be symmetric. It must then stand
+**once** per pair, not twice — the symmetry is a property of the predicate,
+not two claims. Every other predicate is directed and must have one
+direction.
 
-Testene er skrevet for å være røde på `main` før rettingen, og grønne etter.
+The tests are written to be red on `main` before the correction, and green
+after.
 """
 from __future__ import annotations
 
@@ -26,13 +31,13 @@ from pathlib import Path
 ROT = Path(__file__).resolve().parents[1]
 BANK = ROT / "schema" / "regime_nodes.jsonld"
 
-#: Predikater der symmetri er MENINGEN. `ANALOGOUS_TO` sier at to fenomener
-#: følger samme mønster — det er sant i begge retninger, og å skrive det to
-#: ganger er å påstå det samme to ganger.
+#: Predicates where symmetry is the POINT. `ANALOGOUS_TO` says that two
+#: phenomena follow the same pattern — it is true in both directions, and
+#: writing it twice is asserting the same thing twice.
 SYMMETRISKE = {"ANALOGOUS_TO"}
 
-#: Faser som betyr «et middel å observere gjennom»: observatøren, instrumentet,
-#: eller en motor som regner størrelsen ut.
+#: Phases that mean «a means of observing through»: the observer, the
+#: instrument, or an engine that computes the quantity.
 MIDDEL_FASER = {"observer", "instrument", "regime_engine", "computation_engine"}
 
 
@@ -49,7 +54,7 @@ def _fase(noder: dict, node_id: str) -> str:
 
 
 def test_ingen_par_har_samme_predikat_begge_veier():
-    """Dobbelthet i to retninger er én påstand som er skrevet feil, ikke to."""
+    """A doubling in two directions is one claim written wrongly, not two."""
     bank = _bank()
     telling: dict = collections.defaultdict(set)
     for r in bank["relations"]:
@@ -59,12 +64,13 @@ def test_ingen_par_har_samme_predikat_begge_veier():
     feil = [(k[0], sorted(k[1])) for k, v in telling.items()
             if len(v) > 1 and k[0] not in SYMMETRISKE]
     assert not feil, (
-        "relasjoner oppgitt i begge retninger med samme predikat: "
-        f"{feil} — velg én retning, eller erklær predikatet symmetrisk")
+        "relations stated in both directions with the same predicate: "
+        f"{feil} — choose one direction, or declare the predicate symmetric")
 
 
 def test_symmetriske_predikater_star_en_gang_per_par():
-    """Symmetrien er en egenskap ved predikatet. Da er to rader en duplikat."""
+    """The symmetry is a property of the predicate. Then two rows are one
+    duplicate."""
     bank = _bank()
     telling: dict = collections.defaultdict(int)
     for r in bank["relations"]:
@@ -73,12 +79,13 @@ def test_symmetriske_predikater_star_en_gang_per_par():
 
     duplikater = [(k[0], sorted(k[1]), n) for k, n in telling.items() if n > 1]
     assert not duplikater, (
-        "symmetriske predikater skal stå én gang per par, ikke én per retning: "
-        f"{duplikater}")
+        "symmetric predicates must stand once per pair, not once per "
+        f"direction: {duplikater}")
 
 
 def test_observed_in_har_en_betydning():
-    """`OBSERVED_IN` skal gå observasjon → regime. Aldri med en motor som subjekt."""
+    """`OBSERVED_IN` must go observation → regime, never with an engine as
+    subject."""
     bank = _bank()
     noder = _noder(bank)
     feil = [(r["subject"], r["object"],
@@ -86,12 +93,12 @@ def test_observed_in_har_en_betydning():
             if r["predicate"] == "OBSERVED_IN"
             and _fase(noder, r["subject"]) != "observasjon"]
     assert not feil, (
-        "OBSERVED_IN med noe annet enn en observasjon som subjekt — da betyr "
-        f"predikatet to ting: {feil}")
+        "OBSERVED_IN with something other than an observation as subject — "
+        f"then the predicate means two things: {feil}")
 
 
 def test_observed_through_peker_paa_et_middel():
-    """`OBSERVED_THROUGH` betyr «X observeres gjennom Y» — Y er midlet."""
+    """`OBSERVED_THROUGH` means «X is observed through Y» — Y is the means."""
     bank = _bank()
     noder = _noder(bank)
     feil = [(r["subject"], r["object"], _fase(noder, r["object"]))
@@ -99,15 +106,15 @@ def test_observed_through_peker_paa_et_middel():
             if r["predicate"] == "OBSERVED_THROUGH"
             and _fase(noder, r["object"]) not in MIDDEL_FASER]
     assert not feil, (
-        "OBSERVED_THROUGH peker ikke på et middel å observere gjennom: "
+        "OBSERVED_THROUGH does not point at a means of observing through: "
         f"{feil}")
 
 
 def test_hver_relasjon_har_eksisterende_knutepunkter():
-    """En kant til en node som ikke finnes er en referanse, ikke en relasjon."""
+    """An edge to a node that does not exist is a reference, not a relation."""
     bank = _bank()
     ider = set(_noder(bank))
     feil = [(r["subject"], r["predicate"], r["object"])
             for r in bank["relations"]
             if r["subject"] not in ider or r["object"] not in ider]
-    assert not feil, f"relasjoner med endepunkt som ikke finnes: {feil}"
+    assert not feil, f"relations with an endpoint that does not exist: {feil}"
