@@ -126,7 +126,7 @@ class EFCCluster(EFCEngine):
             "ontology": {
                 "assumes": ["the halo mass function is a valid structure instrument", "The EFC deformation "
                             "can be translated into n(M,z) — unverified"],
-                "source": "stub-kontrakt; efc_inference/engine/"
+                "source": "stub contract; efc_inference/engine/"
                           "cluster.py",
             },
             "observer": {

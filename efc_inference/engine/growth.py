@@ -305,7 +305,7 @@ class EFCGrowth(EFCEngine):
             "emergence": {
                 "loop": "density -> growth -> structure — fσ8 is the loop's "
                         "accelerometer",
-                "properties": ["sigma8", "gamma_vekst"],
+                "properties": ["sigma8", "gamma_growth"],
             },
             "fractal": {
                 "pattern": "the growth regime knee — the same transition pattern "

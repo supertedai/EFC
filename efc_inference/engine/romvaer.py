@@ -117,7 +117,7 @@ class RomvaerEngine(EFCEngine):
             },
             "maale_paradigme": {
                 "koordinater": ["magnetfelt", "tid", "hastighet"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
                 "alternativer": ["coordinate-free formulations"]
             },

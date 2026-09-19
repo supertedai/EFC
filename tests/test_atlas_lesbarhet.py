@@ -310,7 +310,7 @@ def test_kapittel9_sier_hva_atlaset_bestaar_av():
     assert ikke_bygget > 0 and uten_evidens > 0, "tellingene er doede"
     grunn = GEN_MOD.uten_gruppe_grunner(list(bank.values()))
     assert (f"{ikke_bygget} of them without a group yet "
-            f"({grunn['observasjon']} observations") in siste["lede"], (
+            f"({grunn['observation']} observations") in siste["lede"], (
         f"kapittel 9 sier ikke hvor mange som mangler gruppe, og hvorfor: "
         f"{siste['lede']}")
     assert f"{uten_evidens} nodes carry no evidence yet" in siste["story"], (

@@ -84,7 +84,7 @@ def test_observed_in_har_en_betydning():
     feil = [(r["subject"], r["object"],
              _fase(noder, r["subject"])) for r in bank["relations"]
             if r["predicate"] == "OBSERVED_IN"
-            and _fase(noder, r["subject"]) != "observasjon"]
+            and _fase(noder, r["subject"]) != "observation"]
     assert not feil, (
         "OBSERVED_IN med noe annet enn en observasjon som subjekt — da betyr "
         f"predikatet to ting: {feil}")

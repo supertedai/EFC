@@ -176,7 +176,7 @@ class OekonomiEngine(EFCEngine):
             },
             "emergence": {
                 "loop": "stability -> confidence -> debt -> speculation -> ponzi -> crisis -> new stability — the Minsky cycle",
-                "properties": ["regime", "gjeldsgrad", "drift"],
+                "properties": ["regime", "leverage ratio", "drift"],
             },
             "fractal": {
                 "pattern": "stability that builds its own release: finance, fault, the sun's flares (analogy)",

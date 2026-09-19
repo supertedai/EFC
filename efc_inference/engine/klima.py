@@ -221,7 +221,7 @@ class KlimaEngine(EFCEngine):
             },
             "emergence": {
                 "loop": "perturbation -> the buffer damps -> new equilibrium -> (or) switch -> new regime — the climate's loop",
-                "properties": ["T_eq", "tau", "bryterstatus"],
+                "properties": ["T_eq", "tau", "switch status"],
             },
             "fractal": {
                 "pattern": "buffer + threshold switch: climate, homeostasis, ecology (analogy)",

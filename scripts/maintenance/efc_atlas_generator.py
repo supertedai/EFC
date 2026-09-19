@@ -311,31 +311,31 @@ def gruppe_grunn(node: dict) -> str:
     """WHY this node has no group. "" when it has one."""
     fase = str(node.get("phase") or "")
     motor = str((node.get("stipulasjoner") or {}).get("motor") or "").strip()
-    if fase == "observasjon":
-        return "observasjon"
+    if fase == "observation":
+        return "observation"
     if "regime" in fase:
         return "regime"
     if motor:
-        return "motor"
-    return "ovrig"
+        return "engine"
+    return "other"
 
 
 def uten_gruppe_grunner(noder: list[dict]) -> dict[str, int]:
     """Split the group-less by WHAT is missing — measured, not assumed."""
-    tell = {"observasjon": 0, "regime": 0, "har_motor": 0, "ovrige": 0}
+    tell = {"observation": 0, "regime": 0, "engine": 0, "other": 0}
     for n in noder:
         if _gruppe(n["id"]) != "ghost":
             continue
         fase = str(n.get("phase") or "")
         motor = str((n.get("stipulasjoner") or {}).get("motor") or "").strip()
-        if fase == "observasjon":
-            tell["observasjon"] += 1
+        if fase == "observation":
+            tell["observation"] += 1
         elif "regime" in fase:
             tell["regime"] += 1
         elif motor:
-            tell["har_motor"] += 1
+            tell["engine"] += 1
         else:
-            tell["ovrige"] += 1
+            tell["other"] += 1
     return tell
 
 
@@ -362,8 +362,8 @@ def uten_gruppe_frase(noder: list[dict], anker: str = "of them",
     tekst = f"{antall}{' ' + anker if anker else ''} without a group yet"
     if not med_grunn:
         return tekst
-    return (f"{tekst} ({gr['observasjon']} observations, {gr['regime']} regime "
-            f"nodes, {gr['har_motor']} with an engine, {gr['ovrige']} other)")
+    return (f"{tekst} ({gr['observation']} observations, {gr['regime']} regime "
+            f"nodes, {gr['engine']} with an engine, {gr['other']} other)")
 
 
 def arbeidsflyt_filer(katalog: pathlib.Path | None = None) -> list[pathlib.Path]:

@@ -1,5 +1,5 @@
-"""Tester for GridMikroEngine — formlene MOT papirenes publiserte
-resultater (DOI-ene er kilden)."""
+"""Tests for GridMikroEngine — the formulas AGAINST the papers' published
+results (the DOIs are the source)."""
 from __future__ import annotations
 
 import math
@@ -48,19 +48,19 @@ def test_deff_er_sqrt_formen():
 
 def test_regime_skifte_ved_rho_crit():
     e = GridMikroEngine()
-    assert e.regime({**P, "rho": 0.5}) == "lav_tetthet"
-    assert e.regime({**P, "rho": 1.0}) == "mettet"
+    assert e.regime({**P, "rho": 0.5}) == "low_density"
+    assert e.regime({**P, "rho": 1.0}) == "saturated"
 
 
 def test_regime_ugyldige_innganger_gir_ugyldig():
-    """Review-krav PR #458 r1: NaN/negative innganger skal gi
-    'ugyldig', ikke falle gjennom til 'mettet'."""
+    """Review requirement PR #458 r1: NaN/negative inputs shall give
+    'invalid', not fall through to 'saturated'."""
     e = GridMikroEngine()
-    assert e.regime({**P, "rho": float("nan")}) == "ugyldig"
-    assert e.regime({**P, "rho_crit": float("nan")}) == "ugyldig"
-    assert e.regime({**P, "rho_crit": -1.0}) == "ugyldig"
-    assert e.regime({**P, "rho": -0.5}) == "ugyldig"
-    assert e.regime({**P, "rho": float("inf")}) == "ugyldig"
+    assert e.regime({**P, "rho": float("nan")}) == "invalid"
+    assert e.regime({**P, "rho_crit": float("nan")}) == "invalid"
+    assert e.regime({**P, "rho_crit": -1.0}) == "invalid"
+    assert e.regime({**P, "rho": -0.5}) == "invalid"
+    assert e.regime({**P, "rho": float("inf")}) == "invalid"
 
 
 def test_negativ_tetthet_gir_nan():

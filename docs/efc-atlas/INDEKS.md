@@ -1,6 +1,6 @@
 # Atlas index
 
-> 116 published nodes · 53 without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other) · 7 without evidence · 21 open questions
+> 116 published nodes · 53 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other) · 7 without evidence · 21 open questions
 
 Each row is generated from the same bank as the atlas.
 
@@ -75,11 +75,11 @@ Each row is generated from the same bank as the atlas.
   perspective=consensus · engine=not specified · bus=the stream does not exist — waits for a… · S-axis=not measured · questions=1 · group=yes
 
 ## Bridges
-- **HA · verden.hav** — havtemperatur
+- **HA · verden.hav** — sea temperature
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **BI · verden.biosfaere** — arts-tellinger (planteriket)
+- **BI · verden.biosfaere** — species counts (the plant kingdom)
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **VU · kosmos.jord.vulkan** — vulkantilstand
+- **VU · kosmos.jord.vulkan** — volcano state
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 
 ## Structures
@@ -144,25 +144,25 @@ Each row is generated from the same bank as the atlas.
 
 ## No group yet
 - **SO · h2o.solid** — thermodynamic phase
-  perspective=academia · engine=efc.water_solid · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (motor)
+  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (engine)
 - **LI · h2o.liquid** — thermodynamic phase
-  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (motor)
+  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (engine)
 - **GA · h2o.gas** — thermodynamic phase
-  perspective=academia · engine=efc.water_gas · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (motor)
+  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (engine)
 - **SC · h2o.supercritical** — thermodynamic state (not 'phase' — the boundary is gone)
-  perspective=academia · engine=efc.water_supercritical · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (motor)
+  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (engine)
 - **TP · h2o.triple_point** — the temperature scale's reference point
-  perspective=academia · engine=efc.water_triple_point · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (motor)
+  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (engine)
 - **LY · lys.sol** — electromagnetic radiation
-  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (ovrig)
+  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (other)
 - **DR · h2o.droplet** — drop shape and refractive index
-  perspective=academia · engine=efc.water_droplet · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (motor)
-- **OP · optikk.dispersjon** — brytningsindeksen n(lambda)
-  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (ovrig)
+  perspective=academia · engine=water · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (engine)
+- **OP · optikk.dispersjon** — the refractive index n(lambda)
+  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (other)
 - **RB · regnbue** — the bow's angle and colour order
-  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (ovrig)
+  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (other)
 - **OB · regnbue.observator** — the arc as a direction and colour pattern
-  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (ovrig)
+  perspective=academia · engine=not specified · bus=no bus route — the subject does not… · S-axis=not measured · questions=1 · group=none (other)
 - **L1 · efc.l1** — CMB anisotropies and BAO scale
   perspective=paradigm · engine=not specified · bus=no bus route — the subject does not… · S-axis=regime S~0 · clarity C(S) at S~0: incipient clarity — the… · questions=1 · group=none (regime)
 - **L2 · efc.l2** — fsigma8, P(k), weak lensing (S8)
@@ -170,85 +170,85 @@ Each row is generated from the same bank as the atlas.
 - **L3 · efc.l3** — the far-future state
   perspective=paradigm · engine=not specified · bus=no bus route — the subject does not… · S-axis=regime S->1 · clarity C(S) at S->1: saturated clarity — the… · questions=1 · group=none (regime)
 - **BA · obs.bao** — the BAO scale (r_d ~ 147 Mpc comoving)
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=galaxy surveys (DESI, eBOSS, BOSS)… · questions=0 · group=none (observasjon)
-- **TT · obs.cmb_tt** — temperatur-/polarisasjonsspekteret
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck… · questions=0 · group=none (observasjon)
-- **LC · obs.cmb_lensing** — linsingspotensialet
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck, ACT, SPT… · questions=0 · group=none (observasjon)
-- **BB · obs.bbn** — deuterium/hydrogen-forholdet
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=quasar-spektroskopi… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=galaxy surveys (DESI, eBOSS, BOSS)… · questions=0 · group=none (observation)
+- **TT · obs.cmb_tt** — the temperature/polarisation spectrum
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck; observabel=the… · questions=0 · group=none (observation)
+- **LC · obs.cmb_lensing** — the lensing potential
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck, ACT, SPT; observabel=the lensing… · questions=0 · group=none (observation)
+- **BB · obs.bbn** — the deuterium/hydrogen ratio
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=quasar spectroscopy; observabel=the… · questions=0 · group=none (observation)
 - **F8 · obs.fsigma8** — the growth rate fsigma8
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=BOSS, eBOSS, DESI; observabel=the growth… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=BOSS, eBOSS, DESI; observabel=the growth… · questions=0 · group=none (observation)
 - **S8 · obs.s8** — S8 = sigma8 sqrt(omega_m/0.3)
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=KiDS, DES, HSC, Euclid; observabel=S8 =… · questions=0 · group=none (observasjon)
-- **EG · obs.eg** — E_G-krysset
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=SDSS, KiDS+BOSS; observabel=E_G-krysset… · questions=0 · group=none (observasjon)
-- **IS · obs.isw** — ISW-signalet
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=CMB x galaksekart; observabel=ISW-signalet… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=KiDS, DES, HSC, Euclid; observabel=S8 =… · questions=0 · group=none (observation)
+- **EG · obs.eg** — the E_G crossing
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=SDSS, KiDS+BOSS; observabel=the E_G… · questions=0 · group=none (observation)
+- **IS · obs.isw** — the ISW signal
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=CMB x galaxy map; observabel=the ISW signal… · questions=0 · group=none (observation)
 - **KS · obs.ksz** — the kSZ signal
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=ACT, DES x SPT; observabel=the kSZ signal… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=ACT, DES x SPT; observabel=the kSZ signal… · questions=0 · group=none (observation)
 - **CM · obs.cluster_mass** — M_500 from several channels
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Chandra, XMM, HST; observabel=M_500 from… · questions=0 · group=none (observasjon)
-- **HM · obs.cluster_hmf** — halomassetetthetsfunksjonen
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=DES, SDSS, eROSITA… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Chandra, XMM, HST; observabel=M_500 from… · questions=0 · group=none (observation)
+- **HM · obs.cluster_hmf** — the halo mass density function
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=DES, SDSS, eROSITA; observabel=the halo mass… · questions=0 · group=none (observation)
 - **RA · obs.rar** — a_obs vs a_bar
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=SPARC; observabel=a_obs vs a_bar… · questions=0 · group=none (observasjon)
-- **BU · obs.bullet** — masse-gass-offseten
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=HST + Chandra… · questions=0 · group=none (observasjon)
-- **SL · obs.satellites** — subhalo-populasjonen
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=HST, simuleringer… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=SPARC; observabel=a_obs vs a_bar… · questions=0 · group=none (observation)
+- **BU · obs.bullet** — the mass-gas offset
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=HST + Chandra; observabel=the mass-gas… · questions=0 · group=none (observation)
+- **SL · obs.satellites** — the subhalo population
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=HST, simulations; observabel=the subhalo… · questions=0 · group=none (observation)
 - **JW · obs.jwst_ems** — the galaxy mass function at z>10
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=JWST; observabel=the galaxy mass function at… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=JWST; observabel=the galaxy mass function at… · questions=0 · group=none (observation)
 - **GW · obs.gw_ct** — c_T from GW170817
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=LIGO/Virgo; observabel=c_T from GW170817… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=LIGO/Virgo; observabel=c_T from GW170817… · questions=0 · group=none (observation)
 - **PA · obs.pta_gwb** — the GW background at nHz
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=NANOGrav, EPTA; observabel=the GW background… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=NANOGrav, EPTA; observabel=the GW background… · questions=0 · group=none (observation)
 - **H0 · obs.h0_tension** — H0 from two independent channels
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck vs SH0ES; observabel=H0 from two… · questions=0 · group=none (observasjon)
-- **W0 · obs.w0wa** — w(z)-parametriseringen
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=DES, BAO+CMB… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=Planck vs SH0ES; observabel=H0 from two… · questions=0 · group=none (observation)
+- **W0 · obs.w0wa** — the w(z) parametrisation
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=DES, BAO+CMB; observabel=the w(z)… · questions=0 · group=none (observation)
 - **CC · obs.cc** — the size of the vacuum energy
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=all channels; observabel=the size of the… · questions=0 · group=none (observasjon)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=RCMP instrument=all channels; observabel=the size of the… · questions=0 · group=none (observation)
 - **HF · homo.fluxus** — R — the internal reflection coefficient
-  perspective=paradigm · engine=efc.fluxus_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=paradigm · engine=fluxus · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **HO · homo.homeostase_buffer** — deviation from setpoint (ΔT, ΔpH, Δglucose)
-  perspective=academia · engine=efc.homeostase_buffer_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=homeostase_buffer · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **FE · homo.feber_regime** — body temperature against setpoint
-  perspective=academia · engine=efc.feber_regime_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=feber_regime · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **AP · homo.aksjonspotensial** — the membrane potential V(t) against the threshold
-  perspective=academia · engine=efc.aksjonspotensial_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=aksjonspotensial · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **HJ · homo.hjerte_syklus** — stroke volume, frequency, minute volume
-  perspective=academia · engine=efc.hjerte_syklus_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=hjerte_syklus · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **GN · homo.genregulering** — expression level per gene (mRNA/protein)
-  perspective=academia · engine=efc.genregulering_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=genregulering · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **CY · homo.cellesyklus** — phase per cell (G1/S/G2/M)
-  perspective=academia · engine=efc.cellesyklus_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
-- **ME · homo.metabolisme** — ATP/ADP-forhold, O₂-forbruk, substrat-fluks
-  perspective=academia · engine=efc.metabolisme_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=cellesyklus · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+- **ME · homo.metabolisme** — ATP/ADP ratio, O₂ consumption, substrate flux
+  perspective=academia · engine=metabolisme · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **SF · efc.solar_flare_engine** — charging time, released energy, GOES class
-  perspective=paradigm · engine=solar_flare · bus=not specified · S-axis=not measured · questions=0 · group=none (motor)
+  perspective=paradigm · engine=solar_flare · bus=not specified · S-axis=not measured · questions=0 · group=none (engine)
 - **JS · efc.jordskjelv_engine** — recurrence time, seismic moment, moment magnitude
-  perspective=paradigm · engine=jordskjelv · bus=not specified · S-axis=not measured · questions=0 · group=none (motor)
+  perspective=paradigm · engine=jordskjelv · bus=not specified · S-axis=not measured · questions=0 · group=none (engine)
 - **IM · homo.immunologi** — activation status, antibody titre, memory population
-  perspective=academia · engine=efc.immunologi_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=immunologi · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **SV · homo.sovn_vaaken** — sleep stage (awake/NREM/REM), homeostatic pressure
-  perspective=academia · engine=efc.sovn_vaaken_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=sovn_vaaken · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **OE · homo.okologi** — state variables (nutrients, coverage, species composition)
-  perspective=academia · engine=efc.okologi_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=okologi · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **EV · homo.evolusjon** — rate of change in phenotype/species (morphological and molecular…
-  perspective=academia · engine=efc.evolusjon_engine · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
+  perspective=academia · engine=evolusjon · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **VV · verden.vaer** — temperature, wind, pressure, cloud cover and humidity
-  perspective=consensus · engine=no engine of its own — the loop runs in the instrument (decided in t_fbec0c16) · bus=not specified · S-axis=not measured · questions=0 · group=none (motor)
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=none (other)
 - **KA · kosmos.asteroider** — impact probability and Palermo cumulative per object
-  perspective=consensus · engine=efc.orbital_engine (banemekanikk) · bus=not specified · S-axis=not measured · questions=0 · group=none (motor)
+  perspective=consensus · engine=orbital · bus=not specified · S-axis=not measured · questions=0 · group=none (engine)
 - **EE · efc.efc_background_engine** — H(z) and the background fields phi, phi_dot, rho_m, lambda_dot
-  perspective=paradigm · engine=efc_background · bus=not specified · S-axis=not measured · questions=0 · group=none (motor)
+  perspective=paradigm · engine=efc_background · bus=not specified · S-axis=not measured · questions=0 · group=none (engine)
 - **LS · efc.lag_s** — the structure that the energy-flow field holds up
-  perspective=paradigm · engine=efc.rotation_engine · bus=not specified · S-axis=regime S>0 · sector S · clarity C(S) at S>0: structural… · questions=0 · group=none (regime)
+  perspective=paradigm · engine=rotation · bus=not specified · S-axis=regime S>0 · sector S · clarity C(S) at S>0: structural… · questions=0 · group=none (regime)
 - **LD · efc.lag_d** — the energy-flow field J_mu and its divergence
-  perspective=paradigm · engine=efc.efc_background_engine · bus=not specified · S-axis=regime S>0 · sector D · clarity C(S) at S>0: dynamic clarity… · questions=0 · group=none (regime)
+  perspective=paradigm · engine=efc_background · bus=not specified · S-axis=regime S>0 · sector D · clarity C(S) at S>0: dynamic clarity… · questions=0 · group=none (regime)
 - **C0 · efc.lag_c0** — the entropy field S and its boundaries
-  perspective=paradigm · engine=efc.klima_engine · bus=not specified · S-axis=regime S->1 · sector C · clarity C(S) at S->1: saturated… · questions=0 · group=none (regime)
+  perspective=paradigm · engine=klima · bus=not specified · S-axis=regime S->1 · sector C · clarity C(S) at S->1: saturated… · questions=0 · group=none (regime)
 
 ## With no group yet
 

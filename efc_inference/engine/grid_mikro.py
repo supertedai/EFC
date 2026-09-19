@@ -90,10 +90,10 @@ class GridMikroEngine(EFCEngine):
         rho_crit = float(params["rho_crit"])
         if not (math.isfinite(rho) and math.isfinite(rho_crit)) \
                 or rho < 0 or rho_crit <= 0:
-            return "ugyldig"
+            return "invalid"
         if rho < rho_crit:
-            return "lav_tetthet"
-        return "mettet"
+            return "low_density"
+        return "saturated"
 
     def regime_node(self, params: dict) -> dict:
         return {
@@ -101,7 +101,7 @@ class GridMikroEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "regime": {
                 "name": self.regime(params),
-                "validity": "lav_tetthet: Gamma ~ linear (A) or ~ "
+                "validity": "low_density: Gamma ~ linear (A) or ~ "
                             "sqrt-rho (B+); saturated: Gamma -> Gamma0 for "
                             "rho >> rho_crit. Does NOT predict observed "
                             "rotation curves alone — this is the bridge, "

@@ -55,12 +55,12 @@
             {
               "type": "artikkel",
               "ref": "IAPWS R6-95",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             },
             {
               "type": "artikkel",
               "ref": "IAPWS R14-08",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -167,12 +167,12 @@
             {
               "type": "artikkel",
               "ref": "IAPWS R6-95",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             },
             {
               "type": "artikkel",
               "ref": "IAPWS R14-08",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -187,8 +187,8 @@
       "emergence": {
         "loop": "hydrogen bonds form and break continuously — the loop keeps the liquid fluid",
         "properties": [
-          "flyt",
-          "overflatespenning",
+          "flow",
+          "surface tension",
           "high heat capacity"
         ]
       },
@@ -280,12 +280,12 @@
             {
               "type": "artikkel",
               "ref": "IAPWS R6-95",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             },
             {
               "type": "artikkel",
               "ref": "IAPWS R14-08",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -300,8 +300,8 @@
       "emergence": {
         "loop": "free molecules in collision — the loop keeps the pressure and the temperature spread",
         "properties": [
-          "kompressibilitet",
-          "metningstrykk",
+          "compressibility",
+          "saturation pressure",
           "invisibility in visible light, absorption in IR"
         ]
       },
@@ -393,12 +393,12 @@
             {
               "type": "artikkel",
               "ref": "IAPWS R6-95",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             },
             {
               "type": "artikkel",
               "ref": "IAPWS R14-08",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -476,7 +476,7 @@
       "phase": "coexistence (solid + liquid + gas)",
       "measure": {
         "target": "the temperature scale's reference point",
-        "measurer": "trippelpunktcelle",
+        "measurer": "triple-point cell",
         "instrument": "calibrated triple-point cell — the ITS-90 reference",
         "proxy_chain": [
           "pressure held constant (611.657 Pa)",
@@ -507,12 +507,12 @@
             {
               "type": "artikkel",
               "ref": "IAPWS R6-95",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             },
             {
               "type": "artikkel",
               "ref": "IAPWS R14-08",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -590,14 +590,14 @@
       "phase": "electromagnetic_field",
       "measure": {
         "target": "electromagnetic radiation",
-        "measurer": "spektrometer",
-        "instrument": "prisme/gitter-spektrometer",
+        "measurer": "spectrometer",
+        "instrument": "prism/grating spectrometer",
         "proxy_chain": [
           "wavelength via grating dispersion",
           "intensity via detector",
           "colour as an observer proxy for wavelength"
         ],
-        "placement": "solrettet instrument",
+        "placement": "sun-facing instrument",
         "compression": "continuous spectrum -> colour experience in the observer"
       },
       "episenter": "the spectrum frame: white light is read as a superposition of wavelengths — «white» is an observer reading, not a property of the individual photon",
@@ -668,7 +668,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "nm, grader",
+        "enheter": "nm, degrees",
         "status": "direkte_observerbar",
         "alternativer": []
       },
@@ -724,12 +724,12 @@
             {
               "type": "artikkel",
               "ref": "IAPWS R6-95",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             },
             {
               "type": "artikkel",
               "ref": "IAPWS R14-08",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -805,8 +805,8 @@
       },
       "phase": "material_optical_property",
       "measure": {
-        "target": "brytningsindeksen n(lambda)",
-        "measurer": "refraktometer",
+        "target": "the refractive index n(lambda)",
+        "measurer": "refractometer",
         "instrument": "spectrometer + prism",
         "proxy_chain": [
           "deflection angle via Snell's law",
@@ -848,7 +848,7 @@
         "loop": "electron response <-> light field (the Lorentz oscillator) — the loop gives n(lambda)",
         "properties": [
           "colour-dependent deflection",
-          "fargeseparasjon"
+          "colour separation"
         ]
       },
       "fractal": {
@@ -883,7 +883,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "nm, grader",
+        "enheter": "nm, degrees",
         "status": "direkte_observerbar",
         "alternativer": []
       },
@@ -901,7 +901,7 @@
     {
       "id": "regnbue",
       "regime": {
-        "name": "regnbue",
+        "name": "rainbow",
         "validity": "primary arc ~42 degrees from the anti-solar direction; secondary arc ~50-51 degrees with reversed colour order; REQUIRES liquid (spherical) droplets — ice crystals give haloes (22/46 degrees) instead",
         "law_form": "Descartes' ray paths (refraction + 1 internal reflection primary / 2 secondary) + dispersion"
       },
@@ -949,8 +949,8 @@
       "emergence": {
         "loop": "light in -> refraction -> internal reflection -> dispersion -> light out towards the observer — the ray path is the loop, and the coherence across the swarm is the order",
         "properties": [
-          "fargebue",
-          "42-graders kjegle",
+          "colour arc",
+          "42-degree cone",
           "Alexander's dark band between the arcs"
         ]
       },
@@ -986,7 +986,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "nm, grader",
+        "enheter": "nm, degrees",
         "status": "direkte_observerbar",
         "alternativer": []
       },
@@ -998,7 +998,7 @@
       },
       "synlighet": "offentlig",
       "open_questions": [
-        "rainbow: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)"
+        "regnbue: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)"
       ]
     },
     {
@@ -1011,7 +1011,7 @@
       "phase": "observer",
       "measure": {
         "target": "the arc as a direction and colour pattern",
-        "measurer": "oeyet",
+        "measurer": "the eye",
         "instrument": "retina (S, M and L cones)",
         "proxy_chain": [
           "photons -> photoreceptors",
@@ -1052,7 +1052,7 @@
       "emergence": {
         "loop": "retina -> visual cortex -> colour and form experience — the loop constructs the bow as one coherent pattern",
         "properties": [
-          "fargeopplevelse",
+          "colour experience",
           "form experience (the arc as a whole)"
         ]
       },
@@ -1088,7 +1088,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "nm, grader",
+        "enheter": "nm, degrees",
         "status": "direkte_observerbar",
         "alternativer": []
       },
@@ -1259,8 +1259,8 @@
       "emergence": {
         "loop": "quantum fluctuations -> inflation -> fertile fluctuations — the loop gives the structure seeds",
         "properties": [
-          "strukturfro",
-          "spektralindeks n_s"
+          "structure seeds",
+          "spectral index n_s"
         ]
       },
       "fractal": {
@@ -1325,7 +1325,7 @@
         "measurer": "space telescopes and surveys (Planck, DESI)",
         "instrument": "CMB map + galaxy survey",
         "proxy_chain": [
-          "temperaturanisotropier -> P(k)",
+          "temperature anisotropies -> P(k)",
           "BAO scale -> H(z)",
           "polarisation -> optical depth"
         ],
@@ -1334,7 +1334,7 @@
       },
       "episenter": "The S frame: L1 is where mu ~ 1 and GR holds — EFC predicts that it passes over into LCDM here (S~0, mu->1); that is EFC's claim, not LCDM's requirement — and ontologically the placement is the point of the frame, not a weakness",
       "buffer": {
-        "role": "the plasma's photon-electron coupling keeps the anisotropies frozen until recombination — a coupling buffer that releases the photons at z ~ 1100",
+        "role": "releases the photons at z ~ 1100 — the plasma's photon-electron coupling keeps the anisotropies frozen until recombination",
         "note": "buffer as delay: the signal is held until it is released."
       },
       "ontology": {
@@ -1342,7 +1342,7 @@
           "S ~ 0 in this regime",
           "The CMB photons carry L1's state to us unchanged"
         ],
-        "source": "EFC README regime-arkitektur; RCMP (Regime-Consistent Measurement Principle)",
+        "source": "EFC README regime architecture; RCMP (Regime-Consistent Measurement Principle)",
         "proveniens": {
           "kilder": [
             {
@@ -1370,7 +1370,7 @@
         "properties": [
           "CMB",
           "the BAO scale",
-          "rekombinasjonshistorien"
+          "the recombination history"
         ]
       },
       "fractal": {
@@ -1402,7 +1402,7 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "motorspesifikke (SI)",
+        "enheter": "engine-specific (SI)",
         "status": "avledet",
         "alternativer": [
           "coordinate-free formulations"
@@ -1426,17 +1426,17 @@
     {
       "id": "efc.l2",
       "regime": {
-        "name": "L2 — senuniverset",
+        "name": "L2 — the late universe",
         "validity": "S > 0; structure growth; mu < 1 at perturbation level — EFC differs from LCDM HERE",
         "law_form": "modified growth via R(k,S)"
       },
       "phase": "growth_regime",
       "measure": {
         "target": "fsigma8, P(k), weak lensing (S8)",
-        "measurer": "survey-teleskoper",
+        "measurer": "survey telescopes",
         "instrument": "galaxy survey + weak lensing (KiDS, DES, Euclid)",
         "proxy_chain": [
-          "galaksefordeling -> P(k) full-shape",
+          "galaxy distribution -> P(k) full-shape",
           "redshift-space distortion -> fsigma8",
           "shear -> S8"
         ],
@@ -1454,7 +1454,7 @@
           "the growth modification belongs to the perturbation level, not the background",
           "mu < 1 is the perturbation-level convention (README.md:170); AGENTS.md:322-330 gives mu > 1 for a different sector — the repo does not reconcile these two conventions, and this node declares the perturbation level explicitly"
         ],
-        "source": "EFC README regime-arkitektur (README.md:163-175); RCMP_COMPLIANCE_MATRIX.md (f sigma8, P(k), S8, E_G); EFC Screening Model (DOI 10.6084/m9.figshare.31940469)",
+        "source": "EFC README regime architecture (README.md:163-175); RCMP_COMPLIANCE_MATRIX.md (f sigma8, P(k), S8, E_G); EFC Screening Model (DOI 10.6084/m9.figshare.31940469)",
         "proveniens": {
           "kilder": [
             {
@@ -1514,7 +1514,7 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "motorspesifikke (SI)",
+        "enheter": "engine-specific (SI)",
         "status": "avledet",
         "alternativer": [
           "coordinate-free formulations"
@@ -1564,7 +1564,7 @@
           "S -> 1 is a true asymptote",
           "the growth law from L2 is extended as valid"
         ],
-        "source": "EFC README regime-arkitektur (L3: far future, S -> 1)",
+        "source": "EFC README regime architecture (L3: far future, S -> 1)",
         "proveniens": {
           "kilder": [
             {
@@ -1590,8 +1590,8 @@
       "emergence": {
         "loop": "growth -> saturation -> stable structure — the loop comes to rest in an equilibrium",
         "properties": [
-          "struktursaturasjon",
-          "likevektstilstand"
+          "structure saturation",
+          "equilibrium state"
         ]
       },
       "fractal": {
@@ -1623,7 +1623,7 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "motorspesifikke (SI)",
+        "enheter": "engine-specific (SI)",
         "status": "avledet",
         "alternativer": [
           "coordinate-free formulations"
@@ -1651,7 +1651,7 @@
         "validity": "SOC in [0,1] is the regime coordinate: the OCV curve is flat in the middle and steep at the ends — the voltage is the read-out, SOC is the state. Cell vs pack: the measurements are PACK voltage; the cell level is a BMS-internal proxy. The 16S series is assumed from pack voltage ~53 V but is not documented in the atlas.",
         "law_form": "Li+ intercalation in FePO4/graphene — chemical potential as voltage"
       },
-      "phase": "kjemisk_regime",
+      "phase": "chemical_regime",
       "measure": {
         "target": "SOC and SOH",
         "measurer": "Battery Monitor that reads LiFePO4-BMS (private installation)",
@@ -1686,7 +1686,7 @@
             {
               "type": "stroem",
               "ref": "victron",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -1702,8 +1702,8 @@
         "loop": "intercalation -> voltage -> current -> intercalation — the loop IS the cell",
         "properties": [
           "OCV",
-          "kapasitet",
-          "aldring (SOH)"
+          "capacity",
+          "ageing (SOH)"
         ]
       },
       "fractal": {
@@ -1756,13 +1756,13 @@
     {
       "id": "batteri.lading",
       "regime": {
-        "name": "Laderegimet — CC/CV",
+        "name": "The charging regime — CC/CV",
         "validity": "CC: constant current, rising voltage. CV: constant voltage, falling current. The knee between them is the transition — the charging regime's phase boundary.",
         "law_form": "two-stage charge protocol: CC to the voltage limit, CV thereafter"
       },
-      "phase": "overgang",
+      "phase": "transition",
       "measure": {
-        "target": "ladekurven V(t), I(t)",
+        "target": "the charge curve V(t), I(t)",
         "measurer": "the charger (VE.Bus inverter, private installation)",
         "instrument": "V/I sensors in the charger",
         "proxy_chain": [
@@ -1804,7 +1804,7 @@
       "emergence": {
         "loop": "CC -> knee -> CV -> full — the charging path is a three-step emergence",
         "properties": [
-          "ladekurven",
+          "the charge curve",
           "the knee as a transition signature"
         ]
       },
@@ -1860,12 +1860,12 @@
       "regime": {
         "name": "The battery as buffer",
         "validity": "SOC in [0,1] is the fill level — the capacity (kWh) is the buffer's volume; the buffer acts over the whole SOC interval, not only full/not-full",
-        "law_form": "energilagring: P_inn - P_ut = dE/dt"
+        "law_form": "energy storage: P_inn - P_ut = dE/dt"
       },
-      "phase": "lagring",
+      "phase": "storage",
       "measure": {
         "target": "SOC, power balance, cycles",
-        "measurer": "Victron-systemet (systemmonitor/VRM)",
+        "measurer": "the Victron system (system monitor/VRM)",
         "instrument": "Battery Monitor (LiFePO4-BMS), VE.Bus (inverter/charger), Grid meter, PV inverter",
         "proxy_chain": [
           "shunt (A) -> coulomb-telling -> SOC",
@@ -1897,7 +1897,7 @@
             {
               "type": "stroem",
               "ref": "victron",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -1912,8 +1912,8 @@
       "emergence": {
         "loop": "charge -> store -> release -> charge — the buffer's breathing cycle",
         "properties": [
-          "dag/natt-syklusen",
-          "topp-effekt-stabilitet"
+          "the day/night cycle",
+          "peak-power stability"
         ]
       },
       "fractal": {
@@ -1966,11 +1966,11 @@
     {
       "id": "batteri.inverter",
       "regime": {
-        "name": "Inverteren — regimekonverteren",
+        "name": "The inverter — the regime converter",
         "validity": "DC in, AC out (50 Hz, 230 V) — two regimes in one house; the conversion is reversible (inverter/charger)",
         "law_form": "pulse-width modulation DC->AC (inverter mode); rectification AC->DC (charge mode) — two directions, the same house"
       },
-      "phase": "konvertering",
+      "phase": "conversion",
       "measure": {
         "target": "output voltage, frequency, power",
         "measurer": "the inverter's own sensors",
@@ -2068,18 +2068,18 @@
     {
       "id": "obs.bao",
       "regime": {
-        "name": "BAO — standardlinjalen",
+        "name": "BAO — the standard ruler",
         "validity": "r_d (sound horizon at baryon drag) is a standard ruler calibrated at the drag epoch — frozen into the L1 plasma, measured in the L2 structure; BOSS r_d=147.09 Mpc, JSON-LD 147.18 Mpc. Ledger state: DESI DR2 alpha=-0.119+-0.227 (0.52 sigma), an untested and non-discriminating null measurement, delta-AIC=+1.74 — NO EFC preference; BOSS DR12 delta-chi2=-7.77 is a pipeline result (mcmc not_run); the interpretation is that any signal lies in the growth sector, not the background.",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "the BAO scale (r_d ~ 147 Mpc comoving)",
         "measurer": "galaxy surveys (DESI, eBOSS, BOSS)",
         "instrument": "galaxy surveys (DESI, eBOSS, BOSS)",
         "proxy_chain": [
           "galaxy correlation function -> BAO peak at ~150 Mpc",
-          "BAO-topp -> D_H(z)/r_d, D_M(z)/r_d",
+          "BAO peak -> D_H(z)/r_d, D_M(z)/r_d",
           "isotrop BAO -> D_V(z)/r_d"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
@@ -2163,7 +2163,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2203,7 +2203,7 @@
       "rcmp": {
         "instrument": "galaxy surveys (DESI, eBOSS, BOSS)",
         "observabel": "the BAO scale (r_d ~ 147 Mpc comoving)",
-        "teori": "BAO — standardlinjalen",
+        "teori": "BAO — the standard ruler",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       },
@@ -2229,13 +2229,13 @@
         "validity": "the peaks are L1's linear acoustic oscillations frozen at recombination — the mu ~ 1 regime's purest reading; Planck measures the acoustic scale to 0.03 % precision",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "temperatur-/polarisasjonsspekteret",
+        "target": "the temperature/polarisation spectrum",
         "measurer": "Planck",
         "instrument": "Planck",
         "proxy_chain": [
-          "temperaturspektrum -> P(k)",
+          "temperature spectrum -> P(k)",
           "peak distance -> theta_* and r_s(z_*)",
           "polarisation -> optical depth"
         ],
@@ -2244,7 +2244,7 @@
       },
       "episenter": "the peaks are L1's linear acoustic oscillations frozen at recombination — the mu ~ 1 regime's purest reading; Planck measures the acoustic scale to 0.03 % precision",
       "buffer": {
-        "role": "recombination freezes the photons — the signal is held until it is released at z ~ 1100",
+        "role": "recombination freezes the photons — the signal is held until z ~ 1100, when it is released",
         "note": "every observation has a buffer that holds the signal until it is read."
       },
       "ontology": {
@@ -2268,7 +2268,7 @@
             {
               "type": "stroem",
               "ref": "arxiv",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -2320,7 +2320,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2336,7 +2336,7 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "Planck",
-        "observabel": "temperatur-/polarisasjonsspekteret",
+        "observabel": "the temperature/polarisation spectrum",
         "teori": "CMB TT/EE/TE acoustic peaks",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -2349,13 +2349,13 @@
         "validity": "the CMB photons carry the imprint of L2's mass through lensing — a reading of L2 structure via L1's light",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "linsingspotensialet",
+        "target": "the lensing potential",
         "measurer": "Planck, ACT, SPT",
         "instrument": "Planck, ACT, SPT",
         "proxy_chain": [
-          "CMB-anisotropi-fordeling -> linsingspotensial",
+          "CMB anisotropy distribution -> lensing potential",
           "lensing potential -> P(k) at z ~ 2"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
@@ -2433,7 +2433,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2449,7 +2449,7 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "Planck, ACT, SPT",
-        "observabel": "linsingspotensialet",
+        "observabel": "the lensing potential",
         "teori": "CMB Lensing Reconstruction",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -2462,11 +2462,11 @@
         "validity": "BBN is the phase chain's earliest reading — D/H frozen in minutes after the start; the atlas places it in L0 (the background axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "deuterium/hydrogen-forholdet",
-        "measurer": "quasar-spektroskopi",
-        "instrument": "quasar-spektroskopi",
+        "target": "the deuterium/hydrogen ratio",
+        "measurer": "quasar spectroscopy",
+        "instrument": "quasar spectroscopy",
         "proxy_chain": [
           "D/H in quasar clouds -> baryon density omega_b h^2",
           "omega_b h^2 -> cross-check against CMB"
@@ -2545,7 +2545,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2560,8 +2560,8 @@
       "buss_domene": "kosmos.kosmologi",
       "synlighet": "offentlig",
       "rcmp": {
-        "instrument": "quasar-spektroskopi",
-        "observabel": "deuterium/hydrogen-forholdet",
+        "instrument": "quasar spectroscopy",
+        "observabel": "the deuterium/hydrogen ratio",
         "teori": "BBN light elements",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -2574,14 +2574,14 @@
         "validity": "the growth rate is the direct signature of L2 — where the R(k,S) of EFC differs from GR growth; the atlas places it in L1 (their linear axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "the growth rate fsigma8",
         "measurer": "BOSS, eBOSS, DESI",
         "instrument": "BOSS, eBOSS, DESI",
         "proxy_chain": [
           "redshift-space distortion (RSD) -> f sigma8",
-          "f sigma8(z) -> vekstlovens form"
+          "f sigma8(z) -> the form of the growth law"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
         "compression": "raw data -> one summarising measure"
@@ -2629,7 +2629,7 @@
         "loop": "growth -> structure -> response -> growth — the loop IS f sigma8",
         "properties": [
           "f sigma8(z)",
-          "vekstindeks gamma"
+          "growth index gamma"
         ]
       },
       "fractal": {
@@ -2663,7 +2663,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2715,14 +2715,14 @@
         "validity": "the S8 tension is the L1-L2 signature: the CMB's S8 prediction meets L2's measured structure — a regime tension",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "S8 = sigma8 sqrt(omega_m/0.3)",
         "measurer": "KiDS, DES, HSC, Euclid",
         "instrument": "KiDS, DES, HSC, Euclid",
         "proxy_chain": [
           "shear (weak lensing) -> S8",
-          "S8 lav vs CMB-forventning -> tension"
+          "low S8 vs CMB expectation -> tension"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
         "compression": "raw data -> one summarising measure"
@@ -2799,7 +2799,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2824,13 +2824,13 @@
     {
       "id": "obs.eg",
       "regime": {
-        "name": "E_G gravitasjonsslip-statistikk",
+        "name": "E_G gravitational-slip statistics",
         "validity": "E_G combines lens and dynamics — a clean test of whether light and mass bend alike (Phi = Psi)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "E_G-krysset",
+        "target": "the E_G crossing",
         "measurer": "SDSS, KiDS+BOSS",
         "instrument": "SDSS, KiDS+BOSS",
         "proxy_chain": [
@@ -2911,7 +2911,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -2927,8 +2927,8 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "SDSS, KiDS+BOSS",
-        "observabel": "E_G-krysset",
-        "teori": "E_G gravitasjonsslip-statistikk",
+        "observabel": "the E_G crossing",
+        "teori": "E_G gravitational-slip statistics",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -2936,17 +2936,17 @@
     {
       "id": "obs.isw",
       "regime": {
-        "name": "ISW krysskorrelasjon",
+        "name": "ISW cross-correlation",
         "validity": "ISW is a real L1xL2 bridge: CMB photons pick up L2's potential change — a cross-regime measurement; the ledger has an internal consistency/prediction test (Planck x DESI) that awaits observational confrontation",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "ISW-signalet",
-        "measurer": "CMB x galaksekart",
-        "instrument": "CMB x galaksekart",
+        "target": "the ISW signal",
+        "measurer": "CMB x galaxy map",
+        "instrument": "CMB x galaxy map",
         "proxy_chain": [
-          "CMB-kart x galaksefordeling -> ISW-kryss"
+          "CMB map x galaxy distribution -> ISW cross"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
         "compression": "raw data -> one summarising measure"
@@ -3022,7 +3022,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3037,9 +3037,9 @@
       "buss_domene": "kosmos.kosmologi",
       "synlighet": "offentlig",
       "rcmp": {
-        "instrument": "CMB x galaksekart",
-        "observabel": "ISW-signalet",
-        "teori": "ISW krysskorrelasjon",
+        "instrument": "CMB x galaxy map",
+        "observabel": "the ISW signal",
+        "teori": "ISW cross-correlation",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -3051,7 +3051,7 @@
         "validity": "kSZ measures the peculiar velocities of clusters — the only direct velocity measurement of L2 structure",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "the kSZ signal",
         "measurer": "ACT, DES x SPT",
@@ -3100,7 +3100,7 @@
       "emergence": {
         "loop": "cluster moves -> doppler in the CMB -> kSZ imprint",
         "properties": [
-          "egenhastighetsfelt"
+          "peculiar-velocity field"
         ]
       },
       "fractal": {
@@ -3134,7 +3134,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3159,17 +3159,17 @@
     {
       "id": "obs.cluster_mass",
       "regime": {
-        "name": "klyngemasse-skalering",
+        "name": "cluster-mass scaling",
         "validity": "the clusters are L2's largest bound structures — their mass is the integral of growth",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "M_500 from several channels",
         "measurer": "Chandra, XMM, HST",
         "instrument": "Chandra, XMM, HST",
         "proxy_chain": [
-          "rontgen (T_X) -> masse",
+          "X-ray (T_X) -> mass",
           "weak lensing -> mass",
           "scaling relations -> mass"
         ],
@@ -3214,7 +3214,7 @@
         "loop": "collapse -> virialised gas -> mass proxies",
         "properties": [
           "M_500",
-          "skaleringsrelasjoner"
+          "scaling relations"
         ]
       },
       "fractal": {
@@ -3248,7 +3248,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3265,7 +3265,7 @@
       "rcmp": {
         "instrument": "Chandra, XMM, HST",
         "observabel": "M_500 from several channels",
-        "teori": "klyngemasse-skalering",
+        "teori": "cluster-mass scaling",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -3273,13 +3273,13 @@
     {
       "id": "obs.cluster_hmf",
       "regime": {
-        "name": "klyngehalo-massetetthet N(M,z)",
+        "name": "cluster-halo mass density N(M,z)",
         "validity": "N(M,z)'s exponential tail is sensitive to sigma8 — a growth measurement through counting",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "halomassetetthetsfunksjonen",
+        "target": "the halo mass density function",
         "measurer": "DES, SDSS, eROSITA",
         "instrument": "DES, SDSS, eROSITA",
         "proxy_chain": [
@@ -3361,7 +3361,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3377,8 +3377,8 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "DES, SDSS, eROSITA",
-        "observabel": "halomassetetthetsfunksjonen",
-        "teori": "klyngehalo-massetetthet N(M,z)",
+        "observabel": "the halo mass density function",
+        "teori": "cluster-halo mass density N(M,z)",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -3390,7 +3390,7 @@
         "validity": "RAR is the galaxy scale's tightest regularity — every galaxy follows the same curve; the atlas places it in L3 (the local axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "a_obs vs a_bar",
         "measurer": "SPARC",
@@ -3474,7 +3474,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3513,13 +3513,13 @@
     {
       "id": "obs.bullet",
       "regime": {
-        "name": "Bullet-klyngen delta-kappa",
+        "name": "the Bullet cluster delta-kappa",
         "validity": "the offset shows that the mass follows the collisionless components — a direct collision reading; the atlas places it in L3 (the local axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "masse-gass-offseten",
+        "target": "the mass-gas offset",
         "measurer": "HST + Chandra",
         "instrument": "HST + Chandra",
         "proxy_chain": [
@@ -3599,7 +3599,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3615,8 +3615,8 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "HST + Chandra",
-        "observabel": "masse-gass-offseten",
-        "teori": "Bullet-klyngen delta-kappa",
+        "observabel": "the mass-gas offset",
+        "teori": "the Bullet cluster delta-kappa",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -3628,11 +3628,11 @@
         "validity": "the tension between simulated and observed subhalos is L2's small-scale problem; the atlas places it in L3 (the local axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "subhalo-populasjonen",
-        "measurer": "HST, simuleringer",
-        "instrument": "HST, simuleringer",
+        "target": "the subhalo population",
+        "measurer": "HST, simulations",
+        "instrument": "HST, simulations",
         "proxy_chain": [
           "counted dwarf satellites vs predicted -> shortfall",
           "dense cores vs cusp -> profile"
@@ -3677,8 +3677,8 @@
       "emergence": {
         "loop": "growth -> subhalos -> stripping -> observed population",
         "properties": [
-          "subhalo-underskudd",
-          "kjerneprofil"
+          "subhalo deficit",
+          "core profile"
         ]
       },
       "fractal": {
@@ -3712,7 +3712,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3727,8 +3727,8 @@
       "buss_domene": "kosmos.satellitter",
       "synlighet": "offentlig",
       "rcmp": {
-        "instrument": "HST, simuleringer",
-        "observabel": "subhalo-populasjonen",
+        "instrument": "HST, simulations",
+        "observabel": "the subhalo population",
         "teori": "missing satellites / TBTF / core-cusp",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -3741,7 +3741,7 @@
         "validity": "early massive structure challenges the collapse timeline — L2 starts earlier than expected",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "the galaxy mass function at z>10",
         "measurer": "JWST",
@@ -3824,7 +3824,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3849,11 +3849,11 @@
     {
       "id": "obs.gw_ct",
       "regime": {
-        "name": "Gravitasjonsbolgehastighet c_T",
+        "name": "Gravitational-wave speed c_T",
         "validity": "c_T = c within 1e-15 — a local measurement that cuts down the model space for the L1 theories; the atlas places it in L0 (the background axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "c_T from GW170817",
         "measurer": "LIGO/Virgo",
@@ -3935,7 +3935,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -3952,7 +3952,7 @@
       "rcmp": {
         "instrument": "LIGO/Virgo",
         "observabel": "c_T from GW170817",
-        "teori": "Gravitasjonsbolgehastighet c_T",
+        "teori": "Gravitational-wave speed c_T",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -3960,11 +3960,11 @@
     {
       "id": "obs.pta_gwb",
       "regime": {
-        "name": "PTA gravitasjonsbolge-bakgrunn",
+        "name": "PTA gravitational-wave background",
         "validity": "the nHz background has two open interpretations: SMBH mergers (L2 late universe) or primordial (the atlas's L0 statement) — the node declares both without choosing",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "the GW background at nHz",
         "measurer": "NANOGrav, EPTA",
@@ -4012,7 +4012,7 @@
       "emergence": {
         "loop": "SMBH mergers or primordial -> nHz waves -> timing residuals",
         "properties": [
-          "nHz-spekteret"
+          "the nHz spectrum"
         ]
       },
       "fractal": {
@@ -4046,7 +4046,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -4063,7 +4063,7 @@
       "rcmp": {
         "instrument": "NANOGrav, EPTA",
         "observabel": "the GW background at nHz",
-        "teori": "PTA gravitasjonsbolge-bakgrunn",
+        "teori": "PTA gravitational-wave background",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -4075,14 +4075,14 @@
         "validity": "The H0 tension is the signature of the L1-L2 bridge: the early regime's prediction meets a local measurement — a gap with dataset-/analysis-dependent significance (latest analyses ~5 sigma). The atlas distinguishes three H0 channels: H0_background (EFC recovers GR), H0_ratio and H0_structure (EFC predicts) — different status classes, not one prediction",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "H0 from two independent channels",
         "measurer": "Planck vs SH0ES",
         "instrument": "Planck vs SH0ES",
         "proxy_chain": [
           "CMB (LCDM extrapolation) -> H0 ~ 67",
-          "cepheid/SN-stige -> H0 ~ 73",
+          "cepheid/SN ladder -> H0 ~ 73",
           "gap -> tension"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
@@ -4126,7 +4126,7 @@
         "loop": "L1 extrapolation -> H0_low; ladder -> H0_high; gap -> tension",
         "properties": [
           "H0",
-          "H0-gap (datasett-/analyseavhengig)"
+          "H0 gap (dataset-/analysis-dependent)"
         ]
       },
       "fractal": {
@@ -4160,7 +4160,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -4189,9 +4189,9 @@
         "validity": "w0-wa is the background's end-station probe: if w != -1, the expansion moves towards another L3; the atlas places it in L0 (the background axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
-        "target": "w(z)-parametriseringen",
+        "target": "the w(z) parametrisation",
         "measurer": "DES, BAO+CMB",
         "instrument": "DES, BAO+CMB",
         "proxy_chain": [
@@ -4273,7 +4273,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -4289,7 +4289,7 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "DES, BAO+CMB",
-        "observabel": "w(z)-parametriseringen",
+        "observabel": "the w(z) parametrisation",
         "teori": "w0-wa dynamical dark energy",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -4302,7 +4302,7 @@
         "validity": "the vacuum energy problem is the terminal station's deepest gap — the measured value is ~10^120 away from the NAIVE theoretical QFT estimate (cutoff-dependent assumption); the atlas places it in L0 (the background axis)",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
-      "phase": "observasjon",
+      "phase": "observation",
       "measure": {
         "target": "the size of the vacuum energy",
         "measurer": "all channels",
@@ -4352,7 +4352,7 @@
         "loop": "all channels -> omega_Lambda -> gap",
         "properties": [
           "omega_Lambda",
-          "10^120-gapet"
+          "the 10^120 gap"
         ]
       },
       "fractal": {
@@ -4386,7 +4386,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "survey-spesifikke (redshift, vinkel, flux)",
+        "enheter": "survey-specific (redshift, angle, flux)",
         "status": "proxy",
         "alternativer": [
           "direct cosmological measurement without a distance scale"
@@ -4448,7 +4448,7 @@
             {
               "type": "stroem",
               "ref": "victron",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -4571,7 +4571,7 @@
         "loop": "mass -> coupling field -> flat rotation — the flatness of the curve is the signature of the loop",
         "properties": [
           "v_flat",
-          "r_skala"
+          "r_scale"
         ]
       },
       "fractal": {
@@ -4794,7 +4794,7 @@
         "loop": "density -> growth -> structure — fσ8 is the loop's accelerometer",
         "properties": [
           "sigma8",
-          "gamma_vekst"
+          "gamma_growth"
         ]
       },
       "fractal": {
@@ -4900,7 +4900,7 @@
           "weak lensing is a valid imaging instrument",
           "The EFC deformation can be translated into kappa — unverified"
         ],
-        "source": "stub-kontrakt; efc_inference/engine/lensing.py",
+        "source": "stub contract; efc_inference/engine/lensing.py",
         "proveniens": {
           "kilder": [
             {
@@ -5006,7 +5006,7 @@
           "the halo mass function is a valid structure instrument",
           "The EFC deformation can be translated into n(M,z) — unverified"
         ],
-        "source": "stub-kontrakt; efc_inference/engine/cluster.py",
+        "source": "stub contract; efc_inference/engine/cluster.py",
         "proveniens": {
           "kilder": [
             {
@@ -5246,9 +5246,9 @@
       "emergence": {
         "loop": "disturbance → compensation → stability — the buffer's loop",
         "properties": [
-          "kapasitet",
-          "setpunkt",
-          "responsrate"
+          "capacity",
+          "setpoint",
+          "response rate"
         ]
       },
       "fractal": {
@@ -5304,13 +5304,13 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "Levin 2019 (biologi)",
+          "kilde": "Levin 2019 (biology)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "EFC: brede buffere",
+          "kilde": "EFC: broad buffers",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -5369,7 +5369,7 @@
         "loop": "infection → pyrogens → setpoint shift → heat production — the fever's loop",
         "properties": [
           "setpoint_high",
-          "stigningstakt",
+          "rate of rise",
           "limit 41 °C"
         ]
       },
@@ -5492,7 +5492,7 @@
         "properties": [
           "V_th",
           "refractory time",
-          "spikefrekvens"
+          "spike frequency"
         ]
       },
       "fractal": {
@@ -5548,7 +5548,7 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "nevrofysiologi (standard)",
+          "kilde": "neurophysiology (standard)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -5601,7 +5601,7 @@
             {
               "type": "artikkel",
               "ref": "NCBI StatPearls (heart); AHA (ejection fraction)",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -5675,7 +5675,7 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "kardiologi (standard)",
+          "kilde": "cardiology (standard)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -5701,7 +5701,7 @@
         "measurer": "RNA-seq, ChIP-seq (molecular biology measurement)",
         "instrument": "sequencing; here: description of the regulatory logic",
         "proxy_chain": [
-          "TF-binding → uttrykk",
+          "TF binding → expression",
           "epigenetic mark → threshold shift"
         ],
         "placement": "ATLAS PLACEMENT: gene regulation is the molecular bottom of homo.fluxus (analogical reading)",
@@ -5739,9 +5739,9 @@
       "emergence": {
         "loop": "signal → TF → expression → protein → regulates its own gene — the regulatory loop",
         "properties": [
-          "terskler",
-          "merker",
-          "tilbakekoblinger"
+          "thresholds",
+          "markers",
+          "feedback loops"
         ]
       },
       "fractal": {
@@ -5805,8 +5805,8 @@
         "measurer": "flow cytometry (DNA content), FUCCI markers",
         "instrument": "laboratory measurement; here description",
         "proxy_chain": [
-          "DNA-innhold → fase",
-          "CDK/cyklin → sjekkpunkt-status"
+          "DNA content → phase",
+          "CDK/cyclin → checkpoint status"
         ],
         "placement": "THE ATLAS'S PLACEMENT: the cell is homo.fluxus's smallest self-replicating unit (analogical reading)",
         "compression": "millions of cells -> one phase distribution"
@@ -5843,8 +5843,8 @@
       "emergence": {
         "loop": "growth → replication → check → division — the cycle's loop",
         "properties": [
-          "sjekkpunktterskler",
-          "syklustid",
+          "checkpoint thresholds",
+          "cycle time",
           "CDK/cyclin levels"
         ]
       },
@@ -5901,13 +5901,13 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "cellebiologi (standard)",
+          "kilde": "cell biology (standard)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "EFC: delingens regime",
+          "kilde": "EFC: the regime of division",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -5923,12 +5923,12 @@
       },
       "phase": "regime_engine",
       "measure": {
-        "target": "ATP/ADP-forhold, O₂-forbruk, substrat-fluks",
+        "target": "ATP/ADP ratio, O₂ consumption, substrate flux",
         "measurer": "respiration measurement, metabolomics (laboratory)",
         "instrument": "laboratory measurement; here description",
         "proxy_chain": [
           "O₂ consumption → flux",
-          "ATP/ADP → reguleringsstatus"
+          "ATP/ADP → regulatory status"
         ],
         "placement": "ATLAS PLACEMENT: the metabolism is homo.fluxus's engine — the continuous flow that the rest stands on (analogical reading)",
         "compression": "the whole food web → one flux vector"
@@ -5966,8 +5966,8 @@
         "loop": "substrate → ATP → work → ADP → substrate — the metabolism's loop",
         "properties": [
           "ATP/ADP",
-          "fluks",
-          "lagre"
+          "flux",
+          "stores"
         ]
       },
       "fractal": {
@@ -6023,7 +6023,7 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "biokjemi (standard)",
+          "kilde": "biochemistry (standard)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -6285,7 +6285,7 @@
             {
               "type": "laerebok",
               "ref": "Janeway's Immunobiology ch. 11",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -6301,9 +6301,9 @@
       "emergence": {
         "loop": "antigen -> activation -> response -> memory -> lower threshold — the loop of immunity",
         "properties": [
-          "terskler",
+          "thresholds",
           "titer",
-          "hukommelsespopulasjon"
+          "memory population"
         ]
       },
       "fractal": {
@@ -6364,10 +6364,10 @@
       "phase": "regime_engine",
       "measure": {
         "target": "sleep stage (awake/NREM/REM), homeostatic pressure",
-        "measurer": "EEG, polysomnografi",
+        "measurer": "EEG, polysomnography",
         "instrument": "clinical measurement; here: description",
         "proxy_chain": [
-          "EEG-synkroni -> stadium",
+          "EEG synchrony -> stage",
           "wake duration -> homeostatic pressure"
         ],
         "placement": "ATLAS PLACEMENT: sleep is the brain's night shift in homo.fluxus (analogical reading)",
@@ -6394,7 +6394,7 @@
             {
               "type": "artikkel",
               "ref": "Borbely 1982; Carskadon & Dement 2011",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -6474,7 +6474,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "EFC: regimeskifte",
+          "kilde": "EFC: regime shift",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -6533,8 +6533,8 @@
         "loop": "disturbance -> buffering -> tipping point -> new state -> new buffering — the ecosystem's loop",
         "properties": [
           "state",
-          "resiliens",
-          "hysterese"
+          "resilience",
+          "hysteresis"
         ]
       },
       "fractal": {
@@ -6636,9 +6636,9 @@
       "emergence": {
         "loop": "stasis -> regime shift -> rapid change -> new stasis — evolution's loop in deep time",
         "properties": [
-          "stasis-varighet",
-          "utbruddsrate",
-          "artdannelsestakt"
+          "stasis duration",
+          "outburst rate",
+          "speciation rate"
         ]
       },
       "fractal": {
@@ -6819,7 +6819,7 @@
         "name": "self-description of the atlas",
         "validity": "The atlas is an EFC construction — valid as a map, not as a territory."
       },
-      "phase": "stabil",
+      "phase": "stable",
       "measure": {
         "target": "the atlas itself",
         "measurer": "the one who reads the atlas (the human — the instrument)",
@@ -6914,7 +6914,7 @@
         "name": "self-description of the schema",
         "validity": "The schema is EFC's own definition — valid within the frame, not outside it."
       },
-      "phase": "stabil",
+      "phase": "stable",
       "measure": {
         "target": "the schema itself",
         "measurer": "the one who defines the fields (us)",
@@ -7009,11 +7009,11 @@
         "name": "the time coordinate as a choice",
         "validity": "The SI second is a chosen instrument — valid where clocks and physics assume it."
       },
-      "phase": "stabil",
+      "phase": "stable",
       "measure": {
-        "target": "tidskoordinatet",
+        "target": "the time coordinate",
         "measurer": "clocks and physics that assume time",
-        "instrument": "SI-sekundet (cesium-klokken)",
+        "instrument": "the SI second (the caesium clock)",
         "proxy_chain": [
           "oscillation -> second -> time"
         ],
@@ -7108,11 +7108,11 @@
         "name": "the concept of mass as a choice",
         "validity": "The SI kilogram is a chosen concept — valid where scales and physics assume it."
       },
-      "phase": "stabil",
+      "phase": "stable",
       "measure": {
-        "target": "massebegrepet",
+        "target": "the concept of mass",
         "measurer": "weights and physics that assume mass",
-        "instrument": "SI-kilogrammet",
+        "instrument": "the SI kilogram",
         "proxy_chain": [
           "force/acceleration -> kg -> mass"
         ],
@@ -7186,12 +7186,12 @@
         "koordinater": [
           "masse"
         ],
-        "enheter": "kg (SI-kilogrammet)",
+        "enheter": "kg (the SI kilogram)",
         "status": "valgt_ramme",
         "alternativer": [
           "the EFC frame is the general one: gravity is entropy — mass is the dense end of the entropy gradient",
           "EFC predicts LCDM as a SPECIAL CASE of EFC: in the limit (mu -> 1) the entropy frame reduces to mass-curvature (G_mynu = 8pi G T_mynu)",
-          "energi-treghet, tellbarhet"
+          "energy inertia, countability"
         ]
       },
       "nivaa": {
@@ -7294,7 +7294,7 @@
           "tid",
           "hastighet"
         ],
-        "enheter": "motorspesifikke (SI)",
+        "enheter": "engine-specific (SI)",
         "status": "avledet",
         "alternativer": [
           "coordinate-free formulations"
@@ -7371,7 +7371,7 @@
         "loop": "stability -> confidence -> debt -> speculation -> ponzi -> crisis -> new stability — the Minsky cycle",
         "properties": [
           "regime",
-          "gjeldsgrad",
+          "leverage ratio",
           "drift"
         ]
       },
@@ -7593,7 +7593,7 @@
         "properties": [
           "T_eq",
           "tau",
-          "bryterstatus"
+          "switch status"
         ]
       },
       "fractal": {
@@ -7964,10 +7964,10 @@
     {
       "id": "efc.enerflyt_engine",
       "regime": {
-        "name": "overflod",
+        "name": "abundance",
         "validity": "abundance: P > C + L — the buffer fills; balance: P ~ C + L; scarcity: C + L > P — the buffer empties and the release regime is rationing/redistribution. Does NOT predict when the crisis arrives — only where the buffer crosses the threshold in the model."
       },
-      "phase": "overflod",
+      "phase": "abundance",
       "measure": {
         "target": "the buffer S and the drift dS/dt = P - C - L",
         "measurer": "energy statistics — production, consumption, stores (national accounts)",
@@ -8010,9 +8010,9 @@
       "emergence": {
         "loop": "production -> buffer -> consumption -> production incentives — the loop keeps society's energy system going",
         "properties": [
-          "overflod",
-          "balanse",
-          "knapphet"
+          "abundance",
+          "balance",
+          "scarcity"
         ]
       },
       "fractal": {
@@ -8067,10 +8067,10 @@
     },
     {
       "regime": {
-        "name": "teoretisk bro",
+        "name": "theoretical bridge",
         "validity": "published framework — valid as an EFC hypothesis, not as measured consensus"
       },
-      "phase": "teoretisk",
+      "phase": "theoretical",
       "measure": {
         "target": "The Grid-Higgs framework: entropic and structural theory of gravity, dark matter and black holes",
         "measurer": "the published derivation",
@@ -8078,7 +8078,7 @@
         "proxy_chain": [
           "DOI -> paper -> derivation — literature chain"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the work is compressed to its DOI and main form"
       },
       "episenter": "a reading in the EFC frame: the work is a bridge, not a measurement",
@@ -8116,8 +8116,8 @@
       "emergence": {
         "loop": "hypothesis -> publication -> bridge -> test (pending)",
         "properties": [
-          "publisert",
-          "uverifisert"
+          "published",
+          "unverified"
         ]
       },
       "fractal": {
@@ -8170,10 +8170,10 @@
     },
     {
       "regime": {
-        "name": "teoretisk bro",
+        "name": "theoretical bridge",
         "validity": "published framework — valid as an EFC hypothesis, not as measured consensus"
       },
-      "phase": "teoretisk",
+      "phase": "theoretical",
       "measure": {
         "target": "The thermodynamic bridge between general relativity and quantum field theory",
         "measurer": "the published derivation",
@@ -8181,7 +8181,7 @@
         "proxy_chain": [
           "DOI -> paper -> derivation — literature chain"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the work is compressed to its DOI and main form"
       },
       "episenter": "a reading in the EFC frame: the work is a bridge, not a measurement",
@@ -8219,8 +8219,8 @@
       "emergence": {
         "loop": "hypothesis -> publication -> bridge -> test (pending)",
         "properties": [
-          "publisert",
-          "uverifisert"
+          "published",
+          "unverified"
         ]
       },
       "fractal": {
@@ -8273,10 +8273,10 @@
     },
     {
       "regime": {
-        "name": "teoretisk bro",
+        "name": "theoretical bridge",
         "validity": "published framework — valid as an EFC hypothesis, not as measured consensus"
       },
-      "phase": "teoretisk",
+      "phase": "theoretical",
       "measure": {
         "target": "The double-slit as a grid-resolution phenomenon: ontological extension, UV-cutoff analysis",
         "measurer": "the published derivation",
@@ -8284,7 +8284,7 @@
         "proxy_chain": [
           "DOI -> paper -> derivation — literature chain"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the work is compressed to its DOI and main form"
       },
       "episenter": "a reading in the EFC frame: the work is a bridge, not a measurement",
@@ -8322,8 +8322,8 @@
       "emergence": {
         "loop": "hypothesis -> publication -> bridge -> test (pending)",
         "properties": [
-          "publisert",
-          "uverifisert"
+          "published",
+          "unverified"
         ]
       },
       "fractal": {
@@ -8376,10 +8376,10 @@
     },
     {
       "regime": {
-        "name": "teoretisk bro",
+        "name": "theoretical bridge",
         "validity": "published framework — valid as an EFC hypothesis, not as measured consensus"
       },
-      "phase": "teoretisk",
+      "phase": "theoretical",
       "measure": {
         "target": "From grid microphysics to the radial acceleration relation — minimal gradient-coupled excitation model",
         "measurer": "the published derivation",
@@ -8387,7 +8387,7 @@
         "proxy_chain": [
           "DOI -> paper -> derivation — literature chain"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the work is compressed to its DOI and main form"
       },
       "episenter": "a reading in the EFC frame: the work is a bridge, not a measurement",
@@ -8425,8 +8425,8 @@
       "emergence": {
         "loop": "hypothesis -> publication -> bridge -> test (pending)",
         "properties": [
-          "publisert",
-          "uverifisert"
+          "published",
+          "unverified"
         ]
       },
       "fractal": {
@@ -8477,10 +8477,10 @@
     {
       "id": "efc.grid_mikro_engine",
       "regime": {
-        "name": "mettet",
-        "validity": "lav_tetthet: Gamma ~ linear (A) or ~ sqrt-rho (B+); saturated: Gamma -> Gamma0 for rho >> rho_crit. Does NOT predict observed rotation curves alone — this is the bridge, not the finished response."
+        "name": "saturated",
+        "validity": "low_density: Gamma ~ linear (A) or ~ sqrt-rho (B+); saturated: Gamma -> Gamma0 for rho >> rho_crit. Does NOT predict observed rotation curves alone — this is the bridge, not the finished response."
       },
-      "phase": "mettet",
+      "phase": "saturated",
       "measure": {
         "target": "Gamma(rho) and Deff(rho)",
         "measurer": "the theoretical derivation (von Neumann entropy over the BE occupancy statistics of the grid modes)",
@@ -8590,10 +8590,10 @@
     },
     {
       "regime": {
-        "name": "teoretisk",
+        "name": "theoretical",
         "validity": "black holes in the Grid-Higgs frame: entropic and structural description — ACCRETION and Hawking radiation are NOT modeled as an engine; the node is the work's placement, not a computation"
       },
-      "phase": "teoretisk",
+      "phase": "theoretical",
       "measure": {
         "target": "black holes as an entropic boundary in the Grid-Higgs frame",
         "measurer": "the work (DOI 28559510)",
@@ -8601,7 +8601,7 @@
         "proxy_chain": [
           "DOI -> work -> derivation"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "BH compresses to its entropic limit in the grid frame"
       },
       "episenter": "a reading in the Grid-Higgs frame — BH is the work's object, not a measured node",
@@ -8692,10 +8692,10 @@
     },
     {
       "regime": {
-        "name": "struktur",
+        "name": "structure",
         "validity": "the periodic table as an established structure — consensus chemistry (IUPAC); no EFC engine yet, the node is the placement of the known"
       },
-      "phase": "teoretisk",
+      "phase": "theoretical",
       "measure": {
         "target": "the periodic table's structure (118 elements)",
         "measurer": "IUPAC and the chemical literature",
@@ -8703,7 +8703,7 @@
         "proxy_chain": [
           "atomic number -> periodicity — consensus mapping"
         ],
-        "placement": "akademia-rom",
+        "placement": "academia space",
         "compression": "118 elements compress into periodicity"
       },
       "episenter": "a reading in the frame of chemistry — consensus structure, not EFC derivation",
@@ -8736,8 +8736,8 @@
       "emergence": {
         "loop": "electron structure -> periodicity -> chemical behaviour — the loop is chemistry's own",
         "properties": [
-          "periodisitet",
-          "valens"
+          "periodicity",
+          "valence"
         ]
       },
       "fractal": {
@@ -8795,13 +8795,13 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "havtemperatur",
+        "target": "sea temperature",
         "measurer": "NOAA",
         "instrument": "buoy stations (tides & currents)",
         "proxy_chain": [
           "station -> temperature -> ocean energy"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "the station network is compressed to mean/min/max per round"
       },
       "episenter": "reading of sea temperature — the instrument window",
@@ -8892,13 +8892,13 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "arts-tellinger (planteriket)",
+        "target": "species counts (the plant kingdom)",
         "measurer": "GBIF",
         "instrument": "taxonomic search",
         "proxy_chain": [
           "search -> count -> footprint"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "108 042 hits are compressed into one count per search"
       },
       "episenter": "reading of species counts — the instrument window",
@@ -8989,13 +8989,13 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "vulkantilstand",
+        "target": "volcano state",
         "measurer": "USGS VHP",
         "instrument": "status list (alertLevel)",
         "proxy_chain": [
           "alertLevel -> activity -> regime status"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "the status list is compressed to a count of active ones per round"
       },
       "episenter": "reading of volcano state — the instrument window",
@@ -9095,7 +9095,7 @@
           "METAR measurement -> outcome",
           "deviation = outcome minus expected, per quantity"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "each site is compressed into one settlement per validity window"
       },
       "episenter": "the settlement — where the forecast meets the measurement and the deviation becomes a number",
@@ -9119,7 +9119,7 @@
             {
               "type": "stroem",
               "ref": "metno",
-              "hentet": "vedlikeholdt"
+              "hentet": "maintained"
             }
           ],
           "begrensning": "DOI establishes identity and persistence, not truth — and even this is not the ultimate",
@@ -9152,7 +9152,7 @@
       },
       "prediction": {
         "source": "met-locationforecast-2.0",
-        "observable": "vaer",
+        "observable": "weather",
         "issued_at": "2026-09-17T17:30:01Z",
         "valid_for": "2026-09-17T19:00:00Z",
         "expected": "{\"air_pressure_at_sea_level\": 994.4, \"air_temperature\": 10.5, \"cloud_area_fraction\": 83.0, \"relative_humidity\": 74.4, \"wind_speed\": 3.4}",
@@ -9213,7 +9213,7 @@
     {
       "id": "opus.dommekraft",
       "regime": {
-        "name": "handlingsledger",
+        "name": "action ledger",
         "validity": "each action carries an expectation before it is performed; once it is performed it is measured against its own outcome. The loop is closed and runs continuously in OPUS_SELV."
       },
       "phase": "observer",
@@ -9226,7 +9226,7 @@
           "outcome -> measured",
           "deviation = hit/miss"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "45 367 records, measured 2026-09-17 with `wc -l`. BUT: the records are not one schema. Five different key sets dominate (10 917 / 10 827 / 8 453 / 3 024 / 2 187), and only 711 of 45 367 carry `aktor`. The number is a file size, not a measured unit — it stands here because it is true, not because it is a unit."
       },
       "episenter": "the settlement — where the expectation meets its own outcome, written down before the answer was known",
@@ -9313,7 +9313,7 @@
       "synlighet": "intern",
       "prediction": {
         "source": "opus-action-ledger",
-        "observable": "handlingsutfall",
+        "observable": "action outcome",
         "issued_at": "2026-09-17T19:52:31Z",
         "valid_for": "2026-09-17T19:52:31Z",
         "expected": "{\"tekst\": \"the work is approved in review at the step where it was done\"}",
@@ -9327,7 +9327,7 @@
         "expected": "{\"tekst\": \"the work is approved in review at the step where it was done\"}",
         "outcome": "{\"kildens_ord\": \"blokkert\", \"klasse\": \"blokkert\"}",
         "deviation": "{\"klasse\": \"blokkert\", \"traff\": false}",
-        "outcome_source": "kanbanstyrer",
+        "outcome_source": "the kanban controller",
         "outcome_time": "2026-09-17T19:56:26Z",
         "settlement_version": "1"
       }
@@ -9347,7 +9347,7 @@
           "track -> hit probability (prediction)",
           "list -> revised/excluded (settlement)"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "every object is compressed to one Palermo value"
       },
       "episenter": "the revision — where an earlier risk disappears or changes, and the old number can be compared",
@@ -9432,7 +9432,7 @@
       "synlighet": "offentlig",
       "prediction": {
         "source": "nasa-jpl-sentry",
-        "observable": "banerisiko",
+        "observable": "orbit risk",
         "issued_at": "2026-09-17T19:31:02Z",
         "valid_for": "2880-01-01T00:00:00Z",
         "expected": "{\"absoluttmagnitude\": 17.94, \"diameter_km_estimert\": 1.3, \"fullt_navn\": \"29075 (1950 DA)\", \"objekt\": \"29075\", \"palermo_kumulativ\": -0.92, \"treffsannsynlighet\": 0.0003833, \"tidsrom\": \"2880-2880\", \"tidspunkt_kjent\": \"nei\"}",
@@ -9584,7 +9584,7 @@
           "energy-flow field -> density gradient -> potential -> structure",
           "structure -> rotation curve (observable)"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the whole halo structure -> one rotation curve"
       },
       "episenter": "the transition from field to form — where a field becomes a halo we can weigh",
@@ -9686,9 +9686,9 @@
         "instrument": "the action (master-spec, eq. 1)",
         "proxy_chain": [
           "action -> field equation -> J_mu -> expansion history",
-          "J_mu -> Sigma (kildeledd)"
+          "J_mu -> Sigma (source term)"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the whole dynamics -> H(a)"
       },
       "episenter": "where the current changes — the acceleration, not the state",
@@ -9723,7 +9723,7 @@
       "emergence": {
         "loop": "J_mu -> div J = Sigma -> change in S -> new current",
         "properties": [
-          "g+ = c*H0/e (transisjonsakselerasjon)",
+          "g+ = c*H0/e (the transition acceleration)",
           "explains acceleration without dark energy"
         ]
       },
@@ -9757,7 +9757,7 @@
           "tid",
           "rom"
         ],
-        "enheter": "H0 i km/s/Mpc",
+        "enheter": "H0 in km/s/Mpc",
         "status": "avledet",
         "alternativer": [
           "LCDM with a cosmological constant"
@@ -9792,7 +9792,7 @@
           "S -> Omega-hat (differentiation) and kappa-hat (integration)",
           "Omega x kappa -> C (FALSIFIED as a multiplicative model)"
         ],
-        "placement": "teorirom",
+        "placement": "theory space",
         "compression": "the whole entropy field -> one scalar C"
       },
       "episenter": "consciousness — C is not a thing in the cosmos, it is the activity that reads S and D along the axes; the node is the C sector, measured via propofol-EEG (Omega, kappa)",
@@ -9838,8 +9838,8 @@
       "emergence": {
         "loop": "S -> structural complexity -> information capacity -> new S",
         "properties": [
-          "S=0: singularitet",
-          "S=1: altularitet",
+          "S=0: singularity",
+          "S=1: altularity",
           "C = Omega x kappa is FALSIFIED"
         ]
       },
@@ -9907,10 +9907,10 @@
         "instrument": "Fermi, Swift and ground-based telescopes",
         "proxy_chain": [
           "photons in",
-          "detektorterskel",
+          "detector threshold",
           "alert out"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about gamma-ray bursts -> one share"
       },
       "episenter": "where the corpus becomes a share for gamma-ray bursts — the number does not exist in the source, it arises in the reading",
@@ -9945,7 +9945,7 @@
       "emergence": {
         "loop": "detection -> alert -> follow-up -> new detection",
         "properties": [
-          "146 meldinger"
+          "146 messages"
         ]
       },
       "fractal": {
@@ -10025,7 +10025,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about interstellar -> one share"
       },
       "episenter": "where the corpus becomes a share for interstellar — the number does not exist in the source, it arises in the reading",
@@ -10060,7 +10060,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "54 meldinger"
+          "54 messages"
         ]
       },
       "fractal": {
@@ -10137,10 +10137,10 @@
         "instrument": "the DE441 ephemeris; no instrument read it off",
         "proxy_chain": [
           "observations (historical)",
-          "DE441-tilpasning",
+          "DE441 fit",
           "position"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about moon -> one share"
       },
       "episenter": "where the corpus becomes a share for the moon — the number does not exist in the source, it arises in the reading",
@@ -10175,7 +10175,7 @@
       "emergence": {
         "loop": "orbit -> position -> new position; the loop is deterministic, not measured",
         "properties": [
-          "311 meldinger"
+          "311 messages"
         ]
       },
       "fractal": {
@@ -10252,10 +10252,10 @@
         "instrument": "Fermi, Swift and ground-based telescopes",
         "proxy_chain": [
           "photons in",
-          "detektorterskel",
+          "detector threshold",
           "alert out"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about neutrinos -> one share"
       },
       "episenter": "where the corpus becomes a share for neutrinos — the number does not exist in the source, it arises in the reading",
@@ -10290,7 +10290,7 @@
       "emergence": {
         "loop": "detection -> alert -> follow-up -> new detection",
         "properties": [
-          "13 meldinger"
+          "13 messages"
         ]
       },
       "fractal": {
@@ -10367,10 +10367,10 @@
         "instrument": "the DE441 ephemeris; no instrument read it off",
         "proxy_chain": [
           "observations (historical)",
-          "DE441-tilpasning",
+          "DE441 fit",
           "position"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about the planetary system -> one share"
       },
       "episenter": "where the corpus becomes a share for the planetary system — the number does not exist in the source, it arises in the reading",
@@ -10405,7 +10405,7 @@
       "emergence": {
         "loop": "orbit -> position -> new position; the loop is deterministic, not measured",
         "properties": [
-          "2177 meldinger"
+          "2177 messages"
         ]
       },
       "fractal": {
@@ -10482,10 +10482,10 @@
         "instrument": "Fermi, Swift and ground-based telescopes",
         "proxy_chain": [
           "photons in",
-          "detektorterskel",
+          "detector threshold",
           "alert out"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about X-ray transients -> one share"
       },
       "episenter": "where the corpus becomes a share for X-ray transients — the number does not exist in the source, it arises in the reading",
@@ -10520,7 +10520,7 @@
       "emergence": {
         "loop": "detection -> alert -> follow-up -> new detection",
         "properties": [
-          "59 meldinger"
+          "59 messages"
         ]
       },
       "fractal": {
@@ -10600,7 +10600,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about spaceflight -> one share"
       },
       "episenter": "where the corpus becomes a share for spaceflight — the number does not exist in the source, it arises in the reading",
@@ -10635,7 +10635,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "194 meldinger"
+          "194 messages"
         ]
       },
       "fractal": {
@@ -10715,7 +10715,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about stars -> one share"
       },
       "episenter": "where the corpus becomes a share for stars — the number does not exist in the source, it arises in the reading",
@@ -10750,7 +10750,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "26 meldinger"
+          "26 messages"
         ]
       },
       "fractal": {
@@ -10827,10 +10827,10 @@
         "instrument": "Fermi, Swift and ground-based telescopes",
         "proxy_chain": [
           "photons in",
-          "detektorterskel",
+          "detector threshold",
           "alert out"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about unclassified -> one share"
       },
       "episenter": "where the corpus becomes a share for unclassified — the number does not exist in the source, it arises in the reading",
@@ -10865,7 +10865,7 @@
       "emergence": {
         "loop": "detection -> alert -> follow-up -> new detection",
         "properties": [
-          "30 meldinger"
+          "30 messages"
         ]
       },
       "fractal": {
@@ -10945,7 +10945,7 @@
           "harmonisation",
           "indicator"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about labour -> one share"
       },
       "episenter": "where the corpus becomes a share for labour — the number does not exist in the source, it arises in the reading",
@@ -10980,7 +10980,7 @@
       "emergence": {
         "loop": "countries measure -> Eurostat harmonises -> indicator -> next quarter",
         "properties": [
-          "2570 meldinger"
+          "2570 messages"
         ]
       },
       "fractal": {
@@ -11060,7 +11060,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about demography -> one share"
       },
       "episenter": "where the corpus becomes a share for demography — the number does not exist in the source, it arises in the reading",
@@ -11095,7 +11095,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "1656 meldinger"
+          "1656 messages"
         ]
       },
       "fractal": {
@@ -11175,7 +11175,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about finance -> one share"
       },
       "episenter": "where the corpus becomes a share for finance — the number does not exist in the source, it arises in the reading",
@@ -11210,7 +11210,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "206 meldinger"
+          "206 messages"
         ]
       },
       "fractal": {
@@ -11290,7 +11290,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about geopolitics -> one share"
       },
       "episenter": "where the corpus becomes a share for geopolitics — the number does not exist in the source, it arises in the reading",
@@ -11325,7 +11325,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2582 meldinger"
+          "2582 messages"
         ]
       },
       "fractal": {
@@ -11405,7 +11405,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about trade -> one share"
       },
       "episenter": "where the corpus becomes a share for trade — the number does not exist in the source, it arises in the reading",
@@ -11440,7 +11440,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "120 meldinger"
+          "120 messages"
         ]
       },
       "fractal": {
@@ -11520,7 +11520,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about health -> one share"
       },
       "episenter": "where the corpus becomes a share for health — the number does not exist in the source, it arises in the reading",
@@ -11555,7 +11555,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2606 meldinger"
+          "2606 messages"
         ]
       },
       "fractal": {
@@ -11635,7 +11635,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about infrastructure -> one share"
       },
       "episenter": "where the corpus becomes a share for infrastructure — the number does not exist in the source, it arises in the reading",
@@ -11670,7 +11670,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "1400 meldinger"
+          "1400 messages"
         ]
       },
       "fractal": {
@@ -11750,7 +11750,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about communication -> one share"
       },
       "episenter": "where the corpus becomes a share for communication — the number does not exist in the source, it arises in the reading",
@@ -11785,7 +11785,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2591 meldinger"
+          "2591 messages"
         ]
       },
       "fractal": {
@@ -11865,7 +11865,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about law -> one share"
       },
       "episenter": "where the corpus becomes a share for law — the number does not exist in the source, it arises in the reading",
@@ -11900,7 +11900,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2578 meldinger"
+          "2578 messages"
         ]
       },
       "fractal": {
@@ -11980,7 +11980,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about military -> one share"
       },
       "episenter": "where the corpus becomes a share for military — the number does not exist in the source, it arises in the reading",
@@ -12015,7 +12015,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2600 meldinger"
+          "2600 messages"
         ]
       },
       "fractal": {
@@ -12095,7 +12095,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about politics -> one share"
       },
       "episenter": "where the corpus becomes a share for politics — the number does not exist in the source, it arises in the reading",
@@ -12130,7 +12130,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2585 meldinger"
+          "2585 messages"
         ]
       },
       "fractal": {
@@ -12210,7 +12210,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about safety -> one share"
       },
       "episenter": "where the corpus becomes a share for security — the number does not exist in the source, it arises in the reading",
@@ -12245,7 +12245,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2588 meldinger"
+          "2588 messages"
         ]
       },
       "fractal": {
@@ -12325,7 +12325,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about technology -> one share"
       },
       "episenter": "where the corpus becomes a share for technology — the number does not exist in the source, it arises in the reading",
@@ -12360,7 +12360,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "118 meldinger"
+          "118 messages"
         ]
       },
       "fractal": {
@@ -12440,7 +12440,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about transport -> one share"
       },
       "episenter": "where the corpus becomes a share for transport — the number does not exist in the source, it arises in the reading",
@@ -12475,7 +12475,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "111 meldinger"
+          "111 messages"
         ]
       },
       "fractal": {
@@ -12555,7 +12555,7 @@
           "GKG codes (theme, actor, place)",
           "share per domain"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "all messages about education -> one share"
       },
       "episenter": "where the corpus becomes a share for education — the number does not exist in the source, it arises in the reading",
@@ -12590,7 +12590,7 @@
       "emergence": {
         "loop": "news stream -> GKG coding -> theme distribution -> new news stream",
         "properties": [
-          "2602 meldinger"
+          "2602 messages"
         ]
       },
       "fractal": {
@@ -12668,7 +12668,7 @@
         "proxy_chain": [
           "instrument metadata -> CAOM observation -> catalogued astronomical source"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "observasjon.mast-caom is compressed into the documented message per update"
       },
       "episenter": "the reading from observasjon.mast-caom — where the instrument window becomes an atlas observation",
@@ -12760,12 +12760,12 @@
       "phase": "instrument",
       "measure": {
         "target": "climate-related coverage coded in global news documents",
-        "measurer": "GDELT-prosjektet",
+        "measurer": "the GDELT project",
         "instrument": "GDELT GKG coding of document, topic, actor and place",
         "proxy_chain": [
           "news document -> GKG codes -> climate-related observation"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "observasjon.gdelt-gkg is compressed into the documented message per update"
       },
       "episenter": "the reading from observasjon.gdelt-gkg — where the instrument window becomes an atlas observation",
@@ -12862,7 +12862,7 @@
         "proxy_chain": [
           "national reporting -> harmonisation -> indicator value -> state message"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "tilstand.world-bank is compressed into the documented message per update"
       },
       "episenter": "the reading from tilstand.world-bank — where the instrument window becomes an atlas observation",
@@ -12959,7 +12959,7 @@
         "proxy_chain": [
           "sample -> sequence processing -> taxonomic and functional profile -> state message"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "sampled microbiome data are harmonized into an atlas reading"
       },
       "episenter": "the reading from tilstand.mgnify-mikrobiom — where the instrument window becomes an atlas observation",
@@ -13057,7 +13057,7 @@
         "proxy_chain": [
           "news document -> GKG codes -> environmental observation"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "coded documents are compressed into the documented message per update"
       },
       "episenter": "the reading from observasjon.gdelt-gkg — where the instrument window becomes an atlas observation",
@@ -13155,7 +13155,7 @@
         "proxy_chain": [
           "national reporting -> harmonization -> indicator value -> state message"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "country-year series are compressed into the documented message per update"
       },
       "episenter": "the reading from tilstand.world-bank — where the instrument window becomes an atlas observation",
@@ -13253,7 +13253,7 @@
         "proxy_chain": [
           "institutional projection -> DataMapper series -> forecast reading"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "projection series are compressed into the documented message per update"
       },
       "episenter": "the reading from prediksjon.imf-datamapper — where the instrument window becomes an atlas observation",
@@ -13351,7 +13351,7 @@
         "proxy_chain": [
           "news document -> GKG codes -> economic observation"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "coded documents are compressed into the documented message per update"
       },
       "episenter": "the reading from observasjon.gdelt-gkg — where the instrument window becomes an atlas observation",
@@ -13449,13 +13449,13 @@
         "proxy_chain": [
           "tilstand.swpc-kp -> instrument reading -> atlas observation"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "tilstand.swpc-kp is compressed into a documented message"
       },
       "episenter": "the reading from tilstand.swpc-kp",
       "buffer": {
         "role": "the stream holds the source's measurement",
-        "note": "instrumentbuffer"
+        "note": "instrument buffer"
       },
       "ontology": {
         "assumes": [
@@ -13507,7 +13507,7 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "meldingsfelt",
+        "enheter": "message fields",
         "status": "direkte_observerbar",
         "alternativer": [
           "other sources"
@@ -13545,13 +13545,13 @@
         "proxy_chain": [
           "tilstand.swpc-goes-xray -> instrument reading -> atlas observation"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "tilstand.swpc-goes-xray is compressed into a documented message"
       },
       "episenter": "the reading from tilstand.swpc-goes-xray",
       "buffer": {
         "role": "the stream holds the source's measurement",
-        "note": "instrumentbuffer"
+        "note": "instrument buffer"
       },
       "ontology": {
         "assumes": [
@@ -13603,7 +13603,7 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "meldingsfelt",
+        "enheter": "message fields",
         "status": "direkte_observerbar",
         "alternativer": [
           "other sources"
@@ -13641,13 +13641,13 @@
         "proxy_chain": [
           "hendelse.alerce -> instrument reading -> atlas observation"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "hendelse.alerce is compressed into a documented message"
       },
       "episenter": "the reading from hendelse.alerce",
       "buffer": {
         "role": "the stream holds the source's measurement",
-        "note": "instrumentbuffer"
+        "note": "instrument buffer"
       },
       "ontology": {
         "assumes": [
@@ -13699,7 +13699,7 @@
         "koordinater": [
           "tid"
         ],
-        "enheter": "meldingsfelt",
+        "enheter": "message fields",
         "status": "direkte_observerbar",
         "alternativer": [
           "other sources"
@@ -13726,7 +13726,7 @@
     {
       "id": "kosmos.kosmologi_desi_bao",
       "regime": {
-        "name": "DESI BAO — ventenode",
+        "name": "DESI BAO — waiting node",
         "validity": "The observation stream observasjon.desi-bao is measured absent; the node waits for a connector."
       },
       "phase": "instrument",
@@ -13737,7 +13737,7 @@
         "proxy_chain": [
           "observasjon.desi-bao -> (waiting for stream)"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "no measurement before connector"
       },
       "episenter": "the reading from observasjon.mast-caom — where the instrument window becomes an atlas observation",
@@ -13837,7 +13837,7 @@
         "proxy_chain": [
           "observasjon.isbre -> (waits for stream)"
         ],
-        "placement": "observasjon",
+        "placement": "observation",
         "compression": "no measurement before connector"
       },
       "episenter": "the reading from observasjon.mast-caom — where the instrument window becomes an atlas observation",

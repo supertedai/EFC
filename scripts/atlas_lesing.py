@@ -639,11 +639,11 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
 # ---------------------------------------------------------------------------
 
 #: Phases where the node MEASURES something — it has an instrument in the world.
-_MAALENDE_FASER = frozenset({"instrument", "observasjon"})
+_MAALENDE_FASER = frozenset({"instrument", "observation"})
 
 #: Phases where the node is DERIVED — computed, not measured.
 _AVLEDEDE_FASER = frozenset({"regime_engine", "computation_engine",
-                             "teoretisk", "stabil"})
+                             "theoretical", "stable"})
 
 
 def roter(atlas: dict, *, node: str | None = None,
@@ -1422,8 +1422,8 @@ def _utled_struktur(felt: str, tekst: str, noder: list,
         return None, ("can be derived once the parent is chosen: the index "
                       "must be higher than the parent's")
     if felt == "phase":
-        kjerne = ["instrument", "regime_engine", "observasjon",
-                  "computation_engine", "teoretisk", "stabil", "observer"]
+        kjerne = ["instrument", "regime_engine", "observation",
+                  "computation_engine", "theoretical", "stable", "observer"]
         return None, ("core: " + ", ".join(kjerne)
                       + " — a new value is a deliberate choice, not free text")
     return None, "no derivation rule for this field"

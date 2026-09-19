@@ -161,7 +161,7 @@ class EFCRotation(EFCEngine):
             "emergence": {
                 "loop": "mass -> coupling field -> flat rotation — "
                         "the flatness of the curve is the signature of the loop",
-                "properties": ["v_flat", "r_skala"],
+                "properties": ["v_flat", "r_scale"],
             },
             "fractal": {
                 "pattern": "flatness as regime — the same observation pattern "

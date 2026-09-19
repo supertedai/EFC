@@ -93,7 +93,7 @@ def test_spliten_summerer_og_flaten_pastaar_ingen_byggestatus():
     """K2: the group-less have no GROUP, not a build status.
 
     The split is read positionally from the generator's own accounting
-    (observasjon, regime, har_motor, ovrige — in that insertion order), so this
+    (observation, regime, engine, other — in that insertion order), so this
     test adds no Norwegian of its own. What it pins: the four reasons add up to
     the number of group-less nodes, and the surfaces never fall back to the
     English phrasing "designed and not built" that turned a placement fact into

@@ -126,7 +126,7 @@ class EFCLensing(EFCEngine):
             "ontology": {
                 "assumes": ["weak lensing is a valid imaging instrument", "The EFC deformation can be "
                             "translated into kappa — unverified"],
-                "source": "stub-kontrakt; efc_inference/engine/"
+                "source": "stub contract; efc_inference/engine/"
                           "lensing.py",
             },
             "observer": {

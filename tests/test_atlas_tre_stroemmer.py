@@ -40,7 +40,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
     noder = {node["id"]: node for node in NODER}
     for node_id, (domene, stroem) in FORVENTET.items():
         node = noder[node_id]
-        assert node["measure"]["placement"] == "observasjon"
+        assert node["measure"]["placement"] == "observation"
         assert node["measure"]["target"]
         assert node["measure"]["measurer"]
         assert node["measure"]["instrument"]

@@ -78,11 +78,11 @@ class EnerFlytEngine(EFCEngine):
 
         drift = p - c - tap
         if drift == 0.0:
-            regime = "balanse"
+            regime = "balance"
         elif drift > 0.0:
-            regime = "overflod"
+            regime = "abundance"
         else:
-            regime = "knapphet"
+            regime = "scarcity"
 
         buffer_etter = s + drift
         if s == 0.0 and drift < 0.0:
@@ -159,7 +159,7 @@ class EnerFlytEngine(EFCEngine):
                 "loop": "production -> buffer -> consumption -> "
                         "production incentives — the loop keeps "
                         "society's energy system going",
-                "properties": ["overflod", "balanse", "knapphet"],
+                "properties": ["abundance", "balance", "scarcity"],
             },
             "fractal": {
                 "pattern": "cell -> body -> household -> society: the "
