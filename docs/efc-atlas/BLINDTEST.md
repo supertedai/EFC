@@ -1,10 +1,14 @@
 # Blindtest: does a research decision get better WITH the atlas?
 
-Status: protocol, not run. The scenarios shall be drawn from the 21
-registered open questions in the bank (`schema/regime_nodes.jsonld`,
-the field `open_questions`) and from engine/bus questions. Written 2026-09-18 after an independent
-assessment (different model, direct API, `model_verified: true`) pointed to
-«nothing is demonstrated» as the decisive one of six measured gaps.
+Status: **RUN 2026-09-19** (the result stands in `blindtest/RESULTAT.md`:
+the requirement is not met — a single grep in the repo hit the key's anchor 10 of
+12 times, against one atlas call 5 of 12). The protocol below is the one that was
+followed, with the deviations that the result names. The scenarios were drawn
+from the 21 registered open questions in the bank (`schema/regime_nodes.jsonld`,
+the field `open_questions`) and from engine/bus questions. Written 2026-09-18
+after an independent assessment (different model, direct API,
+`model_verified: true`) pointed to «nothing is demonstrated» as the decisive one
+of six measured gaps.
 
 ## The requirement being tested
 
