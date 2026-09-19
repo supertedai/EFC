@@ -1088,30 +1088,85 @@ HUSETS_KRAV = ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
                "prediction", "settlement")
 
 
-FELT_REFERANSER: dict[str, tuple[int, int]] = {
-    "id": (101, 103), "regime": (24, 71), "prediction": (27, 5),
-    "measure": (20, 20), "phase": (13, 15), "ontology": (12, 18),
-    "synlighet": (8, 15), "rcmp": (7, 2), "observer": (6, 9),
-    "coupling": (6, 9), "maale_paradigme": (6, 7), "buss_domene": (6, 13),
-    "buffer": (5, 18), "stipulasjoner": (5, 16), "epistemikk": (5, 15),
-    "nivaa": (5, 10), "perspektiv": (4, 13), "episenter": (4, 6),
-    "open_questions": (4, 2), "lagdeling": (4, 2),
-    "emergence": (3, 5), "fractal": (3, 4), "ville_falsifisere": (3, 8),
-    "settlement": (3, 5), "falsifiserbarhet": (2, 8),
+#: The readers whose ANSWER counts as "someone reads this field". One list,
+#: used by the measurement (scripts/atlas_feltvekt.py) and by `plasser`.
+LESERE = ("atlas_lesing", "atlas_inngang", "atlas_navigasjon", "atlas_volum",
+          "efc_atlas_generator")
+
+#: Measured 2026-09-19 by MUTATION, not by counting: the field was emptied on
+#: every node that carries it inside a throwaway repo, and each of the five
+#: readers was asked again. The tuple is the readers whose answer CHANGED.
+#:
+#: An empty tuple means no reader notices the field disappear — the field is
+#: dead weight for a new node and the requirement should be argued for, not
+#: assumed. A field NOT in this table has no measurement behind it at all;
+#: `plasser` reports that instead of guessing, and `umaalte_krav()` names them.
+#:
+#: Measured on 403a9c64 (origin/main), 22 of 22 requirements:
+#:
+#:     atlas_lesing 22 · atlas_inngang 7 · atlas_navigasjon 6
+#:     efc_atlas_generator 6 · atlas_volum 0
+#:
+#: **No requirement is read by nobody, so this table shrinks nothing.** The
+#: field that comes closest is read by one reader. `atlas_volum` changes for
+#: none of the 22: it reads the bus measurement and the coverage declaration,
+#: not the node fields — a result, not a missing probe.
+#:
+#: Re-measure with (takes about half a minute, touches no bank):
+#:
+#:     python3 scripts/atlas_feltvekt.py . --ref origin/main
+#:     python3 scripts/atlas_feltvekt.py . --ref origin/main --python
+FELT_LESERE: dict[str, tuple[str, ...]] = {
+    "id": ("atlas_lesing", "atlas_inngang", "atlas_navigasjon",
+           "efc_atlas_generator"),
+    "regime": ("atlas_lesing", "atlas_inngang"),
+    "phase": ("atlas_lesing", "atlas_inngang"),
+    "measure": ("atlas_lesing", "efc_atlas_generator"),
+    "episenter": ("atlas_lesing",),
+    "buffer": ("atlas_lesing", "efc_atlas_generator"),
+    "ontology": ("atlas_lesing",),
+    "observer": ("atlas_lesing",),
+    "emergence": ("atlas_lesing",),
+    "fractal": ("atlas_lesing",),
+    "coupling": ("atlas_lesing",),
+    "perspektiv": ("atlas_lesing", "efc_atlas_generator"),
+    "stipulasjoner": ("atlas_lesing",),
+    "epistemikk": ("atlas_lesing", "atlas_inngang", "efc_atlas_generator"),
+    "maale_paradigme": ("atlas_lesing", "atlas_inngang",
+                        "efc_atlas_generator"),
+    "nivaa": ("atlas_lesing",),
+    "synlighet": ("atlas_lesing", "atlas_inngang", "atlas_navigasjon"),
+    "buss_domene": ("atlas_lesing", "atlas_inngang", "atlas_navigasjon"),
+    "ville_falsifisere": ("atlas_lesing", "atlas_navigasjon"),
+    "falsifiserbarhet": ("atlas_lesing",),
+    "prediction": ("atlas_lesing", "atlas_navigasjon"),
+    "settlement": ("atlas_lesing", "atlas_navigasjon"),
 }
 
-#: Below this limit the field is referenced by next to nothing. The limit is
-#: CHOSEN, not measured, and it is set low on purpose: with the broad
-#: measurement NO requirement qualifies as unused, and it stays that way until
-#: a measurement says otherwise.
-GRENSE_SKRIPT = 2
-GRENSE_TESTER = 2
+
+def feltet_leses(felt: str) -> bool:
+    """Does any of the five readers change its answer when the field goes?
+
+    False for a field that was MEASURED and read by nobody. Use `er_maalt`
+    when the two must be told apart: an unmeasured field is not evidence.
+    """
+    return bool(FELT_LESERE.get(felt))
 
 
-def baerer_feltet_noe(felt: str) -> bool:
-    """Does anything reference the field — in scripts or in tests?"""
-    skript, tester = FELT_REFERANSER.get(felt, (0, 0))
-    return skript >= GRENSE_SKRIPT or tester >= GRENSE_TESTER
+def er_maalt(felt: str) -> bool:
+    """Is there a mutation measurement behind this requirement?"""
+    return felt in FELT_LESERE
+
+
+def umaalte_krav(krav, tabell: dict | None = None) -> list[str]:
+    """The requirements that stand in a group with no measurement behind them.
+
+    A requirement called read — or called unread — without a measurement is an
+    opinion wearing the numbers of a measurement. This is the one place that
+    says so, and the test that pins the separation runs it.
+    """
+    t = FELT_LESERE if tabell is None else tabell
+    return [f for f in krav if f not in t]
 
 
 #: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
@@ -1246,17 +1301,22 @@ def plasser(atlas: dict, tekst: str) -> dict:
     for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
                                         if x not in krav_fra_skjemaet]:
         klasse = FELTKLASSE.get(f, "paastand")
-        skript, tester = FELT_REFERANSER.get(f, (0, 0))
+        lesere = list(FELT_LESERE.get(f, ()))
         post = {"felt": f,
                 "klasse": klasse,
                 "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
                 "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
-                "referert_i_skript": skript, "referert_i_tester": tester,
-                "baerer": baerer_feltet_noe(f),
+                "lesere": lesere, "lesere_av": len(LESERE),
+                "maalt": er_maalt(f), "leses": bool(lesere),
                 "forslag": None, "grunn": None}
-        if not post["baerer"]:
-            post["grunn"] = (f"schema requires it, but it is referenced in "
-                             f"{skript} scripts and {tester} tests")
+        if not post["maalt"]:
+            # No measurement is not the same as no reader. Saying "unread"
+            # here would be a guess wearing the clothes of a measurement.
+            post["grunn"] = ("no mutation measurement behind this requirement — "
+                             "run scripts/atlas_feltvekt.py")
+        elif not post["leses"]:
+            post["grunn"] = (f"measured by mutation: none of the {len(LESERE)} "
+                             f"readers changes its answer when it is emptied")
         if klasse == "struktur":
             post["forslag"], post["grunn"] = _utled_struktur(
                 f, tekst, noder, treff_domener,
@@ -1276,9 +1336,14 @@ def plasser(atlas: dict, tekst: str) -> dict:
             "struktur": sum(1 for k in krav if k["klasse"] == "struktur"),
             "vurdering": sum(1 for k in krav if k["klasse"] == "vurdering"),
             "paastand": sum(1 for k in krav if k["klasse"] == "paastand"),
-            "baerer": sum(1 for k in krav if k["baerer"]),
-            "uten_leser": sum(1 for k in krav if not k["baerer"]),
-            "uten_leser_felt": [k["felt"] for k in krav if not k["baerer"]],
+            # THE SEPARATION: requirements some reader reads, against fields
+            # no reader touches — with the measured number behind each one.
+            "leses": sum(1 for k in krav if k["leses"]),
+            "uten_leser": sum(1 for k in krav if k["maalt"] and not k["leses"]),
+            "uten_leser_felt": [k["felt"] for k in krav
+                                if k["maalt"] and not k["leses"]],
+            "umaalt": [k["felt"] for k in krav if not k["maalt"]],
+            "lesere_av": len(LESERE),
         },
         "aksene": {k: alle[k][1][:6] for k in
                    ("perspektiv", "phase", "synlighet") if k in alle},
@@ -1993,15 +2058,20 @@ if __name__ == "__main__":
         if p_.get("naere_noder"):
             print(f"  naere noder: {', '.join(p_['naere_noder'][:4])}")
         o = p_.get("oppsummering") or {}
-        print(f"  maa utfylle {len(p_['mangler'])} felt for aa bli en node: "
-              f"{o.get('struktur', 0)} struktur (utledes), "
-              f"{o.get('vurdering', 0)} vurdering (foreslaas), "
-              f"{o.get('paastand', 0)} paastand (kreves eksplisitt)")
-        print(f"  hvorav {o.get('baerer', 0)} baerer noe i dag, og "
-              f"{o.get('uten_leser', 0)} refereres nesten ikke: "
-              f"{', '.join(o.get('uten_leser_felt', []))}")
-        print("    (skjemaet krever dem fortsatt — aa fjerne dem fra `required` "
-              "er en beslutning, ikke en koderegel)")
+        print(f"  {len(p_['mangler'])} fields before it is a node: "
+              f"{o.get('struktur', 0)} structure (derived), "
+              f"{o.get('vurdering', 0)} assessment (proposed), "
+              f"{o.get('paastand', 0)} claim (declared explicitly)")
+        print(f"  of those, {o.get('leses', 0)} are read by at least one of the "
+              f"{o.get('lesere_av', 0)} readers and "
+              f"{o.get('uten_leser', 0)} by nobody:")
+        print(f"    fields with no reader: "
+              f"{', '.join(o.get('uten_leser_felt', [])) or '(none)'}")
+        if o.get("umaalt"):
+            print(f"    NOT MEASURED — no mutation measurement behind them: "
+                  f"{', '.join(o['umaalt'])}")
+        print("    (the schema still requires them — removing one from "
+              "`required` is a decision, not a rule of code)")
         for k in p_.get("krav", []):
             merke = "SKJEMA" if k["kilde"] == "skjema" else "HUSET "
             if k.get("forslag"):
