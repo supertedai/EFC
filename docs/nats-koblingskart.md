@@ -66,7 +66,15 @@ skrivetilgang eierne ennå ikke har gitt.
 | Emne | Innhold | Produsent |
 |---|---|---|
 | `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` produserer prediksjonen (fσ8(z=0.7), parameter-avledet); `SealedFs8Arbiter` (trinn 12) dommer den mot baselinen |
+| `kosmos.kosmologi.oppgjoer.efc-fs8` | Arbiterens **måling** — DESI DR2 full-shape fσ8(z~0.7), med feltene `must_arrive.required_fields` og proveniens (`seq`, `Nats_Msg_Id`, `referanse`, `survey`, `tracer`) | `scripts/atlas_arbiter_konnektor.py` (t_8e217b72). **0 meldinger målt 2026-09-18**, og det er den korrekte tilstanden: konnektoren publiserer ingenting før målingen finnes, og skriver grunnen i sin egen logg (`logs/atlas-arbiter-konnektor.jsonl`). En måling utenfor `z_window [0.6, 0.8]` rutes til `kosmos.kosmologi.tilstand.efc-fs8` med `arbiter: "nei"` — den er en baseline, ikke arbiteren |
 | `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12 |
+
+**To emner, én korrelasjon — og de er ikke samme feed.** Målingen
+(`…oppgjoer.efc-fs8`) og dommen (`…oppgjoer.efc-fs8-arbiter`) er to
+selvstendige emner: NATS matcher emner ledd for ledd, så
+`efc-fs8-arbiter` er sitt eget ledd og en abonnent på det ene får ikke
+det andre. Begge bærer lag-ordet `oppgjoer`, som er leddet
+VERDEN_PROGNOSE fanger (målt 2026-09-17, `tests/test_arbiter_emne_kontrakt.py`).
 
 ### Kandidater (emner som finnes, kobling ikke bygget)
 
@@ -117,6 +125,11 @@ Dette repoet **leser aldri bussen selv** — motoren er injiserbar og
 site-anonym (trinn 8-designet). Broen som leser bussen er en ekstern
 datakilde med read-only-konsument-rolle. Skillet er med vilje: atlaset
 skal ikke avhenge av en levende buss; bussen er én av flere kilder som
-kan mate det. Det gjelder begge veier: **publisering tilbake til
-bussen** (f.eks. arbiterens utfall) er ikke bygget inn — det er en
-dør eierne kan åpne, ikke en dør repoet lukker.
+kan mate det. Det gjelder lesesiden, og bare den: **publisering tilbake
+til bussen** finnes nå i to spor — målingen
+(`scripts/atlas_arbiter_konnektor.py`, t_8e217b72) og dommen
+(`scripts/maintenance/arbiter_vakt_kjoer.py`, L-016). Begge er
+best-effort og krever `NATS_PRODUSENT` i miljøet; repoet bærer aldri
+legitimasjon, og en kjøring uten den melder «ingen
+produsent-legitimasjon» i stedet for å gjøre noe. Åpningen er dermed
+eiernes: nøkkelen, ikke koden.
