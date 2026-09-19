@@ -1,0 +1,37 @@
+{
+  "_om": "Arbiteren den forseglede fsigma8-prediksjonen navngir. Denne filen sier HVA som maa lande for at loekka kan lukkes, og hva som da vil telle som bekreftet og motsagt. Den baerer ingen maaling — arbiteren finnes ikke ennaa, og aa skrive inn et tall her ville vaert aa oppfinne utfallet.",
+  "kind": "arbiter-declaration",
+  "declared": "2026-09-19",
+  "declared_by": "opus",
+  "source": "the sealed prediction's own criterion, read from the bus (VERDEN_PROGNOSE, seq 31058)",
+  "correlation": "efc-fs8.fsigma8.z0.7",
+  "claim_node": "efc.growth_engine",
+  "measurement_node": "obs.fsigma8",
+  "expected_topic": "kosmos.kosmologi.oppgjoer.efc-fs8",
+  "expected_stream": "VERDEN_PROGNOSE",
+  "must_arrive": {
+    "observable": "fsigma8",
+    "survey": "DESI",
+    "release": "DR2",
+    "analysis": "full-shape",
+    "z_window": [0.6, 0.8],
+    "z_target": 0.7,
+    "required_fields": ["fsigma8", "fsigma8_sigma", "z_eff", "survey", "tracer", "referanse"],
+    "why": "kriteriet paa bussen: DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430"
+  },
+  "tolerance_rule": "within 1 sigma of the measurement's OWN uncertainty, not a fixed band",
+  "verdicts": {
+    "_regel": "avvik = (maalt - 0.430) / maalt_sigma, med maalingens egen sigma",
+    "bekreftet": "|avvik| <= 1.0",
+    "motsagt": "|avvik| > 1.0",
+    "for_tidlig": "z_eff utenfor z_window — maalingen gjelder et annet vindu og kan ikke gjore opp denne prediksjonen"
+  },
+  "multi_tracer_consistency": "LRG and ELG must agree — hvis baade LRG og ELG finnes i tilstanden, maa de ogsaa stemme innbyrdes for full bekreftelse",
+  "state_now": {
+    "arbiter_present": false,
+    "settlements": 0,
+    "armed_since": "2026-02-18T05:07:13",
+    "nearest_existing": {"survey": "eBOSS DR16", "tracer": "ELG", "z_eff": 0.85, "distance_z": 0.15},
+    "why_open_is_correct": "ingen melding paa bussen har z ~ 0.7. Oppgjoeret skal staa aapent til arbiteren finnes — aa gjore opp mot en baseline ville vaert aa ta en ikke-arbiter som evidens."
+  }
+}
