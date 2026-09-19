@@ -33,8 +33,8 @@ Registeret er append-only og ligger i governance/risiko/risiko-register.jsonl.
      menneskets beslutningssti. Alt annet (sletting, omskriving av et annet
      felt, omordning) er fortsatt forbudt. Målingen er hermetisk: hvilket
      repo den leser kommer fra `rot`, og diffen leses med --no-ext-diff,
-     --no-textconv og --text, så en lokal git-konfigurasjon (diff.external,
-     textconv, binary) ikke kan gjøre gaten blind.
+     --no-textconv and --text, so a local git config (diff.external, textconv,
+     binary) cannot blind the gate.
 
 Bruk:
   python3 scripts/maintenance/validate_risk_register.py [--json] [--base origin/main]
@@ -342,7 +342,7 @@ def append_only(base: str, rot: Path) -> list[dict]:
     stenger `diff.external`/`GIT_EXTERNAL_DIFF`, `--no-textconv` stenger en
     textconv-driver, `--text` stenger `diff.<driver>.binary` (som ellers lar
     git svare «Binary files differ» uten noen fjernet linje), og `_git_miljo()`
-    fjerner de arvede GIT_*-variablene som peker git på et annet repo enn `rot`.
+    drops the inherited GIT_* variables that point git at a repo other than `rot`.
     """
     r = subprocess.run(["git", "diff", "-U0", "--no-ext-diff", "--no-textconv",
                         "--text", base, "--", REGISTER],
