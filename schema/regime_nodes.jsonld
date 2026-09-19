@@ -10012,30 +10012,30 @@
     {
       "id": "kosmos.interstellart",
       "regime": {
-        "name": "interstellart — tilstandslaget fra GDELT GKG",
-        "validity": "gjelder den delen av GDELT GKG som dekker interstellart. Maalt volum: 54 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+        "name": "interstellart — tilstandslaget fra MAST/CAOM",
+        "validity": "gjelder den delen av MAST/CAOM som dekker interstellart. Maalt volum: 54 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
       },
       "phase": "instrument",
       "measure": {
-        "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
-        "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
-        "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+        "target": "archival observations — instrument-borne raw data from space telescopes",
+        "measurer": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "proxy_chain": [
-          "rå nyhetstekst",
-          "GKG-koder (tema, aktør, sted)",
-          "andel per domene"
+          "photons in",
+          "calibrated and archived observation",
+          "share per domain"
         ],
         "placement": "observasjon",
         "compression": "alle meldinger om interstellart -> én andel"
       },
       "episenter": "der korpuset blir en andel for interstellart — tallet finnes ikke i kilden, det oppstaar i lesningen",
       "buffer": {
-        "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+        "role": "MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer",
         "note": "kildens, ikke motorens"
       },
       "ontology": {
         "assumes": [
-          "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+          "MAST/CAOM er tilgjengelig og komplett nok for denne andelen",
           "andelen er sammenlignbar over tid",
           "emnet observasjon.mast-caom representerer domenet"
         ],
@@ -10058,13 +10058,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
         "properties": [
           "54 meldinger"
         ]
       },
       "fractal": {
-        "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+        "pattern": "each domain is the whole archive seen through one selection — same corpus, different share",
         "note": "ett domene, samme korpus"
       },
       "coupling": {
@@ -10112,7 +10112,7 @@
       "lagdeling": {
         "kilde": {
           "status": "konsensus",
-          "kilde": "GDELT GKG",
+          "kilde": "MAST/CAOM",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -10587,30 +10587,30 @@
     {
       "id": "kosmos.romfart",
       "regime": {
-        "name": "romfart — tilstandslaget fra GDELT GKG",
-        "validity": "gjelder den delen av GDELT GKG som dekker romfart. Maalt volum: 194 meldinger over 3 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+        "name": "romfart — tilstandslaget fra Launch Library",
+        "validity": "gjelder den delen av Launch Library som dekker romfart. Maalt volum: 194 meldinger over 3 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
       },
       "phase": "instrument",
       "measure": {
-        "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
-        "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
-        "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+        "target": "launch data — planned, flown and settled launches",
+        "measurer": "Launch Library — the aggregated launch catalogue, not the launch operator",
+        "instrument": "the operators' own announcements, collected into one catalogue",
         "proxy_chain": [
-          "rå nyhetstekst",
-          "GKG-koder (tema, aktør, sted)",
-          "andel per domene"
+          "announced manifest",
+          "launch event",
+          "share per domain"
         ],
         "placement": "observasjon",
         "compression": "alle meldinger om romfart -> én andel"
       },
       "episenter": "der korpuset blir en andel for romfart — tallet finnes ikke i kilden, det oppstaar i lesningen",
       "buffer": {
-        "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+        "role": "Launch Library er bufferen: den holder tilstanden mellom oppdateringer",
         "note": "kildens, ikke motorens"
       },
       "ontology": {
         "assumes": [
-          "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+          "Launch Library er tilgjengelig og komplett nok for denne andelen",
           "andelen er sammenlignbar over tid",
           "emnet oppgjoer.launch-library representerer domenet"
         ],
@@ -10633,13 +10633,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+        "loop": "announced launch -> launch -> settled outcome -> next announcement",
         "properties": [
           "194 meldinger"
         ]
       },
       "fractal": {
-        "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+        "pattern": "each launch is the whole manifest in miniature — same operators, different orbit",
         "note": "ett domene, samme korpus"
       },
       "coupling": {
@@ -10687,7 +10687,7 @@
       "lagdeling": {
         "kilde": {
           "status": "konsensus",
-          "kilde": "GDELT GKG",
+          "kilde": "Launch Library",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -10702,30 +10702,30 @@
     {
       "id": "kosmos.stjerner",
       "regime": {
-        "name": "stjerner — tilstandslaget fra GDELT GKG",
-        "validity": "gjelder den delen av GDELT GKG som dekker stjerner. Maalt volum: 26 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
+        "name": "stjerner — tilstandslaget fra MAST/CAOM",
+        "validity": "gjelder den delen av MAST/CAOM som dekker stjerner. Maalt volum: 26 meldinger over 1 emne(r). Re videre: andelen er en LESNING av korpuset, ikke en egen måling."
       },
       "phase": "instrument",
       "measure": {
-        "target": "globale nyhetsstrømmer kodet til tema, aktør og sted",
-        "measurer": "GDELT-prosjektet — maskinell koding av verdens nyhetsstrøm",
-        "instrument": "GKG-pipelinen; kodede dokumenter per tema",
+        "target": "archival observations — instrument-borne raw data from space telescopes",
+        "measurer": "MAST/CAOM — the archive, not the telescope",
+        "instrument": "the space telescopes whose observations are archived; the subject carries the observation, not the instrument",
         "proxy_chain": [
-          "rå nyhetstekst",
-          "GKG-koder (tema, aktør, sted)",
-          "andel per domene"
+          "photons in",
+          "calibrated and archived observation",
+          "share per domain"
         ],
         "placement": "observasjon",
         "compression": "alle meldinger om stjerner -> én andel"
       },
       "episenter": "der korpuset blir en andel for stjerner — tallet finnes ikke i kilden, det oppstaar i lesningen",
       "buffer": {
-        "role": "GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer",
+        "role": "MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer",
         "note": "kildens, ikke motorens"
       },
       "ontology": {
         "assumes": [
-          "GDELT GKG er tilgjengelig og komplett nok for denne andelen",
+          "MAST/CAOM er tilgjengelig og komplett nok for denne andelen",
           "andelen er sammenlignbar over tid",
           "emnet observasjon.mast-caom representerer domenet"
         ],
@@ -10748,13 +10748,13 @@
         "er_del_av_systemet": true
       },
       "emergence": {
-        "loop": "nyhetsstrøm -> GKG-koding -> temafordeling -> ny nyhetsstrøm",
+        "loop": "detection -> calibration -> archiving -> extraction per domain -> new detection",
         "properties": [
           "26 meldinger"
         ]
       },
       "fractal": {
-        "pattern": "hvert tema er hele korpuset sett gjennom én kode; samme mønster i hver andel",
+        "pattern": "each domain is the whole archive seen through one selection — same corpus, different share",
         "note": "ett domene, samme korpus"
       },
       "coupling": {
@@ -10802,7 +10802,7 @@
       "lagdeling": {
         "kilde": {
           "status": "konsensus",
-          "kilde": "GDELT GKG",
+          "kilde": "MAST/CAOM",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
