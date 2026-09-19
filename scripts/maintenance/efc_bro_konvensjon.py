@@ -174,22 +174,24 @@ VARIANTER: dict[str, str] = {
 #:
 #:   * points at exactly ONE node in the bank: the engine file's stem is that
 #:     node's `stipulasjoner.motor`. That node carries the reason it is not
-#:     field-compared — 11 sit in ``MOTOR_UTEN_PARAMKILDE`` (they require
-#:     parameters and no bridge points at their engine file, so the canonical
-#:     source does not exist and the sync cannot run them), and the twelfth
-#:     (``HomeostaseBufferEngine``, no required parameters, runs on ``{}``) sits
-#:     in ``MOTOR_TEKSTAVVIK``.
+#:     field-compared — 11 sit in ``MOTOR_UTEN_PARAMKILDE`` (no bridge names
+#:     their engine file, so the convention has no canonical parameter SOURCE
+#:     for them), and the twelfth (``HomeostaseBufferEngine``) sits in
+#:     ``MOTOR_TEKSTAVVIK``.
 #:   * is NOT field-compared by ``efc_bro_synk.py``, which measures the 20
 #:     registered bridges. That gap is DECLARED and COUNTED: ``--sjekk`` prints
 #:     the coverage line and names the twelve, and the count stands in the
 #:     sync's own docstring.
 #:
-#: Registering them was the alternative, and it was measured and rejected:
-#: ``--skriv`` would write the engine's terse strings over the bank's CURATED
-#: prose (``homo.hjerte_syklus``: ``/regime/validity`` is a paragraph in the
-#: bank, ``t in [0, 0.8] s; NaN outside`` in the engine), and for 11 of the 12 it
-#: would require inventing their parameters here — the one thing this module
-#: refuses to do. It is the owner's decision, not the sync's.
+#: Registering them was the alternative, and it was measured and rejected HERE:
+#: it is not that the engines cannot run or that their parameters would be
+#: invented — all 12 are exercised by test_biologi*_engines.py, and 8 of the 12
+#: answer ``regime_node({})`` (measured 2026-09-19, t_1f95225a). It is that
+#: ``--skriv`` would then write the engine's terse strings over the bank's
+#: CURATED prose (``homo.hjerte_syklus``: ``/regime/validity`` is a paragraph in
+#: the bank, ``t in [0, 0.8] s; NaN outside`` in the engine), and that a source
+#: would have to be named for each of the twelve. Both are the owner's decision,
+#: not the sync's.
 #:
 #: Pinned from BOTH sides by ``tests/test_bro_konvensjon.py``: a class named
 #: here that no engine file defines fails, and so does an engine with
@@ -313,6 +315,16 @@ MOTOR_DELT: dict[str, tuple[str, str]] = {
 #:
 #: Measured 2026-09-19 (t_c015b6ee): 11 of 12 biology engines. Only
 #: HomeostaseBufferEngine has empty REQUIRED_PARAMS and runs on {}.
+#:
+#: PRECISION, measured 2026-09-19 (t_1f95225a): "no source" is not the same as
+#: "cannot run". 7 of these 11 do answer `regime_node({})` (evolusjon,
+#: feber_regime, fluxus, genregulering, immunologi, okologi, sovn_vaaken —
+#: 8 of the 12 engines in all, counting the homeostase buffer above); the
+#: remaining 4 raise KeyError without their parameters (aksjonspotensial,
+#: cellesyklus, hjerte_syklus, metabolisme), and those values sit in their test
+#: modules. The exemption is about the missing SOURCE, and closing it means
+#: registering a bridge AND naming a source per engine.
+#:
 #: Closing this means registering those engines as bridges, not guessing their
 #: parameters here.
 MOTOR_UTEN_PARAMKILDE: dict[str, str] = {
