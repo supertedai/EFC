@@ -126,6 +126,16 @@ nodens `stipulasjoner.motor`), og den noden bærer grunnen — det er testen
 unnlatelse skal være navngitt, ikke stille, og en liste som bare vokser er den
 stille toleransen konvensjonen finnes for å stoppe.
 
+Den utelatelsen hadde en målbar INNHOLDSkonsekvens, ikke bare en bokførings-en:
+målt med portens egen ordliste og dens ordgrense-regel (R1) bar de tolv 25
+norske verdier i motoreide felt på main — de 8 som svarer på `{}`, pluss de fire
+som krever parametre, målt med parametrene hentet ut av deres EGEN testmodul
+(ikke gjettet). Det er samme klasse som broen ikke så: den klassen broen ikke
+målte, var også den klassen som bar den uoversatte teksten. På språkarbeidets
+gren (PR #575) er tallet 0, målt med samme regel — så det hullet lukkes der, og
+det er ikke dette kortets å lukke. Poenget her er at hullet nå er TALT: neste
+gang noen vurderer å registrere de tolv, står både tallet og grunnen der.
+
 ## Den gamle rekonosansen ble ikke et eget skript
 
 `bro_drift_audit.py` (t_2dcd2d82) fant motorer ved aa skanne testmodulene og
