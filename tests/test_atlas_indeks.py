@@ -47,7 +47,7 @@ def test_hver_node_har_navngitte_detaljer():
     detaljer = [line for line in _index_lines() if line.startswith("  ")]
     assert detaljer, "ingen detaljlinjer"
     for linje in detaljer:
-        assert "perspektiv=" in linje and "bygget=" in linje, linje
+        assert "perspektiv=" in linje and "gruppe=" in linje, linje
     # ingen bar «1 · nei»-kolonne igjen
     assert not any(re.search(r"·\s*\d+\s*·\s*(ja|nei)\s*$", l)
                    for l in _index_lines())
@@ -60,15 +60,19 @@ def test_overskriftens_tall_er_utledet_fra_banken():
     sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
     import efc_atlas_generator as generator
     ghost = sum(generator._gruppe(node["id"]) == "ghost" for node in public)
+    grunn = generator.uten_gruppe_grunner(public)
     evidence = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen" for node in public)
     questions = sum(len(node.get("open_questions") or []) for node in public)
-    expected = f"> {len(public)} publiserte noder · {ghost} designet og ikke bygget · {evidence} mangler evidens · {questions} aapne spoersmaal"
+    expected = (f"> {len(public)} publiserte noder · {ghost} uten gruppe ennaa "
+                f"({grunn['observasjon']} observasjoner, {grunn['regime']} regimenoder, "
+                f"{grunn['har_motor']} med motor, {grunn['ovrige']} ovrige) · "
+                f"{evidence} mangler evidens · {questions} aapne spoersmaal")
     assert expected in text
 
 
-def test_hver_ghost_node_er_navngitt_i_ikke_bygget():
+def test_hver_gruppelos_node_er_navngitt_med_grunn():
     text = INDEKS.read_text(encoding="utf-8")
-    section = text.split("## Hva som ikke er bygget", 1)[1]
+    section = text.split("## Uten gruppe ennaa", 1)[1]
     import sys
     sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
     import efc_atlas_generator as generator
@@ -83,3 +87,30 @@ def test_indeksens_linjelaengde_er_lesbar():
 
 def test_indeks_uten_trailing_whitespace():
     assert all(line.rstrip() == line for line in _index_lines())
+
+
+def test_spliten_summerer_og_flaten_pastaar_ingen_byggestatus():
+    """K2: de gruppelose har ingen GRUPPE, ikke en byggestatus.
+
+    The split is read positionally from the generator's own accounting
+    (observasjon, regime, har_motor, ovrige — in that insertion order), so this
+    test adds no Norwegian of its own. What it pins: the four reasons add up to
+    the number of group-less nodes, and the surfaces never fall back to the
+    English phrasing "designed and not built" that turned a placement fact into
+    a build status.
+    """
+    text = INDEKS.read_text(encoding="utf-8")
+    public = _public_nodes()
+    import sys
+    sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
+    import efc_atlas_generator as generator
+    grunn = generator.uten_gruppe_grunner(public)
+    gruppelose = sum(generator._gruppe(n["id"]) == "ghost" for n in public)
+    assert sum(grunn.values()) == gruppelose, (grunn, gruppelose)
+    assert gruppelose > 0, "ingen gruppelose noder — testen er blind"
+    # hvorfor de mangler, ikke bare at de mangler
+    talla = [int(x) for x in __import__("re").findall(r"(\d+) [a-z]+", text.split("uten gruppe ennaa", 1)[1].split(")")[0])]
+    assert talla == list(grunn.values()), (talla, list(grunn.values()))
+    for flate in ("docs/efc-atlas/SYSTEM.md", "docs/efc-atlas/atlas.html",
+                  "docs/efc-atlas/atlas/data.mjs"):
+        assert "designed and not built" not in (ROT / flate).read_text("utf-8"), flate
