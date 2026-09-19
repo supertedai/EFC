@@ -166,7 +166,34 @@ VARIANTER: dict[str, str] = {
     "SolarFlareEngineBrakdel": "efc.solar_flare_engine",
 }
 
-# The biology engines have their own atlas contracts; they are not EFC bridges.
+#: Engines DECLARED as non-bridges: they have their own atlas contracts and are
+#: not EFC bridges (#527, kept through the language work).
+#:
+#: A name list is not a declaration by itself — an exemption states WHY, and
+#: this one is measured (2026-09-19, t_1f95225a). Each of the twelve:
+#:
+#:   * points at exactly ONE node in the bank: the engine file's stem is that
+#:     node's `stipulasjoner.motor`. That node carries the reason it is not
+#:     field-compared — 11 sit in ``MOTOR_UTEN_PARAMKILDE`` (they require
+#:     parameters and no bridge points at their engine file, so the canonical
+#:     source does not exist and the sync cannot run them), and the twelfth
+#:     (``HomeostaseBufferEngine``, no required parameters, runs on ``{}``) sits
+#:     in ``MOTOR_TEKSTAVVIK``.
+#:   * is NOT field-compared by ``efc_bro_synk.py``, which measures the 20
+#:     registered bridges. That gap is DECLARED and COUNTED: ``--sjekk`` prints
+#:     the coverage line and names the twelve, and the count stands in the
+#:     sync's own docstring.
+#:
+#: Registering them was the alternative, and it was measured and rejected:
+#: ``--skriv`` would write the engine's terse strings over the bank's CURATED
+#: prose (``homo.hjerte_syklus``: ``/regime/validity`` is a paragraph in the
+#: bank, ``t in [0, 0.8] s; NaN outside`` in the engine), and for 11 of the 12 it
+#: would require inventing their parameters here — the one thing this module
+#: refuses to do. It is the owner's decision, not the sync's.
+#:
+#: Pinned from BOTH sides by ``tests/test_bro_konvensjon.py``: a class named
+#: here that no engine file defines fails, and so does an engine with
+#: ``regime_node()`` that no table names.
 IKKE_BRO_MOTORER = frozenset({
     "ActionPotentialEngine", "CardiacCycleEngine", "CellCycleEngine",
     "EvolusjonEngine", "FeberRegimeEngine", "FluxusEngine",
