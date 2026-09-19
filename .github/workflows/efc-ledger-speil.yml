@@ -90,7 +90,7 @@ jobs:
             exit 1
           fi
       - name: Install the test runner for the locked identities
-        run: python3 -m pip install --quiet "pytest>=8,<9"
+        run: python3 -m pip install --quiet "pytest>=8,<9" "PyYAML>=6,<7"
       - name: The identities are locked, and the check is proven to fail on drift
         run: python3 -m pytest tests/test_ledger_speil.py tests/test_ledger_speil_gate.py -q
       - name: Summarise on failure

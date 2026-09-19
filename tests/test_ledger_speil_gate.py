@@ -32,6 +32,14 @@ from pathlib import Path
 
 import pytest
 
+try:
+    import yaml
+except ImportError:  # pragma: no cover - requirements.txt carries PyYAML
+    raise SystemExit(
+        "PyYAML is required: the gate's shape (triggers, steps, read-only) is "
+        "asserted from the workflow file, and a lock that skips is not a lock. "
+        "requirements.txt and the gate's own CI job install it.")
+
 ROOT = Path(__file__).resolve().parents[1]
 WORKFLOW = ROOT / ".github" / "workflows" / "efc-ledger-speil.yml"
 MIRROR = ROOT / "scripts" / "maintenance" / "efc_ledger_speil.py"
@@ -61,7 +69,6 @@ CLAIM_ROW = re.compile(r"^\| (\d+) \| (.*) \| ([^|]*) \| ([^|]*) \|\s*$")
 # --------------------------------------------------------------------------
 
 def _workflow() -> dict:
-    yaml = pytest.importorskip("yaml")
     return yaml.safe_load(WORKFLOW.read_text(encoding="utf-8"))
 
 
