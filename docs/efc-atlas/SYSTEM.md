@@ -327,11 +327,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### KI · kosmos.interstellart
 
-**In one line.** globale nyhetsstrømmer kodet til tema, aktør og sted · perspektiv: consensus
+**In one line.** archival observations — instrument-borne raw data from space… · perspektiv: consensus
 
-**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
 
-**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+**How it's built.** Buffer role: MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
 
 **Steps in execution.**
 
@@ -397,11 +397,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### RF · kosmos.romfart
 
-**In one line.** globale nyhetsstrømmer kodet til tema, aktør og sted · perspektiv: consensus
+**In one line.** launch data — planned, flown and settled launches · perspektiv: consensus
 
-**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+**What it does.** the operators' own announcements, collected into one catalogue — proxy chain: announced manifest -> launch event -> share per domain
 
-**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+**How it's built.** Buffer role: Launch Library er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
 
 **Steps in execution.**
 
@@ -411,11 +411,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### ST · kosmos.stjerner
 
-**In one line.** globale nyhetsstrømmer kodet til tema, aktør og sted · perspektiv: consensus
+**In one line.** archival observations — instrument-borne raw data from space… · perspektiv: consensus
 
-**What it does.** GKG-pipelinen; kodede dokumenter per tema — proxy chain: rå nyhetstekst -> GKG-koder (tema, aktør, sted) -> andel per domene
+**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
 
-**How it's built.** Buffer role: GDELT GKG er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
+**How it's built.** Buffer role: MAST/CAOM er bufferen: den holder tilstanden mellom oppdateringer. Epistemic: stottet / direkte / institusjonell.
 
 **Steps in execution.**
 
