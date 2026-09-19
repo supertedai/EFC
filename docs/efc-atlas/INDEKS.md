@@ -1,6 +1,6 @@
 # Atlasindeks
 
-> 116 publiserte noder · 53 uten gruppe ennaa (20 observasjoner, 18 regimenoder, 10 med motor, 5 ovrige) · 7 mangler evidens · 21 aapne spoersmaal
+> 116 publiserte noder · 52 uten gruppe ennaa (20 observasjoner, 18 regimenoder, 10 med motor, 4 ovrige) · 7 mangler evidens · 21 aapne spoersmaal
 
 Hver rad er generert fra samme bank som atlaset.
 
@@ -80,6 +80,8 @@ Hver rad er generert fra samme bank som atlaset.
 - **BI · verden.biosfaere** — arts-tellinger (planteriket)
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
 - **VU · kosmos.jord.vulkan** — vulkantilstand
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
+- **VV · verden.vaer** — temperatur, vind, trykk, skydekke og fuktighet
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
 
 ## Structures
@@ -237,8 +239,6 @@ Hver rad er generert fra samme bank som atlaset.
   perspektiv=academia · motor=okologi · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **EV · homo.evolusjon** — endringstakt i fenotype/art (morfologiske og molekylære rater)
   perspektiv=academia · motor=evolusjon · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
-- **VV · verden.vaer** — temperatur, vind, trykk, skydekke og fuktighet
-  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (ovrig)
 - **KA · kosmos.asteroider** — treffsannsynlighet og Palermo-kumulativ per objekt
   perspektiv=consensus · motor=orbital · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
 - **EE · efc.efc_background_engine** — H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot
@@ -299,7 +299,6 @@ Hver rad er generert fra samme bank som atlaset.
 - homo.sovn_vaaken — homo.sovn_vaaken
 - homo.okologi — homo.okologi
 - homo.evolusjon — homo.evolusjon
-- verden.vaer — verden.vaer
 - kosmos.asteroider — kosmos.asteroider
 - efc.efc_background_engine — efc.efc_background_engine
 - efc.lag_s — efc.lag_s

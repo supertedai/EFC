@@ -6,7 +6,7 @@ _Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 53 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other).
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
 
 ## Decisions locked
 
@@ -24,12 +24,12 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Roots — time and self** — Chapter 1 of 9 — a few structures at a time. _(adds efc-l0)_
 2. **The grid — your published works** — Chapter 2 of 9 — a few structures at a time. _(adds efc-grid-higgs, efc-gr-qft-bro, efc-double-slit, efc-grid-mikrofysikk, efc-grid-mikro-engine, efc-sort-hull)_
 3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert, kosmos-galakser-mast, kosmos-romvaer-swpc, kosmos-sol-goes, kosmos-transienter-alerce, kosmos-kosmologi-desi-bao)_
-4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan)_
+4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan, verden-vaer)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
-8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 79 relations.
+8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
+9. **The whole atlas** — Everything at once — 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.
 
 ## Structures
 
@@ -554,6 +554,20 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — USGS-statuslisten som konsensus-kanal
+
+#### VV · verden.vaer
+
+**In one line.** temperatur, vind, trykk, skydekke og fuktighet · perspektiv: consensus
+
+**What it does.** ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding — proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per…
+
+**How it's built.** Buffer role: atmosfaeren som buffer mellom prognose og virkelighet. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler
 
 ### Structures — H2O and chemistry
 
@@ -1672,20 +1686,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — evolusjonsbiologi (standard) — fagfellevurdert og laerebokkanonisert. ANALOGIEN til EFC er vaar egen og baeres ikke av…
-
-#### VV · verden.vaer _(not switched on)_
-
-**In one line.** temperatur, vind, trykk, skydekke og fuktighet · perspektiv: consensus
-
-**What it does.** ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding — proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per…
-
-**How it's built.** Buffer role: atmosfaeren som buffer mellom prognose og virkelighet. Epistemic: stottet / direkte / institusjonell.
-
-**Steps in execution.**
-
-1. **Perspective** — consensus
-2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — MET Norway-prognose mot METAR-maaling — to uavhengige institusjonelle kanaler
 
 #### KA · kosmos.asteroider _(not switched on)_
 

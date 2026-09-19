@@ -5,11 +5,11 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '116 · 53 without a group yet' },
-          { k: 'S-axis', v: '39 of 116 measured · 53 without a group yet' },
+  stats: [{ k: 'Nodes', v: '116 · 52 without a group yet' },
+          { k: 'S-axis', v: '39 of 116 measured · 52 without a group yet' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 53 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other).`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).`,
   platformGives: 'NATS bus (read by measurement code, scheduled by nothing — see Known holes), engines, review fan-out, the EFC bank.',
   busHull: [
   "**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days \u2014 a stale measurement that still answers, which is the failure mode the atlas exists to name.",
@@ -3073,14 +3073,14 @@ export const NODES = [
     "code": "VV",
     "name": "verden.vaer",
     "short": "vaer",
-    "group": "ghost",
+    "group": "broer",
     "gx": 3.9,
     "gy": 30.200000000000003,
     "w": 2,
     "d": 2,
     "h": 34,
     "kind": "box",
-    "ghost": true,
+    "ghost": false,
     "one": "temperatur, vind, trykk, skydekke og fuktighet \u00b7 perspektiv: consensus",
     "what": "ett sted i ett gyldighetsvindu; baade forventet og utfall i samme melding \u2014 proxy chain: prognose -> forventet -> METAR-maaling -> utfall -> avvik = utfall minus forventet, per\u2026",
     "how": "Buffer role: atmosfaeren som buffer mellom prognose og virkelighet. Epistemic: stottet / direkte / institusjonell.",
@@ -4865,10 +4865,11 @@ export const CH = [
     "reveal": [
       "verden-hav",
       "verden-biosfaere",
-      "kosmos-jord-vulkan"
+      "kosmos-jord-vulkan",
+      "verden-vaer"
     ],
     "lede": "Chapter 4 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: kosmos-jord-vulkan, verden-biosfaere, verden-hav.</p>",
+    "story": "<p>Revealed: kosmos-jord-vulkan, verden-biosfaere, verden-hav, verden-vaer.</p>",
     "flow": null
   },
   {
@@ -4976,7 +4977,6 @@ export const CH = [
       "homo-sovn-vaaken",
       "homo-okologi",
       "homo-evolusjon",
-      "verden-vaer",
       "kosmos-asteroider",
       "efc-efc-background-engine",
       "efc-lag-s",
@@ -4984,14 +4984,14 @@ export const CH = [
       "efc-lag-c0"
     ],
     "lede": "Chapter 8 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-efc-background-engine, efc-jordskjelv-engine, efc-l1, efc-l2, efc-l3, efc-lag-c0, efc-lag-d, efc-lag-s, efc-solar-flare-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
+    "story": "<p>Revealed: efc-efc-background-engine, efc-jordskjelv-engine, efc-l1, efc-l2, efc-l3, efc-lag-c0, efc-lag-d, efc-lag-s, efc-solar-flare-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator.</p>",
     "flow": null
   },
   {
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 79 relations.",
+    "lede": "Everything at once \u2014 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
