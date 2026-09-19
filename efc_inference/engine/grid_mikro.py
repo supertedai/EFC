@@ -180,8 +180,7 @@ class GridMikroEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "ingen",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, "
-                                    "not by the field",
+                "sosial_mekanisme": "Two of our own DOIs (31942821/31942800) are the only carrier; scenario B+ is the framework's hypothesis and L-031 stands open — nobody outside the project would defend it.",
                 "konsensus_er_ikke_sannhet": True,
             },
             "maale_paradigme": {

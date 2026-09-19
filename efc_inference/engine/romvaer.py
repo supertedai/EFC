@@ -112,7 +112,7 @@ class RomvaerEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The Kp scale and the storm classification are carried by NOAA/SWPC; the linear charging form is our idealization, and correlation models are the space-weather field's own weak link — the error is as much theirs as ours.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

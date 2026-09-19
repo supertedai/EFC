@@ -26,6 +26,13 @@ import importlib.util
 import json
 import pathlib
 import subprocess
+import sys
+
+# The interpreter. The generator runs as a subprocess, so it must be the
+# one RUNNING this test. Measured 2026-09-18: these calls hardcoded a venv
+# path that exists only on the Hermes host — in CI (ubuntu-latest) they
+# died with FileNotFoundError.
+PYTHON = sys.executable
 
 ROT = pathlib.Path(__file__).resolve().parents[1]
 GEN = ROT / "scripts" / "maintenance" / "efc_atlas_generator.py"
@@ -57,7 +64,7 @@ def _les_konstant(navn: str):
 def _bygg_og_les():
     """Bygg atlaset fra banken, og les den RENDERte nodelista."""
     r = subprocess.run(
-        ["/opt/venvs/t_123ed6d9/bin/python", str(GEN)],
+        [PYTHON, str(GEN)],
         capture_output=True, text=True, cwd=ROT, timeout=180)
     assert r.returncode == 0, r.stderr[-600:]
     return _les_konstant("NODES"), DATA.read_text(encoding="utf-8")
@@ -377,7 +384,7 @@ def test_motorordet_betyr_bare_en_ting_paa_hver_flate():
     MOTORFILER og ENGINE NODES.
     """
     import subprocess as sp
-    r = sp.run(["/opt/venvs/t_123ed6d9/bin/python",
+    r = sp.run([PYTHON,
                 str(ROT / "scripts" / "atlas_navigasjon.py"), ".", "--ref",
                 "origin/main"], capture_output=True, text=True, cwd=ROT,
                timeout=120)

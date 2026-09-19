@@ -156,7 +156,7 @@ class SolarFlareEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The GOES scale and the storm watch are carried by NOAA/SWPC, who would lose from a wrong warning; our buffer model is idealized and has no carrier in solar physics — only we have something to defend.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

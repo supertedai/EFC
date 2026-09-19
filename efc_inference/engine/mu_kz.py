@@ -194,7 +194,7 @@ class MuKZEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The equations come from our own action paper; the module is OUR port of them, and because the background is INPUT rather than derived, no external reader exists who would discover that the ansatz is wrong.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

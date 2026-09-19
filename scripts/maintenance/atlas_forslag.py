@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Foreslaa plassering av nye innsikter uten aa opprette atlas-noder.
+"""Propose a placement for new insights without creating atlas nodes.
 
-Lytteren er bevisst en terskel rundt atlaset: den leser koeen eller nye
-innsikter, bruker den eksisterende ``plasser()``-leseren, og returnerer
-forslag som mennesket/Opus kan godkjenne. Ingen skrivebane peker til
+The listener is deliberately a threshold around the atlas: it reads the queue
+or new insights, uses the existing ``plasser()`` reader, and returns proposals
+a human/Opus can approve. No write path points at
 ``schema/regime_nodes.jsonld``.
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ VURDERINGSORD = (
 
 
 def les_koe(sti: str | Path) -> list[str]:
-    """Les tekstfelt fra JSONL-koeen; manglende koe er en tom koe."""
+    """Read the text field from the JSONL queue; a missing queue is empty."""
     fil = Path(sti)
     if not fil.exists():
         return []
@@ -39,7 +39,7 @@ def les_koe(sti: str | Path) -> list[str]:
         try:
             record = json.loads(linje)
         except json.JSONDecodeError as feil:
-            raise ValueError(f"ugyldig JSONL paa linje {nummer} i {fil}: {feil}") from feil
+            raise ValueError(f"invalid JSONL on line {nummer} in {fil}: {feil}") from feil
         tekst = record.get("tekst") if isinstance(record, dict) else record
         if isinstance(tekst, str) and tekst.strip():
             innsikter.append(tekst)
@@ -52,12 +52,12 @@ def _er_vurdering(tekst: str) -> bool:
 
 
 def _domener(plassering: dict[str, Any], atlas: dict[str, Any]) -> list[str]:
-    """Hent bare reelle domeneforslag, aldri plasser() sin visningsfallback."""
+    """Return real domain proposals only, never plasser()'s display fallback."""
     resultat: list[str] = []
     for forslag in plassering.get("forslag", []):
         domene = forslag.get("domene")
         if domene and domene != "(avledet)" and domene not in resultat:
-            if forslag.get("noder") or "alfabetisk" not in forslag.get("kobling", ""):
+            if forslag.get("noder") or "alphabetical" not in forslag.get("kobling", ""):
                 resultat.append(domene)
     noder = {n.get("id"): n for n in atlas.get("noder", [])}
     for node_id in plassering.get("naere_noder", []):
@@ -68,7 +68,7 @@ def _domener(plassering: dict[str, Any], atlas: dict[str, Any]) -> list[str]:
 
 
 def foreslaa(atlas: dict[str, Any], tekst: str) -> dict[str, Any]:
-    """Lag ett forslag og marker eksplisitt at ingen node ble opprettet."""
+    """Build one proposal and mark explicitly that no node was created."""
     plassering = plasser(atlas, tekst)
     if _er_vurdering(tekst):
         kategori = "ikke-node-verdig"
@@ -102,12 +102,12 @@ def foreslaa_alle(atlas: dict[str, Any], innsikter: Iterable[str]) -> dict[str, 
 
 
 def _argumenter() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Foreslaa atlas-plassering uten aa opprette noder.")
-    parser.add_argument("--tekst", action="append", help="ny innsikt; kan gjentas")
-    parser.add_argument("--alle", action="store_true", help="les alle fragmenter fra koeen")
-    parser.add_argument("--inntak-fil", default=str(STANDARD_KOE), help="JSONL-koe for --alle")
-    parser.add_argument("--repo", default=str(ROOT), help="EFC-repositoriet")
-    parser.add_argument("--ref", default="HEAD", help="git-ref atlaset skal leses fra")
+    parser = argparse.ArgumentParser(description="Propose an atlas placement without creating nodes.")
+    parser.add_argument("--tekst", action="append", help="new insight; can be repeated")
+    parser.add_argument("--alle", action="store_true", help="read all fragments from the queue")
+    parser.add_argument("--inntak-fil", default=str(STANDARD_KOE), help="JSONL queue for --alle")
+    parser.add_argument("--repo", default=str(ROOT), help="the EFC repository")
+    parser.add_argument("--ref", default="HEAD", help="git ref the atlas is read from")
     return parser.parse_args()
 
 
@@ -121,7 +121,7 @@ def main() -> int:
         if stdin:
             innsikter.append(stdin)
     if not innsikter:
-        raise SystemExit("oppgi --tekst, --alle eller tekst paa stdin")
+        raise SystemExit("provide --tekst, --alle or text on stdin")
     atlas = les_atlas(args.repo, ref=args.ref)
     print(json.dumps(foreslaa_alle(atlas, innsikter), ensure_ascii=False, indent=2))
     return 0

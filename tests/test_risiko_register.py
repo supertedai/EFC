@@ -1,9 +1,9 @@
-"""Tester for risikoregister-validatoren (t_882cfca, fase 1).
+"""Tests for the risk-register validator (t_882cfca, phase 1).
 
-Hver regel testes med ÉN mutasjon om gangen mot en gyldig post, slik at
-feiltypen som rapporteres kan leses: en validator som bare testes på en
-gyldig post er en validator som ikke er prøvd. Til slutt valideres det ekte
-registeret i treet, og append-only prøves mot et ekte (lite) git-repo.
+Every rule is tested with ONE mutation at a time against a valid entry, so the
+reported error KIND can be read: a validator that is only tested on a valid entry
+is a validator that has not been tried. Finally the real register in the tree is
+validated, and append-only is tried against a real (small) git repo.
 """
 from __future__ import annotations
 
@@ -227,28 +227,30 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
 
     En git-konfigurasjon utenfor prosessen kan bytte ut selve diffen:
     `diff.external` (eller GIT_EXTERNAL_DIFF) kjører en vilkårlig kommando i
-    stedet for git, og en textconv-driver kan gjøre innholdet tomt. Da ser
-    gaten ingen fjernede linjer — og et reelt linjebrudd på registeret ville
-    passert med exit 0. Målt 2026-09-18: begge kanalene gjorde nøyaktig det.
+    stedet for git, en textconv-driver kan gjøre innholdet tomt, og en
+    diff-driver med `binary = true` lar git svare «Binary files differ» uten
+    noen fjernede linjer. Da ser gaten ingen fjernede linjer — og et reelt
+    linjebrudd på registeret ville passert med exit 0. Målt 2026-09-18: alle
+    tre kanalene gjorde nøyaktig det.
 
-    Kanarifuglen er med vilje: den beviser FØRST at forgiftningen virker på et
-    rått `git diff`. Uten den kunne testen blitt grønn fordi kanalen ble
+    The canaries are deliberate: they prove FIRST that the poisoning works on a
+    raw `git diff`. Without them the test could go green because the channel was
     stengt et annet sted enn i gaten.
     """
     register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
     register.parent.mkdir(parents=True)
     register.write_text(json.dumps(GYLDIG, ensure_ascii=False) + "\n", encoding="utf-8")
     (tmp_path / ".gitattributes").write_text("*.jsonl diff=jsonl\n", encoding="utf-8")
-    forgiftet = tmp_path / "forgiftet-gitconfig"
-    forgiftet.write_text("[diff]\n\texternal = /bin/true\n"
-                         "[diff \"jsonl\"]\n\ttextconv = /bin/true\n", encoding="utf-8")
     base, miljo = _git_repo(tmp_path)
 
     # Lovbruddet: rest_risiko (utenfor lukkefeltene) skrives om — ingenting legges til.
     register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omkrevet"},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # Kanarifugl: med begge kanalene åpne er den RÅ diffen blind.
+    # --- Channel 1: diff.external (GIT_EXTERNAL_DIFF) + textconv. ---
+    forgiftet = tmp_path / "forgiftet-gitconfig"
+    forgiftet.write_text("[diff]\n\texternal = /bin/true\n"
+                         "[diff \"jsonl\"]\n\ttextconv = /bin/true\n", encoding="utf-8")
     kanar = {**miljo, "GIT_CONFIG_GLOBAL": str(forgiftet),
              "GIT_EXTERNAL_DIFF": "/bin/true"}
     raa = subprocess.run(["git", "diff", "-U0", base, "--",
@@ -258,9 +260,30 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
                 if ln.startswith("-") and not ln.startswith("---")], \
         "kanarifuglen er ikke blind — da måler denne prøven ingenting"
 
-    # Gaten skal se bruddet selv om omgivelsen rundt den gjør det motsatte.
     monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(forgiftet))
     monkeypatch.setenv("GIT_EXTERNAL_DIFF", "/bin/true")
+    feil = vr.append_only(base, tmp_path)
+    assert [f["type"] for f in feil] == ["not_append_only"], feil
+
+    # --- Channel 2: a diff driver with binary = true. ---
+    # `.gitattributes` in the tree points `*.jsonl` at the driver `jsonl`;
+    # with `binary = true` git answers "Binary files differ" instead
+    # for å vise fjernede linjer. --no-ext-diff og --no-textconv stenger ikke
+    # dette — bare --text gjør det (målt: git 2.53.0).
+    binaer = tmp_path / "binaer-gitconfig"
+    binaer.write_text("[diff \"jsonl\"]\n\tbinary = true\n", encoding="utf-8")
+    binaer_kanar = {k: v for k, v in miljo.items() if k != "GIT_EXTERNAL_DIFF"}
+    binaer_kanar["GIT_CONFIG_GLOBAL"] = str(binaer)
+    raa2 = subprocess.run(["git", "diff", "-U0", "--no-ext-diff", "--no-textconv",
+                           base, "--", "governance/risiko/risiko-register.jsonl"],
+                          cwd=tmp_path, env=binaer_kanar, capture_output=True,
+                          text=True, check=True)
+    assert not [ln for ln in raa2.stdout.splitlines()
+                if ln.startswith("-") and not ln.startswith("---")], \
+        "binary-kanarifuglen er ikke blind — da måler denne prøven ingenting"
+
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(binaer))
+    monkeypatch.delenv("GIT_EXTERNAL_DIFF", raising=False)
     feil = vr.append_only(base, tmp_path)
     assert [f["type"] for f in feil] == ["not_append_only"], feil
 

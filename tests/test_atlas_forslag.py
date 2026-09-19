@@ -52,12 +52,12 @@ def test_vurdering_foreslaas_til_hindsight() -> None:
 
 
 def test_listeneren_mutere_ikke_regime_nodes() -> None:
-    før = ATLAS.read_bytes()
+    before = ATLAS.read_bytes()
     svar = les_svar(kjør("--tekst", "volcanic ash in the stratosphere"))
-    etter = ATLAS.read_bytes()
+    after = ATLAS.read_bytes()
 
     assert svar["forslag"]
-    assert etter == før
+    assert after == before
 
 
 def test_alle_leser_koe_og_returnerer_liste(tmp_path: Path) -> None:

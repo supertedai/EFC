@@ -123,7 +123,7 @@ class OekonomiEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The Minsky tradition (one of several in economics) carries the regime-shift picture; the coupling to buffer and energy flow is OUR analogy — academic economists would not recognize the claim as theirs.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

@@ -126,7 +126,7 @@ class SamfunnEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "Kermack-McKendrick and infectious-disease epidemiology carry the R0 picture; our homogeneous SIR is a FORM model — epidemiologists would reject timing claims from it, and only the form is ours.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

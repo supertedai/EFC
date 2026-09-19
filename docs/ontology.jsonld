@@ -1467,7 +1467,7 @@
       "label": "buss_domene",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 100,
+      "usedAsProperty": 101,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -1477,7 +1477,7 @@
       "label": "buss_status",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 26,
+      "usedAsProperty": 25,
       "usedAsValue": 0,
       "inDocuments": 1
     },
@@ -2412,6 +2412,16 @@
       "inDocuments": 1
     },
     {
+      "@id": "efc:maalepavirkning",
+      "@type": "rdf:Property",
+      "label": "maalepavirkning",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
       "@id": "efc:meanChi2Reduced",
       "@type": "rdf:Property",
       "label": "meanChi2Reduced",
@@ -2597,7 +2607,7 @@
       "label": "note",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 322,
+      "usedAsProperty": 323,
       "usedAsValue": 0,
       "inDocuments": 2
     },
@@ -2627,7 +2637,7 @@
       "label": "object",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 92,
+      "usedAsProperty": 93,
       "usedAsValue": 0,
       "inDocuments": 2
     },
@@ -2867,7 +2877,7 @@
       "label": "predicate",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 92,
+      "usedAsProperty": 93,
       "usedAsValue": 0,
       "inDocuments": 2
     },
@@ -3095,6 +3105,16 @@
       "@id": "efc:revisedModel",
       "@type": "rdf:Property",
       "label": "revisedModel",
+      "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
+      "usedAsClass": 0,
+      "usedAsProperty": 1,
+      "usedAsValue": 0,
+      "inDocuments": 1
+    },
+    {
+      "@id": "efc:revisjon",
+      "@type": "rdf:Property",
+      "label": "revisjon",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
       "usedAsProperty": 1,
@@ -3337,7 +3357,7 @@
       "label": "subject",
       "isDefinedBy": "https://supertedai.github.io/EFC/ontology",
       "usedAsClass": 0,
-      "usedAsProperty": 92,
+      "usedAsProperty": 93,
       "usedAsValue": 0,
       "inDocuments": 2
     },

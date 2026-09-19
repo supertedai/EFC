@@ -1,6 +1,6 @@
 # Atlas index
 
-> 116 published nodes · 53 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other) · 7 without evidence · 21 open questions
+> 116 published nodes · 52 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other) · 7 without evidence · 21 open questions
 
 Each row is generated from the same bank as the atlas.
 
@@ -71,8 +71,8 @@ Each row is generated from the same bank as the atlas.
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **TA · kosmos.transienter_alerce** — optical transient events
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **DB · kosmos.kosmologi_desi_bao** — DESI BAO observations when the stream exists
-  perspective=consensus · engine=not specified · bus=the stream does not exist — waits for a… · S-axis=not measured · questions=1 · group=yes
+- **DB · kosmos.kosmologi_desi_bao** — DESI BAO observations (DR2, published) — static intake
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=1 · group=yes
 
 ## Bridges
 - **HA · verden.hav** — sea temperature
@@ -80,6 +80,8 @@ Each row is generated from the same bank as the atlas.
 - **BI · verden.biosfaere** — species counts (the plant kingdom)
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **VU · kosmos.jord.vulkan** — volcano state
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
+- **VV · verden.vaer** — temperature, wind, pressure, cloud cover and humidity
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 
 ## Structures
@@ -237,8 +239,6 @@ Each row is generated from the same bank as the atlas.
   perspective=academia · engine=okologi · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
 - **EV · homo.evolusjon** — rate of change in phenotype/species (morphological and molecular…
   perspective=academia · engine=evolusjon · bus=not specified · S-axis=regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity… · questions=0 · group=none (regime)
-- **VV · verden.vaer** — temperature, wind, pressure, cloud cover and humidity
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=none (other)
 - **KA · kosmos.asteroider** — impact probability and Palermo cumulative per object
   perspective=consensus · engine=orbital · bus=not specified · S-axis=not measured · questions=0 · group=none (engine)
 - **EE · efc.efc_background_engine** — H(z) and the background fields phi, phi_dot, rho_m, lambda_dot
@@ -299,7 +299,6 @@ Each row is generated from the same bank as the atlas.
 - homo.sovn_vaaken — homo.sovn_vaaken
 - homo.okologi — homo.okologi
 - homo.evolusjon — homo.evolusjon
-- verden.vaer — verden.vaer
 - kosmos.asteroider — kosmos.asteroider
 - efc.efc_background_engine — efc.efc_background_engine
 - efc.lag_s — efc.lag_s

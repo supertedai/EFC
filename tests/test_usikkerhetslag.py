@@ -1,25 +1,30 @@
-"""Usikkerhetslaget (ADR-086 §3.1): valgfritt, lukket, additivt — alltid med kilde.
+"""The uncertainty layer (ADR-086 §3.1): optional, closed, additive — always with a source.
 
-Kort `t_af77c6da` (K4). Diagnosen som begrunner feltet er MÅLT: hodetallene
-står med feilgrense i sine egne kilder — `k = 0.415 ± 0.029` står i
-`docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5` — mens atlaset
-hadde 0 strukturerte usikkerhetsfelt. Atlaset kastet altså informasjon kilden
-hadde. Ingen skal skaffe NY usikkerhet; feltet skal bare slutte å miste den.
+Card `t_af77c6da` (K4). The diagnosis that justifies the field is MEASURED: the
+headline numbers stand with an error bound in their own sources —
+`k = 0.415 ± 0.029` stands in
+`docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5` — while the atlas
+had 0 structured uncertainty fields. The atlas thus threw away information the
+source had. Nothing is meant to procure NEW uncertainty; the field is only meant
+to stop losing it.
 
-To regler holdes av DENNE filen og ikke av skjemaet, med vilje (ADR-086 §3.4:
-C10-gaten melder underskjema med `properties` som åpent, så obligatoriskhet må
-holdes av tester inntil gaten endres med menneskeord — `t_2e60afa6`):
+Two rules are held by THIS file and not by the schema, deliberately (ADR-086
+§3.4: the C10 gate reports a subschema with `properties` as open, so
+requiredness must be held by tests until the gate is changed by human word —
+`t_2e60afa6`):
 
-1. **En verdi har alltid en kilde.** Hver post navngir fil OG linje, og linjen
-   leses tilbake: verdien skal stå der, feilgrensen skal være den kilden
-   oppgir, og sitatet skal finnes. En gjetning kan derfor ikke skrives inn —
-   den finnes ikke i kilden. `null` er et svar; 0 og gjetting er det ikke.
-2. **β = 0.16 står uten feilgrense i sitt eget paper** og skal stå som HULL.
-   «Kilden oppgir den ikke» er svaret, ikke en mangel — og hullet skal ikke
-   kunne fylles av en senere edit uten at denne filen blir rød.
+1. **A value always has a source.** Every entry names a file AND a line, and the
+   line is read back: the value must stand there, the error bound must be the one
+   the source states, and the quote must be found. A guess can therefore not be
+   written in — it does not exist in the source. `null` is an answer; 0 and a
+   guess are not.
+2. **β = 0.16 stands without an error bound in its own paper** and must stand as
+   a HOLE. «The source does not state it» is the answer, not a defect — and the
+   hole must not be fillable by a later edit without this file going red.
 
-Testene muterer banken i minnet og krever at sjekkeren FELLER. En test som
-bare ser at ordet «kilde» finnes i en fil, ser formen og ikke meningen.
+The tests mutate the bank in memory and require the checker to FAIL. A test that
+only sees that the word «source» exists in a file sees the shape and not the
+meaning.
 """
 from __future__ import annotations
 
@@ -42,9 +47,9 @@ import efc_schema_check  # noqa: E402
 SKJEMA_STI = ROT / "schema" / "regime_node.schema.json"
 BANK_STI = ROT / "schema" / "regime_nodes.jsonld"
 
-# Noden og posten de målte tilfellene peker på. De står her fordi testene
-# under navngir dem i feilmeldingen — et tall uten sitt fil:linje er en
-# påstand uten proveniens.
+# The node and the entry the measured cases point at. They stand here because
+# the tests below name them in the failure message — a number without its
+# file:line is a claim without provenance.
 NODE_MED_GRENSE = "obs.rar"
 NODE_MED_HULL = "obs.bao"
 
@@ -54,7 +59,7 @@ except ImportError:  # pragma: no cover
     jsonschema = None
 
 requires_jsonschema = pytest.mark.skipif(
-    jsonschema is None, reason="jsonschema ikke installert")
+    jsonschema is None, reason="jsonschema not installed")
 
 
 def _skjema() -> dict:
@@ -70,7 +75,7 @@ def _node(bank: dict, node_id: str) -> dict:
 
 
 def _poster(bank: dict):
-    """(node, post) for hver post i usikkerhetslaget."""
+    """(node, entry) for every entry in the uncertainty layer."""
     for n in bank["nodes"]:
         for post in ((n.get("usikkerhet") or {}).get("poster") or []):
             yield n, post
@@ -81,7 +86,7 @@ def _linje(fil: str, nr: int) -> str:
 
 
 def _grenser(linje: str) -> list[str]:
-    """Tallene som står rett etter et ± på linjen — kildens egne feilgrenser."""
+    """The numbers that stand right after a ± on the line — the source's own error bounds."""
     return re.findall(r"±\s*([0-9]+(?:\.[0-9]+)?)", linje)
 
 
@@ -93,37 +98,37 @@ def _dok(bank: dict, noder: list) -> dict:
 
 
 def _mutert(bank: dict, node_id: str, endre) -> dict:
-    """Banken med ÉN post endret — mutasjonen testen feller."""
+    """The bank with ONE entry changed — the mutation the test kills."""
     ny = copy.deepcopy(bank)
     endre(_node(ny, node_id)["usikkerhet"]["poster"][0])
     return ny
 
 
 # ---------------------------------------------------------------------------
-# Feltet: valgfritt, lukket, additivt
+# The field: optional, closed, additive
 # ---------------------------------------------------------------------------
 
 def test_feltet_er_valgfritt_og_lukket():
-    """Krav 1 og 2: deklarert, lukket — og ALDRI i `required`."""
+    """Requirement 1 and 2: declared, closed — and NEVER in `required`."""
     s = _skjema()
     rn = s["$defs"]["RegimeNode"]
-    assert "usikkerhet" in rn["properties"], "feltet er ikke deklarert i skjemaet"
+    assert "usikkerhet" in rn["properties"], "the field is not declared in the schema"
     assert "usikkerhet" not in rn["required"], (
-        "feltet staar i RegimeNode.required — da er det ikke additivt, og "
-        "ingen eksisterende node kan vaere uendret")
+        "the field stands in RegimeNode.required — then it is not additive, and "
+        "no existing node can be unchanged")
     felt = rn["properties"]["usikkerhet"]
     assert felt.get("type") == "object"
     assert felt.get("additionalProperties") is False, (
-        "feltets eget objekt er ikke lukket — C10-gaten melder det som aapent")
+        "the field's own object is not closed — the C10 gate reports it as open")
 
-    # C10-gatens eget svar, ikke min lesning av skjemaet.
+    # The C10 gate's own answer, not my reading of the schema.
     aapne = efc_schema_check.open_schemas(s)
-    assert aapne == [], f"skjemaet har aapne underskjemaer: {aapne[:3]}"
+    assert aapne == [], f"the schema has open subschemas: {aapne[:3]}"
 
 
 @requires_jsonschema
 def test_ny_node_uten_feltet_validerer_og_plasser_krever_det_ikke():
-    """Krav 2: additivt. En node UTEN feltet skal fortsatt vaere gyldig."""
+    """Requirement 2: additive. A node WITHOUT the field must still be valid."""
     s, bank = _skjema(), _bank()
     node = copy.deepcopy(_node(bank, NODE_MED_GRENSE))
     node.pop("usikkerhet", None)
@@ -134,13 +139,13 @@ def test_ny_node_uten_feltet_validerer_og_plasser_krever_det_ikke():
                    "en fiskestim i Nordsjoen")
     felt = [k["felt"] for k in krav["krav"]]
     assert "usikkerhet" not in felt, (
-        "plasser krever det nye feltet av en ny node — obligatoriskhet skal "
-        "holdes av tester, ikke legges paa nye noder (t_2e60afa6)")
+        "plasser demands the new field of a new node — requiredness must be "
+        "held by tests, not put on new nodes (t_2e60afa6)")
 
 
 @requires_jsonschema
 def test_skjemaet_avviser_post_uten_kilde():
-    """Krav 3 i skjemaet: en post uten kilde er ikke en post."""
+    """Requirement 3 in the schema: an entry without a source is not an entry."""
     s, bank = _skjema(), _bank()
     node = copy.deepcopy(_node(bank, NODE_MED_GRENSE))
     node["usikkerhet"]["poster"][0].pop("kilde")
@@ -149,100 +154,101 @@ def test_skjemaet_avviser_post_uten_kilde():
 
 
 # ---------------------------------------------------------------------------
-# Kilden: fil, linje — lest tilbake
+# The source: file, line — read back
 # ---------------------------------------------------------------------------
 
 def test_hver_post_har_kilde_og_linjen_leses_tilbake():
-    """Krav 3, maalt mot banken: hver post staar i sin egen kildefil."""
+    """Requirement 3, measured against the bank: every entry stands in its own source file."""
     bank = _bank()
     problemer = sjekk_usikkerhet(bank, ROT)
     assert problemer == [], problemer
 
     poster = list(_poster(bank))
     assert poster, (
-        f"ingen node baerer usikkerhetslaget — feltet finnes, men er tomt, og "
-        f"svaret «0» ser da ut som kunnskap")
+        f"no node carries the uncertainty layer — the field exists, but is "
+        f"empty, and the answer «0» then looks like knowledge")
 
 
 def test_minst_en_node_baerer_feilgrense_fra_sin_egen_kilde():
-    """Akseptansen: et tall MED feilgrense, lest fra sin egen kildefil."""
+    """The acceptance: a number WITH an error bound, read from its own source file."""
     bank = _bank()
     med_grense = [(n["id"], p) for n, p in _poster(bank)
                   if isinstance(p.get("feilgrense"), (int, float))]
     assert med_grense, (
-        "ingen node baerer et tall med feilgrense — da er laget bare nuller")
+        "no node carries a number with an error bound — then the layer is only zeros")
 
     node_id, post = med_grense[0]
     kilde = post["kilde"]
     linje = _linje(kilde["fil"], kilde["linje"])
     assert kilde["ordrett"] in linje, (
-        f"{node_id}: sitatet staar ikke paa "
+        f"{node_id}: the quote does not stand at "
         f"{kilde['fil']}:{kilde['linje']}")
     grenser = [float(g) for g in _grenser(linje)]
     assert any(post["feilgrense"] == g for g in grenser), (
-        f"{node_id}: feilgrensen {post['feilgrense']} er ikke den "
-        f"{kilde['fil']}:{kilde['linje']} oppgir ({grenser})")
+        f"{node_id}: the error bound {post['feilgrense']} is not the one "
+        f"{kilde['fil']}:{kilde['linje']} states ({grenser})")
 
 
 def test_beta_staar_som_hull_og_ikke_som_gjetning():
-    """Krav 4: β = 0.16 har ingen feilgrense i sin egen kilde. Det er svaret."""
+    """Requirement 4: β = 0.16 has no error bound in its own source. That is the answer."""
     bank = _bank()
     node = _node(bank, NODE_MED_HULL)
     post = next((p for p in (node.get("usikkerhet") or {}).get("poster") or []
                  if p.get("storrelse") in ("β", "beta")), None)
-    assert post is not None, f"{NODE_MED_HULL} baerer ikke β-posten"
+    assert post is not None, f"{NODE_MED_HULL} does not carry the β entry"
     assert post["verdi"] == 0.16
-    assert post["feilgrense"] is None, "β er fylt med en feilgrense — det er en gjetning"
-    assert post["feilgrense"] != 0, "0 er ikke «ikke oppgitt»"
+    assert post["feilgrense"] is None, "β is filled with an error bound — that is a guess"
+    assert post["feilgrense"] != 0, "0 is not «not stated»"
 
     linje = _linje(post["kilde"]["fil"], post["kilde"]["linje"])
     assert "±" not in linje, (
-        f"kilden {post['kilde']['fil']}:{post['kilde']['linje']} oppgir en "
-        f"feilgrense — da er ikke dette et hull")
-    # «Ikke oppgitt» er et SVAR: sjekkeren skal godta posten, ikke melde den.
+        f"the source {post['kilde']['fil']}:{post['kilde']['linje']} states an "
+        f"error bound — then this is not a hole")
+    # «Not stated» is an ANSWER: the checker must accept the entry, not report it.
     assert sjekk_usikkerhet(bank, ROT) == []
 
 
 def test_sjekkeren_svarer_ikke_alt_vel_paa_et_atlas_uten_noder():
-    """En sjekk som ikke finner nodene, maa REISE — ikke svare «ingen problemer».
+    """A check that does not find the nodes must RAISE — not answer «no problems».
 
-    Maalt under byggingen: sjekkeren leste `noder` mens raafila har `nodes`, og
-    svarte `[]` paa en bank der en post nettopp hadde mistet kilden sin. Et tomt
-    svar som ser ut som «alt vel» er den samme feilklassen som feltet selv skal
-    hindre — derfor pinnes den her.
+    Measured during the build: the checker read `noder` while the raw file has
+    `nodes`, and answered `[]` on a bank where an entry had just lost its own
+    source. An empty answer that looks like «all well» is the same error class
+    the field itself is meant to prevent — therefore it is pinned here.
     """
     with pytest.raises(AtlasLesingFeil):
         sjekk_usikkerhet({"usikkerhet": {}}, ROT)
 
 
 def test_en_kildefil_i_en_node_gjoer_ikke_begrepsoppslaget_blindere():
-    """Feltet skal ikke koste atlaset et svar det hadde.
+    """The field must not cost the atlas an answer it had.
 
-    Maalt 2026-09-18: `kilde.fil` til BAO-papiret skriver
-    «Energy-Flow-Cosmology-…» inn i obs.bao, og atlasets eget oppslag paa
-    «Energy-Flow Cosmology» svarte da med en node i stedet for med det
-    REGISTRERTE begrepet — navneromstreffet ble bare lagt til naar ingen node
-    traff. Registeret er atlasets svar paa «eier jeg dette begrepet?», og det
-    svaret skal ikke avhenge av hvilke noder som tilfeldigvis siterer en fil.
+    Measured 2026-09-18: the `kilde.fil` of the BAO paper writes
+    «Energy-Flow-Cosmology-…» into obs.bao, and the atlas's own lookup on
+    «Energy-Flow Cosmology» then answered with a node instead of with the
+    REGISTERED concept — the namespace hit was only added when no node matched.
+    The registry is the atlas's answer to «do I own this concept?», and that
+    answer must not depend on which nodes happen to cite a file.
 
-    Konsekvensen er maalt, ikke gjettet: foer fantes `efc:EFC` i svaret, etter
-    var det borte. Begge skal staa der — registeret foerst, noden etter.
+    The consequence is measured, not guessed: before, `efc:EFC` was in the
+    answer, after it was gone. Both must stand there — the registry first, the
+    node after.
     """
     svar = finn(ROT, "Energy-Flow Cosmology", ref="HEAD")
     assert not svar["hull"]
     typer = [t["trefftype"] for t in svar["treff"]]
     assert "navnerom" in typer, (
-        f"det registrerte begrepet er borte fra svaret: {typer}")
+        f"the registered concept is gone from the answer: {typer}")
     assert typer[0] == "navnerom", (
-        f"et registrert begrep skal svare som begrep, ikke som loest ord: {typer}")
+        f"a registered concept must answer as a concept, not as a loose word: {typer}")
     assert svar["treff"][0]["id"].startswith("efc:")
     assert "ord" in typer, (
-        "node-treffet forsvant — begge svar skal staa, ikke byttes om")
+        "the node hit disappeared — both answers must stand, not be swapped")
     assert "obs.bao" in [t["id"] for t in svar["treff"]]
 
 
 # ---------------------------------------------------------------------------
-# Mutasjonene: en gjetning skal ikke kunne skrives inn
+# The mutations: a guess must not be writable in
 # ---------------------------------------------------------------------------
 
 def _fjern_kilde(post: dict) -> None:
@@ -278,17 +284,15 @@ def _verdi_er_endret(post: dict) -> None:
 
 
 MUTASJONER = [
-    ("usikkerhet uten kilde", _fjern_kilde, "missing kilde"),
-    ("feilgrense = 0 der kilden sier 0.029", _grense_er_null,
+    ("uncertainty without a source", _fjern_kilde, "missing kilde"),
+    ("error bound = 0 where the source says 0.029", _grense_er_null,
      "not the one the source states"),
-    ("feilgrense gjetter 0.05", _grense_er_gjettet,
-     "not the one the source states"),
-    ("feilgrense fjernet der kilden oppgir en", _grense_er_fjernet, "STATES"),
-    ("sitat som ikke staar i kilden", _sitat_er_oppdiktet, "ordrett"),
-    ("kildefil som ikke finnes", _fil_finnes_ikke,
-     "is not tracked in the repo"),
-    ("linjenummer utenfor filen", _linje_finnes_ikke, "lines"),
-    ("verdi som ikke staar i kilden", _verdi_er_endret, "verdi"),
+    ("error bound guesses 0.05", _grense_er_gjettet, "not the one the source states"),
+    ("error bound removed where the source states one", _grense_er_fjernet, "STATES"),
+    ("quote that does not stand in the source", _sitat_er_oppdiktet, "ordrett"),
+    ("source file that does not exist", _fil_finnes_ikke, "is not tracked"),
+    ("line number outside the file", _linje_finnes_ikke, "lines"),
+    ("value that does not stand in the source", _verdi_er_endret, "verdi"),
 ]
 
 
@@ -297,17 +301,17 @@ MUTASJONER = [
 def test_gjetning_felles(navn, endre, ord):
     bank = _bank()
     problemer = sjekk_usikkerhet(_mutert(bank, NODE_MED_GRENSE, endre), ROT)
-    assert problemer, f"«{navn}» slapp gjennom sjekkeren"
+    assert problemer, f"«{navn}» slipped through the checker"
     assert any(ord in p for p in problemer), (
-        f"«{navn}» ble felt, men ikke med grunn: {problemer}")
+        f"«{navn}» was killed, but not with a reason: {problemer}")
 
 
 def test_hullet_kan_ikke_fylles_uten_at_testen_blir_roed():
-    """Krav 4 som REGRESJON: en gjetning paa β skal felle."""
+    """Requirement 4 as a REGRESSION: a guess on β must kill."""
     bank = _bank()
 
     def fyll(post: dict) -> None:
         post["feilgrense"] = 0.02
 
     problemer = sjekk_usikkerhet(_mutert(bank, NODE_MED_HULL, fyll), ROT)
-    assert problemer, "β-hullet ble fylt med en gjetning uten at noe felt det"
+    assert problemer, "the β hole was filled with a guess without anything killing it"

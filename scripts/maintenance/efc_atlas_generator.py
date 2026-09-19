@@ -242,7 +242,6 @@ PLASSERING = {
     "optikk.dispersjon": ("ghost", 8),
     "regnbue": ("ghost", 8),
     "regnbue.observator": ("ghost", 8),
-    "verden.vaer": ("ghost", 8),
     "efc.l0": ("roots", 1), "efc.selv.paradigme_tid": ("epist", 7),
     "efc.grid_higgs": ("grid", 2), "efc.gr_qft_bro": ("grid", 2),
     "efc.grid_mikrofysikk": ("grid", 2), "efc.grid_mikro_engine": ("grid", 2),
@@ -255,6 +254,12 @@ PLASSERING = {
     "efc.tidevann_engine": ("kosmos", 3), "efc.klima_engine": ("kosmos", 3),
     "verden.hav": ("broer", 4), "verden.biosfaere": ("broer", 4),
     "kosmos.jord.vulkan": ("broer", 4),
+    # verden.vaer is the same shape as the three above: an external bridge
+    # feeds an engine (vaer_nats_bro -> efc.water_phase_engine) and the
+    # node is the instrument that reads the stream. It was placed as ghost
+    # before the bridge existed; #484 built the node and measured the loop,
+    # so the placement fact changed with it.
+    "verden.vaer": ("broer", 4),
     "kjemi.periodesystemet": ("struktur", 5),
     "efc.water_phase_engine": ("struktur", 5),
     "efc.victron_cccv_engine": ("struktur", 5),

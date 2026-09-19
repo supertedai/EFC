@@ -12,7 +12,6 @@ import scorer
 
 KEY_PATH = HERE / "key.json"
 BANK_PATH = Path(__file__).parents[3] / "schema" / "regime_nodes.jsonld"
-PYTHON = "/opt/venvs/t_123ed6d9/bin/python"
 # Pinned to the CORRECTED key (67938617). The previous pinning pointed at
 # d3fd75b6, which contained four counting errors found by two independent tracks.
 # The purpose is the same: a silent change of the key must fail here.

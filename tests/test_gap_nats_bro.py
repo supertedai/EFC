@@ -10,7 +10,7 @@ import pathlib
 import pytest
 
 from efc_inference.bridge.gap_nats_bro import (
-    analyser_hav, analyser_planter, analyser_vulkan)
+    analyser_desi_bao, analyser_hav, analyser_planter, analyser_vulkan)
 
 
 def test_analyser_vulkan_teller_aktive():
@@ -79,3 +79,33 @@ def test_legit_parser_gyldig_nats_url():
     finally:
         os.unlink(navn)
         gap_nats_bro.LEGITIMASJON = gammel
+
+
+# --- desi-bao: background + growth from the same survey --------------------
+#
+# DESI DR2 is published; alpha (background) is known, fsigma8 (growth) awaits
+# the full-shape release. The bridge keeps the two honest: alpha is read,
+# fsigma8 is reported as "awaiting" until it appears in the message.
+
+def test_analyser_desi_bao_reads_alpha_and_awaits_fsigma8():
+    m = {"alpha": -0.119, "alpha_usikkerhet": 0.227,
+         "z_eff": 0.51, "kilder": ["DESI DR2 BAO"]}
+    r = analyser_desi_bao(m)
+    assert r["lesbar"] is True
+    assert r["alpha"] == -0.119
+    assert r["alpha_usikkerhet"] == 0.227
+    assert r["z_eff"] == 0.51
+    assert "awaiting" in r["fsigma8"]
+
+
+def test_analyser_desi_bao_without_alpha_is_not_readable():
+    r = analyser_desi_bao({"fsigma8": 0.43})
+    assert r["lesbar"] is False
+
+
+def test_analyser_desi_bao_takes_fsigma8_when_present():
+    m = {"alpha": -0.119, "alpha_usikkerhet": 0.227,
+         "z_eff": 0.7, "fsigma8": 0.43, "fsigma8_usikkerhet": 0.04}
+    r = analyser_desi_bao(m)
+    assert r["lesbar"] is True
+    assert r["fsigma8"] == 0.43

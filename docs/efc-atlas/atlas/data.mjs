@@ -5,15 +5,15 @@ export const META = {
   artifactUrl: '',
   sourcePath: 'schema/regime_nodes.jsonld',
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
-  stats: [{ k: 'Nodes', v: '116 · 53 without a group yet' },
-          { k: 'S-axis', v: '39 of 116 measured · 53 without a group yet' },
+  stats: [{ k: 'Nodes', v: '116 · 52 without a group yet' },
+          { k: 'S-axis', v: '39 of 116 measured · 52 without a group yet' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 53 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other).`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).`,
   platformGives: 'NATS bus (read by measurement code, scheduled by nothing — see Known holes), engines, review fan-out, the EFC bank.',
   busHull: [
   "**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days \u2014 a stale measurement that still answers, which is the failure mode the atlas exists to name.",
-  "**Bus routes in the node bank.** 22 of the published nodes name a bus route; the other 94 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen."
+  "**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen."
 ],
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -97,7 +97,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The ice Ih boundaries are the IAPWS standard's consensus, carried by thermodynamics and the refrigeration and climate\u2026"
       ]
     ],
     "cond": [
@@ -138,7 +138,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "Liquid water is metrology's and oceanography's most used reference (the ocean's heat transport, the Gulf Stream); the\u2026"
       ]
     ],
     "cond": [
@@ -179,7 +179,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The phase boundary is IAPWS consensus; water vapour's role as a greenhouse gas is carried and negotiated by climate\u2026"
       ]
     ],
     "cond": [
@@ -220,7 +220,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "Supercritical water is used and measured by process and power industry (oxidation, power plants); the users care about\u2026"
       ]
     ],
     "cond": [
@@ -261,7 +261,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The triple point is DEFINED, not measured \u2014 the carrier is metrology (IAPWS-95/ITS-90) and every thermometer is\u2026"
       ]
     ],
     "cond": [
@@ -302,7 +302,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "Sunlight as electromagnetic radiation is textbook consensus, carried by classical electromagnetism; that the VISIBLE\u2026"
       ]
     ],
     "cond": [
@@ -343,7 +343,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The drop shape and the refraction are carried by fluid mechanics and optics (the Descartes/Newton tradition) and are\u2026"
       ]
     ],
     "cond": [
@@ -384,7 +384,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The dispersion n(\u03bb) is measured (NIST) and carried by classical optics; the carrier delivers numbers and has no interest\u2026"
       ]
     ],
     "cond": [
@@ -425,7 +425,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The rainbow has been explained since Descartes and is canonized in the textbooks (meteorology); it is a PATTERN, not an\u2026"
       ]
     ],
     "cond": [
@@ -466,7 +466,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "peer review, textbook canonisation, career incentives \u2014 academia tells what survives the assessment"
+        "The observer is carried by visual physiology and by the public who see the bow; that the bow exists as a pattern\u2026"
       ]
     ],
     "cond": [
@@ -507,7 +507,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The H2O phase boundaries are the IAPWS standard's institutional consensus; the EFC engine is OUR recomputation of them\u2026"
       ]
     ],
     "cond": []
@@ -546,7 +546,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Pre-inflation and the quantum seeds are cosmology's established frame, carried by the inflation literature; the\u2026"
       ]
     ],
     "cond": [
@@ -587,7 +587,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The CMB and BAO are carried by the whole cosmology field (Planck, DESI); that EFC looks like LCDM precisely HERE is our\u2026"
       ]
     ],
     "cond": [
@@ -628,7 +628,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Structure growth and the S8 tension are negotiated openly by the survey collaborations; that L2 is where EFC departs\u2026"
       ]
     ],
     "cond": [
@@ -669,7 +669,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The far-future state is measured by no one and has no observer group; the carrier is the framework's own mathematics\u2026"
       ]
     ],
     "cond": [
@@ -1610,7 +1610,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The rotation curves are the observers' measurement; the explanation \u00abflat curve WITHOUT dark matter\u00bb is OURS \u2014 the\u2026"
       ]
     ],
     "cond": []
@@ -1649,7 +1649,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "H(z) is measured by the distance-ladder and CMB collaborations; the deformation E\u00b2(a) with alpha_cosmo is OUR law form\u2026"
       ]
     ],
     "cond": []
@@ -1688,7 +1688,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The f\u03c38 numbers are carried by the survey collaborations (BOSS/DESI); the growth ODE with the EFC-deformed H is ours\u2026"
       ]
     ],
     "cond": []
@@ -1727,7 +1727,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Lensing is measured by Planck/ACT/SPT and carried by them; this node is our CONTRACT (a stub) \u2014 it claims no\u2026"
       ]
     ],
     "cond": []
@@ -1766,7 +1766,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The halo mass function is calibrated in the simulation tradition and carried by it; only OUR contract stands here \u2014 no\u2026"
       ]
     ],
     "cond": []
@@ -1805,7 +1805,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Homo Fluxus v1/v2 are OUR DOIs, and the placement \u00abthe human as the L3 carrier\u00bb is the framework's hypothesis; the\u2026"
       ]
     ],
     "cond": []
@@ -2117,7 +2117,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The GOES scale and the storm watch are carried by NOAA/SWPC, who would lose from a wrong warning; our buffer model is\u2026"
       ]
     ],
     "cond": []
@@ -2156,7 +2156,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Seismology carries the physics (Reid, Burridge-Knopoff) and has learned not to promise timing; our threshold model is\u2026"
       ]
     ],
     "cond": []
@@ -2351,7 +2351,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The equations come from our own action paper; the module is OUR port of them, and because the background is INPUT rather\u2026"
       ]
     ],
     "cond": []
@@ -2390,7 +2390,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The Kp scale and the storm classification are carried by NOAA/SWPC; the linear charging form is our idealization, and\u2026"
       ]
     ],
     "cond": []
@@ -2429,7 +2429,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The Minsky tradition (one of several in economics) carries the regime-shift picture; the coupling to buffer and energy\u2026"
       ]
     ],
     "cond": []
@@ -2468,7 +2468,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Kepler, vis-viva and the Hill sphere are textbook consensus carried by celestial mechanics; reading \u00abbound = holding\u2026"
       ]
     ],
     "cond": []
@@ -2507,7 +2507,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The Budyko-Sellers tradition and the climate field carry the energy balance; our 0D model is IDEALIZED and says itself\u2026"
       ]
     ],
     "cond": []
@@ -2546,7 +2546,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "Kermack-McKendrick and infectious-disease epidemiology carry the R0 picture; our homogeneous SIR is a FORM model\u2026"
       ]
     ],
     "cond": []
@@ -2585,7 +2585,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The equilibrium tide and the Roche limit are textbook matter carried by oceanography; the charge/discharge reading of\u2026"
       ]
     ],
     "cond": []
@@ -2624,7 +2624,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field; the narrative is our own, and it is a strength to know it"
+        "The transient stream (ALeRCE/ZTF) is carried by the observatory community; the collapse branch and the threshold model\u2026"
       ]
     ],
     "cond": []
@@ -2663,7 +2663,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "Conservation in the energy accounts is physics, carried by the statistics; the coupling to society's buffers is OUR\u2026"
       ]
     ],
     "cond": []
@@ -2702,7 +2702,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "The Grid-Higgs frame is published by us (DOI 28559510) and has no group outside the project; that gravity, dark matter\u2026"
       ]
     ],
     "cond": [
@@ -2743,7 +2743,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "The bridge is our own published work (DOI 30402427); both fields it spans have established formalisms, so the bridge\u2026"
       ]
     ],
     "cond": [
@@ -2784,7 +2784,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "The double slit is quantum mechanics' most canonized experiment and is carried by the textbook tradition; reading it as\u2026"
       ]
     ],
     "cond": [
@@ -2825,7 +2825,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "The RAR is measured and carried by the galaxy observers; our gradient-coupled excitation model (DOI 31878760) is a\u2026"
       ]
     ],
     "cond": []
@@ -2864,7 +2864,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "Two of our own DOIs (31942821/31942800) are the only carrier; scenario B+ is the framework's hypothesis and L-031 stands\u2026"
       ]
     ],
     "cond": []
@@ -3073,14 +3073,14 @@ export const NODES = [
     "code": "VV",
     "name": "verden.vaer",
     "short": "vaer",
-    "group": "ghost",
+    "group": "broer",
     "gx": 3.9,
     "gy": 30.200000000000003,
     "w": 2,
     "d": 2,
     "h": 34,
     "kind": "box",
-    "ghost": true,
+    "ghost": false,
     "one": "temperature, wind, pressure, cloud cover and humidity \u00b7 perspective: consensus",
     "what": "one place in one validity window; both expected and outcome in the same message \u2014 proxy chain: forecast -> expected -> METAR measurement -> outcome -> deviation = outcome minus\u2026",
     "how": "Buffer role: the atmosphere as buffer between prediction and reality. Epistemic: stottet / direkte / institusjonell.",
@@ -3180,7 +3180,7 @@ export const NODES = [
       ],
       [
         "Social mechanism",
-        "our own frame \u2014 carried by us, not by the field"
+        "The self-consistent EFC background exists only in our own paper (DOI 31876324); no external group solves these\u2026"
       ]
     ],
     "cond": []
@@ -4680,8 +4680,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "DESI BAO observations when the stream exists \u00b7 perspective: consensus",
-    "what": "waits for a connector \u2014 proxy chain: observasjon.desi-bao -> (waiting for stream)",
+    "one": "DESI BAO observations (DR2, published) \u2014 static intake \u00b7 perspective: consensus",
+    "what": "the DESI spectrograph; the MAST/CAOM catalogue as a static source \u2014 proxy chain: observasjon.desi-bao -> published DR2 catalogue -> obs.bao (static intake, no live stream)",
     "how": "Buffer role: the observation catalog holds metadata between extractions. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4705,7 +4705,7 @@ export const NODES = [
       ]
     ],
     "cond": [
-      "kosmos.kosmologi_desi_bao: the stream does not exist \u2014 waits for a connector"
+      "kosmos.kosmologi_desi_bao: the BAO part of DR2 is published and carried by obs.bao; the live stream (VERDEN_OBS kosmos.kosmologi) is still measured absent."
     ]
   },
   {
@@ -4865,10 +4865,11 @@ export const CH = [
     "reveal": [
       "verden-hav",
       "verden-biosfaere",
-      "kosmos-jord-vulkan"
+      "kosmos-jord-vulkan",
+      "verden-vaer"
     ],
     "lede": "Chapter 4 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: kosmos-jord-vulkan, verden-biosfaere, verden-hav.</p>",
+    "story": "<p>Revealed: kosmos-jord-vulkan, verden-biosfaere, verden-hav, verden-vaer.</p>",
     "flow": null
   },
   {
@@ -4976,7 +4977,6 @@ export const CH = [
       "homo-sovn-vaaken",
       "homo-okologi",
       "homo-evolusjon",
-      "verden-vaer",
       "kosmos-asteroider",
       "efc-efc-background-engine",
       "efc-lag-s",
@@ -4984,14 +4984,14 @@ export const CH = [
       "efc-lag-c0"
     ],
     "lede": "Chapter 8 of 9 \u2014 a few structures at a time.",
-    "story": "<p>Revealed: efc-efc-background-engine, efc-jordskjelv-engine, efc-l1, efc-l2, efc-l3, efc-lag-c0, efc-lag-d, efc-lag-s, efc-solar-flare-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator, verden-vaer.</p>",
+    "story": "<p>Revealed: efc-efc-background-engine, efc-jordskjelv-engine, efc-l1, efc-l2, efc-l3, efc-lag-c0, efc-lag-d, efc-lag-s, efc-solar-flare-engine, h2o-droplet, h2o-gas, h2o-liquid, h2o-solid, h2o-supercritical, h2o-triple-point, homo-aksjonspotensial, homo-cellesyklus, homo-evolusjon, homo-feber-regime, homo-fluxus, homo-genregulering, homo-hjerte-syklus, homo-homeostase-buffer, homo-immunologi, homo-metabolisme, homo-okologi, homo-sovn-vaaken, kosmos-asteroider, lys-sol, obs-bao, obs-bbn, obs-bullet, obs-cc, obs-cluster-hmf, obs-cluster-mass, obs-cmb-lensing, obs-cmb-tt, obs-eg, obs-fsigma8, obs-gw-ct, obs-h0-tension, obs-isw, obs-jwst-ems, obs-ksz, obs-pta-gwb, obs-rar, obs-s8, obs-satellites, obs-w0wa, optikk-dispersjon, regnbue, regnbue-observator.</p>",
     "flow": null
   },
   {
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 78 relations.",
+    "lede": "Everything at once \u2014 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
@@ -5000,4 +5000,4 @@ export const CH = [
 export const HOW_HTML = `<div class="eyebrow">EFC · generated</div><h1 class="t">How it's built</h1><div class="sub">one source, two views</div>
 <h3 class="sec">Source</h3><pre>schema/regime_nodes.jsonld — the atlas bank</pre>
 <h3 class="sec">Generator</h3><pre>scripts/maintenance/efc_atlas_generator.py</pre>
-<h3 class="sec">Known holes</h3><p>The bus is read by code, not consumed in drift. <code>scripts/atlas_volum.py --maal</code> reads the JetStream streams' <code>state.subjects</code> through the house's own <code>verden_domener</code> (MCP) and writes <code>schema/nats_domener.snapshot.json</code> with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in <code>.github/workflows</code> reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is <code>tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato</code> at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.</p><p>Bus routes in the node bank. 22 of the published nodes name a bus route; the other 94 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.</p>`;
+<h3 class="sec">Known holes</h3><p>The bus is read by code, not consumed in drift. <code>scripts/atlas_volum.py --maal</code> reads the JetStream streams' <code>state.subjects</code> through the house's own <code>verden_domener</code> (MCP) and writes <code>schema/nats_domener.snapshot.json</code> with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in <code>.github/workflows</code> reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is <code>tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato</code> at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.</p><p>Bus routes in the node bank. 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.</p>`;

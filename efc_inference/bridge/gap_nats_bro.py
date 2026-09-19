@@ -18,6 +18,7 @@ import socket
 SUBJECT_VOLCANO = "kosmos.jord.tilstand.usgs-vulkan"
 SUBJECT_OCEAN = "verden.klima.tilstand.noaa-tides"
 SUBJECT_PLANTS = "verden.miljo.tilstand.gbif-planter"
+SUBJECT_DESI_BAO = "kosmos.kosmologi.observasjon.desi-bao"
 
 LEGITIMASJON = os.environ.get("NATS_LEGITIMASJON",
                               "/etc/nats/legitimasjon.env")
@@ -72,6 +73,27 @@ def analyser_planter(message: dict) -> dict:
     return {"tellinger": counts,
             "sum": sum(counts.values()),
             "feil": len(message.get("feil", []))}
+
+
+def analyser_desi_bao(melding: dict) -> dict:
+    """DESI DR2 BAO observation -> hubble/growth engine input.
+
+    The background (alpha) is published and read; the growth (fsigma8) waits
+    for DESI DR2 full-shape and is reported as «waiting» until it exists in
+    the message. The bridge never invents an fsigma8 value.
+    """
+    alpha = melding.get("alpha")
+    if alpha is None:
+        return {"lesbar": False,
+                "note": "no alpha in the message — the bridge waits"}
+    ut = {"lesbar": True,
+          "alpha": alpha,
+          "alpha_usikkerhet": melding.get("alpha_usikkerhet"),
+          "z_eff": melding.get("z_eff"),
+          "kilder": melding.get("kilder", [])}
+    fs8 = melding.get("fsigma8")
+    ut["fsigma8"] = fs8 if fs8 is not None else "awaiting DESI DR2 full-shape"
+    return ut
 
 
 def bro_runde(subjects: dict) -> dict:

@@ -663,8 +663,7 @@ class EFCBackgroundEngine(EFCEngine):
                 # derivation that is not measured.
                 "evidensstatus": "ingen",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, "
-                                    "not by the field",
+                "sosial_mekanisme": "The self-consistent EFC background exists only in our own paper (DOI 31876324); no external group solves these equations, so nobody would discover a correlated error in them.",
                 "konsensus_er_ikke_sannhet": True,
             },
             "maale_paradigme": {

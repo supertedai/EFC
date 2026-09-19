@@ -1,0 +1,57 @@
+{
+  "_proveniens": {
+    "kilde": "NATS bus, stream VERDEN_PROGNOSE, subjects verden.vaer.prediksjon.metno and verden.vaer.oppgjoer.metno",
+    "seq": {
+      "prediksjon": 167904,
+      "oppgjoer": 168744
+    },
+    "tid": {
+      "prediksjon": "2026-09-17T18:25:14.331823334Z",
+      "oppgjoer": "2026-09-17T19:26:17.519472829Z"
+    },
+    "lest": "2026-09-19 by researcher (kanban t_16e222cb)",
+    "stasjon": "trondheim-vaernes",
+    "merknad": "The pair the verden.vaer node mirrors, read back from the bus so the mirror can be checked against its source instead of against prose. Chosen because it shares BOTH the correlation key and the validity window, and because its outcome source is a measurement (maaling-metar), not the model's own nowcast — a station that settles against nowcast-metno would make the loop self-referential. Measured while reading: the same correlation key is carried by TWO forecasts for this station, one with a 1-hour horizon (lead time 89 min, this fixture) and one with a 24-hour horizon (seq 167905, lead time 1469 min). The correlation key alone therefore does NOT identify a forecast; the pair (correlation, valid_for) does. The 1-hour one is the one the outcome settles against."
+  },
+  "prediksjon": {
+    "hoder": {
+      "Nats-Msg-Id": "metno.trondheim-vaernes.63.4578,10.924.2026-09-17T17:30:01Z.2026-09-17T19:00:00Z",
+      "kilde": "met-locationforecast-2.0",
+      "lag": "prediksjon",
+      "undertype": "metno",
+      "domene": "vaer",
+      "sted": "trondheim-vaernes",
+      "lat": "63.4578",
+      "lon": "10.924",
+      "utstedt": "2026-09-17T17:30:01Z",
+      "gyldig_for": "2026-09-17T19:00:00Z",
+      "horisont_bestilt_timer": "1",
+      "ledetid_min": "89",
+      "observert": "2026-09-17T17:30:01Z",
+      "korrelasjon": "metno.trondheim-vaernes.2026-09-17T17:30:01Z",
+      "forventet": "{\"air_pressure_at_sea_level\": 994.4, \"air_temperature\": 10.5, \"cloud_area_fraction\": 83.0, \"relative_humidity\": 74.4, \"wind_speed\": 3.4}",
+      "enheter": "{\"air_pressure_at_sea_level\": \"hPa\", \"air_temperature\": \"celsius\", \"cloud_area_fraction\": \"%\", \"relative_humidity\": \"%\", \"wind_speed\": \"m/s\"}"
+    }
+  },
+  "oppgjoer": {
+    "hoder": {
+      "Nats-Msg-Id": "oppgjoer.metno.trondheim-vaernes.63.4578,10.924.2026-09-17T17:30:01Z.2026-09-17T19:00:00Z",
+      "domene": "vaer",
+      "lag": "oppgjoer",
+      "undertype": "metno",
+      "kilde": "met-locationforecast-2.0",
+      "sted": "trondheim-vaernes",
+      "utstedt": "2026-09-17T17:30:01Z",
+      "gyldig_for": "2026-09-17T19:00:00Z",
+      "ledetid_min": "89",
+      "observert": "2026-09-17T18:50:00Z",
+      "utfall_tid": "2026-09-17T18:50:00Z",
+      "korrelasjon": "metno.trondheim-vaernes.2026-09-17T17:30:01Z",
+      "forventet": "{\"air_pressure_at_sea_level\": 994.4, \"air_temperature\": 10.5, \"cloud_area_fraction\": 83.0, \"relative_humidity\": 74.4, \"wind_speed\": 3.4}",
+      "utfall": "{\"air_pressure_qnh\": 994.0, \"air_temperature\": 10.0, \"dew_point_temperature\": 8.0, \"wind_from_direction\": 130.0, \"wind_speed\": 2.57}",
+      "avvik": "{\"air_temperature\": -0.5, \"wind_speed\": -0.83}",
+      "utfall_kilde": "maaling-metar",
+      "oppgjoer_versjon": "2"
+    }
+  }
+}

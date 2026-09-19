@@ -32,8 +32,9 @@ Registeret er append-only og ligger i governance/risiko/risiko-register.jsonl.
      en eksisterende post kan endres i stedet for å appendes, fordi det er
      menneskets beslutningssti. Alt annet (sletting, omskriving av et annet
      felt, omordning) er fortsatt forbudt. Målingen er hermetisk: hvilket
-     repo den leser kommer fra `rot`, og diffen leses med --no-ext-diff og
-     --no-textconv, så en lokal git-konfigurasjon kan ikke gjøre gaten blind.
+     repo den leser kommer fra `rot`, og diffen leses med --no-ext-diff,
+     --no-textconv and --text, so a local git config (diff.external, textconv,
+     binary) cannot blind the gate.
 
 Bruk:
   python3 scripts/maintenance/validate_risk_register.py [--json] [--base origin/main]
@@ -339,11 +340,12 @@ def append_only(base: str, rot: Path) -> list[dict]:
     Kallet er hermetisk med vilje: en gate hvis dom kan endres av
     git-konfigurasjonen utenfor prosessen er ikke en gate. `--no-ext-diff`
     stenger `diff.external`/`GIT_EXTERNAL_DIFF`, `--no-textconv` stenger en
-    textconv-driver, og `_git_miljo()` fjerner de arvede GIT_*-variablene som
-    peker git på et annet repo enn `rot`.
+    textconv-driver, `--text` stenger `diff.<driver>.binary` (som ellers lar
+    git svare «Binary files differ» uten noen fjernet linje), og `_git_miljo()`
+    drops the inherited GIT_* variables that point git at a repo other than `rot`.
     """
     r = subprocess.run(["git", "diff", "-U0", "--no-ext-diff", "--no-textconv",
-                        base, "--", REGISTER],
+                        "--text", base, "--", REGISTER],
                        cwd=str(rot), capture_output=True, timeout=60,
                        env=_git_miljo())
     if r.returncode != 0:

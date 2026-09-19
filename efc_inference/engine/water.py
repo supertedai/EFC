@@ -278,7 +278,7 @@ class WaterPhaseEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The H2O phase boundaries are the IAPWS standard's institutional consensus; the EFC engine is OUR recomputation of them — an error in it hits only us, and nobody in thermodynamics gains from re-checking it.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

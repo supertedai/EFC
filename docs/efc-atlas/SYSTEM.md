@@ -6,7 +6,7 @@ _Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 53 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other).
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
 
 ## Decisions locked
 
@@ -24,12 +24,12 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Roots — time and self** — Chapter 1 of 9 — a few structures at a time. _(adds efc-l0)_
 2. **The grid — your published works** — Chapter 2 of 9 — a few structures at a time. _(adds efc-grid-higgs, efc-gr-qft-bro, efc-double-slit, efc-grid-mikrofysikk, efc-grid-mikro-engine, efc-sort-hull)_
 3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert, kosmos-galakser-mast, kosmos-romvaer-swpc, kosmos-sol-goes, kosmos-transienter-alerce, kosmos-kosmologi-desi-bao)_
-4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan)_
+4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan, verden-vaer)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
-8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 78 relations.
+8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
+9. **The whole atlas** — Everything at once — 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.
 
 ## Structures
 
@@ -47,7 +47,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Pre-inflation and the quantum seeds are cosmology's established frame, carried by the inflation literature; the…
 
 **Questions.**
 
@@ -67,7 +67,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — The Grid-Higgs frame is published by us (DOI 28559510) and has no group outside the project; that gravity, dark matter…
 
 **Questions.**
 
@@ -85,7 +85,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — The bridge is our own published work (DOI 30402427); both fields it spans have established formalisms, so the bridge…
 
 **Questions.**
 
@@ -103,7 +103,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — The double slit is quantum mechanics' most canonized experiment and is carried by the textbook tradition; reading it as…
 
 **Questions.**
 
@@ -121,7 +121,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — The RAR is measured and carried by the galaxy observers; our gradient-coupled excitation model (DOI 31878760) is a…
 
 #### GE · efc.grid_mikro_engine
 
@@ -135,7 +135,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — Two of our own DOIs (31942821/31942800) are the only carrier; scenario B+ is the framework's hypothesis and L-031 stands…
 
 #### SH · efc.sort_hull
 
@@ -169,7 +169,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The rotation curves are the observers' measurement; the explanation «flat curve WITHOUT dark matter» is OURS — the…
 
 #### HB · efc.hubble_engine
 
@@ -183,7 +183,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — H(z) is measured by the distance-ladder and CMB collaborations; the deformation E²(a) with alpha_cosmo is OUR law form…
 
 #### GR · efc.growth_engine
 
@@ -197,7 +197,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The fσ8 numbers are carried by the survey collaborations (BOSS/DESI); the growth ODE with the EFC-deformed H is ours…
 
 #### LN · efc.lensing_engine
 
@@ -211,7 +211,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Lensing is measured by Planck/ACT/SPT and carried by them; this node is our CONTRACT (a stub) — it claims no…
 
 #### CL · efc.cluster_engine
 
@@ -225,7 +225,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The halo mass function is calibrated in the simulation tradition and carried by it; only OUR contract stands here — no…
 
 #### MK · efc.mu_kz_engine
 
@@ -239,7 +239,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The equations come from our own action paper; the module is OUR port of them, and because the background is INPUT rather…
 
 #### RV · efc.romvaer_engine
 
@@ -253,7 +253,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The Kp scale and the storm classification are carried by NOAA/SWPC; the linear charging form is our idealization, and…
 
 #### OR · efc.orbital_engine
 
@@ -267,7 +267,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Kepler, vis-viva and the Hill sphere are textbook consensus carried by celestial mechanics; reading «bound = holding…
 
 #### KL · efc.klima_engine
 
@@ -281,7 +281,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The Budyko-Sellers tradition and the climate field carry the energy balance; our 0D model is IDEALIZED and says itself…
 
 #### TI · efc.tidevann_engine
 
@@ -295,7 +295,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The equilibrium tide and the Roche limit are textbook matter carried by oceanography; the charge/discharge reading of…
 
 #### TR · efc.transient_engine
 
@@ -309,7 +309,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The transient stream (ALeRCE/ZTF) is carried by the observatory community; the collapse branch and the threshold model…
 
 #### KG · kosmos.gammaglimt
 
@@ -495,9 +495,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### DB · kosmos.kosmologi_desi_bao
 
-**In one line.** DESI BAO observations when the stream exists · perspective: consensus
+**In one line.** DESI BAO observations (DR2, published) — static intake · perspective: consensus
 
-**What it does.** waits for a connector — proxy chain: observasjon.desi-bao -> (waiting for stream)
+**What it does.** the DESI spectrograph; the MAST/CAOM catalogue as a static source — proxy chain: observasjon.desi-bao -> published DR2 catalogue -> obs.bao (static intake, no live stream)
 
 **How it's built.** Buffer role: the observation catalog holds metadata between extractions. Epistemic: stottet / direkte / institusjonell.
 
@@ -509,7 +509,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **Questions.**
 
-- **Q-DB1** kosmos.kosmologi_desi_bao: the stream does not exist — waits for a connector
+- **Q-DB1** kosmos.kosmologi_desi_bao: the BAO part of DR2 is published and carried by obs.bao; the live stream (VERDEN_OBS kosmos.kosmologi) is still measured absent.
 
 ### Bridges — gap domains, round two
 
@@ -555,6 +555,20 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — The USGS status list as consensus channel
 
+#### VV · verden.vaer
+
+**In one line.** temperature, wind, pressure, cloud cover and humidity · perspective: consensus
+
+**What it does.** one place in one validity window; both expected and outcome in the same message — proxy chain: forecast -> expected -> METAR measurement -> outcome -> deviation = outcome minus…
+
+**How it's built.** Buffer role: the atmosphere as buffer between prediction and reality. Epistemic: stottet / direkte / institusjonell.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / direkte / institusjonell
+3. **Social mechanism** — MET Norway forecast against METAR measurement — two independent institutional channels
+
 ### Structures — H2O and chemistry
 
 #### WA · efc.water_phase_engine
@@ -569,7 +583,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The H2O phase boundaries are the IAPWS standard's institutional consensus; the EFC engine is OUR recomputation of them…
 
 #### PS · kjemi.periodesystemet
 
@@ -603,7 +617,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The Minsky tradition (one of several in economics) carries the regime-shift picture; the coupling to buffer and energy…
 
 #### SA · efc.samfunn_engine
 
@@ -617,7 +631,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Kermack-McKendrick and infectious-disease epidemiology carry the R0 picture; our homogeneous SIR is a FORM model…
 
 #### EF · efc.enerflyt_engine
 
@@ -631,7 +645,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — Conservation in the energy accounts is physics, carried by the statistics; the coupling to society's buffers is OUR…
 
 #### AR · verden.arbeid
 
@@ -975,7 +989,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The ice Ih boundaries are the IAPWS standard's consensus, carried by thermodynamics and the refrigeration and climate…
 
 **Questions.**
 
@@ -993,7 +1007,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — Liquid water is metrology's and oceanography's most used reference (the ocean's heat transport, the Gulf Stream); the…
 
 **Questions.**
 
@@ -1011,7 +1025,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The phase boundary is IAPWS consensus; water vapour's role as a greenhouse gas is carried and negotiated by climate…
 
 **Questions.**
 
@@ -1029,7 +1043,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — Supercritical water is used and measured by process and power industry (oxidation, power plants); the users care about…
 
 **Questions.**
 
@@ -1047,7 +1061,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The triple point is DEFINED, not measured — the carrier is metrology (IAPWS-95/ITS-90) and every thermometer is…
 
 **Questions.**
 
@@ -1065,7 +1079,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — Sunlight as electromagnetic radiation is textbook consensus, carried by classical electromagnetism; that the VISIBLE…
 
 **Questions.**
 
@@ -1083,7 +1097,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The drop shape and the refraction are carried by fluid mechanics and optics (the Descartes/Newton tradition) and are…
 
 **Questions.**
 
@@ -1101,7 +1115,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The dispersion n(λ) is measured (NIST) and carried by classical optics; the carrier delivers numbers and has no interest…
 
 **Questions.**
 
@@ -1119,7 +1133,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The rainbow has been explained since Descartes and is canonized in the textbooks (meteorology); it is a PATTERN, not an…
 
 **Questions.**
 
@@ -1137,7 +1151,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — academia
 2. **Epistemics** — stottet / replikert / institusjonell
-3. **Social mechanism** — peer review, textbook canonisation, career incentives — academia tells what survives the assessment
+3. **Social mechanism** — The observer is carried by visual physiology and by the public who see the bow; that the bow exists as a pattern…
 
 **Questions.**
 
@@ -1155,7 +1169,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The CMB and BAO are carried by the whole cosmology field (Planck, DESI); that EFC looks like LCDM precisely HERE is our…
 
 **Questions.**
 
@@ -1173,7 +1187,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Structure growth and the S8 tension are negotiated openly by the survey collaborations; that L2 is where EFC departs…
 
 **Questions.**
 
@@ -1191,7 +1205,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The far-future state is measured by no one and has no observer group; the carrier is the framework's own mathematics…
 
 **Questions.**
 
@@ -1489,7 +1503,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Homo Fluxus v1/v2 are OUR DOIs, and the placement «the human as the L3 carrier» is the framework's hypothesis; the…
 
 #### HO · homo.homeostase_buffer _(not switched on)_
 
@@ -1601,7 +1615,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — The GOES scale and the storm watch are carried by NOAA/SWPC, who would lose from a wrong warning; our buffer model is…
 
 #### JS · efc.jordskjelv_engine _(not switched on)_
 
@@ -1615,7 +1629,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / proxy / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it
+3. **Social mechanism** — Seismology carries the physics (Reid, Burridge-Knopoff) and has learned not to promise timing; our threshold model is…
 
 #### IM · homo.immunologi _(not switched on)_
 
@@ -1673,20 +1687,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 2. **Epistemics** — stottet / replikert / institusjonell
 3. **Social mechanism** — evolutionary biology (standard) — peer-reviewed and canonised in textbooks. The ANALOGY to EFC is our own and is not…
 
-#### VV · verden.vaer _(not switched on)_
-
-**In one line.** temperature, wind, pressure, cloud cover and humidity · perspective: consensus
-
-**What it does.** one place in one validity window; both expected and outcome in the same message — proxy chain: forecast -> expected -> METAR measurement -> outcome -> deviation = outcome minus…
-
-**How it's built.** Buffer role: the atmosphere as buffer between prediction and reality. Epistemic: stottet / direkte / institusjonell.
-
-**Steps in execution.**
-
-1. **Perspective** — consensus
-2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — MET Norway forecast against METAR measurement — two independent institutional channels
-
 #### KA · kosmos.asteroider _(not switched on)_
 
 **In one line.** impact probability and Palermo cumulative per object · perspective: consensus
@@ -1713,7 +1713,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Perspective** — paradigm
 2. **Epistemics** — hypotese / ingen / minoritet
-3. **Social mechanism** — our own frame — carried by us, not by the field
+3. **Social mechanism** — The self-consistent EFC background exists only in our own paper (DOI 31876324); no external group solves these…
 
 #### LS · efc.lag_s _(not switched on)_
 
@@ -1788,7 +1788,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 - **Q-GQ1** (GQ) efc.gr_qft_bro: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)
 - **Q-DS1** (DS) efc.double_slit: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)
 - **Q-SH1** (SH) efc.sort_hull: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)
-- **Q-DB1** (DB) kosmos.kosmologi_desi_bao: the stream does not exist — waits for a connector
+- **Q-DB1** (DB) kosmos.kosmologi_desi_bao: the BAO part of DR2 is published and carried by obs.bao; the live stream (VERDEN_OBS kosmos.kosmologi) is still measured absent.
 - **Q-PS1** (PS) kjemi.periodesystemet: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)
 - **Q-IB1** (IB) verden.klima_isbre: the stream does not exist — waits for a connector
 - **Q-SO1** (SO) h2o.solid: no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)
@@ -1809,7 +1809,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 
 **The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
 
-**Bus routes in the node bank.** 22 of the published nodes name a bus route; the other 94 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
+**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
 
 ## What the platform gives vs what we own
 

@@ -1,4 +1,4 @@
-"""Regresjonstester for atlasets eget begrepsrom."""
+"""Regression tests for the atlas's own concept space."""
 
 from __future__ import annotations
 
@@ -27,7 +27,7 @@ KJERNEBEGREPER = (
 
 
 def test_kjernebegrep_svarer_med_navngitt_grunn() -> None:
-    """Et registrert begrep skal skilles fra et ekte hull."""
+    """A registered concept must be told apart from a real hole."""
     for begrep in KJERNEBEGREPER:
         svar = atlas_lesing.finn(ROT, begrep, ref="HEAD")
         assert not svar["hull"], begrep
@@ -37,24 +37,24 @@ def test_kjernebegrep_svarer_med_navngitt_grunn() -> None:
 
 
 def test_navneromstreff_er_ikke_dekning() -> None:
-    """Et begrep uten node skal ikke kunne leses som «atlaset har dette».
+    """A concept without a node must not be readable as «the atlas has this».
 
-    Review 2026-09-18: navneromstreffet ga en ikke-tom treffliste, og en
-    nedstroemsleser kunne konkludere «dekt». Feltet `har_node` sier nei — og
-    det er forskjellen mellom å ha begrepet og å ha noden.
+    Review 2026-09-18: the namespace hit gave a non-empty hit list, and a
+    downstream reader could conclude «covered». The field `har_node` says no —
+    and that is the difference between having the concept and having the node.
     """
     svar = atlas_lesing.finn(ROT, "Entropy Gradient", ref="HEAD")
     treff = svar["treff"][0]
     assert treff["har_node"] is False
     assert treff["dekning"] == "navnerom_uten_node"
 
-    # Navnet skal ikke finnes som node i banken — ellers er testen doed.
+    # The name must not exist as a node in the bank — otherwise the test is dead.
     bank = json.loads((ROT / "schema" / "regime_nodes.jsonld").read_text(
         encoding="utf-8"))
     ider = {n["id"] for n in bank["nodes"]}
     assert not any("EntropyGradient" in i for i in ider)
 
-    # Et EKTE hull skal ikke faa navneromstreffet med seg.
+    # A REAL hole must not get the namespace hit with it.
     ukjent = atlas_lesing.finn(ROT, "finnes-ikke-som-begrep-eller-node",
                                ref="HEAD")
     assert ukjent["hull"] is True
@@ -62,7 +62,7 @@ def test_navneromstreff_er_ikke_dekning() -> None:
 
 
 def test_fem_kjernebegreper_er_deklarert_i_registeret() -> None:
-    """Testen skal ikke kunne passere fordi registeret ble tomt."""
+    """The test must not be able to pass because the registry went empty."""
     data = json.loads((ROT / "docs" / "concepts.jsonld").read_text(
         encoding="utf-8"))
     ider = {p.get("@id") for p in data.get("@graph", [])}
@@ -72,26 +72,27 @@ def test_fem_kjernebegreper_er_deklarert_i_registeret() -> None:
 
 
 def test_defekt_begrepsregister_feiler_hoeyt(monkeypatch, tmp_path) -> None:
-    """Ugyldig JSON i registeret er en lesefeil, ikke «ikke funnet».
+    """Invalid JSON in the registry is a read error, not «not found».
 
-    Foerste utgave svelget baade JSONDecodeError og manglende fil. Da ble en
-    defekt i registeret til svaret «atlaset vet ikke» — et svar som ser ut som
-    kunnskap om innholdet. Testen bytter ut git-leseren: en midlertidig
-    katalog er ikke et git-tre, saa `_git` ville feilet FOER json ble lest —
-    og da maalte testen git, ikke lesefeilhaandteringen.
+    The first version swallowed both JSONDecodeError and a missing file. Then a
+    defect in the registry became the answer «the atlas does not know» — an
+    answer that looks like knowledge about the content. The test swaps out the
+    git reader: a temporary directory is not a git tree, so `_git` would fail
+    BEFORE the JSON was read — and then the test measured git, not the read
+    error handling.
     """
     def falsk_git(repo, *args):
         if args[:2] == ("show", "HEAD:docs/concepts.jsonld"):
-            return "{ ikke json"
-        raise atlas_lesing.AtlasLesingFeil("finnes ikke i dette testtreet")
+            return "{ not json"
+        raise atlas_lesing.AtlasLesingFeil("not found in this test tree")
 
     monkeypatch.setattr(atlas_lesing, "_git", falsk_git)
-    with pytest.raises(atlas_lesing.AtlasLesingFeil, match="valid JSON"):
+    with pytest.raises(atlas_lesing.AtlasLesingFeil, match="is not valid JSON"):
         atlas_lesing._navnerom(tmp_path, "HEAD", "ghf")
 
 
 def test_oppslag_er_deterministisk_paa_tvers_av_hashfroer() -> None:
-    """Sortering skal ikke avhenge av prosessens hashfroe."""
+    """Sorting must not depend on the process's hash seed."""
     kode = (
         "import json,sys; sys.path.insert(0,'scripts'); import atlas_lesing; "
         "print(json.dumps(atlas_lesing.finn('.', 'Entropy Gradient', ref='HEAD'), "

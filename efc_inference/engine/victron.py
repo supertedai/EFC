@@ -198,7 +198,7 @@ class VictronChargeEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The CC/CV protocol is carried by the charger and battery industry (Victron, BMS vendors); the reading of the knee rests on ONE private installation, so the narrative is ours and an error would hit us, not the field.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

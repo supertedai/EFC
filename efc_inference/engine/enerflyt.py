@@ -180,8 +180,7 @@ class EnerFlytEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, "
-                                    "not by the field",
+                "sosial_mekanisme": "Conservation in the energy accounts is physics, carried by the statistics; the coupling to society's buffers is OUR analogy — budget and distribution questions have their own carriers and their own interests in politics.",
                 "konsensus_er_ikke_sannhet": True,
             },
             "maale_paradigme": {

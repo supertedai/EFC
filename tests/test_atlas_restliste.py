@@ -23,13 +23,31 @@ def test_motor_only_domenene_har_instrumentnoder():
         assert node["stipulasjoner"]["motor_status"] == "instrument — needs no engine"
 
 
-def test_ventenodene_er_aerlige_og_uten_bussdomene():
+def test_every_waiting_node_states_its_state_truthfully():
+    """A waiting node may GAIN a bus domain -- then it must say what is still missing.
+
+    Measured 2026-09-19 (commit 53721bad wired DESI DR2 BAO in): the DESI-BAO node
+    now carries `buss_domene: kosmos.kosmologi` because the BAO part of DR2 is
+    published and carried by obs.bao, while its open question still names the
+    missing LIVE stream. The earlier version of this test demanded that a waiting
+    node have NO bus domain -- true while the connector did not exist, and wrong
+    the day one landed. The rule that survives is: no node may wait in silence.
+    """
     noder = {node["id"]: node for node in NODER}
     for node_id in ("kosmos.kosmologi_desi_bao", "verden.klima_isbre"):
         node = noder[node_id]
-        assert "buss_domene" not in node
-        assert "the stream does not exist" in node["stipulasjoner"]["buss_status"]
-        assert node["ontology"]["proveniens"]["kilder"][0]["type"] == "intern"
+        stip = node.get("stipulasjoner") or {}
+        if node.get("buss_domene"):
+            aapne = node.get("open_questions") or []
+            assert aapne, (
+                f"{node_id} has a bus domain but names nothing it still waits for")
+        else:
+            assert stip.get("buss_status"), (
+                f"{node_id} has no bus domain and no written reason")
+            s = stip["buss_status"]
+            assert ("does not exist" in s or "no stream" in s.lower() or
+                    "absent" in s.lower()), (
+                f"{node_id} must say WHY it has no domain: {stip.get('buss_status')!r}")
 
 
 def test_homo_nodene_ligger_i_s_regime():

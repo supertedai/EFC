@@ -81,7 +81,7 @@ class EFCCluster(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The halo mass function is calibrated in the simulation tradition and carried by it; only OUR contract stands here — no measurement, and nobody in the structure field would use it to decide anything.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

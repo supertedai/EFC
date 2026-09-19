@@ -163,7 +163,7 @@ class KlimaEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "our own frame — carried by us, not by the field; the narrative is our own, and it is a strength to know it",
+                "sosial_mekanisme": "The Budyko-Sellers tradition and the climate field carry the energy balance; our 0D model is IDEALIZED and says itself that it does not compete — read as climate physics, the field would rightly reject it.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {
