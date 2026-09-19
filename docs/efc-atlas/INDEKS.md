@@ -1,6 +1,6 @@
 # Atlasindeks
 
-> 116 publiserte noder · 53 uten gruppe ennaa (20 observasjoner, 18 regimenoder, 11 med motor, 4 ovrige) · 7 mangler evidens · 21 aapne spoersmaal
+> 116 publiserte noder · 53 uten gruppe ennaa (20 observasjoner, 18 regimenoder, 10 med motor, 5 ovrige) · 7 mangler evidens · 21 aapne spoersmaal
 
 Hver rad er generert fra samme bank som atlaset.
 
@@ -144,19 +144,19 @@ Hver rad er generert fra samme bank som atlaset.
 
 ## No group yet
 - **SO · h2o.solid** — termodynamisk fase
-  perspektiv=academia · motor=efc.water_solid · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
+  perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
 - **LI · h2o.liquid** — termodynamisk fase
   perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
 - **GA · h2o.gas** — termodynamisk fase
-  perspektiv=academia · motor=efc.water_gas · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
+  perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
 - **SC · h2o.supercritical** — termodynamisk tilstand (ikke 'fase' — grensen er borte)
-  perspektiv=academia · motor=efc.water_supercritical · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
+  perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
 - **TP · h2o.triple_point** — temperaturskalaens referansepunkt
-  perspektiv=academia · motor=efc.water_triple_point · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
+  perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
 - **LY · lys.sol** — elektromagnetisk straaling
   perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (ovrig)
 - **DR · h2o.droplet** — draapeform og brytningsindeks
-  perspektiv=academia · motor=efc.water_droplet · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
+  perspektiv=academia · motor=water · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (motor)
 - **OP · optikk.dispersjon** — brytningsindeksen n(lambda)
   perspektiv=academia · motor=ikke oppgitt · buss=ingen buss-vei — emnet finnes ikke som… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ingen (ovrig)
 - **RB · regnbue** — buens vinkel og fargerekkefoelge
@@ -210,45 +210,45 @@ Hver rad er generert fra samme bank som atlaset.
 - **CC · obs.cc** — vakuumenergiens stoerrelse
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=RCMP instrument=alle kanaler; observabel=vakuumenergiens… · spoersmaal=0 · gruppe=ingen (observasjon)
 - **HF · homo.fluxus** — R — den indre refleksjonskoeffisienten
-  perspektiv=paradigm · motor=efc.fluxus_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=paradigm · motor=fluxus · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **HO · homo.homeostase_buffer** — avvik fra setpunkt (ΔT, ΔpH, Δglukose)
-  perspektiv=academia · motor=efc.homeostase_buffer_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=homeostase_buffer · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **FE · homo.feber_regime** — kroppstemperatur mot setpunkt
-  perspektiv=academia · motor=efc.feber_regime_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=feber_regime · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **AP · homo.aksjonspotensial** — membranpotensialet V(t) mot terskelen
-  perspektiv=academia · motor=efc.aksjonspotensial_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=aksjonspotensial · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **HJ · homo.hjerte_syklus** — slagvolum, frekvens, minuttvolum
-  perspektiv=academia · motor=efc.hjerte_syklus_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=hjerte_syklus · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **GN · homo.genregulering** — uttrykksnivå per gen (mRNA/protein)
-  perspektiv=academia · motor=efc.genregulering_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=genregulering · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **CY · homo.cellesyklus** — fase per celle (G1/S/G2/M)
-  perspektiv=academia · motor=efc.cellesyklus_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=cellesyklus · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **ME · homo.metabolisme** — ATP/ADP-forhold, O₂-forbruk, substrat-fluks
-  perspektiv=academia · motor=efc.metabolisme_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=metabolisme · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **SF · efc.solar_flare_engine** — oppladningstid, utlost energi, GOES-klasse
   perspektiv=paradigm · motor=solar_flare · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
 - **JS · efc.jordskjelv_engine** — gjentakelsestid, seismisk moment, moment-magnitude
   perspektiv=paradigm · motor=jordskjelv · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
 - **IM · homo.immunologi** — aktiveringsstatus, antistofftiter, hukommelsespopulasjon
-  perspektiv=academia · motor=efc.immunologi_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=immunologi · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **SV · homo.sovn_vaaken** — søvnstadium (våken/NREM/REM), homeostatisk trykk
-  perspektiv=academia · motor=efc.sovn_vaaken_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=sovn_vaaken · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **OE · homo.okologi** — tilstandsvariabler (næringsstoffer, dekning, artssammensetning)
-  perspektiv=academia · motor=efc.okologi_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=okologi · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **EV · homo.evolusjon** — endringstakt i fenotype/art (morfologiske og molekylære rater)
-  perspektiv=academia · motor=efc.evolusjon_engine · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=academia · motor=evolusjon · buss=ikke oppgitt · S-akse=regime S~0.5 · klarhet C(S) ved S~0.5: differensiert klarhet… · spoersmaal=0 · gruppe=ingen (regime)
 - **VV · verden.vaer** — temperatur, vind, trykk, skydekke og fuktighet
-  perspektiv=consensus · motor=ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16) · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (ovrig)
 - **KA · kosmos.asteroider** — treffsannsynlighet og Palermo-kumulativ per objekt
-  perspektiv=consensus · motor=efc.orbital_engine (banemekanikk) · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
+  perspektiv=consensus · motor=orbital · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
 - **EE · efc.efc_background_engine** — H(z) og bakgrunns-feltene phi, phi_dot, rho_m, lambda_dot
   perspektiv=paradigm · motor=efc_background · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ingen (motor)
 - **LS · efc.lag_s** — strukturen som energy-flow-feltet holder oppe
-  perspektiv=paradigm · motor=efc.rotation_engine · buss=ikke oppgitt · S-akse=regime S>0 · sektor S · klarhet C(S) ved S>0: strukturell… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=paradigm · motor=rotation · buss=ikke oppgitt · S-akse=regime S>0 · sektor S · klarhet C(S) ved S>0: strukturell… · spoersmaal=0 · gruppe=ingen (regime)
 - **LD · efc.lag_d** — energy-flow-feltet J_mu og dets divergens
-  perspektiv=paradigm · motor=efc.efc_background_engine · buss=ikke oppgitt · S-akse=regime S>0 · sektor D · klarhet C(S) ved S>0: dynamisk… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=paradigm · motor=efc_background · buss=ikke oppgitt · S-akse=regime S>0 · sektor D · klarhet C(S) ved S>0: dynamisk… · spoersmaal=0 · gruppe=ingen (regime)
 - **C0 · efc.lag_c0** — entropi-feltet S og dets grenser
-  perspektiv=paradigm · motor=efc.klima_engine · buss=ikke oppgitt · S-akse=regime S->1 · sektor C · klarhet C(S) ved S->1: mettet… · spoersmaal=0 · gruppe=ingen (regime)
+  perspektiv=paradigm · motor=klima · buss=ikke oppgitt · S-akse=regime S->1 · sektor C · klarhet C(S) ved S->1: mettet… · spoersmaal=0 · gruppe=ingen (regime)
 
 ## Uten gruppe ennaa
 

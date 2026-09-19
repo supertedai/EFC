@@ -94,7 +94,7 @@
         "terskler": [
           "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
         ],
-        "motor": "efc.water_solid",
+        "motor": "water",
         "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
@@ -320,7 +320,7 @@
         "terskler": [
           "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
         ],
-        "motor": "efc.water_gas",
+        "motor": "water",
         "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
@@ -432,7 +432,7 @@
         "terskler": [
           "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
         ],
-        "motor": "efc.water_supercritical",
+        "motor": "water",
         "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
         "alene_status": "superkritisk fase er koblet til trippelpunktet som fasekartets referanse; ingen annen forelder er riktig",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
@@ -546,7 +546,7 @@
         "terskler": [
           "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
         ],
-        "motor": "efc.water_triple_point",
+        "motor": "water",
         "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
         "alene_status": "fasekartets referansepunkt — det er ikke UNDER noe; det er definisjonen de andre kalibreres mot",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
@@ -763,7 +763,7 @@
         "terskler": [
           "ingen egne terskler — arver fasegrensene fra WaterPhaseEngine (h2o.liquid-motoren)"
         ],
-        "motor": "efc.water_droplet",
+        "motor": "water",
         "buss_status": "ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
@@ -5154,7 +5154,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.fluxus_engine",
+        "motor": "fluxus",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5266,7 +5266,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.homeostase_buffer_engine",
+        "motor": "homeostase_buffer",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5388,7 +5388,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.feber_regime_engine",
+        "motor": "feber_regime",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5510,7 +5510,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.aksjonspotensial_engine",
+        "motor": "aksjonspotensial",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5637,7 +5637,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.hjerte_syklus_engine",
+        "motor": "hjerte_syklus",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5759,7 +5759,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.genregulering_engine",
+        "motor": "genregulering",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5863,7 +5863,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.cellesyklus_engine",
+        "motor": "cellesyklus",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -5985,7 +5985,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.metabolisme_engine",
+        "motor": "metabolisme",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -6321,7 +6321,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.immunologi_engine",
+        "motor": "immunologi",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -6430,7 +6430,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.sovn_vaaken_engine",
+        "motor": "sovn_vaaken",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -6552,7 +6552,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.okologi_engine",
+        "motor": "okologi",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -6656,7 +6656,7 @@
         "terskler": [
           "tersklene er fysiologiens etablerte grenser (feber 41 C, R0=1 osv.) — akademia-kilder, dokumentert i ontology.source"
         ],
-        "motor": "efc.evolusjon_engine",
+        "motor": "evolusjon",
         "ikke_falsifiserbar_grunn": "Etablert fysikk er ikke vår å felle; noden beskriver en etablert måling eller lov, ikke en ny EFC-påstand."
       },
       "epistemikk": {
@@ -9183,9 +9183,9 @@
         "terskler": [
           "ingen terskler — oppgjoeret rapporterer avviket, det setter det ikke"
         ],
-        "motor": "ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16)",
         "alene_status": "instrument-node, alene i sitt buss-domene: den leser metno, og det finnes ingen annen node i verden.vaer aa koble til",
-        "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
+        "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen.",
+        "motor_status": "ingen egen motor — sloeyfa loeper i instrumentet (besluttet i t_fbec0c16)"
       },
       "maale_paradigme": {
         "koordinater": [
@@ -9400,7 +9400,7 @@
         "terskler": [
           "-4.0 er JPLs terskel, ikke vaar — 40 over, 2165 under"
         ],
-        "motor": "efc.orbital_engine (banemekanikk)",
+        "motor": "orbital",
         "alene_status": "instrument-node, alene i sitt buss-domene: jpl-sentry er den eneste kilden for dette domenet",
         "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
       },
@@ -9638,7 +9638,7 @@
         "terskler": [
           "K = 4.4 +- 0.6 er hentet fra SPARC, ikke avledet her"
         ],
-        "motor": "efc.rotation_engine",
+        "motor": "rotation",
         "alene_status": "struktur-laget er kjeden sin rot — det har ingen lavere EFC-forelder i denne modellen"
       },
       "epistemikk": {
@@ -9742,7 +9742,7 @@
         "terskler": [
           "g+ = c*H0/e gir H0 = 70.2 +- 16.8 — usikkerheten er STOR"
         ],
-        "motor": "efc.efc_background_engine",
+        "motor": "efc_background",
         "alene_status": "EFC-D er koblet som neste trinn etter struktur-laget; ingen annen fysisk forelder er nødvendig"
       },
       "epistemikk": {
@@ -9859,7 +9859,7 @@
           "C = Omega x kappa er FALSIFISERT forhaandsregistrert — et EKTE negativt resultat",
           "K = 4.4 +- 0.6 arvet fra SPARC"
         ],
-        "motor": "efc.klima_engine",
+        "motor": "klima",
         "alene_status": "EFC-C0 er kjedens kapasitetstrinn etter dynamikken; ingen annen fysisk forelder er nødvendig"
       },
       "epistemikk": {

@@ -9,7 +9,7 @@ export const META = {
           { k: 'S-axis', v: '39 of 116 measured · 53 without a group yet' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-17 by faber (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 53 of the 116 without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other).`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-17 by faber (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 53 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other).`,
   platformGives: 'NATS bus (read by measurement code, scheduled by nothing — see Known holes), engines, review fan-out, the EFC bank.',
   busHull: [
   "**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-17T18:41:27Z by faber (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days \u2014 a stale measurement that still answers, which is the failure mode the atlas exists to name.",
@@ -4991,7 +4991,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other), 78 relations.",
+    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 78 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
