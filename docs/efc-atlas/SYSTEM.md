@@ -1747,7 +1747,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** entropi-feltet S og dets grenser · perspektiv: paradigm
 
-**What it does.** ingen direkte — S er et felt, ikke en maaling — proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C…
+**What it does.** ingen direkte — S er et felt, ikke en maaling — proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C (forlatt…
 
 **How it's built.** Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · sektor C · klarhet C(S) ved S->1: mettet klarhet lokalt — propofol-EEG (Omega, kappa) måler klarhetsvariasjon i liten skala · EBE claim validity = f(S, L, proxy-chain).
 

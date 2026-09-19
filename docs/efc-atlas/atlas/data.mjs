@@ -3277,7 +3277,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "entropi-feltet S og dets grenser \u00b7 perspektiv: paradigm",
-    "what": "ingen direkte \u2014 S er et felt, ikke en maaling \u2014 proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C\u2026",
+    "what": "ingen direkte \u2014 S er et felt, ikke en maaling \u2014 proxy chain: S -> Omega-hat (differensiering) og kappa-hat (integrasjon) -> Omega x kappa -> C (forlatt\u2026",
     "how": "Buffer role: entropien selv: den absorberer energi uten at strukturen endres, til grensen\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 \u00b7 sektor C \u00b7 klarhet C(S) ved S->1: mettet klarhet lokalt \u2014 propofol-EEG (Omega, kappa) m\u00e5ler klarhetsvariasjon i liten skala \u00b7 EBE claim validity = f(S, L, proxy-chain).",
     "sAxis": {
       "regime": "S->1",
