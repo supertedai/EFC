@@ -9833,14 +9833,15 @@
       "observer": {
         "bandwidth": "EEG er vinduet — det ser korrelater, ikke feltet selv",
         "awareness": "instrument_window",
-        "er_del_av_systemet": true
+        "er_del_av_systemet": true,
+        "maalepavirkning": "Paradigme-forurensning: instrumentet (EEG-konnektivitet, Omega/kappa) koder IITs ontologi, ikke EFCs — den lånte linsen er en del av det som avleses, så «falsifisert» er en lesning lagt oppå dataene, ikke en dom dataene avsa."
       },
       "emergence": {
         "loop": "S -> strukturell kompleksitet -> informasjonskapasitet -> ny S",
         "properties": [
           "S=0: singularitet",
           "S=1: altularitet",
-          "C = Omega x kappa er FALSIFISERT"
+          "C = Omega x kappa forlatt som multiplikativ modell (paradigmelåst)"
         ]
       },
       "fractal": {
@@ -9856,7 +9857,7 @@
       "stipulasjoner": {
         "stipulert_av_oss": true,
         "terskler": [
-          "C = Omega x kappa er FALSIFISERT forhaandsregistrert — et EKTE negativt resultat",
+          "C = Omega x kappa er forlatt som multiplikativ modell (Chennu et al. 2016, propofol-EEG) — men uten gyldig RCMP-overlapp; ikke en uavhengig falsifisering, se revisjon 2026-09-19",
           "K = 4.4 +- 0.6 arvet fra SPARC"
         ],
         "motor": "klima",
@@ -9877,7 +9878,7 @@
         "enheter": "dimensionloes S i [0,1]",
         "status": "avledet",
         "alternativer": [
-          "Shannon-entropi som separat maal (FALSIFISERT som multiplikativ modell)"
+          "Shannon-entropi som separat maal (forlatt som multiplikativ modell (paradigmelåst, se revisjon 2026-09-19))"
         ],
         "s_regime": "S->1",
         "ebe_function": "claim validity = f(S, L, proxy-chain)",
@@ -9892,7 +9893,11 @@
       },
       "buss_domene": "kosmos.kosmologi",
       "synlighet": "offentlig",
-      "ville_falsifisere": "FALSIFISERT ALLEREDE, forhaandsregistrert: den multiplikative modellen C = Omega x kappa feilet i propofol-EEG (Chennu et al. 2016). Det som gjenstaar aa felle er om S som FELT gir noe Shannon-entropi ikke gir — en differensiell prediksjon."
+      "ville_falsifisere": "INGEN GYLDIG MÅLING ennå — ikke falsifisert. Den multiplikative modellen C = Omega x kappa feilet i propofol-EEG (Chennu et al. 2016), men Omega og kappa er IITs operasjonalisering (integrasjon/differensiering), ikke EFCs primitiver: RCMP-overlapp (instrument/observabel/teori) mangler, så resultatet feller bare hybriden (EFC-modell x IIT-linse), ikke EFC-C0. Det som VILLE felle noden er en differensiell prediksjon: S som FELT må gi en observert størrelse Shannon-entropi ikke gir — lesbar av et instrument begge parter er enige om at de måler, slik alpha i DESI DR2 leses av begge selv om de tolker den ulikt.",
+      "revisjon": [
+        "2026-09-19: Falsifikatoren C = Omega x kappa er paradigmelåst — Omega og kappa er IITs operasjonalisering, ikke EFCs primitiver. RCMP (instrument/observabel/teori) overlapper ikke, så «FALSIFISERT ALLEREDE» var feil kategori; rettet til «ingen gyldig måling». Det som skjedde var en selv-falsifisering med en lånt, rivaliserende linse.",
+        "2026-09-19: Generell lærdom — en påstand kan bare falsifiseres av et instrument som ikke koder inn en rivaliserende konklusjon. Bevissthetsskalaen har intet teorinøytralt instrument; EFC-C0 må testes differensielt, ikke presses inn i en eksisterende skala bygget for noe annet."
+      ]
     },
     {
       "id": "kosmos.gammaglimt",
