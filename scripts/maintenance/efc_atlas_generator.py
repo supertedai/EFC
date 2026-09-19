@@ -609,9 +609,12 @@ def sakse_tekst(node: dict) -> str:
 
     S-aksen (regime, sektor, klarhet, EBE, RCMP) ble skrevet til data.mjs som
     `sAxis`, men ingen av de to byggene leser den noekkelen: node-panelet viser
-    `what`/`how`/`cond`, og teksttvillingen likesaa. Rendereren er dessuten en
-    READ-ONLY kopi av skillens assets, saa den kan ikke utvides herfra. Laget
-    maa derfor uttrykkes i et felt visningene FAKTISK leser — `how` er det
+    `what`/`how`/`cond`, og teksttvillingen likesaa. The renderer is a HAND-COPIED
+    copy of the skill's asset, not read-only: this copy carries the code-namespace
+    fix from #506 (pinned by tests/test_atlas_flows.py, red before it), and the
+    asset carries the same mechanism since 2026-09-19 — so the two agree, and any
+    further edit must be made in BOTH, or the next `cp` from SKILL.md drops it.
+    Laget maa derfor uttrykkes i et felt visningene FAKTISK leser — `how` er det
     rette: regimet og maalekjeden er hvordan noden er bygget.
 
     Rekkefoelgen er maalerekken: regime -> sektor -> klarhet -> EBE -> RCMP.
