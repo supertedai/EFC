@@ -26,7 +26,7 @@ def les_svar(prosess: subprocess.CompletedProcess[str]) -> dict:
 
 
 def test_kjent_fragment_foreslaas_som_nodeverdig_med_domene() -> None:
-    svar = les_svar(kjør("--tekst", "vulkansk aske i stratosfaeren"))
+    svar = les_svar(kjør("--tekst", "volcanic ash in the stratosphere"))
 
     assert svar["forslag"][0]["kategori"] == "node-verdig"
     assert svar["forslag"][0]["domene_forslag"]
@@ -51,7 +51,7 @@ def test_vurdering_foreslaas_til_hindsight() -> None:
 
 def test_listeneren_mutere_ikke_regime_nodes() -> None:
     før = ATLAS.read_bytes()
-    svar = les_svar(kjør("--tekst", "vulkansk aske i stratosfaeren"))
+    svar = les_svar(kjør("--tekst", "volcanic ash in the stratosphere"))
     etter = ATLAS.read_bytes()
 
     assert svar["forslag"]
@@ -61,7 +61,7 @@ def test_listeneren_mutere_ikke_regime_nodes() -> None:
 def test_alle_leser_koe_og_returnerer_liste(tmp_path: Path) -> None:
     kø = tmp_path / "atlas_fragmenter.jsonl"
     kø.write_text(
-        json.dumps({"tekst": "vulkansk aske i stratosfaeren"}) + "\n"
+        json.dumps({"tekst": "volcanic ash in the stratosphere"}) + "\n"
         + json.dumps({"tekst": "kwisatz haderach"}) + "\n",
         encoding="utf-8",
     )

@@ -51,12 +51,12 @@ def les_linjene(sti: Path) -> list[dict]:
 
 def test_innta_skriver_ekte_plassering_med_kilde_og_tidspunkt(tmp_path: Path) -> None:
     fil = tmp_path / "data" / "atlas_fragmenter.jsonl"
-    resultat = kjør_inntak(tmp_path, "vulkansk aske i stratosfaeren", "samtale")
+    resultat = kjør_inntak(tmp_path, "volcanic ash in the stratosphere", "samtale")
 
     assert resultat.returncode == 0, resultat.stderr
     assert "written to" in resultat.stdout
     record = les_linjene(fil)[0]
-    assert record["tekst"] == "vulkansk aske i stratosfaeren"
+    assert record["tekst"] == "volcanic ash in the stratosphere"
     assert record["kilde"] == "samtale"
     assert record["tidspunkt"]
     assert record["plasseringsstatus"] == "uten_hjem"
@@ -76,14 +76,14 @@ def test_innta_ukjent_fragment_blir_arlig_uten_hjem(tmp_path: Path) -> None:
 
 def test_innta_er_append_only_for_to_fragmenter(tmp_path: Path) -> None:
     fil = tmp_path / "data" / "atlas_fragmenter.jsonl"
-    første = kjør_inntak(tmp_path, "vulkansk aske i stratosfaeren", "samtale")
+    første = kjør_inntak(tmp_path, "volcanic ash in the stratosphere", "samtale")
     andre = kjør_inntak(tmp_path, "kwisatz haderach", "samtale")
 
     assert første.returncode == andre.returncode == 0
     linjer = les_linjene(fil)
     assert len(linjer) == 2
     assert [x["tekst"] for x in linjer] == [
-        "vulkansk aske i stratosfaeren", "kwisatz haderach"
+        "volcanic ash in the stratosphere", "kwisatz haderach"
     ]
 
 
@@ -186,11 +186,11 @@ def test_bekreft_sier_inne_og_navngir_noden_med_kode_og_kilde() -> None:
 
 
 def test_andelsterskelen_er_grunnen_til_at_vulkansk_aske_ikke_er_inne() -> None:
-    """MAALT: «vulkansk aske i stratosfaeren» treffer `kosmos.jord.vulkan` paa
+    """MAALT: «volcanic ash in the stratosphere» treffer `kosmos.jord.vulkan` paa
     ETT ord — vulkannoden baerer VHP-statuslisten, ikke asken. Med «minst ett
     ord» som regel ville svaret vaert «inne», og da hadde en binding bekreftet
     et fragment. Testen feller den mutanten."""
-    sv = L.bekreft_fra_ref(REPO, "vulkansk aske i stratosfaeren", ref="HEAD")
+    sv = L.bekreft_fra_ref(REPO, "volcanic ash in the stratosphere", ref="HEAD")
     assert sv["dom"] == "ikke_inne"
     naermest = sv["naermest"]
     assert naermest, "en naer-bom skal navngis, ikke skjules"

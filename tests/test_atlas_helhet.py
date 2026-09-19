@@ -90,13 +90,13 @@ class TestPlassererBedre:
     bare i domenenavn."""
 
     def test_vulkansk_aske_finner_klima_eller_vulkan(self, atlas: dict) -> None:
-        p = atlas_lesing.plasser(atlas, "vulkansk aske i stratosfaeren")
+        p = atlas_lesing.plasser(atlas, "volcanic ash in the stratosphere")
         navn = [f["domene"] for f in p["forslag"]] + p.get("naere_noder", [])
         assert any("vulkan" in n or "klima" in n or "jord" in n for n in navn), \
             f"aske peker fortsatt bare paa alfabetet: {navn[:4]}"
 
     def test_forslaget_nevner_hvorfor(self, atlas: dict) -> None:
-        p = atlas_lesing.plasser(atlas, "vulkansk aske i stratosfaeren")
+        p = atlas_lesing.plasser(atlas, "volcanic ash in the stratosphere")
         for f in p["forslag"]:
             assert f.get("kobling"), "forslaget sier ikke hvorfor"
 

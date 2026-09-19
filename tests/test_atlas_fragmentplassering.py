@@ -1,6 +1,6 @@
 """Fragmentplassering: naboene skal komme fra ord som BESKRIVER noe.
 
-Maalt 2026-09-18: `--plasser "varmepumpe med CO2 som kjolemiddel"` svarte
+Maalt 2026-09-18: `--plasser "heat pump with CO2 as refrigerant"` svarte
 «svakt» og foreslo `homo.fluxus, homo.homeostase_buffer, homo.hjerte_syklus,
 homo.cellesyklus` — en varmepumpe fikk hjertesyklusen som nabo. Aarsaken var
 at matcheren bare filtrerte paa ordlengde > 2, saa «med» og «som» ble
@@ -29,7 +29,7 @@ def _plasser(tekst: str) -> dict:
 
 def test_funksjonsord_baerer_ikke_plassering() -> None:
     """Et fragment av bare funksjonsord har ingen naboer og ingen hjem."""
-    svar = _plasser("med som under mellom")
+    svar = _plasser("with as under between")
     naboer = [n for f in svar["forslag"] for n in f.get("noder", [])]
     assert not naboer, f"funksjonsord ga naboer: {naboer}"
     assert svar["status"] == "uten_hjem", svar
@@ -38,7 +38,7 @@ def test_funksjonsord_baerer_ikke_plassering() -> None:
 
 def test_varmepumpe_faar_ikke_hjertesyklusen_som_nabo() -> None:
     """Den maalte feilen, direkte."""
-    svar = _plasser("varmepumpe med CO2 som kjolemiddel")
+    svar = _plasser("heat pump with CO2 as refrigerant")
     naboer = [n for f in svar["forslag"] for n in f.get("noder", [])]
     falske = [n for n in naboer if n.startswith(("homo.hjerte", "homo.cellesyk",
                                                  "homo.fluxus"))]
@@ -47,20 +47,20 @@ def test_varmepumpe_faar_ikke_hjertesyklusen_som_nabo() -> None:
 
 def test_ordet_som_beskriver_noe_finner_fortsatt_noden() -> None:
     """Rettingen skal ikke drepe signalet."""
-    svar = _plasser("vulkansk aske")
+    svar = _plasser("volcanic ash")
     naboer = [n for f in svar["forslag"] for n in f.get("noder", [])]
     assert "kosmos.jord.vulkan" in naboer, svar
 
 
 def test_batterifragmentet_finner_batterinodene() -> None:
-    svar = _plasser("energiflyt i batteriet under lading")
+    svar = _plasser("battery buffer during charging")
     naboer = [n for f in svar["forslag"] for n in f.get("noder", [])]
     assert any(n.startswith("batteri.") for n in naboer), svar
 
 
 def test_ordlikhet_merkes_som_ikke_forslag() -> None:
     """Naar lista bare er ordlikhet, skal den si det — ikke se ut som et forslag."""
-    svar = _plasser("vulkansk aske")
+    svar = _plasser("volcanic ash")
     avledet = [f for f in svar["forslag"] if f["domene"] == "(avledet)"]
     assert avledet, svar
     kobling = avledet[0]["kobling"]
