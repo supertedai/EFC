@@ -71,8 +71,8 @@ Hver rad er generert fra samme bank som atlaset.
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
 - **TA · kosmos.transienter_alerce** — optiske transienthendelser
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
-- **DB · kosmos.kosmologi_desi_bao** — DESI BAO-observasjoner når strømmen finnes
-  perspektiv=consensus · motor=ikke oppgitt · buss=stroemmen finnes ikke — venter paa… · S-akse=ikke maalt · spoersmaal=1 · gruppe=ja
+- **DB · kosmos.kosmologi_desi_bao** — DESI BAO-observasjoner (DR2, publisert) — statisk inntak
+  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=1 · gruppe=ja
 
 ## Bridges
 - **HA · verden.hav** — havtemperatur
