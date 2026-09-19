@@ -12,7 +12,6 @@ import scorer
 
 KEY_PATH = HERE / "key.json"
 BANK_PATH = Path(__file__).parents[3] / "schema" / "regime_nodes.jsonld"
-PYTHON = "/opt/venvs/t_123ed6d9/bin/python"
 # Pinnet til den RETTEDE nokkelen (67938617). Den forrige pinningen pekte paa
 # d3fd75b6, som inneholdt fire tellefeil funnet av to uavhengige spor.
 # Formaalet er det samme: en stille endring av nokkelen skal feile her.
