@@ -100,7 +100,7 @@ def _epistemisk(noder: list[dict]) -> dict:
     def tell(pred, mengde: list[dict]) -> tuple[int, int]:
         return sum(1 for n in mengde if pred(n)), len(mengde)
 
-    def har(n: dict, felt: str) -> bool:
+    def has_field(n: dict, felt: str) -> bool:
         return bool(n.get(felt))
 
     # THE DISTINCTION: an EFC node CLAIMS something and must be able to be
@@ -114,8 +114,8 @@ def _epistemisk(noder: list[dict]) -> dict:
     return {
         "kan_felles": tell(har_falsifikator, vaare),
         "maaler_eller_observert": tell(lambda n: True, andres),
-        "prediksjon": tell(lambda n: har(n, "prediction"), noder),
-        "oppgjoer": tell(lambda n: har(n, "settlement"), noder),
+        "prediksjon": tell(lambda n: has_field(n, "prediction"), noder),
+        "oppgjoer": tell(lambda n: has_field(n, "settlement"), noder),
         "offentlige": len(offentlige),
     }
 
