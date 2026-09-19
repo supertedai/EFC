@@ -121,7 +121,7 @@ class JordskjelvEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "Seismology carries the physics (Reid, Burridge-Knopoff) and has learned not to promise timing; our threshold model is our own — a false «prediction» would damage the field more than us.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

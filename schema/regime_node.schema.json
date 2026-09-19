@@ -418,7 +418,8 @@
         },
         "ville_falsifisere": {
           "type": "string",
-          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand."
+          "minLength": 1,
+          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand. Ett av tre svar som gjør at noden har tatt stilling til om den kan felles: dette, `falsifiserbarhet` (kriteriet finnes, terskelen gjør det ikke ennå) eller `stipulasjoner.ikke_falsifiserbar_grunn`. At ett av dem FINNES holdes av testene (`test_atlas_avgjorelse.py`, `test_atlas_motsigelse.py`) — men en tom streng er ikke et svar her."
         },
         "open_questions": {
           "type": "array",
@@ -506,7 +507,7 @@
             },
             "sosial_mekanisme": {
               "type": "string",
-              "description": "Hvilke sosiale krefter bærer konsensusen: narrativ-styrke, insentiver, finansiering, prestisje, ego, karriererisiko."
+              "description": "The social forces that carry the CLAIM: who says it, who would gain from it, who would lose — narrative strength, incentives, funding, prestige, ego, career risk. The text is INDIVIDUALIZED per node (rule 46): two nodes sharing a text is a template, and template text is false traceability. The guard is tests/test_epistemikk_v3.py, which fails on a text two nodes share."
             },
             "konsensus_er_ikke_sannhet": {
               "type": "boolean",
@@ -976,6 +977,24 @@
               }
             }
           }
+        },
+        "usikkerhet": {
+          "type": "object",
+          "description": "USIKKERHETSLAGET (ADR-086 §3.1): hvilken feilgrense KILDEN oppgir for en verdi noden bærer — eller en eksplisitt erklæring om at kilden ikke oppgir den. Valgfritt, lukket og additivt: ingen node må endres for at atlaset skal validere, og et tall uten oppgitt usikkerhet skal fortsatt kunne leses som nettopp det. Diagnosen er målt: hodetallene står MED feilgrense i sine egne kilder (`k = 0.415 ± 0.029` i docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5) mens atlaset hadde 0 strukturerte usikkerhetsfelt. Feltet skal ikke skaffe ny usikkerhet — det skal slutte å miste den. `null` er et gyldig svar; 0 og en gjetning er det ikke. Regelen som ikke kan stå her (en post SKAL ha en kilde som svarer) holdes av tests/test_usikkerhetslag.py inntil C10-gaten kan endres med menneskeord (t_2e60afa6). Eier: Morten og Joakim (ord 2026-09-18).",
+          "required": [
+            "poster"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "poster": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/Usikkerhetspost"
+              },
+              "description": "Én post per verdi noden bærer med usikkerhet. Tom liste er ikke en post: et felt som ser fylt ut uten å være det, er nettopp feilen dette laget skal hindre."
+            }
+          }
         }
       },
       "additionalProperties": false
@@ -1099,6 +1118,66 @@
             "minoritet",
             "ingen"
           ]
+        }
+      }
+    },
+    "Usikkerhetspost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "storrelse",
+        "verdi",
+        "feilgrense",
+        "kilde"
+      ],
+      "properties": {
+        "storrelse": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Størrelsen slik KILDEN skriver den (f.eks. «k», «β», «σ_int») — kildens navn, ikke vårt."
+        },
+        "verdi": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Verdien slik kilden oppgir den. `null` er et svar når kilden bare oppgir grensen."
+        },
+        "feilgrense": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Feilgrensen KILDEN oppgir på den navngitte linjen. `null` betyr at kilden ikke oppgir den — det er et SVAR, ikke en mangel, og β = 0.16 er prøven. En feilgrense på 0 er bare gyldig når kilden selv sier 0."
+        },
+        "kilde": {
+          "$ref": "#/$defs/Usikkerhetskilde"
+        }
+      }
+    },
+    "Usikkerhetskilde": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fil",
+        "linje",
+        "ordrett"
+      ],
+      "properties": {
+        "fil": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Sti fra repo-roten til filen grensen er lest fra. Filen må være sporet i repoet — en usporet «kilde» finnes ikke som kilde."
+        },
+        "linje": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Linjenummeret i filen, 1-indeksert. Leses tilbake av tests/test_usikkerhetslag.py: en gjetning står ikke på linjen den viser til."
+        },
+        "ordrett": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Et ORDRETT utsnitt av linjen — nok til å se at kilden sier det posten sier. Et sitat som ikke står på linjen, feller testen."
         }
       }
     }

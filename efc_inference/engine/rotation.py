@@ -107,7 +107,7 @@ class EFCRotation(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "The rotation curves are the observers' measurement; the explanation «flat curve WITHOUT dark matter» is OURS — the dark-matter tradition's careers and funding rest on the opposite reading, so nobody carries ours.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

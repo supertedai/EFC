@@ -238,6 +238,8 @@ def _skjemablader(node: dict, sti: str = "") -> set:
 
 
 def _utenfor_broen(sti: str) -> bool:
+    """Whether ``sti`` stands in ``K.UTENFOR_BROEN``. The dict's KEYS are the
+    paths; each value is the written reason (see the tests below)."""
     n = K._normaliser(sti)
     return any(n == u.rstrip("/") or n.startswith(u.rstrip("/") + "/")
                for u in K.UTENFOR_BROEN)
@@ -264,6 +266,80 @@ def test_hvert_skjema_felt_har_en_eier(broer: dict) -> None:
         flate |= set(K.flat(b["motor"])) | set(K.flat(b["atlas"]))
     brukt = sorted(sti for sti in flate if K.eier(sti) is None)
     assert not brukt, f"felt i bruk uten eier: {brukt}"
+
+
+def test_every_declared_omission_carries_its_reason() -> None:
+    """An omission must be REASONED — and must not contradict ownership.
+
+    A bare path is a silent omission with one extra step: the next reader
+    cannot see WHO writes the field, and therefore cannot tell whether the
+    omission still holds. That is the same hole this file exists for, one
+    level up.
+
+    The second assertion is the class measured 2026-09-19 (t_c8d06315): five
+    entries stood in ``UTENFOR_BROEN`` AND in the ownership tables
+    (``/settlement/`` and the four ``/stipulasjoner/*``), and ``eier()``
+    answered "atlas" for all five — 11 field paths in registered bridges hit
+    them. An entry claiming "no rule applies here" about a field the
+    convention already owns is not an omission; it is a false statement that
+    hides the owner.
+    """
+    ungrounded = sorted(k for k, reason in K.UTENFOR_BROEN.items()
+                        if not (isinstance(reason, str) and reason.strip()))
+    assert not ungrounded, f"omissions without a written reason: {ungrounded}"
+
+    contradicting = [(k, K.eier(k)) for k in sorted(K.UTENFOR_BROEN)
+                     if K.eier(k) is not None]
+    assert not contradicting, (
+        "omissions that contradict the ownership tables — eier() answers "
+        f"before this list is read, so the entry is false: {contradicting}")
+
+
+def test_every_declared_omission_names_a_field_the_schema_can_express() -> None:
+    """A declaration for a field the schema no longer has is stale.
+
+    ``_skjemablader`` is the same walk the ownership test above uses, so the
+    two cannot disagree about what the schema carries. A stale entry is not
+    harmless: it reads as "this field is handled", while the field it was
+    written for is gone — and the next field to appear gets no decision.
+    """
+    skjema = json.loads((REPO / "schema" / "regime_node.schema.json")
+                        .read_text(encoding="utf-8"))
+    blader = _skjemablader(skjema["$defs"]["RegimeNode"])
+    stale = []
+    for nokkel in sorted(K.UTENFOR_BROEN):
+        n = K._normaliser(nokkel).rstrip("/")
+        if not any(blad == n or blad.startswith(n + "/") for blad in blader):
+            stale.append(nokkel)
+    assert not stale, (
+        f"the schema can no longer express these fields: {stale} — the "
+        "declaration is stale, and a stale declaration is read as a decision")
+
+
+def test_no_registered_bridge_carries_a_field_declared_outside_it(broer: dict) -> None:
+    """Every omission's measured basis, made a gate.
+
+    ``/open_questions`` stands outside the bridge on the measurement "21 bank
+    nodes carry it, 0 of the 20 registered bridges do" (2026-09-19,
+    t_c8d06315). ``test_hvert_skjema_felt_har_en_eier`` also fails if an
+    engine starts emitting it — but it reports the field as UNOWNED, and the
+    repair then reads as "add an owner or delete the field". The repair is
+    narrower: the measurement has gone stale, and the field belongs in
+    ``ATLAS_EIDE``, the only owner that also covers "the engine must say what
+    the atlas says".
+
+    A field declared outside the bridge while a bridge carries it is the
+    contradiction this test names, at the place where it can appear.
+    """
+    innenfor = []
+    for nid, b in sorted(broer.items()):
+        for side in ("motor", "atlas"):
+            for sti in sorted(K.flat(b[side])):
+                if _utenfor_broen(sti):
+                    innenfor.append((nid, side, sti))
+    assert not innenfor, (
+        "fields carried by a registered bridge, declared outside it — the "
+        f"omission is stale: {innenfor}")
 
 
 def test_stipulasjoner_motor_er_motorens_kortnavn(broer: dict) -> None:

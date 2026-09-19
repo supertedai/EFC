@@ -133,7 +133,7 @@ class OrbitalEngine(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "Kepler, vis-viva and the Hill sphere are textbook consensus carried by celestial mechanics; reading «bound = holding, unbound = release» is the framework's wording — the field would call it energy and nothing more.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

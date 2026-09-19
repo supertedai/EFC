@@ -1,12 +1,13 @@
-"""Kravene til en ny node: hvor de kommer fra, og hva slags svar de krever.
+"""The requirements on a new node: where they come from, and what kind of answer
+they demand.
 
-Maalt 2026-09-18: `plasser()` regnet ut «hva maa fylles» som alle felt i
-banken minus sju hardkodede unntak — og blant unntakene laa `buss_domene`
-og `falsifiserbarhet`. En ny node ble dermed bedt om `coupling.empathy_note`,
-men IKKE om buss-domene eller falsifikator: de to feltene resten av huset
-feller paa. Denne testen laaser at kravene kommer fra skjemaet, at
-husets egne krav er merket som husets, og at et strukturfelt aldri faar en
-verdi uten grunn.
+Measured 2026-09-18: `plasser()` computed «what must be filled» as every field
+in the bank minus seven hard-coded exceptions — and among the exceptions lay
+`buss_domene` and `falsifiserbarhet`. A new node was therefore asked for
+`coupling.empathy_note`, but NOT for bus domain or falsifier: the two fields the
+rest of the house judges by. This test locks that the requirements come from the
+schema, that the house's own requirements are tagged as the house's, and that a
+structure field never gets a value without a reason.
 """
 from __future__ import annotations
 
@@ -28,7 +29,7 @@ def atlas() -> dict:
 
 def _krav(p: dict, felt: str) -> dict:
     treff = [k for k in p["krav"] if k["felt"] == felt]
-    assert treff, f"{felt} mangler i kravene: {[k['felt'] for k in p['krav']]}"
+    assert treff, f"{felt} is absent from the requirements: {[k['felt'] for k in p['krav']]}"
     return treff[0]
 
 
@@ -41,7 +42,7 @@ def test_kravene_kommer_fra_skjemaet(atlas):
 
 
 def test_buss_domene_og_falsifikator_er_med(atlas):
-    """De to feltene som feilaktig laa paa unntakslista."""
+    """The two fields that wrongly lay on the exception list."""
     p = atlas_lesing.plasser(atlas, "BAO maaling i galakser")
     for felt in ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
                  "prediction", "settlement"):
@@ -64,7 +65,7 @@ def test_hvert_krav_har_en_av_tre_klasser(atlas):
 
 
 def test_synlighet_foreslaas_fra_banken_ikke_fra_koden(atlas):
-    """Standardverdien skal vaere lest, ikke skrevet inn."""
+    """The default value must be read, not written in."""
     p = atlas_lesing.plasser(atlas, "BAO maaling i galakser")
     k = _krav(p, "synlighet")
     verdier = [n.get("synlighet") for n in atlas["noder"] if n.get("synlighet")]
@@ -80,7 +81,7 @@ def test_buss_domene_foreslaas_naar_fragmentet_nevner_ett_domene(atlas):
 
 
 def test_strukturfelt_uten_grunnlag_faar_ingen_verdi(atlas):
-    """`phase` er ikke et lukket sett — den er kjerne + rest."""
+    """`phase` is not a closed set — it is core + rest."""
     p = atlas_lesing.plasser(atlas, "xylofonstemning i mars")
     k = _krav(p, "phase")
     assert k["forslag"] is None, k
@@ -93,15 +94,15 @@ def test_alle_strukturfelt_har_enten_verdi_eller_grunn(atlas):
         p = atlas_lesing.plasser(atlas, tekst)
         for k in p["krav"]:
             if k["klasse"] == "struktur":
-                # En verdi maa vaere begrunnet, og en manglende verdi maa
-                # vaere forklart. Aldri en verdi uten grunn.
+                # A value must be justified, and a missing value must be
+                # explained. Never a value without a reason.
                 assert k["grunn"], (tekst, k)
                 if k["forslag"] is None:
                     assert k["klasse"] == "struktur", k
 
 
 def test_uten_kravkilde_feiler_plasser_hoyt(atlas):
-    """Et tomt krav ser ut som om ingenting kreves."""
+    """An empty requirement looks as if nothing is required."""
     uten = {k: v for k, v in atlas.items()
             if k not in ("skjema_krav", "repo", "ref")}
     with pytest.raises(atlas_lesing.AtlasLesingFeil):
@@ -109,13 +110,14 @@ def test_uten_kravkilde_feiler_plasser_hoyt(atlas):
 
 
 def test_skjema_krav_kan_leses_last_naar_det_mangler(atlas):
-    """Atlaset kan finnes uten skjema — men kravlesningen maa skje et sted."""
+    """The atlas can exist without a schema — but the requirements reading must
+    happen somewhere."""
     uten = {k: v for k, v in atlas.items() if k != "skjema_krav"}
     assert atlas_lesing.skjema_krav(uten) == atlas_lesing.skjema_krav(atlas)
 
 
 def test_skjema_krav_leses_fra_refen_ikke_arbeidsstreet(atlas):
-    """Kravene skal komme fra samme ref som atlaset, og navngis."""
+    """The requirements must come from the same ref as the atlas, and be named."""
     krav = atlas_lesing.skjema_krav(atlas)
     assert krav and "id" in krav, krav
     assert atlas["commit"], atlas

@@ -109,8 +109,11 @@ class TestSorteringEtterBetydning(unittest.TestCase):
 
     def test_den_ekte_filen_gir_hull_sortert_etter_volum(self):
         rader = av.hull(DEKNING, SNAPSHOT)
-        # 2026-09-18: all 39 domains now have a node. An empty list is the goal
-        # reached, not an error — the test checks the consistency, not the length.
+        # 2026-09-18: every one of the 39 domains had a node, and an empty hull
+        # was the goal reached, not a fault. Measured 2026-09-19: the bus gained
+        # kosmos.exoplanet (63 messages) before anybody had built a node for it,
+        # so the hull is non-empty again. The test checks the consistency, not
+        # the length: a declared hull must be measured, and sorted by size.
         self.assertIsInstance(rader, list)
         self.assertTrue(all(r["status"] == "ikke_dekket" for r in rader))
         nokler = [(-r["meldinger"], r["domene"]) for r in rader]

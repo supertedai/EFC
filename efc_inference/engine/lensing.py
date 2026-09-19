@@ -79,7 +79,7 @@ class EFCLensing(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "Lensing is measured by Planck/ACT/SPT and carried by them; this node is our CONTRACT (a stub) — it claims no measurement, and nobody in the field gains from reading it as one.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

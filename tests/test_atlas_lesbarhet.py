@@ -26,6 +26,13 @@ import importlib.util
 import json
 import pathlib
 import subprocess
+import sys
+
+# The interpreter. The generator runs as a subprocess, so it must be the
+# one RUNNING this test. Measured 2026-09-18: these calls hardcoded a venv
+# path that exists only on the Hermes host — in CI (ubuntu-latest) they
+# died with FileNotFoundError.
+PYTHON = sys.executable
 
 ROT = pathlib.Path(__file__).resolve().parents[1]
 GEN = ROT / "scripts" / "maintenance" / "efc_atlas_generator.py"
@@ -57,7 +64,7 @@ def _les_konstant(navn: str):
 def _bygg_og_les():
     """Bygg atlaset fra banken, og les den RENDERte nodelista."""
     r = subprocess.run(
-        ["/opt/venvs/t_123ed6d9/bin/python", str(GEN)],
+        [PYTHON, str(GEN)],
         capture_output=True, text=True, cwd=ROT, timeout=180)
     assert r.returncode == 0, r.stderr[-600:]
     return _les_konstant("NODES"), DATA.read_text(encoding="utf-8")
@@ -294,9 +301,9 @@ def test_spoersmaalene_er_unike():
 def test_kapittel9_sier_hva_atlaset_bestaar_av():
     """«Alt paa en gang» maa ikke se fyldigere ut enn det er.
 
-    Maalt: 116 publiserte noder, 53 av dem designet og ikke bygget. Stod tallet
-    bare i prosa, ville det blitt staende og lyve. Her utledes begge sider og
-    sammenlignes: teksten i kapittel 9 mot den faktiske tellingen i data.mjs.
+    Målt: 116 publiserte noder, 53 av dem uten gruppe ennå — og hvorfor de
+    mangler den (observasjon, regime eller motor). "Designet og ikke bygget" var
+    en byggestatus teksten fant på; se tests/test_atlas_byggestatus.py.
     """
     noder, _ = _bygg_og_les()
     ch = _les_konstant("CH")
@@ -308,8 +315,11 @@ def test_kapittel9_sier_hva_atlaset_bestaar_av():
                        if (bank[n["name"]].get("epistemikk") or {})
                        .get("evidensstatus") == "ingen")
     assert ikke_bygget > 0 and uten_evidens > 0, "tellingene er doede"
-    assert f"{ikke_bygget} of them designed and not built" in siste["lede"], (
-        f"kapittel 9 sier ikke hvor mange som ikke er bygget: {siste['lede']}")
+    grunn = GEN_MOD.uten_gruppe_grunner(list(bank.values()))
+    assert (f"{ikke_bygget} of them without a group yet "
+            f"({grunn['observasjon']} observations") in siste["lede"], (
+        f"kapittel 9 sier ikke hvor mange som mangler gruppe, og hvorfor: "
+        f"{siste['lede']}")
     assert f"{uten_evidens} nodes carry no evidence yet" in siste["story"], (
         f"kapittel 9 sier ikke hvor mange som mangler evidens: {siste['story']}")
     assert len(noder) and f"{len(noder)} nodes" in siste["lede"]
@@ -339,8 +349,10 @@ def test_saksen_er_ikke_en_gjentatt_mal():
 def test_saksen_naar_teksttvillingen_og_headeren():
     """data.mjs er ikke nok: begge byggene leser `how`, og headeren leser META.
 
-    Rendereren er en READ-ONLY kopi av skillens assets — derfor testes de
-    BYGGEDE filene, ikke bare at noekkelen finnes i data.mjs.
+    The renderer is a HAND-COPIED copy of the skill's asset, not read-only, so the
+    BUILT files are what gets tested — not just that the key exists in data.mjs
+    (the copy carries the code-namespace fix from #506; the asset carries it too
+    since 2026-09-19, so a further edit belongs in both).
     """
     noder, data = _bygg_og_les()
     bank = _bank()
@@ -372,7 +384,7 @@ def test_motorordet_betyr_bare_en_ting_paa_hver_flate():
     MOTORFILER og ENGINE NODES.
     """
     import subprocess as sp
-    r = sp.run(["/opt/venvs/t_123ed6d9/bin/python",
+    r = sp.run([PYTHON,
                 str(ROT / "scripts" / "atlas_navigasjon.py"), ".", "--ref",
                 "origin/main"], capture_output=True, text=True, cwd=ROT,
                timeout=120)

@@ -35,13 +35,28 @@ Ingen av dem var en feil i atlaset — alle var en feil i grensesnittet.
     roter(atlas, node=, ...)        -> dict
     helhet(atlas, node_id)          -> dict   {episenter, felt, motor, ...}
     plasser(atlas, tekst)           -> dict   {status, forslag, naere_noder, ...}
+    node_verdig(plassering)         -> dict   {node_verdig, terskel, grunn}
+    skriv_inntak(atlas, tekst, fil) -> dict   the retain fragment into the queue
+    les_inntak(fil)                 -> list   the queue back; a bad line raises
+    bekreft(atlas, tekst, generator)-> dict   did it arrive, and is it visible
+    bekreft_fra_ref(repo, tekst)    -> dict   the same, read from a ref
+    inntak_status(repo, fil)        -> dict   the whole queue, one answer per row
     kjent_hull(repo, emne, ref)     -> dict | None
     naboer/hop/hop_stier/fragment   -> koblingsgrafen
     maaleformer/proxy_kjeder        -> hva maaler, via hva
+    sjekk_usikkerhet(atlas, repo)   -> list[str]  hver post mot sin egen kilde
 
 REGELEN de alle foelger: en inngang som ikke vet, SIER det. `finn` svarer
 «ATLASET VET IKKE» heller enn aa gi et loest treff; `plasser` svarer
 `uten_hjem` heller enn aa gjette et domene.
+
+THE RETAIN INTAKE is the atlas's own `retain`: the session's insights are
+proposed as fragments to `plasser()`, each of them with provenance, and each
+of them with the threshold written down (see `NODE_TERSKEL`) — because
+automation that maps everything fills the atlas with noise. Whoever adds one
+confirms afterwards with `--bekreft` that the fragment arrived, and the answer
+is built by the atlas and not by the queue: the queue is the working memory,
+the atlas is the truth.
 """
 
 from __future__ import annotations
@@ -93,7 +108,7 @@ def les_atlas(repo: str | Path, ref: str = STANDARD_REF, *,
         data = json.loads(raa)
     except json.JSONDecodeError as e:
         raise AtlasLesingFeil(
-            f"{ref}:{sti} i {repo} er ikke gyldig JSON: {e}") from e
+            f"{ref}:{sti} i {repo} is not valid JSON: {e}") from e
     if not isinstance(data, dict) or "nodes" not in data:
         raise AtlasLesingFeil(
             f"{ref}:{sti} i {repo} mangler 'nodes' — "
@@ -145,7 +160,7 @@ def _skjema_krav(repo: Path, ref: str,
     try:
         skjema = json.loads(raa)
     except json.JSONDecodeError as e:
-        raise AtlasLesingFeil(f"{ref}:{sti} er ikke gyldig JSON: {e}") from e
+        raise AtlasLesingFeil(f"{ref}:{sti} is not valid JSON: {e}") from e
     krav = ((skjema.get("$defs") or {}).get("RegimeNode") or {}).get("required")
     if not krav:
         raise AtlasLesingFeil(
@@ -162,6 +177,178 @@ def _har_falsifikator(node: dict) -> bool:
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
+
+# ---------------------------------------------------------------------------
+# USIKKERHETSLAGET — hvert tall skal kunne bære hvor sikkert det er
+#
+# ADR-086 §3.1: feltet er valgfritt, lukket og additivt. Kilden HAR
+# informasjonen (k = 0.415 ± 0.029 står i sitt eget paper); atlaset mistet den
+# i overføringen. Diagnosen er derfor ikke «skaff usikkerhet», men «slutt å
+# kaste den» — og da er den ene regelen som gjør laget verdt noe: EN VERDI HAR
+# ALLTID EN KILDE.
+#
+# Sjekkeren står her og ikke i skjemaet, med vilje. Skjemaet sier hva en post
+# ER; denne sier om posten STÅR SEG mot kilden sin. Og C10-gaten kan ikke
+# kreve feltet før den endres med menneskeord (`t_2e60afa6`) — et krav som
+# ikke kan stilles i skjemaet må stilles der det faktisk kjører.
+# ---------------------------------------------------------------------------
+
+# Postens og kildens nøkler. Samme tre i skjemaet ($defs/Usikkerhetspost,
+# $defs/Usikkerhetskilde) — to lister ville driftet, og den ene ville tiet.
+USIKKERHETSPOST_NOKLER = ("storrelse", "verdi", "feilgrense", "kilde")
+USIKKERHETSKILDE_NOKLER = ("fil", "linje", "ordrett")
+
+_TALL_RE = re.compile(r"[0-9]+(?:\.[0-9]+)?")
+_GRENSE_RE = re.compile(r"±\s*([0-9]+(?:\.[0-9]+)?)")
+
+
+def _tall_i(tekst: str) -> list[float]:
+    return [float(t) for t in _TALL_RE.findall(tekst)]
+
+
+def _grenser_pa(tekst: str) -> list[float]:
+    """Tallene som står rett etter et ± — KILDENS egne feilgrenser."""
+    return [float(g) for g in _GRENSE_RE.findall(tekst)]
+
+
+def _like_tall(a: float, b: float) -> bool:
+    """0.029 skrevet som 0.029 og som 2.9e-2 er samme grense for et menneske."""
+    return abs(a - b) <= 1e-9 * max(1.0, abs(a), abs(b))
+
+
+def _sporet(repo: Path, fil: str) -> bool:
+    """Er filen i repoet? En usporet «kilde» finnes ikke som kilde."""
+    p = subprocess.run(["git", "-C", str(repo), "ls-files", "--error-unmatch",
+                        "--", fil], capture_output=True, text=True)
+    return p.returncode == 0
+
+
+def _sjekk_usikkerhetspost(node_id: str, nr: int, post, repo: Path) -> list[str]:
+    """Én post mot sin egen kildefil. Hver vei ut navngir hvorfor."""
+    hvor = f"{node_id}/usikkerhet/{nr}"
+    if not isinstance(post, dict):
+        return [f"{hvor}: posten er ikke et objekt"]
+    if isinstance(post.get("storrelse"), str) and post["storrelse"].strip():
+        hvor = f"{hvor} «{post['storrelse']}»"
+
+    # Typevakt FØRST: en manglende nøkkel skal ikke gi en TypeError i
+    # diagnosegrenen — da krasjer leseren nettopp der den skal si hva som er galt.
+    mangler = [k for k in USIKKERHETSPOST_NOKLER if k not in post]
+    if mangler:
+        return [f"{hvor}: missing {', '.join(mangler)}"]
+
+    verdi, grense = post["verdi"], post["feilgrense"]
+    for navn, v in (("verdi", verdi), ("feilgrense", grense)):
+        if isinstance(v, bool) or not isinstance(v, (int, float, type(None))):
+            return [f"{hvor}: {navn} er ikke et tall eller null"]
+    kilde = post["kilde"]
+    if not isinstance(kilde, dict):
+        return [f"{hvor}: usikkerhet uten kilde"]
+    mangler = [k for k in USIKKERHETSKILDE_NOKLER if k not in kilde]
+    if mangler:
+        return [f"{hvor}: kilde mangler {', '.join(mangler)}"]
+
+    fil, linje, ordrett = kilde["fil"], kilde["linje"], kilde["ordrett"]
+    if not isinstance(fil, str) or not fil.strip():
+        return [f"{hvor}: kilde.fil er tom"]
+    if fil.startswith("/") or ".." in fil.split("/"):
+        return [f"{hvor}: kilde.fil maa vaere en sti i repoet, ikke {fil!r}"]
+    if not _sporet(repo, fil):
+        return [f"{hvor}: kilde.fil {fil} is not tracked in the repo"]
+    if isinstance(linje, bool) or not isinstance(linje, int) or linje < 1:
+        return [f"{hvor}: kilde.linje er ikke et positivt heltall"]
+    try:
+        linjer = (repo / fil).read_text(encoding="utf-8").splitlines()
+    except OSError as e:
+        return [f"{hvor}: {fil} kunne ikke leses — {e}"]
+    if linje > len(linjer):
+        return [f"{hvor}: {fil} has {len(linjer)} lines, the entry points at {linje}"]
+    tekst = linjer[linje - 1]
+
+    ut: list[str] = []
+    if not isinstance(ordrett, str) or not ordrett.strip():
+        ut.append(f"{hvor}: kilde.ordrett er tom — et sitat maa kunne leses")
+    elif ordrett not in tekst:
+        ut.append(f"{hvor}: ordrett staar ikke paa {fil}:{linje}: {ordrett!r}")
+
+    if isinstance(verdi, (int, float)) and not any(_like_tall(verdi, t)
+                                                  for t in _tall_i(tekst)):
+        ut.append(f"{hvor}: verdi {verdi} staar ikke paa {fil}:{linje}")
+
+    grenser = _grenser_pa(tekst)
+    if grense is None:
+        if grenser:
+            ut.append(f"{hvor}: the source STATES an error bound ({grenser}) paa "
+                      f"{fil}:{linje} — posten sier den ikke gjoer det")
+    elif not grenser:
+        ut.append(f"{hvor}: feilgrense {grense} er oppgitt, men {fil}:{linje} "
+                  f"oppgir ingen (ingen ±) — 0 og gjetting er ikke et svar")
+    elif not any(_like_tall(grense, g) for g in grenser):
+        ut.append(f"{hvor}: feilgrense {grense} is not the one the source states "
+                  f"({grenser}) paa {fil}:{linje}")
+    return ut
+
+
+def sjekk_usikkerhet(atlas: dict, repo: str | Path | None = None) -> list[str]:
+    """Hver post i usikkerhetslaget mot SIN EGEN kilde. Tom liste = rent.
+
+    Returnerer problemer, ikke en dom: hvert problem navngir noden, posten og
+    hva som ikke stemte, slik at svaret kan leses som en rettelse.
+
+    Reglene, alle maalt mot kilden og ingen mot skjemaet:
+
+      * posten maa ha `storrelse` og en `kilde` med fil, linje og et ORDRETT
+        utsnitt av linjen;
+      * filen maa vaere sporet i repoet, og linjen maa finnes der;
+      * `verdi` maa staa paa linjen posten viser til;
+      * `feilgrense` er enten et tall kilden oppgir etter et ± PAA DEN LINJEN,
+        eller `null` — og `null` krever at linjen ikke oppgir noen.
+
+    Det siste er hele grunnen til at `null` er et svar og 0 ikke er det: en
+    feilgrense paa 0 som kilden ikke sier, er en gjetning skrevet som en
+    maaling. `β = 0.16 (free amplitude)` er prøven — den skal staa som hull.
+
+    `repo` faller tilbake til `atlas['repo']` (som `les_atlas` setter), og
+    mangler begge, reiser vi: en sjekk uten kilder ville svart «alt vel» paa
+    hver post, og det svaret ser ut som kunnskap.
+    """
+    sti = repo if repo is not None else atlas.get("repo")
+    if not sti:
+        raise AtlasLesingFeil(
+            "usikkerhetslaget kan ikke sjekkes uten repo: hverken 'repo' eller "
+            "atlas['repo'] finnes — da er det ingen kilder aa lese")
+    repo = Path(sti)
+
+    # Baade atlas-laget ('noder', fra les_atlas) og raafila ('nodes') leses.
+    # Et atlas UTEN nodenoekkel REISER her, og det er med vilje: en sjekk som
+    # ikke finner nodene ville svart «alt vel» paa hver post, og det svaret ser
+    # ut som kunnskap — noeyaktig feilmodusen dette laget finnes for aa hindre.
+    noder = atlas.get("noder")
+    if noder is None:
+        noder = atlas.get("nodes")
+    if noder is None:
+        raise AtlasLesingFeil(
+            "atlaset har hverken 'noder' eller 'nodes' — da er det ingen poster "
+            "aa sjekke, og «ingen problemer» ville vaert et tomt svar")
+
+    ut: list[str] = []
+    for node in noder or []:
+        if not isinstance(node, dict):
+            continue
+        node_id = str(node.get("id") or "?")
+        usikkerhet = node.get("usikkerhet")
+        if usikkerhet is None:
+            continue  # VALGFRITT: en node uten laget er ikke et problem
+        if not isinstance(usikkerhet, dict):
+            ut.append(f"{node_id}: usikkerhet er ikke et objekt")
+            continue
+        poster = usikkerhet.get("poster")
+        if not isinstance(poster, list) or not poster:
+            ut.append(f"{node_id}: usikkerhet uten poster — tomt felt som ser fylt ut")
+            continue
+        for nr, post in enumerate(poster):
+            ut.extend(_sjekk_usikkerhetspost(node_id, nr, post, repo))
+    return ut
 
 
 def _dekning(repo: Path, ref: str, hent: bool) -> dict:
@@ -233,7 +420,7 @@ def _navnerom(repo: Path, ref: str, emne: str) -> list[dict]:
         try:
             data = json.loads(_git(repo, "show", f"{ref}:{sti}"))
         except json.JSONDecodeError as feil:
-            raise AtlasLesingFeil(f"{sti} er ikke gyldig JSON: {feil}") from feil
+            raise AtlasLesingFeil(f"{sti} is not valid JSON: {feil}") from feil
         except AtlasLesingFeil:
             # Fila finnes ikke paa denne refen. Det er et maalt fravaer av et
             # VALGFRITT register, ikke en defekt — og det meldes ikke som treff.
@@ -354,31 +541,44 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_oppgjoer": bool(n.get("settlement")),
             "har_falsifikator": _har_falsifikator(n),
         })
-    if not treff:
-        registrert = _navnerom(Path(repo), ref, emne)
-        if registrert:
-            treff = [{
-                "trefftype": "navnerom",
-                "id": post["id"],
-                "synlighet": None,
-                "perspektiv": None,
-                "fase": None,
-                "buss_domene": None,
-                "har_prediksjon": False,
-                "har_oppgjoer": False,
-                "har_falsifikator": False,
-                # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
-                # ga en ikke-tom treffliste, og en leser (eller et
-                # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
-                # noden — det har begrepet i navnerommet. De to feltene sier
-                # det uten at noen maa lese prosaen.
-                "har_node": False,
-                "dekning": "navnerom_uten_node",
-                "grunn": (f"registrert i {post['kilde']}, men er ikke en "
-                          "node i schema/regime_nodes.jsonld"),
-            } for post in registrert]
-    _rang = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3,
-             "navnerom": 4}
+    # Registrerte begreper svarer ALLTID med navneromstreffet — ogsaa naar en
+    # node nevner ordene.
+    #
+    # Foerste utgave la navneromstreffet inn BARE naar ingen node traff, og
+    # det var en stille avhengighet av innholdet. Maalt 2026-09-18
+    # (t_af77c6da): usikkerhetslagets `kilde.fil` skrev
+    # «docs/papers/efc/Energy-Flow-Cosmology-Unified-Analysis-of-BAO/
+    # index.json» inn i obs.bao — og svaret paa «Energy-Flow Cosmology» gikk
+    # fra «registrert begrep: efc:EFC» til «ord i obs.bao». Registeret er
+    # atlasets svar paa «eier jeg dette begrepet?», og det svaret skal ikke
+    # avhenge av hvilke noder som tilfeldigvis siterer en fil.
+    registrert = _navnerom(Path(repo), ref, emne)
+    if registrert:
+        treff.extend({
+            "trefftype": "navnerom",
+            "id": post["id"],
+            "synlighet": None,
+            "perspektiv": None,
+            "fase": None,
+            "buss_domene": None,
+            "har_prediksjon": False,
+            "har_oppgjoer": False,
+            "har_falsifikator": False,
+            # Maskinlesbar IKKE-DEKNING. Review 2026-09-18: et navneromstreff
+            # ga en ikke-tom treffliste, og en leser (eller et
+            # nedstroemskall) kunne konkludere «dekket». Atlaset HAR ikke
+            # noden — det har begrepet i navnerommet. De to feltene sier
+            # det uten at noen maa lese prosaen.
+            "har_node": False,
+            "dekning": "navnerom_uten_node",
+            "grunn": (f"registrert i {post['kilde']}, men er ikke en "
+                      "node i schema/regime_nodes.jsonld"),
+        } for post in registrert)
+    # Presisjonen er rekkefoelgen: en node som BAERER ordet i id-en eller som
+    # DEKKER domenet sier mer enn registeret gjor; registeret sier mer enn et
+    # loest ord i en tekst. Navneromstreffet staar derfor mellom dem — ikke
+    # sist, som var en arv fra da det bare var en fallback.
+    _rang = {"id": 0, "domene": 1, "navnerom": 2, "ord": 3, "delstreng": 4}
     # Innen samme rang: offentlig foer intern. De offentlige er kjernen i
     # det publiserte atlaset; de interne er kontekst.
     treff.sort(key=lambda x: (_rang[x["trefftype"]],
@@ -863,30 +1063,110 @@ def fragment(atlas: dict, node_id: str) -> dict:
     }
 
 
-#: Hva slags svar et felt krever av den som plasserer noe nytt.
-#: Avklart med Morten 2026-09-18, etter et innspill som ville gjort `--plasser`
-#: om til «struktur beregnes, vurderinger foreslaas, paastander kreves».
+#: What kind of answer each field demands of whoever places something new.
+#: Settled with Morten 2026-09-18, after an input that wanted `--plasser` to
+#: become "structure is computed, assessments are proposed, claims are required".
 #:
-#:   struktur  — utledbar fra fragmentets plass i kjeden. Fylles, med grunn.
-#:   vurdering — beregnbar som kandidat, men semantikken maa godkjennes.
-#:   paastand  — kan ikke utledes av noe. Den ER nodens innhold.
+#:   struktur  — derivable from the fragment's place in the chain. Filled, with grounds.
+#:   vurdering — computable as a candidate, but the semantics must be approved.
+#:   paastand  — cannot be derived from anything. It IS the node's content.
 #:
-#: `phase` ble foreslaatt gjort til enum. Maalt 2026-09-18: 26 verdier, hvorav
-#: 19 brukt én gang («solid (ice Ih)», «coexistence (solid + liquid + gas)»);
-#: kjernen er sju verdier og dekker 107 av 126 noder. Et lukket enum ville
-#: avvist 19 ekte verdier. Fasen er derfor delt — kjerne + rest — ikke lukket.
+#: `phase` was proposed as an enum. Measured 2026-09-18: 26 values, of which 19
+#: used once ("solid (ice Ih)", "coexistence (solid + liquid + gas)"); the core
+#: is seven values and covers 107 of 126 nodes. A closed enum would have
+#: rejected 19 real values. The phase is therefore core + residue, not closed.
 FELTKLASSE = {
     "id": "struktur", "synlighet": "struktur", "buss_domene": "struktur",
-    "nivaa": "struktur",
-    "phase": "struktur", "sektor": "struktur",
+    "nivaa": "struktur", "phase": "struktur", "sektor": "struktur",
     "perspektiv": "vurdering", "maale_paradigme": "vurdering",
     "rcmp": "vurdering",
 }
-#: Felt skjemaet ikke krever, men som huset feller paa. Maalt 2026-09-18 laa
-#: `buss_domene` og `falsifiserbarhet` blant de hardkodede unntakene i denne
-#: funksjonen, altsaa stikk i strid med hva resten av huset bygger paa.
+#: Fields the schema does NOT require, but which the house falls on. Measured
+#: 2026-09-18 these were on the hardcoded exemption list in this function —
+#: exactly inverted from what the rest of the house is built on.
 HUSETS_KRAV = ("buss_domene", "ville_falsifisere", "falsifiserbarhet",
                "prediction", "settlement")
+
+
+#: The readers whose ANSWER counts as "someone reads this field". One list,
+#: used by the measurement (scripts/atlas_feltvekt.py) and by `plasser`.
+LESERE = ("atlas_lesing", "atlas_inngang", "atlas_navigasjon", "atlas_volum",
+          "efc_atlas_generator")
+
+#: Measured 2026-09-19 by MUTATION, not by counting: the field was emptied on
+#: every node that carries it inside a throwaway repo, and each of the five
+#: readers was asked again. The tuple is the readers whose answer CHANGED.
+#:
+#: An empty tuple means no reader notices the field disappear — the field is
+#: dead weight for a new node and the requirement should be argued for, not
+#: assumed. A field NOT in this table has no measurement behind it at all;
+#: `plasser` reports that instead of guessing, and `umaalte_krav()` names them.
+#:
+#: Measured on 403a9c64 (origin/main), 22 of 22 requirements:
+#:
+#:     atlas_lesing 22 · atlas_inngang 7 · atlas_navigasjon 6
+#:     efc_atlas_generator 6 · atlas_volum 0
+#:
+#: **No requirement is read by nobody, so this table shrinks nothing.** The
+#: field that comes closest is read by one reader. `atlas_volum` changes for
+#: none of the 22: it reads the bus measurement and the coverage declaration,
+#: not the node fields — a result, not a missing probe.
+#:
+#: Re-measure with (takes about half a minute, touches no bank):
+#:
+#:     python3 scripts/atlas_feltvekt.py . --ref origin/main
+#:     python3 scripts/atlas_feltvekt.py . --ref origin/main --python
+FELT_LESERE: dict[str, tuple[str, ...]] = {
+    "id": ("atlas_lesing", "atlas_inngang", "atlas_navigasjon",
+           "efc_atlas_generator"),
+    "regime": ("atlas_lesing", "atlas_inngang"),
+    "phase": ("atlas_lesing", "atlas_inngang"),
+    "measure": ("atlas_lesing", "efc_atlas_generator"),
+    "episenter": ("atlas_lesing",),
+    "buffer": ("atlas_lesing", "efc_atlas_generator"),
+    "ontology": ("atlas_lesing",),
+    "observer": ("atlas_lesing",),
+    "emergence": ("atlas_lesing",),
+    "fractal": ("atlas_lesing",),
+    "coupling": ("atlas_lesing",),
+    "perspektiv": ("atlas_lesing", "efc_atlas_generator"),
+    "stipulasjoner": ("atlas_lesing",),
+    "epistemikk": ("atlas_lesing", "atlas_inngang", "efc_atlas_generator"),
+    "maale_paradigme": ("atlas_lesing", "atlas_inngang",
+                        "efc_atlas_generator"),
+    "nivaa": ("atlas_lesing",),
+    "synlighet": ("atlas_lesing", "atlas_inngang", "atlas_navigasjon"),
+    "buss_domene": ("atlas_lesing", "atlas_inngang", "atlas_navigasjon"),
+    "ville_falsifisere": ("atlas_lesing", "atlas_navigasjon"),
+    "falsifiserbarhet": ("atlas_lesing",),
+    "prediction": ("atlas_lesing", "atlas_navigasjon"),
+    "settlement": ("atlas_lesing", "atlas_navigasjon"),
+}
+
+
+def feltet_leses(felt: str) -> bool:
+    """Does any of the five readers change its answer when the field goes?
+
+    False for a field that was MEASURED and read by nobody. Use `er_maalt`
+    when the two must be told apart: an unmeasured field is not evidence.
+    """
+    return bool(FELT_LESERE.get(felt))
+
+
+def er_maalt(felt: str) -> bool:
+    """Is there a mutation measurement behind this requirement?"""
+    return felt in FELT_LESERE
+
+
+def umaalte_krav(krav, tabell: dict | None = None) -> list[str]:
+    """The requirements that stand in a group with no measurement behind them.
+
+    A requirement called read — or called unread — without a measurement is an
+    opinion wearing the numbers of a measurement. This is the one place that
+    says so, and the test that pins the separation runs it.
+    """
+    t = FELT_LESERE if tabell is None else tabell
+    return [f for f in krav if f not in t]
 
 
 #: Funksjonsord, norske og engelske. De beskriver ikke noe og kan derfor ikke
@@ -901,6 +1181,17 @@ the and for with that this from into over under between without after while
 when where what which who whose than then also not only can will shall must
 may be been being has have had its their our your his her they them we you it
 """.split())
+
+
+def _stamme(a: str, b: str, n: int = 5) -> bool:
+    """«vulkansk» and «vulkan» are one word to a human, not to ==.
+
+    Lifted out of `plasser()` 2026-09-18: the confirmation (see `bekreft`)
+    has to split on EXACTLY the same word rule as the placement. Two rules
+    for «one word» would give an answer where the fragment is carried by a
+    node the placement did not find — or the other way round.
+    """
+    return len(a) >= n and len(b) >= n and a[:n] == b[:n]
 
 
 def plasser(atlas: dict, tekst: str) -> dict:
@@ -924,17 +1215,19 @@ def plasser(atlas: dict, tekst: str) -> dict:
              if len(w) > 2 and w not in STOPPORD}
     noder = atlas.get("noder") or []
 
-    # hvilke domener nevner ordene?
-    domener = alle.get("buss_domene", (0, []))[1]
+    # which domains do the words name? The domains are read from the NODES,
+    # not from `akser()`. Measured 2026-09-18: `akser()` truncates the sample
+    # values to six (`sorted(raa[sti])[:6]`), and that is a DISPLAY rule — yet
+    # plasser() read it as the candidate list. Then only the first six
+    # domains alphabetically could give `hjem_funnet`, and «hav» got «ingen
+    # anelse» while `verden.hav` was in the bank. A display limit must not
+    # decide what the atlas KNOWS.
+    domener = sorted({n["buss_domene"] for n in noder if n.get("buss_domene")})
     treff_domener = [d for d in domener
                      if any(w in _norm(d) for w in ord_i)]
 
     # hvilke noder deler ord med fragmentet? Vekten legges der ordet FAKTISK
     # beskriver noe: maalet og regimet, ikke alle tekster i noden.
-    def _stamme(a: str, b: str, n: int = 5) -> bool:
-        """«vulkansk» og «vulkan» er samme ord for et menneske, ikke for ==."""
-        return len(a) >= n and len(b) >= n and a[:n] == b[:n]
-
     def vekt(n: dict) -> int:
         m = n.get("measure") or {}
         r = n.get("regime") or {}
@@ -957,7 +1250,7 @@ def plasser(atlas: dict, tekst: str) -> dict:
     if not forslag and naere_noder:
         forslag.append({"domene": "(avledet)", "noder": naere_noder[:4],
                         "kobling": ("noder deler ord med fragmentet — "
-                                    "ORDLIKHET, ikke et plasseringsforslag")})
+                                    "WORD SIMILARITY — not a placement suggestion")})
     if not forslag:
         # ingen domene-streng matchet: bruk DOMENENE TIL DE NAERE NODENE.
         # Fallback-en skal ikke foreslaa alfabetet — den skal foreslaa det
@@ -1008,11 +1301,22 @@ def plasser(atlas: dict, tekst: str) -> dict:
     for f in list(krav_fra_skjemaet) + [x for x in HUSETS_KRAV
                                         if x not in krav_fra_skjemaet]:
         klasse = FELTKLASSE.get(f, "paastand")
+        lesere = list(FELT_LESERE.get(f, ()))
         post = {"felt": f,
                 "klasse": klasse,
                 "kilde": "skjema" if f in krav_fra_skjemaet else "huset",
                 "fylt_i_banken": f"{fylt.get(f, 0)}/{len(noder)}",
+                "lesere": lesere, "lesere_av": len(LESERE),
+                "maalt": er_maalt(f), "leses": bool(lesere),
                 "forslag": None, "grunn": None}
+        if not post["maalt"]:
+            # No measurement is not the same as no reader. Saying "unread"
+            # here would be a guess wearing the clothes of a measurement.
+            post["grunn"] = ("no mutation measurement behind this requirement — "
+                             "run scripts/atlas_feltvekt.py")
+        elif not post["leses"]:
+            post["grunn"] = (f"measured by mutation: none of the {len(LESERE)} "
+                             f"readers changes its answer when it is emptied")
         if klasse == "struktur":
             post["forslag"], post["grunn"] = _utled_struktur(
                 f, tekst, noder, treff_domener,
@@ -1032,6 +1336,14 @@ def plasser(atlas: dict, tekst: str) -> dict:
             "struktur": sum(1 for k in krav if k["klasse"] == "struktur"),
             "vurdering": sum(1 for k in krav if k["klasse"] == "vurdering"),
             "paastand": sum(1 for k in krav if k["klasse"] == "paastand"),
+            # THE SEPARATION: requirements some reader reads, against fields
+            # no reader touches — with the measured number behind each one.
+            "leses": sum(1 for k in krav if k["leses"]),
+            "uten_leser": sum(1 for k in krav if k["maalt"] and not k["leses"]),
+            "uten_leser_felt": [k["felt"] for k in krav
+                                if k["maalt"] and not k["leses"]],
+            "umaalt": [k["felt"] for k in krav if not k["maalt"]],
+            "lesere_av": len(LESERE),
         },
         "aksene": {k: alle[k][1][:6] for k in
                    ("perspektiv", "phase", "synlighet") if k in alle},
@@ -1040,11 +1352,10 @@ def plasser(atlas: dict, tekst: str) -> dict:
 
 def _utled_struktur(felt: str, tekst: str, noder: list,
                     treff_domener: list, synlighet: list) -> tuple:
-    """Utled et strukturfelt — eller si hvorfor det ikke kunne utledes.
+    """Derive a structure field — or say why it could not be derived.
 
-    Aldri en gjetning presentert som en verdi. Kan vi ikke utlede det,
-    sier vi det, for det er noeyaktig her et fragment blir til en fasit
-    hvis vi tier.
+    Never a guess presented as a value. If it cannot be derived we say so:
+    this is exactly where a fragment silently turns into a fact.
     """
     if felt == "id":
         if len(treff_domener) == 1:
@@ -1264,8 +1575,15 @@ def helhet_tekst(atlas: dict, node_id: str) -> str:
 
 def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
                  kilde: str = "samtale") -> dict:
-    """Append one retain fragment to the queue file, without creating a node."""
+    """Append one retain fragment to the queue file, without creating a node.
+
+    The threshold (see `node_verdig`) is written WITH the fragment. A
+    fragment that is not node-worthy stays in the queue with its reason
+    instead of being hidden, so whoever reads the queue can see what was
+    considered and why the answer was no.
+    """
     plassering = plasser(atlas, tekst)
+    dom = node_verdig(plassering)
     record = {
         "tekst": tekst,
         "tidspunkt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -1275,6 +1593,9 @@ def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
         "forslag": plassering.get("forslag", []),
         "naere_noder": plassering.get("naere_noder", []),
         "mangler": plassering.get("mangler", []),
+        "node_verdig": dom["node_verdig"],
+        "terskel": dom["terskel"],
+        "terskel_grunn": dom["grunn"],
         "kilde": kilde,
         "proveniens_kilde": kilde,
         "proveniens": {
@@ -1288,6 +1609,357 @@ def skriv_inntak(atlas: dict, tekst: str, fil: str | Path, *,
     with sti.open("a", encoding="utf-8") as ut:
         ut.write(json.dumps(record, ensure_ascii=False) + "\n")
     return record
+
+
+def les_inntak(fil: str | Path) -> list[dict]:
+    """Read the queue back. An unreadable line RAISES — it has to be seen.
+
+    Same rule as the rest of the module: an entrance that does not know,
+    says so. A queue where half the lines are silently skipped answers «not
+    in» about a fragment that may have been there.
+    """
+    sti = Path(fil)
+    if not sti.exists():
+        return []
+    ut = []
+    for nr, linje in enumerate(sti.read_text(encoding="utf-8").splitlines(), 1):
+        if not linje.strip():
+            continue
+        try:
+            ut.append(json.loads(linje))
+        except json.JSONDecodeError as e:
+            raise ValueError(f"{sti}:{nr} is not valid JSON: {e}") from e
+    return ut
+
+
+# ---------------------------------------------------------------------------
+# THE RETAIN INTAKE — the threshold and the closed loop
+#
+# Morten, 2026-09-18, translated here along with the rest of this block: «all
+# of it goes into the atlas — the ATLAS frame uses the same methodology as
+# hindsight retain, really.» And in the same breath: «automation that maps
+# everything would fill the atlas with noise.»
+#
+# The two sentences do not contradict each other: a retain without a
+# threshold is not a retain, it is a log. The threshold therefore lives here
+# as DATA — it can be read, run and mutated against, not remembered.
+# ---------------------------------------------------------------------------
+
+#: A word shorter than this does not carry a fragment in the atlas: «aske»
+#: is a word, a glue word is not. Deliberately STRICTER than the placement
+#: (3), because the confirmation reads the WHOLE node — a wide rule there
+#: would answer «inne» to almost anything, and a confirmation that always
+#: says yes confirms nothing.
+_MIN_ORD = 4
+
+#: How large a share of the fragment words a node has to carry to count as a
+#: carrier. MEASURED 2026-09-18 against origin/main, with «minst ett ord» as
+#: the rule: «vulkanutbrudd avkjoler stratosfaeren gjennom aerosoler» got
+#: four hits — every one on «gjennom», none on vulkanutbrudd; «Bondi-Hoyle
+#: akselerasjon i mellomstjerne medium» got four hits, every one on
+#: «mellomstjerne», in h2o nodes. A confirmation that says «inne» on a glue
+#: word confirms nothing. One half separates the measured real hits
+#: (trippelpunktet for vann 2 of 2, lensing av bakgrunnsstraaling 2 of 2,
+#: SO2 flux out of monitored volcanoes 3 of 3) from the noise — and leaves
+#: «vulkansk aske i stratosfaeren» as NOT in, which is right: the volcano
+#: node does not carry the ash, it carries the VHP status list.
+NODE_ANDEL = 0.5
+
+#: The threshold for NODE-WORTHY, keyed on the placement's OWN status (not
+#: on a fresh judgement): status -> (node_verdig, grunn).
+NODE_TERSKEL: dict[str, tuple[bool, str]] = {
+    "hjem_funnet": (True,
+                    "explicit domain hit — the fragment owns a domain"),
+    "svakt": (True,
+              "two or more shared words with a named node"),
+    "uten_hjem": (False,
+                  "no domain owner — the fragment stays in the queue "
+                  "until a human chooses"),
+    "tomt": (False, "empty fragment"),
+}
+
+
+def node_verdig(plassering: dict) -> dict:
+    """The threshold: is the fragment node-worthy — and why, or why not?
+
+    The answer is ALWAYS a verdict WITH a reason, also when the verdict is
+    no. A fragment left in the queue with nobody able to see why is the same
+    error class the rest of the house exists to prevent: an absence read as
+    a choice.
+    """
+    status = plassering.get("status") or "uten_hjem"
+    dom, grunn = NODE_TERSKEL.get(
+        status, (False, f"unknown placement status «{status}» — not approved"))
+    return {"node_verdig": dom, "terskel": status, "grunn": grunn}
+
+
+def _ordlaug(tekst: str) -> set[str]:
+    """The words in a text — without the JSON punctuation.
+
+    MEASURED 2026-09-18, in a minimal bank: `json.dumps` puts a quotation
+    mark up against the value, so `{"name": "trippelpunktet for vann"}` gives
+    the word «"trippelpunktet» — and `_stamme` compares five characters, one
+    of which is that quotation mark. A fragment the atlas DOES carry was
+    reported as `ikke_inne`. In the real bank the words sat inside a
+    sentence, so the error stayed hidden until a test used a bank of its
+    own.
+    """
+    return set(re.findall(r"[^\W_]+", _norm(tekst)))
+
+
+def _ord_i(tekst: str) -> set[str]:
+    """The fragment's distinctive words — normalised like the rest of the module."""
+    return {w for w in _ordlaug(tekst) if len(w) >= _MIN_ORD}
+
+
+def _treff_i(noder: list[dict], ord_i: set[str]) -> list[dict]:
+    """Which nodes carry the fragment's words — how many, and in which fields.
+
+    The whole node is read, not only the weighted fields. A fragment can
+    land in `ontology.assumes`, in a prose field or in `regime.validity`,
+    and a confirmation that only looks at `measure` would answer `ikke_inne`
+    about a fragment that IS in. The field name is reported, so the strength
+    of the hit can be re-checked — a word does not count the same in every
+    field.
+
+    `id` is NOT read: it is the node's name, not its content. A fragment
+    that only hits a node because the name happens to share a stem with it
+    is not a fragment the atlas carries.
+
+    The share (`andel`) is how large a part of the fragment's words the node
+    carries. It is computed HERE and not in the call, because it is the same
+    measurement no matter who asks — and the verdict (see `bekreft`) reads
+    it.
+    """
+    ut = []
+    for n in noder:
+        felt: list[str] = []
+        truffet: set[str] = set()
+        for navn, verdi in n.items():
+            if navn == "id":
+                continue
+            ord_n = _ordlaug(json.dumps(verdi, ensure_ascii=False))
+            for o in ord_i:
+                if o in ord_n or any(_stamme(o, x) for x in ord_n):
+                    truffet.add(o)
+                    if navn not in felt:
+                        felt.append(navn)
+        if felt:
+            ut.append({"id": n["id"], "felt": felt, "ord": sorted(truffet),
+                       "andel": len(truffet) / len(ord_i) if ord_i else 0.0})
+    return sorted(ut, key=lambda d: -d["andel"])
+
+
+def _generator_fra(repo: str | Path, ref: str) -> dict:
+    """The generator's own tables — read from the SAME ref as the bank.
+
+    The generator is what decides whether a node becomes VISIBLE in the
+    atlas: without code and without a placement it refuses to build. That
+    validation is not repeated here — it is RUN, and it is read from the
+    same commit as the bank. Otherwise the two answer from different points
+    in time, and a fragment could stand as «visible» because the working
+    tree was further ahead than the ref.
+
+    Returns the module namespace (KODER, PLASSERING), or {} when the file is
+    not on the ref.
+    """
+    sti = "scripts/maintenance/efc_atlas_generator.py"
+    try:
+        kilde = _git(Path(repo), "show", f"{ref}:{sti}")
+    except AtlasLesingFeil:
+        return {}
+    ns: dict = {"__name__": "efc_atlas_generator_fra_ref",
+                "__file__": str(Path(repo) / sti)}
+    exec(compile(kilde, f"{ref}:{sti}", "exec"), ns)  # noqa: S102
+    return ns
+
+
+def _hvorfor_ikke_synlig(d: dict) -> str:
+    """Which link of the closed loop is missing for this node."""
+    mangler = []
+    if not d["kode"]:
+        mangler.append("no entry in KODER — the generator refuses to build")
+    if not d["plassering"]:
+        mangler.append("no entry in PLASSERING — the chapter is not selected")
+    if d["synlighet"] != "offentlig":
+        mangler.append(f"visibility: {d['synlighet'] or 'missing'}")
+    return "; ".join(mangler) or "unknown"
+
+
+def bekreft(atlas: dict, tekst: str, generator: dict, *,
+            atlas_for: dict | None = None) -> dict:
+    """Closed loop: did the fragment COME IN — and is it VISIBLE in the atlas?
+
+    The answer is built from what the atlas ITSELF says, not from the queue:
+    the queue is the working memory, the atlas is the truth. A fragment is
+    in when a node in the bank carries your words, AND the generator takes
+    it (code + placement), AND it is public. All three links are reported —
+    also when the answer is no, because a confirmation that only says «no»
+    hides which link is missing, and then whoever added the fragment knows
+    as little as before.
+
+    `atlas_for` is the bank as it was WHEN the fragment was taken in. When
+    it is given, the answer also says whether the hit is NEW since then:
+    without it, yesterday's fragment would read as «in» because of a node
+    that already existed, and the intake would be credited with something it
+    did not do.
+    """
+    ord_i = _ord_i(tekst)
+    treff = _treff_i(atlas.get("noder") or [], ord_i)
+    baerere = [t for t in treff if t["andel"] > NODE_ANDEL]
+    for_noder = ({t["id"] for t in _treff_i(atlas_for.get("noder") or [], ord_i)
+                  if t["andel"] > NODE_ANDEL}
+                 if atlas_for is not None else None)
+
+    koder = generator.get("KODER") or {}
+    plas = generator.get("PLASSERING") or {}
+    oppslag = {n["id"]: n for n in atlas.get("noder") or []}
+    detaljer = []
+    for t in baerere:
+        n = oppslag.get(t["id"]) or {}
+        kode, p = koder.get(t["id"]), plas.get(t["id"])
+        detaljer.append({
+            "id": t["id"],
+            "felt": t["felt"],
+            "ord": t["ord"],
+            "andel": t["andel"],
+            "kode": kode,
+            "plassering": list(p) if p else None,
+            "synlighet": n.get("synlighet"),
+            "synlig": bool(kode and p and n.get("synlighet") == "offentlig"),
+            "ontology_source": bool((n.get("ontology") or {}).get("source")),
+            "ny_siden_inntaket": (None if for_noder is None
+                                  else t["id"] not in for_noder),
+        })
+
+    synlige = [d for d in detaljer if d["synlig"]]
+    if synlige:
+        dom = "inne"
+        grunn = f"{len(synlige)} visible node(s) carry the words"
+    elif detaljer:
+        dom = "i_banken_ikke_synlig"
+        grunn = "; ".join(f"{d['id']}: {_hvorfor_ikke_synlig(d)}"
+                          for d in detaljer[:4])
+    else:
+        dom = "ikke_inne"
+        grunn = ("no node in the bank carries more than half of the words "
+                 f"(the rule is NODE_ANDEL = {NODE_ANDEL})")
+
+    naermest = None
+    if not detaljer and treff:
+        best = treff[0]["andel"]
+        like = [t for t in treff if t["andel"] == best]
+        naermest = {"andel": best, "ord": treff[0]["ord"],
+                    "noder": [t["id"] for t in like[:3]],
+                    "antall_paa_topp": len(like)}
+        grunn += (f". Closest: {', '.join(naermest['noder'])}"
+                  f"{' …' if len(like) > 3 else ''} with "
+                  f"{len(treff[0]['ord'])} of {len(ord_i)} words "
+                  f"({', '.join(treff[0]['ord'])})")
+
+    truffet = sorted({o for t in treff for o in t["ord"]})
+    return {
+        "tekst": tekst,
+        "dom": dom,
+        "kom_inn": bool(synlige),
+        "grunn": grunn,
+        "atlas": {"kilde": atlas.get("kilde"), "ref": atlas.get("ref"),
+                  "commit": atlas.get("commit")},
+        "ord": {"i_fragmentet": sorted(ord_i), "truffet": truffet,
+                "ikke_truffet": sorted(ord_i - set(truffet))},
+        "andel_krav": NODE_ANDEL,
+        "naermest": naermest,
+        "noder": detaljer,
+        "for": (None if atlas_for is None else {
+            "commit": atlas_for.get("commit"),
+            "noder_som_bar_ordene": sorted(for_noder or []),
+        }),
+    }
+
+
+def bekreft_fra_ref(repo: str | Path, tekst: str, *, ref: str = STANDARD_REF,
+                    hent: bool = False, at: str | None = None) -> dict:
+    """The confirmation read from a ref — bank and generator tables from ONE commit.
+
+    `at` is the commit the fragment was taken in at (from the queue). When
+    it is given, the bank is also read as it was THEN, and the answer
+    separates «came in now» from «was already there». A commit this clone
+    does not have is reported as such — it does not guess that the fragment
+    is new.
+    """
+    repo = Path(repo)
+    atlas = les_atlas(repo, ref=ref, hent=hent)
+    generator = _generator_fra(repo, ref)
+    atlas_for = None
+    if at and at != atlas.get("commit"):
+        try:
+            atlas_for = les_atlas(repo, ref=at)
+        except AtlasLesingFeil:
+            atlas_for = None
+    svar = bekreft(atlas, tekst, generator, atlas_for=atlas_for)
+    svar["for_ikke_lest"] = bool(at and atlas_for is None
+                                 and at != atlas.get("commit"))
+    return svar
+
+
+def inntak_status(repo: str | Path, fil: str | Path, *,
+                  ref: str = STANDARD_REF, hent: bool = False) -> dict:
+    """The whole queue, confirmed against a ref — one read of the bank, one answer per row."""
+    repo = Path(repo)
+    atlas = les_atlas(repo, ref=ref, hent=hent)
+    generator = _generator_fra(repo, ref)
+    atlas_for: dict[str, dict | None] = {}
+    svar = []
+    for r in les_inntak(fil):
+        commit = (r.get("proveniens") or {}).get("commit")
+        if commit and commit != atlas.get("commit"):
+            if commit not in atlas_for:
+                try:
+                    atlas_for[commit] = les_atlas(repo, ref=commit)
+                except AtlasLesingFeil:
+                    atlas_for[commit] = None
+        svar.append(bekreft(atlas, r.get("tekst", ""), generator,
+                            atlas_for=atlas_for.get(commit) if commit else None))
+    return {"fil": str(fil), "atlas": {"kilde": atlas.get("kilde"),
+                                       "ref": ref, "commit": atlas.get("commit")},
+            "antall": len(svar), "svar": svar}
+
+
+
+def bekreft_tekst(svar: dict) -> str:
+    """The confirmation as human-readable text — one form for all three entrances."""
+    a = svar.get("atlas") or {}
+    L = [f"FRAGMENT: {svar.get('tekst', '')!r}",
+         f"  atlas: {a.get('kilde')} @ {(a.get('commit') or '?')[:12]}"]
+    o = svar.get("ord") or {"truffet": [], "i_fragmentet": [], "ikke_truffet": []}
+    linje = (f"  words: hit {len(o['truffet'])} of {len(o['i_fragmentet'])} "
+             f"({', '.join(o['truffet']) or 'none'})")
+    if o.get("ikke_truffet"):
+        linje += f" — not hit: {', '.join(o['ikke_truffet'])}"
+    L.append(linje)
+    L.append(f"  {svar['dom'].upper()} — {svar['grunn']}")
+    for d in svar.get("noder") or []:
+        L.append(f"    {d['id']}  ({len(d['ord'])} av "
+                 f"{len(o['i_fragmentet'])} ord: {', '.join(d['ord'])})")
+        L.append(f"      fields: {', '.join(d['felt'][:6])}")
+        L.append(f"      code: {d['kode'] or 'MISSING'} · plassering: "
+                 f"{tuple(d['plassering']) if d['plassering'] else 'MISSING'} · "
+                 f"visibility: {d['synlighet'] or 'MISSING'}")
+        rad = (f"      ontology.source: "
+               f"{'set' if d['ontology_source'] else 'MISSING'}")
+        if d.get("ny_siden_inntaket") is not None:
+            rad += (f" · new since the intake: "
+                    f"{'yes' if d['ny_siden_inntaket'] else 'no'}")
+        L.append(rad)
+    if svar.get("for"):
+        L.append(f"  taken in at: {(svar['for']['commit'] or '?')[:12]} — "
+                 f"nodes that carried the words then: "
+                 f"{', '.join(svar['for']['noder_som_bar_ordene']) or 'none'}")
+    if svar.get("for_ikke_lest"):
+        L.append("  note: the intake commit is not in this clone — "
+                 "before/after is not decided, so the answer says nothing "
+                 "about whether the hit is new")
+    return "\n".join(L)
 
 
 if __name__ == "__main__":
@@ -1315,6 +1987,9 @@ if __name__ == "__main__":
     p.add_argument("--innta", help="ta imot et fragment i retain-koeen (ingen node opprettes)")
     p.add_argument("--kilde", default="samtale", help="provenienskilde for --innta")
     p.add_argument("--inntak-fil", help="alternativ JSONL-fil for --innta")
+    p.add_argument("--bekreft", help="closed loop: did this fragment come IN to the atlas?")
+    p.add_argument("--inntak-status", action="store_true",
+                   help="closed loop for the WHOLE intake queue")
     p.add_argument("--hop", help="N hopp fra en node:  eller ")
     p.add_argument("--fragment", help="roter rundt ETT fragment: node + alle koblinger")
     p.add_argument("--oversikt", action="store_true",
@@ -1327,19 +2002,46 @@ if __name__ == "__main__":
         print(helhet_tekst(atlas, a.alt))
         sys.exit(0)
 
-    # RETAIN-INNTAK — append-only koe, aldri automatisk node-oppretting
+    # THE RETAIN INTAKE — the queue, the threshold and the closed loop.
+    # No node is created automatically: the intake PROPOSES, a human chooses.
     if a.innta:
         atlas = les_atlas(a.repo, ref=a.ref)
+        generator = _generator_fra(a.repo, a.ref)
         fil = a.inntak_fil or str(Path(a.repo) / "data" / "inntak" /
                                   "atlas_fragmenter.jsonl")
         record = skriv_inntak(atlas, a.innta, fil, kilde=a.kilde)
         print(f"FRAGMENT: {a.innta!r}  ->  {record['plasseringsstatus']}")
         print(f"  proveniens: {record['kilde']}")
+        print(f"  threshold: {'NODE-WORTHY' if record['node_verdig'] else 'NOT node-worthy'}"
+              f" ({record['terskel']}) — {record['terskel_grunn']}")
         print(f"  written to: {fil}")
-        if record["plasseringsstatus"] == "uten_hjem":
-            print("  koe: uten_hjem — menneskelig vurdering kreves")
+        if record["node_verdig"]:
+            print("  queue: fragment proposal — no node is created automatically")
         else:
-            print("  koe: fragment-forslag — ingen node opprettet")
+            print("  queue: stays there — a human has to decide")
+        # The closed loop, at once: the same read that wrote the fragment.
+        print(bekreft_tekst(bekreft(atlas, a.innta, generator)))
+        sys.exit(0)
+
+    # DEN LUKKEDE SLOYFA — kom fragmentet inn?
+    if a.bekreft:
+        print(bekreft_tekst(bekreft_fra_ref(a.repo, a.bekreft, ref=a.ref,
+                                            hent=a.hent)))
+        sys.exit(0)
+
+    if a.inntak_status:
+        fil = a.inntak_fil or str(Path(a.repo) / "data" / "inntak" /
+                                  "atlas_fragmenter.jsonl")
+        s = inntak_status(a.repo, fil, ref=a.ref, hent=a.hent)
+        print(f"KOEEN: {s['fil']} — {s['antall']} fragment(er)")
+        print(f"  atlas: {s['atlas']['kilde']} @ "
+              f"{(s['atlas']['commit'] or '?')[:12]}")
+        if not s["antall"]:
+            print("  tomt — ingenting er inntatt her")
+        for x in s["svar"]:
+            print(bekreft_tekst(x))
+        print(f"  {sum(1 for x in s['svar'] if x['kom_inn'])} inne av "
+              f"{s['antall']}")
         sys.exit(0)
 
     # INNGANGEN — plasser et nytt fragment
@@ -1356,10 +2058,20 @@ if __name__ == "__main__":
         if p_.get("naere_noder"):
             print(f"  naere noder: {', '.join(p_['naere_noder'][:4])}")
         o = p_.get("oppsummering") or {}
-        print(f"  maa utfylle {len(p_['mangler'])} felt for aa bli en node: "
-              f"{o.get('struktur', 0)} struktur (utledes), "
-              f"{o.get('vurdering', 0)} vurdering (foreslaas), "
-              f"{o.get('paastand', 0)} paastand (kreves eksplisitt)")
+        print(f"  {len(p_['mangler'])} fields before it is a node: "
+              f"{o.get('struktur', 0)} structure (derived), "
+              f"{o.get('vurdering', 0)} assessment (proposed), "
+              f"{o.get('paastand', 0)} claim (declared explicitly)")
+        print(f"  of those, {o.get('leses', 0)} are read by at least one of the "
+              f"{o.get('lesere_av', 0)} readers and "
+              f"{o.get('uten_leser', 0)} by nobody:")
+        print(f"    fields with no reader: "
+              f"{', '.join(o.get('uten_leser_felt', [])) or '(none)'}")
+        if o.get("umaalt"):
+            print(f"    NOT MEASURED — no mutation measurement behind them: "
+                  f"{', '.join(o['umaalt'])}")
+        print("    (the schema still requires them — removing one from "
+              "`required` is a decision, not a rule of code)")
         for k in p_.get("krav", []):
             merke = "SKJEMA" if k["kilde"] == "skjema" else "HUSET "
             if k.get("forslag"):

@@ -64,3 +64,55 @@ def test_ingen_status_sier_imot_sitt_eget_felt(noder: list[dict]) -> None:
     assert not motsigelser, (
         f"{len(motsigelser)} node(s) say both that they HAVE a bus and that they "
         f"do NOT: {motsigelser[:6]}")
+
+
+# --- Falsifiability: a decision stands alone (card t_c11ffa45) --------------
+#
+# The same rule as above, for the three answers measured 2026-09-18:
+# `ville_falsifisere`, `falsifiserbarhet` and `stipulasjoner.
+# ikke_falsifiserbar_grunn`. A node with TWO of them says two things at once
+# — the same fault as #514: the reader gets one answer without knowing there is
+# another. `test_atlas_avgjorelse.py` measures that no node is SILENT (>= 1
+# answer); here it is measured that nobody answers twice (<= 1).
+
+def _antall_svar(n: dict) -> int:
+    return (bool(n.get("ville_falsifisere"))
+            + bool(n.get("falsifiserbarhet"))
+            + bool((n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn")))
+
+
+def test_ingen_node_har_to_falsifiseringssvar(noder: list[dict]) -> None:
+    begge = [n["id"] for n in noder if _antall_svar(n) > 1]
+    assert not begge, (
+        f"{len(begge)} node(s) have more than one answer on whether they can "
+        f"be felled. A decision stands alone: {begge[:6]}")
+
+
+def test_falsifikator_og_ikke_falsifiserbar_grunn_utelukker_hverandre(
+        noder: list[dict]) -> None:
+    """The direct contradiction: «here is what would fell me» AND «I cannot
+    be felled» in the same node."""
+    begge = [n["id"] for n in noder
+             if n.get("ville_falsifisere")
+             and (n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn")]
+    assert not begge, (
+        f"{len(begge)} node(s) have BOTH: a falsifier and a reason not to "
+        f"have one: {begge[:6]}")
+
+
+def test_en_tom_verdi_er_ikke_en_avgjoerelse(noder: list[dict]) -> None:
+    """«Cannot be felled» is an answer; an empty string is an omission.
+
+    The same rule as `test_statusene_sier_noe_om_hvorfor` above: the field must
+    be FILLED or ABSENT, never filled with nothing. An empty string satisfies
+    «the field exists» and does not answer the question — exactly the fault
+    class `test_falsifiserbarhet.py` has felled three times.
+    """
+    tomme = []
+    for n in noder:
+        s = n.get("stipulasjoner") or {}
+        for felt in ("ville_falsifisere", "ikke_falsifiserbar_grunn"):
+            verdi = n.get(felt) if felt == "ville_falsifisere" else s.get(felt)
+            if verdi is not None and not str(verdi).strip():
+                tomme.append(f"{n['id']}.{felt}")
+    assert not tomme, f"empty decisions: {tomme[:6]}"

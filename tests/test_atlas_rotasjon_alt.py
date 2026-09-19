@@ -72,12 +72,25 @@ def test_ingen_akse_tilbyr_none_som_verdi(atlas: dict) -> None:
 
 
 def test_hvert_domene_kan_roteres(atlas: dict, dekning: dict) -> None:
-    """Roterer jeg rundt et domene, skal jeg faa alle dets noder."""
+    """Roterer jeg rundt et domene, skal jeg faa alle dets noder.
+
+    A domain with NO node is not a rotation failure. The measurement can gain a
+    domain before anybody has built a node for it, and `ikke_dekket` is the
+    atlas's own word for that state (`atlas_volum.py --hull` sorts exactly those
+    by size). What this test demands of it is that it is NAMED: a declared
+    domain without a node must carry the hull status and a reason. Measured
+    2026-09-19: kosmos.exoplanet entered the measurement with 63 messages and no
+    node -- a silent empty list would still fail here.
+    """
     feil = []
     for dom, v in sorted(dekning["domener"].items()):
         forventet = v.get("noder") or []
         if not forventet:
-            feil.append(f"{dom}: tomt domene")
+            if v.get("status") != "ikke_dekket" or not str(
+                    v.get("begrunnelse", "")).strip():
+                feil.append(
+                    f"{dom}: no node, and not declared as a named hull "
+                    f"(status={v.get('status')!r}, reason empty={not str(v.get('begrunnelse', '')).strip()})")
             continue
         treff = atlas_lesing.roter_akse(atlas, "buss_domene", dom)
         if len(treff) != len(forventet):

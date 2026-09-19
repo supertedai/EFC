@@ -1,6 +1,9 @@
 # Blindtest: blir en forskningsbeslutning bedre MED atlaset?
 
-Status: protokoll, ikke kjort. Scenariene skal hentes fra de 21
+Status: **KJORT 2026-09-19** (resultatet ligger i `blindtest/RESULTAT.md`:
+kravet er ikke innfridd — ett grep i repoet traff nøkkelens anker 10 av 12 ganger
+mot ett atlas-kall 5 av 12). Protokollen under er den som ble fulgt, med de
+avvikene som står i resultatet. Scenariene ble hentet fra de 21
 registrerte aapne spoersmaalene i banken (`schema/regime_nodes.jsonld`,
 feltet `open_questions`) og fra motor-/buss-spoersmaal. Skrevet 2026-09-18 etter at en uavhengig
 vurdering (annen modell, direkte API, `model_verified: true`) pekte paa

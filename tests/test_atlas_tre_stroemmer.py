@@ -32,7 +32,11 @@ def test_de_tre_stroemnodene_eier_riktig_bussdomene():
 
 
 def test_de_tre_stroemnodene_baerer_maalingskontrakten():
-    """Nodene skal deklarere måling, motorstatus, falsifiserbarhet og kilde."""
+    """Each node must declare its measurement, its engine status, its
+    falsifiability and its source. The rationale is the SHARED instrument
+    class (a declared class, not a per-node sentence): measured 2026-09-19,
+    63 of 126 nodes carry it, and this file previously pinned the same text
+    in a second spelling without diacritics."""
     noder = {node["id"]: node for node in NODER}
     for node_id, (domene, stroem) in FORVENTET.items():
         node = noder[node_id]
@@ -49,7 +53,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
         assert prov["fullstendig"] is False
         assert node["stipulasjoner"]["motor_status"] == "instrument — trenger ingen motor"
         assert node["stipulasjoner"]["ikke_falsifiserbar_grunn"] == (
-            "instrument-noden kan ikke felles av en observasjon — den ER maalingen"
+            "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
         )
         assert node["epistemikk"]["konsensus_er_ikke_sannhet"] is True
         assert node["perspektiv"] == "konsensus"

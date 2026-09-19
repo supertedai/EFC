@@ -87,13 +87,38 @@ def test_analogi_feltene_er_required_i_skjema():
     assert set(analogi.get("required", [])) == {"avbildning", "bryter_der"}
 
 
-def test_konsensus_mekanismer_er_individualiserte():
-    """No two konsensus nodes shall share sosial_mekanisme text —
-    template-based filling is a false traceability (review requirement)."""
-    tekster = [n["epistemikk"]["sosial_mekanisme"] for n in _atlas()["nodes"]
-               if n["perspektiv"] == "konsensus"]
-    assert len(tekster) == len(set(tekster)), (
-        "duplicate sosial_mekanisme texts among the konsensus nodes")
+def test_alle_noder_har_sosial_mekanisme():
+    """The field is required in the schema, and it is the precondition for
+    the test below: a node without it is invisible to the duplicate check
+    (rule 73 — an absent field is not an answer)."""
+    mangler = [n["id"] for n in _atlas()["nodes"]
+               if not (n["epistemikk"].get("sosial_mekanisme") or "").strip()]
+    assert not mangler, f"nodes without sosial_mekanisme: {mangler}"
+
+
+def test_sosial_mekanisme_er_individualisert():
+    """No two nodes may share a sosial_mekanisme text — template filling is
+    false traceability, however many nodes share the template (rule 46).
+
+    The guard used to cover ONLY nodes with ``perspektiv == "konsensus"``.
+    The engine nodes are ``konsensusstatus: minoritet`` (perspektiv:
+    paradigme), so they were outside the guard — and one and the same
+    template could stand in 30 nodes (measured 2026-09-18: 20 engine nodes,
+    17 with the long template + 3 with the short, plus 27 non-engine nodes in
+    those same two templates and 10 h2o/optics nodes in a third). The class
+    is the WHOLE population where the field is set: it is the text that is
+    false traceability, not the consensus status.
+    """
+    grupper: dict = {}
+    for n in _atlas()["nodes"]:
+        tekst = n["epistemikk"]["sosial_mekanisme"]
+        grupper.setdefault(tekst, []).append(n["id"])
+    delt = {t: ids for t, ids in grupper.items() if len(ids) > 1}
+    linjer = "\n".join(f"  {len(ids)}x {t[:80]!r} -> {ids}"
+                       for t, ids in delt.items())
+    assert not delt, (
+        f"{len(delt)} sosial_mekanisme text(s) shared by several nodes "
+        f"(template, not individualized):\n{linjer}")
 
 
 def test_epistemikk_statusene_er_gyldige_enum():

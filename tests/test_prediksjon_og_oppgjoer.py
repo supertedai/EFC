@@ -164,3 +164,77 @@ class TestSloeyfaErLukketDerDenErMaalt(unittest.TestCase):
         self.assertNotEqual(s["outcome"], n["prediction"]["expected"],
                             "outcome and expectation are identical — then it is not "
                             "measured, it is mirrored twice")
+
+
+FIXTUR_PAR = ROT / "tests" / "fixtures" / "nats-vaerparet-metno.json"
+
+
+class TestTheWeatherLoopIsMirroredFromAMeasuredPair(unittest.TestCase):
+    """The verden.vaer node mirrors a loop that actually ran on the bus.
+
+    The mirror is checked against the TWO measured messages it was taken
+    from, not against prose about them. The fixture is read back from the
+    bus (stream VERDEN_PROGNOSE, seq 167904 and 168744) and carries the
+    provenance of that read, so a transcribed number cannot pass: both
+    sides are parsed and the NUMBERS are compared — the discipline of
+    test_expected_er_speilet_ikke_avskrevet, one level out.
+
+    Measured while reading the pair: the SAME correlation key is carried
+    by two forecasts for this station, one with a 1-hour horizon and one
+    with 24 hours. The correlation key alone therefore does not identify a
+    forecast, and the node has to carry the one the outcome settles
+    against. That choice is pinned here too.
+    """
+
+    @staticmethod
+    def _parset(value):
+        return json.loads(value) if isinstance(value, str) else value
+
+    def _fixture(self) -> dict:
+        return json.loads(FIXTUR_PAR.read_text(encoding="utf-8"))
+
+    def test_the_two_sides_share_one_measured_correlation(self):
+        f = self._fixture()
+        p, o = f["prediksjon"]["hoder"], f["oppgjoer"]["hoder"]
+        self.assertEqual(
+            p["korrelasjon"], o["korrelasjon"],
+            "the fixture is not one pair: the two messages disagree on the key")
+        n = _node_ved_id("verden.vaer")
+        self.assertEqual(n["prediction"]["correlation"], p["korrelasjon"])
+        self.assertEqual(n["settlement"]["correlation"], o["korrelasjon"])
+
+    def test_expected_is_parsed_from_the_measured_message(self):
+        f = self._fixture()
+        n = _node_ved_id("verden.vaer")
+        measured = json.loads(f["prediksjon"]["hoder"]["forventet"])
+        self.assertEqual(self._parset(n["prediction"]["expected"]), measured)
+        self.assertEqual(self._parset(n["settlement"]["expected"]), measured)
+
+    def test_the_outcome_side_is_the_measured_one(self):
+        f = self._fixture()
+        o = f["oppgjoer"]["hoder"]
+        s = _node_ved_id("verden.vaer")["settlement"]
+        self.assertTrue(s.get("outcome_source"),
+                        "settlement without an outcome source is a claim "
+                        "that something was measured")
+        self.assertEqual(s["outcome_source"], o["utfall_kilde"])
+        self.assertEqual(self._parset(s["outcome"]), json.loads(o["utfall"]))
+        self.assertEqual(self._parset(s["deviation"]), json.loads(o["avvik"]))
+
+    def test_the_mirrored_forecast_is_the_one_the_outcome_settles(self):
+        """Lead time separates the two forecasts that share the key.
+
+        1-hour horizon: 89 min. 24-hour horizon: 1469 min. Only the short
+        one has an outcome, so it is the one the node must carry — and the
+        field that tells them apart has to be on the node, or the mirror
+        would look right while pointing at the other forecast.
+        """
+        f = self._fixture()
+        p = f["prediksjon"]["hoder"]
+        pred = _node_ved_id("verden.vaer")["prediction"]
+        self.assertEqual(pred["lead_time_minutes"], p["ledetid_min"])
+        self.assertEqual(pred["valid_for"], p["gyldig_for"])
+        self.assertNotEqual(
+            pred["lead_time_minutes"], "1469",
+            "the node mirrors the 24-hour forecast, which has no outcome")
+

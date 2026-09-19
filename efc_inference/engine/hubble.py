@@ -121,7 +121,7 @@ class EFCHubble(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "H(z) is measured by the distance-ladder and CMB collaborations; the deformation E²(a) with alpha_cosmo is OUR law form, and only we lose if it is wrong — nobody in the field needs it to do their job.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

@@ -1,0 +1,42 @@
+{
+  "beskrivelse": "Shared Norwegian stopword vocabulary for the EFC language gates. The identical list is inlined in the language step of .github/workflows/efc-changelog-sync.yml; tests/test_spraakvakt.py fails when the two drift apart, so the changelog gate and this gate cannot disagree about what counts as Norwegian.",
+  "regel": "one entry per alternative in the regex alternation, verbatim; the file is the rule, not content, and is the single declared exemption in scripts/maintenance/efc_spraakvakt.py",
+  "ord": [
+    "skal",
+    "ikke",
+    "v[æe]re",
+    "v[æe]rt",
+    "ble",
+    "har",
+    "som",
+    "med",
+    "og",
+    "forutsier",
+    "konsistent",
+    "prediksjonen",
+    "målt",
+    "stor",
+    "negativ",
+    "også",
+    "etter",
+    "men",
+    "mot",
+    "fra",
+    "til",
+    "endret",
+    "oppdatert",
+    "påkrevd",
+    "rettet",
+    "æ",
+    "ø",
+    "å"
+  ],
+  "etiketter": [
+    "MED",
+    "MEDIUM"
+  ],
+  "kjente_hull": [
+    "Function words that collide with English or with identifiers are deliberately absent (i, en, et, er, det, på, av, de, den). Prose built only from those is invisible to this gate.",
+    "The list is a stopword list, not a language detector: it cannot say how much Norwegian it does not see."
+  ]
+}
