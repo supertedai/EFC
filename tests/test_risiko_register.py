@@ -1,9 +1,9 @@
-"""Tester for risikoregister-validatoren (t_882cfca, fase 1).
+"""Tests for the risk-register validator (t_882cfca, phase 1).
 
-Hver regel testes med ÉN mutasjon om gangen mot en gyldig post, slik at
-feiltypen som rapporteres kan leses: en validator som bare testes på en
-gyldig post er en validator som ikke er prøvd. Til slutt valideres det ekte
-registeret i treet, og append-only prøves mot et ekte (lite) git-repo.
+Every rule is tested with ONE mutation at a time against a valid entry, so the
+reported error KIND can be read: a validator that is only tested on a valid entry
+is a validator that has not been tried. Finally the real register in the tree is
+validated, and append-only is tried against a real (small) git repo.
 """
 from __future__ import annotations
 
@@ -233,8 +233,8 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
     linjebrudd på registeret ville passert med exit 0. Målt 2026-09-18: alle
     tre kanalene gjorde nøyaktig det.
 
-    Kanarifuglene er med vilje: de beviser FØRST at forgiftningen virker på et
-    rått `git diff`. Uten dem kunne testen blitt grønn fordi kanalen ble
+    The canaries are deliberate: they prove FIRST that the poisoning works on a
+    raw `git diff`. Without them the test could go green because the channel was
     stengt et annet sted enn i gaten.
     """
     register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
@@ -247,7 +247,7 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
     register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omkrevet"},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # --- Kanal 1: diff.external (GIT_EXTERNAL_DIFF) + textconv. ---
+    # --- Channel 1: diff.external (GIT_EXTERNAL_DIFF) + textconv. ---
     forgiftet = tmp_path / "forgiftet-gitconfig"
     forgiftet.write_text("[diff]\n\texternal = /bin/true\n"
                          "[diff \"jsonl\"]\n\ttextconv = /bin/true\n", encoding="utf-8")
@@ -265,9 +265,9 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
     feil = vr.append_only(base, tmp_path)
     assert [f["type"] for f in feil] == ["not_append_only"], feil
 
-    # --- Kanal 2: diff-driver med binary = true. ---
-    # `.gitattributes` i treet peker `*.jsonl` på driveren `jsonl`; driveren
-    # med `binary = true` gjør at git svarer «Binary files differ» i stedet
+    # --- Channel 2: a diff driver with binary = true. ---
+    # `.gitattributes` in the tree points `*.jsonl` at the driver `jsonl`;
+    # with `binary = true` git answers "Binary files differ" instead
     # for å vise fjernede linjer. --no-ext-diff og --no-textconv stenger ikke
     # dette — bare --text gjør det (målt: git 2.53.0).
     binaer = tmp_path / "binaer-gitconfig"
