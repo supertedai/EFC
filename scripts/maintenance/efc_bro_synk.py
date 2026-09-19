@@ -52,15 +52,24 @@ came to disagree with the class it registers.
 
 Why the 12 are declared and NOT registered — the reason is measured:
 
-  * 11 of the 12 have required parameters with no canonical source
-    (``K.MOTOR_UTEN_PARAMKILDE``): there is no bridge pointing at their engine
-    file, and the canonical parameters are read FROM a bridge's test module.
-    This sync therefore cannot run them at all, and registering them would mean
-    inventing their parameters here — the one thing the convention refuses.
-  * the twelfth, ``HomeostaseBufferEngine``, has no required parameters and is
-    run by ``tests/test_motor_traaden.py``; its text deviation is declared in
-    ``K.MOTOR_TEKSTAVVIK``.
-  * and registering ANY of them would let ``--skriv`` write the engine's terse
+  * The sync has no canonical parameter SOURCE for them: the parameters are
+    read FROM the test module a bridge names, and no bridge names their engine
+    file (11 of the 12 therefore stand in ``K.MOTOR_UTEN_PARAMKILDE``). The
+    values themselves DO exist — all 12 are exercised by
+    ``tests/test_biologi{_motorer,_engines}.py`` and ``test_biology_engines.py``,
+    four engines each — so registering them is not a matter of inventing data:
+    it is a matter of naming a source per engine (the house's own form, a
+    ``bro_kanoniske()`` in the test module) and answering the ownership
+    question first.
+  * Measured 2026-09-19 on this head: 8 of the 12 answer ``regime_node({})``
+    with their node (Evolusjon, FeberRegime, Fluxus, Genregulering,
+    HomeostaseBuffer, Immunologi, Okologi, SovnVaaken), while 4 raise KeyError
+    without their parameters (ActionPotential, CardiacCycle, CellCycle,
+    Metabolism). So the declaration is about the missing source, not about
+    engines that cannot run. The one that runs AND deviates from the bank
+    (HomeostaseBufferEngine) sits in ``K.MOTOR_TEKSTAVVIK``, and
+    ``tests/test_motor_traaden.py`` is what measures it.
+  * And registering ANY of them would let ``--skriv`` write the engine's terse
     strings over the bank's CURATED prose. Measured on ``homo.hjerte_syklus``:
     ``/regime/validity`` is a paragraph in the bank and
     ``t in [0, 0.8] s; NaN outside`` in the engine. That is a content

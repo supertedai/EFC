@@ -103,13 +103,18 @@ hverandre). En motor som ingen av de tre tabellene nevner, er et HULL:
 
 Hvorfor de ikke registreres — målt, ikke en smakssak:
 
-* 11 av 12 har parameterkrav uten kanonisk kilde (`MOTOR_UTEN_PARAMKILDE`): ingen
-  bro peker på motorfilen, og de kanoniske parametrene leses FRA en bros
-  testmodul. Synken kan altså ikke kjøre dem i det hele tatt, og å registrere
-  dem ville bety å dikte opp parametrene deres — nettopp det konvensjonen
-  nekter.
-* den tolvte (`HomeostaseBufferEngine`) kjøres uten parametre av
-  `tests/test_motor_traaden.py`, og dens tekstavvik ligger i `MOTOR_TEKSTAVVIK`.
+* Synken har ingen kanonisk parameterKILDE for dem: parametrene leses FRA
+  testmodulen en bro peker på, og ingen bro peker på motorfilen deres
+  (11 av 12 står derfor i `MOTOR_UTEN_PARAMKILDE`). Verdiene finnes derimot —
+  alle 12 kjøres av `tests/test_biologi{_motorer,_engines}.py` og
+  `test_biology_engines.py`, fire motorer hver — så registrering handler ikke om
+  å dikte opp data, men om å navngi en kilde per motor (husets egen form:
+  `bro_kanoniske()` i testmodulen) og å ta eierspørsmålet først.
+* Målt 2026-09-19: 8 av de 12 svarer `regime_node({})` med noden sin
+  (evolusjon, feber, fluxus, genregulering, homeostase, immunologi, økologi,
+  søvn/våken); 4 kaster KeyError uten parametrene sine (aksjonspotensial,
+  hjerte-syklus, cellesyklus, metabolisme). Utelatelsen gjelder den manglende
+  kilden, ikke at motorene ikke kan kjøre.
 * og `--skriv` ville skrevet motorens knappe strenger over atlasets kuraterte
   tekst. Målt på `homo.hjerte_syklus`: `/regime/validity` er et avsnitt i
   banken og `t in [0, 0.8] s; NaN outside` i motoren. Det er en
