@@ -1,0 +1,127 @@
+{
+  "_om": "Broen mellom bussen og atlaset for EFCs forseglede fsigma8-prediksjon. Hver verdi er lest fra en NATS-melding, og seq/tid/Nats-Msg-Id staar paa den. Intet her er utledet eller diktet — utledningene staar i 'utledet' med regnestykket.",
+  "kind": "nats-snapshot",
+  "measured": "2026-09-19T05:40:00Z",
+  "measured_by": "opus (verden_stroemmer/verden_siste/verden_serie via MCP)",
+  "correlation": "efc-fs8.fsigma8.z0.7",
+  "atlas_node_measurement": "obs.fsigma8",
+  "atlas_node_claim": "efc.growth_engine",
+  "bus_fields": {
+    "criterion": "kriterium",
+    "expected": "forventet",
+    "freeze": "frys",
+    "sealed_doi": "forseglet_doi",
+    "sealed_sha256": "forsegling_sha256",
+    "awaits": "arbiter_venter_paa",
+    "arbiter": "arbiter",
+    "source": "kilde"
+  },
+  "topics": {
+    "prediksjon": "kosmos.kosmologi.prediksjon.efc-fs8",
+    "tilstand": "kosmos.kosmologi.tilstand.efc-fs8",
+    "oppgjoer": "kosmos.kosmologi.oppgjoer.efc-fs8"
+  },
+  "streams": {
+    "prediksjon": "VERDEN_PROGNOSE",
+    "tilstand": "VERDEN_TILSTAND"
+  },
+  "counts": {
+    "prediksjon": 1,
+    "tilstand": 12,
+    "oppgjoer": 0
+  },
+  "prediction": {
+    "seq": 31058,
+    "tid": "2026-09-07T15:00:05.147740542Z",
+    "Nats_Msg_Id": "efc-fs8.v1.fsigma8.z0.7.0f14b7a56f59d1ba",
+    "kilde": "efc-sealed-prediction",
+    "forseglet_doi": "10.6084/m9.figshare.32013156",
+    "forsegling_sha256": "fbb53d618f5e8843710739c192f8eb8e4bd2fd6458bf8ad8aedd2390f3e575dd",
+    "frys": {
+      "primary_freeze": {
+        "alpha": -0.689,
+        "sampler": "NUTS",
+        "sha256_truncated": "7a850cfa58477701",
+        "timestamp_utc": "2026-02-18T05:07:13"
+      },
+      "secondary_freeze": {
+        "alpha": -0.702,
+        "sampler": "NUTS",
+        "sha256_truncated": "dbccda150abca0e7",
+        "timestamp_utc": "2026-02-21T16:08:57.818002"
+      }
+    },
+    "forventet": {
+      "fsigma8_efc": 0.43,
+      "fsigma8_lcdm": 0.449,
+      "separasjon_sigma": 2.0,
+      "z_eff": 0.7
+    },
+    "kriterium": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
+    "kriterier": {
+      "description": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
+      "multi_tracer_consistency": "LRG and ELG must agree",
+      "required_DH_rd_trend": "below LCDM at z=0.7 and z=1.0"
+    },
+    "toleranse_regel": "innenfor 1 sigma av DR2-maalingens EGEN usikkerhet, ikke en fast baand",
+    "arbiter": "nei",
+    "arbiter_venter_paa": "DESI DR2 full-shape"
+  },
+  "baselines": [
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "ELG",
+      "z_eff": 0.85,
+      "fsigma8": 0.315,
+      "sigma": 0.095,
+      "referanse": "de Mattia+ 2021",
+      "seq": 5813,
+      "Nats_Msg_Id": "efc-fs8.v1.eBOSS_DR16.ELG.0.8500.5af4ede0ce5e"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "LRG+ELG",
+      "z_eff": 0.93,
+      "fsigma8": 0.381,
+      "sigma": 0.034,
+      "referanse": "DESI 2024 V",
+      "seq": 5814,
+      "Nats_Msg_Id": "efc-fs8.v1.DESI_DR1.LRG+ELG.0.9300.ce1d5d7aaed2"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "ELG",
+      "z_eff": 1.317,
+      "fsigma8": 0.396,
+      "sigma": 0.062,
+      "referanse": "DESI 2024 V",
+      "seq": 5815,
+      "Nats_Msg_Id": "efc-fs8.v1.DESI_DR1.ELG.1.3170.7b1114abeec5"
+    },
+    {
+      "survey": "eBOSS DR16",
+      "tracer": "QSO",
+      "z_eff": 1.48,
+      "fsigma8": 0.462,
+      "sigma": 0.045,
+      "referanse": "Neveux+ 2020",
+      "seq": 5816,
+      "Nats_Msg_Id": "efc-fs8.v1.eBOSS_DR16.QSO.1.4800.aef5296582dc"
+    },
+    {
+      "survey": "DESI DR1",
+      "tracer": "QSO",
+      "z_eff": 1.491,
+      "fsigma8": 0.318,
+      "sigma": 0.076,
+      "referanse": "DESI 2024 V",
+      "seq": 5817,
+      "Nats_Msg_Id": "efc-fs8.v1.DESI_DR1.QSO.1.4910.040249dce30b"
+    }
+  ],
+  "derived": {
+    "_regel": "Alle tall under 'utledet' i koden regnes av scripts/atlas_prediksjon.py — IKKE skrevet her. Foerste utgave hadde dem haandskrevet, og de var feil: den sa z=0.93 (0.23 unna) som naermeste, mens z=0.85 er 0.15 unna. Koden fant det.",
+    "avvik_sigma_formel": "(fsigma8_baseline - forventet.fsigma8_efc) / sigma_baseline",
+    "hull": "Ingen melding paa bussen har z ~ 0.7. Prediksjonen kan ikke proeves mot noe som finnes i dag — den naermeste ligger 0.15 unna i rodforskyvning."
+  }
+}
