@@ -13732,18 +13732,18 @@
       "id": "kosmos.kosmologi_desi_bao",
       "regime": {
         "name": "DESI BAO — ventenode",
-        "validity": "Observasjonsstrømmen observasjon.desi-bao er målt fraværende; noden venter på konnektor."
+        "validity": "DESI DR2s BAO-del er publisert (obs.bao bærer α=−0.119±0.227, 0.52σ, ikke-diskriminerende); live-strømmen observasjon.desi-bao er målt fraværende (VERDEN_OBS har ingen kosmos.kosmologi-rute), så målingen kommer inn som statisk inntak, ikke som levende strøm."
       },
       "phase": "instrument",
       "measure": {
-        "target": "DESI BAO-observasjoner når strømmen finnes",
-        "measurer": "venter på konnektor",
-        "instrument": "venter på konnektor",
+        "target": "DESI BAO-observasjoner (DR2, publisert) — statisk inntak",
+        "measurer": "DESI-samarbeidet (publisert utgave)",
+        "instrument": "DESI-spektrograf; MAST/CAOM-katalog som statisk kilde",
         "proxy_chain": [
-          "observasjon.desi-bao -> (venter på strøm)"
+          "observasjon.desi-bao -> publisert DR2-katalog -> obs.bao (statisk inntak, ingen live-strøm)"
         ],
         "placement": "observasjon",
-        "compression": "ingen måling før konnektor"
+        "compression": "publisert α (og fσ8 når den slippes) — komprimeres til obs.bao / obs.fsigma8"
       },
       "episenter": "lesningen fra observasjon.mast-caom — der instrumentvinduet blir til en atlasobservasjon",
       "buffer": {
@@ -13752,7 +13752,7 @@
       },
       "ontology": {
         "assumes": [
-          "observasjon.desi-bao kan kobles senere"
+          "observasjon.desi-bao kobles statisk fra publisert DR2-katalog (ikke live)"
         ],
         "source": "observasjon.desi-bao",
         "proveniens": {
@@ -13813,9 +13813,8 @@
         ],
         "motor": "",
         "motor_status": "instrument — trenger ingen motor",
-        "buss_status": "stroemmen finnes ikke — venter paa konnektor",
         "ikke_falsifiserbar_grunn": "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen.",
-        "alene_status": "strømmen finnes ikke — venter på konnektor; ventenoden står alene med vilje."
+        "alene_status": "ventenoden står ikke lenger alene: buss_domene og INSTANCE_OF obs.bao knytter den til kosmologi-klyngen; det som gjenstår er live-strømmen."
       },
       "nivaa": {
         "indeks": 0,
@@ -13825,8 +13824,9 @@
       },
       "synlighet": "offentlig",
       "open_questions": [
-        "kosmos.kosmologi_desi_bao: stroemmen finnes ikke — venter paa konnektor"
-      ]
+        "kosmos.kosmologi_desi_bao: BAO-delen av DR2 er publisert og bæres av obs.bao; live-strømmen (VERDEN_OBS kosmos.kosmologi) er fortsatt målt fraværende."
+      ],
+      "buss_domene": "kosmos.kosmologi"
     },
     {
       "id": "verden.klima_isbre",
@@ -14410,6 +14410,12 @@
       "predicate": "COUPLED_TO",
       "object": "verden.hav",
       "note": "the ocean is the measured heat buffer in the climate energy-balance regime"
+    },
+    {
+      "subject": "kosmos.kosmologi_desi_bao",
+      "predicate": "INSTANCE_OF",
+      "object": "obs.bao",
+      "note": "DESI-BAO-observasjonen er en instans av BAO-standarden — koblet 2026-09-19; dataen bæres statisk av obs.bao, live-strømmen mangler."
     }
   ]
 }

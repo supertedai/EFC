@@ -29,7 +29,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 78 relations.
+9. **The whole atlas** — Everything at once — 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 79 relations.
 
 ## Structures
 
@@ -495,9 +495,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### DB · kosmos.kosmologi_desi_bao
 
-**In one line.** DESI BAO-observasjoner når strømmen finnes · perspektiv: consensus
+**In one line.** DESI BAO-observasjoner (DR2, publisert) — statisk inntak · perspektiv: consensus
 
-**What it does.** venter på konnektor — proxy chain: observasjon.desi-bao -> (venter på strøm)
+**What it does.** DESI-spektrograf; MAST/CAOM-katalog som statisk kilde — proxy chain: observasjon.desi-bao -> publisert DR2-katalog -> obs.bao (statisk inntak, ingen…
 
 **How it's built.** Buffer role: observasjonskatalogen holder metadata mellom uttrekk. Epistemic: stottet / direkte / institusjonell.
 
@@ -509,7 +509,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **Questions.**
 
-- **Q-DB1** kosmos.kosmologi_desi_bao: stroemmen finnes ikke — venter paa konnektor
+- **Q-DB1** kosmos.kosmologi_desi_bao: BAO-delen av DR2 er publisert og bæres av obs.bao; live-strømmen (VERDEN_OBS kosmos.kosmologi) er fortsatt målt fraværende.
 
 ### Bridges — gap domains, round two
 
@@ -1788,7 +1788,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 - **Q-GQ1** (GQ) efc.gr_qft_bro: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 - **Q-DS1** (DS) efc.double_slit: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 - **Q-SH1** (SH) efc.sort_hull: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
-- **Q-DB1** (DB) kosmos.kosmologi_desi_bao: stroemmen finnes ikke — venter paa konnektor
+- **Q-DB1** (DB) kosmos.kosmologi_desi_bao: BAO-delen av DR2 er publisert og bæres av obs.bao; live-strømmen (VERDEN_OBS kosmos.kosmologi) er fortsatt målt fraværende.
 - **Q-PS1** (PS) kjemi.periodesystemet: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
 - **Q-IB1** (IB) verden.klima_isbre: stroemmen finnes ikke — venter paa konnektor
 - **Q-SO1** (SO) h2o.solid: ingen buss-vei — emnet finnes ikke som domene i snapshotet (maalt 2026-09-18)
@@ -1809,7 +1809,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 
 **The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
 
-**Bus routes in the node bank.** 22 of the published nodes name a bus route; the other 94 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
+**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
 
 ## What the platform gives vs what we own
 
