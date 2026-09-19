@@ -48,7 +48,7 @@ Hver rad er generert fra samme bank som atlaset.
 - **KG · kosmos.gammaglimt** — varsler om transienter i sanntid, fra bakke og rom
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
 - **KI · kosmos.interstellart** — archival observations — instrument-borne raw data from space…
-  perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
+  perspektiv=consensus · motor=ikke oppgitt · buss=domenet bærer ingen meldinger i… · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
 - **MA · kosmos.maane** — baneposisjoner regnet fra DE441-ephemeriden
   perspektiv=consensus · motor=ikke oppgitt · buss=ikke oppgitt · S-akse=ikke maalt · spoersmaal=0 · gruppe=ja
 - **NO · kosmos.noeytrinoer** — varsler om transienter i sanntid, fra bakke og rom
