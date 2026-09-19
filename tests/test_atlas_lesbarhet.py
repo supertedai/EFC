@@ -294,9 +294,9 @@ def test_spoersmaalene_er_unike():
 def test_kapittel9_sier_hva_atlaset_bestaar_av():
     """«Alt paa en gang» maa ikke se fyldigere ut enn det er.
 
-    Maalt: 116 publiserte noder, 53 av dem designet og ikke bygget. Stod tallet
-    bare i prosa, ville det blitt staende og lyve. Her utledes begge sider og
-    sammenlignes: teksten i kapittel 9 mot den faktiske tellingen i data.mjs.
+    Målt: 116 publiserte noder, 53 av dem uten gruppe ennå — og hvorfor de
+    mangler den (observasjon, regime eller motor). "Designet og ikke bygget" var
+    en byggestatus teksten fant på; se tests/test_atlas_byggestatus.py.
     """
     noder, _ = _bygg_og_les()
     ch = _les_konstant("CH")
@@ -308,8 +308,11 @@ def test_kapittel9_sier_hva_atlaset_bestaar_av():
                        if (bank[n["name"]].get("epistemikk") or {})
                        .get("evidensstatus") == "ingen")
     assert ikke_bygget > 0 and uten_evidens > 0, "tellingene er doede"
-    assert f"{ikke_bygget} of them designed and not built" in siste["lede"], (
-        f"kapittel 9 sier ikke hvor mange som ikke er bygget: {siste['lede']}")
+    grunn = GEN_MOD.uten_gruppe_grunner(list(bank.values()))
+    assert (f"{ikke_bygget} of them without a group yet "
+            f"({grunn['observasjon']} observations") in siste["lede"], (
+        f"kapittel 9 sier ikke hvor mange som mangler gruppe, og hvorfor: "
+        f"{siste['lede']}")
     assert f"{uten_evidens} nodes carry no evidence yet" in siste["story"], (
         f"kapittel 9 sier ikke hvor mange som mangler evidens: {siste['story']}")
     assert len(noder) and f"{len(noder)} nodes" in siste["lede"]
