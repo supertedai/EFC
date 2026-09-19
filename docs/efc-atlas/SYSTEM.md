@@ -6,7 +6,7 @@ _Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes, NATS bridges.
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes, NATS bridges. 53 of the 116 without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other).
 
 ## Decisions locked
 
