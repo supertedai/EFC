@@ -227,28 +227,30 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
 
     En git-konfigurasjon utenfor prosessen kan bytte ut selve diffen:
     `diff.external` (eller GIT_EXTERNAL_DIFF) kjører en vilkårlig kommando i
-    stedet for git, og en textconv-driver kan gjøre innholdet tomt. Da ser
-    gaten ingen fjernede linjer — og et reelt linjebrudd på registeret ville
-    passert med exit 0. Målt 2026-09-18: begge kanalene gjorde nøyaktig det.
+    stedet for git, en textconv-driver kan gjøre innholdet tomt, og en
+    diff-driver med `binary = true` lar git svare «Binary files differ» uten
+    noen fjernede linjer. Da ser gaten ingen fjernede linjer — og et reelt
+    linjebrudd på registeret ville passert med exit 0. Målt 2026-09-18: alle
+    tre kanalene gjorde nøyaktig det.
 
-    Kanarifuglen er med vilje: den beviser FØRST at forgiftningen virker på et
-    rått `git diff`. Uten den kunne testen blitt grønn fordi kanalen ble
+    Kanarifuglene er med vilje: de beviser FØRST at forgiftningen virker på et
+    rått `git diff`. Uten dem kunne testen blitt grønn fordi kanalen ble
     stengt et annet sted enn i gaten.
     """
     register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
     register.parent.mkdir(parents=True)
     register.write_text(json.dumps(GYLDIG, ensure_ascii=False) + "\n", encoding="utf-8")
     (tmp_path / ".gitattributes").write_text("*.jsonl diff=jsonl\n", encoding="utf-8")
-    forgiftet = tmp_path / "forgiftet-gitconfig"
-    forgiftet.write_text("[diff]\n\texternal = /bin/true\n"
-                         "[diff \"jsonl\"]\n\ttextconv = /bin/true\n", encoding="utf-8")
     base, miljo = _git_repo(tmp_path)
 
     # Lovbruddet: rest_risiko (utenfor lukkefeltene) skrives om — ingenting legges til.
     register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omkrevet"},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # Kanarifugl: med begge kanalene åpne er den RÅ diffen blind.
+    # --- Kanal 1: diff.external (GIT_EXTERNAL_DIFF) + textconv. ---
+    forgiftet = tmp_path / "forgiftet-gitconfig"
+    forgiftet.write_text("[diff]\n\texternal = /bin/true\n"
+                         "[diff \"jsonl\"]\n\ttextconv = /bin/true\n", encoding="utf-8")
     kanar = {**miljo, "GIT_CONFIG_GLOBAL": str(forgiftet),
              "GIT_EXTERNAL_DIFF": "/bin/true"}
     raa = subprocess.run(["git", "diff", "-U0", base, "--",
@@ -258,9 +260,30 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
                 if ln.startswith("-") and not ln.startswith("---")], \
         "kanarifuglen er ikke blind — da måler denne prøven ingenting"
 
-    # Gaten skal se bruddet selv om omgivelsen rundt den gjør det motsatte.
     monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(forgiftet))
     monkeypatch.setenv("GIT_EXTERNAL_DIFF", "/bin/true")
+    feil = vr.append_only(base, tmp_path)
+    assert [f["type"] for f in feil] == ["not_append_only"], feil
+
+    # --- Kanal 2: diff-driver med binary = true. ---
+    # `.gitattributes` i treet peker `*.jsonl` på driveren `jsonl`; driveren
+    # med `binary = true` gjør at git svarer «Binary files differ» i stedet
+    # for å vise fjernede linjer. --no-ext-diff og --no-textconv stenger ikke
+    # dette — bare --text gjør det (målt: git 2.53.0).
+    binaer = tmp_path / "binaer-gitconfig"
+    binaer.write_text("[diff \"jsonl\"]\n\tbinary = true\n", encoding="utf-8")
+    binaer_kanar = {k: v for k, v in miljo.items() if k != "GIT_EXTERNAL_DIFF"}
+    binaer_kanar["GIT_CONFIG_GLOBAL"] = str(binaer)
+    raa2 = subprocess.run(["git", "diff", "-U0", "--no-ext-diff", "--no-textconv",
+                           base, "--", "governance/risiko/risiko-register.jsonl"],
+                          cwd=tmp_path, env=binaer_kanar, capture_output=True,
+                          text=True, check=True)
+    assert not [ln for ln in raa2.stdout.splitlines()
+                if ln.startswith("-") and not ln.startswith("---")], \
+        "binary-kanarifuglen er ikke blind — da måler denne prøven ingenting"
+
+    monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(binaer))
+    monkeypatch.delenv("GIT_EXTERNAL_DIFF", raising=False)
     feil = vr.append_only(base, tmp_path)
     assert [f["type"] for f in feil] == ["not_append_only"], feil
 
