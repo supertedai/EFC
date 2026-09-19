@@ -94,7 +94,7 @@
         "terskler": [
           "no thresholds of its own — inherits the phase boundaries from WaterPhaseEngine (the h2o.liquid engine)"
         ],
-        "motor": "efc.water_solid",
+        "motor": "water",
         "buss_status": "no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
@@ -320,7 +320,7 @@
         "terskler": [
           "no thresholds of its own — inherits the phase boundaries from WaterPhaseEngine (the h2o.liquid engine)"
         ],
-        "motor": "efc.water_gas",
+        "motor": "water",
         "buss_status": "no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
@@ -432,7 +432,7 @@
         "terskler": [
           "no thresholds of its own — inherits the phase boundaries from WaterPhaseEngine (the h2o.liquid engine)"
         ],
-        "motor": "efc.water_supercritical",
+        "motor": "water",
         "buss_status": "no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)",
         "alene_status": "the supercritical phase is coupled to the triple point as the reference of the phase map; no other parent is correct",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
@@ -546,7 +546,7 @@
         "terskler": [
           "no thresholds of its own — inherits the phase boundaries from WaterPhaseEngine (the h2o.liquid engine)"
         ],
-        "motor": "efc.water_triple_point",
+        "motor": "water",
         "buss_status": "no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)",
         "alene_status": "the phase diagram's reference point — it is not UNDER anything; it is the definition the others are calibrated against",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
@@ -763,7 +763,7 @@
         "terskler": [
           "no thresholds of its own — inherits the phase boundaries from WaterPhaseEngine (the h2o.liquid engine)"
         ],
-        "motor": "efc.water_droplet",
+        "motor": "water",
         "buss_status": "no bus route — the subject does not exist as a domain in the snapshot (measured 2026-09-18)",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
@@ -5154,7 +5154,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.fluxus_engine",
+        "motor": "fluxus",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5266,7 +5266,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.homeostase_buffer_engine",
+        "motor": "homeostase_buffer",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5388,7 +5388,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.feber_regime_engine",
+        "motor": "feber_regime",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5510,7 +5510,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.aksjonspotensial_engine",
+        "motor": "aksjonspotensial",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5637,7 +5637,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.hjerte_syklus_engine",
+        "motor": "hjerte_syklus",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5759,7 +5759,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.genregulering_engine",
+        "motor": "genregulering",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5863,7 +5863,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.cellesyklus_engine",
+        "motor": "cellesyklus",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -5985,7 +5985,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.metabolisme_engine",
+        "motor": "metabolisme",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -6321,7 +6321,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.immunologi_engine",
+        "motor": "immunologi",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -6430,7 +6430,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.sovn_vaaken_engine",
+        "motor": "sovn_vaaken",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -6552,7 +6552,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.okologi_engine",
+        "motor": "okologi",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -6656,7 +6656,7 @@
         "terskler": [
           "the thresholds are physiology's established limits (fever 41 C, R0=1 etc.) — academic sources, documented in ontology.source"
         ],
-        "motor": "efc.evolusjon_engine",
+        "motor": "evolusjon",
         "ikke_falsifiserbar_grunn": "Established physics is not ours to fell; the node describes an established measurement or law, not a new EFC claim."
       },
       "epistemikk": {
@@ -9183,9 +9183,9 @@
         "terskler": [
           "no thresholds — the settlement reports the deviation, it does not set it"
         ],
-        "motor": "no engine of its own — the loop runs in the instrument (decided in t_fbec0c16)",
         "alene_status": "instrument node, alone in its bus domain: it reads metno, and there is no other node in verden.vaer to connect to",
-        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement.",
+        "motor_status": "no engine of its own — the loop runs in the instrument (decided in t_fbec0c16)"
       },
       "maale_paradigme": {
         "koordinater": [
@@ -9400,7 +9400,7 @@
         "terskler": [
           "-4.0 is JPL's threshold, not ours — 40 above, 2165 below"
         ],
-        "motor": "efc.orbital_engine (banemekanikk)",
+        "motor": "orbital",
         "alene_status": "instrument node, alone in its bus domain: jpl-sentry is the only source for this domain",
         "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
@@ -9638,7 +9638,7 @@
         "terskler": [
           "K = 4.4 +- 0.6 is taken from SPARC, not derived here"
         ],
-        "motor": "efc.rotation_engine",
+        "motor": "rotation",
         "alene_status": "the structure layer is the root of the chain — it has no lower EFC parent in this model"
       },
       "epistemikk": {
@@ -9742,7 +9742,7 @@
         "terskler": [
           "g+ = c*H0/e gives H0 = 70.2 +- 16.8 — the uncertainty is LARGE"
         ],
-        "motor": "efc.efc_background_engine",
+        "motor": "efc_background",
         "alene_status": "EFC-D is coupled as the next step after the structure layer; no other physical parent is necessary"
       },
       "epistemikk": {
@@ -9859,7 +9859,7 @@
           "C = Omega x kappa is FALSIFIED, pre-registered — a REAL negative result",
           "K = 4.4 +- 0.6 inherited from SPARC"
         ],
-        "motor": "efc.klima_engine",
+        "motor": "klima",
         "alene_status": "EFC-C0 is the capacity step of the chain after the dynamics; no other physical parent is necessary"
       },
       "epistemikk": {
@@ -12740,7 +12740,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "indeks": 0,
@@ -12837,7 +12837,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "indeks": 0,
@@ -12934,7 +12934,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "indeks": 0,
@@ -13032,7 +13032,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "forelder": null,
@@ -13130,7 +13130,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "forelder": null,
@@ -13228,7 +13228,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "forelder": null,
@@ -13326,7 +13326,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "forelder": null,
@@ -13424,7 +13424,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "forelder": null,
@@ -13520,7 +13520,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "indeks": 0,
@@ -13616,7 +13616,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "indeks": 0,
@@ -13712,7 +13712,7 @@
         ],
         "motor": "",
         "motor_status": "instrument — needs no engine",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement"
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
       },
       "nivaa": {
         "indeks": 0,
@@ -13809,7 +13809,7 @@
         "motor": "",
         "motor_status": "instrument — needs no engine",
         "buss_status": "the stream does not exist — waits for a connector",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement",
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement.",
         "alene_status": "the stream does not exist — waits for a connector; the wait node stands alone on purpose."
       },
       "nivaa": {
@@ -13909,7 +13909,7 @@
         "motor": "",
         "motor_status": "instrument — needs no engine",
         "buss_status": "the stream does not exist — waits for a connector",
-        "ikke_falsifiserbar_grunn": "the instrument node cannot be refuted by an observation — it IS the measurement",
+        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement.",
         "alene_status": "the stream does not exist — waits for a connector; the wait node stands alone on purpose."
       },
       "nivaa": {

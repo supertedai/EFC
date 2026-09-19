@@ -28,9 +28,20 @@ def atlas() -> dict:
 class TestMotoren:
 
     def test_helheten_bar_motoren(self, atlas: dict) -> None:
+        """The engine is its MODULE NAME — not the node id.
+
+        Measured 2026-09-19 (t_c015b6ee): the value was
+        "efc.water_triple_point", a node absent from the bank and not a file.
+        The form is named in scripts/maintenance/efc_bro_konvensjon.py: X means
+        `efc_inference/engine/X.py`. This pins the form, not just the word — an
+        id resolves to nothing, and that is the whole point.
+        """
         h = atlas_lesing.helhet(atlas, "h2o.triple_point")
         assert "motor" in h, "helheten skjuler hvilken motor noden hoerer til"
-        assert h["motor"] == "efc.water_triple_point", h["motor"]
+        assert h["motor"] == "water", h["motor"]
+        assert h["motor"] in {
+            p.stem for p in (REPO / "efc_inference" / "engine").glob("*.py")}, (
+            f"{h['motor']!r} is not an engine file")
 
     def test_motor_er_tom_naar_ingen_er_satt(self, atlas: dict) -> None:
         """En node uten motor skal si det — ikke skjule feltet."""

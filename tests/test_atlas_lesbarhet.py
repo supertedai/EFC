@@ -342,8 +342,10 @@ def test_saksen_er_ikke_en_gjentatt_mal():
 def test_saksen_naar_teksttvillingen_og_headeren():
     """data.mjs er ikke nok: begge byggene leser `how`, og headeren leser META.
 
-    Rendereren er en READ-ONLY kopi av skillens assets — derfor testes de
-    BYGGEDE filene, ikke bare at noekkelen finnes i data.mjs.
+    The renderer is a HAND-COPIED copy of the skill's asset, not read-only, so the
+    BUILT files are what gets tested — not just that the key exists in data.mjs
+    (the copy carries the code-namespace fix from #506; the asset carries it too
+    since 2026-09-19, so a further edit belongs in both).
     """
     noder, data = _bygg_og_les()
     bank = _bank()

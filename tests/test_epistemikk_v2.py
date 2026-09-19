@@ -134,7 +134,7 @@ def test_skjemaet_kjenner_falsifiseringsavgjorelsen():
 def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
     """Teller noder som BAERER en avgjorelse — ikke noder som KAN baere en.
 
-    113 av 113. Feltet skal vaere til stede, ogsaa naar svaret er nei: en
+    126 av 126 (var 113 for de 13 nye nodene kom). Feltet skal vaere til stede, ogsaa naar svaret er nei: en
     node uten svar svarer ikke, og et svar som ikke finnes kan ikke leses.
     """
     noder = _atlas()["nodes"]
@@ -144,5 +144,5 @@ def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
                     .get("ikke_falsifiserbar_grunn"))]
     assert not uten, (
         f"{len(uten)} av {len(noder)} node(r) har ikke tatt stilling: {uten[:8]}")
-    assert len(noder) - len(uten) == 113, (
-        f"dekningen skal vaere 113 av 113, er {len(noder) - len(uten)}")
+    assert len(noder) - len(uten) == 126, (
+        f"coverage must be 126 of 126 (the atlas grew from 113 on 2026-09-19; all 13 new nodes answered), is {len(noder) - len(uten)}")
