@@ -28,8 +28,8 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
-8. **Not yet built** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 53 of them designed and not built, 78 relations.
+8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, verden-vaer, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
+9. **The whole atlas** — Everything at once — 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other), 78 relations.
 
 ## Structures
 
@@ -343,7 +343,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** orbit positions computed from the DE441 ephemeris · perspective: consensus
 
-**What it does.** the DE441 ephemeris; no instrument read it off — proxy chain: observasjoner (historiske) -> DE441-tilpasning -> position
+**What it does.** the DE441 ephemeris; no instrument read it off — proxy chain: observations (historical) -> DE441-tilpasning -> position
 
 **How it's built.** Buffer role: JPL Horizons is the buffer: it holds the state between updates. Epistemic: stottet / proxy / institusjonell.
 
@@ -371,7 +371,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** orbit positions computed from the DE441 ephemeris · perspective: consensus
 
-**What it does.** the DE441 ephemeris; no instrument read it off — proxy chain: observasjoner (historiske) -> DE441-tilpasning -> position
+**What it does.** the DE441 ephemeris; no instrument read it off — proxy chain: observations (historical) -> DE441-tilpasning -> position
 
 **How it's built.** Buffer role: JPL Horizons is the buffer: it holds the state between updates. Epistemic: stottet / proxy / institusjonell.
 
@@ -481,7 +481,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### TA · kosmos.transienter_alerce
 
-**In one line.** optiske transienthendelser · perspective: consensus
+**In one line.** optical transient events · perspective: consensus
 
 **What it does.** ALeRCE alert stream — proxy chain: hendelse.alerce -> instrument reading -> atlas observation
 
@@ -545,7 +545,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** vulkantilstand · perspective: consensus
 
-**What it does.** statusliste (alertLevel) — proxy chain: alertLevel -> activity -> regime status
+**What it does.** status list (alertLevel) — proxy chain: alertLevel -> activity -> regime status
 
 **How it's built.** Buffer role: volcanoes as the thermal buffer of the Earth. Epistemic: stottet / direkte / institusjonell.
 
@@ -573,7 +573,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### PS · kjemi.periodesystemet
 
-**In one line.** periodesystemets struktur (118 grunnstoff) · perspective: academia
+**In one line.** the periodic table's structure (118 elements) · perspective: academia
 
 **What it does.** spectroscopy and chemical analysis — proxy chain: atomic number -> periodicity — consensus mapping
 
@@ -593,7 +593,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### OK · efc.oekonomi_engine
 
-**In one line.** financial regime (hedge/spekulativ/ponzi), leverage drift · perspective: paradigm
+**In one line.** financial regime (hedge/speculative/ponzi), leverage drift · perspective: paradigm
 
 **What it does.** OekonomiEngine (efc_inference/engine/oekonomi.py) — proxy chain: leverage ratio -> regime (two thresholds) -> stable years -> leverage drift (the Minsky…
 
@@ -637,7 +637,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** labour market and social statistics for Europe · perspective: consensus
 
-**What it does.** national statistical agencies, harmonised — proxy chain: nasjonal statistikk -> harmonisering -> indikator
+**What it does.** national statistical agencies, harmonised — proxy chain: national statistics -> harmonisation -> indicator
 
 **How it's built.** Buffer role: Eurostat is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
 
@@ -961,13 +961,13 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 ### Epistemics
 
-### Not yet built
+### No group yet
 
 #### SO · h2o.solid _(not switched on)_
 
-**In one line.** termodynamisk fase · perspective: academia
+**In one line.** thermodynamic phase · perspective: academia
 
-**What it does.** calibrated thermometer + barometer (calibrated against the triple-point cell) — proxy chain: temperature via thermal expansion (thermometer) -> trykk via membran (barometer) -> phase…
+**What it does.** calibrated thermometer + barometer (calibrated against the triple-point cell) — proxy chain: temperature via thermal expansion (thermometer) -> pressure via a membrane (barometer) ->…
 
 **How it's built.** Buffer role: the crystal lattice + latent heat L_f: the ice holds the drink at 0 C until the… Epistemic: stottet / replikert / institusjonell.
 
@@ -983,9 +983,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### LI · h2o.liquid _(not switched on)_
 
-**In one line.** termodynamisk fase · perspective: academia
+**In one line.** thermodynamic phase · perspective: academia
 
-**What it does.** calibrated thermometer + barometer — proxy chain: temperature via thermal expansion -> trykk via membran -> phase identified via P_sat(T)…
+**What it does.** calibrated thermometer + barometer — proxy chain: temperature via thermal expansion -> pressure via a membrane -> phase identified via…
 
 **How it's built.** Buffer role: high heat capacity (4.18 kJ/(kg*K)): water holds the temperature during heating… Epistemic: stottet / replikert / institusjonell.
 
@@ -1001,9 +1001,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### GA · h2o.gas _(not switched on)_
 
-**In one line.** termodynamisk fase · perspective: academia
+**In one line.** thermodynamic phase · perspective: academia
 
-**What it does.** calibrated thermometer + barometer (possibly a hygrometer for vapour) — proxy chain: temperature via thermal expansion -> trykk via membran -> vapor content via dew point…
+**What it does.** calibrated thermometer + barometer (possibly a hygrometer for vapour) — proxy chain: temperature via thermal expansion -> pressure via a membrane -> vapor content via dew…
 
 **How it's built.** Buffer role: the gas's heat capacity and expansion damp local pressure and temperature… Epistemic: stottet / replikert / institusjonell.
 
@@ -1021,7 +1021,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** thermodynamic state (not 'phase' — the boundary is gone) · perspective: academia
 
-**What it does.** high-pressure P-T cell — proxy chain: temperatur via termoelement -> pressure via a high-pressure membrane -> no phase…
+**What it does.** high-pressure P-T cell — proxy chain: temperature via thermocouple -> pressure via a high-pressure membrane -> no phase…
 
 **How it's built.** Buffer role: no phase boundary to hold — the buffer capacity is continuous, with no latent… Epistemic: stottet / replikert / institusjonell.
 
@@ -1037,9 +1037,9 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### TP · h2o.triple_point _(not switched on)_
 
-**In one line.** temperaturskalaens referansepunkt · perspective: academia
+**In one line.** the temperature scale's reference point · perspective: academia
 
-**What it does.** kalibrert trippelpunktcelle — ITS-90-referansen — proxy chain: pressure held constant (611.657 Pa) -> temperature read as the cell wall's thermal…
+**What it does.** calibrated triple-point cell — the ITS-90 reference — proxy chain: pressure held constant (611.657 Pa) -> temperature read as the cell wall's thermal…
 
 **How it's built.** Buffer role: the point absorbs energy with no temperature rise as long as three phases… Epistemic: stottet / replikert / institusjonell.
 
@@ -1055,7 +1055,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### LY · lys.sol _(not switched on)_
 
-**In one line.** elektromagnetisk straaling · perspective: academia
+**In one line.** electromagnetic radiation · perspective: academia
 
 **What it does.** prisme/gitter-spektrometer — proxy chain: wavelength via grating dispersion -> intensity via detector -> colour as an observer proxy…
 
@@ -1093,7 +1093,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** brytningsindeksen n(lambda) · perspective: academia
 
-**What it does.** spectrometer + prism — proxy chain: deflection angle via Snell's law -> n(lambda) via vinkelmaaling -> colour separation as a…
+**What it does.** spectrometer + prism — proxy chain: deflection angle via Snell's law -> n(lambda) via angular measurement -> colour separation…
 
 **How it's built.** Buffer role: water's electronic structure gives the dispersion stability — n(lambda) is a… Epistemic: stottet / replikert / institusjonell.
 
@@ -1255,11 +1255,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### F8 · obs.fsigma8 _(not switched on)_
 
-**In one line.** vekstraten fsigma8 · perspective: consensus
+**In one line.** the growth rate fsigma8 · perspective: consensus
 
 **What it does.** BOSS, eBOSS, DESI — proxy chain: redshift-space distortion (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form
 
-**How it's built.** Buffer role: the structure itself is the buffer — gravitational response holds mass against… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=BOSS, eBOSS, DESI; observabel=vekstraten fsigma8; teori=f-sigma-8(z) linear growth; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
+**How it's built.** Buffer role: the structure itself is the buffer — gravitational response holds mass against… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=BOSS, eBOSS, DESI; observabel=the growth rate fsigma8; teori=f-sigma-8(z) linear growth; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
 
 **Steps in execution.**
 
@@ -1285,7 +1285,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** E_G-krysset · perspective: consensus
 
-**What it does.** SDSS, KiDS+BOSS — proxy chain: linse (kappa) x RSD (beta) -> E_G -> E_G -> slip between light and mass
+**What it does.** SDSS, KiDS+BOSS — proxy chain: lens (kappa) x RSD (beta) -> E_G -> E_G -> slip between light and mass
 
 **How it's built.** Buffer role: two independent proxies buffer each other — the crossing is more robust than… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SDSS, KiDS+BOSS; observabel=E_G-krysset; teori=E_G gravitasjonsslip-statistikk; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
 
@@ -1311,11 +1311,11 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 #### KS · obs.ksz _(not switched on)_
 
-**In one line.** kSZ-signalet · perspective: consensus
+**In one line.** the kSZ signal · perspective: consensus
 
 **What it does.** ACT, DES x SPT — proxy chain: CMB x galaxies -> kSZ -> kSZ -> peculiar velocity field
 
-**How it's built.** Buffer role: the electrons in clusters Doppler-scatter photons — the plasma is the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=ACT, DES x SPT; observabel=kSZ-signalet; teori=kSZ egenhastigheter; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
+**How it's built.** Buffer role: the electrons in clusters Doppler-scatter photons — the plasma is the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=ACT, DES x SPT; observabel=the kSZ signal; teori=kSZ peculiar velocities; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
 
 **Steps in execution.**
 
@@ -1327,7 +1327,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** M_500 from several channels · perspective: consensus
 
-**What it does.** Chandra, XMM, HST — proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> scaling relations -> mass
+**What it does.** Chandra, XMM, HST — proxy chain: rontgen (T_X) -> masse -> weak lensing -> mass -> scaling relations -> mass
 
 **How it's built.** Buffer role: the cluster's potential keeps the gas hot and the light bent — two buffers, one… Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Chandra, XMM, HST; observabel=M_500 from several channels; teori=klyngemasse-skalering; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
 
@@ -1355,7 +1355,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** a_obs vs a_bar · perspective: consensus
 
-**What it does.** SPARC — proxy chain: rotation curves -> a_obs -> baryonic distribution -> a_bar -> avvik -> a_obs/a_bar
+**What it does.** SPARC — proxy chain: rotation curves -> a_obs -> baryonic distribution -> a_bar -> deviation -> a_obs/a_bar
 
 **How it's built.** Buffer role: the galaxy's potential holds the rotation — the dynamics are the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SPARC; observabel=a_obs vs a_bar; teori=Radial Acceleration Relation; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.
 
@@ -1495,7 +1495,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** deviation from setpoint (ΔT, ΔpH, Δglucose) · perspective: academia
 
-**What it does.** physiological sensors; here the node is a description, not a sensor — proxy chain: sensor → avvik -> deviation → compensatory response
+**What it does.** physiological sensors; here the node is a description, not a sensor — proxy chain: sensor → deviation -> deviation → compensatory response
 
 **How it's built.** Buffer role: the buffer itself: capacity that damps change — the broad logic in pure form. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer — the observer sees a narrow…
 
@@ -1579,7 +1579,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **In one line.** ATP/ADP-forhold, O₂-forbruk, substrat-fluks · perspective: academia
 
-**What it does.** laboratory measurement; here description — proxy chain: O₂-forbruk → fluks -> ATP/ADP → reguleringsstatus
+**What it does.** laboratory measurement; here description — proxy chain: O₂ consumption → flux -> ATP/ADP → reguleringsstatus
 
 **How it's built.** Buffer role: The ATP pool and glycogen are the buffers: short- and long-term stores that damp… Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 · clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer — the observer sees a narrow…
 

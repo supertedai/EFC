@@ -254,7 +254,7 @@ GRUPPER = [
     {"id": "struktur", "title": "Structures — H2O and chemistry"},
     {"id": "samfunn", "title": "Society — energy flow"},
     {"id": "epist", "title": "Epistemics"},
-    {"id": "ghost", "title": "Not yet built"},
+    {"id": "ghost", "title": "No group yet"},
 ]
 
 #: The three bridge chains as data flow. The hops name the nodes by their CODE — that
@@ -282,6 +282,45 @@ def _kap(navn: str) -> int:
             f"would hide that someone forgot it. Put it in the right group, "
             f"or say explicitly that it is ghost.")
     return PLASSERING[navn][1]
+
+
+
+#: Why a node has no group. "Ghost" is a CHOICE in PLASSERING: measured to not
+#: yet have a group. That is a PLACEMENT fact, not a build status — and the
+#: text turned it into "designed and not built", which is untrue for the
+#: observations, for the regimes, and for phases that already have an engine.
+#: Measured 2026-09-18 on the 53: 20 observations, 18 regime nodes, 5 phases
+#: with an engine, 10 others.
+def gruppe_grunn(node: dict) -> str:
+    """WHY this node has no group. "" when it has one."""
+    fase = str(node.get("phase") or "")
+    motor = str((node.get("stipulasjoner") or {}).get("motor") or "").strip()
+    if fase == "observasjon":
+        return "observasjon"
+    if "regime" in fase:
+        return "regime"
+    if motor:
+        return "motor"
+    return "ovrig"
+
+
+def uten_gruppe_grunner(noder: list[dict]) -> dict[str, int]:
+    """Split the group-less by WHAT is missing — measured, not assumed."""
+    tell = {"observasjon": 0, "regime": 0, "har_motor": 0, "ovrige": 0}
+    for n in noder:
+        if _gruppe(n["id"]) != "ghost":
+            continue
+        fase = str(n.get("phase") or "")
+        motor = str((n.get("stipulasjoner") or {}).get("motor") or "").strip()
+        if fase == "observasjon":
+            tell["observasjon"] += 1
+        elif "regime" in fase:
+            tell["regime"] += 1
+        elif motor:
+            tell["har_motor"] += 1
+        else:
+            tell["ovrige"] += 1
+    return tell
 
 
 def _gruppe(navn: str) -> str:
@@ -535,13 +574,18 @@ def _indeks(noder: list[dict], rader: list[dict]) -> str:
     titler = {"roots": "Roots", "grid": "The grid", "kosmos": "Cosmos",
               "broer": "Bridges", "struktur": "Structures",
               "samfunn": "Society", "epist": "Epistemics",
-              "ghost": "Not yet built"}
+              "ghost": "No group yet"}
     ghost = sum(rad["ghost"] for rad in rader)
+    _gr = uten_gruppe_grunner(noder)
+    g_obs, g_reg = _gr["observasjon"], _gr["regime"]
+    g_mot, g_ovr = _gr["har_motor"], _gr["ovrige"]
     evidens = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen"
                   for node in noder)
     spoersmaal = sum(len(node.get("open_questions") or []) for node in noder)
     lines = ["# Atlas index", "",
-             (f"> {len(noder)} published nodes · {ghost} designed and not built · "
+             (f"> {len(noder)} published nodes · {ghost} with no group yet "
+              f"({g_obs} observations, {g_reg} regime nodes, {g_mot} with an "
+              f"engine, {g_ovr} other) · "
               f"{evidens} without evidence · {spoersmaal} open questions"), "",
              "Each row is generated from the same bank as the atlas.", ""]
     for gruppe in ("roots", "grid", "kosmos", "broer", "struktur", "samfunn",
@@ -570,10 +614,11 @@ def _indeks(noder: list[dict], rader: list[dict]) -> str:
                 f"bus={klipp(str(buss), 40)}",
                 f"S-axis={klipp(st, 60)}",
                 f"questions={spm}",
-                f"built={'no' if rad['ghost'] else 'yes'}",
+                (f"group=none ({gruppe_grunn(node)})" if rad["ghost"]
+                 else "group=yes"),
             ]))
         lines.append("")
-    lines.append("## What is not built")
+    lines.append("## With no group yet")
     lines.append("")
     for rad, node in (item for item in sum(grupper.values(), []) if item[0]["ghost"]):
         lines.append(f"- {node['id']} — {klipp(node.get('navn') or node['id'], 100)}")
@@ -662,7 +707,7 @@ def hoved() -> int:
         5: "Structures — H2O and chemistry",
         6: "Society — energy flow",
         7: "Epistemics",
-        8: "Not yet built",
+        8: "No group yet",
     }
     for k in sorted(kap):
         if k == 8 and not kap[k]:
@@ -675,19 +720,25 @@ def hoved() -> int:
             "story": "<p>Revealed: " + ", ".join(sorted(kap[k])) + ".</p>",
             "flow": None,
         })
-    # Chapter 9 is where someone sees the WHOLE atlas. Then it shall say what it consists
-    # of — not just how many boxes there are. Measured 2026-09-18: 116 published
-    # nodes, of which 53 are designed and not built (46 %), and 7 without evidence.
-    # Without that number the map looks fuller than it is. Both are DERIVED here,
-    # never written by hand.
+    # Chapter 9 is where someone sees the WHOLE atlas. It must say what the
+    # atlas is made of — not just how many boxes there are. Measured 2026-09-18:
+    # 116 published nodes, of which 53 have no group yet, and 7 carry no
+    # evidence. The split says WHY a node has no group: an observation is not
+    # an unbuilt thing, and a node with an engine is not unbuilt either.
+    # Both numbers are DERIVED here, never written by hand.
     ikke_bygget = sum(1 for n in noder if _gruppe(n["id"]) == "ghost")
+    gruppe_grunn = uten_gruppe_grunner(noder)
     uten_evidens = sum(1 for n in noder
                        if (n.get("epistemikk") or {}).get("evidensstatus")
                        == "ingen")
     ch.append({
         "id": "all", "title": "The whole atlas",
         "reveal": [], "lede": f"Everything at once — {len(noder)} nodes, "
-                              f"{ikke_bygget} of them designed and not built, "
+                              f"{ikke_bygget} of them without a group yet "
+                              f"({gruppe_grunn['observasjon']} observations, "
+                              f"{gruppe_grunn['regime']} regime nodes, "
+                              f"{gruppe_grunn['har_motor']} with an engine, "
+                              f"{gruppe_grunn['ovrige']} other), "
                               f"{len(relasjoner)} relations.",
         "story": "<p>Free exploration. Hover, click to pin, go inside.</p>"
                  f"<p>{uten_evidens} nodes carry no evidence yet — that is what "

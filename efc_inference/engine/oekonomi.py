@@ -108,7 +108,7 @@ class OekonomiEngine(EFCEngine):
             "actors."
         )
         law_form = ("hedge: income covers interest + repayment; "
-                    "spekulativ: income covers the interest, the debt is rolled; "
+                    "speculative: income covers the interest, the debt is rolled; "
                     "ponzi: income covers neither — assets "
                     "are sold. Leverage drift: gg(t+1) = gg(t) * "
                     "(1 + (r - g + confidence) * dt)")
@@ -117,7 +117,7 @@ class OekonomiEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["drift_rate <= 0 -> NaN (not silent clipping) — honesty boundary", "the hedge/spekulativ/ponzi boundaries — the Minsky typology — one tradition among several"],
+            "terskler": ["drift_rate <= 0 -> NaN (not silent clipping) — honesty boundary", "the hedge/speculative/ponzi boundaries — the Minsky typology — one tradition among several"],
             "motor": "oekonomi"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
@@ -147,7 +147,7 @@ class OekonomiEngine(EFCEngine):
             },
             "phase": "computation_engine",
             "measure": {
-                "target": "financial regime (hedge/spekulativ/ponzi), leverage drift",
+                "target": "financial regime (hedge/speculative/ponzi), leverage drift",
                 "measurer": "threshold classification + linear drift",
                 "instrument": "OekonomiEngine (efc_inference/engine/oekonomi.py)",
                 "proxy_chain": [

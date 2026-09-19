@@ -1211,11 +1211,11 @@ def plasser(atlas: dict, tekst: str) -> dict:
     for d in treff_domener:
         eiere = [n["id"] for n in noder if n.get("buss_domene") == d]
         forslag.append({"domene": d, "noder": eiere[:4],
-                        "kobling": "domenet nevnes i fragmentet"})
+                        "kobling": "the domain is named in the fragment"})
     if not forslag and naere_noder:
         forslag.append({"domene": "(avledet)", "noder": naere_noder[:4],
-                        "kobling": ("noder deler ord med fragmentet — "
-                                    "ORDLIKHET, ikke et plasseringsforslag")})
+                        "kobling": ("the nodes share words with the fragment — "
+                                    "WORD LIKENESS, not a placement suggestion")})
     if not forslag:
         # no domain string matched: use the DOMAINS OF THE NEAR NODES.
         # The fallback must not suggest the alphabet — it must suggest what the
@@ -1228,11 +1228,11 @@ def plasser(atlas: dict, tekst: str) -> dict:
             if d and d not in sett:
                 sett.append(d)
         forslag = [{"domene": d, "noder": [],
-                    "kobling": "ordlikhet — ikke et kjent domenevalg"}
+                    "kobling": "word likeness — not a known domain choice"}
                    for d in sett[:4]]
         if not forslag:
             forslag = [{"domene": d, "noder": [],
-                        "kobling": "ingen anelse — alfabetisk visning, ikke forslag"}
+                        "kobling": "no idea — an alphabetical view, not a suggestion"}
                        for d in alle.get("buss_domene", (0, []))[1][:3]]
 
     if forslag and len(treff_domener) > 0:

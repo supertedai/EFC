@@ -94,7 +94,7 @@ class EFCHubble(EFCEngine):
         return result
 
     # ------------------------------------------------------------------
-    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset
+    # regime_node() bridge (step 11): the engine describes itself in the atlas
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
         h0 = params_dict["H0"]

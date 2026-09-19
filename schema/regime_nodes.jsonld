@@ -23,12 +23,12 @@
       },
       "phase": "solid (ice Ih)",
       "measure": {
-        "target": "termodynamisk fase",
+        "target": "thermodynamic phase",
         "measurer": "P-T-sensor",
         "instrument": "calibrated thermometer + barometer (calibrated against the triple-point cell)",
         "proxy_chain": [
           "temperature via thermal expansion (thermometer)",
-          "trykk via membran (barometer)",
+          "pressure via a membrane (barometer)",
           "phase identified via T_m(P) / P_sub(T) (Clausius-Clapeyron inverse)"
         ],
         "placement": "laboratory P-T space; the instrument in thermal contact with the sample",
@@ -44,7 +44,7 @@
           "H2O molecules (matter) in thermodynamic states described by T and P",
           "a macroscopic phase is a well-defined state"
         ],
-        "source": "standard termodynamikk; IAPWS R6-95/R14-08; EFC WaterPhaseEngine (efc_inference/engine/water.py)",
+        "source": "standard thermodynamics; IAPWS R6-95/R14-08; EFC WaterPhaseEngine (efc_inference/engine/water.py)",
         "proveniens": {
           "kilder": [
             {
@@ -75,7 +75,7 @@
       "emergence": {
         "loop": "lattice vibrations <-> thermal equilibrium with the surroundings — the loop holds the crystal order up",
         "properties": [
-          "heksagonal krystallstruktur",
+          "hexagonal crystal structure",
           "lower density than the liquid (ice floats)"
         ]
       },
@@ -136,12 +136,12 @@
       },
       "phase": "liquid",
       "measure": {
-        "target": "termodynamisk fase",
+        "target": "thermodynamic phase",
         "measurer": "P-T-sensor",
         "instrument": "calibrated thermometer + barometer",
         "proxy_chain": [
           "temperature via thermal expansion",
-          "trykk via membran",
+          "pressure via a membrane",
           "phase identified via P_sat(T) and T_m(P)"
         ],
         "placement": "laboratory P-T space; the instrument in thermal contact with the sample",
@@ -156,7 +156,7 @@
         "assumes": [
           "H2O molecules (matter) in thermodynamic states described by T and P"
         ],
-        "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine",
+        "source": "standard thermodynamics; IAPWS R6-95; EFC WaterPhaseEngine",
         "proveniens": {
           "kilder": [
             {
@@ -249,12 +249,12 @@
       },
       "phase": "gas",
       "measure": {
-        "target": "termodynamisk fase",
+        "target": "thermodynamic phase",
         "measurer": "P-T-sensor",
         "instrument": "calibrated thermometer + barometer (possibly a hygrometer for vapour)",
         "proxy_chain": [
           "temperature via thermal expansion",
-          "trykk via membran",
+          "pressure via a membrane",
           "vapor content via dew point (hygrometer) — an extra proxy for the gas phase"
         ],
         "placement": "laboratory P-T room or atmosphere",
@@ -269,7 +269,7 @@
         "assumes": [
           "H2O molecules (matter) in thermodynamic states described by T and P"
         ],
-        "source": "standard termodynamikk; IAPWS R6-95; EFC WaterPhaseEngine",
+        "source": "standard thermodynamics; IAPWS R6-95; EFC WaterPhaseEngine",
         "proveniens": {
           "kilder": [
             {
@@ -307,7 +307,7 @@
       },
       "fractal": {
         "pattern": "each phase is its own emergence with its own loops in the same landscape",
-        "note": "molekyl -> damp -> sky -> globalt vaersystem"
+        "note": "molecule -> vapour -> cloud -> global weather system"
       },
       "coupling": {
         "local": "each molecule is free locally",
@@ -366,7 +366,7 @@
         "measurer": "P-T-sensor",
         "instrument": "high-pressure P-T cell",
         "proxy_chain": [
-          "temperatur via termoelement",
+          "temperature via thermocouple",
           "pressure via a high-pressure membrane",
           "no phase observable — the limit does not exist"
         ],
@@ -475,15 +475,15 @@
       },
       "phase": "coexistence (solid + liquid + gas)",
       "measure": {
-        "target": "temperaturskalaens referansepunkt",
+        "target": "the temperature scale's reference point",
         "measurer": "trippelpunktcelle",
-        "instrument": "kalibrert trippelpunktcelle — ITS-90-referansen",
+        "instrument": "calibrated triple-point cell — the ITS-90 reference",
         "proxy_chain": [
           "pressure held constant (611.657 Pa)",
           "temperature read as the cell wall's thermal equilibrium",
           "273.16 K IS the definition — the measurement is the calibration"
         ],
-        "placement": "metrologisk laboratorium",
+        "placement": "metrology laboratory",
         "compression": "point projection: the whole cell state -> one temperature number"
       },
       "episenter": "the point where three frames meet — the phase is not ONE; the reading frame must hold three at once",
@@ -583,13 +583,13 @@
     {
       "id": "lys.sol",
       "regime": {
-        "name": "hvitt sollys",
+        "name": "white sunlight",
         "validity": "electromagnetic radiation from the sun; the visible part is 400-700 nm — the sun emits the whole spectrum (UV, IR, radio ...), the observer sees a few nm",
         "law_form": "Maxwell's equations — light as electromagnetic waves"
       },
       "phase": "electromagnetic_field",
       "measure": {
-        "target": "elektromagnetisk straaling",
+        "target": "electromagnetic radiation",
         "measurer": "spektrometer",
         "instrument": "prisme/gitter-spektrometer",
         "proxy_chain": [
@@ -631,7 +631,7 @@
       "emergence": {
         "loop": "photon emission from the sun <-> absorption and scattering in the atmosphere",
         "properties": [
-          "kontinuerlig spektrum",
+          "continuous spectrum",
           "parallel incidence from a distant source"
         ]
       },
@@ -744,7 +744,7 @@
       "emergence": {
         "loop": "surface tension <-> gravity — the balance holds the sphere",
         "properties": [
-          "sfaerisk linse",
+          "spherical lens",
           "internal reflection (glass-like)"
         ]
       },
@@ -810,7 +810,7 @@
         "instrument": "spectrometer + prism",
         "proxy_chain": [
           "deflection angle via Snell's law",
-          "n(lambda) via vinkelmaaling",
+          "n(lambda) via angular measurement",
           "colour separation as a proxy for the n difference"
         ],
         "placement": "laboratory optics; or natural in every raindrop",
@@ -847,7 +847,7 @@
       "emergence": {
         "loop": "electron response <-> light field (the Lorentz oscillator) — the loop gives n(lambda)",
         "properties": [
-          "fargeavhengig avboyning",
+          "colour-dependent deflection",
           "fargeseparasjon"
         ]
       },
@@ -1004,7 +1004,7 @@
     {
       "id": "regnbue.observator",
       "regime": {
-        "name": "menneskelig observator",
+        "name": "human observer",
         "validity": "the eye: ~400-700 nm; anti-solar geometry — the sun behind the observer, droplets in front",
         "law_form": "retinal phototransduction (S/M/L cones) + visual perception"
       },
@@ -1214,7 +1214,7 @@
       "phase": "quantum_regime",
       "measure": {
         "target": "initial conditions and structure seeds",
-        "measurer": "teoretisk rekonstruksjon",
+        "measurer": "theoretical reconstruction",
         "instrument": "none direct — model-dependent",
         "proxy_chain": [
           "inflation predictions -> P(k) imprint in L1",
@@ -1538,7 +1538,7 @@
     {
       "id": "efc.l3",
       "regime": {
-        "name": "L3 — fjern fremtid",
+        "name": "L3 — the far future",
         "validity": "S -> 1; structure saturation — the end station of growth",
         "law_form": "saturation: R(k,S) -> asymptotic limit"
       },
@@ -1776,7 +1776,7 @@
       "episenter": "the knee: CC -> CV is the phase transition of the charge regime — the triple-point analogy: two regimes (current-driven and voltage-driven) meet in one point",
       "buffer": {
         "role": "the charger is the buffer's filling mechanism: it controls how fast the energy flows in",
-        "note": "bufferens inngang."
+        "note": "the buffer's input."
       },
       "ontology": {
         "assumes": [
@@ -1871,7 +1871,7 @@
           "shunt (A) -> coulomb-telling -> SOC",
           "voltage measurement (V) -> terminal state",
           "load measurement (W) -> peak effects",
-          "syklus-telling + BMS-estimator -> aldring (SOH)"
+          "cycle counting + BMS estimator -> ageing (SOH)"
         ],
         "placement": "the measurement happens in the buffer itself — it sees its own fill level",
         "compression": "second-by-second streams -> one SOC number and one daily curve"
@@ -2195,7 +2195,7 @@
       },
       "settlement": {
         "correlation": "efc-dh-over-rd.z0.7-z1.0",
-        "expected": "{\"status\": \"venter paa arbiter: DESI DR2 full-shape\", \"criterion\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430; DH_over_rd must remain below LCDM at z=0.7 and z=1.0\"}",
+        "expected": "{\"status\": \"awaiting arbiter: DESI DR2 full-shape\", \"criterion\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430; DH_over_rd must remain below LCDM at z=0.7 and z=1.0\"}",
         "outcome": "waiting for arbiter: DESI DR2 full-shape",
         "outcome_source": "arbiter"
       },
@@ -2576,7 +2576,7 @@
       },
       "phase": "observasjon",
       "measure": {
-        "target": "vekstraten fsigma8",
+        "target": "the growth rate fsigma8",
         "measurer": "BOSS, eBOSS, DESI",
         "instrument": "BOSS, eBOSS, DESI",
         "proxy_chain": [
@@ -2695,14 +2695,14 @@
       },
       "settlement": {
         "correlation": "efc-fs8.fsigma8.z0.7.atlas",
-        "expected": "{\"status\": \"venter paa arbiter: DESI DR2 full-shape\", \"criterion\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\"}",
+        "expected": "{\"status\": \"awaiting arbiter: DESI DR2 full-shape\", \"criterion\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\"}",
         "outcome": "waiting for arbiter: DESI DR2 full-shape",
         "outcome_source": "arbiter"
       },
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "BOSS, eBOSS, DESI",
-        "observabel": "vekstraten fsigma8",
+        "observabel": "the growth rate fsigma8",
         "teori": "f-sigma-8(z) linear growth",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -2834,7 +2834,7 @@
         "measurer": "SDSS, KiDS+BOSS",
         "instrument": "SDSS, KiDS+BOSS",
         "proxy_chain": [
-          "linse (kappa) x RSD (beta) -> E_G",
+          "lens (kappa) x RSD (beta) -> E_G",
           "E_G -> slip between light and mass"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
@@ -3047,13 +3047,13 @@
     {
       "id": "obs.ksz",
       "regime": {
-        "name": "kSZ egenhastigheter",
+        "name": "kSZ peculiar velocities",
         "validity": "kSZ measures the peculiar velocities of clusters — the only direct velocity measurement of L2 structure",
         "law_form": "the observation's law form: the signal is the regime's imprint, not the regime itself"
       },
       "phase": "observasjon",
       "measure": {
-        "target": "kSZ-signalet",
+        "target": "the kSZ signal",
         "measurer": "ACT, DES x SPT",
         "instrument": "ACT, DES x SPT",
         "proxy_chain": [
@@ -3150,8 +3150,8 @@
       "synlighet": "offentlig",
       "rcmp": {
         "instrument": "ACT, DES x SPT",
-        "observabel": "kSZ-signalet",
-        "teori": "kSZ egenhastigheter",
+        "observabel": "the kSZ signal",
+        "teori": "kSZ peculiar velocities",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -3170,7 +3170,7 @@
         "instrument": "Chandra, XMM, HST",
         "proxy_chain": [
           "rontgen (T_X) -> masse",
-          "svak linse -> masse",
+          "weak lensing -> mass",
           "scaling relations -> mass"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
@@ -3398,7 +3398,7 @@
         "proxy_chain": [
           "rotation curves -> a_obs",
           "baryonic distribution -> a_bar",
-          "avvik -> a_obs/a_bar"
+          "deviation -> a_obs/a_bar"
         ],
         "placement": "the observer stands at L2 and reads the signal from its instrument — the observation is ALWAYS a reading, never the thing itself",
         "compression": "raw data -> one summarising measure"
@@ -4863,7 +4863,7 @@
       },
       "settlement": {
         "correlation": "efc-fs8.fsigma8.z0.7",
-        "expected": "{\"status\": \"venter paa arbiter: DESI DR2 full-shape\", \"criterion\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\"}",
+        "expected": "{\"status\": \"awaiting arbiter: DESI DR2 full-shape\", \"criterion\": \"DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430\"}",
         "outcome": "waiting for arbiter: DESI DR2 full-shape",
         "outcome_source": "arbiter"
       },
@@ -5144,7 +5144,7 @@
         "note": "one pattern, three domains — not identity."
       },
       "coupling": {
-        "local": "én kropp, én flyt",
+        "local": "one body, one flow",
         "global": "THE FRAMEWORK'S HYPOTHESIS: the human is the bearer of the L3 regime — the self-modeling; ANALOGOUS_TO batteri.buffer via the broad buffer logic. Not an empirically established regime — the placement is the framework's own",
         "empathy_note": "every body carries the whole regime in its own flow."
       },
@@ -5188,7 +5188,7 @@
       "lagdeling": {
         "analogi": {
           "status": "paradigme",
-          "kilde": "Homo Fluxus v1/v2 (vaar)",
+          "kilde": "Homo Fluxus v1/v2 (ours)",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -5208,7 +5208,7 @@
         "measurer": "thermo-, chemo- and osmoregulation (measured in the body)",
         "instrument": "physiological sensors; here the node is a description, not a sensor",
         "proxy_chain": [
-          "sensor → avvik",
+          "sensor → deviation",
           "deviation → compensatory response"
         ],
         "placement": "the buffer is L2 life's local stabiliser",
@@ -5426,7 +5426,7 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "fysiologi (standard)",
+          "kilde": "physiology (standard)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -5600,7 +5600,7 @@
             },
             {
               "type": "artikkel",
-              "ref": "NCBI StatPearls (hjerte); AHA (ejeksjonsfraksjon)",
+              "ref": "NCBI StatPearls (heart); AHA (ejection fraction)",
               "hentet": "vedlikeholdt"
             }
           ],
@@ -5681,7 +5681,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "EFC: periodisk flyt",
+          "kilde": "EFC: the periodic flow",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -5853,7 +5853,7 @@
         "note": "one pattern, three domains."
       },
       "coupling": {
-        "local": "én celle, én syklus",
+        "local": "one cell, one cycle",
         "global": "THE ATLAS'S PLACEMENT (analogical reading): cell division maintains the flow and CARRIES homo.fluxus — not an empirically established biological property",
         "empathy_note": "every division is a tiny transition — the body is the sum of them."
       },
@@ -5927,7 +5927,7 @@
         "measurer": "respiration measurement, metabolomics (laboratory)",
         "instrument": "laboratory measurement; here description",
         "proxy_chain": [
-          "O₂-forbruk → fluks",
+          "O₂ consumption → flux",
           "ATP/ADP → reguleringsstatus"
         ],
         "placement": "ATLAS PLACEMENT: the metabolism is homo.fluxus's engine — the continuous flow that the rest stands on (analogical reading)",
@@ -6029,7 +6029,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "EFC: energiflytens biokjemi",
+          "kilde": "EFC: the biochemistry of energy flow",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -6284,7 +6284,7 @@
             },
             {
               "type": "laerebok",
-              "ref": "Janeway's Immunobiology kap.11",
+              "ref": "Janeway's Immunobiology ch. 11",
               "hentet": "vedlikeholdt"
             }
           ],
@@ -6311,7 +6311,7 @@
         "note": "one pattern, three domains."
       },
       "coupling": {
-        "local": "ett epitop, én respons",
+        "local": "one epitope, one response",
         "global": "THE ATLAS'S PLACEMENT: the immune system guards homo.fluxus — CARRIES homo.fluxus (analogical reading)",
         "empathy_note": "the defence does not know that it is defending a human — it reacts."
       },
@@ -6410,7 +6410,7 @@
       "emergence": {
         "loop": "awake -> pressure accumulates -> threshold -> sleep -> pressure drains -> awake — the day's loop",
         "properties": [
-          "homeostatisk trykk",
+          "homeostatic pressure",
           "stadium",
           "diurnal phase"
         ]
@@ -6468,7 +6468,7 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "sovnfysiologi (standard: Borbely, Steriade)",
+          "kilde": "sleep physiology (standard: Borbely, Steriade)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -6542,7 +6542,7 @@
         "note": "one pattern, three domains."
       },
       "coupling": {
-        "local": "ett system, ett vippepunkt",
+        "local": "one system, one tipping point",
         "global": "THE ATLAS'S PLACEMENT: the ecosystems are the surroundings of homo.fluxus — mutually coupled (COUPLED_TO homo.fluxus, analogical reading): the human shapes the ecosystems, and they shape the human",
         "empathy_note": "the ecosystem does not choose a side at the tipping point — it falls."
       },
@@ -6694,7 +6694,7 @@
       "lagdeling": {
         "fysiologi": {
           "status": "akademia",
-          "kilde": "evolusjonsbiologi (standard: Darwin, Eldredge/Gould)",
+          "kilde": "evolutionary biology (standard: Darwin, Eldredge/Gould)",
           "sannhet": "stottet",
           "konsensus": "institusjonell"
         },
@@ -6823,7 +6823,7 @@
       "measure": {
         "target": "the atlas itself",
         "measurer": "the one who reads the atlas (the human — the instrument)",
-        "instrument": "lesningens ramme",
+        "instrument": "the frame of the reading",
         "proxy_chain": [
           "atlas text -> reading -> understanding"
         ],
@@ -6865,7 +6865,7 @@
         ]
       },
       "fractal": {
-        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "pattern": "kg -> weight -> the concept of mass: the instrument window",
         "note": "whole in every part — the description, the schema and the paradigm are fractals of themselves: the one who reads is part of what is read"
       },
       "coupling": {
@@ -6918,7 +6918,7 @@
       "measure": {
         "target": "the schema itself",
         "measurer": "the one who defines the fields (us)",
-        "instrument": "definisjonens ramme",
+        "instrument": "the frame of the definition",
         "proxy_chain": [
           "field name -> meaning -> world"
         ],
@@ -6960,7 +6960,7 @@
         ]
       },
       "fractal": {
-        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "pattern": "kg -> weight -> the concept of mass: the instrument window",
         "note": "whole in every part — the description, the schema and the paradigm are fractals of themselves: the one who reads is part of what is read"
       },
       "coupling": {
@@ -7056,7 +7056,7 @@
         ]
       },
       "fractal": {
-        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "pattern": "kg -> weight -> the concept of mass: the instrument window",
         "note": "whole in every part — the description, the schema and the paradigm are fractals of themselves: the one who reads is part of what is read"
       },
       "coupling": {
@@ -7154,7 +7154,7 @@
         ]
       },
       "fractal": {
-        "pattern": "kg -> vekt -> massebegrep: instrumentvindu",
+        "pattern": "kg -> weight -> the concept of mass: the instrument window",
         "note": "whole in every part — the description, the schema and the paradigm are fractals of themselves: the one who reads is part of what is read"
       },
       "coupling": {
@@ -7317,7 +7317,7 @@
         "stipulert_av_oss": true,
         "terskler": [
           "drift_rate <= 0 -> NaN (not silent clipping) — honesty boundary",
-          "the hedge/spekulativ/ponzi boundaries — the Minsky typology — one tradition among several"
+          "the hedge/speculative/ponzi boundaries — the Minsky typology — one tradition among several"
         ],
         "motor": "oekonomi",
         "alene_status": "Minsky's idealized economic regime has no explicit finance node as a mechanical parent in the atlas"
@@ -7325,11 +7325,11 @@
       "regime": {
         "name": "Minsky's financial regimes — stability as holding",
         "validity": "Minsky's financial regimes: stability breeds confidence -> debt grows -> hedge -> speculative -> ponzi -> crisis. The stable years ARE the holding that builds the buffer for the trigger (the Minsky moment: stability is destabilising — here as measurable leverage drift). DELIMITATION: Minsky is ONE tradition among several in economics; the model does NOT predict the timing or occurrence of crises — only the qualitative form of the regime. IDEALISED regime classification with linear drift — NOT an economic model competitor: no sectors, no central bank, no policy, no heterogeneous actors.",
-        "law_form": "hedge: income covers interest + repayment; spekulativ: income covers the interest, the debt is rolled; ponzi: income covers neither — assets are sold. Leverage drift: gg(t+1) = gg(t) * (1 + (r - g + confidence) * dt)"
+        "law_form": "hedge: income covers interest + repayment; speculative: income covers the interest, the debt is rolled; ponzi: income covers neither — assets are sold. Leverage drift: gg(t+1) = gg(t) * (1 + (r - g + confidence) * dt)"
       },
       "phase": "computation_engine",
       "measure": {
-        "target": "financial regime (hedge/spekulativ/ponzi), leverage drift",
+        "target": "financial regime (hedge/speculative/ponzi), leverage drift",
         "measurer": "threshold classification + linear drift",
         "instrument": "OekonomiEngine (efc_inference/engine/oekonomi.py)",
         "proxy_chain": [
@@ -8697,7 +8697,7 @@
       },
       "phase": "teoretisk",
       "measure": {
-        "target": "periodesystemets struktur (118 grunnstoff)",
+        "target": "the periodic table's structure (118 elements)",
         "measurer": "IUPAC and the chemical literature",
         "instrument": "spectroscopy and chemical analysis",
         "proxy_chain": [
@@ -8991,7 +8991,7 @@
       "measure": {
         "target": "vulkantilstand",
         "measurer": "USGS VHP",
-        "instrument": "statusliste (alertLevel)",
+        "instrument": "status list (alertLevel)",
         "proxy_chain": [
           "alertLevel -> activity -> regime status"
         ],
@@ -9139,7 +9139,7 @@
       },
       "fractal": {
         "pattern": "one place is the whole network's proxy",
-        "note": "konsensus-praksis i operativ meteorologi"
+        "note": "consensus practice in operational meteorology"
       },
       "buss_domene": "verden.vaer",
       "synlighet": "offentlig",
@@ -9239,7 +9239,7 @@
           "the expectation was written before the outcome was known",
           "the outcome is measured, not remembered"
         ],
-        "source": "NATS-stroemmen OPUS_SELV, emne opus.dommekraft.*",
+        "source": "the NATS stream OPUS_SELV, subject opus.dommekraft.*",
         "proveniens": {
           "kilder": [
             {
@@ -9572,7 +9572,7 @@
     {
       "id": "efc.lag_s",
       "regime": {
-        "name": "EFC-S — strukturell sektor",
+        "name": "EFC-S — the structural sector",
         "validity": "the structure layer: halos, rotation curves, lensing effect. Valid where the structure is stable over timescales where the dynamics is averaged out."
       },
       "phase": "regime_engine",
@@ -9874,7 +9874,7 @@
           "rom",
           "tid"
         ],
-        "enheter": "dimensionloes S i [0,1]",
+        "enheter": "dimensionless S in [0,1]",
         "status": "avledet",
         "alternativer": [
           "Shannon entropy as a separate measure (FALSIFIED as a multiplicative model)"
@@ -10003,7 +10003,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10118,7 +10118,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10136,7 +10136,7 @@
         "measurer": "JPL — computed, not measured",
         "instrument": "the DE441 ephemeris; no instrument read it off",
         "proxy_chain": [
-          "observasjoner (historiske)",
+          "observations (historical)",
           "DE441-tilpasning",
           "position"
         ],
@@ -10233,7 +10233,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10348,7 +10348,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10366,7 +10366,7 @@
         "measurer": "JPL — computed, not measured",
         "instrument": "the DE441 ephemeris; no instrument read it off",
         "proxy_chain": [
-          "observasjoner (historiske)",
+          "observations (historical)",
           "DE441-tilpasning",
           "position"
         ],
@@ -10463,7 +10463,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10578,7 +10578,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10693,7 +10693,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10808,7 +10808,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10923,7 +10923,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -10941,9 +10941,9 @@
         "measurer": "Eurostat — from the member states' statistical agencies",
         "instrument": "national statistical agencies, harmonised",
         "proxy_chain": [
-          "nasjonal statistikk",
-          "harmonisering",
-          "indikator"
+          "national statistics",
+          "harmonisation",
+          "indicator"
         ],
         "placement": "observasjon",
         "compression": "all messages about labour -> one share"
@@ -11038,7 +11038,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11153,7 +11153,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11268,7 +11268,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11383,7 +11383,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11498,7 +11498,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11613,7 +11613,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11728,7 +11728,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11843,7 +11843,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -11958,7 +11958,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -12073,7 +12073,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -12188,7 +12188,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -12303,7 +12303,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -12418,7 +12418,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -12533,7 +12533,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -12648,7 +12648,7 @@
         },
         "analogi": {
           "status": "paradigme",
-          "kilde": "vaar andelslesning",
+          "kilde": "our own reading",
           "sannhet": "hypotese",
           "konsensus": "minoritet"
         }
@@ -13635,7 +13635,7 @@
       },
       "phase": "instrument",
       "measure": {
-        "target": "optiske transienthendelser",
+        "target": "optical transient events",
         "measurer": "ALeRCE",
         "instrument": "ALeRCE alert stream",
         "proxy_chain": [
@@ -13826,7 +13826,7 @@
     {
       "id": "verden.klima_isbre",
       "regime": {
-        "name": "isbre/glasiologi — ventenode",
+        "name": "glacier/glaciology — a waiting node",
         "validity": "The observation stream observasjon.isbre is measured absent; the node waits for a connector."
       },
       "phase": "instrument",
@@ -13935,7 +13935,7 @@
       "subject": "h2o.liquid",
       "predicate": "TRANSITIONS_TO",
       "object": "h2o.gas",
-      "note": "fordamping/koking — P_sat(T)"
+      "note": "evaporation/boiling — P_sat(T)"
     },
     {
       "subject": "h2o.solid",

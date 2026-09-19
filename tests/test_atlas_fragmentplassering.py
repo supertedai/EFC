@@ -64,7 +64,7 @@ def test_ordlikhet_merkes_som_ikke_forslag() -> None:
     avledet = [f for f in svar["forslag"] if f["domene"] == "(avledet)"]
     assert avledet, svar
     kobling = avledet[0]["kobling"]
-    assert "ORDLIKHET" in kobling and "ikke et plasseringsforslag" in kobling, kobling
+    assert "WORD LIKENESS" in kobling and "not a placement suggestion" in kobling, kobling
 
 
 def test_stoppordlista_spiser_ikke_innholdsord() -> None:

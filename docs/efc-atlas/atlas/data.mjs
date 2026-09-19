@@ -54,7 +54,7 @@ export const GROUPS = [
   },
   {
     "id": "ghost",
-    "title": "Not yet built"
+    "title": "No group yet"
   }
 ];
 
@@ -72,8 +72,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "termodynamisk fase \u00b7 perspective: academia",
-    "what": "calibrated thermometer + barometer (calibrated against the triple-point cell) \u2014 proxy chain: temperature via thermal expansion (thermometer) -> trykk via membran (barometer) -> phase\u2026",
+    "one": "thermodynamic phase \u00b7 perspective: academia",
+    "what": "calibrated thermometer + barometer (calibrated against the triple-point cell) \u2014 proxy chain: temperature via thermal expansion (thermometer) -> pressure via a membrane (barometer) ->\u2026",
     "how": "Buffer role: the crystal lattice + latent heat L_f: the ice holds the drink at 0 C until the\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -113,8 +113,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "termodynamisk fase \u00b7 perspective: academia",
-    "what": "calibrated thermometer + barometer \u2014 proxy chain: temperature via thermal expansion -> trykk via membran -> phase identified via P_sat(T)\u2026",
+    "one": "thermodynamic phase \u00b7 perspective: academia",
+    "what": "calibrated thermometer + barometer \u2014 proxy chain: temperature via thermal expansion -> pressure via a membrane -> phase identified via\u2026",
     "how": "Buffer role: high heat capacity (4.18 kJ/(kg*K)): water holds the temperature during heating\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -154,8 +154,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "termodynamisk fase \u00b7 perspective: academia",
-    "what": "calibrated thermometer + barometer (possibly a hygrometer for vapour) \u2014 proxy chain: temperature via thermal expansion -> trykk via membran -> vapor content via dew point\u2026",
+    "one": "thermodynamic phase \u00b7 perspective: academia",
+    "what": "calibrated thermometer + barometer (possibly a hygrometer for vapour) \u2014 proxy chain: temperature via thermal expansion -> pressure via a membrane -> vapor content via dew\u2026",
     "how": "Buffer role: the gas's heat capacity and expansion damp local pressure and temperature\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -196,7 +196,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "thermodynamic state (not 'phase' \u2014 the boundary is gone) \u00b7 perspective: academia",
-    "what": "high-pressure P-T cell \u2014 proxy chain: temperatur via termoelement -> pressure via a high-pressure membrane -> no phase\u2026",
+    "what": "high-pressure P-T cell \u2014 proxy chain: temperature via thermocouple -> pressure via a high-pressure membrane -> no phase\u2026",
     "how": "Buffer role: no phase boundary to hold \u2014 the buffer capacity is continuous, with no latent\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -236,8 +236,8 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "temperaturskalaens referansepunkt \u00b7 perspective: academia",
-    "what": "kalibrert trippelpunktcelle \u2014 ITS-90-referansen \u2014 proxy chain: pressure held constant (611.657 Pa) -> temperature read as the cell wall's thermal\u2026",
+    "one": "the temperature scale's reference point \u00b7 perspective: academia",
+    "what": "calibrated triple-point cell \u2014 the ITS-90 reference \u2014 proxy chain: pressure held constant (611.657 Pa) -> temperature read as the cell wall's thermal\u2026",
     "how": "Buffer role: the point absorbs energy with no temperature rise as long as three phases\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -277,7 +277,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "elektromagnetisk straaling \u00b7 perspective: academia",
+    "one": "electromagnetic radiation \u00b7 perspective: academia",
     "what": "prisme/gitter-spektrometer \u2014 proxy chain: wavelength via grating dispersion -> intensity via detector -> colour as an observer proxy\u2026",
     "how": "Buffer role: the sun is an enormous energy source with an approximately stable spectral\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
@@ -360,7 +360,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "brytningsindeksen n(lambda) \u00b7 perspective: academia",
-    "what": "spectrometer + prism \u2014 proxy chain: deflection angle via Snell's law -> n(lambda) via vinkelmaaling -> colour separation as a\u2026",
+    "what": "spectrometer + prism \u2014 proxy chain: deflection angle via Snell's law -> n(lambda) via angular measurement -> colour separation\u2026",
     "how": "Buffer role: water's electronic structure gives the dispersion stability \u2014 n(lambda) is a\u2026 Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -865,9 +865,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "vekstraten fsigma8 \u00b7 perspective: consensus",
+    "one": "the growth rate fsigma8 \u00b7 perspective: consensus",
     "what": "BOSS, eBOSS, DESI \u2014 proxy chain: redshift-space distortion (RSD) -> f sigma8 -> f sigma8(z) -> vekstlovens form",
-    "how": "Buffer role: the structure itself is the buffer \u2014 gravitational response holds mass against\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=BOSS, eBOSS, DESI; observabel=vekstraten fsigma8; teori=f-sigma-8(z) linear growth; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "how": "Buffer role: the structure itself is the buffer \u2014 gravitational response holds mass against\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=BOSS, eBOSS, DESI; observabel=the growth rate fsigma8; teori=f-sigma-8(z) linear growth; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -875,7 +875,7 @@ export const NODES = [
       "klarhet": null,
       "rcmp": {
         "instrument": "BOSS, eBOSS, DESI",
-        "observabel": "vekstraten fsigma8",
+        "observabel": "the growth rate fsigma8",
         "teori": "f-sigma-8(z) linear growth",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
@@ -956,7 +956,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "E_G-krysset \u00b7 perspective: consensus",
-    "what": "SDSS, KiDS+BOSS \u2014 proxy chain: linse (kappa) x RSD (beta) -> E_G -> E_G -> slip between light and mass",
+    "what": "SDSS, KiDS+BOSS \u2014 proxy chain: lens (kappa) x RSD (beta) -> E_G -> E_G -> slip between light and mass",
     "how": "Buffer role: two independent proxies buffer each other \u2014 the crossing is more robust than\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SDSS, KiDS+BOSS; observabel=E_G-krysset; teori=E_G gravitasjonsslip-statistikk; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1045,9 +1045,9 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": true,
-    "one": "kSZ-signalet \u00b7 perspective: consensus",
+    "one": "the kSZ signal \u00b7 perspective: consensus",
     "what": "ACT, DES x SPT \u2014 proxy chain: CMB x galaxies -> kSZ -> kSZ -> peculiar velocity field",
-    "how": "Buffer role: the electrons in clusters Doppler-scatter photons \u2014 the plasma is the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=ACT, DES x SPT; observabel=kSZ-signalet; teori=kSZ egenhastigheter; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
+    "how": "Buffer role: the electrons in clusters Doppler-scatter photons \u2014 the plasma is the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=ACT, DES x SPT; observabel=the kSZ signal; teori=kSZ peculiar velocities; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -1055,8 +1055,8 @@ export const NODES = [
       "klarhet": null,
       "rcmp": {
         "instrument": "ACT, DES x SPT",
-        "observabel": "kSZ-signalet",
-        "teori": "kSZ egenhastigheter",
+        "observabel": "the kSZ signal",
+        "teori": "kSZ peculiar velocities",
         "overlap": true,
         "deklarasjon": "RCMP: instrument, observable and theory have overlapping domains of validity."
       }
@@ -1091,7 +1091,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "M_500 from several channels \u00b7 perspective: consensus",
-    "what": "Chandra, XMM, HST \u2014 proxy chain: rontgen (T_X) -> masse -> svak linse -> masse -> scaling relations -> mass",
+    "what": "Chandra, XMM, HST \u2014 proxy chain: rontgen (T_X) -> masse -> weak lensing -> mass -> scaling relations -> mass",
     "how": "Buffer role: the cluster's potential keeps the gas hot and the light bent \u2014 two buffers, one\u2026 Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=Chandra, XMM, HST; observabel=M_500 from several channels; teori=klyngemasse-skalering; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1181,7 +1181,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "a_obs vs a_bar \u00b7 perspective: consensus",
-    "what": "SPARC \u2014 proxy chain: rotation curves -> a_obs -> baryonic distribution -> a_bar -> avvik -> a_obs/a_bar",
+    "what": "SPARC \u2014 proxy chain: rotation curves -> a_obs -> baryonic distribution -> a_bar -> deviation -> a_obs/a_bar",
     "how": "Buffer role: the galaxy's potential holds the rotation \u2014 the dynamics are the buffer. Epistemic: modellrelativ / proxy / institusjonell. S-axis: RCMP instrument=SPARC; observabel=a_obs vs a_bar; teori=Radial Acceleration Relation; overlap=True; deklarasjon=RCMP: instrument, observable and theory have overlapping domains of validity.",
     "sAxis": {
       "regime": null,
@@ -1820,7 +1820,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "deviation from setpoint (\u0394T, \u0394pH, \u0394glucose) \u00b7 perspective: academia",
-    "what": "physiological sensors; here the node is a description, not a sensor \u2014 proxy chain: sensor \u2192 avvik -> deviation \u2192 compensatory response",
+    "what": "physiological sensors; here the node is a description, not a sensor \u2014 proxy chain: sensor \u2192 deviation -> deviation \u2192 compensatory response",
     "how": "Buffer role: the buffer itself: capacity that damps change \u2014 the broad logic in pure form. Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -2054,7 +2054,7 @@ export const NODES = [
     "kind": "box",
     "ghost": true,
     "one": "ATP/ADP-forhold, O\u2082-forbruk, substrat-fluks \u00b7 perspective: academia",
-    "what": "laboratory measurement; here description \u2014 proxy chain: O\u2082-forbruk \u2192 fluks -> ATP/ADP \u2192 reguleringsstatus",
+    "what": "laboratory measurement; here description \u2014 proxy chain: O\u2082 consumption \u2192 flux -> ATP/ADP \u2192 reguleringsstatus",
     "how": "Buffer role: The ATP pool and glycogen are the buffers: short- and long-term stores that damp\u2026 Epistemic: stottet / replikert / institusjonell. S-axis: regime S~0.5 \u00b7 clarity C(S) at S~0.5: differentiated clarity in the late universe's biological intermediate layer \u2014 the observer sees a narrow\u2026",
     "sAxis": {
       "regime": "S~0.5",
@@ -2404,7 +2404,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "financial regime (hedge/spekulativ/ponzi), leverage drift \u00b7 perspective: paradigm",
+    "one": "financial regime (hedge/speculative/ponzi), leverage drift \u00b7 perspective: paradigm",
     "what": "OekonomiEngine (efc_inference/engine/oekonomi.py) \u2014 proxy chain: leverage ratio -> regime (two thresholds) -> stable years -> leverage drift (the Minsky\u2026",
     "how": "Buffer role: the stable years are the buffer: trust builds up and the debt accumulates\u2026 Epistemic: hypotese / proxy / minoritet.",
     "sAxis": {
@@ -2919,7 +2919,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "periodesystemets struktur (118 grunnstoff) \u00b7 perspective: academia",
+    "one": "the periodic table's structure (118 elements) \u00b7 perspective: academia",
     "what": "spectroscopy and chemical analysis \u2014 proxy chain: atomic number -> periodicity \u2014 consensus mapping",
     "how": "Buffer role: the periodic table is the buffer that keeps the chemistry ordered. Epistemic: stottet / replikert / institusjonell.",
     "sAxis": {
@@ -3039,7 +3039,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "vulkantilstand \u00b7 perspective: consensus",
-    "what": "statusliste (alertLevel) \u2014 proxy chain: alertLevel -> activity -> regime status",
+    "what": "status list (alertLevel) \u2014 proxy chain: alertLevel -> activity -> regime status",
     "how": "Buffer role: volcanoes as the thermal buffer of the Earth. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3390,7 +3390,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "orbit positions computed from the DE441 ephemeris \u00b7 perspective: consensus",
-    "what": "the DE441 ephemeris; no instrument read it off \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> position",
+    "what": "the DE441 ephemeris; no instrument read it off \u2014 proxy chain: observations (historical) -> DE441-tilpasning -> position",
     "how": "Buffer role: JPL Horizons is the buffer: it holds the state between updates. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3468,7 +3468,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "orbit positions computed from the DE441 ephemeris \u00b7 perspective: consensus",
-    "what": "the DE441 ephemeris; no instrument read it off \u2014 proxy chain: observasjoner (historiske) -> DE441-tilpasning -> position",
+    "what": "the DE441 ephemeris; no instrument read it off \u2014 proxy chain: observations (historical) -> DE441-tilpasning -> position",
     "how": "Buffer role: JPL Horizons is the buffer: it holds the state between updates. Epistemic: stottet / proxy / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -3663,7 +3663,7 @@ export const NODES = [
     "kind": "box",
     "ghost": false,
     "one": "labour market and social statistics for Europe \u00b7 perspective: consensus",
-    "what": "national statistical agencies, harmonised \u2014 proxy chain: nasjonal statistikk -> harmonisering -> indikator",
+    "what": "national statistical agencies, harmonised \u2014 proxy chain: national statistics -> harmonisation -> indicator",
     "how": "Buffer role: Eurostat is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
       "regime": null,
@@ -4637,7 +4637,7 @@ export const NODES = [
     "h": 34,
     "kind": "box",
     "ghost": false,
-    "one": "optiske transienthendelser \u00b7 perspective: consensus",
+    "one": "optical transient events \u00b7 perspective: consensus",
     "what": "ALeRCE alert stream \u2014 proxy chain: hendelse.alerce -> instrument reading -> atlas observation",
     "how": "Buffer role: the stream holds the source's measurement. Epistemic: stottet / direkte / institusjonell.",
     "sAxis": {
@@ -4923,7 +4923,7 @@ export const CH = [
   },
   {
     "id": "ch8",
-    "title": "Not yet built",
+    "title": "No group yet",
     "reveal": [
       "h2o-solid",
       "h2o-liquid",
@@ -4987,7 +4987,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 53 of them designed and not built, 78 relations.",
+    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other), 78 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
