@@ -112,19 +112,49 @@ ATLAS_EIDE: tuple[str, ...] = (
 #: Stier der motoren faar utstede en DELMENGDE av atlasets liste.
 DELMENGDE: tuple[str, ...] = ("/ontology/assumes", "/maale_paradigme/alternativer")
 
-#: Skjema-familier som hoerer til ANDRE node-typer enn motornoder, og som
-#: derfor ikke har noen eier i bro-konvensjonen: `/settlement/*` (oppgjoer-
-#: noder), `/revisjon` (husets egen bokfoering) og
-#: `/observer/maalepavirkning`. De er navngitt her fordi et udekket felt
-#: skal vaere en DEKLARERT utelatelse, ikke en stille (regel 64).
-UTENFOR_BROEN: tuple[str, ...] = (
-    "/settlement/", "/revisjon", "/observer/maalepavirkning",
-    "/lagdeling/", "/open_questions",
-    "/stipulasjoner/alene_status",
- "/stipulasjoner/buss_status",
- "/stipulasjoner/ikke_falsifiserbar_grunn",
- "/stipulasjoner/motor_status",
- )
+#: Field paths the SCHEMA can express that NO bridge owns — each with the
+#: REASON written down. An omission must be named AND justified (rule 64):
+#: a name without a reason is a silent omission with one extra step, and the
+#: next reader cannot tell whether it still holds.
+#:
+#: Measured 2026-09-19 (t_c8d06315) for `/open_questions`: 21 nodes in the
+#: bank carry it and 0 of the 20 registered bridges do; no engine emits it (0
+#: hits in `efc_inference/`); the generator never writes it — the schema says
+#: so itself ("the ONLY source of questions in the atlas: the generator never
+#: writes a question itself"); what writes it is the NODE'S OWN text, the
+#: migration (`migrer_buss_status_til_open_questions.py`) and curation in the
+#: bank. It is therefore not an engine field, and it must not have a bridge.
+#:
+#: FIVE entries were REMOVED here on 2026-09-19 (t_c8d06315) because they
+#: contradicted the tables above: `/settlement/` and the four
+#: `/stipulasjoner/*` paths stood in BOTH places, and `eier()` answered
+#: "atlas" for all five. Measured: 11 field paths in registered bridges hit
+#: them (`efc.growth_engine` carried `/settlement/*`, seven nodes carried
+#: `/stipulasjoner/alene_status`). An omission that contradicts ownership is
+#: not an omission, it is a claim that the field stands without a rule — and
+#: that claim was false. `test_hver_utelatelse_er_navngitt_og_begrunnet` keeps
+#: it out from here on.
+UTENFOR_BROEN: dict[str, str] = {
+    # Reconciliation and revision: the house's own bookkeeping, not bridges.
+    "/revisjon": (
+        "the house's own bookkeeping node type, never an engine node; 0 bank "
+        "nodes carry it today — declared so the schema field stays usable "
+        "without pretending it has an owner"),
+    # Measured 2026-09-19: 33 bank nodes carry it — all layered biology and
+    # human nodes — and 0 of the 20 registered bridges do.
+    "/lagdeling/": (
+        "belongs to the layered biology nodes (33 bank nodes, 0 of the 20 "
+        "registered bridges): the engine side has no layer partition to "
+        "publish"),
+    "/observer/maalepavirkning": (
+        "a curated meta-question about the observer, not derivable from any "
+        "engine parameter; 0 bank nodes carry it today"),
+    "/open_questions": (
+        "the NODE'S OWN text in the bank: written by the migration from "
+        "stipulasjoner.buss_status and by curation, never by an engine and "
+        "never by the generator; 21 bank nodes carry it, 0 of the 20 "
+        "registered bridges do"),
+}
 
 #: Motor-klasser som er VARIANTER av en registrert bros node: de arver
 #: regime_node() og utsteder SAMME node-id, saa de kan ikke faa hver sin
