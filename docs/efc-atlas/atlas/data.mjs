@@ -9,7 +9,7 @@ export const META = {
           { k: 'S-axis', v: '39 of 116 measured · 53 without a group yet' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
-  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes, NATS bridges. 53 of the 116 without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other).`,
+  onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes, NATS bridges. 53 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other).`,
   platformGives: 'NATS bus, engines, review fan-out, the EFC bank.',
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
@@ -4987,7 +4987,7 @@ export const CH = [
     "id": "all",
     "title": "The whole atlas",
     "reveal": [],
-    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other), 78 relations.",
+    "lede": "Everything at once \u2014 116 nodes, 53 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 5 other), 78 relations.",
     "story": "<p>Free exploration. Hover, click to pin, go inside.</p><p>7 nodes carry no evidence yet \u2014 that is what <i>epistemic: \u2026 / ingen / \u2026</i> in \u201cHow it's built\u201d says. Open questions are not generated: they come from the bank, and none is registered.</p>",
     "flow": null
   }
