@@ -28,9 +28,9 @@ class EFCEngine(ABC):
     # Subclasses should list the parameter names they require
     REQUIRED_PARAMS: list[str] = []
 
-    #: Publiseringsflate for motorens atlas-node. Motoren eier
-    #: beslutningen — ikke generatoren. «intern» betyr at noden
-    #: ikke genereres til GitHub Pages (docs/efc-atlas/).
+    #: Publication surface for the engine's atlas node. The engine owns
+    #: the decision — not the generator. «intern» means that the node
+    #: is not generated to GitHub Pages (docs/efc-atlas/).
     SYNLIGHET: str = "offentlig"
 
     @property

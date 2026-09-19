@@ -1,122 +1,122 @@
-# NATS-koblingskart — hvilke bussemner mater hvilke motorer
+# NATS connection map — which bus subjects feed which engines
 
-Trinn 9 (2026-09-16), oppdatert etter trinn 10–12. Kartet er en
-**observasjon**, ikke en taksonomi: det beskriver hvilke emner
-verdensbussen faktisk bærer, og hvilke EFC-motorer de kan mate.
-Inndelingen av verden i domener er en beslutning for eierne — dette
-kartet bare SPEILER den beslutningen slik den står på bussen i dag.
+Step 9 (2026-09-16), updated after steps 10–12. The map is an
+**observation**, not a taxonomy: it describes which subjects
+the world bus actually carries, and which EFC engines they can feed.
+The division of the world into domains is a decision for the owners — this
+map merely MIRRORS that decision as it stands on the bus today.
 
-## Bussen
+## The bus
 
-Én NATS-server («verdensserveren») bærer fem strømmer etter lag:
+One NATS server («the world server») carries five streams by layer:
 
-| Strøm | Lag | Betydning |
+| Stream | Layer | Meaning |
 |---|---|---|
-| VERDEN_OBS | observasjon | instrumentbårne rådata (GDELT GKG, MAST/CAOM) |
-| VERDEN_TILSTAND | tilstand | aggregert nå-tilstand (energi, vær, økonomi, kosmos-kataloger) |
-| VERDEN_PROGNOSE | prediksjon / oppgjør | prognoser og oppgjorte prediksjoner (værvarsel, ENTSO-E, EFC-fs8) |
-| VERDEN_TOLKET | diskusjon / hendelse | tolkede hendelser (GDELT mentions/export, GCN, ALeRCE) |
-| OPUS_SELV | — | egen dommekrafts-ledger (handlingsledger) |
+| VERDEN_OBS | observasjon | instrument-borne raw data (GDELT GKG, MAST/CAOM) |
+| VERDEN_TILSTAND | tilstand | aggregated now-state (energy, weather, economy, cosmos catalogues) |
+| VERDEN_PROGNOSE | prediksjon / oppgjør | forecasts and settled predictions (weather forecast, ENTSO-E, EFC-fs8) |
+| VERDEN_TOLKET | diskusjon / hendelse | interpreted events (GDELT mentions/export, GCN, ALeRCE) |
+| OPUS_SELV | — | own judgement ledger (action ledger) |
 
-Emnene har formen `<rot>.<domene>.<lag>.<kilde>` der `rot` er `verden`
-(samfunnsmessig virkelighet) eller `kosmos` (fysisk virkelighet utenfor
-den).
+The subjects have the form `<root>.<domain>.<layer>.<source>` where `root` is `verden`
+(societal reality) or `kosmos` (physical reality beyond
+it).
 
-## Koblinger: emne → motor
+## Connections: subject → engine
 
-### Koblet (datakilde eksisterer og er bygget)
+### Connected (data source exists and is built)
 
-| Emne | Motor | Status |
+| Subject | Engine | Status |
 |---|---|---|
-| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Koblet via victron-nats-bro** (utenfor dette repoet, read-only). Live på bussen: `batteri_spenning` (V) og `batteri_ladning` (SOC). `batteri_stroem` (A, VRM-kode `CI`, målt) er **bygget, ikke deployet** — produsentkoden er merget i trinn 10, men deploy til bussen er eiernes steg. Timeoppløsning, anonymisert stedskode. Kne-deteksjonen rapporterer `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` — NaN når ikke funnet — pluss tellerne `n_samples`, `n_cc`, `n_cv`; ingen grunnfelt; forklaringen av grunnen står i broens kjøringsartefakt). |
+| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Connected via victron-nats-bro** (outside this repo, read-only). Live on the bus: `batteri_spenning` (V) and `batteri_ladning` (SOC). `batteri_stroem` (A, VRM code `CI`, measured) is **built, not deployed** — the producer code is merged in step 10, but deployment to the bus is the owners' step. Hourly resolution, anonymised site code. The knee detection reports `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` — NaN when not found — plus the counters `n_samples`, `n_cc`, `n_cv`; no reason field; the explanation of the reason stands in the bridge's run artefact). |
 
-**Motorens kontrakt vs broens skjema — to forskjellige ting.** Motoren
-er injiserbar og krever per kjøring:
+**The engine's contract vs the bridge's schema — two different things.** The engine
+is injectable and requires per run:
 
-1. `v_series` — spenning over tid (V). Bussen bærer den i dag
+1. `v_series` — voltage over time (V). The bus carries it today
    (`batteri_spenning`).
-2. `i_series` — strøm over tid (A). Bygget i trinn 10
-   (`batteri_stroem`); produsentkoden er merget (PR #969, i
-   driftsrepoet) og **deploy til bussen er eiernes steg** — inntil da
-   er serien fraværende på bussen.
-3. Tersklene `v_knee_tol`, `di_threshold`, `cc_flat_threshold` —
-   motorens egne, aldri bussens ansvar.
+2. `i_series` — current over time (A). Built in step 10
+   (`batteri_stroem`); the producer code is merged (PR #969, in the
+   operations repo) and **deployment to the bus is the owners' step** — until then
+   the series is absent from the bus.
+3. The thresholds `v_knee_tol`, `di_threshold`, `cc_flat_threshold` —
+   the engine's own, never the bus's responsibility.
 
-Broens skjema er bussens egne serier; det broen gjør er å oversette dem
-til kontrakten. **Auto-deteksjon av CC→CV-kneet krever alle tre
-delene av kontrakten** — v-serien finnes, i-serien er bygget men
-deploy-avhengig, tersklene er motorens. I tillegg krever kneet en
-tidsoppløsning fin nok til å se strømplatået: kneet er målt usynlig i
-15-min-midler (trinn 8), så en I-serie på timeoppløsning vil fortsatt
-gi `found=False` — bare med en annen grunn.
+The bridge's schema is the bus's own series; what the bridge does is translate them
+into the contract. **Auto-detection of the CC→CV knee requires all three
+parts of the contract** — the v-series exists, the i-series is built but
+deployment-dependent, the thresholds are the engine's. In addition the knee requires a
+time resolution fine enough to see the current plateau: the knee is measured to be invisible in
+15-min averages (step 8), so an I-series at hourly resolution will still
+give `found=False` — just with a different reason.
 
-### Live på bussen (målt)
+### Live on the bus (measured)
 
-| Emne | Innhold | Motor |
+| Subject | Content | Engine |
 |---|---|---|
-| `kosmos.kosmologi.tilstand.efc-fs8` | Forseglet fσ8-**baseline**: OBSERVERTE målinger (DESI DR1, eBOSS) med L/S-klassifisering — referanseverdier, ikke EFC-utfall | ingen — baselinen er arbiterens grunnlag, ikke motor-output |
-| `kosmos.kosmologi.diskusjon.arxiv` | arXiv-papirer | (kildegrunnlag, ikke måling) |
+| `kosmos.kosmologi.tilstand.efc-fs8` | Sealed fσ8-**baseline**: OBSERVED measurements (DESI DR1, eBOSS) with L/S classification — reference values, not EFC outcomes | none — the baseline is the arbiter's basis, not engine output |
+| `kosmos.kosmologi.diskusjon.arxiv` | arXiv papers | (source basis, not measurement) |
 
-### Kontrakter definert — publikasjon venter på skrivetilgang
+### Contracts defined — publication awaits write access
 
-Disse emnene har et definert skjema og en implementert produsent-side,
-men er **ikke verifisert live på bussen** — publisering tilbake krever
-skrivetilgang eierne ennå ikke har gitt.
+These subjects have a defined schema and an implemented producer side,
+but are **not verified live on the bus** — publishing back requires
+write access the owners have not yet granted.
 
-| Emne | Innhold | Produsent |
+| Subject | Content | Producer |
 |---|---|---|
-| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC-**prediksjon** (modellert fσ8) | `growth` produserer prediksjonen (fσ8(z=0.7), parameter-avledet); `SealedFs8Arbiter` (trinn 12) dommer den mot baselinen |
-| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | Arbiterens **utfall** (PASS/FAIL/VENTER med regel og kilde) | arbiteren selv — payload-format definert i trinn 12 |
+| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC **prediction** (modelled fσ8) | `growth` produces the prediction (fσ8(z=0.7), parameter-derived); `SealedFs8Arbiter` (step 12) judges it against the baseline |
+| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | The arbiter's **outcome** (PASS/FAIL/VENTER with rule and source) | the arbiter itself — payload format defined in step 12 |
 
-### Kandidater (emner som finnes, kobling ikke bygget)
+### Candidates (subjects that exist, connection not built)
 
-| Emne | Innhold | Motor-kandidat |
+| Subject | Content | Engine candidate |
 |---|---|---|
-| `kosmos.hoper.observasjon.mast-caom` | Hoper (MAST/CAOM) | `cluster` |
-| `kosmos.galakser.observasjon.mast-caom` | Galakser | `lensing` (svak linsing) |
-| `kosmos.stjerner.observasjon.mast-caom` | Stjerner | `rotation` (galakserotasjon er L2-domenet; stjernerotasjon er analogi-kandidat) |
-| `verden.energi.prediksjon.entsoe-dayahead` | Kraftpris-prognoser | (energiøkonomi — ingen motor ennå) |
+| `kosmos.hoper.observasjon.mast-caom` | Clusters (MAST/CAOM) | `cluster` |
+| `kosmos.galakser.observasjon.mast-caom` | Galaxies | `lensing` (weak lensing) |
+| `kosmos.stjerner.observasjon.mast-caom` | Stars | `rotation` (galaxy rotation is the L2 domain; stellar rotation is an analogy candidate) |
+| `verden.energi.prediksjon.entsoe-dayahead` | Power price forecasts | (energy economics — no engine yet) |
 
-### Koblet via vær-broen (L-008)
+### Connected via the weather bridge (L-008)
 
-| Emne | Motor | Status |
+| Subject | Engine | Status |
 |---|---|---|
-| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** (utenfor dette repoet, read-only). METAR-kanalen: temperatur + duggpunkt → spredning, RH-proxy (P_sat(Td)/P_sat(T) via motorens dampkurve), regime-klassifisering og 0 °C-passeringer. Første kjøring (2026-09-16): 459 punkter, 149 kondensasjonsnære, én fullstendig metning (spredning 0,0 °C). |
-| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Koblet via vaer-nats-bro** — ecowitt-kanalen har bare temperatur (ingen fuktighet); der er 0 °C-passeringene de eneste temperaturbaserte indikatorene/proxyene for mulig frysing eller smelting — selve faseovergangen er ikke observert. |
+| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Connected via vaer-nats-bro** (outside this repo, read-only). The METAR channel: temperature + dew point → spread, RH proxy (P_sat(Td)/P_sat(T) via the engine's vapour curve), regime classification and 0 °C crossings. First run (2026-09-16): 459 points, 149 near-condensation, one complete saturation (spread 0,0 °C). |
+| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Connected via vaer-nats-bro** — the ecowitt channel has only temperature (no humidity); there the 0 °C crossings are the only temperature-based indicators/proxies for possible freezing or melting — the phase transition itself is not observed. |
 
-Merk: kondensasjonsnærhet er en faseovergangs-PROXY, ikke selve overgangen —
-analogi, ikke identitet (samme disiplin som resten av kartet).
+Note: near-condensation is a phase-transition PROXY, not the transition itself —
+analogy, not identity (the same discipline as the rest of the map).
 
-### Koblet via bro-laget (2026-09-17, kosmos_nats_bro/jord_nats_bro/sol_nats_bro)
+### Connected via the bridge layer (2026-09-17, kosmos_nats_bro/jord_nats_bro/sol_nats_bro)
 
-| Emne | Motor | Status |
+| Subject | Engine | Status |
 |---|---|---|
-| `kosmos.sol.tilstand.swpc-goes-xray` + `kosmos.sol.hendelse.nasa-donki` | `solar_flare` (SolarFlareEngine) | **Koblet via sol-nats-bro** — GOES-flux til klasse, DONKI-utbrudd som utløsningshendelser. Kandidat-status: idealisert holding→release-modell, IKKE flare-prediktor. |
-| `kosmos.jord.tilstand.usgs-seismikk` | `jordskjelv` (JordskjelvEngine) | **Koblet via jord-nats-bro** — magnitude → moment (Kanamori-invers), b-verdi fra hendelsessekvensen. Kandidat-status: idealisert elastic-rebound, IKKE skjelv-prediktor. |
-| `kosmos.romvaer.tilstand.swpc-kp` | `romvaer` (RomvaerEngine) | **Koblet via kosmos-nats-bro** — Kp lest direkte, G-nivå fra NOAA-skalaen. Korrelasjonsmodell, Newell-caveat. |
-| `kosmos.transienter.hendelse.alerce` | `transient` (TransientEngine) | **Koblet via kosmos-nats-bro** — klasse-fordeling, stjernedød-telling. ALeRCEs egen klassifikasjon, ikke motorens prediksjon. |
-| `kosmos.planetsystem.prediksjon.jpl-horizons` | `orbital` (OrbitalEngine) | **Koblet via kosmos-nats-bro** — avstand_sol_au som a-proxy (deklarert). Kepler gjengir planetperiodene. |
-| `kosmos.maane.prediksjon.jpl-horizons` | `tidevann` (TidevannEngine) | **Koblet via kosmos-nats-bro** — avstand_jord_au → tidevannshøyde (åpent hav ~0.62 m). |
-| `verden.miljo.tilstand.ecowitt` | `klima` (KlimaEngine) | **CO2-observasjon via kosmos-nats-bro** — drivhus-proxy, IKKE tvunget gjennom motoren (CO2→emissivitet er en egen, upåstått kjede). |
+| `kosmos.sol.tilstand.swpc-goes-xray` + `kosmos.sol.hendelse.nasa-donki` | `solar_flare` (SolarFlareEngine) | **Connected via sol-nats-bro** — GOES flux to class, DONKI eruptions as trigger events. Candidate status: idealised holding→release model, NOT a flare predictor. |
+| `kosmos.jord.tilstand.usgs-seismikk` | `jordskjelv` (JordskjelvEngine) | **Connected via jord-nats-bro** — magnitude → moment (Kanamori inverse), b-value from the event sequence. Candidate status: idealised elastic rebound, NOT an earthquake predictor. |
+| `kosmos.romvaer.tilstand.swpc-kp` | `romvaer` (RomvaerEngine) | **Connected via kosmos-nats-bro** — Kp read directly, G level from the NOAA scale. Correlation model, Newell caveat. |
+| `kosmos.transienter.hendelse.alerce` | `transient` (TransientEngine) | **Connected via kosmos-nats-bro** — class distribution, stellar-death count. ALeRCE's own classification, not the engine's prediction. |
+| `kosmos.planetsystem.prediksjon.jpl-horizons` | `orbital` (OrbitalEngine) | **Connected via kosmos-nats-bro** — avstand_sol_au as an a-proxy (declared). Kepler reproduces the planetary periods. |
+| `kosmos.maane.prediksjon.jpl-horizons` | `tidevann` (TidevannEngine) | **Connected via kosmos-nats-bro** — avstand_jord_au → tidal height (open ocean ~0.62 m). |
+| `verden.miljo.tilstand.ecowitt` | `klima` (KlimaEngine) | **CO2 observation via kosmos-nats-bro** — greenhouse proxy, NOT forced through the engine (CO2→emissivity is a separate, unasserted chain). |
 
-Bro-runden kjører hver time (cron e8c6fd64b23f) og publiserer på
-`opus.dommekraft.tilstand.broer`. Alle broene er eksterne og
-read-only (samme design som vær-broen).
+The bridge round runs every hour (cron e8c6fd64b23f) and publishes on
+`opus.dommekraft.tilstand.broer`. All the bridges are external and
+read-only (the same design as the weather bridge).
 
-### Ikke koblet, og ikke åpenbart motorkandidat (per i dag)
+### Not connected, and not an obvious engine candidate (as of today)
 
-Samfunnsemnene (`verden.*` utenom energi/vær: arbeid, demografi, finans,
+The societal subjects (`verden.*` apart from energy/weather: arbeid, demografi, finans,
 geopolitikk, helse, handel, lov, miljø, økonomi, politikk, sikkerhet,
-teknologi, transport, utdanning) er GDELT/Eurostat/World-Bank-data. De er
-ikke faseoverganger i EFC-forstand — en kobling hit ville være en
-kategorifeil. De hører hjemme i andre analyseformer, ikke i regime-atlaset.
+teknologi, transport, utdanning) are GDELT/Eurostat/World-Bank data. They are
+not phase transitions in the EFC sense — a connection here would be a
+category error. They belong in other forms of analysis, not in the regime atlas.
 
-## Leserens grenser
+## The reader's limits
 
-Dette repoet **leser aldri bussen selv** — motoren er injiserbar og
-site-anonym (trinn 8-designet). Broen som leser bussen er en ekstern
-datakilde med read-only-konsument-rolle. Skillet er med vilje: atlaset
-skal ikke avhenge av en levende buss; bussen er én av flere kilder som
-kan mate det. Det gjelder begge veier: **publisering tilbake til
-bussen** (f.eks. arbiterens utfall) er ikke bygget inn — det er en
-dør eierne kan åpne, ikke en dør repoet lukker.
+This repo **never reads the bus itself** — the engine is injectable and
+site-anonymous (the step 8 design). The bridge that reads the bus is an external
+data source with a read-only consumer role. The separation is deliberate: the atlas
+must not depend on a live bus; the bus is one of several sources that
+can feed it. It applies both ways: **publishing back to
+the bus** (e.g. the arbiter's outcome) is not built in — it is a
+door the owners can open, not a door the repo closes.

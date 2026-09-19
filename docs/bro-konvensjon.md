@@ -1,57 +1,57 @@
-# Bro-konvensjonen — hvem eier hvilket felt mellom motor og atlas
+# The bridge convention — who owns which field between engine and atlas
 
-**Regelen er kode: `scripts/maintenance/efc_bro_konvensjon.py`. Les den der.**
-Dette dokumentet forklarer *hvorfor* — og hvorfor nettopp de grensene. En
-regel som staar to steder kan drive fra hverandre; en tabell kan testes.
+**The rule is code: `scripts/maintenance/efc_bro_konvensjon.py`. Read it there.**
+This document explains *why* — and why precisely those boundaries. A
+rule that stands in two places can drift apart; a table can be tested.
 
-## Problemet, maalt
+## The problem, measured
 
-Hver motor har en `regime_node(params)` — selvbeskrivelsen — og atlaset har
-en instans av samme node i `schema/regime_nodes.jsonld`. To beskrivelser av
-én ting, vedlikeholdt for haand paa begge sider. Maalt 2026-09-17
-(t_2dcd2d82) og igjen 2026-09-18:
+Every engine has a `regime_node(params)` — the self-description — and the atlas has
+an instance of the same node in `schema/regime_nodes.jsonld`. Two descriptions of
+one thing, maintained by hand on both sides. Measured 2026-09-17
+(t_2dcd2d82) and again 2026-09-18:
 
-    20 motorer, 20 atlas-noder — 20 med avvik, i BEGGE retninger
-    111 feltavvik i klassen (test_bro_konvensjon, ufiksert tre)
+    20 engines, 20 atlas nodes — 20 with deviations, in BOTH directions
+    111 field deviations in the class (test_bro_konvensjon, unfixed tree)
 
-Derfor er ikke «motoren vinner» et svar: for `regime.validity`, `law_form`,
-`stipulasjoner.terskler` og `maale_paradigme.koordinater` er motoren kilden;
-for `nivaa`, `epistemikk`, `ontology` og `perspektiv` er atlaset kilden, og
-det er motoren som skal rettes.
+So «the engine wins» is not an answer: for `regime.validity`, `law_form`,
+`stipulasjoner.terskler` and `maale_paradigme.koordinater` the engine is the source;
+for `nivaa`, `epistemikk`, `ontology` and `perspektiv` the atlas is the source, and
+it is the engine that must be corrected.
 
-## Konvensjonen
+## The convention
 
-**Motoren eier** felt som er avledet av motorens parametre eller av maaten
-motoren regner paa. De SKRIVES fra motoren til atlaset
+**The engine owns** fields that are derived from the engine's parameters or from the way
+the engine computes. They are WRITTEN from the engine to the atlas
 (`efc_bro_synk.py --skriv`):
 
-| Felt | Hvorfor motoren |
+| Field | Why the engine |
 |---|---|
-| `regime.validity`, `regime.law_form`, `regime.name` | bygges av de effektive parametrene — en hardkodet tekst lyver naar motoren kalles med andre |
-| `stipulasjoner.terskler`, `stipulasjoner.motor` | terskelen står i koden; navnet er kodens eget |
-| `maale_paradigme.koordinater`, `enheter`, `status` | hvilke akser motoren klassifiserer paa |
-| `measure.*`, `phase`, `episenter`, `buffer.*`, `emergence.*`, `fractal.*`, `coupling.*`, `observer.*`, `synlighet` | motorens egen beskrivelse av hvordan den maaler og hva den ikke er |
+| `regime.validity`, `regime.law_form`, `regime.name` | built from the effective parameters — a hard-coded text lies when the engine is called with others |
+| `stipulasjoner.terskler`, `stipulasjoner.motor` | the threshold stands in the code; the name is the code's own |
+| `maale_paradigme.koordinater`, `enheter`, `status` | which axes the engine classifies along |
+| `measure.*`, `phase`, `episenter`, `buffer.*`, `emergence.*`, `fractal.*`, `coupling.*`, `observer.*`, `synlighet` | the engine's own description of how it measures and what it is not |
 
-**Atlaset eier** felt som er kuraterte påstander OM noden: hvor den hører i
-plataaet, hvordan konsensusen bæres, hvilke analogier den er knyttet til, hva
-den ikke sier, og hvilken kilde plasseringen hviler på. Motoren kan ikke
-utlede dem av parametrene sine. Utsteder den dem likevel, maa den si det
-SAMME som atlaset — og naar de to gaar fra hverandre, rettes motoren:
+**The atlas owns** fields that are curated claims ABOUT the node: where it belongs in
+the plateau, how the consensus is carried, which analogies it is tied to, what
+it does not say, and which source the placement rests on. The engine cannot
+derive them from its parameters. If it still emits them, it must say the
+SAME as the atlas — and when the two diverge, the engine is corrected:
 
-| Felt | Hvorfor atlaset |
+| Field | Why the atlas |
 |---|---|
-| `id` | identiteten er registrert; en motor som utsteder en uregistrert id er ikke koblet til noe |
-| `nivaa.*` | plataa-grafen er atlasets struktur (regel 49-invariantene leser den), og en motor som bare kjenner sine egne parametre kan ikke plassere seg i stigen |
+| `id` | the identity is registered; an engine that emits an unregistered id is not connected to anything |
+| `nivaa.*` | the plateau graph is the atlas's structure (the rule 49 invariants read it), and an engine that knows only its own parameters cannot place itself on the ladder |
 | `epistemikk.*`, `perspektiv` | truth, evidence and consensus status are epistemic claims about the node. `sosial_mekanisme` must additionally be INDIVIDUALIZED — see below |
-| `ontology.source` | kilden plasseringen hviler på |
-| `maale_paradigme.alternativer` | hvilke rammer som ble VALGT BORT |
-| `buss_domene`, `ville_falsifisere`, `stipulasjoner.ikke_falsifiserbar_grunn`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | kuratert: hva noden ikke sier, hva som ville felle den, hvorfor den ikke kan felles, hvilken analogi den staar i, og en forseglet prediksjon |
+| `ontology.source` | the source the placement rests on |
+| `maale_paradigme.alternativer` | which frames were PASSED OVER |
+| `buss_domene`, `ville_falsifisere`, `stipulasjoner.ikke_falsifiserbar_grunn`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | curated: what the node does not say, what would take it down, why it cannot be struck down, which analogy it stands in, and a sealed prediction |
 
-**To unntak fra likhet**, begge i `DELMENGDE`: `ontology.assumes` og
-`maale_paradigme.alternativer` er lister der atlaset skal kunne bære mer enn
-motoren (en kuratert antakelse motoren ikke kjenner er lov; en motoren
-PÅSTÅR og atlaset ikke har tatt stilling til, er ikke lov). Da feiler testen
-til noen har kuratert den inn i atlaset.
+**Two exceptions from equality**, both in `DELMENGDE`: `ontology.assumes` and
+`maale_paradigme.alternativer` are lists where the atlas must be able to carry more than
+the engine (a curated assumption the engine does not know is allowed; one the engine
+ASSERTS and the atlas has not taken a position on is not allowed). Then the test fails
+until someone has curated it into the atlas.
 
 ## Both sides saying the same thing is not enough — the text must be individualized
 
@@ -75,71 +75,75 @@ New nodes (and new engines) hit this guard on purpose: writing a template to
 get moving is exactly what the test forbids. The texts are English (Morten's
 language rule of 2026-09-17), and so are the additions in this document.
 
-## Ingen tredje eier
+## No third owner
 
-Et felt motoren utsteder som ingen av tabellene nevner, er et HULL — ikke en
-fri sone. Baade testen og `--sjekk` stopper til noen har tatt stilling.
+A field the engine emits that neither table names is a HOLE — not a free
+zone. Both the test and `--sjekk` stop until someone has taken a position.
 
-Skjemaet rommer ogsaa felt som INGEN bro eier. De staar i `UTENFOR_BROEN` med
-**grunnen skrevet ned**: en utelatelse skal være navngitt OG begrunnet, ikke
-bare navngitt, for et navn uten grunn kan den neste ikke avgjøre om fortsatt
-gjelder.
+The schema also holds fields that NO bridge owns. They stand in
+`UTENFOR_BROEN` with **the reason written down**: an omission must be named
+AND justified, not only named, because without a reason the next reader
+cannot decide whether the name still holds.
 
-| Utenfor broen | Hvorfor (målt 2026-09-19) |
+| Outside the bridge | Why (measured 2026-09-19) |
 |---|---|
-| `open_questions` | nodens EGEN tekst i banken: skrevet av migreringen fra `stipulasjoner.buss_status` og av kuratering — aldri av motoren (0 treff i `efc_inference/`) og aldri av generatoren (skjemaet sier det selv: «den ENESTE kilden til spørsmål i atlaset»). 21 noder bærer den, 0 av de 20 registrerte broene |
-| `lagdeling.*` | hører til de lagdelte biologi-nodene (33 noder i banken, 0 av de 20 broene); motoren har ingen lagdeling å utstede |
-| `revisjon` | husets egen bokføring, aldri en motornode; 0 noder bærer den i dag, men skjemaet kan uttrykke den |
-| `observer.maalepavirkning` | kuratert metaspørsmål om observatøren, ikke avledbart av motorens parametre; 0 noder bærer den i dag |
+| `open_questions` | the node's OWN text in the bank: written by the migration from `stipulasjoner.buss_status` and by curation — never by the engine (0 hits in `efc_inference/`) and never by the generator (the schema says it itself: «the ONLY source of questions in the atlas»). 21 nodes carry it, 0 of the 20 registered bridges |
+| `lagdeling.*` | belongs to the layered biology nodes (33 nodes in the bank, 0 of the 20 bridges); the engine has no layering to emit |
+| `revisjon` | the house's own bookkeeping, never an engine node; 0 nodes carry it today, but the schema can express it |
+| `observer.maalepavirkning` | a curated meta-question about the observer, not derivable from the engine's parameters; 0 nodes carry it today |
 
-`/settlement/*` er derimot IKKE utenfor broen: `efc.growth_engine` bærer den,
-og den er atlas-eid (tabellen over). En tidligere utgave av dette dokumentet
-navnga den som en node-type utenfor broen — det motsa `ATLAS_EIDE`, og fem
-slike oppføringer sto i `UTENFOR_BROEN` samtidig som de hadde en eier. De er
-fjernet, og `test_every_declared_omission_carries_its_reason` holder dem ute:
-en utelatelse som motsier eierskapet er ikke en utelatelse, den er en påstand
-om at feltet står uten regel — og den påstanden var usann.
+`/settlement/*` is on the other hand NOT outside the bridge: `efc.growth_engine` carries it,
+and it is atlas-owned (the table above). An earlier edition of this document
+named it as a node type outside the bridge — that contradicted `ATLAS_EIDE`,
+and five such entries stood in `UTENFOR_BROEN` at the same time as they had an
+owner. They are removed, and
+`test_every_declared_omission_carries_its_reason` keeps them out:
+an omission that contradicts the ownership is not an omission, it is a claim
+that the field stands without a rule — and that claim was false.
 
-## Hvorfor ikke bare regenerere alt fra motoren
+## Why not just regenerate everything from the engine
 
-Fordi atlaset da ville mistet det motoren ikke vet: at bakgrunnsloeseren er
-en hypotese uten maalt evidens (`efc.efc_background_engine` sa «proxy» om en
-avledning som ikke er maalt), at `efc.lensing_engine` staar paa platå 0, at
-rotasjonsmotoren kjører LCDM-grensen av EFC-rammen. Og motsatt: `regime.validity`
-kan ikke kurateres uten aa bli feil den dagen parametrene endres.
+Because the atlas would then lose what the engine does not know: that the background
+solver is a hypothesis without measured evidence (`efc.efc_background_engine` said «proxy» about a
+derivation that is not measured), that `efc.lensing_engine` stands on plateau 0, that
+the rotation engine runs the LCDM limit of the EFC frame. And conversely: `regime.validity`
+cannot be curated without becoming wrong the day the parameters change.
 
-## Verktøyene
+## The tools
 
-| Verktøy | Gjør |
+| Tool | Does |
 |---|---|
-| `efc_bro_synk.py --sjekk` | maaler hele klassen, delt paa eier; exit 1 ved avvik |
-| `efc_bro_synk.py --skriv` | skriver de motoreide feltene tilbake (idempotent, formatvakt) |
-| `efc_bro_synk.py --json` | maskinlesbar rapport (til vedlikeholdsrunden) |
-| `tests/test_bro_konvensjon.py` | binder hele klassen: dekning, feltvis likhet, ingen hull, skjema-dekning, og at utelatelsene er begrunnet uten å motsi eierskapet |
-| `tests/test_epistemikk_v3.py` | binder TEKSTEN: `sosial_mekanisme` finnes på hver node og er individualisert (ingen tekst deles av to noder) |
+| `efc_bro_synk.py --sjekk` | measures the whole class, split by owner; exit 1 on deviation |
+| `efc_bro_synk.py --skriv` | writes the engine-owned fields back (idempotent, format guard) |
+| `efc_bro_synk.py --json` | machine-readable report (for the maintenance round) |
+| `tests/test_bro_konvensjon.py` | binds the whole class: coverage, field-by-field equality, no holes, schema coverage, and that the omissions are justified without contradicting the ownership |
+| `tests/test_epistemikk_v3.py` | binds the TEXT: `sosial_mekanisme` is present on every node and individualized (no text shared by two nodes) |
 
-Kanoniske parametre leses fra testmodulen som eier dem — én kilde for testen
-og synken. Motorer der parametrene konstrueres (victron: serier ->
-`params_for`; bakgrunnen: `EFC = {**LCDM, ...}`) erklærer dem i en
-`bro_kanoniske()` i sin egen testmodul, slik at verken synken eller testen
-gjetter hvilket modulnivaa-dict som er «det kanoniske».
+Canonical parameters are read from the test module that owns them — one source for the test
+and the sync. Engines where the parameters are constructed (victron: series ->
+`params_for`; the background: `EFC = {**LCDM, ...}`) declare them in a
+`bro_kanoniske()` in their own test module, so that neither the sync nor the test
+guesses which module-level dict is «the canonical one».
 
-## Den gamle rekonosansen ble ikke et eget skript
+## The old reconnaissance did not become a separate script
 
-`bro_drift_audit.py` (t_2dcd2d82) fant motorer ved aa skanne testmodulene og
-gjettet parametre fra modulnivaa-dict-er. Det den kunne — listeformede
-parametre (`KANONISKE`) og `params_for(...)` — ligger naa i den ENE
-resolveren (`efc_bro_konvensjon.kanoniske_parametre`), brukt av baade synken
-og testen, og alle 20 motorer maales. Dekningen testes i stedet: en ny motor
-uten bro, eller en bro uten atlas-node, feiler `test_bro_konvensjon.py`. Et
-eget audit-skript ved siden av ville vært et andre verktøy som maaler den
-samme virkeligheten — den klassen drift dette kortet finnes for aa stoppe.
+`bro_drift_audit.py` (t_2dcd2d82) found engines by scanning the test modules and
+guessed parameters from module-level dicts. What it could do — list-shaped
+parameters (`KANONISKE`) and `params_for(...)` — now lies in the ONE
+resolver (`efc_bro_konvensjon.kanoniske_parametre`), used by both the sync
+and the test, and all 20 engines are measured. Coverage is tested instead: a new engine
+without a bridge, or a bridge without an atlas node, fails `test_bro_konvensjon.py`. A
+separate audit script alongside it would be a second tool measuring the
+same reality — the class of drift this card exists to stop.
 
-## Kjente funn som ikke er lukket her
+## Known findings not closed here
 
-* `efc.efc_background_engine`s kuraterte korttekst ble erstattet av motorens
-  fyldigere selvbeskrivelse da noden ble regenerert (den hadde aldri vært
-  avledet). Proveniensen er beholdt i `ontology.source`.
+* `epistemikk.sosial_mekanisme` is a TEMPLATE on all 20 engine nodes in the atlas
+  (17 with long text, 3 with short). Rule 46 requires individualised text;
+  the convention binds engine to atlas, but does not say the text is good.
+* `efc.efc_background_engine`'s curated short text was replaced by the engine's
+  fuller self-description when the node was regenerated (it had never been
+  derived). The provenance is kept in `ontology.source`.
 
 ## Closed by this round
 

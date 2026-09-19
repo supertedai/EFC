@@ -1,4 +1,4 @@
-"""Sovn/vaken-motor: to-prosess homeostatisk trykk og stadium."""
+"""Sleep/wake engine: two-process homeostatic pressure and stage."""
 from __future__ import annotations
 import numpy as np
 from .base_engine import EFCEngine
@@ -29,4 +29,4 @@ class SovnVaakenEngine(EFCEngine):
         if c.ndim != 1 or not valid: return np.full(c.shape,np.nan)
         return self.homeostatic_pressure(params_dict,c)
     def regime_node(self, params):
-        return {"id":"homo.sovn_vaaken","synlighet":self.SYNLIGHET,"phase":"regime_engine","regime":{"name":"Søvn/våken","regimes":["vaaken","NREM","REM"],"validity":"tid >= 0; stadiumklassifikasjon krever EEG/PSG i virkeligheten; motoren bruker eksplisitt to-prosess-proxy","law_form":"homeostatisk trykk akkumuleres i våken og tømmes i søvn; SCN setter timing"},"measure":{"target":"søvnstadium og homeostatisk trykk","measurer":"EEG/polysomnografi","instrument":"klinisk måling"},"emergence":{"loop":"våken -> trykk -> søvn -> tømming"},"lagdeling":{"fysiologi":{"status":"akademia","kilde":"Borbély; Steriade"},"analogi":{"status":"paradigme","kilde":"EFC: regimeskifte"}}}
+        return {"id":"homo.sovn_vaaken","synlighet":self.SYNLIGHET,"phase":"regime_engine","regime":{"name":"Sleep/wake","regimes":["vaaken","NREM","REM"],"validity":"time >= 0; stage classification requires EEG/PSG in reality; the engine uses an explicit two-process proxy","law_form":"homeostatic pressure accumulates while awake and is drained in sleep; the SCN sets the timing"},"measure":{"target":"sleep stage and homeostatic pressure","measurer":"EEG/polysomnography","instrument":"clinical measurement"},"emergence":{"loop":"awake -> pressure -> sleep -> drainage"},"lagdeling":{"fysiologi":{"status":"akademia","kilde":"Borbely; Steriade"},"analogi":{"status":"paradigme","kilde":"EFC: regime shift"}}}

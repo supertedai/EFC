@@ -5,7 +5,7 @@ from pathlib import Path
 ROT = Path(__file__).resolve().parents[1]
 ATLAS = ROT / "schema" / "regime_nodes.jsonld"
 DOI = "10.6084/m9.figshare.32013156"
-VENTER = "venter paa arbiter: DESI DR2 full-shape"
+VENTER = "waiting for arbiter: DESI DR2 full-shape"
 
 
 def _noder():

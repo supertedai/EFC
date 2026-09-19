@@ -1,21 +1,21 @@
-"""Rapid-response-vakten (trinn 14).
+"""The rapid-response watch (step 14).
 
-Det siste leddet i den forseglede kjeden: når DESI DR2 full-shape
-galakse-RSD fσ8(z~0.7) publiseres, skal dommen felles automatisk —
-ikke vente på manuell kjøring.
+The last link in the sealed chain: when DESI DR2 full-shape
+galaxy-RSD fσ8(z~0.7) is published, the verdict must be passed
+automatically — not wait for a manual run.
 
-Vakten er REN — den prosesserer den siste buss-meldingen og kjører
-SealedFs8Arbiter (trinn 12, med trinn 13s μ-bevisste motorprediksjon).
-Henting fra bussen er kallens ansvar (injiserbar); publisering skjer
-bare hvis kalleren gir skrivetilgang — ellers er artefakten leveransen
-og gapet deklareres.
+The watch is PURE — it processes the last bus message and runs
+SealedFs8Arbiter (step 12, with step 13's μ-aware engine prediction).
+Fetching from the bus is the caller's responsibility (injectable);
+publishing happens only if the caller grants write access — otherwise
+the artifact is the deliverable and the gap is declared.
 
-Gjenkjenning er KONSERVATIV: vakten dømmer bare en melding som er
-dokumentert som DESI DR2 full-shape galakse-RSD fσ8 — tracer LRG/ELG,
-observabel fsigma8, survey/kilde som peker på DR2 full-shape, IKKE
-merket som baseline (efc-sealed-baseline / arbiter: nei), z_eff i
-[0.5, 0.9], med fsigma8 OG sigma. Alt annet feller ingen dom — vakten
-venter heller enn å dømme feil.
+Recognition is CONSERVATIVE: the watch judges only a message that is
+documented as DESI DR2 full-shape galaxy-RSD fσ8 — tracer LRG/ELG,
+observable fsigma8, survey/source pointing at DR2 full-shape, NOT
+marked as baseline (efc-sealed-baseline / arbiter: nei), z_eff in
+[0.5, 0.9], with fsigma8 AND sigma. Anything else passes no verdict —
+the watch waits rather than judging wrong.
 """
 from __future__ import annotations
 
@@ -27,16 +27,16 @@ from typing import Optional
 
 from efc_inference.arbiter.sealed_fs8 import (
     SealedFs8Arbiter,
-    TILLATTE_TRACERE,
+    ALLOWED_TRACERS,
     Z_MIN,
-    Z_MAKS,
+    Z_MAX,
 )
 
 BASELINE_KILDE = "efc-sealed-baseline"
 
 
-def _endelig(v) -> bool:
-    """Endelig-sjekk som aldri krasjer på ugyldige typer."""
+def _is_finite(v) -> bool:
+    """Finiteness check that never crashes on invalid types."""
     try:
         return math.isfinite(float(v))
     except (TypeError, ValueError):
@@ -44,7 +44,7 @@ def _endelig(v) -> bool:
 
 
 class RapidResponseVakt:
-    """Prosesserer buss-meldinger og feller dommen når den kan."""
+    """Processes bus messages and passes the verdict when it can."""
 
     def __init__(self, arbiter: Optional[SealedFs8Arbiter] = None,
                  artefakt_sti: str = "arbiter-efc-fs8-dom.json"):
@@ -52,56 +52,56 @@ class RapidResponseVakt:
         self.artefakt_sti = artefakt_sti
 
     # ------------------------------------------------------------------
-    # Gjenkjenning (konservativ)
+    # Recognition (conservative)
     # ------------------------------------------------------------------
-    def gjenkjenn(self, melding: dict) -> Optional[dict]:
-        """Trekker ut en arbiter-måling fra en buss-melding — eller None.
+    def gjenkjenn(self, message: dict) -> Optional[dict]:
+        """Extracts an arbiter measurement from a bus message — or None.
 
-        Krever HELE dokumentasjonen: galakse-RSD-tracer (LRG/ELG),
-        observabel fsigma8, survey/kilde som peker på DESI DR2
-        full-shape, IKKE baseline, z_eff i vinduet, fsigma8 + sigma.
+        Requires the WHOLE documentation: galaxy-RSD tracer (LRG/ELG),
+        observable fsigma8, survey/source pointing at DESI DR2
+        full-shape, NOT baseline, z_eff in the window, fsigma8 + sigma.
         """
-        if not isinstance(melding, dict):
+        if not isinstance(message, dict):
             return None
-        hoder = melding.get("hoder")
-        maalt = melding.get("maalt")
-        if not isinstance(hoder, dict) or not isinstance(maalt, dict):
-            return None
-
-        # Ikke baselinen — den er arbiterens grunnlag, ikke målingen.
-        kilde = str(hoder.get("kilde", "")).lower()
-        if hoder.get("arbiter") == "nei" or BASELINE_KILDE in kilde:
+        headers = message.get("hoder")
+        measured = message.get("maalt")
+        if not isinstance(headers, dict) or not isinstance(measured, dict):
             return None
 
-        # Observabelen må være fsigma8 — vakten dømmer ikke andre.
-        if str(hoder.get("observabel", "")).lower() != "fsigma8":
+        # Not the baseline — it is the arbiter's foundation, not the measurement.
+        source = str(headers.get("kilde", "")).lower()
+        if headers.get("arbiter") == "nei" or BASELINE_KILDE in source:
             return None
 
-        # Surveyet må være DESI DR2 — ikke bare inneholde «dr2»
-        # («BOSS DR2» ville være et annet datasett).
-        survey = str(hoder.get("survey", "")).lower()
+        # The observable must be fsigma8 — the watch judges no others.
+        if str(headers.get("observabel", "")).lower() != "fsigma8":
+            return None
+
+        # The survey must be DESI DR2 — not merely contain «dr2»
+        # («BOSS DR2» would be a different data set).
+        survey = str(headers.get("survey", "")).lower()
         if not ("desi" in survey and "dr2" in survey):
             return None
 
-        tracer = hoder.get("tracer")
-        if tracer is None or str(tracer).upper() not in TILLATTE_TRACERE:
+        tracer = headers.get("tracer")
+        if tracer is None or str(tracer).upper() not in ALLOWED_TRACERS:
             return None
 
-        for felt in ("fsigma8", "fsigma8_sigma", "z_eff"):
-            if felt not in maalt or maalt[felt] is None:
+        for field in ("fsigma8", "fsigma8_sigma", "z_eff"):
+            if field not in measured or measured[field] is None:
                 return None
 
         try:
-            fs8 = float(maalt["fsigma8"])
-            sigma = float(maalt["fsigma8_sigma"])
-            z_eff = float(maalt["z_eff"])
+            fs8 = float(measured["fsigma8"])
+            sigma = float(measured["fsigma8_sigma"])
+            z_eff = float(measured["z_eff"])
         except (TypeError, ValueError):
             return None
 
-        if not (_endelig(fs8) and _endelig(sigma) and _endelig(z_eff)):
+        if not (_is_finite(fs8) and _is_finite(sigma) and _is_finite(z_eff)):
             return None
 
-        if not (Z_MIN <= z_eff <= Z_MAKS):
+        if not (Z_MIN <= z_eff <= Z_MAX):
             return None
 
         return {
@@ -109,38 +109,38 @@ class RapidResponseVakt:
             "sigma": sigma,
             "z_eff": z_eff,
             "tracer": str(tracer).upper(),
-            "kilde": str(hoder.get("kilde", "ukjent")),
+            "kilde": str(headers.get("kilde", "unknown")),
         }
 
     # ------------------------------------------------------------------
-    # Dommen
+    # The verdict
     # ------------------------------------------------------------------
-    def sjekk(self, melding: dict,
+    def sjekk(self, message: dict,
               params: Optional[dict] = None) -> dict:
-        """Kjører vakten: gjenkjenner, dommer, skriver artefakt.
+        """Runs the watch: recognizes, judges, writes the artifact.
 
-        Artefakten bærer FULL input-proveniens: meldings-ID, kilde,
-        meldingens sha256-hash, den gjenkjente målingen og parametrene
-        — slik at dommen alltid kan knyttes tilbake til konkret
-        bussmelding.
+        The artifact carries FULL input provenance: message ID, source,
+        the message's sha256 hash, the recognized measurement and the
+        parameters — so that the verdict can always be tied back to a
+        concrete bus message.
         """
-        måling = self.gjenkjenn(melding)
-        if måling is None:
-            dom = {
+        measurement = self.gjenkjenn(message)
+        if measurement is None:
+            verdict = {
                 "status": "VENTER",
-                "årsak": self._hvorfor_ikke(melding),
-                "regel": "ingen — meldingen er ikke arbiter-målingen",
+                "årsak": self._why_not(message),
+                "regel": "none — the message is not the arbiter measurement",
                 "kilde": "RapidResponseVakt.gjenkjenn",
             }
         else:
-            dom = self.arbiter.vurder(måling, params)
+            verdict = self.arbiter.vurder(measurement, params)
 
         payload = {
             "emne": "kosmos.kosmologi.oppgjoer.efc-fs8-arbiter",
             "kriterium": self.arbiter.kriterium(),
-            "input": self._input_proveniens(melding, måling, params),
+            "input": self._input_provenance(message, measurement, params),
             "rapport": {
-                "dom": dom,
+                "dom": verdict,
                 "mu_kanal_i_injisert_motor": bool(
                     getattr(self.arbiter.growth, "stotter_mu",
                             lambda: False)()),
@@ -154,71 +154,71 @@ class RapidResponseVakt:
                     datetime.timezone.utc).isoformat(),
             },
         }
-        self._skriv_artefakt(payload)
+        self._write_artifact(payload)
         return payload
 
-    def _input_proveniens(self, melding: dict,
-                          måling: Optional[dict],
+    def _input_provenance(self, message: dict,
+                          measurement: Optional[dict],
                           params: Optional[dict]) -> dict:
-        """Verifiserbar kobling mellom bussmeldingen og dommen."""
-        serialisert = json.dumps(melding, sort_keys=True,
-                                 ensure_ascii=False)
-        meldings_id = None
-        hoder = melding.get("hoder") if isinstance(melding, dict) else None
-        if isinstance(hoder, dict):
-            meldings_id = hoder.get("Nats-Msg-Id") or hoder.get("kilde")
+        """A verifiable link between the bus message and the verdict."""
+        serialised = json.dumps(message, sort_keys=True,
+                                ensure_ascii=False)
+        message_id = None
+        headers = message.get("hoder") if isinstance(message, dict) else None
+        if isinstance(headers, dict):
+            message_id = headers.get("Nats-Msg-Id") or headers.get("kilde")
         return {
-            "meldings_id": meldings_id,
+            "meldings_id": message_id,
             "meldings_hash_sha256": hashlib.sha256(
-                serialisert.encode("utf-8")).hexdigest(),
-            "gjenkjent_maaling": måling,
+                serialised.encode("utf-8")).hexdigest(),
+            "gjenkjent_maaling": measurement,
             "params": params,
         }
 
-    def _hvorfor_ikke(self, melding: dict) -> str:
-        """Forklarer ærlig hvorfor en melding ikke ble dømt — uten å
-        krasje på ugyldige typer/former."""
-        if not isinstance(melding, dict):
-            return "Meldingen er ikke en dict — ugyldig form."
-        hoder = melding.get("hoder")
-        maalt = melding.get("maalt")
-        if not isinstance(hoder, dict) or not isinstance(maalt, dict):
-            return "Meldingen mangler hoder/maalt — ugyldig form."
+    def _why_not(self, message: dict) -> str:
+        """Explains honestly why a message was not judged — without
+        crashing on invalid types/shapes."""
+        if not isinstance(message, dict):
+            return "The message is not a dict — invalid form."
+        headers = message.get("hoder")
+        measured = message.get("maalt")
+        if not isinstance(headers, dict) or not isinstance(measured, dict):
+            return "The message lacks hoder/maalt — invalid form."
 
-        kilde = str(hoder.get("kilde", "")).lower()
-        if hoder.get("arbiter") == "nei" or BASELINE_KILDE in kilde:
-            return ("Meldingen er den forseglede baselinen — "
-                    "referanseverdier, ikke arbiter-målingen.")
-        if str(hoder.get("observabel", "")).lower() != "fsigma8":
-            return (f"Observabelen er {hoder.get('observabel', 'ukjent')} "
-                    "— vakten dømmer bare fsigma8.")
-        survey = str(hoder.get("survey", "")).lower()
+        source = str(headers.get("kilde", "")).lower()
+        if headers.get("arbiter") == "nei" or BASELINE_KILDE in source:
+            return ("The message is the sealed baseline — "
+                    "reference values, not the arbiter measurement.")
+        if str(headers.get("observabel", "")).lower() != "fsigma8":
+            return (f"The observable is {headers.get('observabel', 'unknown')} "
+                    "— the watch judges only fsigma8.")
+        survey = str(headers.get("survey", "")).lower()
         if not ("desi" in survey and "dr2" in survey):
-            return ("Surveyet er ikke DESI DR2 full-shape "
-                    f"(survey={hoder.get('survey', 'ukjent')}, "
-                    f"kilde={hoder.get('kilde', 'ukjent')}).")
+            return ("The survey is not DESI DR2 full-shape "
+                    f"(survey={headers.get('survey', 'unknown')}, "
+                    f"kilde={headers.get('kilde', 'unknown')}).")
 
-        tracer = str(hoder.get("tracer", "ukjent"))
-        if tracer.upper() not in TILLATTE_TRACERE:
-            return (f"Traceren er {tracer} — ikke galakse-RSD "
-                    f"({'/'.join(TILLATTE_TRACERE)}).")
+        tracer = str(headers.get("tracer", "unknown"))
+        if tracer.upper() not in ALLOWED_TRACERS:
+            return (f"The tracer is {tracer} — not galaxy-RSD "
+                    f"({'/'.join(ALLOWED_TRACERS)}).")
 
-        for felt in ("fsigma8", "fsigma8_sigma", "z_eff"):
-            if felt not in maalt or maalt[felt] is None:
-                return f"Målingen mangler feltet «{felt}»."
+        for field in ("fsigma8", "fsigma8_sigma", "z_eff"):
+            if field not in measured or measured[field] is None:
+                return f"The measurement lacks the field «{field}»."
 
-        z_verdi = maalt["z_eff"]
-        if not _endelig(z_verdi):
-            return f"z_eff={z_verdi!r} er ikke et endelig tall."
-        z = float(z_verdi)
-        if not (Z_MIN <= z <= Z_MAKS):
-            return (f"z_eff={z} ligger utenfor testens z-vindu "
-                    f"[{Z_MIN}, {Z_MAKS}].")
-        return "Meldingen ble ikke gjenkjent som arbiter-måling."
+        z_value = measured["z_eff"]
+        if not _is_finite(z_value):
+            return f"z_eff={z_value!r} is not a finite number."
+        z = float(z_value)
+        if not (Z_MIN <= z <= Z_MAX):
+            return (f"z_eff={z} lies outside the test's z window "
+                    f"[{Z_MIN}, {Z_MAX}].")
+        return "The message was not recognized as an arbiter measurement."
 
     # ------------------------------------------------------------------
-    # Artefakt
+    # The artifact
     # ------------------------------------------------------------------
-    def _skriv_artefakt(self, payload: dict) -> None:
+    def _write_artifact(self, payload: dict) -> None:
         with open(self.artefakt_sti, "w", encoding="utf-8") as f:
             json.dump(payload, f, ensure_ascii=False, indent=2)

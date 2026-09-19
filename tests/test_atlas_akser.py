@@ -86,7 +86,7 @@ class TestGeneriskRotasjon:
     def test_ukjent_akse_feiler_med_forslag(self, atlas: dict) -> None:
         with pytest.raises(KeyError) as e:
             atlas_lesing.roter_akse(atlas, "finnes.ikke", None)
-        assert "Nærliggende" in str(e.value), "feilen skal foreslaa alternativer"
+        assert "Nearby" in str(e.value), "feilen skal foreslaa alternativer"
 
     def test_ukjent_verdi_paa_kjent_akse_gir_tomt_ikke_feil(self, atlas: dict) -> None:
         t = atlas_lesing.roter_akse(atlas, "perspektiv", "finnes-ikke")

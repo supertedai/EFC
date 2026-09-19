@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://supertedai.github.io/EFC/schema/regime_node.schema.json",
   "title": "EFC Regime Node Schema",
-  "description": "Generisk regime-node-skjema: beholderen som ethvert ledd i EFC-atlaset er en instans av. Hver node bærer hele observasjonskjeden og sin ontologiske ramme — slik at H2O-fasene, L0-L3-kosmologien og regnbuen kan beskrives med samme struktur. Skjemaet hevder ingen fysikk: det er en struktur; felt som er hypoteser, merkes som hypoteser (se observer.awareness). Forankring: regime/proxy/placement/episenter/compression er definert i 'Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity' (DOI 10.6084/m9.figshare.31564123, 2026-03-07) og meta-referansen docs/papers/meta/Proxy/ — episenter betyr der 'the interpretive frame used to read the result'. Mortens utvidelser (target/measurer/instrument/proxy_chain, buffer, phase, ontology, observer-båndbredde, emergence-loop, fractal, coupling) er strukturelle beholdere med kilde i samtale 2026-09-16.",
+  "description": "Generic regime node schema: the container that every link in the EFC atlas is an instance of. Each node carries the whole observation chain and its ontological frame — so that the H2O phases, the L0-L3 cosmology and the rainbow can be described with the same structure. The schema claims no physics: it is a structure; fields that are hypotheses are marked as hypotheses (see observer.awareness). Anchoring: regime/proxy/placement/episenter/compression are defined in 'Regime-Bound Measurement in Complex Systems: Proxy, Placement, and Validity' (DOI 10.6084/m9.figshare.31564123, 2026-03-07) and the meta reference docs/papers/meta/Proxy/ — episenter there means 'the interpretive frame used to read the result'. Morten's extensions (target/measurer/instrument/proxy_chain, buffer, phase, ontology, observer bandwidth, emergence loop, fractal, coupling) are structural containers sourced in conversation 2026-09-16.",
   "type": "object",
   "required": [
     "@context",
@@ -22,19 +22,19 @@
         },
         "id": {
           "const": "@id",
-          "description": "Node-id-er skal ekspandere til @id — instansen er en lenket graf, ikke loes tekst."
+          "description": "Node ids must expand to @id — the instance is a linked graph, not loose text."
         },
         "subject": {
           "const": {
             "@type": "@id"
           },
-          "description": "Relasjonsendepunkter er IRI-referanser til noder."
+          "description": "Relation endpoints are IRI references to nodes."
         },
         "object": {
           "const": {
             "@type": "@id"
           },
-          "description": "Relasjonsendepunkter er IRI-referanser til noder."
+          "description": "Relation endpoints are IRI references to nodes."
         }
       },
       "required": [
@@ -110,18 +110,18 @@
             },
             "validity": {
               "type": "string",
-              "description": "Gyldighetsomraadet — HVA gjelder noden for. Et regime uten deklarert gyldighet er en pastand uten grense."
+              "description": "The validity range — WHAT the node applies to. A regime without a declared validity is a claim without a boundary."
             },
             "law_form": {
               "type": "string",
-              "description": "Lovformen som holder i regimet (fra DOI-papiret: a single law-form fits)."
+              "description": "The law-form that holds in the regime (from the DOI paper: a single law-form fits)."
             }
           },
           "additionalProperties": false
         },
         "phase": {
           "type": "string",
-          "description": "Tilstanden innenfor regimet (f.eks. solid/liquid/gas/supercritical)."
+          "description": "The state within the regime (e.g. solid/liquid/gas/supercritical)."
         },
         "measure": {
           "type": "object",
@@ -136,15 +136,15 @@
           "properties": {
             "target": {
               "type": "string",
-              "description": "Målet: den uobserverte/kostbare storheten man sikter mot (det proxyen staar for)."
+              "description": "The target: the unobserved/costly quantity one aims at (what the proxy stands for)."
             },
             "measurer": {
               "type": "string",
-              "description": "Måleren: det som utforer målingen (aktor/mekanisme)."
+              "description": "The meter: that which performs the measurement (actor/mechanism)."
             },
             "instrument": {
               "type": "string",
-              "description": "Måleinstrumentet: den fysiske innretningen."
+              "description": "The measuring instrument: the physical device."
             },
             "proxy_chain": {
               "type": "array",
@@ -152,22 +152,22 @@
                 "type": "string"
               },
               "minItems": 1,
-              "description": "Proxychain: den ordnede kjeden av proxyer fra målet til det som faktisk avleses. Hvert ledd er en proxy med eget regime."
+              "description": "Proxychain: the ordered chain of proxies from the target to what is actually read out. Each link is a proxy with its own regime."
             },
             "placement": {
               "type": "string",
-              "description": "Plasseringen: hvor observatoren sitter (instrument, sample, koordinatsystem) og hvordan proxyen beregnes (DOI-papiret)."
+              "description": "The placement: where the observer sits (instrument, sample, coordinate system) and how the proxy is computed (the DOI paper)."
             },
             "compression": {
               "type": "string",
-              "description": "Komprimeringen: reduksjonen av hoydimensjonale data til en lavdimensjonal oppsummering (DOI-papiret)."
+              "description": "The compression: the reduction of high-dimensional data to a low-dimensional summary (the DOI paper)."
             }
           },
           "additionalProperties": false
         },
         "episenter": {
           "type": "string",
-          "description": "Episenteret: den fortolkende rammen resultatet leses i (DOI-papiret: the interpretive frame used to read the result). Ikke «hvor fenomenet sitter» — det er hvilken ramme som gjor reststruktur til signal. Kanonisk norsk term fra kilde-README-en (docs/papers/meta/Proxy/)."
+          "description": "The epicenter: the interpretive frame the result is read in (the DOI paper: the interpretive frame used to read the result). Not «where the phenomenon sits» — it is which frame makes residual structure into signal. Canonical Norwegian term from the source README (docs/papers/meta/Proxy/)."
         },
         "buffer": {
           "type": "object",
@@ -177,7 +177,7 @@
           "properties": {
             "role": {
               "type": "string",
-              "description": "Buffer/holding-rollen: kapasiteten eller tregheten som demper endring — bredt men logisk: termisk treghet (vann som holder temperaturen under oppvarming til kokepunktet, latent varme ved faseovergang), kjemisk/elektrisk lagring (batteri), biologisk regulering (homeostase i en kropp). Bufferen er fraktalt tilstede: hvert nivå, hver skala og hver akse har sin egen buffer (multaksial)."
+              "description": "The buffer/holding role: the capacity or the inertia that damps change — broad but logical: thermal inertia (water holding the temperature during heating up to the boiling point, latent heat at the phase transition), chemical/electrical storage (battery), biological regulation (homeostasis in a body). The buffer is fractally present: every level, every scale and every axis has its own buffer (multiaxial)."
             },
             "note": {
               "type": "string"
@@ -197,11 +197,11 @@
               "items": {
                 "type": "string"
               },
-              "description": "Hva beskrivelsen antar finnes — de ontologiske startpunktene, skrevet EKSPLISITT."
+              "description": "What the description assumes exists — the ontological starting points, written EXPLICITLY."
             },
             "source": {
               "type": "string",
-              "description": "Kilden antakelsene hviler paa (DOI, papir, maalt referanse)."
+              "description": "The source the assumptions rest on (DOI, paper, measured reference)."
             },
             "proveniens": {
               "type": "object",
@@ -267,7 +267,7 @@
           "properties": {
             "bandwidth": {
               "type": "string",
-              "description": "Observatorens vindu: hvilken del av spekteret den ser. Hele virkeligheten ligger paa et bredt spekter; en observator ser noen faa nm."
+              "description": "The observer's window: which part of the spectrum it sees. All of reality lies on a broad spectrum; an observer sees a few nm."
             },
             "awareness": {
               "type": "string",
@@ -276,21 +276,21 @@
                 "hypothesis_open",
                 "not_claimed"
               ],
-              "description": "Bevissthetsstatus, ærlig deklarert: instrument_window = fysisk instrument uten bevissthetskrav; hypothesis_open = aapen hypotese (f.eks. felt-resonans), ikke etablert; not_claimed = ingen pastand."
+              "description": "Consciousness status, honestly declared: instrument_window = physical instrument without a consciousness claim; hypothesis_open = open hypothesis (e.g. field resonance), not established; not_claimed = no claim."
             },
             "er_del_av_systemet": {
               "type": "boolean",
               "const": true,
-              "description": "Vi er måleinstrumentet selv, ikke en observatør utenfor systemet. Konst sann — en node som påstår noe annet er en epistemisk feil i skjema-øyemed."
+              "description": "We are the measuring instrument itself, not an observer outside the system. Const true — a node that claims otherwise is an epistemic error for schema purposes."
             },
             "c_s_posisjon": {
               "type": "string",
               "minLength": 1,
-              "description": "C(S)-punktet observatoeren leser fra; bandwidth er det smale vinduet rundt punktet."
+              "description": "the C(S) point the observer reads from; bandwidth is the narrow window around the point."
             },
             "maalepavirkning": {
               "type": "string",
-              "description": "Hvordan målingen påvirker/avgrenser det målte (back-action), om relevant."
+              "description": "How the measurement affects/bounds what is measured (back-action), if relevant."
             }
           },
           "additionalProperties": false
@@ -304,14 +304,14 @@
           "properties": {
             "loop": {
               "type": "string",
-              "description": "Emergence-loopen: tilbakekoblingen som holder det emergente nivået oppe."
+              "description": "The emergence loop: the feedback that holds the emergent level up."
             },
             "properties": {
               "type": "array",
               "items": {
                 "type": "string"
               },
-              "description": "Emergente egenskaper — de finnes paa dette nivået, ikke i delene alene."
+              "description": "Emergent properties — they exist at this level, not in the parts alone."
             }
           },
           "additionalProperties": false
@@ -324,7 +324,7 @@
           "properties": {
             "pattern": {
               "type": "string",
-              "description": "Fraktal-relasjonen: hvordan samme monster gjentas — hver del er sin egen emergence med egne loops i samme landskap."
+              "description": "The fractal relation: how the same pattern repeats — every part is its own emergence with its own loops in the same landscape."
             },
             "note": {
               "type": "string"
@@ -341,11 +341,11 @@
           "properties": {
             "local": {
               "type": "string",
-              "description": "Lokal rolle: hva noden gjor der den er."
+              "description": "Local role: what the node does where it is."
             },
             "global": {
               "type": "string",
-              "description": "Global rekkevidde: hvilke konsekvenser noden har utenfor seg selv — systemisk empati, lokalt-globalt kobling."
+              "description": "Global reach: what consequences the node has outside itself — systemic empathy, local-global coupling."
             },
             "empathy_note": {
               "type": "string"
@@ -361,7 +361,7 @@
             "akademia",
             "agnostikk"
           ],
-          "description": "Epistemisk hjemsted: paradigme = vår ramme; konsensus = rådende verdensbilde; akademia = etablert kunnskapsbase; agnostikk = det åpne"
+          "description": "Epistemic home: paradigme = our frame; konsensus = the prevailing worldview; akademia = the established knowledge base; agnostikk = the open"
         },
         "stipulasjoner": {
           "type": "object",
@@ -371,41 +371,41 @@
           "properties": {
             "stipulert_av_oss": {
               "type": "boolean",
-              "description": "True: fase-/regimegrensene er VÅRE definisjoner, ikke naturens gitte linjer."
+              "description": "True: the phase/regime boundaries are OUR definitions, not given lines of nature."
             },
             "terskler": {
               "type": "array",
               "items": {
                 "type": "string"
               },
-              "description": "De stipulerte tersklene, med verdi og kilde."
+              "description": "The stipulated thresholds, with value and source."
             },
             "motor": {
               "type": "string",
-              "description": "Motoren som holder terskelen i kode."
+              "description": "The engine that holds the threshold in code."
             },
             "buss_status": {
               "type": "string",
-              "description": "Enten har noden et buss_domene, ELLER den sier her hvorfor den ikke har det. En utelatelse er ikke et svar — maalt 2026-09-18 (t_fc25238b).",
+              "description": "Either the node has a buss_domene, OR it states here why it does not. An omission is not an answer — measured 2026-09-18 (t_fc25238b).",
               "minLength": 1
             },
             "motor_status": {
               "type": "string",
-              "description": "Enten har noden en motor, ELLER den sier her hvorfor den ikke har det. En instrument-node trenger ingen motor; den skal bare si det.",
+              "description": "Either the node has an engine, OR it says here why it does not. An instrument node needs no engine; it only has to say so.",
               "minLength": 1
             },
             "alene_status": {
               "type": "string",
               "minLength": 1,
-              "description": "Noden har ingen koblinger til andre noder. Da skal den si HVORFOR her — «alene» er et gyldig svar, et tomt felt er ikke. Maalt 2026-09-18 (t_7dd41524): 13 av 113 noder sto slik."
+              "description": "The node has no couplings to other nodes. Then it must say WHY here — «alone» is a valid answer, an empty field is not. Measured 2026-09-18 (t_7dd41524): 13 of 113 nodes stood this way."
             },
             "ikke_falsifiserbar_grunn": {
               "type": "string",
               "minLength": 1,
-              "description": "Skriftlig grunn naar noden ikke kan felles av en observasjon: instrument-noden ER maalingen, etablert fysikk er ikke vaar aa felle, eller selvbeskrivelsen har ingen paastand aa felle."
+              "description": "Written ground when the node cannot be refuted by an observation: the instrument node IS the measurement, established physics is not ours to refute, or the self-description has no claim to refute."
             }
           },
-          "description": "Stipulasjonene er der vi definerer grensene. Før epistemikk v2 bodde de hardkodet i motorene uten spor i noden.",
+          "description": "The stipulations are where we define the boundaries. Before epistemology v2 they lived hardcoded in the engines with no trace in the node.",
           "additionalProperties": false
         },
         "synlighet": {
@@ -414,16 +414,16 @@
             "offentlig",
             "intern"
           ],
-          "description": "Publiseringsflate. offentlig = genereres til GitHub Pages; intern = lever bare i det komplette atlaset. Filteret er DEKLARERT per node, aldri en skjult regel i generatoren — en node som forsvinner uten at noen ser hvorfor er samme feilklasse som resten av dette skjemaet finnes for aa hindre."
+          "description": "Publication surface. public = generated to GitHub Pages; internal = lives only in the complete atlas. The filter is DECLARED per node, never a hidden rule in the generator — a node that disappears without anyone seeing why is the same error class that the rest of this schema exists to prevent."
         },
         "ville_falsifisere": {
           "type": "string",
           "minLength": 1,
-          "description": "Hvilken observasjon ville drepe denne nodens plassering/påstand. Ett av tre svar som gjør at noden har tatt stilling til om den kan felles: dette, `falsifiserbarhet` (kriteriet finnes, terskelen gjør det ikke ennå) eller `stipulasjoner.ikke_falsifiserbar_grunn`. At ett av dem FINNES holdes av testene (`test_atlas_avgjorelse.py`, `test_atlas_motsigelse.py`) — men en tom streng er ikke et svar her."
+          "description": "Which observation would kill this node's placement/claim. One of three answers that make the node take a position on whether it can be struck down: this, `falsifiserbarhet` (the criterion exists, the threshold does not yet) or `stipulasjoner.ikke_falsifiserbar_grunn`. That ONE of them EXISTS is held by the tests (`test_atlas_avgjorelse.py`, `test_atlas_motsigelse.py`) — but an empty string is not an answer here."
         },
         "open_questions": {
           "type": "array",
-          "description": "Aapne spoersmaal ved denne noden. Dette er den ENESTE kilden til spoersmaal i atlaset: generatoren skriver aldri et spoersmaal selv. Maalt 2026-09-18 fant generatoren opp en linje for hver node uten evidens — identisk for alle sju — og gjorde «7 open» til ett og samme ord sju ganger. Evidensstatusen er en maaling og hoerer i `epistemikk`, ikke i spoersmaalslista. Et element er en tekst, eller et objekt {q, r?, to?}: r = svaret naar spoersmaalet er besvart, to = hvem det venter paa (en menneskehandling).",
+          "description": "Open questions at this node. This is the ONLY source of questions in the atlas: the generator never writes a question itself. Measured 2026-09-18: the generator invented a line for every node without evidence — identical for all seven — and made «7 open» one and the same word seven times. The evidence status is a measurement and belongs in `epistemikk`, not in the question list. An element is a text, or an object {q, r?, to?}: r = the answer once the question is answered, to = whom it waits for (a human action).",
           "items": {
             "oneOf": [
               {
@@ -459,7 +459,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Logg over endrede terskler/antakelser (dato + hva)."
+          "description": "Log of changed thresholds/assumptions (date + what)."
         },
         "epistemikk": {
           "type": "object",
@@ -481,7 +481,7 @@
                 "stottet",
                 "motbevist"
               ],
-              "description": "Hvor sann er påstanden — uavhengig av hvem som tror den."
+              "description": "How true the claim is — independently of who believes it."
             },
             "evidensstatus": {
               "type": "string",
@@ -492,7 +492,7 @@
                 "uavhengig",
                 "replikert"
               ],
-              "description": "Hva slags evidens bærer påstanden."
+              "description": "What kind of evidence the claim carries."
             },
             "konsensusstatus": {
               "type": "string",
@@ -503,7 +503,7 @@
                 "institusjonell",
                 "bred"
               ],
-              "description": "Sosial oppslutning — en MEKANISME-beskrivelse, ikke sannhetsstatus."
+              "description": "Social uptake — a MECHANISM description, not truth status."
             },
             "sosial_mekanisme": {
               "type": "string",
@@ -512,10 +512,10 @@
             "konsensus_er_ikke_sannhet": {
               "type": "boolean",
               "const": true,
-              "description": "Mortens prinsipp (e): konsensus definerer ikke sannheten — mennesker er sosiale dyr som følger det sterkeste narrativet."
+              "description": "Morten's principle (e): consensus does not define the truth — humans are social animals that follow the strongest narrative."
             }
           },
-          "description": "Epistemisk regnskap per node: sannhets-, evidens- og konsensusstatus er ORTOGONALE akser. Konsensus er et sosialt fenomen; den bærer ikke sannhet i seg selv."
+          "description": "Epistemic accounting per node: truth, evidence and consensus status are ORTHOGONAL axes. Consensus is a social phenomenon; it does not carry truth in itself."
         },
         "analogi": {
           "type": "object",
@@ -523,14 +523,14 @@
           "properties": {
             "avbildning": {
               "type": "string",
-              "description": "Hva svarer til hva i analogien."
+              "description": "What corresponds to what in the analogy."
             },
             "bryter_der": {
               "type": "string",
-              "description": "Disanalogien: hvor analogien brekker — obligatorisk når noden erklærer ANALOGOUS_TO."
+              "description": "The disanalogy: where the analogy breaks — mandatory when the node declares ANALOGOUS_TO."
             }
           },
-          "description": "Analogi-disciplin: en analogi uten disanalogi herdes til ontologi.",
+          "description": "Analogy discipline: an analogy without a disanalogy hardens into ontology.",
           "required": [
             "avbildning",
             "bryter_der"
@@ -563,11 +563,11 @@
                   "hastighet"
                 ]
               },
-              "description": "Koordinat-valgene noden står på — de antatte aksene, ikke gitte."
+              "description": "The coordinate choices the node rests on — the assumed axes, not given."
             },
             "enheter": {
               "type": "string",
-              "description": "Enhetene noden måler i (SI eller andre)."
+              "description": "The units the node measures in (SI or others)."
             },
             "status": {
               "type": "string",
@@ -577,14 +577,14 @@
                 "direkte_observerbar",
                 "proxy"
               ],
-              "description": "Er koordinatet en valgt ramme, noe avledet, direkte observerbart eller en proxy?"
+              "description": "Is the coordinate a chosen frame, something derived, directly observable or a proxy?"
             },
             "alternativer": {
               "type": "array",
               "items": {
                 "type": "string"
               },
-              "description": "Alternative beskrivelser som er utelatt — bevissthet om at andre rammer kunne vært valgt."
+              "description": "Alternative descriptions that were left out — awareness that other frames could have been chosen."
             },
             "s_regime": {
               "type": "string",
@@ -597,7 +597,7 @@
                 "high_s",
                 "S~0.5"
               ],
-              "description": "EBE-S-regimet som noden er gyldig i; en eksplisitt, roterbar S-koordinat."
+              "description": "The EBE-S regime in which the node is valid; an explicit, rotatable S coordinate."
             },
             "sektor": {
               "type": "string",
@@ -606,18 +606,18 @@
                 "D",
                 "C"
               ],
-              "description": "EFC-sektor: strukturell, dynamisk eller kapasitet."
+              "description": "EFC sector: structural, dynamic or capacity."
             },
             "ebe_function": {
               "type": "string",
-              "description": "EBE-funksjonen som binder claim validity til S, L og proxy-kjede."
+              "description": "The EBE function that binds claim validity to S, L and the proxy chain."
             },
             "klarhetsfunksjon": {
               "type": "string",
-              "description": "C(S)-deklarasjonen for nodens klarhet langs S-aksen."
+              "description": "The C(S) declaration for the node's clarity along the S axis."
             }
           },
-          "description": "Koordinat-paradigmene (krav d): tid, rom, masse og hastighet er valgte koordinater — noden deklarerer hvilke den antar."
+          "description": "The coordinate paradigms (requirement d): time, space, mass and velocity are chosen coordinates — the node declares which ones it assumes."
         },
         "rcmp": {
           "type": "object",
@@ -645,7 +645,7 @@
               "type": "string"
             }
           },
-          "description": "RCMP: instrument, observabel og teori har overlappende gyldighetsdomene."
+          "description": "RCMP: instrument, observable and theory have overlapping domains of validity."
         },
         "nivaa": {
           "type": "object",
@@ -659,33 +659,33 @@
           "properties": {
             "indeks": {
               "type": "integer",
-              "description": "Platå-indeksen: 0 = substratet, økende = mer emergert nivå."
+              "description": "The plateau index: 0 = the substrate, increasing = more emerged level."
             },
             "forelder": {
               "type": [
                 "string",
                 "null"
               ],
-              "description": "Node-id-en til platået under — null for roten. Grafen skal være lukket."
+              "description": "The node id of the plateau below — null for the root. The graph must be closed."
             },
             "tidsskala": {
               "type": "string",
-              "description": "Platåets karakteristiske tidsskala."
+              "description": "The plateau's characteristic time scale."
             },
             "lengdeskala": {
               "type": "string",
-              "description": "Platåets karakteristiske lengdeskala."
+              "description": "The plateau's characteristic length scale."
             }
           },
-          "description": "Platå-strukturen (krav b): rekursjonen som graf — hver node deklarerer sitt nivå, sin forelder og sine skalaer. Fractal-feltet er prosaen; nivaa er strukturen."
+          "description": "The plateau structure (requirement b): the recursion as a graph — each node declares its level, its parent and its scales. The fractal field is the prose; the level is the structure."
         },
         "buss_domene": {
           "type": "string",
-          "description": "Bussdomenet denne noden beskriver, f.eks. 'kosmos.kosmologi'. DEKLARERT paa noden — ikke utledet av en generator — slik at koblingen kan verifiseres i begge retninger. Fravær betyr at noden ikke beskriver et bussdomene."
+          "description": "The bus domain this node describes, e.g. 'kosmos.kosmologi'. DECLARED on the node — not derived from a generator — so that the coupling can be verified in both directions. Absence means the node does not describe a bus domain."
         },
         "prediction": {
           "type": "object",
-          "description": "Prediksjonskontrakten SPEILET fra bussen (NATS VERDEN_PROGNOSE), ikke oppfunnet her. Kontrakten finnes allerede med forseglet DOI, SHA256, frys, kriterium, toleranseregel og arbiter-status; atlaset hadde null noder som bar den mens vaer-domenet gjorde opp 77 112 ganger. `correlation` er den stabile noekkelen som baerer baade prediksjon og settlement.",
+          "description": "The prediction contract MIRRORED from the bus (NATS VERDEN_PROGNOSE), not invented here. The contract already exists with a sealed DOI, SHA256, freeze, criterion, tolerance rule and arbiter status; the atlas had zero nodes carrying it while the weather domain settled 77 112 times. `correlation` is the stable key that carries both prediction and settlement.",
           "required": [
             "source",
             "issued_at",
@@ -709,15 +709,15 @@
             },
             "lead_time_minutes": {
               "type": "string",
-              "description": "Ledetid (`ledetid_min`). Maalt som STRENG paa bussen; ingen maalt forekomst av tall."
+              "description": "Lead time (`ledetid_min`). Measured as a STRING on the bus; no measured occurrence of numbers."
             },
             "expected": {
               "type": "string",
-              "description": "expected som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+              "description": "expected as a JSON-encoded string — the same form the bus sends. The keys are observable-specific and cannot be closed in the schema without inventing a set we have not measured; the form is therefore mirrored faithfully."
             },
             "units": {
               "type": "string",
-              "description": "units som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+              "description": "units as a JSON-encoded string — the same form the bus sends. The keys are observable-specific and cannot be closed in the schema without inventing a set we have not measured; the form is therefore mirrored faithfully."
             },
             "correlation": {
               "type": "string"
@@ -730,7 +730,7 @@
             },
             "freeze": {
               "type": "string",
-              "description": "Frysningsparameterne (`frys`) som JSON-kodet streng — samme form som bussen sender. Innholdet har en kjent struktur (primary_freeze/secondary_freeze med alpha, sampler, sha256_truncated, timestamp_utc), men FORMEN er streng: skjemaet speiler formen, og testen validerer strukturen ved aa parse den."
+              "description": "The freezing parameters (`frys`) as a JSON-encoded string — the same form the bus sends. The content has a known structure (primary_freeze/secondary_freeze with alpha, sampler, sha256_truncated, timestamp_utc), but the FORM is strict: the schema mirrors the form, and the test validates the structure by parsing it."
             },
             "arbiter": {
               "type": "string"
@@ -743,7 +743,7 @@
             },
             "criteria": {
               "type": "string",
-              "description": "criteria som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+              "description": "criteria as a JSON-encoded string — the same form the bus sends. The keys are observable-specific and cannot be closed in the schema without inventing a set we have not measured; the form is therefore mirrored faithfully."
             },
             "tolerance_rule": {
               "type": "string"
@@ -759,29 +759,29 @@
             },
             "location": {
               "type": "string",
-              "description": "Sted fra meldingen (`sted`) — den operative varianten bærer sted, den forseglede gjør ikke."
+              "description": "Location from the message (`sted`) — the operative variant carries location, the sealed one does not."
             },
             "latitude": {
               "type": "string",
-              "description": "Breddegrad (`lat`). Maalt som STRENG paa bussen (\"70.3554\") — ikke et tall."
+              "description": "Latitude (`lat`). Measured as a STRING on the bus (\"70.3554\") — not a number."
             },
             "longitude": {
               "type": "string",
-              "description": "Lengdegrad (`lon`). Maalt som STRENG."
+              "description": "Longitude (`lon`). Measured as STRING."
             },
             "horizon_ordered_hours": {
               "type": "string",
-              "description": "Bestilt prognosehorisont (`horisont_bestilt_timer`). Maalt som STRENG paa bussen; ingen maalt forekomst av tall."
+              "description": "Ordered forecast horizon (`horisont_bestilt_timer`). Measured as STRING on the bus; no measured occurrence of any number."
             },
             "observed_at": {
               "type": "string",
-              "description": "Naar kilden utstedte/observerte (`observert`)."
+              "description": "When the source issued/observed (`observert`)."
             }
           }
         },
         "settlement": {
           "type": "object",
-          "description": "Oppgjoeret av en prediksjon. Baerer SAMME `correlation` som prediction — koblingen er en felles noekkel, ikke et nytt relasjonspredikat (predikat-enumen er lukket). Vaer-domenet skriver forventet/utfall/avvik/utfall_kilde/utfall_tid/oppgjoer_versjon; denne kontrakten speiler de feltene.",
+          "description": "The settlement of a prediction. Carries the SAME `correlation` as prediction — the coupling is a shared key, not a new relation predicate (the predicate enum is closed). The weather domain writes forventet/utfall/avvik/utfall_kilde/utfall_tid/oppgjoer_versjon; this contract mirrors those fields.",
           "required": [
             "correlation",
             "outcome",
@@ -794,11 +794,11 @@
             },
             "outcome": {
               "type": "string",
-              "description": "outcome som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+              "description": "outcome as a JSON-encoded string — the same form the bus sends. The keys are observable-specific and cannot be closed in the schema without inventing a set we have not measured; the form is therefore mirrored faithfully."
             },
             "deviation": {
               "type": "string",
-              "description": "deviation som JSON-kodet streng — samme form som bussen sender. Noeklene er observabel-spesifikke og kan ikke lukkes i skjemaet uten aa dikte et sett vi ikke har maalt; formen speiles derfor lojalt."
+              "description": "deviation as a JSON-encoded string — the same form the bus sends. The keys are observable-specific and cannot be closed in the schema without inventing a set we have not measured; the form is therefore mirrored faithfully."
             },
             "outcome_source": {
               "type": "string"
@@ -811,37 +811,37 @@
             },
             "location": {
               "type": "string",
-              "description": "Sted fra oppgjoersmeldingen (`sted`)."
+              "description": "Location from the settlement message (`sted`)."
             },
             "expected": {
               "type": "string",
-              "description": "Forventningen slik den stod i prediksjonen (`forventet`). Oppgjoeret baerer BEGGE sider av sloeyfa — det er derfor det kan leses alene."
+              "description": "The expectation as it stood in the prediction (`forventet`). The settlement carries BOTH sides of the loop — that is why it can be read alone."
             },
             "lead_time_minutes": {
               "type": "string",
-              "description": "Ledetid (`ledetid_min`). Maalt som STRENG paa bussen; ingen maalt forekomst av tall."
+              "description": "Lead time (`ledetid_min`). Measured as a STRING on the bus; no measured occurrence of numbers."
             },
             "source": {
               "type": "string",
-              "description": "Kilden som produserte prognosen som ble gjort opp (`kilde`)."
+              "description": "The source that produced the prediction that was settled (`kilde`)."
             },
             "issued_at": {
               "type": "string",
-              "description": "Naar prognosen ble utstedt (`utstedt`)."
+              "description": "When the forecast was issued (`utstedt`)."
             },
             "valid_for": {
               "type": "string",
-              "description": "Tidspunktet oppgjoeret gjelder for (`gyldig_for`)."
+              "description": "The time the settlement applies to (`gyldig_for`)."
             },
             "observed_at": {
               "type": "string",
-              "description": "Naar maalingen ble gjort (`observert`)."
+              "description": "When the measurement was made (`observert`)."
             }
           }
         },
         "falsifiserbarhet": {
           "type": "object",
-          "description": "Hvorfor en node IKKE kan felles. Skill fra `ville_falsifisere`: en stub kan ikke felles for den regner — det er en tilstandsbeskrivelse, ikke en falsifikator, og den skal ikke telle som oppfylt falsifiserbarhet.",
+          "description": "Why a node can NOT be refuted. Distinguish from `ville_falsifisere`: a stub cannot be refuted because it computes — it is a state description, not a falsifier, and it shall not count as satisfied falsifiability.",
           "required": [
             "status",
             "grunn"
@@ -863,7 +863,7 @@
         "lagdeling": {
           "type": "object",
           "additionalProperties": false,
-          "description": "En node kan baere FLERE lag med ulik epistemisk status. Biologien er kjernen: fysiologien er laerebok (akademia/stottet), mens analogien til EFC er vaar egen (paradigme/hypotese). Ett `perspektiv`-felt kan ikke baere begge — derfor dette.",
+          "description": "A node can carry SEVERAL layers with different epistemic status. The biology is the core: the physiology is textbook (academia/supported), while the analogy to EFC is our own (paradigm/hypothesis). A single `perspektiv` field cannot carry both — hence this.",
           "properties": {
             "fysiologi": {
               "type": "object",
@@ -980,7 +980,7 @@
         },
         "usikkerhet": {
           "type": "object",
-          "description": "USIKKERHETSLAGET (ADR-086 §3.1): hvilken feilgrense KILDEN oppgir for en verdi noden bærer — eller en eksplisitt erklæring om at kilden ikke oppgir den. Valgfritt, lukket og additivt: ingen node må endres for at atlaset skal validere, og et tall uten oppgitt usikkerhet skal fortsatt kunne leses som nettopp det. Diagnosen er målt: hodetallene står MED feilgrense i sine egne kilder (`k = 0.415 ± 0.029` i docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5) mens atlaset hadde 0 strukturerte usikkerhetsfelt. Feltet skal ikke skaffe ny usikkerhet — det skal slutte å miste den. `null` er et gyldig svar; 0 og en gjetning er det ikke. Regelen som ikke kan stå her (en post SKAL ha en kilde som svarer) holdes av tests/test_usikkerhetslag.py inntil C10-gaten kan endres med menneskeord (t_2e60afa6). Eier: Morten og Joakim (ord 2026-09-18).",
+          "description": "THE UNCERTAINTY LAYER (ADR-086 §3.1): which error bound THE SOURCE states for a value the node carries — or an explicit declaration that the source does not state it. Optional, closed and additive: no node must be changed for the atlas to validate, and a number without a stated uncertainty shall still be readable as exactly that. The diagnosis is measured: the headline numbers stand WITH an error bound in their own sources (`k = 0.415 ± 0.029` in docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5) while the atlas had 0 structured uncertainty fields. The field shall not procure new uncertainty — it shall stop losing it. `null` is a valid answer; 0 and a guess are not. The rule that cannot stand here (a post SHALL have a source that answers) is held by tests/test_usikkerhetslag.py until the C10 gate can be changed by human word (t_2e60afa6). Owner: Morten and Joakim (word 2026-09-18).",
           "required": [
             "poster"
           ],
@@ -992,7 +992,7 @@
               "items": {
                 "$ref": "#/$defs/Usikkerhetspost"
               },
-              "description": "Én post per verdi noden bærer med usikkerhet. Tom liste er ikke en post: et felt som ser fylt ut uten å være det, er nettopp feilen dette laget skal hindre."
+              "description": "One post per value the node carries with uncertainty. An empty list is not a post: a field that looks filled without being it is exactly the error this layer shall prevent."
             }
           }
         }
@@ -1134,21 +1134,21 @@
         "storrelse": {
           "type": "string",
           "minLength": 1,
-          "description": "Størrelsen slik KILDEN skriver den (f.eks. «k», «β», «σ_int») — kildens navn, ikke vårt."
+          "description": "The quantity as THE SOURCE writes it (e.g. «k», «β», «σ_int») — the source's name, not ours."
         },
         "verdi": {
           "type": [
             "number",
             "null"
           ],
-          "description": "Verdien slik kilden oppgir den. `null` er et svar når kilden bare oppgir grensen."
+          "description": "The value as the source states it. `null` is an answer when the source only states the bound."
         },
         "feilgrense": {
           "type": [
             "number",
             "null"
           ],
-          "description": "Feilgrensen KILDEN oppgir på den navngitte linjen. `null` betyr at kilden ikke oppgir den — det er et SVAR, ikke en mangel, og β = 0.16 er prøven. En feilgrense på 0 er bare gyldig når kilden selv sier 0."
+          "description": "The error bound THE SOURCE states on the named line. `null` means the source does not state it — that is an ANSWER, not a shortcoming, and β = 0.16 is the test. An error bound of 0 is valid only when the source itself says 0."
         },
         "kilde": {
           "$ref": "#/$defs/Usikkerhetskilde"
@@ -1167,17 +1167,17 @@
         "fil": {
           "type": "string",
           "minLength": 1,
-          "description": "Sti fra repo-roten til filen grensen er lest fra. Filen må være sporet i repoet — en usporet «kilde» finnes ikke som kilde."
+          "description": "Path from the repo root to the file the bound was read from. The file must be tracked in the repo — an untracked «source» does not exist as a source."
         },
         "linje": {
           "type": "integer",
           "minimum": 1,
-          "description": "Linjenummeret i filen, 1-indeksert. Leses tilbake av tests/test_usikkerhetslag.py: en gjetning står ikke på linjen den viser til."
+          "description": "The line number in the file, 1-indexed. Read back by tests/test_usikkerhetslag.py: a guess does not stand on the line it points to."
         },
         "ordrett": {
           "type": "string",
           "minLength": 1,
-          "description": "Et ORDRETT utsnitt av linjen — nok til å se at kilden sier det posten sier. Et sitat som ikke står på linjen, feller testen."
+          "description": "A VERBATIM excerpt of the line — enough to see that the source says what the post says. A quotation that does not stand on the line fells the test."
         }
       }
     }

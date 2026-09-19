@@ -1,89 +1,89 @@
 ---
-title: KRITISK INNSIKT - EFC Empirisk Validering Selvkorreksjon
+title: CRITICAL INSIGHT - EFC Empirical Validation Self-Correction
 type: documentation
 date: '2026-01-15'
 tags:
 - cosmology
 - efc
-- empirisk
+- empirical
 - energy
 - flow
 - model
-- selvkorreksjon
-- validering
+- self-correction
+- validation
 source_path: docs/meta/critical_insights/EFC_Empirical_Self_Correction_2026-01-15.md
 ---
 
-# KRITISK INNSIKT - EFC Empirisk Validering Selvkorreksjon
-# Dato: 2026-01-15
-# Type: Metodologisk selvkritikk og referee-standard
+# CRITICAL INSIGHT - EFC Empirical Validation Self-Correction
+# Date: 2026-01-15
+# Type: Methodological self-critique and referee standard
 
-## HOVED-INNSIKT
-EFC har kun 1 genuint empirisk test (SPARC N=175), IKKE 8 som opprinnelig hevdet.
-Dette er en kritisk selvkorreksjon basert på referee-standard feedback.
+## MAIN INSIGHT
+EFC has only 1 genuinely empirical test (SPARC N=175), NOT 8 as originally claimed.
+This is a critical self-correction based on referee-standard feedback.
 
-## KLASSIFISERINGSSYSTEM FOR EMPIRISKE PÅSTANDER
-All fremtidig EFC-kommunikasjon må skille mellom:
+## CLASSIFICATION SYSTEM FOR EMPIRICAL CLAIMS
+All future EFC communication must distinguish between:
 
-1. **Faktiske tester** (A-kategori)
+1. **Actual tests** (category A)
    - Direct model vs data comparison
-   - Kvantitative prediksjoner testet
-   - Reproduserbar metode med DOI
-   - Eksempel: SPARC N=175
+   - Quantitative predictions tested
+   - Reproducible method with a DOI
+   - Example: SPARC N=175
 
-2. **Motiverende anomalier** (B-kategori)
-   - Problemer i standardmodellen
-   - EFC gir kvalitativ forklaring
-   - Mangler kvantitativ test
-   - Eksempler: JWST early galaxies, H₀/S8 tensions
+2. **Motivating anomalies** (category B)
+   - Problems in the standard model
+   - EFC provides a qualitative explanation
+   - Lacks a quantitative test
+   - Examples: JWST early galaxies, H₀/S8 tensions
 
-3. **Konsistenssjekker** (C-kategori)
-   - Både standardmodell og EFC predikerer samme
-   - Ikke diskriminerende alene
-   - Eksempel: CMB/ISW correlations
+3. **Consistency checks** (category C)
+   - Both the standard model and EFC predict the same
+   - Not discriminating on their own
+   - Example: CMB/ISW correlations
 
-4. **Framtidige tester** (D-kategori)
-   - Data tilgjengelig eller planlagt
-   - EFC-prediksjoner kan testes
-   - Eksempler: DESI w(z), weak lensing
+4. **Future tests** (category D)
+   - Data available or planned
+   - EFC predictions can be tested
+   - Examples: DESI w(z), weak lensing
 
-5. **Feilklassifiserte påstander** (E-kategori)
-   - Krevde kvantitative prediksjoner som ikke eksisterer
-   - Eksempler: Bullet Cluster, FIRE simulations
+5. **Misclassified claims** (category E)
+   - Demanded quantitative predictions that do not exist
+   - Examples: Bullet Cluster, FIRE simulations
 
-## KORRIGERT EMPIRISK STATUS (januar 2026)
+## CORRECTED EMPIRICAL STATUS (January 2026)
 
-### Faktisk validering:
-- **Antall tester:** 1
-- **Datasett:** SPARC N=175 rotation curves
+### Actual validation:
+- **Number of tests:** 1
+- **Dataset:** SPARC N=175 rotation curves
 - **DOI:** 10.6084/m9.figshare.31045126
-- **Statistikk:** p < 0.0001 (regime struktur), 60% success rate
-- **CMB null-test:** Bestått (p = 0.251)
+- **Statistics:** p < 0.0001 (regime structure), 60% success rate
+- **CMB null-test:** Passed (p = 0.251)
 - **Peer review:** NEI (Figshare preprint)
-- **Begrensninger:** 
+- **Limitations:** 
   - Single dataset
   - Quality confound (ρ = -0.43)
-  - Ingen uavhengig replikasjon
+  - No independent replication
 
-### Tidligere feilaktige påstander:
+### Earlier false claims:
 - ❌ "8 uavhengige observasjonelle tester"
-- ❌ Bullet Cluster som "uavhengig validering"
-- ❌ FIRE simulations som "samme mønster"
-- ❌ JWST/H₀/S8 som "validering" (er motiverende anomalier)
+- ❌ Bullet Cluster as "uavhengig validering"
+- ❌ FIRE simulations as "samme mønster"
+- ❌ JWST/H₀/S8 as "validering" (they are motivating anomalies)
 
-## NESTE KRITISKE STEG
+## NEXT CRITICAL STEP
 
-1. **MNRAS peer review** (EBE paper) - venter på svar
-2. **Uavhengig replikasjon** på andre datasett:
+1. **MNRAS peer review** (EBE paper) - awaiting reply
+2. **Independent replication** on other datasets:
    - LITTLE THINGS survey
    - DMS (Dwarf Masses Survey)
-3. **Kvantitative prediksjoner** for:
+3. **Quantitative predictions** for:
    - JWST number density vs redshift
    - H₀/S8 full likelihood fit
    - Weak lensing shear power spectra
-4. **Diskriminerende null-test** som skiller EFC fra ΛCDM
+4. **Discriminating null-test** that separates EFC from ΛCDM
 
-## REFEREE-TETT SAMMENDRAG (133 ord)
+## REFEREE-READY SUMMARY (133 words)
 
 "Energy-Flow Cosmology (EFC) has been empirically tested against one dataset: 
 SPARC N=175 galaxy rotation curves (DOI: 10.6084/m9.figshare.31045126). The 
@@ -97,26 +97,26 @@ constituting validation. Future discriminating tests include DESI w(z) evolution
 and weak lensing power spectra (Euclid/Rubin)."
 
 ## INTELLECTUAL HONESTY LEVEL
-**Brutal selvkorreksjon** - fra overgenerøse påstander til referee-standard realisme.
+**Brutal self-correction** - from over-generous claims to referee-standard realism.
 
-## KILDE
-Kritisk ekstern feedback som påpekte forskjellen mellom:
-- Empirisk test vs kvalitativ forklaring
-- Konsistenssjekk vs diskriminerende test
-- Framtidig test vs eksisterende validering
+## SOURCE
+Critical external feedback that pointed out the difference between:
+- Empirical test vs qualitative explanation
+- Consistency check vs discriminating test
+- Future test vs existing validation
 
-## DOKUMENT SKAPT
+## DOCUMENT CREATED
 `/repo/docs/validation/EFC_Empirical_Status_Honest_Assessment_2026.md`
 
-## IMPLIKASJON FOR FREMTIDIGE PÅSTANDER
-All EFC-kommunikasjon må nå:
-1. Bruke A/B/C/D/E klassifiseringssystemet eksplisitt
-2. Aldri kalle noe "validering" uten kvantitativ model-vs-data test
-3. Være transparent om begrensninger
-4. Skille mellom "kan forklare" og "har testet og bekreftet"
+## IMPLICATION FOR FUTURE CLAIMS
+All EFC communication must now:
+1. Use the A/B/C/D/E classification system explicitly
+2. Never call anything "validation" without a quantitative model-vs-data test
+3. Be transparent about limitations
+4. Distinguish between "can explain" and "have tested and confirmed"
 
-## LÆRDOMMER
-- **Overgeneralisering er farlig** - ødelegger troverdighet
-- **Referee-standard er strengt** - må følges fra starten
-- **Selvkritikk er styrke** - ikke svakhet
-- **Ett godt datasett >> mange kvalitative påstander**
+## LESSONS
+- **Overgeneralization is dangerous** - it destroys credibility
+- **The referee standard is strict** - it must be followed from the start
+- **Self-criticism is a strength** - not a weakness
+- **One good dataset >> many qualitative claims**

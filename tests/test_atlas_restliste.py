@@ -20,7 +20,7 @@ def test_motor_only_domenene_har_instrumentnoder():
         assert node["buss_domene"] == domene
         assert node["ontology"]["source"] == stroem
         assert node["ontology"]["proveniens"]["kilder"][0]["type"] == "stroem"
-        assert node["stipulasjoner"]["motor_status"] == "instrument — trenger ingen motor"
+        assert node["stipulasjoner"]["motor_status"] == "instrument — needs no engine"
 
 
 def test_every_waiting_node_states_its_state_truthfully():
@@ -44,15 +44,16 @@ def test_every_waiting_node_states_its_state_truthfully():
         else:
             assert stip.get("buss_status"), (
                 f"{node_id} has no bus domain and no written reason")
-            assert "finnes ikke" in stip["buss_status"] or \
-                "ingen" in stip["buss_status"].lower(), (
+            s = stip["buss_status"]
+            assert ("does not exist" in s or "no stream" in s.lower() or
+                    "absent" in s.lower()), (
                 f"{node_id} must say WHY it has no domain: {stip.get('buss_status')!r}")
 
 
 def test_homo_nodene_ligger_i_s_regime():
     assert all(node["maale_paradigme"]["s_regime"] == "S~0.5"
                for node in NODER if node["id"].startswith("homo."))
-    assert all("C(S) ved S~0.5" in node["maale_paradigme"]["klarhetsfunksjon"]
+    assert all("C(S) at S~0.5" in node["maale_paradigme"]["klarhetsfunksjon"]
                for node in NODER if node["id"].startswith("homo."))
 
 

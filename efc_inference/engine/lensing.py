@@ -53,27 +53,27 @@ class EFCLensing(EFCEngine):
         )
 
     # ------------------------------------------------------------------
-    # regime_node() bro (trinn 11): motoren beskriver seg selv i atlaset.
-    # Ærlig om stubben: fysikken er ikke implementert, og selvbeskrivelsen
-    # sier det — den beskriver kontrakten, ikke en beregning.
+    # regime_node() bridge (step 11): the engine describes itself in the atlas.
+    # Honest about the stub: the physics is not implemented, and the
+    # self-description says so — it describes the contract, not a computation.
     # ------------------------------------------------------------------
     def regime_node(self, params_dict: dict) -> dict:
         al = params_dict["alpha_lens"]
         kk = params_dict["kappa_EFC"]
         validity = (
-            f"STUB: konvergensen kappa(theta) — fysikken er IKKE "
-            f"implementert (alpha_lens={al}, kappa_EFC={kk}); motoren "
-            "beskriver kontrakten, ikke beregningen — ingen maaling er "
-            "påstått"
+            f"STUB: the convergence kappa(theta) — the physics is NOT "
+            f"implemented (alpha_lens={al}, kappa_EFC={kk}); the engine "
+            "describes the contract, not the computation — no measurement "
+            "is claimed"
         )
-        law_form = ("(kontrakt: kappa(theta) fra alpha_lens/kappa_EFC — "
-                    "venter på implementering)")
+        law_form = ("(contract: kappa(theta) from alpha_lens/kappa_EFC — "
+                    "awaiting implementation)")
         return {
             "id": "efc.lensing_engine",
             "synlighet": self.SYNLIGHET,
             "perspektiv": "paradigme",
             "stipulasjoner": {"stipulert_av_oss": True,
-            "terskler": ["kappa-avbildningen — observert, ikke modellert — stubbegrense"],
+            "terskler": ["the kappa map — observed, not modelled — stub boundary"],
             "motor": "lensing"},
             "epistemikk": {
                 "sannhetsstatus": "hypotese",
@@ -84,71 +84,71 @@ class EFCLensing(EFCEngine):
             },
             "maale_paradigme": {
                 "koordinater": ["rom", "tid"],
-                "enheter": "motorspesifikke (SI)",
+                "enheter": "engine-specific (SI)",
                 "status": "avledet",
-                "alternativer": ["koordinatfrie formuleringer"]
+                "alternativer": ["coordinate-free formulations"]
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the ladder its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 0,
                 "forelder": None,
                 "tidsskala": "—",
                 "lengdeskala": "—"
-            },            "regime": {"name": "Linsemotoren — kappa(theta) [stub]",
+            },            "regime": {"name": "The lensing engine — kappa(theta) [stub]",
                        "validity": validity, "law_form": law_form},
             "phase": "regime_engine",
             "measure": {
-                "target": "kappa(theta) — konvergens som funksjon av "
-                          "vinkelposisjon",
-                "measurer": "EFCLensing (stub — compute() hever "
+                "target": "kappa(theta) — convergence as a function of "
+                          "angular position",
+                "measurer": "EFCLensing (stub — compute() raises "
                             "NotImplementedError)",
-                "instrument": "observasjonssiden er svak linsing; "
-                              "motoren regner ingenting ennå",
-                "proxy_chain": ["shear -> kappa (observasjon)",
-                                "kappa -> EFC-parametre (venter på "
-                                "fysikken)"],
-                "placement": "motorens plass i L2 er reservert, ikke "
-                             "inntatt",
-                "compression": "ingen kompresjon ennå — kontrakten er "
-                               "definert, verdien ikke",
+                "instrument": "the observation side is weak lensing; "
+                              "the engine computes nothing yet",
+                "proxy_chain": ["shear -> kappa (observation)",
+                                "kappa -> EFC parameters (awaiting "
+                                "the physics)"],
+                "placement": "the place of the engine in L2 is reserved, "
+                             "not taken",
+                "compression": "no compression yet — the contract is "
+                               "defined, the value is not",
             },
-            "episenter": "vinkelrammen: linsingen er L2-strukturens "
-                         "avbildning — kontrakten står, fysikken venter",
+            "episenter": "the angular frame: the lensing is the L2 "
+                         "structure's mapping — the contract stands, "
+                         "the physics waits",
             "buffer": {
-                "role": "strukturens masse-buffer bøyer lyset — "
-                        "mekanismen er observert, motoren modellerer "
-                        "den ikke ennå",
-                "note": "bufferen er virkelighetens, ikke motorens.",
+                "role": "the structure's mass buffer bends light — "
+                        "the mechanism is observed, the engine does not "
+                        "model it yet",
+                "note": "the buffer belongs to reality, not to the engine.",
             },
             "ontology": {
-                "assumes": ["svak linsing er et gyldig avbildnings-"
-                            "instrument", "EFC-deformasjonen lar seg "
-                            "oversette til kappa — uverifisert"],
-                "source": "stub-kontrakt; efc_inference/engine/"
+                "assumes": ["weak lensing is a valid imaging instrument", "The EFC deformation can be "
+                            "translated into kappa — unverified"],
+                "source": "stub contract; efc_inference/engine/"
                           "lensing.py",
             },
             "observer": {
-                "er_del_av_systemet": True,"bandwidth": "ingen — motoren observerer ikke "
-                                     "ennå",
+                "er_del_av_systemet": True,"bandwidth": "none — the engine does not observe "
+                                     "yet",
                          "awareness": "instrument_window"},
             "emergence": {
-                "loop": "masse -> krumning -> kappa — loopen er "
-                        "observert, ikke modellert her",
+                "loop": "mass -> curvature -> kappa — the loop is "
+                        "observed, not modelled here",
                 "properties": [],
             },
             "fractal": {
-                "pattern": "avbildning som regime — samme mønster som "
-                           "observasjonskjedene i atlaset (analogi)",
-                "note": "stubben bærer mønsteret uten beregningen.",
+                "pattern": "mapping as regime — the same pattern as "
+                           "the observation chains in the atlas (analogy)",
+                "note": "the stub carries the pattern without the computation.",
             },
             "coupling": {
-                "local": "kontrakten er lokal per synslinje",
-                "global": "kappa er L2-avbildningen — koblet til "
-                          "obs.cmb_lensing (OBSERVED_IN, når fysikken "
-                          "finnes)",
-                "empathy_note": "stubben vet hva den ikke kan — og sier "
-                                "det.",
+                "local": "the contract is local per line of sight",
+                "global": "kappa is the L2 mapping — coupled to "
+                          "obs.cmb_lensing (OBSERVED_IN, when the physics "
+                          "exists)",
+                "empathy_note": "the stub knows what it cannot do — and says "
+                                "so.",
             },
         }
