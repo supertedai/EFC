@@ -319,3 +319,58 @@ class TestParserensGrenser:
             '[tool.pytest.ini_options]\n'
             'norecursedirs = ["a", "b", "c", "d", "e"]\n')
         assert d.get("norecursedirs") == ["a", "b", "c", "d", "e"], d
+
+
+class TestBroGatenKjoererISelv:
+    """Bro-gaten maa selv staa i CI — og maa trigges av motorfilene.
+
+    Maalt 2026-09-18 (t_dd5efeec): `tests/test_bro_konvensjon.py` fantes, var
+    grønn lokalt, og ble PAastaatt «registrert i efc-schema-workflowen»
+    baade i commit-meldingen (#504) og i `requirements.txt`. Den sto ikke i
+    CI-kommandoen. I tillegg manglet `efc_inference/engine/**` i
+    trigger-listene, saa en endring som BARE rorte en motor ikke kjorte noen
+    verifikasjon i det hele tatt — det var veien en feil `nivaa`-blokk kunne
+    committes tyst.
+
+    Samme form som `TestVernetKjoererISelv` over: en vakt som ikke kjoeres,
+    er dokumentasjon.
+    """
+
+    BRO_GATE = "tests/test_bro_konvensjon.py"
+    KONVENSJON = "scripts/maintenance/efc_bro_konvensjon.py"
+
+    def _workflow(self) -> dict:
+        pytest.importorskip("yaml")
+        import yaml
+        sti = REPO / ".github" / "workflows" / "efc-schema.yml"
+        return yaml.safe_load(sti.read_text(encoding="utf-8"))
+
+    def test_bro_gaten_staar_i_ci_kommandoen(self) -> None:
+        tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(
+            encoding="utf-8")
+        m = re.search(r"python3 -m pytest ([^\n]+)", tekst)
+        assert m, "fant ingen pytest-kommando i efc-schema.yml"
+        kommand = m.group(1)
+        assert self.BRO_GATE in kommand, (
+            f"{self.BRO_GATE} kjoeres ikke i CI:\n"
+            f"  CI kjorer: {kommand}\n"
+            f"Da kan en motor utstede et annet nivaa enn atlaset uten at "
+            f"noen CI-jobb sier fra — og feilen committes tyst.")
+
+    def test_motorfilene_trigget_jobben(self) -> None:
+        """Uten `efc_inference/engine/**` i path-listene kjorer en endring
+        som bare rorer en motor INGEN verifikasjon — gaten ser den ikke."""
+        on = self._workflow()[True]
+        for hendelse in ("push", "pull_request"):
+            stier = on[hendelse]["paths"]
+            for sti in ("efc_inference/engine/**", self.BRO_GATE,
+                        self.KONVENSJON):
+                assert sti in stier, (
+                    f"`{sti}` mangler under {hendelse} — endringer der "
+                    f"trigger ikke bro-gaten")
+
+    def test_push_og_pr_vokter_samme_filer(self) -> None:
+        on = self._workflow()[True]
+        assert on["push"]["paths"] == on["pull_request"]["paths"], (
+            "push og pull_request maa vokte de samme filene — ellers er "
+            "gaten blind i det ene vinduet")
