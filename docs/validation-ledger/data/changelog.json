@@ -5,6 +5,24 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-09-13",
+      "sha": "849471de3379",
+      "summary": "fix(papers): resolve EFC-R-SPARC.jsonld case collision — keep the rich form, delete the lossy duplicate",
+      "categories": {
+        "papers": 2
+      },
+      "id": "849471de3379"
+    },
+    {
+      "date": "2026-09-18",
+      "sha": "2496ba31a619",
+      "summary": "chore(efc): regenerate AI-friendly artifacts after rebasing the case-collision fix",
+      "categories": {
+        "papers": 1
+      },
+      "id": "2496ba31a619"
+    },
+    {
       "date": "2026-09-18",
       "sha": "94f5c3b90de1",
       "summary": "EFC: registrer proveniensavviket for de fire lyshastighet-DOI-ene + C13-gate (t_20a3c257) (#497)",
@@ -113,7 +131,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "207274adbe1f47a0ccdef66670004e73891482bf",
+    "last_processed_sha": "2496ba31a619dc3b64a334562105dbefdcd20db4",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
