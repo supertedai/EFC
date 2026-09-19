@@ -18,6 +18,7 @@ import socket
 EMNE_VULKAN = "kosmos.jord.tilstand.usgs-vulkan"
 EMNE_HAV = "verden.klima.tilstand.noaa-tides"
 EMNE_PLANTER = "verden.miljo.tilstand.gbif-planter"
+EMNE_DESI_BAO = "kosmos.kosmologi.observasjon.desi-bao"
 
 LEGITIMASJON = os.environ.get("NATS_LEGITIMASJON",
                               "/etc/nats/legitimasjon.env")
@@ -72,6 +73,27 @@ def analyser_planter(melding: dict) -> dict:
     return {"tellinger": tellinger,
             "sum": sum(tellinger.values()),
             "feil": len(melding.get("feil", []))}
+
+
+def analyser_desi_bao(melding: dict) -> dict:
+    """DESI DR2 BAO-observasjon -> hubble/growth-motor-input.
+
+    Bakgrunnen (alpha) er publisert og leses; veksten (fsigma8) venter paa
+    DESI DR2 full-shape og rapporteres som «venter» inntil den finnes i
+    meldingen. Broen dikter aldri en fsigma8-verdi.
+    """
+    alpha = melding.get("alpha")
+    if alpha is None:
+        return {"lesbar": False,
+                "note": "ingen alpha i meldingen — broen venter"}
+    ut = {"lesbar": True,
+          "alpha": alpha,
+          "alpha_usikkerhet": melding.get("alpha_usikkerhet"),
+          "z_eff": melding.get("z_eff"),
+          "kilder": melding.get("kilder", [])}
+    fs8 = melding.get("fsigma8")
+    ut["fsigma8"] = fs8 if fs8 is not None else "awaiting DESI DR2 full-shape"
+    return ut
 
 
 def bro_runde(emner: dict) -> dict:
