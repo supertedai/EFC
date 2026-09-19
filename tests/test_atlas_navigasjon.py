@@ -32,6 +32,12 @@ import pytest
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
+# The interpreter. The navigator runs as a subprocess, so it must be the
+# one RUNNING this test. Measured 2026-09-18: these calls hardcoded a venv
+# path that exists only on the Hermes host — in CI (ubuntu-latest) they
+# died with FileNotFoundError.
+PYTHON = sys.executable
+
 import atlas_navigasjon  # noqa: E402
 
 # Maalt mot origin/main 606b3127, 2026-09-17. Disse er ikke maal — de er
@@ -345,7 +351,7 @@ class TestRefErFaktiskValgt:
     def test_ref_maa_kunne_velges(self):
         import subprocess
         r = subprocess.run(
-            ["/opt/venvs/t_123ed6d9/bin/python",
+            [PYTHON,
              str(REPO / "scripts" / "atlas_navigasjon.py"), str(REPO),
              "--help"], capture_output=True, text=True)
         assert "--ref" in r.stdout, "CLI-en tilbyr ikke --ref"
@@ -354,7 +360,7 @@ class TestRefErFaktiskValgt:
         """En ref som ikke finnes skal si det — ikke falle tilbake."""
         import subprocess
         r = subprocess.run(
-            ["/opt/venvs/t_123ed6d9/bin/python",
+            [PYTHON,
              str(REPO / "scripts" / "atlas_navigasjon.py"), str(REPO),
              "--ref", "finnes/ikke"], capture_output=True, text=True)
         assert r.returncode != 0, "ukjent ref gav exit 0"

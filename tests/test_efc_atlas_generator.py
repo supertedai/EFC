@@ -7,13 +7,22 @@ feilen skal vaere UMULIG aa committe.
 """
 import pathlib
 import subprocess
+import sys
+
+# The interpreter. The generator runs as a subprocess, so it must be the
+# one RUNNING this test — that is the one holding the dependencies,
+# wherever it happens to live. Measured 2026-09-18: this line hardcoded a
+# venv path that exists only on the Hermes host, and in CI
+# (ubuntu-latest) both tests died with FileNotFoundError. A test that
+# passes only on the host is not a gate.
+PYTHON = sys.executable
 
 ROT = pathlib.Path(__file__).resolve().parents[1]
 
 
 def test_data_mjs_er_fersk_etter_regenerering():
     r = subprocess.run(
-        ["/opt/venvs/t_123ed6d9/bin/python",
+        [PYTHON,
          str(ROT / "scripts" / "maintenance" / "efc_atlas_generator.py")],
         capture_output=True, text=True, cwd=ROT, timeout=60)
     assert r.returncode == 0, r.stderr[:400]
@@ -30,7 +39,7 @@ def test_atlas_bygger_uten_feil():
     build.mjs og stripper whitespace. Ikke kall node direkte: det
     overskriver den strippede outputen."""
     r = subprocess.run(
-        ["/opt/venvs/t_123ed6d9/bin/python",
+        [PYTHON,
          str(ROT / "scripts" / "maintenance" / "efc_atlas_generator.py")],
         capture_output=True, text=True, cwd=ROT, timeout=120)
     assert r.returncode == 0, r.stderr[-400:]
