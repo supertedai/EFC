@@ -1,6 +1,6 @@
 # Atlas index
 
-> 116 published nodes · 53 with no group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other) · 7 without evidence · 21 open questions
+> 116 published nodes · 53 without a group yet (20 observations, 18 regime nodes, 11 with an engine, 4 other) · 7 without evidence · 21 open questions
 
 Each row is generated from the same bank as the atlas.
 

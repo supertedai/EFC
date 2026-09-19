@@ -63,9 +63,9 @@ def test_overskriftens_tall_er_utledet_fra_banken():
     grunn = generator.uten_gruppe_grunner(public)
     evidence = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen" for node in public)
     questions = sum(len(node.get("open_questions") or []) for node in public)
-    expected = (f"> {len(public)} published nodes · {ghost} with no group yet "
-                f"({grunn['observasjon']} observations, {grunn['regime']} regime nodes, "
-                f"{grunn['har_motor']} with an engine, {grunn['ovrige']} other) · "
+    assert sum(grunn.values()) == ghost, (grunn, ghost)
+    expected = (f"> {len(public)} published nodes · "
+                f"{generator.uten_gruppe_frase(public, '')} · "
                 f"{evidence} without evidence · {questions} open questions")
     assert expected in text
 
@@ -109,7 +109,7 @@ def test_spliten_summerer_og_flaten_pastaar_ingen_byggestatus():
     assert sum(grunn.values()) == gruppelose, (grunn, gruppelose)
     assert gruppelose > 0, "ingen gruppelose noder — testen er blind"
     # why they are missing, not just that they are
-    talla = [int(x) for x in __import__("re").findall(r"(\d+) [a-z]+", text.split("with no group yet", 1)[1].split(")")[0])]
+    talla = [int(x) for x in __import__("re").findall(r"(\d+) [a-z]+", text.split("without a group yet", 1)[1].split(")")[0])]
     assert talla == list(grunn.values()), (talla, list(grunn.values()))
     for flate in ("docs/efc-atlas/SYSTEM.md", "docs/efc-atlas/atlas.html",
                   "docs/efc-atlas/atlas/data.mjs"):
