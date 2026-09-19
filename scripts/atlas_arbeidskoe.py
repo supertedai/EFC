@@ -152,7 +152,7 @@ def arbeidskoe_ghost(data: dict[str, Any], placement: dict[str, tuple[str, int]]
         rows.append({
             "id": node["id"],
             "intensjon": target,
-            "intensjon_status": "deklarert" if _fylt(target) else "ikke deklarert",
+            "intensjon_status": "declared" if _fylt(target) else "not declared",
             "gruppe": group,
             "kapittel": chapter,
         })
