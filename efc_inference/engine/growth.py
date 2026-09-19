@@ -253,7 +253,7 @@ class EFCGrowth(EFCEngine):
                 "sannhetsstatus": "hypotese",
                 "evidensstatus": "proxy",
                 "konsensusstatus": "minoritet",
-                "sosial_mekanisme": "vår egen ramme — bæres av oss, ikke av feltet; narrativet er vårt eget, og det er en styrke å vite det",
+                "sosial_mekanisme": "The fσ8 numbers are carried by the survey collaborations (BOSS/DESI); the growth ODE with the EFC-deformed H is ours — and since μ=1 is hard-coded, the framework's own channel stands unproven by this engine.",
                 "konsensus_er_ikke_sannhet": True
             },
             "maale_paradigme": {

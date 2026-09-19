@@ -42,7 +42,7 @@ SAMME som atlaset — og naar de to gaar fra hverandre, rettes motoren:
 |---|---|
 | `id` | identiteten er registrert; en motor som utsteder en uregistrert id er ikke koblet til noe |
 | `nivaa.*` | plataa-grafen er atlasets struktur (regel 49-invariantene leser den), og en motor som bare kjenner sine egne parametre kan ikke plassere seg i stigen |
-| `epistemikk.*`, `perspektiv` | sannhets-, evidens- og konsensusstatus er epistemiske påstander om noden |
+| `epistemikk.*`, `perspektiv` | truth, evidence and consensus status are epistemic claims about the node. `sosial_mekanisme` must additionally be INDIVIDUALIZED — see below |
 | `ontology.source` | kilden plasseringen hviler på |
 | `maale_paradigme.alternativer` | hvilke rammer som ble VALGT BORT |
 | `buss_domene`, `ville_falsifisere`, `stipulasjoner.ikke_falsifiserbar_grunn`, `falsifiserbarhet.*`, `analogi.*`, `prediction.*` | kuratert: hva noden ikke sier, hva som ville felle den, hvorfor den ikke kan felles, hvilken analogi den staar i, og en forseglet prediksjon |
@@ -52,6 +52,28 @@ SAMME som atlaset — og naar de to gaar fra hverandre, rettes motoren:
 motoren (en kuratert antakelse motoren ikke kjenner er lov; en motoren
 PÅSTÅR og atlaset ikke har tatt stilling til, er ikke lov). Da feiler testen
 til noen har kuratert den inn i atlaset.
+
+## Both sides saying the same thing is not enough — the text must be individualized
+
+The convention binds engine to atlas, but says nothing about the TEXT being
+good. Measured 2026-09-18 (t_b5d8643c): all 20 engine nodes carried one and
+the same template in `epistemikk.sosial_mekanisme` — 17 the long one, 3 the
+short — with no guard reacting, because `tests/test_epistemikk_v3.py`
+compared only nodes with `perspektiv == "konsensus"` while the engine nodes
+are `minoritet`. Rule 46 calls template text here false traceability: the
+text must state which social forces carry the CLAIM (who says it, who would
+gain, who would lose).
+
+The class was bigger than the engines: 47 nodes shared three texts (30 long,
+7 short ASCII, 10 h2o/optics). All 47 are now individualized — 126 nodes,
+126 distinct texts — and the guard covers the WHOLE population where the
+field is set, with a separate test requiring the field to be non-empty
+everywhere. A node without an individualized mechanism fails
+`test_epistemikk_v3.py`, not only a consensus node.
+
+New nodes (and new engines) hit this guard on purpose: writing a template to
+get moving is exactly what the test forbids. The texts are English (Morten's
+language rule of 2026-09-17), and so are the additions in this document.
 
 ## Ingen tredje eier
 
@@ -94,6 +116,7 @@ kan ikke kurateres uten aa bli feil den dagen parametrene endres.
 | `efc_bro_synk.py --skriv` | skriver de motoreide feltene tilbake (idempotent, formatvakt) |
 | `efc_bro_synk.py --json` | maskinlesbar rapport (til vedlikeholdsrunden) |
 | `tests/test_bro_konvensjon.py` | binder hele klassen: dekning, feltvis likhet, ingen hull, skjema-dekning, og at utelatelsene er begrunnet uten å motsi eierskapet |
+| `tests/test_epistemikk_v3.py` | binder TEKSTEN: `sosial_mekanisme` finnes på hver node og er individualisert (ingen tekst deles av to noder) |
 
 Kanoniske parametre leses fra testmodulen som eier dem — én kilde for testen
 og synken. Motorer der parametrene konstrueres (victron: serier ->
@@ -114,9 +137,25 @@ samme virkeligheten — den klassen drift dette kortet finnes for aa stoppe.
 
 ## Kjente funn som ikke er lukket her
 
-* `epistemikk.sosial_mekanisme` er en MAL paa alle 20 motor-noder i atlaset
-  (17 med lang tekst, 3 med kort). Regel 46 krever individualisert tekst;
-  konvensjonen binder motor til atlas, men sier ikke at teksten er god.
 * `efc.efc_background_engine`s kuraterte korttekst ble erstattet av motorens
   fyldigere selvbeskrivelse da noden ble regenerert (den hadde aldri vært
   avledet). Proveniensen er beholdt i `ontology.source`.
+
+## Closed by this round
+
+* **The TEMPLATE in `epistemikk.sosial_mekanisme`** (found above, measured
+  2026-09-18 in t_b5d8643c): 20 engine nodes carried one template, 17 the
+  long one and 3 the short. Now individualized — and the class turned out to
+  be 47 nodes across THREE templates (30/7/10), not only the engines. The
+  guard is widened from the consensus nodes to the whole population
+  (t_eccc25ef). The texts are English, per Morten's language rule of
+  2026-09-17.
+* **The FORMAT GUARD in `efc_bro_synk.py` was red on main** (measured
+  2026-09-18): `FORMAT` stood at `indent=1` while the file has stood in
+  `indent=2` since #545 (d826235b, a 14197/13691-line rewrite of the whole
+  file). `--sjekk` then refused with '599848 bytes mot 543142', so
+  `make check`'s bridge line failed and `--skriv` could not write at all.
+  The form is now measured against the file and bound in
+  `test_atlaset_staar_i_synkens_format` — a constant that is not bound to
+  the artifact it guards drifts alone. (Found and fixed independently on
+  the open PR #549 as well; the two fixes are the same one-line change.)
