@@ -1,4 +1,4 @@
-"""Tester at den genererte indeksflaten er komplett og lesbar."""
+"""Tests that the generated index surface is complete and readable."""
 from __future__ import annotations
 
 import json
@@ -23,12 +23,12 @@ def _index_lines():
 
 
 def _node_rows():
-    """Nodenes id-er, lest fra den fete hodeparen i hver rad.
+    """The node ids, read from the bold head pair in each row.
 
-    Raden er TO linjer (hode + navngitte detaljer) med vilje: foerste utgave
-    hadde ni unavngitte kolonner, blant dem «1 · nei», og var uleselig. Testen
-    leser derfor id-en der den staar — ikke en kolonneindeks som skjuler at
-    formatet har endret seg.
+    A row is TWO lines (a head plus named details) on purpose: the first
+    version had nine unnamed columns, among them «1 · nei», and was
+    unreadable. The test therefore reads the id where it stands — not a
+    column index that would hide that the format has changed.
     """
     return [m.group(1) for line in _index_lines()
             if (m := re.match(r"^- \*\*[A-Za-z0-9]{1,2} · ([\w.]+)\*\*", line))]
@@ -43,7 +43,7 @@ def test_hver_publiserte_node_staar_noyaktig_en_gang():
 
 
 def test_hver_node_har_navngitte_detaljer():
-    """Et tall uten etikett er en gaate. Kolonnene skal si hva de er."""
+    """A number without a label is a riddle. The columns shall say what they are."""
     detaljer = [line for line in _index_lines() if line.startswith("  ")]
     assert detaljer, "ingen detaljlinjer"
     for linje in detaljer:

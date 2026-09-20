@@ -28,10 +28,12 @@ import pathlib
 ROT = pathlib.Path(__file__).resolve().parents[2]
 BANK = ROT / "schema" / "regime_nodes.jsonld"
 
-#: The formulations that mean «this node stands open». Only the measured ones.
+#: The formulations that mean «this node stands open». Only the measured ones —
+#: the strings are the bank's, so they move with the bank (measured 2026-09-20:
+#: the bank declares them in English under `stipulasjoner.buss_status`).
 AAPNE_FORMULERINGER = (
-    "stroemmen finnes ikke — venter paa konnektor",
-    "ingen buss-vei — emnet finnes ikke som domene i snapshotet",
+    "the stream does not exist — waits for a connector",
+    "no bus route — the subject does not exist as a domain in the snapshot",
 )
 
 

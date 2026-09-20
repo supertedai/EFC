@@ -224,10 +224,10 @@ def test_for_etter_skiller_en_ny_node_fra_en_som_laa_der() -> None:
     uten = bekreft(gammel, "the triple point of water", gen)
     assert uten["dom"] == "ikke_inne"
 
-    med = bekreft(ny, "the triple point of water", gen, atlas_for=gammel)
-    assert med["dom"] == "inne"
-    assert med["noder"][0]["ny_siden_inntaket"] is True
-    assert med["for"]["noder_som_bar_ordene"] == []
+    present = bekreft(ny, "the triple point of water", gen, atlas_for=gammel)
+    assert present["dom"] == "inne"
+    assert present["noder"][0]["ny_siden_inntaket"] is True
+    assert present["for"]["noder_som_bar_ordene"] == []
 
     laa_der = bekreft(ny, "the triple point of water", gen, atlas_for=ny)
     assert laa_der["noder"][0]["ny_siden_inntaket"] is False
@@ -298,7 +298,7 @@ def test_uten_generatortabeller_paastaas_ikke_synlighet() -> None:
 def test_ulesbar_koelinje_kaster_i_stedet_for_aa_bli_stille_hoppet_over(
         tmp_path: Path) -> None:
     fil = tmp_path / "atlas_fragmenter.jsonl"
-    fil.write_text('{"tekst": "a"}\n{ikke json}\n', encoding="utf-8")
+    fil.write_text('{"tekst": "a"}\n{not json}\n', encoding="utf-8")
     with pytest.raises(ValueError):
         L.les_inntak(fil)
 

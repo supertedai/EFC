@@ -1,10 +1,10 @@
-"""Tester for blast-radius-scoreren (t_882cfca, fase 1).
+"""Tests for the blast-radius scorer (t_882cfca, phase 1).
 
-Fixturer per faktor: F, E, P og I testes HVER FOR SEG — en scorer som bare
-testes end-to-end kan ikke skille «faktoren virker ikke» fra «faktoren ble
-aldri truffet». Grensene (1–3/4–7/8–15/16–31/32+) testes på tallene i
-bestillingen, og trigger-overstyringen testes mot en score som ellers ville
-vært «liten» — den skal fortsatt bli blokkerende.
+Fixtures per factor: F, E, P and I are tested EACH ON ITS OWN — a scorer tested
+only end-to-end cannot tell «the factor does not work» from «the factor was
+never hit». The bands (1–3/4–7/8–15/16–31/32+) are tested on the numbers in the
+order, and the trigger override is tested against a score that would otherwise
+have been «small» — it must still block.
 """
 from __future__ import annotations
 
@@ -50,10 +50,11 @@ GYLDIG_POST = {
 
 
 def _git_rot(tmp_path: Path, filer: dict[str, str]) -> Path:
-    """Minimalt git-repo med base-commit og et eierregister som dekker det.
+    """A minimal git repo with a base commit and an ownership register covering it.
 
-    Git-kallene får testens eget miljø (se `_gitmiljo.py`), så en arvet GIT_DIR
-    eller en lokal gitconfig utenfor testen ikke kan avgjøre utfallet.
+    The git calls get the test's own environment (see `_gitmiljo.py`), so an
+    inherited GIT_DIR or a local gitconfig outside the test cannot decide the
+    outcome.
     """
     miljo = rent_gitmiljo(tmp_path / "hjem")
     (tmp_path / "governance").mkdir(parents=True, exist_ok=True)
@@ -73,8 +74,9 @@ def _git_rot(tmp_path: Path, filer: dict[str, str]) -> Path:
 
 
 def _kall(rot: Path, *args: str) -> subprocess.CompletedProcess:
-    # Verktøyet skal måle repoet på `--rot`, ikke det en arvet GIT_DIR eller en
-    # lokal gitconfig peker på — derfor et skrubbet miljø også her.
+    # The tool shall measure the repo at `--rot`, not whatever an inherited
+    # GIT_DIR or a local gitconfig points at — hence a scrubbed environment
+    # here too.
     miljo = rent_gitmiljo(rot / "hjem")
     miljo.update({"GIT_AUTHOR_NAME": "test", "GIT_AUTHOR_EMAIL": "t@e.org"})
     return subprocess.run([sys.executable, str(SCRIPT), "--rot", str(rot), *args],
@@ -88,7 +90,7 @@ def test_f_faktor_baand():
 
 
 def test_e_faktor_ukjent_eier_og_antall():
-    assert br.e_faktor([], True) == 4, "ukjent eier skal aldri gi lav E"
+    assert br.e_faktor([], True) == 4, "an unknown owner shall never give a low E"
     assert br.e_faktor(["orchestrator"], False) == 1
     assert br.e_faktor(["orchestrator", "researcher"], False) == 2
     assert br.e_faktor(["a", "b", "c"], False) == 3
@@ -112,8 +114,8 @@ def test_i_faktor_per_baand():
     for sti in (".github/workflows/efc-risiko.yml", "governance/risiko/risiko-register.jsonl",
                 "figshare/doi-map.json", "scripts/maintenance/gate_log.py"):
         assert br.i_faktor([sti]) == 4, sti
-    # auth/ er proveniens i dette repoet, ikke credential: mappenavnet alene
-    # skal ikke gi I=4 og privilegium-trigger.
+    # auth/ is provenance in this repo, not credentials: the directory name
+    # alone shall not give I=4 and the privilege trigger.
     assert br.i_faktor(["auth/orcid.json"]) == 2
     assert "privilegium" not in br.triggere(["auth/orcid.json"], False)
     assert br.i_faktor([]) == 1
@@ -144,7 +146,7 @@ def test_registerklasse_mapping():
         == ["grønn", "gul", "gul", "rød", "rød"]
 
 
-# --- ende-til-ende mot et ekte (lite) git-repo ----------------------------
+# --- end to end against a real (small) git repo ---------------------------
 
 def test_cli_maaler_faktorene_og_gir_material(tmp_path):
     rot = _git_rot(tmp_path, {"scripts/a.py": "x\n", "tests/test_a.py": "y\n"})
@@ -164,7 +166,7 @@ def test_cli_utracket_fil_telles_med(tmp_path):
     (rot / "tests").mkdir(exist_ok=True)
     (rot / "tests" / "ny.py").write_text("ny\n", encoding="utf-8")
     ut = json.loads(_kall(rot, "--diff", "HEAD", "--json").stdout)
-    assert "tests/ny.py" in ut["filer"], "en kjøring før commit skal se nye filer"
+    assert "tests/ny.py" in ut["filer"], "a run before commit shall see new files"
 
 
 def test_cli_ukjent_eier_gir_E4_og_kritisk(tmp_path):
@@ -181,7 +183,7 @@ def test_cli_gate_nekter_uten_og_slipper_med_menneskelig_beslutning(tmp_path):
     r = _kall(rot, "--diff", "HEAD", "--json", "--gate", "--change-id", "t_deadbeef")
     ut = json.loads(r.stdout)
     assert ut["klasse"] == "blokkerende" and ut["triggere"] == ["gate-endring"]
-    assert r.returncode == 1, "gaten skal nekte uten menneskelig beslutning"
+    assert r.returncode == 1, "the gate shall refuse without a human decision"
 
     post = dict(GYLDIG_POST)
     post.update({"gate_decision": "godkjent", "gate_besluttet_av": "menneske"})
@@ -194,7 +196,7 @@ def test_cli_gate_nekter_uten_og_slipper_med_menneskelig_beslutning(tmp_path):
 
 
 def test_gate_krever_beslutning_per_post_ikke_per_change_id(tmp_path):
-    """F2: én godkjent post dekker IKKE en annen gate-post som fortsatt venter."""
+    """F2: one approved post does NOT cover another gate post that still waits."""
     rot = _git_rot(tmp_path, {".github/workflows/y.yml": "on: push\n"})
     (rot / ".github" / "workflows" / "y.yml").write_text("on: pull_request\n", encoding="utf-8")
     reg = rot / "governance" / "risiko" / "risiko-register.jsonl"
@@ -204,7 +206,7 @@ def test_gate_krever_beslutning_per_post_ikke_per_change_id(tmp_path):
     reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
                    json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # Én godkjent, én venter → gaten er fortsatt ikke oppfylt.
+    # One approved, one waiting → the gate is still not satisfied.
     p1.update({"gate_decision": "godkjent", "gate_besluttet_av": "menneske"})
     reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
                    json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -212,9 +214,9 @@ def test_gate_krever_beslutning_per_post_ikke_per_change_id(tmp_path):
     ut = json.loads(r.stdout)
     assert ut["gate"]["oppfylt"] is False
     assert ut["gate"]["venter"] == ["RISK-BLAST_RADIUS-0002"]
-    assert r.returncode == 1, "én godkjent post skal ikke slippe en ventende post gjennom"
+    assert r.returncode == 1, "one approved post shall not let a waiting post through"
 
-    # Begge godkjent → gaten er oppfylt og --gate slipper gjennom.
+    # Both approved → the gate is satisfied and --gate lets it through.
     p2.update({"gate_decision": "godkjent", "gate_besluttet_av": "menneske"})
     reg.write_text(json.dumps(p1, ensure_ascii=False) + "\n" +
                    json.dumps(p2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -225,8 +227,9 @@ def test_gate_krever_beslutning_per_post_ikke_per_change_id(tmp_path):
 
 
 def test_cli_slettet_fil_telles_med(tmp_path):
-    """En sletting er den mest irreversible endringen — den skal ikke kunne
-    forsvinne ut av målingen fordi den ikke er en «endring» i filtrets øyne."""
+    """A deletion is the most irreversible change — it shall not be able to
+    disappear from the measurement because it is not a «change» in the filter's
+    eyes."""
     rot = _git_rot(tmp_path, {"docs/public/side.html": "<h1>krav</h1>\n"})
     (rot / "docs" / "public" / "side.html").unlink()
     ut = json.loads(_kall(rot, "--diff", "HEAD", "--json").stdout)
@@ -239,7 +242,7 @@ def test_cli_tom_diff_er_liten_men_ukjent_ref_er_verktoyfeil(tmp_path):
     ut = json.loads(_kall(rot, "--diff", "HEAD", "--json").stdout)
     assert ut["antall_filer"] == 0 and ut["klasse"] == "liten"
     r = _kall(rot, "--diff", "finnes-ikke-ref", "--json")
-    assert r.returncode == 2, "en måling som ikke kunne gjøres er ikke «ingen risiko»"
+    assert r.returncode == 2, "a measurement that could not be made is not «no risk»"
     assert json.loads(r.stdout)["feil"][0]["type"] == "tool_error"
 
 

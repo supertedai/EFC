@@ -1,42 +1,43 @@
-"""Et git-miljø som ikke arves fra kjøringen rundt testen.
+"""A git environment that is not inherited from the run around the test.
 
-Testene som lager sitt eget lille git-repo i `tmp_path` er ikke isolert bare
-fordi repoet deres er det. `git` leser også omgivelsen:
+The tests that build their own little git repo in `tmp_path` are not isolated
+just because their repo is. `git` also reads the environment around it:
 
-  * GIT_DIR / GIT_WORK_TREE / GIT_INDEX_FILE / GIT_COMMON_DIR peker git på et
-    ANNET repo enn katalogen kallet kjører i. En test (eller en wrapper) som
-    setter én av dem, endrer da hva alle senere git-kall gjør.
-  * ~/.gitconfig kan inneholde `commit.gpgsign`, `init.defaultBranch` og
-    `diff.external` — den siste gjør en diff tom, altså usynlig.
+  * GIT_DIR / GIT_WORK_TREE / GIT_INDEX_FILE / GIT_COMMON_DIR point git at a
+    DIFFERENT repo than the directory the call runs in. A test (or a wrapper)
+    that sets one of them then changes what every later git call does.
+  * ~/.gitconfig can carry `commit.gpgsign`, `init.defaultBranch` and
+    `diff.external` — the last one makes a diff empty, i.e. invisible.
 
-Målt 2026-09-18: med en arvet GIT_DIR feilet 9 tester i test_risiko_register.py
-og test_blast_radius.py; med `commit.gpgsign = true` i en lokal gitconfig falt
-begge append_only-testene. Utfallet skal komme fra fixturen, ikke fra maskinen.
+Measured 2026-09-18: with an inherited GIT_DIR, 9 tests in
+test_risiko_register.py and test_blast_radius.py failed; with
+`commit.gpgsign = true` in a local gitconfig both append_only tests fell. The
+outcome shall come from the fixture, not from the machine.
 
-Bruk: `env=RENT_GIT` eller `env=rent_gitmiljo(tmp_path / "hjem")` på HVERT
-git-kall i testen.
+Use: `env=RENT_GIT` or `env=rent_gitmiljo(tmp_path / "hjem")` on EVERY git
+call in the test.
 """
 from __future__ import annotations
 
 import os
 from pathlib import Path
 
-# Variabler som flytter hvilket repo git snakker med.
+# Variables that move which repo git talks to.
 AMBARTE_REPO_VARS = (
     "GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE",
     "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
     "GIT_CEILING_DIRECTORIES",
 )
 
-# Variabler som kan bytte ut eller overstyre konfigurasjonen.
+# Variables that can swap out or override the configuration.
 AMBARTE_CONFIG_VARS = ("GIT_CONFIG", "GIT_CONFIG_GLOBAL", "GIT_CONFIG_SYSTEM")
 
 
 def rent_gitmiljo(hjem: Path) -> dict[str, str]:
-    """Miljøet et git-kall i en test skal bruke.
+    """The environment a git call in a test shall use.
 
-    Hjemmemappa er en fersk katalog under `tmp_path`, så ~/.gitconfig og
-    XDG-konfigurasjonen til den som kjører suiten er utenfor rekkevidde.
+    The home directory is a fresh directory under `tmp_path`, so ~/.gitconfig
+    and the XDG configuration of whoever runs the suite are out of reach.
     """
     hjem = Path(hjem)
     (hjem / ".config").mkdir(parents=True, exist_ok=True)

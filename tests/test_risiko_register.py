@@ -130,7 +130,7 @@ def test_fil_validering_duplikat_og_ukjent_innhold(tmp_path):
     feil = vr.valider_innhold(register, EIERREGISTER, tmp_path)
     assert "duplicate_risk_id" in {f["type"] for f in feil}
 
-    register.write_text("{ikke json}\n", encoding="utf-8")
+    register.write_text("{not json}\n", encoding="utf-8")
     assert "invalid_json" in {f["type"] for f in vr.valider_innhold(register, EIERREGISTER, tmp_path)}
 
     assert "missing_file" in {f["type"] for f in
@@ -147,24 +147,24 @@ def test_registerets_egne_filer_ma_ha_eier(tmp_path):
                               uten, tmp_path)
     assert any(f["type"] == "unowned_file" and
                f["file"] == "governance/risiko/risiko-register.jsonl" for f in feil), feil
-    med = {"owners": ["orchestrator"], "components": [
+    covering = {"owners": ["orchestrator"], "components": [
         {"id": "rotfiler", "owner": "orchestrator", "coverage_glob": ["governance/**"]}]}
     assert vr.valider_innhold(tmp_path / "governance" / "risiko" / "risiko-register.jsonl",
-                              med, tmp_path) == []
+                              covering, tmp_path) == []
 
 
 def _git(*args: str, cwd: Path, miljo: dict[str, str]) -> subprocess.CompletedProcess:
-    """Ett git-kall med testens eget miljø — se `_gitmiljo.py`."""
+    """One git call with the test's own environment — see `_gitmiljo.py`."""
     return subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@e.org", *args],
                           cwd=cwd, env=miljo, capture_output=True, text=True, check=True)
 
 
 def _git_repo(tmp_path: Path) -> tuple[str, dict[str, str]]:
-    """Et ferskt, lite git-repo med registeret i første commit.
+    """A fresh, small git repo with the register in the first commit.
 
-    Returnerer (base-sha, miljø). Hjemmemappa ligger i `tmp_path`, og
-    GIT_DIR/GIT_* er skrubbet bort: utfallet skal komme fra denne fixturen, ikke
-    fra hva andre tester eller maskinen tilfeldigvis hadde satt.
+    Returns (base sha, environment). The home directory lives in `tmp_path`,
+    and GIT_DIR/GIT_* are scrubbed away: the outcome shall come from this
+    fixture, not from what other tests or the machine happened to set.
     """
     miljo = rent_gitmiljo(tmp_path / "hjem")
     _git("init", "-q", cwd=tmp_path, miljo=miljo)
@@ -184,10 +184,10 @@ def test_append_only_er_en_git_egenskap(tmp_path):
                         json.dumps({**GYLDIG, "risk_id": "RISK-GAP-0002", "type": "GAP",
                                     "related_ids": ["RISK-BLAST_RADIUS-0001"]},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
-    assert vr.append_only(base, tmp_path) == [], "en ny linje er lov"
+    assert vr.append_only(base, tmp_path) == [], "a new line is allowed"
 
-    _git("commit", "-qam", "legg til", cwd=tmp_path, miljo=miljo)
-    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "endret"}, ensure_ascii=False) + "\n",
+    _git("commit", "-qam", "add", cwd=tmp_path, miljo=miljo)
+    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "changed"}, ensure_ascii=False) + "\n",
                         encoding="utf-8")
     feil = vr.append_only(base, tmp_path)
     assert [f["type"] for f in feil] == ["not_append_only"], feil
@@ -195,11 +195,11 @@ def test_append_only_er_en_git_egenskap(tmp_path):
 
 
 def test_append_only_tillater_gatebeslutning_men_ikke_annet(tmp_path):
-    """Menneskets beslutningssti er det ENE unntaket fra append-only.
+    """The human decision path is the ONE exception to append-only.
 
-    F1: å flippe lukkefeltene (status, gate_decision, gate_besluttet_av,
-    sist_vurdert) på en post er lovlig — det er menneskets gatebeslutning.
-    Alt annet (endring av et annet felt, sletting) er fortsatt forbudt.
+    F1: flipping the closing fields (status, gate_decision, gate_besluttet_av,
+    sist_vurdert) on a post is allowed — that is the human's gate decision.
+    Everything else (changing another field, deletion) is still forbidden.
     """
     register = tmp_path / "governance" / "risiko" / "risiko-register.jsonl"
     register.parent.mkdir(parents=True)
@@ -210,28 +210,28 @@ def test_append_only_tillater_gatebeslutning_men_ikke_annet(tmp_path):
     besluttet = {**GYLDIG, "status": "lukket", "gate_decision": "godkjent",
                  "gate_besluttet_av": "menneske", "sist_vurdert": "2026-09-18"}
     register.write_text(json.dumps(besluttet, ensure_ascii=False) + "\n", encoding="utf-8")
-    assert vr.append_only(base, tmp_path) == [], "gatebeslutningen er det ene unntaket"
+    assert vr.append_only(base, tmp_path) == [], "the gate decision is the one exception"
 
-    # (b) et annet felt (rest_risiko) endret uten beslutning — fortsatt forbudt.
-    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omskrevet"},
+    # (b) another field (rest_risiko) changed without a decision — still forbidden.
+    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "rewritten"},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
     assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
 
-    # (c) en post slettet — fortsatt forbudt.
+    # (c) a post deleted — still forbidden.
     register.write_text("", encoding="utf-8")
     assert [f["type"] for f in vr.append_only(base, tmp_path)] == ["not_append_only"]
 
 
 def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch):
-    """Registerets append-only-gate må ikke kunne gjøres blind utenfra.
+    """The register's append-only gate must not be blindable from outside.
 
-    En git-konfigurasjon utenfor prosessen kan bytte ut selve diffen:
-    `diff.external` (eller GIT_EXTERNAL_DIFF) kjører en vilkårlig kommando i
-    stedet for git, en textconv-driver kan gjøre innholdet tomt, og en
-    diff-driver med `binary = true` lar git svare «Binary files differ» uten
-    noen fjernede linjer. Da ser gaten ingen fjernede linjer — og et reelt
-    linjebrudd på registeret ville passert med exit 0. Målt 2026-09-18: alle
-    tre kanalene gjorde nøyaktig det.
+    A git configuration outside the process can swap out the diff itself:
+    `diff.external` (or GIT_EXTERNAL_DIFF) runs an arbitrary command instead of
+    git, a textconv driver can empty the content, and a diff driver with
+    `binary = true` lets git answer «Binary files differ» without any removed
+    lines. Then the gate sees no removed lines — and a real line break on the
+    register would have passed with exit 0. Measured 2026-09-18: all three
+    channels did exactly that.
 
     The canaries are deliberate: they prove FIRST that the poisoning works on a
     raw `git diff`. Without them the test could go green because the channel was
@@ -243,8 +243,8 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
     (tmp_path / ".gitattributes").write_text("*.jsonl diff=jsonl\n", encoding="utf-8")
     base, miljo = _git_repo(tmp_path)
 
-    # Lovbruddet: rest_risiko (utenfor lukkefeltene) skrives om — ingenting legges til.
-    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "omkrevet"},
+    # The violation: rest_risiko (outside the closing fields) is rewritten — nothing is added.
+    register.write_text(json.dumps({**GYLDIG, "rest_risiko": "rewritten"},
                                    ensure_ascii=False) + "\n", encoding="utf-8")
 
     # --- Channel 1: diff.external (GIT_EXTERNAL_DIFF) + textconv. ---
@@ -258,7 +258,7 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
                          cwd=tmp_path, env=kanar, capture_output=True, text=True, check=True)
     assert not [ln for ln in raa.stdout.splitlines()
                 if ln.startswith("-") and not ln.startswith("---")], \
-        "kanarifuglen er ikke blind — da måler denne prøven ingenting"
+        "the canary is not blind — then this probe measures nothing"
 
     monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(forgiftet))
     monkeypatch.setenv("GIT_EXTERNAL_DIFF", "/bin/true")
@@ -268,8 +268,8 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
     # --- Channel 2: a diff driver with binary = true. ---
     # `.gitattributes` in the tree points `*.jsonl` at the driver `jsonl`;
     # with `binary = true` git answers "Binary files differ" instead
-    # for å vise fjernede linjer. --no-ext-diff og --no-textconv stenger ikke
-    # dette — bare --text gjør det (målt: git 2.53.0).
+    # to show removed lines. --no-ext-diff and --no-textconv do not close
+    # this — only --text does (measured: git 2.53.0).
     binaer = tmp_path / "binaer-gitconfig"
     binaer.write_text("[diff \"jsonl\"]\n\tbinary = true\n", encoding="utf-8")
     binaer_kanar = {k: v for k, v in miljo.items() if k != "GIT_EXTERNAL_DIFF"}
@@ -280,7 +280,7 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
                           text=True, check=True)
     assert not [ln for ln in raa2.stdout.splitlines()
                 if ln.startswith("-") and not ln.startswith("---")], \
-        "binary-kanarifuglen er ikke blind — da måler denne prøven ingenting"
+        "the binary canary is not blind — then this probe measures nothing"
 
     monkeypatch.setenv("GIT_CONFIG_GLOBAL", str(binaer))
     monkeypatch.delenv("GIT_EXTERNAL_DIFF", raising=False)
@@ -289,7 +289,7 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
 
 
 def test_det_ekte_registeret_validerer():
-    """Readback av registeret i treet — ikke bare av en fixture."""
+    """Readback of the register in the tree — not only of a fixture."""
     register = ROT / "governance" / "risiko" / "risiko-register.jsonl"
     eierregister = json.loads((ROT / "governance" / "ownership-register.json").read_text(
         encoding="utf-8"))
@@ -300,4 +300,4 @@ def test_det_ekte_registeret_validerer():
     assert {p["type"] for p in linjer} == {"HAZID", "BLAST_RADIUS"}
     for p in linjer:
         assert p["gate_required"] is True and p["gate_decision"] == "venter", \
-            "en åpen rød post skal vente på mennesket, ikke på automatikken"
+            "an open red post shall wait for the human, not for the automation"

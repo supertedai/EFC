@@ -3,9 +3,9 @@
 Measured 2026-09-18: `--plasser "heat pump with CO2 as refrigerant"` answered
 «svakt» and suggested `homo.fluxus, homo.homeostase_buffer, homo.hjerte_syklus,
 homo.cellesyklus` — a heat pump got the heart cycle as its neighbour. The cause was
-that the matcher filtered only on word length > 2, so «med» and «som» became
-search words. They stand in almost every node text, and the list that came out
-LOOKED like a placement suggestion.
+that the matcher filtered only on word length > 2, so the Norwegian words for
+`with` and `as` — two letters each — became search words. They stand in almost
+every node text, and the list that came out LOOKED like a placement suggestion.
 
 The class is the same as elsewhere in the house: a fallback that answers. The
 tests below lock that the neighbours are either carried by a word that means
