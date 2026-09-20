@@ -18,7 +18,8 @@ Three requirements from that review, all met here:
    in a *task* about re-ingesting incomplete DOIs.
 3. **No placement without a hit.** Every page listed for a DOI is found in
    that file. The old report listed `10.17863/cam.690` as occurring on the
-   Atlas; `git grep` found it only in the report itself.
+   Atlas; `git grep` found it only in the report itself. (That DOI now
+   legitimately appears in a `Planned` row and is excluded by requirement 2.)
 
 The canon is fetched **directly from ORCID**, not from an intermediate file.
 
@@ -43,6 +44,18 @@ ORCID = "0009-0002-4860-5095"
 
 DOI_RE = re.compile(r"10\.\d{4,9}/[^\s\"<>&),;]+")
 PLANNED_RE = re.compile(r'<tr[^>]*data-result="Planned"[^>]*>.*?</tr>', re.S)
+
+
+def _norm(doi: str) -> str:
+    """Normalize a DOI for comparison: strip trailing punctuation, lowercase.
+
+    One function used everywhere a DOI is compared, so the exclusion set and
+    the scan loop cannot drift apart again. The old code built ``excluded``
+    with ``.lower()`` but checked membership with ``.rstrip(".").lower()``,
+    which let a Planned-row DOI ending in punctuation (e.g. ``CAM.690.``)
+    slip through as a false positive.
+    """
+    return doi.rstrip(".,;:)]}").lower()
 
 
 def orcid_canon() -> set[str]:
@@ -85,16 +98,20 @@ def registered_entries() -> dict[str, str]:
     return ut
 
 
-def scan() -> dict[str, set[str]]:
-    """DOI → pages it actually occurs on. Planned rows are skipped."""
+def scan(directory: Path = PUBLIC) -> dict[str, set[str]]:
+    """DOI → pages it actually occurs on. Planned rows are skipped.
+
+    ``directory`` is a test seam: it defaults to ``docs/public/``, but tests
+    pass a temp dir so they do not depend on the live public surface.
+    """
     found: dict[str, set[str]] = {}
-    for path in sorted(PUBLIC.glob("*.html")):
+    for path in sorted(directory.glob("*.html")):
         h = path.read_text(encoding="utf-8", errors="replace")
         excluded = set()
         for row in PLANNED_RE.findall(h):
-            excluded.update(m.lower() for m in DOI_RE.findall(row))
+            excluded.update(_norm(m) for m in DOI_RE.findall(row))
         for m in DOI_RE.finditer(h):
-            d = m.group(0).rstrip(".").lower()
+            d = _norm(m.group(0))
             if d in excluded:
                 continue
             found.setdefault(d, set()).add(path.name)
