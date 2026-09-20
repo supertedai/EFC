@@ -2,7 +2,7 @@
 
 _Generated deterministically by `scripts/maintenance/efc_doi_coverage.py` in this repository's own CI. Canon is read directly from ORCID. No timestamp in this file — identical content produces no commit._
 
-**Canon:** 165 works · **Covered:** 165 · **Missing from all pages:** 0 · **Registered external:** 7 · **Unrecognized:** 1 · **Pages scanned:** 14
+**Canon:** 165 works · **Covered:** 165 · **Missing from all pages:** 0 · **Registered external:** 7 · **Unrecognized:** 0 · **Pages scanned:** 14
 
 ## Canonical works not referenced on any public page
 
@@ -13,26 +13,22 @@ _None — full coverage._
 | DOI | role | pages |
 |---|---|---|
 | `10.1007/s41114-022-00040-z` | context | EFC_Gap_Analysis.html, EFC_White_Paper_Series.html |
-| `10.1038/s41550-025-02669-6` | under_confrontation | EFC_Atlas.html, EFC_External_Research_Ledger.html |
+| `10.1038/s41550-025-02669-6` | under_confrontation | EFC_External_Research_Ledger.html |
 | `10.1051/0004-6361/201630295` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1093/mnras/stu2693` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1093/mnras/stx721` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1093/pasj/psw029` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
 | `10.1111/j.1365-2966.2012.21136.x` | input_data | EFC_Gap_Analysis.html, EFC_Predictions.html, EFC_White_Paper_Series.html |
-| `10.17863/cam.690` | external | EFC_Atlas.html |
-| `10.6084/m9.figshare.31144030` | EFC_work | EFC_Atlas.html |
 
 ## Unrecognized DOIs — neither in canon nor registered
 
-| DOI | pages |
-|---|---|
-| `10.1371/journal.pcbi.1004669` | EFC_Atlas.html |
+_None._
 
 ## DOI counts per page
 
 | Page | DOIs |
 |---|---|
-| EFC_Atlas.html | 8 |
+| EFC_Atlas.html | 7 |
 | EFC_Changelog.html | 155 |
 | EFC_Elevator_Pitch.html | 8 |
 | EFC_External_Research_Ledger.html | 6 |
