@@ -544,6 +544,40 @@
                   "minLength": 1,
                   "description": "The measured numbers behind a verdict (R-hat, ESS, divergences, energy/BFMI) and the SCOPE of the measurement. Required on every verdict (`posterior_verifisert`, `inferens_feil`, `ikke_identifiserbar`, `uavklart`), held by tests/test_epistemikk_v7.py. A sampler that converged and a sampler that targeted a DIFFERENT parametrisation than the node's own must not read alike — a verdict without its numbers is an empty word."
                 },
+                "metrikker": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "r_hat",
+                    "bulk_ess",
+                    "tail_ess",
+                    "divergenser",
+                    "energy_bfmi"
+                  ],
+                  "properties": {
+                    "r_hat": {
+                      "type": "number",
+                      "description": "The split-R-hat of the sampled chains. The arbiter's line is < 1.01 — declared on the card (t_bf62ce48) and held by sjekk_verifisering in scripts/atlas_lesing.py, not in this schema: the schema holds the closed shape, the checker holds the line."
+                    },
+                    "bulk_ess": {
+                      "type": "number",
+                      "description": "The bulk effective sample size. The floor is >= 400 (Vehtari et al. 2021), held by sjekk_verifisering."
+                    },
+                    "tail_ess": {
+                      "type": "number",
+                      "description": "The tail effective sample size. The floor is >= 400 (Vehtari et al. 2021), held by sjekk_verifisering."
+                    },
+                    "divergenser": {
+                      "type": "integer",
+                      "description": "The number of problematic divergences. The line is <= 0 (none), held by sjekk_verifisering."
+                    },
+                    "energy_bfmi": {
+                      "type": "number",
+                      "description": "The Bayesian Fraction of Missing Information from the sampler's energy diagnostic. The floor is >= 0.2 (Betancourt 2017), held by sjekk_verifisering."
+                    }
+                  },
+                  "description": "The five arbiter metrics behind `posterior_verifisert`, as NUMBERS the gate can read: r_hat, bulk_ess, tail_ess, divergenser, energy_bfmi. Required on `posterior_verifisert` and no other state (tests/test_epistemikk_v7.py) — the strongest word in the vocabulary must carry the numbers it was reached with, or it is a claim, not a verdict. The THRESHOLDS are held by sjekk_verifisering in scripts/atlas_lesing.py, not in the schema: the schema holds the closed shape, the checker holds the arbiter's line. Optional and closed — NEVER in the enclosing `required`: no existing node must change for the atlas to validate."
+                },
                 "brudd": {
                   "type": "object",
                   "additionalProperties": false,

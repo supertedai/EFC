@@ -43,7 +43,8 @@ sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
 from atlas_lesing import (AtlasLesingFeil, VERIFISERING_AARSAKER,  # noqa: E402
                           VERIFISERING_BRUDD, VERIFISERING_DOMMER,
                           VERIFISERING_KJEDE, VERIFISERING_TILSTANDER,
-                          VERIFISERING_TRANSFORMASJONER, sjekk_verifisering)
+                          VERIFISERING_TRANSFORMASJONER, VERIFISERING_METRIKKER,
+                          VERIFISERING_ARBITER, sjekk_verifisering)
 import efc_schema_check  # noqa: E402
 
 SKJEMA_STI = ROT / "schema" / "regime_node.schema.json"
@@ -145,6 +146,16 @@ def test_vokabularet_finnes_ett_sted_og_koden_er_likt_skjemaet():
     assert felt["required"] == ["tilstand", "instrument"]
     assert props["brudd"]["required"] == ["transformasjon", "aarsak"]
 
+    # The arbiter's metrics: the schema holds the CLOSED SHAPE, the checker
+    # holds the LINE. The two must name the same five fields in the same
+    # order, or the gate and the schema drift apart.
+    metrikker = props["metrikker"]
+    assert tuple(metrikker["properties"]) == tuple(VERIFISERING_METRIKKER)
+    assert metrikker["required"] == list(VERIFISERING_METRIKKER)
+    assert metrikker["additionalProperties"] is False, (
+        "metrikker is not closed — C10 reports it as open")
+    assert tuple(f for f, _, _ in VERIFISERING_ARBITER) == VERIFISERING_METRIKKER
+
     # The chain is named, in order, and the failure states are real positions
     # on it — not synonyms for each other.
     assert VERIFISERING_KJEDE[0] == "fit"
@@ -172,6 +183,18 @@ def test_skjemaet_avviser_en_oppdiktet_tilstand():
     s, bank = _skjema(), _bank()
     node = copy.deepcopy(_node(bank, SPARC_NODER[0]))
     node["epistemikk"]["verifisering"]["tilstand"] = "delvis_verifisert"
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.Draft202012Validator(s).validate(_dok(bank, [node]))
+
+
+@requires_jsonschema
+def test_skjemaet_avviser_metrikker_med_oppdiktet_felt():
+    """metrikker is a closed object: an invented key is a decision, not a word."""
+    s, bank = _skjema(), _bank()
+    node = copy.deepcopy(_node(bank, SPARC_NODER[0]))
+    node["epistemikk"]["verifisering"]["metrikker"] = {
+        "r_hat": 1.005, "bulk_ess": 500, "tail_ess": 500,
+        "divergenser": 0, "energy_bfmi": 0.5, "vibber": "gode"}
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.Draft202012Validator(s).validate(_dok(bank, [node]))
 
@@ -276,6 +299,24 @@ def test_sjekkeren_svarer_ikke_alt_vel_paa_et_atlas_uten_noder():
         sjekk_verifisering({"epistemikk": {}})
 
 
+def test_posterior_verifisert_med_alle_metrikker_innenfor_linja_godtas():
+    """The gate is a LINE, not a ban: a verdict that carries all five numbers
+    within threshold must pass — otherwise `posterior_verifisert` could never
+    be written, and the strongest word would be a dead end rather than a claim
+    one can reach."""
+    bank = _bank()
+
+    def innenfor(v: dict) -> None:
+        v["tilstand"] = "posterior_verifisert"
+        v.pop("brudd", None)
+        v["metrikker"] = {"r_hat": 1.005, "bulk_ess": 1200, "tail_ess": 900,
+                          "divergenser": 0, "energy_bfmi": 0.6}
+
+    assert sjekk_verifisering(_mutert(bank, SPARC_NODER[0], innenfor)) == [], (
+        "a posterior_verifisert with all five metrics within the line was "
+        "rejected — then the gate is a ban, not a line")
+
+
 def _oppdiktet_tilstand(v: dict) -> None:
     v["tilstand"] = "delvis_verifisert"
 
@@ -305,6 +346,29 @@ def _gjetett_aarsak(v: dict) -> None:
     v["brudd"]["aarsak"] = "maybe"
 
 
+def _posterior_uten_metrikker(v: dict) -> None:
+    """The strongest word without the arbiter's five numbers is a claim."""
+    v["tilstand"] = "posterior_verifisert"
+    v.pop("brudd", None)          # a verified chain cannot carry a break
+    v.pop("metrikker", None)
+
+
+def _posterior_med_metrikker_utenfor_linja(v: dict) -> None:
+    """All five present, but R-hat 1.2 does not meet the arbiter's line."""
+    v["tilstand"] = "posterior_verifisert"
+    v.pop("brudd", None)
+    v["metrikker"] = {"r_hat": 1.2, "bulk_ess": 500, "tail_ess": 500,
+                      "divergenser": 0, "energy_bfmi": 0.5}
+
+
+def _posterior_med_manglende_metrikk(v: dict) -> None:
+    """One of the five numbers missing — the shape is closed, so it fails."""
+    v["tilstand"] = "posterior_verifisert"
+    v.pop("brudd", None)
+    v["metrikker"] = {"r_hat": 1.005, "bulk_ess": 500, "tail_ess": 500,
+                      "divergenser": 0}
+
+
 MUTASJONER = [
     ("an invented state", _oppdiktet_tilstand, "closed"),
     ("a state without an instrument", _uten_instrument, "instrument"),
@@ -313,6 +377,12 @@ MUTASJONER = [
     ("a break on an unbroken chain", _brudd_paa_en_hel_kjede, "unbroken"),
     ("an unknown arrow", _ukjent_transformasjon, "transformasjon"),
     ("an invented cause", _gjetett_aarsak, "aarsak"),
+    ("posterior_verifisert without the arbiter's numbers",
+     _posterior_uten_metrikker, "metrikker"),
+    ("posterior_verifisert with a metric outside the line",
+     _posterior_med_metrikker_utenfor_linja, "r_hat"),
+    ("posterior_verifisert with one metric missing",
+     _posterior_med_manglende_metrikk, "energy_bfmi"),
 ]
 
 

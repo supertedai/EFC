@@ -388,6 +388,33 @@ VERIFISERING_BRUDD = ("inferens_feil", "ikke_identifiserbar")
 VERIFISERING_TRANSFORMASJONER = ("identifiability", "sampling", "datakilde")
 VERIFISERING_AARSAKER = ("sampler_feil", "svak_identifikasjon", "multimodalitet",
                          "trakt", "parameter_redundans", "diagnostikk_uavklart")
+# The five arbiter metrics a `posterior_verifisert` verdict must carry, in the
+# order the schema declares them. The schema holds the CLOSED SHAPE of the
+# `metrikker` object; the LINE is held here, because a threshold is a rule the
+# schema's closed dialect cannot express as a conditional (see the block above).
+VERIFISERING_METRIKKER = ("r_hat", "bulk_ess", "tail_ess", "divergenser",
+                          "energy_bfmi")
+# (field, line, operator): R-hat < 1.01 (declared on the card t_bf62ce48),
+# bulk/tail-ESS >= 400 (Vehtari et al. 2021), divergenser <= 0 (none), and
+# energy/BFMI >= 0.2 (Betancourt 2017). The ESS floor is a property of what is
+# estimated, which is why the line is held per field and not as one word.
+VERIFISERING_ARBITER = (
+    ("r_hat", 1.01, "<"),
+    ("bulk_ess", 400, ">="),
+    ("tail_ess", 400, ">="),
+    ("divergenser", 0, "<="),
+    ("energy_bfmi", 0.2, ">="),
+)
+
+
+def _innenfor_terskel(verdi: float, terskel: float, op: str) -> bool:
+    if op == "<":
+        return verdi < terskel
+    if op == ">=":
+        return verdi >= terskel
+    if op == "<=":
+        return verdi <= terskel
+    raise ValueError(f"unknown arbiter operator {op!r}")
 
 
 def sjekk_verifisering(atlas: dict) -> list[str]:
@@ -446,6 +473,26 @@ def sjekk_verifisering(atlas: dict) -> list[str]:
             if not isinstance(diagnostikk, str) or not diagnostikk.strip():
                 ut.append(f"{hvor}: {tilstand} without diagnostikk — a verdict "
                           f"without its numbers is an empty word")
+
+        if tilstand == "posterior_verifisert":
+            # The arbiter's five numbers, or the strongest word is a claim.
+            metrikker = verifisering.get("metrikker")
+            if not isinstance(metrikker, dict):
+                ut.append(f"{hvor}: posterior_verifisert without metrikker — "
+                          f"the arbiter's five numbers are what separates a "
+                          f"verdict from a claim")
+            else:
+                for felt, terskel, op in VERIFISERING_ARBITER:
+                    verdi = metrikker.get(felt)
+                    if not isinstance(verdi, (int, float)) or isinstance(verdi, bool):
+                        ut.append(f"{hvor}: posterior_verifisert without "
+                                  f"metrikker.{felt} — all five arbiter "
+                                  f"numbers are required")
+                        continue
+                    if not _innenfor_terskel(verdi, terskel, op):
+                        ut.append(f"{hvor}: posterior_verifisert with "
+                                  f"metrikker.{felt}={verdi} outside the "
+                                  f"arbiter's line ({op} {terskel})")
 
         brudd = verifisering.get("brudd")
         if tilstand in VERIFISERING_BRUDD:
