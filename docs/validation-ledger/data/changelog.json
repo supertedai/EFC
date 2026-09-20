@@ -6,6 +6,15 @@
   "changes": [
     {
       "date": "2026-09-20",
+      "sha": "b8ebfb16aac1",
+      "summary": "fix(doi): remove HEAD dependence from register and sharpen F7/F1 diagnoses",
+      "categories": {
+        "ledger_data": 3
+      },
+      "id": "b8ebfb16aac1"
+    },
+    {
+      "date": "2026-09-20",
       "sha": "fc8b4735c4e0",
       "summary": "fix(lang): the rest of the repo in English — the ledger twins, the statement graph, tests and maintenance scripts (t_39ee4ff1) (#534)",
       "categories": {
@@ -152,7 +161,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "f7f77eb5f9c2583ebba871c88ae584800c39fd77",
+    "last_processed_sha": "b8ebfb16aac164443d3c791b0a867c8194db0897",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }

@@ -19,10 +19,11 @@ and it is NOT atlas ingestion. It only records which DOIs appear as literal
 Figshare URLs in the two atlas surfaces; it does not assert anything about a
 DOI that is absent from those surfaces beyond "not found as a literal URL".
 
-Reproducibility: output is a pure function of the four source files. The
-deterministic ``input_digest`` is the SHA-256 of those files, so identical
-inputs reproduce byte-identical output; ``measured_on`` records the git HEAD
-for provenance and is informational, not part of the reproducibility key.
+Reproducibility: output is a pure function of the four source files plus this
+generator's own source. The deterministic ``input_digest`` is the SHA-256 of
+those five inputs, so identical inputs reproduce byte-identical output with no
+git-HEAD dependence; provenance of when it was generated is carried by the
+commit itself, never embedded in the artefact.
 
 The failure rule: this generator writes only the three files named above.
 It never edits the atlas node bank, never edits the schema, and never touches
@@ -38,7 +39,6 @@ from __future__ import annotations
 import hashlib
 import json
 import re
-import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -55,13 +55,6 @@ DOI_8 = re.compile(r"(\d{8})$")
 
 # Closed status vocabulary for findings.
 STATUS_VOCAB = ("open", "reviewed_no_conflict_found", "conditional")
-
-
-def _git(*args: str) -> str:
-    r = subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, text=True)
-    if r.returncode != 0:
-        raise SystemExit(f"git {' '.join(args)} failed: {r.stderr.strip()[:200]}")
-    return r.stdout.strip()
 
 
 def _load(path: Path):
@@ -86,6 +79,11 @@ def _input_digest() -> str:
         h.update(p.name.encode("utf-8"))
         h.update(b"\x00")
         h.update(p.read_bytes())
+    # The curated findings live in this generator's source, so the generator
+    # itself is part of the reproducibility contract (outputs are not solely
+    # a function of the four data inputs).
+    h.update(b"generator\x00")
+    h.update(Path(__file__).read_bytes())
     return h.hexdigest()
 
 
@@ -121,19 +119,25 @@ def _findings() -> list[dict]:
     return [
         {
             "id": "F1",
-            "title": "31942821 metadata drift: ansatz presented as derived, plus sqrt transcription",
-            "location": "docs/papers/efc/Derivation_of_the_Entropy_Production/{index.json,src,PDF}",
+            "title": "31942821 metadata drift: ansatz presented as derived, plus sqrt transcription in x_of_rho",
+            "location": "docs/papers/efc/Derivation_of_the_Entropy_Production/index.json (metadata only; PDF + code are unambiguous)",
             "claim": (
-                "index.json description/main_finding present the phenomenological ansatz "
-                "rho/(rho+rho_crit) as a 'derived result'; key_result, the code and the PDF "
-                "Section 5-6 state the derived form as Scenario B rho^(3/2)/(rho+rho_crit) "
-                "with the ansatz as an approximation (~20% deviation). There is also a sqrt "
-                "transcription discrepancy (g = sqrt(beta*rho/a0) vs beta*rho)."
+                "index.json description (line 5) and main_finding (line 55) present the "
+                "phenomenological ansatz rho/(rho+rho_crit) as the 'derived' result, while key_result "
+                "(line 108), the code (gamma_total = rho^1.5/(1+rho), gamma_phenomenological = "
+                "rho/(1+rho)) and the PDF Section 5-6 all state the derived form is Scenario B "
+                "rho^(3/2)/(rho+rho_crit) with the ansatz as an approximation (~20%). Separately, "
+                "x_of_rho (line 38) writes 'x = g/a0 = sqrt(beta*rho/a0)' but the middle term should "
+                "be sqrt(g/a0) (with g = beta*rho, x = sqrt(g/a0) = sqrt(beta*rho/a0)), matching the "
+                "code's x_from_rho. Both are index.json-metadata-only deviations from the normative "
+                "PDF + code."
             ),
             "status": "open",
             "next": (
-                "Reconcile index.json metadata to label the ansatz as a phenomenological "
-                "approximation; confirm the sqrt form against the PDF equation."
+                "Metadata-only reconciliation: in index.json, label rho/(rho+rho_crit) as the "
+                "phenomenological approximation and point description/main_finding at the Scenario B "
+                "rho^(3/2) key_result; correct the x_of_rho middle term to sqrt(g/a0). PDF and code "
+                "are normative and stay untouched."
             ),
         },
         {
@@ -222,21 +226,26 @@ def _findings() -> list[dict]:
         },
         {
             "id": "F7",
-            "title": "Sigma = mu(1+eta)/2: joint typical values give 0.987, declared 1.05",
-            "location": "31876324 observables.sigma + survival_valley",
+            "title": "Survival valley is overdetermined: Sigma = mu(1+eta)/2 is an exact identity",
+            "location": "31876324 observables.sigma + survival_valley (source: 31368433 fit, not a derivation)",
             "claim": (
-                "With mu=0.94 and eta=1.10, Sigma = mu(1+eta)/2 = 0.987, but "
-                "sigma.typical_value = 1.05 and survival_valley.sigma_range = [1.03,1.07]. "
-                "A target Sigma=1.05 at mu=0.94 requires eta ~ 1.234. This is a conditional "
-                "arithmetic issue: it is a real inconsistency only if the three 'typical' "
-                "values are asserted for the same scale, epoch, parameter point, convention "
-                "and approximation order, which is not yet established."
+                "Sigma = mu(1+eta)/2 is an EXACT identity in the linear parameterisation, "
+                "not a fit relation: once mu and eta are chosen, Sigma is already fixed. "
+                "The survival valley therefore states three boxes (mu in [0.93,0.96], eta ~ 1.10, "
+                "Sigma in [1.03,1.07]) where only two are free. With mu in [0.93,0.96] and "
+                "eta=1.10, the identity gives Sigma in [0.9765,1.008], which does NOT overlap the "
+                "declared [1.03,1.07]; forcing Sigma >= 1.03 at mu <= 0.96 requires eta >= 1.1458. "
+                "survival_valley.source points to 31368433 (systematic localisation), so the valley "
+                "is a fit artefact, not a derivation — the three numbers were never checked against "
+                "the identity."
             ),
             "status": "conditional",
             "next": (
-                "Verify whether the mu/eta/Sigma typical values are one shared parameter point. "
-                "If yes, the declaration is arithmetically inconsistent; if not, downgrade to "
-                "explained_not_conflict."
+                "Two reconciliation options, both require Morten's word (touches published DOI "
+                "content): (1) reduce the valley to (mu, eta) and derive Sigma from the identity "
+                "(cleanest); or (2) admit the fit treated Sigma independently and report the tension "
+                "against the identity as its own finding. Do NOT silently change eta to 1.146 to "
+                "force agreement."
             ),
         },
         {
@@ -267,10 +276,6 @@ def build() -> tuple[dict, dict, dict]:
     public_atlas = _load(PUBLIC_ATLAS)
 
     input_digest = _input_digest()
-    try:
-        measured_on = _git("rev-parse", "HEAD")
-    except SystemExit:
-        measured_on = "unknown"
 
     # Canonical inventory: one row per unique DOI, with every repo-dir alias.
     papers = dmap.get("papers", [])
@@ -336,7 +341,6 @@ def build() -> tuple[dict, dict, dict]:
         "name": "EFC DOI coverage and consistency matrix",
         "schema": "efc-doi-coverage-matrix/1",
         "input_digest": input_digest,
-        "measured_on": measured_on,
         "sources": {
             "inventory": "figshare/doi-map.json",
             "classification": "docs/validation-ledger/data/evidence-register.json",
@@ -404,7 +408,6 @@ def build() -> tuple[dict, dict, dict]:
         "name": "EFC DOI atlas-ingest backlog (atlas scope, missing from atlas)",
         "schema": "efc-doi-coverage-pending/1",
         "input_digest": input_digest,
-        "measured_on": measured_on,
         "count": len(pending),
         "disposition": "semantic_mapping",
         "note": (
@@ -420,7 +423,6 @@ def build() -> tuple[dict, dict, dict]:
         "name": "EFC DOI coverage and consistency — findings",
         "schema": "efc-doi-coverage-findings/1",
         "input_digest": input_digest,
-        "measured_on": measured_on,
         "status_vocabulary": list(STATUS_VOCAB),
         "counts": {
             "open": sum(1 for f in findings if f["status"] == "open"),

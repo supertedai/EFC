@@ -103,7 +103,6 @@ def test_generated_files_match_build(built):
     """The committed registers must equal build() output (no hand-editing)."""
     matrix, findings, backlog = built
     for path, doc in ((MATRIX, matrix), (FINDINGS, findings), (PENDING, backlog)):
-        if not path.exists():
-            continue
+        assert path.exists(), f"missing generated register: {path.name}"
         on_disk = json.loads(path.read_text(encoding="utf-8"))
         assert on_disk == doc, path.name
