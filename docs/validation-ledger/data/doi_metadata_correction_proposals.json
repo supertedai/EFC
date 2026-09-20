@@ -1,0 +1,78 @@
+{
+ "name": "EFC DOI metadata correction proposals",
+ "schema": "efc-doi-metadata-corrections/1",
+ "input_digest": "da26203004c6e4ef21866aa473b20614cdd3b80cad5475e96ceea61855b59e40",
+ "note": "Proposals only; nothing is edited. Each 'current' value is read live from 31942821/index.json by JSON pointer at build time, so a drifted file changes this register instead of silently going stale. Each entry requires author word because it touches a published DOI package. PDF and code are normative and are never the target of these proposals.",
+ "corrections": [
+  {
+   "id": "corr-F1-description",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/description",
+   "problem": "presents the saturating ansatz rho/(rho+rho_crit) as the derived result; the derived form is Scenario B rho^(3/2)/(rho+rho_crit)",
+   "proposed": "State the derived form as Scenario B Gamma(rho) ~ rho^(3/2)/(rho+rho_crit) and label rho/(rho+rho_crit) as a phenomenological approximation (~20% deviation).",
+   "normative_basis": [
+    "PDF Section 5-6 (Scenario B rho^(3/2) is the derived form)",
+    "src/entropy_production.py gamma_total vs gamma_phenomenological",
+    "index.json key_result (Scenario B)"
+   ],
+   "requires_author_word": true,
+   "status": "proposed",
+   "current": "Derives the entropy production function Γ(ρ) from first principles using Bose–Einstein occupation statistics of grid modes and the von Neumann entropy functional. The work yields a saturating form Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) with ρcrit emerging from the grid-mode energy scale a0, satisfying low-density linearity and high-density saturation. It also clarifies that Γ(ρ) and the gravitational response μBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
+   "verified_against_file": true
+  },
+  {
+   "id": "corr-F1-mainfinding",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/key_results/main_finding",
+   "problem": "presents the saturating ansatz rho/(rho+rho_crit) as the derived result; the derived form is Scenario B rho^(3/2)/(rho+rho_crit)",
+   "proposed": "Derived form is Scenario B rho^(3/2)/(rho+rho_crit); rho/(rho+rho_crit) is the phenomenological approximation.",
+   "normative_basis": [
+    "PDF Section 5-6",
+    "src/entropy_production.py",
+    "index.json key_result"
+   ],
+   "requires_author_word": true,
+   "status": "proposed",
+   "current": "From BE occupation plus von Neumann entropy, Γ(ρ) takes the saturating form Γ0·ρ/(ρ+ρcrit) with ρcrit emerging from the a0 grid-mode scale, and Γ is shown to be distinct from μBE(g), resolving double-counting.",
+   "verified_against_file": true
+  },
+  {
+   "id": "corr-F1-xofrho",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/core_equations/x_of_rho/latex",
+   "problem": "middle term g/a0 omits the sqrt; x = sqrt(g/a0) is the code's form",
+   "proposed": "x(rho) = sqrt(g/a0) = sqrt(beta*rho/a0)",
+   "normative_basis": [
+    "src/entropy_production.py x_from_rho: x = sqrt(beta*rho/a0)",
+    "g = beta*rho implies x = sqrt(g/a0), not g/a0"
+   ],
+   "requires_author_word": true,
+   "status": "proposed",
+   "current": "x(\\rho) = \\frac{g}{a_0} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
+   "verified_against_file": true
+  },
+  {
+   "id": "corr-F1-beoccupation",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/core_equations/be_occupation/latex",
+   "problem": "exponent g/a0 omits the sqrt; BE occupation uses sqrt(g/a0) in the code",
+   "proposed": "n(g) = mu_BE(g) = 1/(exp(sqrt(g/a0)) - 1)",
+   "normative_basis": [
+    "src/entropy_production.py BEOccupation header: n(g) = 1/(exp(sqrt(g/a0)) - 1)",
+    "occupation(x) = 1/(e^x - 1) with x = sqrt(beta*rho/a0)"
+   ],
+   "requires_author_word": true,
+   "status": "proposed",
+   "current": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp(g/a_0) - 1}",
+   "verified_against_file": true
+  }
+ ]
+}

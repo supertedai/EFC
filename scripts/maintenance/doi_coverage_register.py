@@ -119,25 +119,28 @@ def _findings() -> list[dict]:
     return [
         {
             "id": "F1",
-            "title": "31942821 metadata drift: ansatz presented as derived, plus sqrt transcription in x_of_rho",
+            "title": "31942821 metadata drift: ansatz presented as derived, plus two sqrt transcriptions (x_of_rho, be_occupation)",
             "location": "docs/papers/efc/Derivation_of_the_Entropy_Production/index.json (metadata only; PDF + code are unambiguous)",
             "claim": (
                 "index.json description (line 5) and main_finding (line 55) present the "
                 "phenomenological ansatz rho/(rho+rho_crit) as the 'derived' result, while key_result "
                 "(line 108), the code (gamma_total = rho^1.5/(1+rho), gamma_phenomenological = "
                 "rho/(1+rho)) and the PDF Section 5-6 all state the derived form is Scenario B "
-                "rho^(3/2)/(rho+rho_crit) with the ansatz as an approximation (~20%). Separately, "
-                "x_of_rho (line 38) writes 'x = g/a0 = sqrt(beta*rho/a0)' but the middle term should "
-                "be sqrt(g/a0) (with g = beta*rho, x = sqrt(g/a0) = sqrt(beta*rho/a0)), matching the "
-                "code's x_from_rho. Both are index.json-metadata-only deviations from the normative "
-                "PDF + code."
+                "rho^(3/2)/(rho+rho_crit) with the ansatz as an approximation (~20%). Separately there "
+                "are TWO sqrt transcriptions: (a) x_of_rho (line 38) writes 'x = g/a0 = sqrt(beta*rho/a0)' "
+                "but the middle term should be sqrt(g/a0) (with g = beta*rho, x = sqrt(g/a0) = "
+                "sqrt(beta*rho/a0)), matching the code's x_from_rho; (b) be_occupation (line 30) writes "
+                "'n(g) = 1/(exp(g/a0) - 1)' but the exponent should be sqrt(g/a0), matching the code "
+                "header's 'n(g) = 1/(exp(sqrt(g/a0)) - 1)'. All three are index.json-metadata-only "
+                "deviations from the normative PDF + code; the provenance/corrections register "
+                "(doi_metadata_correction_proposals.json) expands F1 into four per-field proposals."
             ),
             "status": "open",
             "next": (
                 "Metadata-only reconciliation: in index.json, label rho/(rho+rho_crit) as the "
                 "phenomenological approximation and point description/main_finding at the Scenario B "
-                "rho^(3/2) key_result; correct the x_of_rho middle term to sqrt(g/a0). PDF and code "
-                "are normative and stay untouched."
+                "rho^(3/2) key_result; correct the x_of_rho middle term to sqrt(g/a0) and the "
+                "be_occupation exponent to sqrt(g/a0). PDF and code are normative and stay untouched."
             ),
         },
         {
