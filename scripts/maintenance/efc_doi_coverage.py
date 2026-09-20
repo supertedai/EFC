@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
-"""efc_doi_coverage — DOI-dekning for docs/public, målt i repoet selv.
+"""efc_doi_coverage — DOI coverage for docs/public, measured in the repo itself.
 
-Erstatter `public_pages_doi_drift.py`, som kjørte utenfor repoet (Symbiose,
-`.12`) og committet til `main` hver sjette time. Målt 2026-08-23: 64 av de
-siste 80 commitene på `main` var den jobben, og hver endret **kun
-tidsstempelet** — tallene sto stille. Se ADR-024 §6 og §8.3 punkt 3.
+Replaces `public_pages_doi_drift.py`, which ran outside the repo (Symbiose,
+`.12`) and committed to `main` every six hours. Measured 2026-08-23: 64 of
+the last 80 commits on `main` were that job, and each changed **only the
+timestamp** — the numbers stood still. See ADR-024 §6 and §8.3 item 3.
 
-Tre krav fra den gjennomgangen, alle innfridd her:
+Three requirements from that review, all met here:
 
-1. **Ingen tid i utdataene.** Rapporten inneholder ingen `generated_at`.
-   Identisk innhold gir identisk fil gir ingen commit. Tidspunktet bærer git.
-2. **En sitering er ikke et tall i en setning.** DOI-er inne i rader merket
-   som planlagt arbeid (`data-result="Planned"`) telles ikke. Målt: dette
-   gjelder 5 DOI-er, alle på Atlas — bl.a. `…figshare.31140000`, som stod
-   oppført som anomali i sju uker fordi den nevnes i en *oppgave* om å
-   re-ingeste ufullstendige DOI-er.
-3. **Ingen plassering uten treff.** Hver side som føres opp for en DOI er
-   funnet i den fila. Den gamle rapporten førte `10.17863/cam.690` som
-   forekommende på Atlas; `git grep` fant den kun i rapporten selv.
+1. **No time in the output.** The report contains no `generated_at`.
+   Identical content gives an identical file gives no commit. Git carries the
+   timestamp.
+2. **A citation is not a number in a sentence.** DOIs inside rows marked as
+   planned work (`data-result="Planned"`) are not counted. Measured: this
+   applies to 5 DOIs, all on the Atlas — including `…figshare.31140000`,
+   which stood listed as an anomaly for seven weeks because it is mentioned
+   in a *task* about re-ingesting incomplete DOIs.
+3. **No placement without a hit.** Every page listed for a DOI is found in
+   that file. The old report listed `10.17863/cam.690` as occurring on the
+   Atlas; `git grep` found it only in the report itself.
 
-Kanon hentes **direkte fra ORCID**, ikke fra en mellomliggende fil.
+The canon is fetched **directly from ORCID**, not from an intermediate file.
 
-Bruk:
-    python3 scripts/maintenance/efc_doi_coverage.py            # skriv rapport
-    python3 scripts/maintenance/efc_doi_coverage.py --sjekk    # kun exit-kode
+Usage:
+    python3 scripts/maintenance/efc_doi_coverage.py            # write report
+    python3 scripts/maintenance/efc_doi_coverage.py --sjekk    # exit code only
 """
 from __future__ import annotations
 
@@ -36,7 +37,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 PUBLIC = ROOT / "docs" / "public"
-RAPPORT = PUBLIC / "DOI_Coverage_Report.md"
+REPORT = PUBLIC / "DOI_Coverage_Report.md"
 REGISTER = ROOT / "docs" / "validation-ledger" / "data" / "external-references.json"
 ORCID = "0009-0002-4860-5095"
 
@@ -44,7 +45,7 @@ DOI_RE = re.compile(r"10\.\d{4,9}/[^\s\"<>&),;]+")
 PLANNED_RE = re.compile(r'<tr[^>]*data-result="Planned"[^>]*>.*?</tr>', re.S)
 
 
-def orcid_kanon() -> set[str]:
+def orcid_canon() -> set[str]:
     req = urllib.request.Request(
         f"https://pub.orcid.org/v3.0/{ORCID}/works",
         headers={"Accept": "application/json", "User-Agent": "efc-doi-coverage"})
@@ -60,112 +61,112 @@ def orcid_kanon() -> set[str]:
     return ut
 
 
-def registrerte() -> dict[str, str]:
-    """Verifiserte eksterne siteringer, med rolle. Fila kan mangle — da er
-    den tom, og det er et ærlig svar, ikke en feil."""
+def registered_entries() -> dict[str, str]:
+    """Verified external citations, with role. The file may be missing — then
+    it is empty, and that is an honest answer, not an error."""
     if not REGISTER.exists():
         return {}
     d = json.loads(REGISTER.read_text(encoding="utf-8"))
-    # Samme register som §4b genereres fra (efc_4b.py). Én sannhet for
-    # eksterne referanser, ikke to: §4b-generatoren bruker `html`, denne
-    # bruker `doi` og `rolle`. En oppforing uten `doi` er et arXiv-funn som
-    # ikke har en DOI aa avstemme — den hoerer i §4b, ikke her.
+    # The same register that §4b is generated from (efc_4b.py). One truth for
+    # external references, not two: the §4b generator uses `html`, this one
+    # uses `doi` and `rolle`. An entry without a `doi` is an arXiv finding
+    # that has no DOI to reconcile — it belongs in §4b, not here.
     if isinstance(d, dict) and "grupper" in d:
-        poster = [o for g in d["grupper"] for o in g.get("oppforinger", [])]
+        records = [o for g in d["grupper"] for o in g.get("oppforinger", [])]
     else:
-        poster = d.get("references", d) if isinstance(d, dict) else d
+        records = d.get("references", d) if isinstance(d, dict) else d
     ut = {}
-    for p in poster:
+    for p in records:
         if not isinstance(p, dict):
             continue
         doi = str(p.get("doi") or "").strip().lower()
         if doi.startswith("10.") and "/" in doi:
-            ut[doi] = p.get("rolle") or p.get("role") or "uklassifisert"
+            ut[doi] = p.get("rolle") or p.get("role") or "unclassified"
     return ut
 
 
-def skann() -> dict[str, set[str]]:
-    """DOI → sider den faktisk står på. Planlagt-rader hoppes over."""
-    funn: dict[str, set[str]] = {}
-    for sti in sorted(PUBLIC.glob("*.html")):
-        h = sti.read_text(encoding="utf-8", errors="replace")
-        utelatt = set()
-        for rad in PLANNED_RE.findall(h):
-            utelatt.update(m.lower() for m in DOI_RE.findall(rad))
+def scan() -> dict[str, set[str]]:
+    """DOI → pages it actually occurs on. Planned rows are skipped."""
+    found: dict[str, set[str]] = {}
+    for path in sorted(PUBLIC.glob("*.html")):
+        h = path.read_text(encoding="utf-8", errors="replace")
+        excluded = set()
+        for row in PLANNED_RE.findall(h):
+            excluded.update(m.lower() for m in DOI_RE.findall(row))
         for m in DOI_RE.finditer(h):
             d = m.group(0).rstrip(".").lower()
-            if d in utelatt:
+            if d in excluded:
                 continue
-            funn.setdefault(d, set()).add(sti.name)
-    return funn
+            found.setdefault(d, set()).add(path.name)
+    return found
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sjekk", action="store_true",
-                    help="ikke skriv fil; exit 1 hvis anomalier finnes")
+                    help="do not write the file; exit 1 if anomalies exist")
     a = ap.parse_args()
 
-    kanon = orcid_kanon()
-    reg = registrerte()
-    funn = skann()
+    canon = orcid_canon()
+    reg = registered_entries()
+    found = scan()
 
-    dekket = sorted(d for d in funn if d in kanon)
-    mangler = sorted(kanon - set(funn))
-    registrert = sorted(d for d in funn if d not in kanon and d in reg)
-    ukjente = sorted(d for d in funn if d not in kanon and d not in reg)
+    covered = sorted(d for d in found if d in canon)
+    missing = sorted(canon - set(found))
+    registered = sorted(d for d in found if d not in canon and d in reg)
+    unrecognized = sorted(d for d in found if d not in canon and d not in reg)
 
-    linjer = [
+    lines = [
         "# DOI Coverage Report — docs/public × ORCID canon",
         "",
         "_Generated deterministically by `scripts/maintenance/efc_doi_coverage.py` "
         "in this repository's own CI. Canon is read directly from ORCID. "
         "No timestamp in this file — identical content produces no commit._",
         "",
-        f"**Canon:** {len(kanon)} works · **Covered:** {len(dekket)} · "
-        f"**Missing from all pages:** {len(mangler)} · "
-        f"**Registered external:** {len(registrert)} · "
-        f"**Unrecognized:** {len(ukjente)} · **Pages scanned:** "
+        f"**Canon:** {len(canon)} works · **Covered:** {len(covered)} · "
+        f"**Missing from all pages:** {len(missing)} · "
+        f"**Registered external:** {len(registered)} · "
+        f"**Unrecognized:** {len(unrecognized)} · **Pages scanned:** "
         f"{len(list(PUBLIC.glob('*.html')))}",
         "",
         "## Canonical works not referenced on any public page",
         "",
     ]
-    linjer += ([f"- `{d}`" for d in mangler] or ["_None — full coverage._"])
-    linjer += ["", "## Registered external citations (verified intentional)", ""]
-    if registrert:
-        linjer += ["| DOI | role | pages |", "|---|---|---|"]
-        linjer += [f"| `{d}` | {reg[d]} | {', '.join(sorted(funn[d]))} |"
-                   for d in registrert]
+    lines += ([f"- `{d}`" for d in missing] or ["_None — full coverage._"])
+    lines += ["", "## Registered external citations (verified intentional)", ""]
+    if registered:
+        lines += ["| DOI | role | pages |", "|---|---|---|"]
+        lines += [f"| `{d}` | {reg[d]} | {', '.join(sorted(found[d]))} |"
+                   for d in registered]
     else:
-        linjer += [f"_None registered. The register is `{REGISTER.relative_to(ROOT)}`"
+        lines += [f"_None registered. The register is `{REGISTER.relative_to(ROOT)}`"
                    + ("" if REGISTER.exists() else " — file does not exist yet") + "._"]
-    linjer += ["", "## Unrecognized DOIs — neither in canon nor registered", ""]
-    if ukjente:
-        linjer += ["| DOI | pages |", "|---|---|"]
-        linjer += [f"| `{d}` | {', '.join(sorted(funn[d]))} |" for d in ukjente]
+    lines += ["", "## Unrecognized DOIs — neither in canon nor registered", ""]
+    if unrecognized:
+        lines += ["| DOI | pages |", "|---|---|"]
+        lines += [f"| `{d}` | {', '.join(sorted(found[d]))} |" for d in unrecognized]
     else:
-        linjer += ["_None._"]
-    linjer += ["", "## DOI counts per page", "", "| Page | DOIs |", "|---|---|"]
+        lines += ["_None._"]
+    lines += ["", "## DOI counts per page", "", "| Page | DOIs |", "|---|---|"]
     per: dict[str, int] = {}
-    for d, sider in funn.items():
-        for s in sider:
+    for d, pages in found.items():
+        for s in pages:
             per[s] = per.get(s, 0) + 1
-    linjer += [f"| {s} | {n} |" for s, n in sorted(per.items())]
-    tekst = "\n".join(linjer) + "\n"
+    lines += [f"| {s} | {n} |" for s, n in sorted(per.items())]
+    text = "\n".join(lines) + "\n"
 
     if a.sjekk:
-        print(f"[doi-coverage] kanon={len(kanon)} dekket={len(dekket)} "
-              f"mangler={len(mangler)} registrert={len(registrert)} "
-              f"ukjente={len(ukjente)}")
-        for d in ukjente:
-            print(f"  ukjent: {d}  ({', '.join(sorted(funn[d]))})")
-        return 1 if (ukjente or mangler) else 0
+        print(f"[doi-coverage] canon={len(canon)} covered={len(covered)} "
+              f"missing={len(missing)} registered={len(registered)} "
+              f"unrecognized={len(unrecognized)}")
+        for d in unrecognized:
+            print(f"  unrecognized: {d}  ({', '.join(sorted(found[d]))})")
+        return 1 if (unrecognized or missing) else 0
 
-    endret = (not RAPPORT.exists()) or RAPPORT.read_text(encoding="utf-8") != tekst
-    RAPPORT.write_text(tekst, encoding="utf-8")
-    print(f"[doi-coverage] {'oppdatert' if endret else 'uendret'} — "
-          f"kanon={len(kanon)} ukjente={len(ukjente)}")
+    changed = (not REPORT.exists()) or REPORT.read_text(encoding="utf-8") != text
+    REPORT.write_text(text, encoding="utf-8")
+    print(f"[doi-coverage] {'updated' if changed else 'unchanged'} — "
+          f"canon={len(canon)} unrecognized={len(unrecognized)}")
     return 0
 
 

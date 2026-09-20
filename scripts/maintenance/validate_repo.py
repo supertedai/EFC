@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""validate_repo.py — mappe- og filstruktur, navnekonvensjoner, forbudte filer.
+"""validate_repo.py — directory and file structure, naming conventions,
+forbidden files.
 
-Bygger på invariantene i AGENTS.md («Repository invariants») og designet §2.
-Fase 1: kjente rot-mapper må finnes; maskinlesbare filer i public/graph,
-public/page-meta og public/candidates følger kebab-case; forbudte filer
-avvises hardt; store binærfiler avvises; UTF-8 på alle tekstfiler.
+Builds on the invariants in AGENTS.md ("Repository invariants") and design §2.
+Phase 1: known root directories must exist; machine-readable files in
+public/graph, public/page-meta and public/candidates follow kebab-case;
+forbidden files are rejected hard; large binaries are rejected; UTF-8 on all
+text files.
 
-Bruk: python3 scripts/maintenance/validate_repo.py [--json]
-Exit: 0 = OK, 1 = harde feil.
+Usage: python3 scripts/maintenance/validate_repo.py [--json]
+Exit: 0 = OK, 1 = hard errors.
 """
 from __future__ import annotations
 
@@ -32,14 +34,14 @@ def sjekk() -> list[dict]:
     feil: list[dict] = []
     for m in PAALAGTE_MAPPER:
         if not (ROT / m).is_dir():
-            feil.append({"type": "missing_dir", "msg": f"{m} mangler"})
+            feil.append({"type": "missing_dir", "msg": f"{m} is missing"})
     for rot, prefix in ((ROT / "public" / "graph", "public/graph/"),
                         (ROT / "public" / "page-meta", "public/page-meta/"),
                         (ROT / "public" / "candidates", "public/candidates/")):
         if not rot.is_dir():
             continue
         for p in rot.rglob("*"):
-            if not p.is_file() or p.is_symlink():  # symlinker følges ikke
+            if not p.is_file() or p.is_symlink():  # symlinks are not followed
                 continue
             rel = f"{prefix}{p.relative_to(rot)}"
             if FORBUDTE_NAVN.search(p.name):
@@ -57,7 +59,8 @@ def sjekk() -> list[dict]:
                     p.read_text(encoding="utf-8")
                 except UnicodeDecodeError:
                     feil.append({"type": "non_utf8", "msg": rel})
-    # forbudte filer i hele repoet (utenom .git/.worktrees; symlinker følges ikke)
+    # forbidden files in the whole repo (outside .git/.worktrees; symlinks
+    # are not followed)
     for p in ROT.rglob("*"):
         if not p.is_file() or p.is_symlink() or ".git" in p.parts or ".worktrees" in p.parts:
             continue
@@ -74,7 +77,7 @@ def hoved() -> int:
     if a.json:
         print(json.dumps({"feil": feil}, ensure_ascii=False, indent=1))
     else:
-        print(f"repo-contract: {len(feil)} feil")
+        print(f"repo-contract: {len(feil)} errors")
         for f in feil[:20]:
             print("  ", f)
     return 1 if feil else 0

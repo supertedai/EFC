@@ -1,15 +1,15 @@
-"""Test av motor↔skjema-broen (trinn 4).
+"""Test of the engine↔schema bridge (step 4).
 
-WaterPhaseEngine sin nye metode regime_node() skal returnere en GYLDIG
-RegimeNode etter regime_node.schema.json — slik at enhver EFCEngine med
-denne metoden er maskinelt koblet til atlasets struktur. Broen er
-generisk: fremtidige motorer faar atlas-kobling gratis.
+WaterPhaseEngine's new method regime_node() must return a VALID
+RegimeNode according to regime_node.schema.json — so that any EFCEngine
+with this method is machine-coupled to the atlas's structure. The bridge
+is generic: future engines get atlas coupling for free.
 
-Den lokalt-globale koblingen (empati-porten) er en MASKINELL
-konsistenssjekk: motorens deklarerte gyldighetsomraade-tall skal stemme
-med instansens h2o-node-tall — ikke bare se like ut i tekst.
+The local-global coupling (the empathy gate) is a MACHINE consistency
+check: the engine's declared validity-domain numbers must match the
+instance's h2o node numbers — not just look alike in text.
 
-TDD: skrives foer regime_node() finnes — feiler med AttributeError.
+TDD: written before regime_node() exists — fails with AttributeError.
 """
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ except ImportError:  # pragma: no cover
     jsonschema = None
 
 requires_jsonschema = pytest.mark.skipif(
-    jsonschema is None, reason="jsonschema ikke installert")
+    jsonschema is None, reason="jsonschema not installed")
 
 PARAMS = {
     "t_triple": 273.16,
@@ -74,12 +74,12 @@ def _regime_node_schema() -> dict:
 
 
 # --------------------------------------------------------------------------
-# Broen: motorens selvbeskrivelse ER en regime-node
+# The bridge: the engine's self-description IS a regime node
 # --------------------------------------------------------------------------
 
 @requires_jsonschema
 def test_engine_regime_node_is_valid():
-    """regime_node() skal validere mot RegimeNode-definisjonen i skjemaet."""
+    """regime_node() must validate against the RegimeNode definition in the schema."""
     node = WaterPhaseEngine().regime_node(PARAMS)
     jsonschema.Draft202012Validator(_regime_node_schema()).validate(node)
 
@@ -95,7 +95,7 @@ def test_engine_regime_node_declares_its_law_form():
 
 
 def test_manifest_contract_unchanged():
-    """manifest() fra trinn 1 skal vaere urort — bakoverkompatibelt."""
+    """manifest() from step 1 must be untouched — backward compatible."""
     m = WaterPhaseEngine()
     manifest = m.manifest(PARAMS)
     assert manifest["name"]
@@ -104,17 +104,17 @@ def test_manifest_contract_unchanged():
 
 
 # --------------------------------------------------------------------------
-# Lokalt-globalt kobling: maskinell konsistens motor <-> atlas
+# Local-global coupling: machine consistency engine <-> atlas
 # --------------------------------------------------------------------------
 
 def test_engine_is_a_node_in_the_atlas():
-    """Motoren skal staa som node i regime_nodes.jsonld — ikke bare i koden."""
+    """The engine must stand as a node in regime_nodes.jsonld — not just in the code."""
     ids = {n["id"] for n in _instance()["nodes"]}
     assert "efc.water_phase_engine" in ids
 
 
 def test_engine_carries_the_phase_nodes():
-    """Motoren baerer fasegrense-beregningen for de tre fasene (CARRIES)."""
+    """The engine carries the phase-boundary computation for the three phases (CARRIES)."""
     rels = _instance()["relations"]
     preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
     assert ("efc.water_phase_engine", "CARRIES", "h2o.solid") in preds
@@ -123,109 +123,112 @@ def test_engine_carries_the_phase_nodes():
 
 
 # --------------------------------------------------------------------------
-# Maskinell tallkonsistens motor <-> atlas (empati-porten)
+# Machine number consistency engine <-> atlas (the empathy gate)
 # --------------------------------------------------------------------------
 #
-# Reviewfunn 2026-09-17 (trinn 4): den forrige testen var en
-# substring-test — den sa at broen var «maskinelt verifisert» mens den
-# bare lette etter tekstbiter. Denne bolken sammenligner TALL: motorens
-# deklarerte grenser mot h2o-nodenes tall, begge veier, og motorens
-# eget atlas-node mot regime_node(). «50 K» og «50.0» er samme grense;
-# «50» som en del av «IAPWS R14-08» er en referanse og hoppes over.
+# Review finding 2026-09-17 (step 4): the previous test was a
+# substring test — it said the bridge was "machine-verified" while it
+# only looked for text fragments. This block compares NUMBERS: the
+# engine's declared limits against the h2o nodes' numbers, both ways,
+# and the engine's own atlas node against regime_node(). "50 K" and
+# "50.0" are the same limit; "50" as part of "IAPWS R14-08" is a
+# reference and is skipped.
 
-# Kurvenavn i motorens deklarasjon -> h2o-nodene grensen gjelder for.
+# Curve names in the engine's declaration -> the h2o nodes the limit applies to.
 GRENSE_TIL_NODER = {
     "vapour": ("h2o.liquid", "h2o.gas"),
     "melt": ("h2o.solid",),
     "sublimation": ("h2o.solid",),
 }
 
-# Tall med enhet («50 K», «208.566 MPa», «101325 Pa») — ikke prosa-tall.
+# Numbers with a unit ("50 K", "208.566 MPa", "101325 Pa") — not prose numbers.
 _TALL_MED_ENHET = re.compile(r"(\d+(?:[.,]\d+)?)\s*(K|MPa|Pa)\b")
 _GRENSE = re.compile(r"(vapour|melt|sublimation)\s*\[([^\]]+)\]")
 
 
-def _tall(tekst: str) -> list:
+def _numbers(text: str) -> list:
     return [float(t.replace(",", "."))
-            for t in re.findall(r"\d+(?:[.,]\d+)?", tekst)]
+            for t in re.findall(r"\d+(?:[.,]\d+)?", text)]
 
 
-def _har(tall: float, kandidater: list) -> bool:
-    """Numerisk likhet — atlasets «50» og motorens «50.0» er samme grense."""
-    return any(abs(tall - k) <= 1e-9 * max(1.0, abs(tall)) for k in kandidater)
+def _has(numbers: float, kandidater: list) -> bool:
+    """Numeric equality — the atlas's "50" and the engine's "50.0" are the same limit."""
+    return any(abs(numbers - k) <= 1e-9 * max(1.0, abs(numbers)) for k in kandidater)
 
 
-def _grenser(validity: str) -> dict:
-    """Motorens deklarerte grenser, per kurvenavn, som tall.
+def _limits(validity: str) -> dict:
+    """The engine's declared limits, per curve name, as numbers.
 
-    Grensen kan vaere skrevet med et symbol («t_triple»); symbolet er
-    parameterens navn og verdien ligger i PARAMS — her leses bare tallene.
+    The limit may be written with a symbol ("t_triple"); the symbol is
+    the parameter's name and the value lives in PARAMS — here only the
+    numbers are read.
     """
-    return {navn: _tall(kropp) for navn, kropp in _GRENSE.findall(validity)}
+    return {name: _numbers(body) for name, body in _GRENSE.findall(validity)}
 
 
 def test_engine_declaration_carries_the_three_machine_readable_limits():
-    """Deklarasjonen maa ha alle tre grensene som TALL — ellers ville
-    testene under vaert tomme (og broen «verifisert» uten innhold)."""
-    grenser = _grenser(
+    """The declaration must have all three limits as NUMBERS — otherwise
+    the tests below would have been empty (and the bridge "verified"
+    without content)."""
+    limits = _limits(
         WaterPhaseEngine().regime_node(PARAMS)["regime"]["validity"])
-    assert set(grenser) == set(GRENSE_TIL_NODER)
-    for navn, tall in grenser.items():
-        assert tall, f"{navn}: ingen tall i grensen"
+    assert set(limits) == set(GRENSE_TIL_NODER)
+    for name, numbers in limits.items():
+        assert numbers, f"{name}: no numbers in the limit"
 
 
 def test_engine_declared_limits_are_the_atlas_nodes_limits():
-    """FOROVER: hver grense motoren deklarerer skal finnes som TALL i
-    validity-teksten til h2o-noden den gjelder for.
+    """FORWARD: every limit the engine declares must exist as a NUMBER in
+    the validity text of the h2o node it applies to.
 
-    Unntak: 0 MPa — den naturlige nullen, som atlaset ikke siterer.
+    Exception: 0 MPa — the natural zero, which the atlas does not cite.
     """
     node = WaterPhaseEngine().regime_node(PARAMS)
-    grenser = _grenser(node["regime"]["validity"])
+    limits = _limits(node["regime"]["validity"])
     h2o = {n["id"]: n for n in _instance()["nodes"]}
-    for navn, noder in GRENSE_TIL_NODER.items():
-        for tall in grenser[navn]:
-            if tall == 0.0:
+    for name, nodes in GRENSE_TIL_NODER.items():
+        for numbers in limits[name]:
+            if numbers == 0.0:
                 continue
-            for nid in noder:
-                assert _har(tall, _tall(h2o[nid]["regime"]["validity"])), (
-                    f"motoren deklarerer {tall} i «{navn}», men {nid} "
-                    f"nevner den ikke: {h2o[nid]['regime']['validity']}")
+            for nid in nodes:
+                assert _has(numbers, _numbers(h2o[nid]["regime"]["validity"])), (
+                    f"the engine declares {numbers} in «{name}», but {nid} "
+                    f"does not mention it: {h2o[nid]['regime']['validity']}")
 
 
 def test_atlas_node_numbers_are_numbers_the_engine_holds():
-    """BAKOVER: hvert tall MED ENHET i h2o-nodenes validity skal motoren
-    kunne gjenskape — fra en deklarert grense eller fra en parameter.
-    Et tall atlaset siterer og motoren ikke holder, er en loes påstand.
+    """BACKWARD: every number WITH A UNIT in the h2o nodes' validity must be
+    reproducible by the engine — from a declared limit or from a parameter.
+    A number the atlas cites and the engine does not hold is a loose claim.
     """
     node = WaterPhaseEngine().regime_node(PARAMS)
-    grenser = _grenser(node["regime"]["validity"])
-    motorens = [t for tall in grenser.values() for t in tall] + [
+    limits = _limits(node["regime"]["validity"])
+    engine_numbers = [t for numbers in limits.values() for t in numbers] + [
         float(v) for v in PARAMS.values()]
     h2o = {n["id"]: n for n in _instance()["nodes"]}
-    for navn, noder in GRENSE_TIL_NODER.items():
-        for nid in noder:
-            for raa, enhet in _TALL_MED_ENHET.findall(
+    for name, nodes in GRENSE_TIL_NODER.items():
+        for nid in nodes:
+            for raw, unit in _TALL_MED_ENHET.findall(
                     h2o[nid]["regime"]["validity"]):
-                verdi = float(raa.replace(",", "."))
-                assert _har(verdi, motorens), (
-                    f"{nid} siterer {verdi} {enhet}, men motoren holder "
-                    f"ikke det tallet (grenser: {grenser})")
+                value = float(raw.replace(",", "."))
+                assert _has(value, engine_numbers), (
+                    f"{nid} cites {value} {unit}, but the engine does not "
+                    f"hold that number (limits: {limits})")
 
 
 def test_engine_node_and_its_atlas_node_agree_on_derived_fields():
-    """Motorens EGET atlas-node skal baere de samme parameteravledede
-    feltene som regime_node() gir — samme krav som trinn 11 stiller til
-    de fem kosmologiske motorene (test_broer_matcher_atlas_maskinelt).
+    """The engine's OWN atlas node must carry the same parameter-derived
+    fields that regime_node() gives — the same requirement step 11 places
+    on the five cosmological engines (test_broer_matcher_atlas_maskinelt).
 
-    Maalt 2026-09-17: vann-noden feilet kravet — atlasets validity var en
-    ELDRE tekst enn motorens (motoren ble skjerpet i review 2026-09-16 og
-    atlaset ble ikke regenerert). Regenerering:
-    scripts/maintenance/efc_bro_synk.py.
+    Measured 2026-09-17: the water node failed the requirement — the
+    atlas's validity was an OLDER text than the engine's (the engine was
+    tightened in review 2026-09-16 and the atlas was not regenerated).
+    Regeneration: scripts/maintenance/efc_bro_synk.py.
 
-    Vann er ett tilfelle. Klassen — alle 20 motorer og ALLE felt, med
-    eierskapet delt mellom motor og atlas — testes i
-    tests/test_bro_konvensjon.py, og konvensjonen staar i
+    Water is one case. The class — all 20 engines and ALL fields, with
+    ownership split between engine and atlas — is tested in
+    tests/test_bro_konvensjon.py, and the convention stands in
     scripts/maintenance/efc_bro_konvensjon.py.
     """
     node = WaterPhaseEngine().regime_node(PARAMS)
@@ -235,9 +238,9 @@ def test_engine_node_and_its_atlas_node_agree_on_derived_fields():
 
 
 def test_engine_regime_node_reflects_effective_params():
-    """Review runde 1: selvbeskrivelsen skal DERIVERES fra de effektive
-    parametrene — med alternative parametre skal noden deklarere de
-    alternative grensene, ikke de kanoniske."""
+    """Review round 1: the self-description must be DERIVED from the
+    effective parameters — with alternative parameters the node must
+    declare the alternative limits, not the canonical ones."""
     alt = {
         **PARAMS,
         "t_vap_ref": 370.0,
@@ -246,12 +249,12 @@ def test_engine_regime_node_reflects_effective_params():
         "watson_exponent": 0.5,
     }
     node = WaterPhaseEngine().regime_node(alt)
-    tekst = node["regime"]["validity"] + node["regime"]["law_form"]
-    assert "370" in tekst          # t_vap_ref er med
-    assert "123" in tekst          # p_ice_ih_max er med (i MPa)
-    assert "60" in tekst           # t_sublim_min er med
-    assert "0.5" in tekst          # watson-eksponenten er med
-    # ...og de kanoniske tallene skal IKKE staa der.
-    assert "373.15" not in tekst
-    assert "208.566" not in tekst
-    assert "0.33" not in tekst
+    text = node["regime"]["validity"] + node["regime"]["law_form"]
+    assert "370" in text          # t_vap_ref is included
+    assert "123" in text          # p_ice_ih_max is included (in MPa)
+    assert "60" in text           # t_sublim_min is included
+    assert "0.5" in text          # the watson exponent is included
+    # ...and the canonical numbers must NOT stand there.
+    assert "373.15" not in text
+    assert "208.566" not in text
+    assert "0.33" not in text

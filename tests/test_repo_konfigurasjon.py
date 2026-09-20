@@ -1,19 +1,20 @@
-"""Vern om repoets testkonfigurasjon.
+"""Guarding the repo's test configuration.
 
-Maalt 2026-09-17, to runder:
+Measured 2026-09-17, two rounds:
 
-  1. `pytest` fra repo-roten samlet forskningskoden under `docs/papers/` og
-     `pipelines/` — ekte tester for sine papirer, men med egne avhengigheter
-     (emcee, efc.perturbation, run_pilot) som ikke er installert. 10
-     collection-feil. Fem reviewere brukte tid paa aa gjette kommandoen.
+  1. `pytest` from the repo root collected the research code under
+     `docs/papers/` and `pipelines/` — real tests for their papers, but with
+     their own dependencies (emcee, efc.perturbation, run_pilot) that are not
+     installed. 10 collection errors. Five reviewers spent time guessing the
+     command.
 
-  2. Foerste fiks brukte `testpaths = ["tests"]`. Review maalte at det
-     fjernet 123 tester i `efc_inference/tests/` fra suiten — 704 samlet ble
-     542. Det var ikke en fiks, det var aa fjerne en femtedel av kontrollen
-     for aa faa tallet til aa se bra ut.
+  2. The first fix used `testpaths = ["tests"]`. Review measured that it
+     removed 123 tests in `efc_inference/tests/` from the suite — 704
+     collected became 542. That was not a fix, it was removing a fifth of
+     the control to make the number look good.
 
-Disse testene fanger BEGGE feilene. Den andre er den viktigste: en losning
-som ser ryddig ut og fjerner dekning i stillhet.
+These tests catch BOTH mistakes. The second is the most important one: a
+solution that looks tidy and removes coverage in silence.
 """
 
 from __future__ import annotations
@@ -27,48 +28,49 @@ import pytest
 
 REPO = Path(__file__).resolve().parents[1]
 
-# Pytests egne standarder for `norecursedirs`. Definerer man denne noekkelen,
-# OVERSKRIVER man dem — derfor maa de liste seg opp igjen.
+# Pytest's own defaults for `norecursedirs`. Defining this key OVERRIDES
+# them — which is why they must list themselves again.
 PYTEST_STANDARDER = ["*.egg", ".*", "_darcs", "build", "CVS", "dist",
                      "node_modules", "venv", "{arch}"]
 
 
-def _les_ini_options(tekst: str | None = None) -> dict:
-    """Les `norecursedirs` og `testpaths` fra pyproject.toml.
+def _les_ini_options(text: str | None = None) -> dict:
+    """Read `norecursedirs` and `testpaths` from pyproject.toml.
 
-    Bruker `tomllib` der den finnes (Python 3.11+), som er det CI kjoerer og
-    det utvikleren her kjoerer. Paa 3.9/3.10 — som `requires-python` tillater
-    — finnes den ikke, og vi faller tilbake til aa lese de to noeklene
-    direkte. Den veien er en FORENKLING med kjente grenser (se
-    `TestParserensGrenser`), ikke en full TOML-parser.
+    Uses `tomllib` where it exists (Python 3.11+), which is what CI runs and
+    what the developer here runs. On 3.9/3.10 — which `requires-python`
+    allows — it does not exist, and we fall back to reading the two keys
+    directly. That path is a SIMPLIFICATION with known limits (see
+    `TestParserensGrenser`), not a full TOML parser.
 
-    Foerste utgave haandskrev parsing ubetinget. Review runde 5 maalte at den
-    ga feil svar paa `]` inne i en streng og paa escaped quotes — og at
-    vernet ikke felt en gjeninnsetting av den, fordi `pyproject.toml` har
-    doble fnutter. Begge er rettet: `tomllib` der den finnes, og en
-    enhetstest som proever BEGGE fnutt-stiler direkte mot parseren.
+    The first edition hand-wrote parsing unconditionally. Review round 5
+    measured that it gave the wrong answer on `]` inside a string and on
+    escaped quotes — and that the guard did not catch a reinstatement of it,
+    because `pyproject.toml` uses double quotes. Both are fixed: `tomllib`
+    where it exists, and a unit test that tries BOTH quote styles directly
+    against the parser.
     """
-    if tekst is None:
-        tekst = (REPO / "pyproject.toml").read_text(encoding="utf-8")
+    if text is None:
+        text = (REPO / "pyproject.toml").read_text(encoding="utf-8")
     try:
         import tomllib
-        return (tomllib.loads(tekst).get("tool", {}).get("pytest", {})
+        return (tomllib.loads(text).get("tool", {}).get("pytest", {})
                 .get("ini_options", {}))
     except ModuleNotFoundError:
         pass
-    if "[tool.pytest.ini_options]" not in tekst:
+    if "[tool.pytest.ini_options]" not in text:
         return {}
-    seksjon = tekst.split("[tool.pytest.ini_options]", 1)[1]
-    stopp = re.search(r"^\[", seksjon, re.M)
-    if stopp:
-        seksjon = seksjon[:stopp.start()]
-    ut: dict = {}
-    for noekkel in ("testpaths", "norecursedirs"):
-        m = re.search(rf"^{noekkel}\s*=\s*\[(.*?)\]", seksjon, re.M | re.S)
+    section = text.split("[tool.pytest.ini_options]", 1)[1]
+    stop = re.search(r"^\[", section, re.M)
+    if stop:
+        section = section[:stop.start()]
+    out: dict = {}
+    for key in ("testpaths", "norecursedirs"):
+        m = re.search(rf"^{key}\s*=\s*\[(.*?)\]", section, re.M | re.S)
         if m:
-            ut[noekkel] = [a or b for a, b in
-                           re.findall(r'"([^"]*)"|\'([^\']*)\'', m.group(1))]
-    return ut
+            out[key] = [a or b for a, b in
+                        re.findall(r'"([^"]*)"|\'([^\']*)\'', m.group(1))]
+    return out
 
 
 @pytest.fixture(scope="module")
@@ -78,196 +80,198 @@ def ini_options() -> dict:
 
 class TestForskjellskillet:
     def test_forskningskoden_er_utelatt(self, ini_options: dict) -> None:
-        utelatt = ini_options.get("norecursedirs", [])
-        for katalog in ("docs", "pipelines"):
-            assert katalog in utelatt, (
-                f"`{katalog}` skal staa i norecursedirs — koden der har egne "
-                f"avhengigheter og hoerer ikke i hovedsuiten")
+        excluded = ini_options.get("norecursedirs", [])
+        for directory in ("docs", "pipelines"):
+            assert directory in excluded, (
+                f"`{directory}` must stand in norecursedirs — the code there "
+                f"has its own dependencies and does not belong in the main suite")
 
     def test_pytest_standardene_er_beholdt(self, ini_options: dict) -> None:
-        """`norecursedirs` OVERSKRIVER standardene — de maa liste seg opp.
+        """`norecursedirs` OVERRIDES the defaults — they must list themselves.
 
-        Maalt i review: uten `.*` ble en midlertidig `tests/.probe/` samlet.
-        Det gjoer suiten avhengig av hva som tilfeldigvis ligger paa disken.
+        Measured in review: without `.*` a temporary `tests/.probe/` was
+        collected. That makes the suite depend on whatever happens to be on
+        disk.
         """
-        utelatt = ini_options.get("norecursedirs", [])
-        mangler = [s for s in PYTEST_STANDARDER if s not in utelatt]
-        assert not mangler, (
-            f"norecursedirs mangler Pytests standarder: {mangler}. "
-            f"Definerer man noekkelen, overskriver man dem.")
+        excluded = ini_options.get("norecursedirs", [])
+        missing = [s for s in PYTEST_STANDARDER if s not in excluded]
+        assert not missing, (
+            f"norecursedirs is missing Pytest's defaults: {missing}. "
+            f"Defining the key overrides them.")
 
 
 class TestIngenDekningForsvinner:
     def test_testpaths_avgrenser_ikke(self, ini_options: dict) -> None:
-        """`testpaths = ["tests"]` fjernet 123 tester fra suiten.
+        """`testpaths = ["tests"]` removed 123 tests from the suite.
 
-        Maalt: 704 samlet foer, 542 etter. Det er den fella denne testen
-        finnes for — en ryddig konfigurasjon som fjerner dekning i stillhet.
-        Vil man avgrense, skal det gjoeres med `norecursedirs` og bare for
-        kataloger som faktisk ikke hoerer i suiten.
+        Measured: 704 collected before, 542 after. That is the trap this test
+        exists for — a tidy configuration that removes coverage in silence.
+        If you want to narrow the scope, do it with `norecursedirs` and only
+        for directories that genuinely do not belong in the suite.
         """
         testpaths = ini_options.get("testpaths")
         assert testpaths is None, (
-            f"`testpaths = {testpaths}` utelater tester utenfor de katalogene. "
-            f"`efc_inference/tests/` har 123 tester som hoerer i hovedsuiten. "
-            f"Bruk `norecursedirs` for aa utelate forskningskoden i stedet.")
+            f"`testpaths = {testpaths}` leaves out tests outside those "
+            f"directories. `efc_inference/tests/` has 123 tests that belong in "
+            f"the main suite. Use `norecursedirs` to exclude the research code "
+            f"instead.")
 
 class TestRotenVirker:
-    """`pytest` fra roten skal ikke samle forskningskoden.
+    """`pytest` from the root must not collect the research code.
 
-    MERK hva som maales her, og hva som IKKE maales. CI installerer bare
-    `verify`-settet, ikke prosjektets egne kjerneavhengigheter (numpy,
-    scipy, matplotlib, pandas). `efc_inference/tests` importerer scipy, saa
-    «hele suiten kan samles» er et MILJOE-spoersmaal — ikke et
-    konfigurasjonsspoersmaal.
+    NOTE what is measured here, and what is NOT measured. CI installs only
+    the `verify` set, not the project's own core dependencies (numpy, scipy,
+    matplotlib, pandas). `efc_inference/tests` imports scipy, so "the whole
+    suite can be collected" is an ENVIRONMENT question — not a configuration
+    question.
 
-    Foerste utgave av denne testen krevde at HELE samlingen lyktes. Den
-    passerte lokalt (der alt er installert) og feilet i CI med ni
-    collection-feil. Den maalte altsaa miljoeet sitt og kalte det
-    konfigurasjon. Det som faktisk skal vernes her er at `norecursedirs`
-    holder forskningskoden ute — det er en egenskap ved konfigurasjonen og
-    er lik i alle miljoeer.
+    The first edition of this test required that the WHOLE collection
+    succeeded. It passed locally (where everything is installed) and failed
+    in CI with nine collection errors. It was therefore measuring its own
+    environment and calling it configuration. What must actually be guarded
+    here is that `norecursedirs` keeps the research code out — that is a
+    property of the configuration and is the same in all environments.
     """
 
-    def _samling(self) -> subprocess.CompletedProcess:
+    def _collection(self) -> subprocess.CompletedProcess:
         return subprocess.run([sys.executable, "-m", "pytest", "--co", "-q"],
                               cwd=REPO, capture_output=True, text=True, timeout=180)
 
     def test_forskningskoden_samles_ikke(self) -> None:
-        """Den presise maalingen: docs/ og pipelines/ skal ikke med."""
-        p = self._samling()
-        funnet = [linje for linje in p.stdout.splitlines()
-                  if linje.startswith("docs/") or linje.startswith("pipelines/")]
-        assert not funnet, (
-            f"forskningskoden samles fra roten — `norecursedirs` virker ikke:\n"
-            f"  {funnet[:5]}")
+        """The precise measurement: docs/ and pipelines/ must not be in."""
+        p = self._collection()
+        found = [line for line in p.stdout.splitlines()
+                 if line.startswith("docs/") or line.startswith("pipelines/")]
+        assert not found, (
+            f"the research code is collected from the root — `norecursedirs` "
+            f"is not working:\n  {found[:5]}")
 
     def test_hovedsuiten_er_med(self) -> None:
-        """...og `tests/` skal VAERE med. Utelatelse skal vaere valgt, ikke tilfeldig."""
-        p = self._samling()
-        assert any(linje.startswith("tests/") for linje in p.stdout.splitlines()), (
-            f"ingen tester under tests/ ble samlet fra roten:\n{p.stdout[-400:]}")
+        """...and `tests/` must BE in. Exclusion must be chosen, not accidental."""
+        p = self._collection()
+        assert any(line.startswith("tests/") for line in p.stdout.splitlines()), (
+            f"no tests under tests/ were collected from the root:\n{p.stdout[-400:]}")
 
     def test_efc_inference_testene_er_med(self) -> None:
-        """De 123 som `testpaths` fjernet skal fortsatt samles.
+        """The 123 that `testpaths` removed must still be collected.
 
-        Kan feile paa manglende avhengigheter i miljoeet — men da sier vi
-        DET, i stedet for aa late som konfigurasjonen er feil.
+        May fail on missing dependencies in the environment — but then we say
+        THAT, instead of pretending the configuration is wrong.
         """
-        p = self._samling()
-        linjer = p.stdout.splitlines()
+        p = self._collection()
+        lines = p.stdout.splitlines()
         if "errors during collection" in p.stdout:
-            mangler = [l for l in linjer if l.startswith("ERROR")]
+            missing = [l for l in lines if l.startswith("ERROR")]
             pytest.skip(
-                f"miljoeet mangler avhengigheter, saa samlingen er ufullstendig "
-                f"({len(mangler)} moduler). Det er ikke en konfigurasjonsfeil: "
-                f"{mangler[:3]}")
-        assert any(linje.startswith("efc_inference/tests/") for linje in linjer), (
-            "efc_inference/tests samles ikke — de 123 testene er borte igjen")
+                f"the environment is missing dependencies, so the collection is "
+                f"incomplete ({len(missing)} modules). That is not a "
+                f"configuration error: {missing[:3]}")
+        assert any(line.startswith("efc_inference/tests/") for line in lines), (
+            "efc_inference/tests is not collected — the 123 tests are gone again")
 
 
 class TestAvhengighetslisteneErISynk:
-    """`requirements.txt` og CI-installasjonen PASTAAR de er identiske.
+    """`requirements.txt` and the CI install CLAIM they are identical.
 
-    Maalt 2026-09-17: begge filene sier det i en kommentar —
-    requirements.txt: «CI gate C10 + tests; .github/workflows/efc-schema.yml
-    installs the same», og workflowen: «pinned ranges, same as
-    requirements.txt». Ingen av dem holdt den paastanden oppdatert.
+    Measured 2026-09-17: both files say so in a comment — requirements.txt:
+    "CI gate C10 + tests; .github/workflows/efc-schema.yml installs the
+    same", and the workflow: "pinned ranges, same as requirements.txt".
+    Neither of them kept that claim updated.
 
-    Review runde 2 fant det: `emcee` ble lagt i `[project.optional-
-    dependencies].verify`, men CI installerer pakkene EKSPLISITT — den leser
-    ikke ekstraen. Uten denne testen ville de to listene glidd fra hverandre
-    igjen, og kommentarene ville fortsatt paastatt at de var like.
+    Review round 2 found it: `emcee` was put in `[project.optional-
+    dependencies].verify`, but CI installs the packages EXPLICITLY — it does
+    not read the extra. Without this test the two lists would have drifted
+    apart again, and the comments would still have claimed they were equal.
     """
 
-    def _req_pakker(self) -> list[str]:
+    def _req_packages(self) -> list[str]:
         import re
-        tekst = (REPO / "requirements.txt").read_text(encoding="utf-8")
-        i = tekst.index("Verification (CI gate C10")
-        # `\s*` foran `>=` er ikke pynt: uten den faller `jsonschema >=4.18`
-        # ut av BEGGE listene, og testen passerer fordi de er «like».
-        # Maalt i review runde 3.
-        return sorted(re.findall(r"^([A-Za-z][A-Za-z0-9_-]*)\s*>=", tekst[i:], re.M))
+        text = (REPO / "requirements.txt").read_text(encoding="utf-8")
+        i = text.index("Verification (CI gate C10")
+        # The `\s*` before `>=` is not decoration: without it `jsonschema >=4.18`
+        # falls out of BOTH lists, and the test passes because they are "equal".
+        # Measured in review round 3.
+        return sorted(re.findall(r"^([A-Za-z][A-Za-z0-9_-]*)\s*>=", text[i:], re.M))
 
-    def _ci_pakker(self) -> list[str]:
+    def _ci_packages(self) -> list[str]:
         import re
-        tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
-        m = re.search(r"pip install --quiet (.+)", tekst)
-        assert m, "fant ikke pip-installasjonen i efc-schema.yml"
+        text = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
+        m = re.search(r"pip install --quiet (.+)", text)
+        assert m, "found no pip install in efc-schema.yml"
         return sorted(re.findall(r'"([A-Za-z][A-Za-z0-9_-]*)\s*>=', m.group(1)))
 
     def test_listene_er_identiske(self) -> None:
-        req, ci = self._req_pakker(), self._ci_pakker()
-        # To tomme lister er ogsa «identiske». Uten denne kunne en
-        # omformatering som skjulte alle pakker passere som samsvar.
+        req, ci = self._req_packages(), self._ci_packages()
+        # Two empty lists are also "identical". Without this, a reformatting
+        # that hid every package could pass as agreement.
         assert len(req) >= 4, (
-            f"fant bare {len(req)} pakker i requirements.txt — leser "
-            f"parseren feil formatering? {req}")
-        assert len(ci) >= 4, f"fant bare {len(ci)} pakker i CI-listen: {ci}"
+            f"found only {len(req)} packages in requirements.txt — is the "
+            f"parser reading the wrong formatting? {req}")
+        assert len(ci) >= 4, f"found only {len(ci)} packages in the CI list: {ci}"
         assert req == ci, (
-            f"requirements.txt og CI-installasjonen har glidd fra hverandre.\n"
+            f"requirements.txt and the CI install have drifted apart.\n"
             f"  requirements.txt: {req}\n"
             f"  efc-schema.yml  : {ci}\n"
-            f"Begge filene paastaar i en kommentar at de er like. Oppdater begge.")
+            f"Both files claim in a comment that they are equal. Update both.")
 
     def test_emcee_er_i_begge(self) -> None:
-        """Det konkrete funnet fra review runde 2.
+        """The concrete finding from review round 2.
 
-        `efc_inference/runs/research_mcmc.py` importerer `emcee` ved
-        modulimport, saa samling av `efc_inference/tests/` feiler uten den.
+        `efc_inference/runs/research_mcmc.py` imports `emcee` at module
+        import, so collection of `efc_inference/tests/` fails without it.
         """
-        for navn, pakker in (("requirements.txt", self._req_pakker()),
-                             ("efc-schema.yml", self._ci_pakker())):
-            assert "emcee" in pakker, (
-                f"`emcee` mangler i {navn} — efc_inference/tests kan ikke "
-                f"samles uten den")
+        for name, packages in (("requirements.txt", self._req_packages()),
+                               ("efc-schema.yml", self._ci_packages())):
+            assert "emcee" in packages, (
+                f"`emcee` is missing from {name} — efc_inference/tests cannot "
+                f"be collected without it")
 
 
 class TestVernetKjoererISelv:
-    """Testen maa selv staa i CI-kommandoen — ellers er den ikke en gate.
+    """The test must itself stand in the CI command — otherwise it is not a gate.
 
-    Review runde 3, BLOKKERER: `efc-schema.yml` kjorer tre navngitte
-    testfiler, og `tests/test_repo_konfigurasjon.py` var ikke blant dem.
-    Vernet mot at avhengighetslistene glir fra hverandre fantes altsaa, men
-    kjorte ikke i den eneste kjøringen som betyr noe.
+    Review round 3, BLOCKING: `efc-schema.yml` runs three named test files,
+    and `tests/test_repo_konfigurasjon.py` was not among them. The guard
+    against the dependency lists drifting apart therefore existed, but did
+    not run in the one run that matters.
 
-    Det er samme form som resten av denne PR-en: et vern som ser riktig ut
-    og ikke maaler. En testfil som ikke kjoeres, er dokumentasjon.
+    That is the same shape as the rest of this PR: a guard that looks right
+    and does not measure. A test file that is not run is documentation.
     """
 
-    def _ci_pytest_kommando(self) -> str:
-        tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
-        m = re.search(r"python3 -m pytest ([^\n]+)", tekst)
-        assert m, "fant ingen pytest-kommando i efc-schema.yml"
+    def _ci_pytest_command(self) -> str:
+        text = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(encoding="utf-8")
+        m = re.search(r"python3 -m pytest ([^\n]+)", text)
+        assert m, "found no pytest command in efc-schema.yml"
         return m.group(1)
 
     def test_denne_filen_staar_i_ci_kommandoen(self) -> None:
-        kommand = self._ci_pytest_kommando()
-        assert "test_repo_konfigurasjon.py" in kommand, (
-            f"tests/test_repo_konfigurasjon.py kjoeres ikke i CI:\n"
-            f"  CI kjorer: {kommand}\n"
-            f"Da er ikke avhengighetsbindingen en gate — bare en lokal test.")
+        command = self._ci_pytest_command()
+        assert "test_repo_konfigurasjon.py" in command, (
+            f"tests/test_repo_konfigurasjon.py is not run in CI:\n"
+            f"  CI runs: {command}\n"
+            f"Then the dependency binding is not a gate — only a local test.")
 
     def test_alle_navngitte_testfiler_finnes(self) -> None:
-        """CI navngir filer eksplisitt. Forsvinner en, feiler CI stille."""
-        for navn in self._ci_pytest_kommando().split():
-            if navn.endswith(".py"):
-                assert (REPO / navn).exists(), (
-                    f"CI kjorer `{navn}`, men filen finnes ikke — "
-                    f"pytest vil feile med «file or directory not found»")
+        """CI names files explicitly. If one disappears, CI fails silently."""
+        for name in self._ci_pytest_command().split():
+            if name.endswith(".py"):
+                assert (REPO / name).exists(), (
+                    f"CI runs `{name}`, but the file does not exist — "
+                    f"pytest will fail with «file or directory not found»")
 
 
 class TestParserensGrenser:
-    """Parseren skal proves DIREKTE, ikke gjennom filens tilfeldige format.
+    """The parser must be tried DIRECTLY, not through the file's accidental format.
 
-    Review runde 5: den gamle parseren ble gjeninnsatt og suiten passerte
-    fortsatt — fordi `pyproject.toml` har doble fnutter, og den gamle
-    parseren haandterer nettopp dem. Vernet felt altsaa bare kombinasjonen
-    «skjor parser OG omformatert fil». Gjeninnfoerer noen den skjore
-    parseren alene, sier testene ingenting.
+    Review round 5: the old parser was reinstated and the suite still passed
+    — because `pyproject.toml` uses double quotes, and the old parser handles
+    exactly those. The guard therefore only caught the combination "fragile
+    parser AND reformatted file". If someone reinstates the fragile parser
+    alone, the tests say nothing.
 
-    Denne testen gir parseren BEGGE formatene som tekst, uavhengig av hva
-    filen inneholder.
+    This test gives the parser BOTH formats as text, regardless of what the
+    file contains.
     """
 
     TO_DOBLE = '[tool.pytest.ini_options]\ntestpaths = ["tests"]\nnorecursedirs = ["docs", "pipelines"]\n'
@@ -279,10 +283,10 @@ class TestParserensGrenser:
         assert d.get("norecursedirs") == ["docs", "pipelines"], d
 
     def test_enkle_fnutter(self) -> None:
-        """Den varianten som felte den gamle parseren."""
+        """The variant that caught the old parser."""
         d = _les_ini_options(self.TO_ENKLE)
         assert d.get("testpaths") == ["tests"], (
-            f"enkeltfnutter ble ikke lest: {d}")
+            f"single quotes were not read: {d}")
         assert d.get("norecursedirs") == ["docs", "pipelines"], d
 
     def test_blandede_fnutter(self) -> None:
@@ -297,22 +301,22 @@ class TestParserensGrenser:
         d = _les_ini_options(
             '[tool.pytest.ini_options]\n'
             'norecursedirs = [\n'
-            '    "docs",  # forskningskoden\n'
+            '    "docs",  # the research code\n'
             '    "pipelines",\n'
             ']\n')
         assert d.get("norecursedirs") == ["docs", "pipelines"], d
 
     def test_kant_i_streng(self) -> None:
-        """`]` inne i en streng skal ikke avslutte listen.
+        """`]` inside a string must not terminate the list.
 
-        Review runde 5 maalte at den haandskrevne parseren feilet her.
-        Med `tomllib` er dette riktig — og testen laaser det.
+        Review round 5 measured that the hand-written parser failed here.
+        With `tomllib` this is correct — and the test locks it in.
         """
         d = _les_ini_options(
             '[tool.pytest.ini_options]\n'
             'norecursedirs = ["a]b", "tests"]\n')
         assert d.get("norecursedirs") == ["a]b", "tests"], (
-            f"`]` inne i en streng ble feillest: {d}")
+            f"`]` inside a string was misread: {d}")
 
     def test_mange_elementer_paa_linja(self) -> None:
         d = _les_ini_options(

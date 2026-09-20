@@ -1,16 +1,16 @@
-"""Tester for epistemikk v4 — koordinat-paradigmene (krav d).
+"""Tests for epistemikk v4 — the coordinate paradigms (requirement d).
 
-Mortens prinsipp (d): tid, rom, masse og hastighet er SELV
-paradigmer — valgte koordinater, ikke noe gitt. De tre uavhengige
-linsene fant at SI-størrelsene brukes rå i motorene uten ontologisk
+Morten's principle (d): time, space, mass and velocity are THEMSELVES
+paradigms — chosen coordinates, not something given. The three independent
+lenses found that the SI quantities are used raw in the engines without ontological
 status.
 
-maale_paradigme-feltet krever at hver node deklarerer:
-- koordinater: hvilke koordinat-valg den står på (tid, rom, masse,
-  temperatur, energi, elektrisk potensial, magnetfelt, fraksjon)
-- enheter: hvilke enheter den måler i
+The maale_paradigme field requires that every node declares:
+- koordinater: which coordinate choices it stands on (time, space, mass,
+  temperature, energy, electric potential, magnetic field, fraction)
+- enheter: which units it measures in
 - status: valgt_ramme / avledet / direkte_observerbar / proxy
-- alternativer: hvilke alternative beskrivelser som er utelatt
+- alternativer: which alternative descriptions are omitted
 """
 from __future__ import annotations
 
@@ -49,8 +49,8 @@ def test_alle_noder_deklarerer_maale_paradigme():
 
 
 def test_paradigme_nodene_har_koordinatet_som_objekt():
-    """efc.selv.paradigme_tid skal ha tid som sitt KOORDINAT — ikke
-    bruke det som gitt."""
+    """efc.selv.paradigme_tid shall have tid as its COORDINATE — not
+    use it as given."""
     for n in _atlas()["nodes"]:
         if n["id"] == "efc.selv.paradigme_tid":
             assert "tid" in n["maale_paradigme"]["koordinater"], n["id"]
@@ -59,8 +59,8 @@ def test_paradigme_nodene_har_koordinatet_som_objekt():
 
 
 def test_motor_noder_deklarerer_sine_koordinater():
-    """Motornoder skal deklarere koordinatene de antar — ikke stå
-    uten deklarasjon."""
+    """Engine nodes shall declare the coordinates they assume — not stand
+    without a declaration."""
     forventet = {
         "efc.orbital_engine": ("rom", "masse", "tid", "hastighet"),
         "efc.water_phase_engine": ("temperatur",),
@@ -70,12 +70,12 @@ def test_motor_noder_deklarerer_sine_koordinater():
         if n["id"] in forventet:
             for koord in forventet[n["id"]]:
                 assert koord in n["maale_paradigme"]["koordinater"], (
-                    f"{n['id']}: mangler {koord}")
+                    f"{n['id']}: missing {koord}")
 
 
 def test_hastighet_er_i_enumet():
-    """Review-krav (PR #446 r1): skjemaet erklærer hastighet som
-    paradigme — enumet må kunne representere den."""
+    """Review requirement (PR #446 r1): the schema declares hastighet as a
+    paradigm — the enum must be able to represent it."""
     mp = _skjema()["$defs"]["RegimeNode"]["properties"]["maale_paradigme"]
     enum = mp["properties"]["koordinater"]["items"]["enum"]
     assert "hastighet" in enum

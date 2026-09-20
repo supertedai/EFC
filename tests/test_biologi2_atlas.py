@@ -1,7 +1,7 @@
-"""Tester for den andre biologiske atlas-seksjonen (L-032).
+"""Tests for the second biology atlas section (L-032).
 
-Immunologi, nevrobiologi, økologi og evolusjon — med samme disiplin:
-analogi-merking, fysiologisk presisjon, hypoteser kvalifisert.
+Immunology, neurobiology, ecology and evolution — with the same discipline:
+analogy labelling, physiological precision, hypotheses qualified.
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ def _node(navn: str) -> dict:
     for n in _atlas()["nodes"]:
         if n["id"] == navn:
             return n
-    raise AssertionError(f"{navn} mangler i atlaset")
+    raise AssertionError(f"{navn} is missing from the atlas")
 
 
 def test_bio2_nodene_finnes_og_har_regime():
@@ -45,8 +45,8 @@ def test_bio2_nodene_finnes_og_har_regime():
 
 
 def test_immunologi_har_aktiveringsterskel():
-    """Immunresponsen er terskelstyrt — aktiveringsterskler og
-    hukommelse skal sta i noden."""
+    """The immune response is threshold-driven — activation thresholds and
+    memory shall stand in the node."""
     node = _node("homo.immunologi")
     tekst = json.dumps(node, ensure_ascii=False)
     assert "threshold" in tekst.lower()
@@ -54,8 +54,8 @@ def test_immunologi_har_aktiveringsterskel():
 
 
 def test_sovn_vaaken_er_regimeskifte():
-    """Søvn/våken er et ekte regimeskifte i hjernen — noden skal
-    navngi begge regimene og overgangen."""
+    """Sleep/wake is a genuine regime shift in the brain — the node shall
+    name both regimes and the transition."""
     node = _node("homo.sovn_vaaken")
     tekst = json.dumps(node, ensure_ascii=False)
     assert "søvn" in tekst.lower() or "sovn" in tekst.lower()
@@ -63,16 +63,16 @@ def test_sovn_vaaken_er_regimeskifte():
 
 
 def test_okologi_har_vippepunkt():
-    """Økosystemer har alternative stabile tilstander og vippepunkter —
-    noden skal si det med den ærlige usikkerheten som hører til."""
+    """Ecosystems have alternative stable states and tipping points —
+    the node shall say so with the honest uncertainty that belongs to it."""
     node = _node("homo.okologi")
     tekst = json.dumps(node, ensure_ascii=False).lower()
     assert "vippe" in tekst or "alternativ" in tekst
 
 
 def test_evolusjon_er_punktuert_likevekt():
-    """Punktuert likevekt (stasis -> raske endringer) er holding->
-    release i evolusjonstid — noden skal kalle den formen ved navn."""
+    """Punctuated equilibrium (stasis -> rapid change) is holding->
+    release in evolutionary time — the node shall call that form by name."""
     node = _node("homo.evolusjon")
     tekst = json.dumps(node, ensure_ascii=False).lower()
     assert "stasis" in tekst or "punktuert" in tekst or \
@@ -81,7 +81,7 @@ def test_evolusjon_er_punktuert_likevekt():
 
 def test_bio2_nodene_tilfredsstiller_skjemaet():
     if jsonschema is None:
-        pytest.skip("jsonschema ikke installert")
+        pytest.skip("jsonschema not installed")
     skjema = json.loads(SKJEMA.read_text(encoding="utf-8"))
     validator = jsonschema.Draft202012Validator(skjema["$defs"]["RegimeNode"])
     for navn in BIO2_NODER:
@@ -96,13 +96,13 @@ def test_bio2_koblet_til_homo_fluxus():
         r for r in relasjoner
         if r["object"] == "homo.fluxus" and r["subject"] in BIO2_NODER
     ]
-    assert funnet, "biologiske noder mangler relasjon til homo.fluxus"
+    assert funnet, "biology nodes are missing a relation to homo.fluxus"
 
 
 def test_analogi_merking_i_bio2():
-    """Hver bio2-node skal eksplisitt merke analogiene som ANALOGI —
-    ikke identitet."""
+    """Every bio2 node shall explicitly label the analogies as ANALOGY —
+    not identity."""
     for navn in BIO2_NODER:
         node = _node(navn)
         tekst = json.dumps(node, ensure_ascii=False).lower()
-        assert "analogi" in tekst, f"{navn} mangler analogi-merking"
+        assert "analogi" in tekst, f"{navn} is missing analogy labelling"

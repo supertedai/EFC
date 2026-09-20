@@ -1,11 +1,11 @@
 {
-  "_om": "§4b i EFC_Validation_Ledger.html genereres fra denne fila. Rediger HER, ikke i HTML-en — to tillegg i samme HTML-liste kolliderer alltid, to rader i denne gjør det ikke.",
+  "_om": "§4b in EFC_Validation_Ledger.html is generated from this file. Edit HERE, not in the HTML — two additions to the same HTML list always collide, two rows in this one do not.",
   "_roller": {
-    "under_confrontation": "tredjepartsfunn EFC prøver seg mot",
-    "input_data": "måling EFC bygger på",
-    "context": "bakgrunn, ikke konfrontert"
+    "under_confrontation": "third-party finding EFC tests itself against",
+    "input_data": "measurement EFC builds on",
+    "context": "background, not confronted"
   },
-  "_advarsel": "`html` lagres ordrett og gjengis uendret. En generator som formulerer om en publisert påstand er ikke en generator, den er en forfatter.",
+  "_advarsel": "`html` is stored verbatim and rendered unchanged. A generator that rephrases a published claim is not a generator, it is an author.",
   "grupper": [
     {
       "overskrift": null,
@@ -53,59 +53,59 @@
           "html": "<li><strong>[external &mdash; Liu, Zhang &amp; Liu]</strong> &ldquo;Onsite Calibration of the Shear-Shear Correlation&rdquo; (arXiv:2606.18705). An onsite-calibrated Fourier-Quad analysis of HSC PDR3 finds S<sub>8</sub>&nbsp;=&nbsp;0.740<sup>+0.030</sup><sub>&minus;0.030</sub> and &Omega;<sub>m</sub>&nbsp;=&nbsp;0.383<sup>+0.129</sup><sub>&minus;0.132</sub>. The authors report that shear bias varies with photometric-redshift bin, S/N cut, optical band, and estimator, while calibrated constraints remain consistent across the cases examined. <em>Relevance to EFC:</em> this is directly relevant to P4&rsquo;s cosmic-shear S<sub>8</sub> observable and is lower than the robust EFC value S<sub>8</sub>&nbsp;&asymp;&nbsp;0.82, so it weakens any claim that the existing low-S<sub>8</sub> pattern is already a stable quantitative match. It does not by itself falsify P4 or establish a discrepancy: the HSC result is not directly comparable to DES Y6, KiDS-Legacy, or the sealed Rubin/Euclid test without a matched systematics and estimator study. <em>Insight boundary:</em> the result comments on the empirical robustness of the S<sub>8</sub> compilation; it does not change what EFC is responsible for or alter the pre-registered P4 threshold. <em>Status:</em> limitation noted; no EFC working note yet.</li>"
         },
         {
-          "tag": "Beutler m.fl. 2012 — 6dFGS",
+          "tag": "Beutler et al. 2012 — 6dFGS",
           "arxiv": null,
           "doi": "10.1111/j.1365-2966.2012.21136.x",
           "rolle": "input_data",
-          "notat": "fsigma8 ved z=0.02 i den 7-punkts vekstkompilasjonen EFCs P2 er forankret i.",
+          "notat": "fsigma8 at z=0.02 in the 7-point growth compilation EFC P2 is anchored in.",
           "html": null
         },
         {
-          "tag": "Howlett m.fl. 2015 — SDSS MGS",
+          "tag": "Howlett et al. 2015 — SDSS MGS",
           "arxiv": null,
           "doi": "10.1093/mnras/stu2693",
           "rolle": "input_data",
-          "notat": "fsigma8 ved z=0.15 i samme kompilasjon.",
+          "notat": "fsigma8 at z=0.15 in the same compilation.",
           "html": null
         },
         {
-          "tag": "Alam m.fl. 2017 — BOSS DR12",
+          "tag": "Alam et al. 2017 — BOSS DR12",
           "arxiv": null,
           "doi": "10.1093/mnras/stx721",
           "rolle": "input_data",
-          "notat": "tre fsigma8-punkter (z=0.38/0.51/0.61) med 3x3-kovarians.",
+          "notat": "three fsigma8 points (z=0.38/0.51/0.61) with a 3x3 covariance.",
           "html": null
         },
         {
-          "tag": "Okumura m.fl. 2016 — FastSound",
+          "tag": "Okumura et al. 2016 — FastSound",
           "arxiv": null,
           "doi": "10.1093/pasj/psw029",
           "rolle": "input_data",
-          "notat": "hoeyeste redshift-punkt i kompilasjonen.",
+          "notat": "highest-redshift point in the compilation.",
           "html": null
         },
         {
-          "tag": "Pezzotta m.fl. 2017 — VIPERS",
+          "tag": "Pezzotta et al. 2017 — VIPERS",
           "arxiv": null,
           "doi": "10.1051/0004-6361/201630295",
           "rolle": "input_data",
-          "notat": "VIPERS-punktet i fsigma8-kompilasjonen. RETTET 2026-08-23: sto foerst som de la Torre m.fl. 2017 (10.1051/0004-6361/201630276). Den artikkelen siteres i EFCs egen .tex for E_G, ikke for fsigma8; fsigma8-avsnittet siterer Pezzotta 2017. MEN: datapunktet staar paa z=0.77, og VERKEN Pezzotta 2017 (z=0.6 og z=0.86) ELLER de la Torre 2013 (z=0.8) rapporterer der. evidence/03_data.md oppgir en tredje attribusjon, de la Torre 2013. Verdiens opphav er ikke gjenfunnet — se Hetzner docs/efc-vipers-z077.md.",
+          "notat": "the VIPERS point in the fsigma8 compilation. CORRECTED 2026-08-23: it first stood as de la Torre et al. 2017 (10.1051/0004-6361/201630276). That article is cited in EFC own .tex for E_G, not for fsigma8; the fsigma8 section cites Pezzotta 2017. BUT: the data point sits at z=0.77, and NEITHER Pezzotta 2017 (z=0.6 and z=0.86) NOR de la Torre 2013 (z=0.8) reports there. evidence/03_data.md gives a third attribution, de la Torre 2013. The origin of the value has not been recovered — see the Hetzner docs/efc-vipers-z077.md.",
           "html": null
         },
         {
-          "tag": "Moresco m.fl. 2022 — Living Reviews",
+          "tag": "Moresco et al. 2022 — Living Reviews",
           "arxiv": null,
           "doi": "10.1007/s41114-022-00040-z",
           "rolle": "context",
-          "notat": "oversiktsartikkel om nye kosmologiske sonder. Bakgrunn, ikke maaling.",
+          "notat": "review article on new cosmological probes. Background, not measurement.",
           "html": null
         },
         {
-          "tag": "Gu m.fl. 2025 — DESI DR2",
+          "tag": "Gu et al. 2025 — DESI DR2",
           "arxiv": null,
           "doi": "10.1038/s41550-025-02669-6",
           "rolle": "under_confrontation",
-          "notat": "dynamisk moerk energi i lys av DESI DR2 BAO. Allerede sporet i External Research Ledger.",
+          "notat": "dynamical dark energy in light of DESI DR2 BAO. Already tracked in the External Research Ledger.",
           "html": null
         },
         {

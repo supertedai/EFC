@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""efc_inntak.py — web-inntak fase 1: tre kilder, dedup, kostnadstak.
+"""efc_inntak.py — web intake phase 1: three sources, dedup, cost cap.
 
-Henter nye poster fra arXiv, Crossref og OpenAlex (alle nøkkelfrie;
-NASA ADS krever token og ligger kommentert i sources.yaml), dedupliserer
-mot tidligere innholdshasher FØR noe modellkall, og lagrer kandidatene
-som append-only JSONL under data/inntak/.
+Fetches new records from arXiv, Crossref and OpenAlex (all key-free;
+NASA ADS requires a token and is commented out in sources.yaml),
+deduplicates against earlier content hashes BEFORE any model call, and
+stores the candidates as append-only JSONL under data/inntak/.
 
-Bruk:
-    python3 scripts/maintenance/efc_inntak.py --dry-run   # tell + vis, skriv ingenting
-    python3 scripts/maintenance/efc_inntak.py             # hent + lagre
-Exit: 0 = OK, 1 = taket nådd/feil (se ut).
+Usage:
+    python3 scripts/maintenance/efc_inntak.py --dry-run   # count + show, write nothing
+    python3 scripts/maintenance/efc_inntak.py             # fetch + store
+Exit: 0 = OK, 1 = the cap was reached/error (see the output).
 """
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ LAGER = ROT / "data" / "inntak"
 UA = "hermes-efc-inntak/1.0 (+supertedai/EFC)"
 TIDSFRIST = 30
 
-# EFC-nøkkelord (fase 1 — den brede synonymgrafen er fase 2)
+# EFC keywords (phase 1 — the broad synonym graph is phase 2)
 NOKKELORD = [
     "entropy gradient", "energy flow cosmology", "entropic gravity",
     "modified gravity", "sigma8 tension", "growth rate tension",
@@ -53,11 +53,11 @@ def _hent(url: str) -> dict | None:
 
 
 def _arxiv(max_items: int) -> list[dict]:
-    """arXiv svarer Atom XML, ikke JSON — derfor egen parser her."""
+    """arXiv answers with Atom XML, not JSON — hence a separate parser here."""
     q = urllib.parse.quote(" OR ".join(f'abs:"{k}"' for k in NOKKELORD[:6]))
     try:
-        # XXE-/billion-laughs-sikker parsing: defusedxml først, stdlib med tak
-        # som fallback (stdlib-expat løser ikke eksterne entiteter i 3.8+).
+        # XXE/billion-laughs-safe parsing: defusedxml first, stdlib with a
+        # cap as fallback (stdlib expat does not resolve external entities in 3.8+).
         try:
             import defusedxml.ElementTree as ET  # type: ignore
         except ImportError:
@@ -67,7 +67,7 @@ def _arxiv(max_items: int) -> list[dict]:
             f"&sortBy=submittedDate&sortOrder=descending&max_results={max_items}",
             headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=TIDSFRIST) as r:
-            rot = ET.fromstring(r.read(5 * 1024 * 1024).decode())  # tak: 5 MB
+            rot = ET.fromstring(r.read(5 * 1024 * 1024).decode())  # cap: 5 MB
     except Exception:
         return []
     ns = {"a": "http://www.w3.org/2005/Atom"}
@@ -151,7 +151,7 @@ def hoved() -> int:
             r["hentet"] = datetime.now(timezone.utc).isoformat()
             r["kildeklasse"] = "primary"
             nye.append(r)
-        time.sleep(1)  # snill mot API-ene
+        time.sleep(1)  # be kind to the APIs
     nye = nye[:tak]
     if a.dry_run:
         print(json.dumps({"modus": "dry-run", "nye": len(nye),

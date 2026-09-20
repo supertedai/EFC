@@ -56,7 +56,7 @@ class Rigg(unittest.TestCase):
         })
         _write(self.tmp / "c" / "plain.jsonld", {"@context": "https://schema.org", "@type": "CreativeWork", "name": "z"})
 
-    # ── inventar ──────────────────────────────────────────────────────
+    # ── inventory ─────────────────────────────────────────────────────
     def test_inventar_finner_bindinger_og_termer_etter_bruk(self):
         self._tre()
         per_file, agg, n, _ = self.mod.inventory(self.tmp)
@@ -75,13 +75,13 @@ class Rigg(unittest.TestCase):
         self.assertEqual(sorted(changed), ["a/x.jsonld", "b/y.jsonld"])
         x = json.loads((self.tmp / "a" / "x.jsonld").read_text(encoding="utf-8"))
         self.assertEqual(x["@context"]["efc"], self.NS)
-        self.assertEqual(x["url"], "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/x", "en URL utenfor @context skal ikke roeres")
-        self.assertEqual(x["description"], "EFC: a framework in which energy flows.", "prosa med mellomrom etter kolon skal ikke roeres")
+        self.assertEqual(x["url"], "https://github.com/supertedai/EFC/tree/main/docs/papers/efc/x", "a URL outside @context must not be touched")
+        self.assertEqual(x["description"], "EFC: a framework in which energy flows.", "prose with a space after the colon must not be touched")
         y = json.loads((self.tmp / "b" / "y.jsonld").read_text(encoding="utf-8"))
         self.assertEqual(y["@context"][1], {"efc": self.NS})
         self.assertEqual(y["@type"], "efc:Node")
         self.assertIn("efc:layer", y)
-        self.assertEqual(self.mod.rewrite(self.tmp), [], "andre kjoering skal ikke endre noe")
+        self.assertEqual(self.mod.rewrite(self.tmp), [], "a second run must not change anything")
 
     # ── check ─────────────────────────────────────────────────────────
     def test_check_feiler_paa_legacy_binding_og_udeklarert_term(self):
@@ -99,7 +99,7 @@ class Rigg(unittest.TestCase):
         self.mod.OUT_HTML.write_text(h1, encoding="utf-8")
         self.assertEqual(self.mod.check(self.tmp), [])
         jl2, h2 = self.mod.generate(self.tmp)
-        self.assertEqual((jl1, h1), (jl2, h2), "samme tre skal gi samme bytes")
+        self.assertEqual((jl1, h1), (jl2, h2), "the same tree must give the same bytes")
         graph = json.loads(jl1)
         ids = {n["@id"] for n in graph["@graph"]}
         self.assertIn("efc:EmpiricalResult", ids)
@@ -108,9 +108,9 @@ class Rigg(unittest.TestCase):
         self.assertIn('<script type="application/ld+json">', h1)
 
     def test_vocab_og_alias_bindes_som_termer_og_irregulaere_listes(self):
-        """Reviewfunn: atlaset binder 47 noekler via @vocab og meta_universe fem
-        via alias — ingen av dem har `efc:` i teksten. Og `efc:term/x` er en
-        referanse, ikke et term: listes, deklareres ikke, feller ikke."""
+        """Review finding: the atlas binds 47 keys via @vocab and meta_universe five
+        via alias — none of them has `efc:` in the text. And `efc:term/x` is a
+        reference, not a term: listed, not declared, does not fail."""
         _write(self.tmp / "a" / "atlas.jsonld", {"@context": {"@vocab": self.NS}, "@type": "FrameworkAtlas",
                                                  "frameworks": [{"id": "x", "category": "baseline"}]})
         _write(self.tmp / "b" / "mu.jsonld", {"@context": {"efc": self.NS, "influences": "efc:influences",
@@ -126,13 +126,13 @@ class Rigg(unittest.TestCase):
         self.mod.OUT_JSONLD.parent.mkdir(parents=True, exist_ok=True)
         self.mod.OUT_JSONLD.write_text(jl, encoding="utf-8"); self.mod.OUT_HTML.write_text(h, encoding="utf-8")
         notes = []
-        self.assertEqual(self.mod.check(self.tmp, notes=notes), [], "irregulaere skal ikke felle")
+        self.assertEqual(self.mod.check(self.tmp, notes=notes), [], "irregular ones must not fail")
         self.assertEqual(len(notes), 2)
 
     def test_prefiks_uten_binding_er_et_problem(self):
-        """`efc:Phantom` i et dokument som ikke binder `efc` er i JSON-LD en IRI
-        med scheme efc — ikke et term i namespacet. Foerste runde absorberte
-        det stille (reviewfunn)."""
+        """`efc:Phantom` in a document that does not bind `efc` is, in JSON-LD, an IRI
+        with the scheme efc — not a term in the namespace. The first round absorbed
+        it silently (review finding)."""
         _write(self.tmp / "a" / "loose.jsonld", {"@context": "https://schema.org", "@type": "efc:Phantom", "efc:orphan": "efc:Ghost"})
         _write(self.tmp / "b" / "ok.jsonld", {"@context": {"efc": self.NS}, "@type": "efc:Real"})
         problems = self.mod.check(self.tmp)
@@ -147,16 +147,16 @@ class Rigg(unittest.TestCase):
         self.assertEqual(sorted(x for _, x in irregular), ["@context alias 'sl' -> efc:term/x", "@vocab key '9lead'", "@vocab key 'ver.sion'"])
 
     def test_rewrite_bevarer_crlf(self):
-        """methodology/core/index.jsonld og open-process hadde CRLF paa main;
-        foerste utgave normaliserte dem til LF (reviewfunn)."""
+        """methodology/core/index.jsonld and open-process had CRLF on main;
+        the first version normalised them to LF (review finding)."""
         p = self.tmp / "c" / "crlf.jsonld"
         p.parent.mkdir(parents=True)
         p.write_bytes(('{\r\n  "@context": {"efc": "https://energyflow-cosmology.com/ontology#"},\r\n'
                        '  "@type": "efc:Node"\r\n}\r\n').encode("utf-8"))
         self.assertEqual(self.mod.rewrite(self.tmp), ["c/crlf.jsonld"])
         raw = p.read_bytes()
-        self.assertIn(b"\r\n", raw, "CRLF skal overleve")
-        self.assertNotIn(b"\n  \"@type\"", raw.replace(b"\r\n", b"\x00"), "ingen naken LF er innfoert")
+        self.assertIn(b"\r\n", raw, "CRLF must survive")
+        self.assertNotIn(b"\n  \"@type\"", raw.replace(b"\r\n", b"\x00"), "no bare LF has been introduced")
         self.assertIn(self.NS.encode(), raw)
 
     def test_check_feiler_naar_et_nytt_term_tas_i_bruk_uten_apply(self):
@@ -173,10 +173,10 @@ class Rigg(unittest.TestCase):
 
 
 class Generatoren(unittest.TestCase):
-    """efc_auto_metadata.py skrev `https://github.com/supertedai/EFC/ontology#`
-    — en av de ni — og kjoeres av efc-main-sync med auto-commit (reviewfunn).
-    Den importerer naa NS; her laases det at ingen legacy-URI finnes i kilden
-    og at modulen faktisk baerer samme NS som efc_ontology."""
+    """efc_auto_metadata.py wrote `https://github.com/supertedai/EFC/ontology#`
+    — one of the nine — and is run by efc-main-sync with auto-commit (review finding).
+    It now imports NS; what is locked here is that no legacy URI exists in the source
+    and that the module actually carries the same NS as efc_ontology."""
 
     def test_auto_metadata_baerer_ns_og_ingen_legacy_uri(self):
         mod = _load()
@@ -195,7 +195,7 @@ class Generatoren(unittest.TestCase):
 
 
 class Repoet(unittest.TestCase):
-    """Mot det ekte treet: én binding, alt deklarert, dokumentene ferske."""
+    """Against the real tree: one binding, everything declared, the documents fresh."""
 
     def test_repoet_har_ett_namespace_og_ferske_dokumenter(self):
         mod = _load()

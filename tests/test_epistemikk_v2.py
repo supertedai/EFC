@@ -1,27 +1,27 @@
-"""Tester for epistemikk v2 — de strukturelle lukningene.
+"""Tests for epistemikk v2 — the structural closures.
 
-Basert på tre uavhengige linser (Claude Opus 5 second opinion +
-deknings-gransking + gap-gransking, 2026-09-17). Hvert hull lukkes
-som en VALIDERBAR INVARIANT, ikke som fritekst:
+Based on three independent lenses (Claude Opus 5 second opinion +
+coverage audit + gap audit, 2026-09-17). Every gap is closed
+as a VERIFIABLE INVARIANT, not as free text:
 
-1. Selvanvendelse: atlaset og skjemaet skal være noder i atlaset —
-   `efc.selv.atlas` og `efc.selv.skjema` finnes, og
-   `efc.selv.paradigme_tid` m.fl. gjør (d) til noder.
-2. Stipulasjons-eksplisitthet: motorenes terskler skal kunne
-   deklareres i noden med `stipulert_av_oss: true` — og en node kan
-   referere motoren som holder terskelen.
-3. Falsifiseringsbetingelse: hver node SKAL ha tatt stilling — en
-   falsifikator (`ville_falsifisere`), en fastsatt
-   `falsifiserbarhet`-status, eller en skriftlig grunn
-   (`stipulasjoner.ikke_falsifiserbar_grunn`). «Kan bære» var feilen:
-   feltet var valgfritt, og maalt 2026-09-18 svarte 82 av 113 noder
-   verken ja eller nei. `revisjon` er loggen over endrede
-   terskler/antakelser.
-4. Observatøren i systemet: `observer.er_del_av_systemet` er
-   OBLIGATORISK og skal være true for alle noder — vi er
-   måleinstrumentet, ikke en gud utenfor.
-5. Analogi vs kausalitet: `analogi` med `bryter_der` (disanalogi)
-   er obligatorisk når noden erklærer analogi.
+1. Self-application: the atlas and the schema must be nodes in the atlas —
+   `efc.selv.atlas` and `efc.selv.skjema` exist, and
+   `efc.selv.paradigme_tid` et al. turn (d) into nodes.
+2. Stipulation explicitness: the engines' thresholds must be able to be
+   declared in the node with `stipulert_av_oss: true` — and a node can
+   refer to the engine that holds the threshold.
+3. Falsification condition: every node MUST have taken a position — a
+   falsifier (`ville_falsifisere`), a fixed
+   `falsifiserbarhet` status, or a written reason
+   (`stipulasjoner.ikke_falsifiserbar_grunn`). «Can carry» was the fault:
+   the field was optional, and measured 2026-09-18, 82 of 113 nodes
+   answered neither yes nor no. `revisjon` is the log of changed
+   thresholds/assumptions.
+4. The observer in the system: `observer.er_del_av_systemet` is
+   MANDATORY and must be true for all nodes — we are
+   the measuring instrument, not a god outside.
+5. Analogy vs causality: `analogi` with `bryter_der` (disanalogy)
+   is mandatory when the node declares an analogy.
 """
 from __future__ import annotations
 
@@ -43,7 +43,7 @@ def _skjema() -> dict:
 
 
 def test_selvanvendelse_nodene_finnes():
-    """Atlaset, skjemaet og grunnparadigmene er noder i atlaset."""
+    """The atlas, the schema and the base paradigms are nodes in the atlas."""
     atlas = _atlas()
     noder = {n["id"] for n in atlas["nodes"]}
     for krevd in ("efc.selv.atlas", "efc.selv.skjema",
@@ -55,9 +55,9 @@ def test_observer_er_del_av_systemet_obligatorisk():
     skjema = _skjema()
     obs = skjema["$defs"]["RegimeNode"]["properties"]["observer"]
     assert "er_del_av_systemet" in obs.get("required", []), \
-        "observer.er_del_av_systemet må være required"
+        "observer.er_del_av_systemet must be required"
     assert obs["properties"]["er_del_av_systemet"].get("const") is True, \
-        "er_del_av_systemet skal være konst sann — vi er instrumentet"
+        "er_del_av_systemet must be const true — we are the instrument"
 
 
 def test_alle_noder_sier_observeren_er_i_systemet():
@@ -74,68 +74,71 @@ def test_stipulasjonsfeltet_finnes():
 
 
 def test_selv_nodene_er_agnostiske_eller_paradigme():
-    """efc.selv.*-nodene er vår rammes egne — paradigme; de er ikke
-    konsensus og ikke akademia."""
+    """The efc.selv.* nodes are our own framework's — paradigm; they are not
+    consensus and not academia."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("efc.selv."):
             assert n["perspektiv"] in ("paradigme", "agnostikk"), n["id"]
 
 
 def test_ingen_node_uten_terskel_deklarasjon():
-    """Review-krav (PR #444 r1): stipulasjoner.terskler skal være
-    fylt med verdi/kilde ELLER eksplisitt deklarasjon — aldri tom
-    maske."""
+    """Review requirement (PR #444 r1): stipulasjoner.terskler must be
+    filled with a value/source OR an explicit declaration — never an empty
+    mask."""
     for n in _atlas()["nodes"]:
         terskler = n["stipulasjoner"]["terskler"]
         assert terskler, (
-            f"{n['id']}: tom terskelliste — populer eller deklarer "
-            f"eksplisitt at noden ikke har terskler")
+            f"{n['id']}: empty threshold list — populate it or declare "
+            f"explicitly that the node has no thresholds")
 
 
 def test_motor_nodene_har_motor_referanse():
-    """efc.*-motornodene skal peke på motoren som holder terskelen."""
+    """The efc.* engine nodes must point at the engine that holds the threshold."""
     for n in _atlas()["nodes"]:
         if n["id"].startswith("efc.") and "_engine" in n["id"]:
             assert n["stipulasjoner"].get("motor"), (
-                f"{n['id']}: mangler motor-referanse i stipulasjoner")
+                f"{n['id']}: missing engine reference in stipulasjoner")
 
 
 def test_skjemaet_kjenner_falsifiseringsavgjorelsen():
-    """Feltet skal være DEKLARERT, og en tom streng skal ikke telle som svar.
+    """The field shall be DECLARED, and an empty string shall not count as an
+    answer.
 
-    Skjemaet kan ikke KREVE svaret. Det tredje svaret ligger inne i
-    `stipulasjoner`, og JSON Schema kan ikke kreve et navngitt felt i et
-    underobjekt fra forelderen uten et underskjema med `properties` — som
-    C10-gaten (`efc_schema_check.py`) da melder som «aapen», fordi den ikke
-    skiller «beskriver et objekt» fra «stiller et krav til ett felt». Maalt
-    2026-09-18 (kort t_c11ffa45), med kravet forsøkt på både RegimeNode og
-    en egen AtlasNode:
+    The schema cannot REQUIRE the answer. The third answer lives inside
+    `stipulasjoner`, and JSON Schema cannot require a named field in a
+    sub-object from its parent without a subschema with `properties` — which
+    the C10 gate (`efc_schema_check.py`) then reports as «open», because it
+    does not distinguish «describes an object» from «imposes a requirement on
+    one field». Measured 2026-09-18 (card t_c11ffa45), with the requirement
+    attempted on both RegimeNode and a separate AtlasNode:
 
         schema at /$defs/AtlasNode/allOf[1]/oneOf[2] is open
 
-    Kravet holdes derfor som for `buss_status`/`motor_status`/`alene_status`
-    (#511/#513/#515, samme mønster): `test_atlas_avgjorelse.py` maaler at
-    noen HAR svart, `test_atlas_motsigelse.py` at bare ÉN har svart.
-    Skjemaet sier hva som KAN skrives — med minLength 1, saa en tom streng
-    aldri er et svar.
+    The requirement is therefore held as for
+    `buss_status`/`motor_status`/`alene_status` (#511/#513/#515, the same
+    pattern): `test_atlas_avgjorelse.py` measures that someone HAS answered,
+    `test_atlas_motsigelse.py` that only ONE has answered. The schema says
+    what CAN be written — with minLength 1, so an empty string is never an
+    answer.
     """
     node = _skjema()["$defs"]["RegimeNode"]
     vf = node["properties"].get("ville_falsifisere")
-    assert vf, "skjemaet kjenner ikke ville_falsifisere"
+    assert vf, "the schema does not know ville_falsifisere"
     assert vf.get("minLength") == 1, (
-        "uten minLength er en tom streng et gyldig svar i skjemaet")
+        "without minLength an empty string is a valid answer in the schema")
     st = node["properties"]["stipulasjoner"]["properties"]
     assert "ikke_falsifiserbar_grunn" in st, (
-        "stipulasjoner kjenner ikke grunnen — da er det ingen steder aa skrive den")
+        "stipulasjoner does not know the reason — then there is nowhere to write it")
     assert st["ikke_falsifiserbar_grunn"].get("minLength") == 1, (
-        "uten minLength er en tom grunn et gyldig svar i skjemaet")
+        "without minLength an empty reason is a valid answer in the schema")
 
 
 def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
-    """Teller noder som BAERER en avgjorelse — ikke noder som KAN baere en.
+    """Counts nodes that CARRY a decision — not nodes that CAN carry one.
 
-    126 av 126 (var 113 for de 13 nye nodene kom). Feltet skal vaere til stede, ogsaa naar svaret er nei: en
-    node uten svar svarer ikke, og et svar som ikke finnes kan ikke leses.
+    126 of 126 (was 113 before the 13 new nodes came). The field must be
+    present, also when the answer is no: a node without an answer does not
+    answer, and an answer that does not exist cannot be read.
     """
     noder = _atlas()["nodes"]
     uten = [n["id"] for n in noder
@@ -143,6 +146,6 @@ def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
                     or (n.get("stipulasjoner") or {})
                     .get("ikke_falsifiserbar_grunn"))]
     assert not uten, (
-        f"{len(uten)} av {len(noder)} node(r) har ikke tatt stilling: {uten[:8]}")
+        f"{len(uten)} of {len(noder)} node(s) have not taken a position: {uten[:8]}")
     assert len(noder) - len(uten) == 126, (
         f"coverage must be 126 of 126 (the atlas grew from 113 on 2026-09-19; all 13 new nodes answered), is {len(noder) - len(uten)}")

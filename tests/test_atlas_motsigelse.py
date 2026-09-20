@@ -1,17 +1,17 @@
-"""MOTSTRIDEN: en node skal ikke si to motsatte ting samtidig.
+"""THE CONTRADICTION: a node shall not say two opposite things at the same time.
 
-Maalt 2026-09-18, etter #514: alle 12 homo-noder hadde BEGGE —
-`buss_domene: verden.helse` OG `buss_status: «ingen buss-vei — emnet
-finnes ikke som domene i snapshotet»`. Feltet ble satt, den gamle
-statusen sto igjen, og begge var lesbare.
+Measured 2026-09-18, after #514: all 12 homo nodes had BOTH —
+`buss_domene: verden.helse` AND `buss_status: «ingen buss — emnet
+finnes ikke som domene i snapshotet»`. The field was set, the old
+status remained, and both were readable.
 
-Det er verre enn et tomt felt. Et tomt felt sier «ikke avgjort».
-To motstridende svar sier at atlaset ikke vet hva det selv mener — og
-en leser som bare ser det ene, faar svar uten aa vite at det finnes et
-annet.
+That is worse than an empty field. An empty field says «not decided».
+Two contradictory answers say that the atlas does not know what it itself
+means — and a reader who only sees the one gets an answer without knowing
+that there is another.
 
-Regelen: naar feltet er satt, skal statusen bort. En avgjorelse staar
-alene.
+The rule: when the field is set, the status shall go. A decision stands
+alone.
 """
 from __future__ import annotations
 
@@ -30,30 +30,30 @@ def noder() -> list[dict]:
 
 
 def test_buss_domene_og_buss_status_utelukker_hverandre(noder: list[dict]) -> None:
-    """Har noden en buss, skal den ikke samtidig ha en «ingen buss»-status."""
+    """If the node has a bus, it shall not also carry an «ingen buss» status."""
     begge = []
     for n in noder:
         s = n.get("stipulasjoner") or {}
         if n.get("buss_domene") and s.get("buss_status"):
             begge.append(n["id"])
     assert not begge, (
-        f"{len(begge)} node(r) har BEGGE: buss_domene og buss_status. "
-        f"Naar feltet er satt, skal statusen bort: {begge[:6]}")
+        f"{len(begge)} node(s) have BOTH: buss_domene and buss_status. "
+        f"When the field is set, the status shall go: {begge[:6]}")
 
 
 def test_motor_og_motor_status_utelukker_hverandre(noder: list[dict]) -> None:
-    """Det samme for motoren."""
+    """The same for the engine."""
     begge = []
     for n in noder:
         s = n.get("stipulasjoner") or {}
         if s.get("motor") and s.get("motor_status"):
             begge.append(n["id"])
     assert not begge, (
-        f"{len(begge)} node(r) har BEGGE: motor og motor_status: {begge[:6]}")
+        f"{len(begge)} node(s) have BOTH: motor and motor_status: {begge[:6]}")
 
 
 def test_ingen_status_sier_imot_sitt_eget_felt(noder: list[dict]) -> None:
-    """Den direkte motsigelsen: feltet sier ja, statusen sier nei."""
+    """The direct contradiction: the field says yes, the status says no."""
     motsigelser = []
     for n in noder:
         s = n.get("stipulasjoner") or {}
@@ -62,18 +62,18 @@ def test_ingen_status_sier_imot_sitt_eget_felt(noder: list[dict]) -> None:
         if b and ("ingen buss" in st or "ikke som domene" in st):
             motsigelser.append(n["id"])
     assert not motsigelser, (
-        f"{len(motsigelser)} node(r) sier baade at de HAR en buss og at de "
-        f"IKKE har det: {motsigelser[:6]}")
+        f"{len(motsigelser)} node(s) say both that they HAVE a bus and that they "
+        f"do NOT: {motsigelser[:6]}")
 
 
-# --- Falsifiserbarhet: en avgjoerelse staar alene (kort t_c11ffa45) ---------
+# --- Falsifiability: a decision stands alone (card t_c11ffa45) --------------
 #
-# Samme regel som over, for de tre svarene som ble maalt 2026-09-18:
-# `ville_falsifisere`, `falsifiserbarhet` og `stipulasjoner.
-# ikke_falsifiserbar_grunn`. En node som har TO av dem sier to ting samtidig
-# — samme feil som #514: leseren faar ett svar uten aa vite at det finnes et
-# annet. `test_atlas_avgjorelse.py` maaler at ingen node TIER (>= 1 svar);
-# her maales at ingen svarer to ganger (<= 1).
+# The same rule as above, for the three answers measured 2026-09-18:
+# `ville_falsifisere`, `falsifiserbarhet` and `stipulasjoner.
+# ikke_falsifiserbar_grunn`. A node with TWO of them says two things at once
+# — the same fault as #514: the reader gets one answer without knowing there is
+# another. `test_atlas_avgjorelse.py` measures that no node is SILENT (>= 1
+# answer); here it is measured that nobody answers twice (<= 1).
 
 def _antall_svar(n: dict) -> int:
     return (bool(n.get("ville_falsifisere"))
@@ -84,29 +84,29 @@ def _antall_svar(n: dict) -> int:
 def test_ingen_node_har_to_falsifiseringssvar(noder: list[dict]) -> None:
     begge = [n["id"] for n in noder if _antall_svar(n) > 1]
     assert not begge, (
-        f"{len(begge)} node(r) har mer enn ett svar paa om de kan felles. "
-        f"En avgjoerelse staar alene: {begge[:6]}")
+        f"{len(begge)} node(s) have more than one answer on whether they can "
+        f"be felled. A decision stands alone: {begge[:6]}")
 
 
 def test_falsifikator_og_ikke_falsifiserbar_grunn_utelukker_hverandre(
         noder: list[dict]) -> None:
-    """Den direkte motsigelsen: «her er hva som ville felle meg» OG «jeg kan
-    ikke felles» i samme node."""
+    """The direct contradiction: «here is what would fell me» AND «I cannot
+    be felled» in the same node."""
     begge = [n["id"] for n in noder
              if n.get("ville_falsifisere")
              and (n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn")]
     assert not begge, (
-        f"{len(begge)} node(r) har BEGGE: en falsifikator og en grunn til aa "
-        f"ikke ha en: {begge[:6]}")
+        f"{len(begge)} node(s) have BOTH: a falsifier and a reason not to "
+        f"have one: {begge[:6]}")
 
 
 def test_en_tom_verdi_er_ikke_en_avgjoerelse(noder: list[dict]) -> None:
-    """«Kan ikke felles» er et svar; en tom streng er en utelatelse.
+    """«Cannot be felled» is an answer; an empty string is an omission.
 
-    Samme regel som `test_statusene_sier_noe_om_hvorfor` over: feltet skal
-    vaere FYLT eller FRAVAERENDE, aldri fylt med ingenting. En tom streng
-    tilfredsstiller «feltet finnes» og svarer ikke paa spoersmaalet — det er
-    noeyaktig feilklassen `test_falsifiserbarhet.py` har felt tre ganger.
+    The same rule as `test_statusene_sier_noe_om_hvorfor` above: the field must
+    be FILLED or ABSENT, never filled with nothing. An empty string satisfies
+    «the field exists» and does not answer the question — exactly the fault
+    class `test_falsifiserbarhet.py` has felled three times.
     """
     tomme = []
     for n in noder:
@@ -115,4 +115,4 @@ def test_en_tom_verdi_er_ikke_en_avgjoerelse(noder: list[dict]) -> None:
             verdi = n.get(felt) if felt == "ville_falsifisere" else s.get(felt)
             if verdi is not None and not str(verdi).strip():
                 tomme.append(f"{n['id']}.{felt}")
-    assert not tomme, f"tomme avgjoerelser: {tomme[:6]}"
+    assert not tomme, f"empty decisions: {tomme[:6]}"

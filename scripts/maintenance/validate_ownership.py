@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""validate_ownership.py — fail-closed eierskapskontroll over HELE repoet.
+"""validate_ownership.py — fail-closed ownership check over the WHOLE repo.
 
-Hver tracked fil skal treffe minst én component-coverage_glob i
-governance/ownership-register.json. Uklassifiserte filer = HARD feil —
-eierskap er ikke valgfritt (Morten: «EFC agenten MÅ eie alt»).
+Every tracked file must hit at least one component coverage_glob in
+governance/ownership-register.json. Unclassified files = HARD error —
+ownership is not optional (Morten, translated from Norwegian: "the EFC agent
+MUST own everything").
 
-Bruk: python3 scripts/maintenance/validate_ownership.py [--json]
-Exit: 0 = full dekning, 1 = filer uten eier.
+Usage: python3 scripts/maintenance/validate_ownership.py [--json]
+Exit: 0 = full coverage, 1 = files without an owner.
 """
 from __future__ import annotations
 
@@ -20,13 +21,14 @@ from pathlib import Path
 ROT = Path(__file__).resolve().parents[2]
 REGISTER = ROT / "governance" / "ownership-register.json"
 
-# Legitime unntak: git-ignorerte og kanban-arbeidsområder er ikke eid innhold.
+# Legitimate exceptions: git-ignored and kanban work areas are not owned
+# content.
 UNNTAK = [".git/**", ".worktrees/**", "data/inntak/**", ".venv/**", "__pycache__/**"]
 
 
 def _trackede_filer() -> list[str]:
-    # -z: ingen sitering av stier med unicode/spesialtegn (git siterer ellers
-    # «–» som \342\200\223 og globben bommer på hele stien).
+    # -z: no quoting of paths with unicode/special characters (git otherwise
+    # quotes "–" as \342\200\223 and the glob misses the whole path).
     r = subprocess.run(["git", "ls-files", "-z"], capture_output=True,
                        timeout=30, cwd=str(ROT))
     if r.returncode != 0:
@@ -55,9 +57,9 @@ def hoved() -> int:
         print(json.dumps({"feil": feil, "uten_eier": len(uten_eier)},
                          ensure_ascii=False, indent=1))
     else:
-        print(f"eierskap: {len(uten_eier)} filer uten eier")
+        print(f"ownership: {len(uten_eier)} files without an owner")
         for f in uten_eier[:25]:
-            print("  UTEN EIER:", f)
+            print("  WITHOUT OWNER:", f)
     return 1 if feil else 0
 
 

@@ -1,10 +1,10 @@
-"""Test av scripts/maintenance/_repo_tre.py — verktøyene svarer på git-treet.
+"""Test of scripts/maintenance/_repo_tre.py — the tools answer from the git tree.
 
-Målt 2026-09-17 (kanban t_12494ba1): tre instrumenter vandret over disken
-(`rglob`, `os.walk`) og fant `.worktrees/` i hovedklonen — gitignorert, men på
-disk. Tre tester som var grønne i CI ble røde lokalt, på filer som ikke er i
-repoet. Testene her pinner begge sider: hva leseren svarer, og at de tre
-instrumentene ikke lenger ser en ignorert arbeidsflate.
+Measured 2026-09-17 (kanban t_12494ba1): three instruments walked the disk
+(`rglob`, `os.walk`) and found `.worktrees/` in the main clone — gitignored,
+but on disk. Three tests that were green in CI went red locally, on files that
+are not in the repo. The tests here pin both sides: what the reader answers,
+and that the three instruments no longer see an ignored work surface.
 """
 from __future__ import annotations
 
@@ -24,39 +24,39 @@ if str(_MAINT) not in sys.path:
 
 from _repo_tre import filer, git_indeks  # noqa: E402
 
-# Samme adresse som regresjonsvernet i test_regime_node_schema.py leter etter.
-# Den settes sammen av deler her, ikke skrevet rett ut: vernet skanner alle
-# sporede filer, og denne fila er sporet — med adressen skrevet ut felt den
-# seg selv (målt: 1 failed på `tests/test_repo_tre.py` før denne linja ble
-# delt). Å bygge strengen av deler er det som gjør at ingen fil er unntatt.
+# The same address that the regression guard in test_regime_node_schema.py
+# looks for. It is assembled from parts here, not written out: that guard
+# scans all tracked files, and this file is tracked — written out it would
+# trip itself (measured: 1 failed on `tests/test_repo_tre.py` before this
+# line was split). Building the string from parts exempts no file.
 PRIVAT = "Hassel" + "vegen 5, " + "4051 " + "Sola"
 
 
 class Rigg(unittest.TestCase):
-    """Et temp-tre med git, uten commit — `git add` er nok for indeksen."""
+    """A temp tree with git, without a commit — `git add` is enough for the index."""
 
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp())
         self.addCleanup(lambda: shutil.rmtree(self.tmp, ignore_errors=True))
 
     def skriv(self, rel: str, tekst: str = "x\n", spor: bool = True) -> Path:
-        """Skriv en fil. `spor=True` legger den i indeksen naar treet er git.
+        """Write a file. `spor=True` puts it in the index when the tree is git.
 
-        Verktoeyet leser INDEKSEN, ikke disken. En rigg som bare skriver
-        til disk bygger derfor et tomt tre — og det ble «loest» ved aa la
-        `filer()` falle tilbake til diskvandring, som gjorde at USPOREDE
-        filer ble lest i et ekte, tomt tre. Rettelsen hoerer her.
+        The tool reads the INDEX, not the disk. A rig that only writes
+        to disk therefore builds an empty tree — and that was "solved" by
+        letting `filer()` fall back to a disk walk, which made UNTRACKED
+        files readable in a real, empty tree. The fix belongs here.
 
-        `spor=False` for testene som bevisst vil ha en fil utenfor
-        indeksen; ignorerte stier feiler stille paa `git add`, som er
-        meningen (se `test_ignorert_katalog_er_ikke_med`).
+        `spor=False` for the tests that deliberately want a file outside
+        the index; ignored paths fail silently on `git add`, which is
+        the point (see `test_ignorert_katalog_er_ikke_med`).
         """
         p = self.tmp / rel
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(tekst, encoding="utf-8")
         if spor and (self.tmp / ".git").exists():
             subprocess.run(["git", "-C", str(self.tmp), "add", "--", rel],
-                           capture_output=True)  # ignorert sti feiler — greit
+                           capture_output=True)  # ignored path fails — fine
         return p
 
     def git(self, *args: str) -> None:
@@ -72,39 +72,40 @@ class Rigg(unittest.TestCase):
 
 class GitTre(Rigg):
     def test_tomt_indeks_er_et_svar_ikke_en_fallback(self):
-        """Et gyldig, TOMT git-tre skal gi null filer — ikke diskvandring.
+        """A valid, EMPTY git tree must give zero files — not a disk walk.
 
-        Maalt i uavhengig review 2026-09-17: `git_indeks` returnerte
-        `stier or None`. Et tomt tre ble dermed behandlet som «ikke et
-        git-tre», `filer()` falt tilbake til diskvandring, og USPOREDE
-        filer ble lest — i strid med premisset om at git-treet er
-        autoritativt. Reprodusert med `git init` + én usporet fil.
+        Measured in independent review 2026-09-17: `git_indeks` returned
+        `stier or None`. An empty tree was thereby treated as "not a
+        git tree", `filer()` fell back to a disk walk, and UNTRACKED
+        files were read — against the premise that the git tree is
+        authoritative. Reproduced with `git init` + one untracked file.
 
-        De to tilstandene maa skilles: «git svarte, og svaret var tomt»
-        mot «git svarte ikke». Bare den andre skal falle tilbake.
+        The two states must be told apart: "git answered, and the answer
+        was empty" versus "git did not answer". Only the second may fall
+        back.
         """
         with tempfile.TemporaryDirectory() as d:
             rot = Path(d)
             subprocess.run(["git", "init", "-q"], cwd=rot, check=True)
             (rot / "usporet.jsonld").write_text("PRIVAT", encoding="utf-8")
             self.assertEqual(git_indeks(rot), [],
-                             "tomt tre skal gi tom liste, ikke None")
+                             "an empty tree must give an empty list, not None")
             self.assertEqual(filer(rot), [],
-                             "en usporet fil skal ikke leses fra et git-tre")
+                             "an untracked file must not be read from a git tree")
 
     def test_utenfor_git_faller_tilbake_til_disk(self):
-        """Den andre halvdelen: utenfor et git-tre SKAL disken leses."""
+        """The other half: outside a git tree the disk MUST be read."""
         with tempfile.TemporaryDirectory() as d:
             rot = Path(d)
             (rot / "a.jsonld").write_text("{}", encoding="utf-8")
             self.assertIsNone(git_indeks(rot),
-                              "utenfor git skal svaret vaere None")
+                              "outside git the answer must be None")
             self.assertEqual(len(filer(rot)), 1,
-                             "fallbacken skal fortsatt virke")
+                             "the fallback must still work")
 
     def test_ignorert_katalog_er_ikke_med(self):
-        """Den målte feilen: `.worktrees/` står i .gitignore, men ligger på
-        disk — og en diskvandring svarte med den."""
+        """The measured error: `.worktrees/` is in .gitignore, but lies on
+        disk — and a disk walk answered with it."""
         self.git_init()
         self.skriv(".gitignore", ".worktrees/\n")
         self.skriv("docs/a.json", "{}\n")
@@ -113,20 +114,20 @@ class GitTre(Rigg):
         self.assertEqual(self.rel(filer(self.tmp)), [".gitignore", "docs/a.json"])
 
     def test_bare_indeksen_svarer(self):
-        """Uløste filer er ikke med: svaret skal ikke avhenge av hva som
-        tilfeldigvis ligger ulagt i arbeidsstreet. `git add` er grensen."""
+        """Unstaged files are not included: the answer must not depend on what
+        happens to lie unadded in the worktree. `git add` is the boundary."""
         self.git_init()
         self.skriv("docs/sporet.json", "{}\n")
         self.skriv("docs/ulost.json", "{}\n", spor=False)
         self.assertEqual(self.rel(filer(self.tmp)), ["docs/sporet.json"])
 
     def test_sporet_fil_leses_fra_indeksen(self):
-        """Riggen legger filen i indeksen, og den leses derfra.
+        """The rig puts the file in the index, and it is read from there.
 
-        Dette erstatter `test_tom_indeks_faller_tilbake_til_disken`, som
-        laaste inne feilen: den bygget et tomt indeks og krevde at
-        `filer()` leste DISKEN i stedet. Det er den atferden som lekker —
-        se `test_tomt_indeks_er_et_svar_ikke_en_fallback`.
+        This replaces `test_tom_indeks_faller_tilbake_til_disken`, which
+        locked in the error: it built an empty index and required that
+        `filer()` read the DISK instead. That is the behaviour that leaks —
+        see `test_tomt_indeks_er_et_svar_ikke_en_fallback`.
         """
         self.git_init()
         self.skriv("docs/a.json", "{}\n")
@@ -138,8 +139,8 @@ class GitTre(Rigg):
         self.assertEqual(self.rel(filer(self.tmp)), ["docs/a.json"])
 
     def test_ignorert_katalog_hoppes_over_ved_navn_uten_git(self):
-        """Fallbacken leser disken, men de ignorerte katalogene er de samme:
-        en katalog som ikke er i repoet skal ikke kunne felle et svar."""
+        """The fallback reads the disk, but the ignored directories are the same:
+        a directory that is not in the repo must not be able to fail an answer."""
         self.skriv("docs/a.json", "{}\n")
         self.skriv(".worktrees/x/docs/b.json", "{}\n")
         self.skriv("__pycache__/c.pyc", "x\n")
@@ -156,8 +157,8 @@ class GitTre(Rigg):
                          ["docs/b.jsonld", "docs/c.md"])
 
     def test_sporet_men_slettet_fra_disken_er_ikke_med(self):
-        """Funksjonen svarer med filer som kan leses — en `check()` skal ikke
-        felle på en sti som ikke finnes."""
+        """The function answers with files that can be read — a `check()` must not
+        fail on a path that does not exist."""
         self.git_init()
         p = self.skriv("docs/a.json", "{}\n")
         self.git("add", "docs/a.json")
@@ -170,8 +171,8 @@ class GitTre(Rigg):
 
 
 class Instrumentene(Rigg):
-    """De tre instrumentene skal svare likt i alle kloner: en ignorert
-    arbeidsflate under repoet skal ikke kunne felle dem."""
+    """The three instruments must answer alike in all clones: an ignored
+    work surface under the repo must not be able to fail them."""
 
     def test_identitetsvakten_ser_ikke_ignorert_arbeidsflate(self):
         ef = importlib.import_module("efc_identity")
@@ -182,7 +183,7 @@ class Instrumentene(Rigg):
             "$id": "https://supertedai.github.io/EFC/s.json",
             "type": "object", "properties": {},
         }))
-        # Legacy binding + manglende @id, i en katalog git ignorerer.
+        # Legacy binding + missing @id, in a directory git ignores.
         self.skriv(".worktrees/efc-ev-abc/docs/legacy.jsonld",
                    json.dumps({"@context": {"efc": "https://github.com/supertedai/EFC/ontology#"}}))
         self.git("add", ".gitignore", "docs/s.json")

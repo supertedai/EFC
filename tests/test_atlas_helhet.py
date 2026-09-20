@@ -81,7 +81,7 @@ class TestHelheten:
         assert isinstance(f, list) and f
 
     def test_ukjent_node_gir_naere_ikke_feil(self, atlas: dict) -> None:
-        h = atlas_lesing.helhet(atlas, "finnes.ikke.her")
+        h = atlas_lesing.helhet(atlas, "no.such.axis.here")
         assert h["finnes"] is False
         assert "naere" in h
 

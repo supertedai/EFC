@@ -71,8 +71,8 @@ import re
 import sys
 from pathlib import Path
 
-# Søskenmodulen ligger ved siden av denne fila, og verktøyet lastes både som
-# script og via importlib fra testene — da er ikke katalogen på sys.path.
+# The sibling module sits next to this file, and the tool is loaded both as a
+# script and via importlib from the tests — then the directory is not on sys.path.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _repo_tre import filer as _tre_filer  # noqa: E402
 

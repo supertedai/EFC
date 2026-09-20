@@ -44877,727 +44877,727 @@
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-apparat — Noen apparater som varmtvannstanker, store ovner, eller industrielle maskiner kan trekke store mengder strøm. Hvis flere slike apparater ble aktivert samtidig, kan dette forklare toppen.",
+      "text": "Activation of high-power appliance — Some appliances such as water heaters, large ovens, or industrial machines can draw large amounts of power. If several such appliances were activated at the same time, this can explain the peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-kjøkkenutstyr (f.eks. induksjon + ovn) — Kombinasjonen av induksjonstoppeplater (3.7 kW) og ovn (2.3 kW) kan nærme seg 6 kW. Med andre grunnlasters (kjøleskap, lys, IT) kan dette nærme seg 8 kW, spesielt hvis det er flere faser med høy belastning.",
+      "text": "Activation of high-power kitchen equipment (e.g. induction + oven) — The combination of induction hobs (3.7 kW) and oven (2.3 kW) can approach 6 kW. With other base loads (fridge, lighting, IT) this can approach 8 kW, especially if there are several phases with high loading.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-kjøkkenutstyr eller varmekabler — Kombinasjonen av en induksjonsovn (3-4 kW), oppvaskmaskin (1.5-2 kW) og evt. varmekabler eller varmtvannsbereder kan summere til >8 kW. Kl. 22:22 i Oslo (vinter/halvår) kan det være aktivitet knyttet til kveldsmat eller oppvarming av bad/toalett.",
+      "text": "Activation of high-power kitchen equipment or heating cables — The combination of an induction stove (3-4 kW), dishwasher (1.5-2 kW) and possibly heating cables or a hot water heater can sum to >8 kW. At 22:22 in Oslo (winter/half-year) there may be activity related to supper or heating of the bathroom/toilet.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-komfyr eller ovn — Kjøkkenutstyr (komfyr/ovn) kan trekke 3-7 kW alene. Kombinasjon med annen grunnlast kan nå 8.1 kW. Dette er en vanlig 'usynlig' last hvis ikke kjøkkenet har egen sub-måler.",
+      "text": "Activation of high-power stove or oven — Kitchen equipment (stove/oven) can draw 3-7 kW alone. Combined with other base load, this can reach 8.1 kW. This is a common 'invisible' load if the kitchen does not have its own sub-meter.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-varmeovn eller varmekabler — Hvis huset har direkte elektrisk oppvarming (varmekabler/paneler) på ca. 6-8 kW som ble slått på manuelt eller via en separat termostat, vil dette overskride setpunktet betydelig.",
+      "text": "Activation of high-power heater or heating cables — If the house has direct electric heating (heating cables/panels) of approx. 6-8 kW that was switched on manually or via a separate thermostat, this will significantly exceed the setpoint.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Aktivering av varmekabler eller stor hvitvare — Kombinasjonen av varmekabler i gulv/trapp (som kan trekke 2-3 kW) og en stor hvitvare (f.eks. oppvaskmaskin eller tørketrommel på 2-3 kW) kan summere til 4.4 kW hvis de starter samtidig.",
+      "text": "Activation of heating cables or large white goods — The combination of heating cables in floor/staircase (which can draw 2-3 kW) and a large white good (e.g. dishwasher or tumble dryer at 2-3 kW) can sum to 4.4 kW if they start at the same time.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Aktivering av varmepumpe/ovn i kombinasjon med andre laster — Selv om det er 1. juli, kan det ha vært ekstremt varmt eller fuktig, noe som aktiverte klimaanlegg eller varmepumpe i kjølemodus med høy effekt. Kombinasjonen med kveldsaktivitet (matlaging, TV, lys) kan summere til 8 kW hvis flere store apparater starter samtidig.",
+      "text": "Activation of heat pump/heater in combination with other loads — Although it is 1 July, it may have been extremely hot or humid, which activated air conditioning or a heat pump in cooling mode at high power. The combination with evening activity (cooking, TV, lights) can sum to 8 kW if several large appliances start at the same time.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batteri-inverter feil (falsk ladning/utladning signal) — Batteriet har SOC 98% og lader (negativ power avg -308 W). Hvis inverteren rapporterte feilaktig at den laddes med f.eks. -2 kW i stedet for 0 W, ville systemet tro det trengte mindre fra nettet enn det gjorde, eller omvendt. Men her er grid positiv. Hvis batteri-sensoren rapporterte feilaktig utladning (positiv) mens den faktisk laddes, ville grid lasten øke for å dekke både forbruk og 'fiktiv' batteri-utladning. Men data viser batteri lader. Mer sannsynlig: Batteri-kontrolleren sendte feil signal om at batteriet kunne ta opp mer, men f",
+      "text": "Battery-inverter fault (false charging/discharging signal) — The battery has SOC 98% and is charging (negative power avg -308 W). If the inverter erroneously reported that it was charging at, e.g., -2 kW instead of 0 W, the system would believe it needed less from the grid than it did, or vice versa. But here grid is positive. If the battery sensor erroneously reported discharging (positive) while it was in fact charging, the grid load would increase to cover both consumption and the 'fictitious' battery discharge. But the data show the battery is charging. More likely: The battery controller sent a wrong signal that the battery could take up more, but f",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batteri-ladegrense eller feil — Batteriet er ved 98% SOC (max). battery_power viser negative verdier (ladning) opp til -3024 W, men grid_power er høy. Hvis batteriet nekter å lade mer (fordi det er fullt) eller har en teknisk feil som begrenser ladestrøm, må overskuddsenergi fra forbruk eller feilkalibrering trekkes fra nett.",
+      "text": "Battery charging limit or fault — The battery is at 98% SOC (max). battery_power shows negative values (charging) up to -3024 W, but grid_power is high. If the battery refuses to charge more (because it is full) or has a technical fault that limits charging current, excess energy from consumption or miscalibration must be drawn from the grid.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batteridemping eller feilaktig innsprøytning — Hvis batteristyringen feilaktig tolket en signalendring og prøvde å levere maksimal effekt til nettet (inverterfeil) eller hvis en ekstern kilde laddet batteriet raskt, kan dette skape en topp.",
+      "text": "Battery damping or erroneous injection — If the battery management erroneously interpreted a signal change and tried to deliver maximum power to the grid (inverter fault), or if an external source charged the battery rapidly, this can create a peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batterikontroller feil (ukontrollert utladning/innlasting) — Batteriet var ved 98% SOC. Hvis kontrollsystemet feilaktig prøvde å lade batteriet (grid_power positiv) samtidig som det var høy forbruk, ville dette skapt en kunstig topp. Men data viser battery_power avg 9.3 kW, noe som indikerer minimal aktivitet. Hypotesen er svak, men mulig hvis SOC-estimatet var feil og systemet trodde det var plass til lading.",
+      "text": "Battery controller error (uncontrolled discharge/charge) — The battery was at 98% SOC. If the control system incorrectly tried to charge the battery (grid_power positive) at the same time as there was high consumption, this would have created an artificial peak. But data shows battery_power avg 9.3 kW, which indicates minimal activity. The hypothesis is weak, but possible if the SOC estimate was wrong and the system believed there was room for charging.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batterikontroller feil i lade-logikk — Batteriet lader (positiv power) opptil 3.77 kW i vinduet. Hvis kontrolleren feilaktig sender en kommando om å lade batteriet fra nettet samtidig som det er en annen last, kan dette skape en topp. Men med SOC på 98%, bør lading være begrenset. Hvis SOC-sensoren er feil (viser 98% men er lavere), kan batteriet ha ladd seg raskt fra nettet, noe som gir en høy nett-top.",
+      "text": "Battery controller error in the charge logic — The battery charges (positive power) up to 3.77 kW in the window. If the controller incorrectly sends a command to charge the battery from the grid at the same time as there is another load, this can create a peak. But with SOC at 98%, charging should be limited. If the SOC sensor is wrong (shows 98% but is lower), the battery may have charged itself rapidly from the grid, which gives a high grid peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batteristyring feil (invertersynkronisering) — Batteriet viser negativ effekt (lading) på -3.3 kW min, men SOC er 98%. Hvis styringslogikken misforsto SOC eller mottok feil signal, kunne den ha prøvd å lade batteriet raskt fra nettet samtidig som huset forbrukte, selv om batteriet var fullt. Dette ville skapt en kunstig topp i nettinntak.",
+      "text": "Battery management fault (inverter synchronization) — The battery shows negative power (charging) at -3.3 kW min, but SOC is 98%. If the control logic misread SOC or received a wrong signal, it could have tried to charge the battery rapidly from the grid while the house was consuming, even though the battery was full. This would have created an artificial peak in grid draw.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Batteristyring feilaktig eksport/import-regning — Hvis batteriet ble ladet fra nettet samtidig som det var en stor intern last, og systemet feilaktig tolket retningen på strømmen (f.eks. doblet opp forbruket i nettmåleren på grunn av feil i fasetilordning eller beregning av netto effekt), kan dette gi en kunstig topp.",
+      "text": "Battery management incorrect export/import accounting — If the battery was charged from the grid while there was a large internal load, and the system incorrectly interpreted the direction of the current (e.g. doubled the consumption in the grid meter due to an error in phase assignment or calculation of net power), this can give an artificial peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "ESS-gridlimit aktiv og batteriet inaktivt — Import 4.14 kW mens batteriet hverken lader eller yter. Dette kombinert med lav solproduksjon indikerer at inverteren kan være satt i grid-limit-modus som struper sol for å unngå eksport.",
+      "text": "ESS grid limit active and battery inactive — Import 4.14 kW while the battery neither charges nor discharges. This, combined with low solar production, indicates that the inverter may be set in grid-limit mode, which throttles solar to avoid export.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "ESS-struping pga. grid-limiter eller fast setpunkt — Grid-import på 4.14 kW samtidig som solcellene kun yter 0.74 kW indikerer at systemet ikke prøver å balansere forbruk lokalt. ESS kan ha aktiv grid-limit på null-eksport eller lav fast produksjon.",
+      "text": "ESS throttling due to grid limiter or fixed setpoint — Grid import of 4.14 kW while the solar cells deliver only 0.74 kW indicates that the system is not trying to balance consumption locally. ESS may have an active grid limit at zero export or low fixed production.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "EV-lader startet uventet eller med høy effekt — En elbil som lader med 11 kW (3-fase) eller 7.4 kW (1-fase) kan enkelt forklare spikeren. Hvis ladningen ble initiert manuelt eller via en tredjeparts app som ikke kommuniserer med Opus, vil prognosen ikke fange det opp. 8.1 kW totalt minus 1.8 kW bakgrunn gir 6.3 kW, som er en realistisk ladefase for en 1-fase lader eller startfasen for en 3-fase.",
+      "text": "EV charger started unexpectedly or at high power — An electric car charging at 11 kW (3-phase) or 7.4 kW (1-phase) can easily explain the spike. If the charging was initiated manually or via a third-party app that does not communicate with Opus, the forecast will not catch it. 8.1 kW total minus 1.8 kW background gives 6.3 kW, which is a realistic charging phase for a 1-phase charger or the start phase for a 3-phase one.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "EV-lading initiert manuelt eller automatisk — Nett-topp på 6.235 kW overstiger forbruk (max ~2.55 kW) med ca 3.7 kW. Batteriet lader samtidig (max 4.07 kW), men summen av forbruk og batterilading er lavere enn nettinntak, noe som indikerer en tredje stor last. 3.7 kW er typisk for en EV-lader (3.7 kW / 16A).",
+      "text": "EV charging initiated manually or automatically — Grid peak of 6.235 kW exceeds consumption (max ~2.55 kW) by approx 3.7 kW. The battery is charging at the same time (max 4.07 kW), but the sum of consumption and battery charging is lower than the grid draw, which indicates a third large load. 3.7 kW is typical for an EV charger (3.7 kW / 16A).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "EV-lading startet uventet — Nett-topp (5.36 kW) overstiger intern forbruk (max 3.1 kW) med ~2.2 kW. Batteriet lader ikke (SOC 98%, avg -0.3 kW). Differansen tilsvarer typisk effekt for en AC-lader (2.2-7.4 kW) som trekker fra nettet når intern produksjon er null (natt).",
+      "text": "EV charging started unexpectedly — Grid peak (5.36 kW) exceeds internal consumption (max 3.1 kW) by ~2.2 kW. The battery is not charging (SOC 98%, avg -0.3 kW). The difference corresponds typically to the power of an AC charger (2.2-7.4 kW) drawing from the grid when internal production is zero (at night).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern hendelse eller nabo-målerfeil — Hvis måleren er felles eller hvis det er en feil i oppstrøms måling (f.eks. naboens forbruk regnes feilaktig til denne enheten), eller en kortvarig spenningssvikt som utløste feilaktig måling.",
+      "text": "External event or neighbor meter error — If the meter is shared or if there is an error in the upstream measurement (e.g. the neighbor's consumption is mistakenly counted to this unit), or a brief voltage dip that triggered an erroneous measurement.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern hendelse i nettet — En hendelse i det lokale eller regionale nettet, som en feil eller en uventet endring i spenningen, kan ha ført til en uventet topp i forbruket.",
+      "text": "External event in the grid — An event in the local or regional grid, such as a fault or an unexpected change in the voltage, may have led to an unexpected peak in consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern hendelse i strømnettet — Hvis det var en uventend hendelse i det lokale strømnettet (f.eks. spenningssvingninger eller andre forstyrrelser), kan dette ha påvirket målingene eller forbruket.",
+      "text": "External event in the power grid — If there was an unexpected event in the local power grid (e.g. voltage fluctuations or other disturbances), this may have affected the measurements or the consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettendring eller målerfeil fra leverandør — Hvis måleren er koblet til en felles installasjon eller hvis det er en feil i nettoperatørens dataleveranse (f.eks. dobbeltregning eller feil fase), kan dette vise seg som en ukjent topp.",
+      "text": "External grid change or meter fault from supplier — If the meter is connected to a shared installation, or if there is a fault in the grid operator's data delivery (e.g. double counting or wrong phase), this can appear as an unknown peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettfaktor eller målerfeil fra leverandør — Noen ganger kan det oppstå feil i kommunikasjonsleddet mellom leverandørens måler og Symbioses system, eller så kan det være en midlertidig feil i leverandørens datastrøm som rapporterer feilaktige tall.",
+      "text": "External grid factor or meter fault from the supplier — Sometimes faults can arise in the communication link between the supplier's meter and Symbiose's system, or there may be a temporary fault in the supplier's data stream that reports erroneous figures.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettfaktor eller målerfeil oppstrøms — Hvis måleren er del av et større system eller hvis det er en feil i kommunikasjonsprotokollen fra nettselskapet, kan dataene være korrupte eller representere en annen enhet.",
+      "text": "External grid factor or meter error upstream — If the meter is part of a larger system or if there is a fault in the communication protocol from the grid company, the data may be corrupt or represent a different unit.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettspenningssvingning eller feil fra nettselskapet — Selv om mindre sannsynlig for en spesifikk forbrukstopp, kan en feil i måleren fra nettselskapet eller en kortvarig spenningssvikt som aktiverer sikkerhetsmekanismer, føre til unormal data.",
+      "text": "External grid voltage fluctuation or fault from the grid company — Even though less likely for a specific consumption peak, a fault in the grid company's meter or a brief voltage failure that activates safety mechanisms can lead to abnormal data.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstrem kulde (varmepumpe i full effekt) — Datoen er 3. juli, men hvis det var en ekstremt kald natt i Oslo (f.eks. uvanlig lav temperatur), kunne varmepumpen ha gått i full effekt (f.eks. 4-5 kW) for å opprettholde temperatur. Dette er mindre sannsynlig i juli, men ikke umulig hvis det var en lokal kuldeperiode eller feil i temperatur-sensor.",
+      "text": "Extreme cold (heat pump at full power) — The date is 3 July, but if it was an extremely cold night in Oslo (e.g. unusually low temperature), the heat pump could have run at full power (e.g. 4-5 kW) to maintain temperature. This is less likely in July, but not impossible if there was a local cold spell or a fault in the temperature sensor.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstrem kulde med feil i varmepumpe-termostat — Hvis det var ekstremt kaldt i Oslo natt til 01.07, og varmepumpen gikk i full effekt (f.eks. 4-6 kW) kombinert med at termostaten ikke regulerte ned, kan dette ha drevet opp forbruket.",
+      "text": "Extreme cold with a fault in the heat pump thermostat — If it was extremely cold in Oslo on the night of 01.07, and the heat pump ran at full power (e.g. 4-6 kW) combined with the thermostat not regulating down, this may have driven up consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstrem værforhold med lav solproduksjon — Hvis det var skyet eller regnfulle forhold, kan solcelleproduksjonen ha falt dramatisk, noe som har ført til at mer energi ble hentet fra nettet.",
+      "text": "Extreme weather conditions with low solar production — If there were cloudy or rainy conditions, the solar-cell production may have fallen dramatically, which has led to more energy being drawn from the grid.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ekstremt varmekrav pga. temperaturstøt — Hvis det var en plutselig temperaturnedgang eller skydekke som fjernet solproduksjon samtidig som varmepumpen gikk på full effekt (motvarme/boost), kan netto-nettforbruk øke kraftig. Men 8.1 kW er høyt for kun varme i Oslo om sommeren (01.07).",
+      "text": "Extreme heating demand due to temperature drop — If there was a sudden temperature drop or cloud cover that removed solar production at the same time as the heat pump was running at full power (backup heat/boost), net grid consumption can increase substantially. But 8.1 kW is high for heating alone in Oslo in summer (01.07).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Elbil-lading startet manuelt eller feilaktig — En elbil-lader kan trekke 7-11 kW. Hvis ladingen ikke var planlagt i Opus, men startet manuelt av beboer eller via en ekstern app, vil dette forklare spiken.",
+      "text": "EV charging started manually or erroneously — An EV charger can draw 7-11 kW. If the charging was not planned in Opus, but started manually by the resident or via an external app, this will explain the spike.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Elbil-lading startet uventet — En elbil som starter lading ved 23:09 kan trekke 11-22 kW. Her ser vi en økning i forbruk. Hvis bilen lader fra nett fordi batteriet er fullt (98% SOC), vil grid_power øke for å dekke bilens behov.",
+      "text": "EV charging started unexpectedly — An electric car that starts charging at 23:09 can draw 11-22 kW. Here we see an increase in consumption. If the car charges from the grid because the battery is full (98% SOC), grid_power will increase to cover the car's need.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Elbil-lading utenfor tidsvindu eller feil konfigurasjon — 8.1 kW tilsvarer typisk ladestyrke for en 1-fas eller 3-fas lader. Hvis ladningen ikke var planlagt i prognosen (f.eks. manuell start eller feil i kommunikasjon mellom bil og Opus), kan dette forklare spikken.",
+      "text": "EV charging outside the time window or wrong configuration — 8.1 kW corresponds typically to the charging power of a 1-phase or 3-phase charger. If the charging was not planned in the forecast (e.g. manual start or a fault in the communication between car and Opus), this may explain the spike.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Endring i tariffvinduer — Hvis det var en endring i tariffvinduer (f.eks. fra lavpris til høypris), kan dette ha ført til at systemet justerte forbruksmønstrene, f.eks. ved å starte opp utstyr som vanligvis kjøres i lavpristiden.",
+      "text": "Change in tariff windows — If there was a change in tariff windows (e.g. from low price to high price), this may have led the system to adjust its consumption patterns, e.g. by starting up equipment that is usually run during the low-price period.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteri-kontrolllogikk (eksport/innlastning) — Hvis batterikontrolleren misforsto et signal og prøvde å lade batteriet raskt (fast charge) samtidig som andre laster var på, eller hvis det var en feil i beregningen av nett-gratser.",
+      "text": "Fault in battery control logic (export/charge) — If the battery controller misunderstood a signal and tried to charge the battery rapidly (fast charge) while other loads were on, or if there was an error in the calculation of the grid limits.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batterikontroll/SCADA (falsk signal) — Batteriet rapporterer utladning/lading på 4.07 kW mens SOC er statisk på 98%. Hvis batterikontrollen feilaktig kommanderer utladning for å dekke en last som ikke finnes, eller hvis nett-måleren registrerer feil pga. synkroniseringsfeil i SCADA, kan dette skape en kunstig topp. Diskrepansen mellom forventet batteribehov og faktisk SOC-endring (null) er mistenlig.",
+      "text": "Error in battery control/SCADA (false signal) — The battery reports discharge/charge at 4.07 kW while SOC is static at 98%. If the battery control incorrectly commands discharge to cover a load that does not exist, or if the grid meter registers incorrectly due to a synchronization error in SCADA, this can create an artificial peak. The discrepancy between expected battery demand and actual SOC change (zero) is suspicious.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (BMS) som tillot eksport/innkjøp samtidig — Hvis batteriet laddes fra nettet samtidig som det leverer strøm til huset (eller omvendt) på grunn av en logikkfeil i BMS, kan dette skape en kunstig topp i nettreguleringen som ikke reflekterer netto forbruk.",
+      "text": "Fault in battery management (BMS) that allowed export/purchase simultaneously — If the battery was charged from the grid at the same time as it delivered power to the house (or vice versa) due to a logic fault in the BMS, this can create an artificial peak in the grid regulation that does not reflect net consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverter) — Hvis batteristyringen feilaktig tolker en grid-signal eller intern feil, kan den begynne å lade batteriet med maksimal effekt fra nettet i stedet for å følge setpunktet, eller inverteren har en kortslutning/feilmodus.",
+      "text": "Fault in battery management (inverter) — If the battery management erroneously interprets a grid signal or internal fault, it can start charging the battery at maximum power from the grid instead of following the setpoint, or the inverter has a short circuit/fault mode.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (invertersync) — Hvis batteri-inverteren feilaktig tolket et signal om 'eksportbegrensning' som 'importtillatelse' eller omvendt, kunne den ha dumpet energi inn i nettet eller trukket kraft for å balansere en feilaktig beregnet PV-overskudd.",
+      "text": "Fault in battery management (invertersync) — If the battery inverter erroneously interpreted a signal about 'export limitation' as 'import permission' or vice versa, it could have dumped energy into the grid or drawn power to balance an erroneously calculated PV surplus.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (simultan lading fra nett og last) — Hvis batteristyringen feilaktig tillot lading fra nett samtidig som en stor intern last var aktiv, kan den totale trekningen fra nettet overstige setpunktet betydelig.",
+      "text": "Error in battery control (simultaneous charging from grid and load) — If the battery control erroneously allowed charging from the grid at the same time as a large internal load was active, the total draw from the grid may significantly exceed the setpoint.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (simultan lading/avlading eller feil signatur) — Hvis batteristyringen feilaktig tolker et signal og begynner å lade batteriet fra nettet samtidig som huset har normal forbruk, eller hvis inverteren rapporterer feil retning på effekten, kan dette skape en kunstig topp. 8.1 kW minus 1.8 kW gir ca 6.3 kW netto endring, som er typisk for en stor bobil/batterilader.",
+      "text": "Error in battery control (simultaneous charging/discharging or wrong signature) — If the battery control incorrectly interprets a signal and starts charging the battery from the grid at the same time as the house has normal consumption, or if the inverter reports the wrong direction of the power, this can create an artificial peak. 8.1 kW minus 1.8 kW gives approx 6.3 kW net change, which is typical for a large camper van/battery charger.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring eller inverter — Hvis batteriet feilaktig injiserer effekt i nettet i stedet for å absorbere, eller hvis inverteren har en feil som fører til reaktiv effekt eller feilaktig aktiv effekt-måling, kan dette skape en topp.",
+      "text": "Fault in battery management or inverter — If the battery erroneously injects power into the grid instead of absorbing it, or if the inverter has a fault that leads to reactive power or erroneous active power measurement, this can create a peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring eller inverter — Hvis systemet har et batteri, kan en feil i styringslogikken føre til at batteriet trekker maksimal ladestrøm fra nettet samtidig som husets normale last er aktiv, eller at inverteren rapporterer feilaktig effektstrøm.",
+      "text": "Fault in battery management or inverter — If the system has a battery, a fault in the control logic can lead to the battery drawing maximum charging current from the grid while the house's normal load is active, or to the inverter erroneously reporting power flow.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring som førte til uventet utladning — Hvis batteristyringen feilaktig initierte en utladning for å dekke en høy last, kan dette ha bidratt til den høye nett-toppen. Dette kan skje hvis systemet misforstod behovet for energi.",
+      "text": "Fault in battery management that led to unexpected discharge — If the battery management erroneously initiated a discharge to cover a high load, this may have contributed to the high grid peak. This can happen if the system misunderstood the need for energy.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring som pumper ut strøm til nettet samtidig som lasten er høy — Hvis batteristyringen feilaktig tolker en lav pris eller et signal om å levere energi til nettet (grid feed-in), mens samtidig en stor last (f.eks. EV-lader eller varmepumpe) trekker strøm, kan netto-nettstrømmen bli forvrengt. Men her er det 'nett-topp', som vanligvis betyr innstrøm. Hvis systemet feilaktig regner ut at det må trekke mer fra nettet for å dekke en intern last som allerede dekkes av batteri, kan det oppstå en kunstig topp i nettreguleringen.",
+      "text": "Fault in battery control that pumps power out to the grid at the same time as the load is high — If the battery control erroneously interprets a low price or a signal to deliver energy to the grid (grid feed-in), while at the same time a large load (e.g. EV charger or heat pump) is drawing power, the net grid current can be distorted. But here it is a 'grid peak', which usually means inflow. If the system erroneously computes that it must draw more from the grid to cover an internal load that is already covered by the battery, an artificial peak can arise in the grid regulation.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Batteriet kan ha begynt å lade raskt fra nettet i stedet for å bruke solenergi, noe som kan ha ført til en uventet økning i nettforbruket.",
+      "text": "Fault in battery management — The battery may have started charging rapidly from the grid instead of using solar energy, which may have led to an unexpected increase in grid consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Hvis batteristyringen feilaktig kommanderte en rask utladning eller lading, kan dette ha ført til en uventet topp i forbruket.",
+      "text": "Fault in battery management — If the battery management incorrectly commanded a rapid discharge or charge, this may have led to an unexpected peak in consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Hvis batteristyringen har en feil, kan den ha startet en uventet ladeprosess eller utløsning som har ført til en stor økning i forbruk fra nettet.",
+      "text": "Fault in battery management — If the battery management has a fault, it may have started an unexpected charging process or triggering that has led to a large increase in consumption from the grid.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyringslogikk — Hvis batterikontrolleren feilaktig tolker et signal og begynner å lade batteriet maksimalt samtidig som huset har grunnlast, kan dette summere seg til en høy nettotopp. 8 kW kan være summen av huslast + maksimal ladestrøm.",
+      "text": "Fault in battery management logic — If the battery controller erroneously interprets a signal and starts charging the battery at maximum while the house has base load, this can sum to a high grid peak. 8 kW can be the sum of house load + maximum charging current.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i nett-tariff-vindu eller setpunkt-logikk — Hvis systemet feilaktig tolket tidspunktet som en lavpris-periode (eller mistet kontakt med tariff-signal) og løftet setpunktet for å utnytte billig strøm, mens det faktiske nettgrensen fortsatt var 6.71 kW, kunne dette ført til uventet høyt forbruk hvis andre laster var tilgjengelige.",
+      "text": "Fault in grid tariff window or setpoint logic — If the system incorrectly interpreted the time as a low-price period (or lost contact with the tariff signal) and raised the setpoint to exploit cheap electricity, while the actual grid limit was still 6.71 kW, this could have led to unexpectedly high consumption if other loads were available.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i nettleverandørens data eller oppstrøms måling — Hvis målepunktet er felles med naboen eller hvis det er en feil i transformatorstegningen, kan en naboens store last (f.eks. en annen el-bil eller industri) bli tilskrevet dette huset i Symbioses system.",
+      "text": "Fault in the grid supplier's data or upstream measurement — If the measurement point is shared with the neighbour or if there is a fault in the transformer drawing, a neighbour's large load (e.g. another EV or industry) may be attributed to this house in Symbiose's system.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i netto-forbruksmåler (sensorfeil) — Likningen P_grid = P_consumption - P_solar - P_battery gir 3107 - (-1.9) - (-334.9) ≈ 3444 W. Målt grid er 5360 W. Avvik på ~1.9 kW er stort og uforklart av kjente laster. Kan indikere at grid-sensoren rapporterer feil eller at det er en ukjent parallell last som ikke er fanget opp i 'consumption'-samlingen.",
+      "text": "Error in the net consumption meter (sensor error) — The equation P_grid = P_consumption - P_solar - P_battery gives 3107 - (-1.9) - (-334.9) ≈ 3444 W. Measured grid is 5360 W. Deviation of ~1.9 kW is large and unexplained by known loads. May indicate that the grid sensor reports incorrectly or that there is an unknown parallel load that was not captured in the 'consumption' collection.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i nettselskapets måledata (upstream) — Noen ganger sender nettselskapet feilaktige data eller oppsummerer data fra naboer/feil adresse i sanntid. Dette er sjeldent, men mulig hvis det er en teknisk feil i deres system.",
+      "text": "Error in the grid company's measurement data (upstream) — Sometimes the grid company sends erroneous data or aggregates data from neighbors/wrong address in real time. This is rare, but possible if there is a technical fault in their system.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodellen som ikke tok hensyn til en ny installert enhet — Prognosen forventet lav last (1.8 kW setpunkt), men en ny enhet (f.eks. en varmepumpe eller lader) ble installert eller aktivert etter at prognosemodellen ble trent. Systemet reagerte ikke fordi det ikke kjente til enheten, og dermed ble det trukket mer strøm fra nettet enn forventet.",
+      "text": "Error in the forecast model that did not account for a newly installed unit — The forecast expected low load (1.8 kW setpoint), but a new unit (e.g. a heat pump or charger) was installed or activated after the forecast model was trained. The system did not react because it was not aware of the unit, and thus more power was drawn from the grid than expected.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i solprognose vs. faktisk produksjon — Hvis skydekke plutselig forsvant og PV-produksjonen hoppet fra 0 til 5+ kW, men styringssystemet ikke oppdaterte setpunktet raskt nok, kunne dette ha skapt en midlertidig ubalanse som ble tolket som nettimport/eksportfeil.",
+      "text": "Fault in solar forecast vs. actual production — If cloud cover suddenly disappeared and PV production jumped from 0 to 5+ kW, but the control system did not update the setpoint fast enough, this could have created a temporary imbalance that was interpreted as a grid import/export fault.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i strømsensor eller målerkommunikasjon — Hvis ingen store forbrukere er aktive, kan en feilaktig lesning fra CT-sensoren (f.eks. fasefeil, støy eller kalibreringsfeil) gi en kunstig topp. 8.1 kW er en spesifikk verdi som kan tyde på digital støy eller feilinterpretasjon av data fra måleren.",
+      "text": "Fault in the current sensor or meter communication — If no large consumers are active, an erroneous reading from the CT sensor (e.g. phase fault, noise or calibration fault) can give an artificial spike. 8.1 kW is a specific value that may indicate digital noise or misinterpretation of data from the meter.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i tariff-vindu eller nettleie-logging — Hvis systemet feilaktig har klassifisert denne perioden som et 'dyrt' vindu eller omvendt, kan det ha utløst en automatisk justering eller feilaktig rapportering av nettostrøm. Noen nettselskaper har spesifikke regler for måling ved overgang mellom tariffperioder.",
+      "text": "Fault in tariff window or grid tariff logging — If the system has incorrectly classified this period as an 'expensive' window or vice versa, it may have triggered an automatic adjustment or incorrect reporting of net current. Some grid companies have specific rules for measurement at the transition between tariff periods.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i tariff-vindu eller prisdata fra leverandør (grid_upstream) — Hvis prisdataene som strategien baserer seg på er forsinket eller feil (f.eks. feil tidssone eller feil tariff-kode), kan den kjøpe inn energi når det faktisk er billigst, eller selge når det er dyrest.",
+      "text": "Fault in tariff window or price data from supplier (grid_upstream) — If the price data on which the strategy is based are delayed or wrong (e.g. wrong time zone or wrong tariff code), it may buy in energy when it is actually cheapest, or sell when it is most expensive.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feil i tariffvinduer eller prisbasert styring — Hvis det var en endring i tariffvinduer eller prisbasert styring, kan systemet ha begynt å hente mer energi fra nettet i stedet for å bruke lagret energi.",
+      "text": "Error in tariff windows or price-based control — If there was a change in tariff windows or price-based control, the system may have started drawing more energy from the grid instead of using stored energy.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig beregning av forbruk pga. sensorfeil — Data viser et fysisk umulig energibalanse: Grid (5.9 kW) + Solar (-1.9 kW) = 4.0 kW, men Consumption rapporteres som 2.4 kW. Differansen (1.6 kW) forsvinner. Hvis Consumption-sensoren underrapporterer med ~3.5 kW under toppen, ville balansen stemt (5.9 - 1.9 = 4.0 kW vs målt 2.4 kW + feilmargin).",
+      "text": "Erroneous calculation of consumption due to sensor fault — Data show a physically impossible energy balance: Grid (5.9 kW) + Solar (-1.9 kW) = 4.0 kW, but Consumption is reported as 2.4 kW. The difference (1.6 kW) disappears. If the Consumption sensor under-reports by ~3.5 kW at the peak, the balance would have matched (5.9 - 1.9 = 4.0 kW vs measured 2.4 kW + error margin).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller kalibreringsfeil i smartmeter — En plutselig økning fra 1.8 kW til 8.128 kW uten tilhørende endring i andre korrelerte signaler (f.eks. strømstyrke i andre faser eller totalt forbruk) tyder på at sensoren rapporterer feil data, eller at det er en transient støy i måleleddet.",
+      "text": "Incorrect metering point or calibration fault in the smart meter — A sudden increase from 1.8 kW to 8.128 kW without corresponding change in other correlated signals (e.g. current in other phases or total consumption) indicates that the sensor is reporting erroneous data, or that there is transient noise in the metering link.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller kalibreringssvikt — Differansen mellom målt topp (8.128 kW) og setpunkt (1.8 kW) er ca 6.3 kW. Hvis sensoren har en systematisk feil eller omstrømmeren rapporterer falske verdier, kan dette forklare spikken uten faktisk lastøkning.",
+      "text": "Erroneous measurement point or calibration failure — The difference between measured peak (8.128 kW) and setpoint (1.8 kW) is approx. 6.3 kW. If the sensor has a systematic fault or the current transformer reports false values, this may explain the spike without any actual load increase.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensor-drift — Et plutselig hopp fra ~6.7 kW til 13.2 kW uten tilhørende endring i andre korrelerte signaler (f.eks. totalt forbruk eller produksjon) tyder på at måleinstrumentet (smartmeter eller CT-klemme) har gått ut av kalibrering eller at det ble byttet ut i perioden 02.07 16:04.",
+      "text": "Incorrect metering point or sensor drift — An abrupt jump from ~6.7 kW to 13.2 kW without a corresponding change in other correlated signals (e.g. total consumption or production) suggests that the measuring instrument (smart meter or CT clamp) has gone out of calibration or that it was swapped out during the period 02.07 16:04.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.1 kW uten korresponderende lastendring i underliggende enheter tyder på at nettmåleren rapporterer feil, eller at datafusjonen mellom nettmåler og intern måling er korrupt. Differansen (6.3 kW) er for stor til å være normal måleusikkerhet.",
+      "text": "Incorrect metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.1 kW without a corresponding load change in the underlying units suggests that the grid meter is reporting incorrectly, or that the data fusion between grid meter and internal measurement is corrupt. The difference (6.3 kW) is too large to be normal measurement uncertainty.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.1 kW uten korresponderende lastendring i underliggende forbruksdata tyder på at smartmåleren rapporterer feil, eller at datastrømmen er korrupt. 8.1 kW er en uvanlig høy topp for et vanlig eneboligforbruk uten store industrielle laster.",
+      "text": "Incorrect metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.1 kW without a corresponding load change in the underlying consumption data suggests that the smart meter is reporting incorrectly, or that the data stream is corrupt. 8.1 kW is an unusually high peak for ordinary single-family house consumption without large industrial loads.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.1 kW uten tilhørende endring i lokale forbruksmålinger (PV/Batteri) indikerer at nettmåleren rapporterer feil, eller at datafremleggelsen blander sammen fasetilordninger.",
+      "text": "Erroneous metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.1 kW without associated change in local consumption measurements (PV/battery) indicates that the grid meter is reporting incorrectly, or that the data reporting mixes up phase assignments.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.128 kW uten korresponderende endring i andre lastegrener (f.eks. solcelle eller batteri) tyder på at måleren rapporterer feil, eller at dataen er korrupt/forsinket.",
+      "text": "Erroneous metering point or sensor fault — An instantaneous jump from 1.8 kW to 8.128 kW without corresponding change in other load branches (e.g. solar or battery) suggests that the meter is reporting incorrectly, or that the data is corrupt/delayed.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — En øyeblikkelig hopp fra 1.8 kW til 8.128 kW uten korresponderende forbruk i underliggende enheter tyder på at smartmålern eller aggregatet rapporterer feil data, eller at en annen enhets forbruk blir feilaktig attribuert til hovedmåleren.",
+      "text": "Erroneous measurement point or sensor fault — An instantaneous jump from 1.8 kW to 8.128 kW without corresponding consumption in underlying units suggests that the smart meter or the aggregate is reporting erroneous data, or that another unit's consumption is being erroneously attributed to the main meter.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — En øyeblikkelig stigning fra 1.8 kW til 8.1 kW uten korresponderende forbruk i underliggende enheter tyder på at hovedmåleren rapporterer feil, eller at summen av sub-målere ikke dekker hele lasten (f.eks. ukjent grensefeil).",
+      "text": "Erroneous measurement point or sensor fault — An instantaneous rise from 1.8 kW to 8.1 kW without corresponding consumption in underlying units suggests that the main meter is reporting erroneously, or that the sum of sub-meters does not cover the entire load (e.g. unknown boundary fault).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 1.8 kW til 8.128 kW uten tilhørende endring i andre korrelerte signaler (f.eks. total forbruk eller produksjon) indikerer ofte at smartmåleren rapporterer feil data, eller at det er en kalibreringsfeil i det øyeblikket.",
+      "text": "Erroneous measurement point or sensor fault — A sudden jump from 1.8 kW to 8.128 kW without a corresponding change in other correlated signals (e.g. total consumption or production) often indicates that the smart meter is reporting erroneous data, or that there is a calibration fault at that moment.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Det er ingen indikasjon på at noen av de kjente lastene (EV, batteri, eller store apparater) skulle ha aktivert seg samtidig for å generere 8.128 kW. En så høy topp uten korresponderende aktivitet i andre datastrømmer tyder på målefeil.",
+      "text": "Erroneous measurement or sensor fault — There is no indication that any of the known loads (EV, battery, or large appliances) would have activated simultaneously to generate 8.128 kW. Such a high peak without corresponding activity in other data streams suggests a measurement fault.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig og uventet topp på 13.272 kW, nesten dobbelt så høyt som setpunktet (6.71 kW), uten tydelig forklaring i dataene, kan indikere en midlertidig feil i energimåleren eller dataoverføring.",
+      "text": "Erroneous measurement or sensor fault — A sudden and unexpected peak of 13.272 kW, almost twice as high as the setpoint (6.71 kW), without clear explanation in the data, may indicate a temporary fault in the energy meter or data transfer.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig økning fra 1.8 kW til 8.128 kW uten forutsetning i prognosen kan indikere at sensoren har registrert feilaktige verdier, f.eks. på grunn av støy eller kalibreringsfeil.",
+      "text": "Erroneous measurement or sensor fault — A sudden increase from 1.8 kW to 8.128 kW without basis in the forecast may indicate that the sensor has recorded erroneous values, e.g. due to noise or calibration error.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig økning fra 6.71 kW til 13.272 kW uten tilhørende endringer i andre målinger (f.eks. solcelleproduksjon eller batterilagring) kan tyde på en teknisk feil i måleutstyret.",
+      "text": "Erroneous measurement or sensor fault — A sudden increase from 6.71 kW to 13.272 kW without corresponding changes in other measurements (e.g. solar cell production or battery storage) may indicate a technical fault in the measuring equipment.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling fra smartmåler (sensorfeil) — Hvis alle andre laster (varme, hvitevarer) er inaktiv eller lav, og nett-topp ikke korresponderer med intern forbruk, kan det være en transient feil eller støy i målerkommunikasjonen.",
+      "text": "Erroneous measurement from the smart meter (sensor fault) — If all other loads (heating, white goods) are inactive or low, and the grid peak does not correspond with internal consumption, it may be a transient fault or noise in the meter communication.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig prisprognose (kveldskjøp) — Strategien kjøper dyrt om kvelden fordi den feilslår i å forutsi høye priser eller undervurderer egen solproduksjon neste dag, noe som fører til unødvendige nettinnkjøp i dyre perioder.",
+      "text": "Erroneous price forecast (evening purchase) — The strategy buys expensively in the evening because it fails to predict high prices or underestimates its own solar production the next day, which leads to unnecessary grid purchases in expensive periods.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilaktig proxy-vekt i optimalisering (tier-hold prioriteres over spotpris) — Regret på 121.6 kr indikerer at strategien selger solenergi til lav spotpris midt på dagen for å opprettholde en abstrakt 'tier-status', i stedet for å bruke den til å dekke egen høyt priset forbruk om kvelden. Proxyen (tier-hold) divergerer fra målet (min. kr).",
+      "text": "Incorrect proxy weight in optimization (tier-hold prioritized over spot price) — Regret of 121.6 kr indicates that the strategy sells solar energy at a low spot price in the middle of the day to maintain an abstract 'tier status', instead of using it to cover its own high-priced consumption in the evening. The proxy (tier-hold) diverges from the goal (min. kr).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilkoblet eller defekt måler (sensorfeil) — Et plutselig hopp fra 1.8 kW til 8.128 kW uten tilhørende økning i forbruksdata fra smarte enheter indikerer at måleren rapporterer feilaktige tall, eller at det er en støy/feil i kommunikasjonskjeden mellom måler og Opus.",
+      "text": "Miswired or defective meter (sensor fault) — A sudden jump from 1.8 kW to 8.128 kW without a corresponding increase in consumption data from smart devices indicates that the meter is reporting erroneous figures, or that there is noise/a fault in the communication chain between meter and Opus.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Feilkoblet eller defekt måler som registrerer naboens last — Spikeren (8.128 kW) er nesten 4.5x setpunktet (1.8 kW) og oppstår plutselig uten korresponderende endring i egen forbrukshistorikk. I tette bebyggelser i Oslo kan feilfasede installasjoner eller støy i kommunikasjonen med smartmålere føre til at man måler andres høye last (f.eks. varmepumpe eller ladestasjon).",
+      "text": "Incorrectly wired or defective meter that registers the neighbor's load — The spike (8.128 kW) is almost 4.5x the setpoint (1.8 kW) and occurs suddenly without a corresponding change in one's own consumption history. In dense built-up areas in Oslo, mis-phased installations or noise in communication with smart meters can lead to measuring others' high load (e.g. heat pump or charging station).",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "For aggressiv solsalg i dagtid — Strategien selger solstrøm billig midt på dagen for å oppfylle 'tier-hold' proxyen, i stedet for å lagre den i batteriet til kvelden. Dette skaper et kunstig underskudd om kvelden som må dekes med dyrt nett-kjøp, noe naiv selvforsyning unngår ved å prioritere egenforbruk.",
+      "text": "Too aggressive solar selling during daytime — The strategy sells solar power cheaply in the middle of the day to satisfy the 'tier-hold' proxy, instead of storing it in the battery for the evening. This creates an artificial deficit in the evening that must be covered by expensive grid purchases, something naive self-sufficiency avoids by prioritizing self-consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Høy intern forbruk (varmtvannsbereder/ovn) — Data viser at consumption_power maksimerte ved 5143.8 kW, nesten identisk med nett-toppen på 5226 kW. Siden batteriet var fullt (SOC 98%) og solproduksjon var lav (max 72.9 kW), ble hele lasten dekket av nettet. Differansen mellom forbruk og sol (~5070 kW) stemmer med nettinntak.",
+      "text": "High internal consumption (hot water tank/heater) — Data show that consumption_power maximized at 5143.8 kW, almost identical to the grid peak of 5226 kW. Since the battery was full (SOC 98%) and solar production was low (max 72.9 kW), the entire load was covered by the grid. The difference between consumption and solar (~5070 kW) matches the grid draw.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Høy intern last (varmtvann/ovn) — Forbruk (consumption_power) øker til snitt 4979 W, mens batteri leverer max 3024 W og sol er neglisjerbar (-34 W). Differansen (~1955 W) dekkes av nett, men totalt forbruk er høyt for kl 23:09.",
+      "text": "High internal load (hot water/heater) — Consumption (consumption_power) increases to an average of 4979 W, while the battery delivers max 3024 W and solar is negligible (-34 W). The difference (~1955 W) is covered by the grid, but total consumption is high for 23:09.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Inverter i beskyttelsesmodus etter overstrøm eller spenningssprang fra nettet — Systemet importerer strøm (4.14 kW) mens PV-effekten er lav og batteriet ikke lader. Dette kan bety at inverteren midlertidig har koblet fra nettet etter et transientsprang.",
+      "text": "Inverter in protection mode after overcurrent or voltage surge from the grid — The system imports power (4.14 kW) while PV power is low and the battery is not charging. This may mean that the inverter has temporarily disconnected from the grid after a transient surge.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Kommunikasjonsfeil mellom sol-inverter og Venus OS — Inverter kan sende feil data til Victron når modbus-link eller VE.Direct-protokoll feiler. Da rapporteres lav produksjon selv om panelene faktisk yter korrekt.",
+      "text": "Communication fault between the solar inverter and Venus OS — The inverter can send erroneous data to Victron when the modbus link or VE.Direct protocol fails. Then low production is reported even though the panels actually perform correctly.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Kortslutning eller jordfeil i installasjonen — En elektrisk feil som trekker stor strøm før sikringen går, kan gi et kortvarig toppforbruk. Dette er farlig og må utelukkes raskt.",
+      "text": "Short circuit or ground fault in the installation — An electrical fault that draws a large current before the fuse blows can produce a short-lived consumption peak. This is dangerous and must be ruled out quickly.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "MPPT-strengfeil eller delvis avkoblet streng — Solinnstråling målt til 700 W/m² burde gitt 7.3 kW produksjon, men kun 0.74 kW observeres. Dette tilsier at én eller flere PV-strenger ikke leverer. Batteriet står på 64% og importen fra nettet øker, noe som tyder på teknisk struping, ikke mangel på last.",
+      "text": "MPPT string fault or partially disconnected string — Solar irradiance measured at 700 W/m² should have given 7.3 kW production, but only 0.74 kW is observed. This indicates that one or more PV strings are not delivering. The battery is at 64% and the import from the grid is increasing, which indicates technical throttling, not a lack of load.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "MPPT-strengfeil eller delvis avkoblet streng — Solinnstråling på 706 W/m² burde gitt nær 7 kW ved normal virkningsgrad. Faktisk produksjon 0.74 kW tilsvarer ~10 % ytelse, typisk ved at én delstreng står nede eller at én MPPT ikke leverer.",
+      "text": "MPPT string fault or partially disconnected string — Solar irradiance of 706 W/m² should have given close to 7 kW at normal efficiency. Actual production 0.74 kW corresponds to ~10 % performance, typically because one substring is down or one MPPT is not delivering.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Midler­tidig nett-ubalanse eller spenningshev fra nettselskapet — Dersom nettet lokalt har høy spenning midt på dagen pga regional soltoppproduksjon, kan anlegget automatisk strupes for å unngå over­spenning.",
+      "text": "Temporary grid imbalance or voltage rise from the grid company — If the grid locally has high voltage in the middle of the day due to regional solar peak production, the installation may automatically be throttled to avoid overvoltage.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Målefeil eller feil sensor-tilordning mellom Ecowitt og Victron — Hvis solmåler rapporterer 706 W/m² lokalt, men er feilorientert eller ikke synkront med invertermålingen, kan beregnet avvik være kunstig høyt.",
+      "text": "Measurement error or wrong sensor assignment between Ecowitt and Victron — If the solar meter reports 706 W/m² locally, but is misoriented or not synchronized with the inverter measurement, the computed deviation may be artificially high.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Naboen lader elbil med høy effekt — I Oslo er det vanlig med felles ladestasjoner eller naboer med 3-fase lading. En 11 kW eller 22 kW lader kan trekke mye strøm. Hvis måleren er følsom for naboens last (se sensor_artifact), eller hvis det er en felles måler som ikke er riktig segmentert, kan dette forklare spikeren. 8.128 kW er en typisk verdi for en 3-fase lader som ikke er fullt ut lastet.",
+      "text": "The neighbor charges an electric car at high power — In Oslo, shared charging stations or neighbors with 3-phase charging are common. An 11 kW or 22 kW charger can draw a lot of power. If the meter is sensitive to the neighbor's load (see sensor_artifact), or if there is a shared meter that is not correctly segmented, this can explain the spike. 8.128 kW is a typical value for a 3-phase charger that is not fully loaded.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nedstrøms feil eller kortslutning i installasjonen — En elektrisk feil nedstrøms om målepunktet (f.eks. i en utepanel eller garasje) kan trekke uventet mye strøm før sikringen går. Dette er mindre sannsynlig hvis ingen sikringer har gått, men mulig hvis det er en jordfeil eller isolasjonsfeil som trekker reaktive strømmer.",
+      "text": "Downstream fault or short circuit in the installation — An electrical fault downstream of the metering point (e.g. in an outdoor panel or garage) can draw unexpectedly much current before the fuse blows. This is less likely if no fuses have blown, but possible if there is an earth fault or insulation fault that draws reactive currents.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nett-spenningsregulering eller transformatorhendelse — En plutselig økning i nett-strøm uten tilsvarende forbruk eller solproduksjon kan skyldes reaktive effektkompensering eller spenningsregulering fra nettet som blir målt som aktiv effekt pga. feil i måleinstrumentering eller kraftfaktor-problemer.",
+      "text": "Grid voltage regulation or transformer event — A sudden increase in grid current without corresponding consumption or solar production may be due to reactive power compensation or voltage regulation from the grid being measured as active power because of faults in the metering instrumentation or power factor problems.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nettselskapets midlertidige grenseendring (upstream) — Hvis nettselskapet midlertidig hevet den tillatte effektgrensen (f.eks. for å balansere nett eller ved feil i kommunikasjon), og Opus-systemet leste denne nye grensen som tillatt, kunne det ha tillatt høyere forbruk enn det opprinnelige setpunktet.",
+      "text": "The grid company's temporary limit change (upstream) — If the grid company temporarily raised the permitted power limit (e.g. to balance the grid or in the event of a communication fault), and the Opus system read this new limit as permitted, it could have allowed higher consumption than the original setpoint.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nettselskapets måler oppdaterer med forsinkelse/akkumulering — Hvis nettmåleren sender data med lav frekvens eller hvis det har vært en kommunikasjonsbrudd, kan 'toppen' på 8.1 kW være en gjennomsnittlig verdi over en lengre periode eller en feilaktig aggregert verdi fra tidligere forbruk som nå ble rapportert. Dette er spesielt sannsynlig hvis dataen kommer fra et eksternt API med latens.",
+      "text": "The grid company's meter updates with delay/accumulation — If the grid meter sends data at low frequency or if there has been a communication break, the 'peak' of 8.1 kW may be an average value over a longer period or an incorrectly aggregated value from earlier consumption that has now been reported. This is especially likely if the data comes from an external API with latency.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nettspenning/regulering fra leverandør — Uventet topp i grid_power kan skyldes at nettselskapet leverer mer energi enn normalt pga. spenningsregulering eller feil i målepunktet oppstrøms, selv om forbruket ikke nødvendigvis har økt like mye.",
+      "text": "Grid voltage/regulation from supplier — An unexpected peak in grid_power may be because the grid company supplies more energy than normal due to voltage regulation or a fault in the metering point upstream, even though consumption has not necessarily increased as much.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nettsvingning eller spenningstopp fra leverandør — Hvis det var en kortvarig spenningstap eller frekvensavvik i det lokale nettet, kan inverterne ha reagert med en 'ride-through' eller feilaktig startsekvens som trekker stor startstrøm.",
+      "text": "Grid fluctuation or voltage spike from supplier — If there was a brief voltage loss or frequency deviation in the local grid, the inverters may have reacted with a 'ride-through' or erroneous start sequence that draws a large inrush current.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Nettsvingning/Spente-toppl fra oppstrøms nett — I sjeldne tilfeller kan lokale nettsvingninger eller feil i målerens kalibrering under spisse laster fra naboer (hvis måleren er sensitiv for harmoniske eller spenningsfall) gi falske lesninger. Men siden consumption_power ikke speiler toppen, er dette mindre sannsynlig enn sensorfeil, med mindre consumption_power også er feil.",
+      "text": "Grid oscillation/voltage peak from the upstream grid — In rare cases, local grid oscillations or errors in the meter's calibration under spiky loads from neighbors (if the meter is sensitive to harmonics or voltage drops) can give false readings. But since consumption_power does not mirror the peak, this is less likely than a sensor error, unless consumption_power is also wrong.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Overbelastet AC-gren eller høy lokal last som gir spenningsløft og kutter solinnmating — Ved 4.14 kW import kan lokal spenning overstige inverterens cutoff-nivå, som automatisk begrenser solleveranse for å beskytte nettet.",
+      "text": "Overloaded AC branch or high local load that produces a voltage rise and cuts solar infeed — At 4.14 kW import, local voltage may exceed the inverter's cutoff level, which automatically limits solar delivery to protect the grid.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "PV-temperaturoverstyring eller termisk 'derating' — Høy modultemperatur (>60 °C) reduserer effekt. Ved dagens forhold (700 W/m², >30 °C modultemperatur) kunne effektreduksjonen nå 15–25 %, men ikke 90 %, så dette forklarer kun delvis.",
+      "text": "PV temperature override or thermal 'derating' — High module temperature (>60 °C) reduces power. Under today's conditions (700 W/m², >30 °C module temperature) the power reduction could reach 15–25 %, but not 90 %, so this only explains it partially.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Prisforventningssvikt i kveldssone — Regret (77.3 kr) skyldes at strategien kjøper fra nett til høy pris om kvelden fordi den ikke forutså at solproduksjonen neste dag ville dekke behovet, eller at kveldsprisen var lavere enn antatt. Naiv selvforsyning holder SoC høyere lenge nok til å unngå kjøp.",
+      "text": "Price expectation failure in the evening zone — The regret (77.3 kr) is due to the strategy buying from the grid at a high price in the evening because it did not foresee that the solar production the next day would cover the need, or that the evening price was lower than assumed. Naive self-sufficiency keeps SoC higher long enough to avoid purchases.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Rask lading av elbil i hjemmet — En nett-topp på 8.128 kW er konsistent med en 11 kW eller 22 kW lader som trekker full effekt, langt over det normale setpunktet på 1.8 kW. Dette er den vanligste årsaken til plutselige, høye lastespisser i moderne boliger.",
+      "text": "Fast charging of EV in the home — A grid peak of 8.128 kW is consistent with an 11 kW or 22 kW charger drawing full power, far above the normal setpoint of 1.8 kW. This is the most common cause of sudden, high load peaks in modern dwellings.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Samtidig aktivering av flere store apparater — Kombinasjonen av varmtvannsbereder (3-6 kW), ovn/komfyr (2-3 kW) og evt. vaskemaskin/tørketrommel kan summere til 8+ kW. Dette er sjeldent men mulig hvis flere høyeffektapparater startes samtidig.",
+      "text": "Simultaneous activation of several large appliances — The combination of hot-water heater (3-6 kW), oven/stove (2-3 kW) and possibly washing machine/tumble dryer can sum to 8+ kW. This is rare but possible if several high-power appliances are started at the same time.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Samtidig lading av elbil og høy grunnlast — Hvis en elbil startet lading med høy effekt (f.eks. 7-11 kW AC-lader) samtidig som husets grunnlast var høy (f.eks. ovner, vaskemaskin), kan summen overstige setpunktet. At prognosen ikke fanget dette, tyder på at ladingen var manuell/uforutsagt.",
+      "text": "Simultaneous charging of an EV and high base load — If an EV started charging at high power (e.g. 7-11 kW AC charger) at the same time as the house's base load was high (e.g. ovens, washing machine), the sum can exceed the setpoint. That the forecast did not capture this indicates that the charging was manual/unforeseen.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil eller målebrudd — Et plutselig hopp fra 1.8 kW til 8.128 kW uten korresponderende endring i andre variabler (f.eks. solproduksjon eller batteristrøm) tyder på at målepunktet rapporterer feilaktige verdier, kanskje pga. støy eller kalibreringsfeil.",
+      "text": "Sensor fault or measurement break — A sudden jump from 1.8 kW to 8.128 kW without a corresponding change in other variables (e.g. solar production or battery current) suggests that the measurement point is reporting erroneous values, perhaps due to noise or calibration fault.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil i forbruksmåler — consumption_power rapporterer 4979 W snitt, men grid_power + battery_power (ladning) + solar (negligibel) skal summere til forbruk. 3518 W (grid) + 1155 W (batteri ladning, negativt fortegn i data betyr ut fra batteri? Nei, negativt betyr vanligvis ladning i mange systemer, men her er avg -1155.5. La oss sjekke balanse: Grid 3518 + Solar -34 = 3484. Hvis batteri leverer -1155 (lader), så er total tilgjengelig 3484 - 1155 = 2329 W. Men forbruk er 4979 W. Det mangler ~2650 W. Dette tyder på at enten batteri-data er feil (skal ha levert mer) eller forbruksmåleren er f",
+      "text": "Sensor fault in the consumption meter — consumption_power reports 4979 W average, but grid_power + battery_power (charging) + solar (negligible) should sum to consumption. 3518 W (grid) + 1155 W (battery charging, does a negative sign in the data mean out of the battery? No, negative usually means charging in many systems, but here avg is -1155.5. Let us check the balance: Grid 3518 + Solar -34 = 3484. If the battery supplies -1155 (charging), then total available is 3484 - 1155 = 2329 W. But consumption is 4979 W. ~2650 W is missing. This indicates that either the battery data is wrong (should have supplied more) or the consumption meter is f",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil i forbruksmåling — Hvis forbrukssensoren rapporterer lavere forbruk enn faktisk i dagtid, tror strategien at batteriet kan holdes lavere eller selges mer, noe som fører til uventet høyt nett-kjøp om kvelden når den reelle lasten oppdages.",
+      "text": "Sensor fault in consumption measurement — If the consumption sensor reports lower consumption than actual during daytime, the strategy believes the battery can be kept lower or more can be sold, which leads to unexpectedly high grid purchase in the evening when the real load is detected.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil i nett-måler (falsk topp) — Batteriet viser ingen utladning (avg -308 W) og solen er lav (avg 77 W), men forbruksmåleren viser kun 3.9 kW maks. For at nett-topp på 5.65 kW skal være fysisk korrekt, må forbruket ha vært >5.6 kW (da batteri og sol ikke dekker differansen). Mismatch mellom beregnet forbruk (Grid - Solar + Battery) og målt forbruk indikerer at grid-sensoren rapporterte feilaktig høyt.",
+      "text": "Sensor error in the grid meter (false peak) — The battery shows no discharge (avg -308 W) and the sun is low (avg 77 W), but the consumption meter shows only 3.9 kW max. For the grid peak of 5.65 kW to be physically correct, consumption must have been >5.6 kW (since battery and solar do not cover the difference). Mismatch between calculated consumption (Grid - Solar + Battery) and measured consumption indicates that the grid sensor reported incorrectly high.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil i nett-måler (grid_power) — Det er en liten diskrepans mellom beregnet netto forbruk (consumption - solar ≈ 5071 kW) og målt nett-topp (5226 kW). Hvis consumption-sensoren underregistrerer eller grid-sensoren har en offset/feil, kan toppen være artefakt. Avg consumption (3363 kW) er høy for klokken 22:40, noe som kan tyde på systematisk feil i kalibrering.",
+      "text": "Sensor error in the grid meter (grid_power) — There is a small discrepancy between calculated net consumption (consumption - solar ≈ 5071 kW) and measured grid peak (5226 kW). If the consumption sensor under-registers or the grid sensor has an offset/error, the peak may be an artifact. Avg consumption (3363 kW) is high for 22:40, which may indicate a systematic error in calibration.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil i solproduksjonsmåling — Hvis solmåleren underregistrerer produksjon midt på dagen, tror systemet at det har mindre overskudd enn det har, og selger derfor billigere enn nødvendig eller kjøper inn fra nettet unødvendig.",
+      "text": "Sensor fault in the solar production measurement — If the solar meter under-records production in the middle of the day, the system believes it has less surplus than it has, and therefore sells more cheaply than necessary or buys from the grid unnecessarily.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil på nett-måler (CT-saturasjon eller feil kalibrering) — Summen av målte komponenter (Forbruk 2.55 kW + Batteri 4.07 kW) er 6.62 kW. Dette er nært opp til nett-toppen på 6.235 kW, men fortegnene er forvirrende (batteri lader vanligvis negativt i denne konteksten hvis det trekker fra nett). Hvis batteri-verdien er feilaktig positiv (utladning) når den faktisk lader, eller hvis nett-måleren har en offset-feil, kan toppen være artefakt. Spesielt siden sol er ~0, bør nett = forbruk + batteri. Her er nett (6.2) > forbruk (2.5) + batteri (4.0) hvis vi antar batteri lader (negativt). Men dat",
+      "text": "Sensor fault on the grid meter (CT saturation or incorrect calibration) — The sum of the measured components (Consumption 2.55 kW + Battery 4.07 kW) is 6.62 kW. This is close up to the grid peak of 6.235 kW, but the signs are confusing (the battery usually charges negatively in this context if it draws from the grid). If the battery value is erroneously positive (discharging) when it is in fact charging, or if the grid meter has an offset error, the peak may be an artifact. Especially since solar is ~0, grid should = consumption + battery. Here grid (6.2) > consumption (2.5) + battery (4.0) if we assume the battery is charging (negative). But dat",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "SoC-tak (95%) hindrer optimal lagring — Det harde taket på 95% SoC tvinger batteriet til å slutte å lade eller selge overkapasitet tidlig, selv om det økonomisk sett hadde vært bedre å lagre mer (hvis kapasitet tillot) eller vente med salget til høyere priser. Naiv strategi ignorerer ikke dette taket like rigidt i forhold til økonomisk gevinst.",
+      "text": "SoC cap (95%) prevents optimal storage — The hard cap at 95% SoC forces the battery to stop charging or sell excess capacity early, even though economically it would have been better to store more (if capacity allowed) or wait to sell until higher prices. The naive strategy does not ignore this cap as rigidly in relation to economic gain.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Suboptimal SoC-håndtering (frossen timer) — SoC-taket på 95% kombineres med 'frossen timer', noe som tvinger batteriet til å ignorere soloverskudd eller selge billig når det er mest lønnsomt å lagre for kveldsbruk, skaper et gap mellom proxy (tier-hold) og faktisk kostnad.",
+      "text": "Suboptimal SoC handling (frozen timer) — The SoC ceiling of 95% combined with a 'frozen timer', which forces the battery to ignore solar surplus or to sell cheaply when it is most profitable to store for evening use, creates a gap between proxy (tier hold) and actual cost.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Tariffvindus-feil (feil tidspunkt for kjøp/salg) — Systemet kan ha feil konfigurerte tariffvinduer, noe som fører til at det kjøper inn energi i 'dyre' perioder eller selger i 'billige' perioder, i strid med faktiske prisstruktur.",
+      "text": "Tariff window error (wrong time point for buying/selling) — The system may have incorrectly configured tariff windows, which leads to it buying energy in 'expensive' periods or selling in 'cheap' periods, contrary to the actual price structure.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Tidsstempel-feil i datastrøm — Toppene i Grid og Consumption er ikke perfekt synkronisert. Hvis Consumption-dataen er forsinket med noen minutter, kan det se ut som om Grid-toppen ikke har en tilsvarende forbrukstop.",
+      "text": "Timestamp error in the data stream — The peaks in Grid and Consumption are not perfectly synchronized. If the Consumption data is delayed by a few minutes, it may appear as if the Grid peak does not have a corresponding consumption peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uforutsatt elektrisk bil-lading — En EV-lader kan trekke 11-22 kW. Hvis en bil ble koblet til og startet lading manuelt eller via en ekstern app utenfor Opus-styringen, vil dette skape en stor topp som ikke er dekket av setpunktet.",
+      "text": "Unplanned electric car charging — An EV charger can draw 11-22 kW. If a car was plugged in and started charging manually or via an external app outside Opus control, this will create a large peak that is not covered by the setpoint.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uforutsett høy last fra varmekabler eller varmtvann — I Oslo kan rask nedkjøling eller feilaktig styring av varmekabler/vannvarmer føre til store effekttopper. En differanse på 6.5 kW kan dekkes av flere varmekabler eller en kraftig varmtvannsbereder som går i 'boost'-modus utenfor planlagt vindu.",
+      "text": "Unforeseen high load from heating cables or hot water — In Oslo, rapid cooling or incorrect control of heating cables/water heater can lead to large power spikes. A difference of 6.5 kW can be covered by several heating cables or a powerful hot water heater running in 'boost' mode outside the planned window.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uforutsett stor husholdningslast — En stor elektrisk apparat, som en varmekedel eller tørketrommel, kan ha blitt aktivert samtidig, noe som førte til en kraftig økning i strømforbruket.",
+      "text": "Unforeseen large household load — A large electrical appliance, such as a kettle or a tumble dryer, may have been activated at the same time, which led to a sharp increase in power consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukjent elbil-lading — Hvis en elbil ble koblet til og startet lading uten at systemet var oppdatert om tilkoblingen, kan en rasklader (11-22 kW) trekke stor effekt. 8 kW er en realistisk verdi for en AC-lader ved delvis belastning eller 3-fase ujevn fordeling.",
+      "text": "Unknown EV charging — If an EV was connected and started charging without the system being updated about the connection, a fast charger (11-22 kW) can draw large power. 8 kW is a realistic value for an AC charger at partial load or 3-phase uneven distribution.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukjent eller uforutsagt høy last fra apparater om kvelden (occupancy/load shift) — Hvis det var en uforutsagt høy forbrukshendelse (f.eks. vaskemaskin, ovn, eller EV-lading) om kvelden som ikke ble fanget opp i lasteprognosen, ble batteriet tømt raskt, og resten ble dekket av dyrt nett.",
+      "text": "Unknown or unforeseen high load from appliances in the evening (occupancy/load shift) — If there was an unforeseen high consumption event (e.g. washing machine, oven, or EV charging) in the evening that was not captured in the load forecast, the battery was drained quickly, and the rest was covered by expensive grid power.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukjent høy effekt-last (f.eks. elbil eller varmeovn) — Hvis Consumption-data er korrekt (2.4 kW), må Grid (5.9 kW) og Solar (-1.9 kW) balanseres. 5.9 - 1.9 = 4.0 kW tilgjengelig fra nett. Hvis Consumption er 2.4 kW, er det 1.6 kW 'ukjent' som må gå til batteri. Men batteri_power viser -4.29 kW (uttak) til 3.77 kW (lading). Ved toppen lader batteriet ikke nok til å absorbere overskuddet hvis Consumption er lav. Det mest sannsynlige er at det er en stor last (f.eks. elbil lading eller varmekum) som trekker strøm, men som ikke er fanget opp i 'Consumption' aggregatet eller er en plutselig startst",
+      "text": "Unknown high-power load (e.g. EV or space heater) — If the Consumption data is correct (2.4 kW), Grid (5.9 kW) and Solar (-1.9 kW) must be balanced. 5.9 - 1.9 = 4.0 kW available from the grid. If Consumption is 2.4 kW, there is 1.6 kW 'unknown' that must go to the battery. But battery_power shows -4.29 kW (withdrawal) to 3.77 kW (charging). At the peak the battery is not charging enough to absorb the surplus if Consumption is low. The most likely explanation is that there is a large load (e.g. EV charging or hot water tank) drawing power, but which is not captured in the 'Consumption' aggregate or is a sudden startst",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukjent høyeffekt-apparat (f.eks. varmekabell eller vaskemaskin) — Forbrukstopp er 3.1 kW. Hvis dette inkluderer flere apparater, kan en enkelt hendelse (f.eks. oppvarming av gulvvarme eller varmtvannsbereder) ha skapt en kortvarig topp som ikke ble fanget opp i gjennomsnittet (avg 2.37 kW), men som drev nettinntaket opp når solen var borte.",
+      "text": "Unknown high-power appliance (e.g. heating cable or washing machine) — The consumption peak is 3.1 kW. If this includes several appliances, a single event (e.g. heating of underfloor heating or hot water tank) may have created a short-lived peak that was not captured in the average (avg 2.37 kW), but which drove the grid draw up when the sun was gone.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukjent stor elektrisk last (f.eks. varmtvannsbereder eller gulvvarme) — Hvis batteriet faktisk lader med ~4 kW (trekker fra nett), og forbruk er ~2.5 kW, bør nettinntaket være ca 6.5 kW (2.5 + 4.0). Målt nett er 6.235 kW. Dette stemmer overens med at batteriet lader og dekker resten av forbruk, MEN prognosen forventet ikke dette. Hvis en stor last (f.eks. varmtvann) ble aktivert samtidig som batteriet ble kommandert til å lade (f.eks. for å utnytte billig strømtariff eller grid services), kan dette forklare toppen. Men hvorfor var det ikke forutsagt?",
+      "text": "Unknown large electrical load (e.g. hot water heater or underfloor heating) — If the battery is in fact charging at ~4 kW (drawing from the grid), and consumption is ~2.5 kW, the grid intake should be about 6.5 kW (2.5 + 4.0). Measured grid is 6.235 kW. This agrees with the battery charging and covering the rest of the consumption, BUT the forecast did not expect this. If a large load (e.g. hot water) was activated at the same time as the battery was commanded to charge (e.g. to exploit a cheap electricity tariff or grid services), this could explain the peak. But why was it not predicted?",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukjent stor last aktivert manuelt — Differansen på ca. 6.3 kW (8.1 - 1.8) samsvarer med typisk effekt for store elektriske ovner, vaskemaskiner med varmtvannsbereder, eller flere store apparater som ble slått på samtidig. Prognosen dekket ikke dette fordi det var en manuell, ikke-automatisert hendelse.",
+      "text": "Unknown large load activated manually — The difference of approx. 6.3 kW (8.1 - 1.8) corresponds to typical power for large electric ovens, washing machines with hot water heaters, or several large appliances that were switched on simultaneously. The forecast did not cover this because it was a manual, non-automated event.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Ukorrekt estimering av naiv selvforsyning (underestimering av potensielt unngått nettinntak) — Hvis 'naiv-estimatet' (57.0 kr) er et unøyaktig nedre gulv basert på feil data eller for enkle antakelser om solproduksjon vs. forbruk, kan det virke som strategien presterer dårligere enn den faktisk gjør. 729 kr/mnd er ekstremt høyt for et system som skal optimalisere.",
+      "text": "Incorrect estimation of naive self-sufficiency (underestimation of potentially avoided grid import) — If the 'naive estimate' (57.0 kr) is an inaccurate lower floor based on wrong data or too simple assumptions about solar production vs. consumption, it may appear that the strategy performs worse than it actually does. 729 kr/month is extremely high for a system that is supposed to optimize.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt aktivering av stor varmepumpe eller el-komfyr — Datoen 01.07 er tidlig sommer, men Oslo kan ha kjølige kvelder. En stor varmepumpe (f.eks. 6-8 kW effekt) eller induksjonsovn kan trekke strøm. Spikeren er konsistent med én stor last som slår på, noe som ofte skjer ved manuell betjening eller feil i termostatlogikken som ignorerer setpunktet.",
+      "text": "Unplanned activation of a large heat pump or electric stove — The date 01.07 is early summer, but Oslo can have cool evenings. A large heat pump (e.g. 6-8 kW power) or induction cooker can draw power. The spike is consistent with one large load switching on, which often happens with manual operation or an error in the thermostat logic that ignores the setpoint.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt el-bil lading — En el-bil lader med 11 kW (3-fase) eller 7.4 kW (1-fase) kan enkelt drive forbruket fra 1.8 kW opp til 8-9 kW. Datoen 01.07 er sommer, men hvis bilen ble koblet til umiddelbart før hendelsen, vil dette forklare spiken. Prognosen hadde kanskje ikke registrert at bilen var tilkoblet.",
+      "text": "Unplanned EV charging — An EV charging at 11 kW (3-phase) or 7.4 kW (1-phase) can easily drive consumption from 1.8 kW up to 8-9 kW. The date 01.07 is summer, but if the car was connected immediately before the event, this will explain the spike. The forecast may not have registered that the car was connected.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt elektrisk bil-lading — 8.1 kW tilsvarer typisk effekt for en 1-fas eller lav-effekt 3-fas lader. Hvis en bil ble koblet til eller lading startet manuelt utenfor prognosevinduet, vil dette skape en umiddelbar topp som prognosen ikke fanger.",
+      "text": "Unplanned electric car charging — 8.1 kW corresponds to typical power for a 1-phase or low-power 3-phase charger. If a car was plugged in or charging started manually outside the forecast window, this will create an immediate peak that the forecast does not capture.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt høy effekt-laster (f.eks. varmepumpe eller elbil) — Differansen på ca. 6.3 kW (8.1 - 1.8) tilsvarer typisk effekt for en varmepumpe i oppvarming eller en elbil som lader med 11 kW men begrenset av nett, spesielt hvis solproduksjonen var lavere enn forventet i Oslo 01.07.",
+      "text": "Unplanned high-power loads (e.g. heat pump or EV) — The difference of approx. 6.3 kW (8.1 - 1.8) corresponds to typical power for a heat pump in heating or an EV charging at 11 kW but limited by the grid, especially if the solar production was lower than expected in Oslo 01.07.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt høy last fra hvitevarer — Oppvarming av vann i en stor varmtvannsbereder eller start av tørketrommel kan gi kortvarige toppoppganger på 3-5 kW. 8 kW er høyt, men mulig hvis flere store apparater starter samtidig eller hvis det er en feil i oppsummering av sub-metre.",
+      "text": "Unplanned high load from white goods — Heating water in a large water heater or starting a tumble dryer can give short-lived peak increases of 3-5 kW. 8 kW is high, but possible if several large appliances start at the same time or if there is a fault in the summation of sub-meters.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt høy last fra varmekabler eller varmtvann — I Oslo i juli kan det forekomme uventet kjøling eller varmtvannsprodusjon hvis termostater er feilinnstilt eller hvis det er en 'boost'-funksjon som utløses manuelt eller automatisk ved temperaturavvik.",
+      "text": "Unplanned high load from heating cables or hot water — In Oslo in July, unexpected cooling or hot-water production can occur if thermostats are misconfigured or if there is a 'boost' function that is triggered manually or automatically on temperature deviation.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil (EV) — Selvom consumption er høy, er det mulig at EV-laderen ble aktivert manuelt eller via en feil i lastefordeling. Hvis EV-laderen trekker f.eks. 11 kW (3-fase) men systemet kun registrerer en del av lasten i consumption, eller hvis consumption-dataen inkluderer EV men prognosen ikke kjente til ladestart, forklarer det spiken.",
+      "text": "Unplanned charging of an electric car (EV) — Even though consumption is high, it is possible that the EV charger was activated manually or via an error in load distribution. If the EV charger draws e.g. 11 kW (3-phase) but the system only registers part of the load in consumption, or if the consumption data includes the EV but the forecast was not aware of the charging start, that explains the spike.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil med høy effekt — 8.1 kW tilsvarer typisk ladeeffekt for en elbil på en vanlig 11 kW eller 22 kW ladestasjon (3-fase) eller to biler på 1-fase. Hvis en bil ble koblet til eller startet lading manuelt kl. 22:22, vil dette skape en umiddelbar topp som prognosen ikke fanger.",
+      "text": "Unplanned charging of an EV at high power — 8.1 kW corresponds to typical charging power for an EV at an ordinary 11 kW or 22 kW charging station (3-phase) or two cars on 1-phase. If a car was connected or started charging manually at 22:22, this will create an immediate spike that the forecast does not capture.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt oppvarming av elbil (pre-conditioning) — 8.1 kW er en typisk effekt for rask lading eller intens oppvarming av batteri i en elbil. Datoen 01.07 kan indikere at en ny bil er tatt i bruk, eller at en eksisterende bil har fått oppdatert firmware som endrer ladestrategi.",
+      "text": "Unplanned pre-conditioning of EV — 8.1 kW is a typical power for fast charging or intensive heating of the battery in an EV. The date 01.07 may indicate that a new car has been taken into use, or that an existing car has received updated firmware that changes the charging strategy.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt oppvarming av varmtvannstank (boiler) — Varmtvannsberedere har ofte høy effekt (2-3 kW) og kan trekke mer hvis flere elementer er aktivert eller hvis det er en defekt termostat som holder elementet på. Kombinasjon med annen grunnlast kan nærme seg 8 kW, selv om det er høyt for én tank alene.",
+      "text": "Unplanned heating of the hot water tank (boiler) — Hot water heaters often have high power (2-3 kW) and can draw more if several elements are activated or if there is a defective thermostat that keeps the element on. Combination with other base load can approach 8 kW, even though that is high for one tank alone.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt start av høyeffekt-lading (EV) — Differansen på ca. 6.5 kW samsvarer med typisk ladeeffekt for en elbil (3-phase 16A eller 1-phase 32A). Hvis prognosen ikke inkluderte en ladehendelse, og bilen var koblet til, kan en manuell start eller feilaktig 'always-on' modus ha utløst toppen.",
+      "text": "Unplanned start of high-power charging (EV) — The difference of approx. 6.5 kW corresponds to typical charging power for an EV (3-phase 16A or 1-phase 32A). If the forecast did not include a charging event, and the car was connected, a manual start or erroneous 'always-on' mode may have triggered the spike.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt varmepumpe- eller oppvarmingstopp — 23:22 i Oslo (vinter/høst) er typisk for høy varmepumpeaktivitet. 8 kW er realistisk for en stor varmepumpe i full drift eller kombinasjon med el-panne/ovn hvis termostatfeil oppstår.",
+      "text": "Unplanned heat pump or heating peak — 23:22 in Oslo (winter/autumn) is typical for high heat pump activity. 8 kW is realistic for a large heat pump at full operation or in combination with an electric boiler/heater if a thermostat fault occurs.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uregistrert stor last (f.eks. varmekabler eller vaskemaskin) — Forbruksmåleren (consumption_power) stiger til 3.96 kW, men batteriet lader fortsatt (negativ effekt) eller står stille. Dersom consumption_power er korrekt, må det ha vært en ekstra last på ~1.7 kW (5.65 - 3.96) som ikke ble fanget opp av sub-målerne eller ble klassifisert feil. Dette er typisk for eldre hvitevarer eller varmekabler som ikke er integrert i lasteprofilen.",
+      "text": "Unregistered large load (e.g. heating cables or washing machine) — The consumption meter (consumption_power) rises to 3.96 kW, but the battery is still charging (negative power) or standing still. If consumption_power is correct, there must have been an extra load of ~1.7 kW (5.65 - 3.96) that was not captured by the sub-meters or was classified incorrectly. This is typical of older white goods or heating cables that are not integrated into the load profile.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet EV-lading — Elbil-lading kan raskt trekke store mengder strøm (opptil 11 kW eller mer). Hvis en elbil ble koblet til og startet lading uten at systemet registrerte det, kan dette forklare toppen.",
+      "text": "Unexpected EV charging — EV charging can quickly draw large amounts of power (up to 11 kW or more). If an electric car was plugged in and started charging without the system registering it, this can explain the peak.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy forbruk fra hvitevarer — En kombinasjon av hvitevarer (f.eks. vaskemaskin, oppvaskmaskin, ovn) kan ha startet samtidig, noe som kan føre til en stor økning i forbruk.",
+      "text": "Unexpectedly high consumption from white goods — A combination of white goods (e.g. washing machine, dishwasher, oven) may have started at the same time, which can lead to a large increase in consumption.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy forbruk om kvelden — Hvis beboerne bruker mer energi om kvelden enn modellen forutser (f.eks. TV, lys, oppvaskmaskin), må batteriet tømmes raskere, og systemet kjøper inn dyrt fra nettet i stedet for å bruke lagret energi.",
+      "text": "Unexpectedly high consumption in the evening — If the occupants use more energy in the evening than the model predicts (e.g. TV, lights, dishwasher), the battery must be drained faster, and the system buys expensively from the grid instead of using stored energy.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra elbil-lader — En elbil-lader på 11 kW (3-fase) eller 7.4 kW (1-fase) kan enkelt trekke 4.4 kW. Hvis ladingen startet uventet eller ikke ble registrert i prognosen, forklarer dette spikeren.",
+      "text": "Unexpectedly high load from EV charger — An EV charger of 11 kW (3-phase) or 7.4 kW (1-phase) can easily draw 4.4 kW. If the charging started unexpectedly or was not registered in the forecast, this explains the spike.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra elektrisk kjøretøy-lading — Hvis det var en EV-lader koblet til systemet, kan en plutselig start av lading med høy effekt ha drevet toppen. Dette er spesielt sannsynlig hvis ladingen ikke var planlagt eller registrert i prognosen.",
+      "text": "Unexpected high load from electric vehicle charging — If there was an EV charger connected to the system, a sudden start of charging at high power may have driven the peak. This is especially likely if the charging was not planned or registered in the forecast.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra en elektrisk bil — En elektrisk bil kan trekke opptil 11 kW eller mer, noe som kan forklare den store økningen i forbruk. Dette er spesielt sannsynlig hvis bilen ble koblet til laderen rundt hendelsestidspunktet.",
+      "text": "Unexpected high load from an electric car — An electric car can draw up to 11 kW or more, which can explain the large increase in consumption. This is especially likely if the car was plugged into the charger around the time of the event.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra store apparater — Hvis flere store apparater (f.eks. vaskemaskin, tørketrommel, oppvaskmaskin) startet samtidig, kan dette ha drevet toppen. Dette er spesielt sannsynlig hvis det var en uventet hendelse som førte til samtidig bruk.",
+      "text": "Unexpected high load from large appliances — If several large appliances (e.g. washing machine, tumble dryer, dishwasher) started at the same time, this may have driven the peak. This is especially likely if there was an unexpected event that led to simultaneous use.",
       "status": "pending",
       "claim_type": null
     },
     {
-      "text": "Uventet høy nettpris om kvelden kombineret med lav solproduksjon (væravhengig) — Hvis været var dårligere enn forventet i dagene før (lav sol), ble batteriet ikke ladd opp til 95% SoC-tak. Dermed var det nødvendig å kjøpe dyrt nett om kvelden. Naiv selvforsyning antar kanskje ideell solproduksjon.",
+      "text": "Unexpected high grid price in the evening combined with low solar production (weather-dependent) — If the weather was worse than expected in the days before (low sun), the battery was not charged up to the 95% SoC ceiling. Thus it was necessary to buy expensive grid power in the evening. Naive self-sufficiency perhaps assumes ideal solar production.",
       "status": "pending",
       "claim_type": null
     },
@@ -125722,127 +125722,127 @@
       "claim_type": null
     },
     {
-      "text": "Batterikontrolleren tillot eksport/innlastning feilaktig — Hvis batterikontrolleren misforstod setpunktet eller mottok feil signal fra nettselskapet, kunne den ha ladet batteriet eller tillatt høy last fra nettet samtidig som solproduksjon var lav, uten å respektere 6,71 kW-grensen.",
+      "text": "The battery controller erroneously permitted export/import — If the battery controller misunderstood the setpoint or received an incorrect signal from the grid company, it could have charged the battery or permitted high load from the grid at the same time as solar production was low, without respecting the 6,71 kW limit.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Batteristyringen justerte seg uventet — Batteristyringen kan ha justert seg uventet, noe som ville forklare den store økningen i strømforbruk. Dette er spesielt sannsynlig hvis det har vært endringer i batteriets tilstand eller ladestatus.",
+      "text": "Battery management adjusted unexpectedly — The battery management may have adjusted unexpectedly, which would explain the large increase in power consumption. This is especially likely if there have been changes in the battery's state or charge status.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batterikontroll eller inverter — Hvis batteriet ble satt til å lade fra nettet (grid charge) på grunn av en feil i logikken eller en manuell override, og inverteren trekker maksimalt, kan dette skape en topp. 13.272 kW kan være summen av baselast + batterilading.",
+      "text": "Fault in battery control or inverter — If the battery was set to charge from the grid (grid charge) due to a fault in the logic or a manual override, and the inverter draws maximum, this can create a peak. 13.272 kW may be the sum of base load + battery charging.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (BMS) eller inverter — Hvis batteriet var i en tilstand hvor det skulle lade fra nettet (f.eks. ved lavt SOC eller feilaktig kommando fra Opus), og inverteren tillot maksimal ladeeffekt, kunne dette drive opp forbruket. 13 kW er innenfor rekkevidden for mange store husholdningsbatterier med høy effektinverter.",
+      "text": "Fault in battery management (BMS) or inverter — If the battery was in a state where it was supposed to charge from the grid (e.g. at low SOC or an incorrect command from Opus), and the inverter allowed maximum charging power, this could have driven consumption up. 13 kW is within the range of many large household batteries with high-power inverters.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (BMS) som tvinger lading fra nett — Hvis batteristyringen feilaktig tolket en lav SOC (State of Charge) eller mottok en feilaktig kommando om 'Force Charge', ville batteriet trekke maksimal effekt fra nettet. 13 kW er innenfor rekkevidden for store hjemlebatterier med høye ladestrømmer.",
+      "text": "Fault in battery management (BMS) forcing charging from the grid — If the battery management erroneously interpreted a low SOC (State of Charge) or received an erroneous command about 'Force Charge', the battery would draw maximum power from the grid. 13 kW is within the range for large home batteries with high charging currents.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverter driftsmode) — Hvis batteri-inverteren feilaktig går inn i 'grid-following' eller 'export' mode med feil polaritet, eller hvis det oppstår en resonans/feil i AC-koblingen, kan det se ut som et høyt forbruk fra nettet selv om batteriet faktisk leverer energi, eller omvendt at det trekker uventet mye for å kompensere for intern feil.",
+      "text": "Error in battery control (inverter operating mode) — If the battery inverter incorrectly enters 'grid-following' or 'export' mode with wrong polarity, or if a resonance/fault arises in the AC coupling, it may look like a high consumption from the grid even though the battery is in fact delivering energy, or conversely that it draws unexpectedly much to compensate for an internal fault.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverter feil) — Hvis inverteren feilaktig tolker et signal om å levere maksimal effekt til nettet (grid feed-in) i stedet for å lade eller stå stille, kan dette skape en topp. 13 kW er innenfor rekkevidden for store husholdningsinvertere.",
+      "text": "Fault in battery management (inverter fault) — If the inverter erroneously interprets a signal to deliver maximum power to the grid (grid feed-in) instead of charging or standing idle, this can create a peak. 13 kW is within the range of large residential inverters.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverter feilfunksjon eller feil kalibrering) — Hvis batteri-inverteren feilaktig tolker setpunktet eller har en intern feil som får den til å trekke ekstra strøm fra nettet i stedet for å levere/ta opp, kan dette skape en kunstig topp. Spesielt hvis systemet prøver å kompensere for en oppfattelse av lavt batterinivå.",
+      "text": "Fault in battery management (inverter malfunction or incorrect calibration) — If the battery inverter incorrectly interprets the setpoint or has an internal fault that makes it draw extra current from the grid instead of delivering/absorbing, this can create an artificial peak. Especially if the system tries to compensate for a perception of low battery level.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverter) som eksporterer eller trekker feilaktig — Hvis batteriet er i en feiltilstand der det både trekker fra nettet og samtidig leverer til huset (ineffektiv sløyfe), eller hvis inverteren har en intern feil som rapporterer feil effektretning, kan dette skape en kunstig topp i nettinntaket. Setpunktbruddet kan være et resultat av at styringssystemet ikke har oppdatert batteriets tilstand korrekt.",
+      "text": "Error in battery control (inverter) that exports or draws incorrectly — If the battery is in a fault state where it both draws from the grid and at the same time delivers to the house (inefficient loop), or if the inverter has an internal fault that reports the wrong power direction, this can create an artificial peak in grid import. The setpoint breach may be a result of the control system not having updated the battery's state correctly.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverterfeil) — Hvis batteriinverters kommunikasjonsbrytes eller feiler, kan den slutte å levere strøm til huset og i stedet trekke strøm fra nettet for å lade batteriet, eller levere feilaktig data om egenproduksjon, noe som skaper en kunstig eller reell netttopp.",
+      "text": "Fault in battery management (inverter fault) — If the battery inverter's communication is broken or fails, it may stop delivering power to the house and instead draw power from the grid to charge the battery, or deliver erroneous data about self-production, which creates an artificial or real grid spike.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (simultan lading og forbruk) — Hvis batteristyringen feilaktig kommanderer lading fra nettet samtidig som store apparater er i drift, kan nett-trekket summere seg langt over setpunktet.",
+      "text": "Error in battery control (simultaneous charging and consumption) — If the battery control erroneously commands charging from the grid at the same time as large appliances are in operation, the grid draw can sum far above the setpoint.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring eller grid-upstream-problemer — Hvis batteristyringen feilaktig eksporterte energi til nettet, eller hvis det var problemer med grid-upstream, kan det forklare toppen.",
+      "text": "Fault in battery management or grid-upstream problems — If the battery management incorrectly exported energy to the grid, or if there were problems with grid-upstream, that could explain the peak.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring eller ladeprosess — Batteriet kan ha blitt ladd med høyere effekt enn forventet, enten på grunn av en feil i styringsalgoritmen eller en manuell overstyring.",
+      "text": "Fault in battery management or charging process — The battery may have been charged at higher power than expected, either due to a fault in the control algorithm or a manual override.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring som tillot eksport/import utenfor setpunkt — Hvis batteristyringsalgoritmen feilet og misforstod nettgrensen, kunne den ha tillatt batteriet å lade seg raskt fra nettet eller levere kraft samtidig som andre laster var på, noe som overskred setpunktet.",
+      "text": "Fault in battery management that allowed export/import outside the setpoint — If the battery management algorithm failed and misunderstood the grid limit, it could have allowed the battery to charge itself rapidly from the grid or to deliver power at the same time as other loads were on, which exceeded the setpoint.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Batteristyringen kan ha misforstått et signal og lastet batteriet raskt fra nettet, noe som førte til en uventet topp i forbruket.",
+      "text": "Fault in battery management — The battery management may have misinterpreted a signal and charged the battery rapidly from the grid, which led to an unexpected peak in consumption.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Hvis batteristyringen feilaktig lastet batteriet fra nettet i stedet for å bruke overskudd fra solceller, kan dette ha ført til en uventet topp.",
+      "text": "Fault in battery management — If the battery management incorrectly charged the battery from the grid instead of using surplus from the solar cells, this may have led to an unexpected peak.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Hvis batteristyringen feilaktig lastet ut batteriet raskt, kan dette ha ført til en økt henting fra nettet.",
+      "text": "Fault in battery management — If the battery management incorrectly discharged the battery rapidly, this may have led to increased draw from the grid.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring — Hvis batteristyringen har en feil som fører til at batteriet trekker mer strøm enn forventet, kan dette ha ført til en topp.",
+      "text": "Fault in battery management — If the battery management has a fault that causes the battery to draw more power than expected, this may have led to a peak.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyringen — Batteriet kan ha begynt å lade seg opp uventet, noe som førte til et økt strømforbruk fra nettet. Dette kan skje hvis batteristyringen har en feil eller hvis det var en feilaktig kommando fra systemet.",
+      "text": "Error in the battery control — The battery may have started charging unexpectedly, which led to increased power consumption from the grid. This can happen if the battery control has a fault or if there was an erroneous command from the system.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyringen — Batteriet kan ha startet å lade seg opp fra nettet i stedet for å bruke overskuddsenergi fra solcellene. Dette kan skje hvis styringsalgoritmen har en feil eller hvis det er en feil i kommunikasjonen mellom batteriet og styringssystemet.",
+      "text": "Fault in the battery management — The battery may have started charging itself from the grid instead of using surplus energy from the solar cells. This can happen if the control algorithm has a fault or if there is a fault in the communication between the battery and the control system.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyringen — Hvis batteristyringen feilet og ikke reduserte lasten som forventet, kan dette ha ført til en økt trekning fra nettet. Dette kan forklare den høye toppen hvis batteristyringen ikke fungerte som forventet.",
+      "text": "Error in the battery control — If the battery control failed and did not reduce the load as expected, this may have led to an increased draw from the grid. This can explain the high peak if the battery control did not work as expected.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyringsalgoritmen (BMS) — Hvis batteristyringen feilaktig tolket en behovssignal eller feilet i å begrense utlading/inlading, kan den ha drevet en uønsket last fra nettet. Spesielt hvis batteriet var tomt og systemet prøvde å lade raskt.",
+      "text": "Fault in the battery management algorithm (BMS) — If the battery management erroneously interpreted a demand signal or failed to limit discharge/charge, it may have driven an unwanted load from the grid. Especially if the battery was empty and the system tried to charge rapidly.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyringslogikk (ukontrollert utladning eller lade-feil) — Hvis batterikontrolleren misforsto setpunktet eller fikk en feilkode som førte til 'full power' modus, kunne den ha dumpet energi eller trukket mer enn tillatt. En feil i logikken som ignorerer nettgrensen kan gi slike spikker.",
+      "text": "Fault in battery management logic (uncontrolled discharge or charging fault) — If the battery controller misunderstood the setpoint or received an error code that led to 'full power' mode, it could have dumped energy or drawn more than permitted. A fault in the logic that ignores the grid limit can produce such spikes.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodellen eller setpunkt-konfigurasjon — Hvis setpunktet på 6.71 kW var feil konfigurert (f.eks. for lavt) eller hvis prognosen feilaktig antok at batteriet skulle levere mer strøm enn det var fysisk mulig eller ladd med, kan systemet ha reagert ved å trekke strøm fra nettet for å dekke et gap som ikke burde ha eksistert, eller at 'ukjent' faktisk er en reaksjon på at systemet mistet kontroll over lasten.",
+      "text": "Error in the forecast model or setpoint configuration — If the setpoint of 6.71 kW was configured incorrectly (e.g. too low) or if the forecast incorrectly assumed that the battery would deliver more power than was physically possible or charged with, the system may have reacted by drawing power from the grid to cover a gap that should not have existed, or that 'unknown' is in fact a reaction to the system losing control of the load.",
       "status": "supported",
       "claim_type": null
     },
     {
-      "text": "Vedlikehold eller feil i batteristyring — Batteriet kan ha startet å lade fra nettet i stedet for å levere energi, noe som ville økt nettoforbruk fra nettet. Dette kan skje ved feil i styringsalgoritmen.",
+      "text": "Maintenance or fault in battery control — The battery may have started charging from the grid instead of delivering energy, which would have increased net consumption from the grid. This can happen with a fault in the control algorithm.",
       "status": "supported",
       "claim_type": null
     },
@@ -129187,517 +129187,517 @@
       "claim_type": null
     },
     {
-      "text": "Aktivering av en stor apparatlast — En stor apparatlast, som f.eks. en varmepumpe eller tørketrommel, kan ha startet og drevet opp forbruket.",
+      "text": "Activation of a large appliance load — A large appliance load, such as a heat pump or tumble dryer, may have started and driven up consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-ovn eller varmekabelfelt — Ved Oslo-temperaturer kan det være behov for ekstra varmekapasitet. En elektrisk ovn eller varmekabelfelt på ca. 6-7 kW som slås på manuelt (ikke via termostatstyring) vil skape en umiddelbar topp som prognosen ikke fanger.",
+      "text": "Activation of high-power oven or heating cable field — At Oslo temperatures there may be a need for extra heating capacity. An electric oven or heating cable field of approx. 6-7 kW that is switched on manually (not via thermostat control) will create an immediate peak that the forecast does not capture.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffekt-varmepumpe eller varmekabler — Kombinasjonen av eksisterende last og en ny, stor last (f.eks. varmekabler i garasje eller en stor varmepumpe i defrost-modus) kan summere til >13 kW. Hvis dette skjedde plutselig, kan det forklare spissen.",
+      "text": "Activation of high-power heat pump or heating cables — The combination of existing load and a new, large load (e.g. heating cables in the garage or a large heat pump in defrost mode) can sum to >13 kW. If this happened suddenly, it may explain the spike.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av høyeffektapparater — Apparater som varmtvannsbereder, vaskemaskiner eller ovner kan trekke store mengder strøm, og hvis flere av disse ble aktivert samtidig, kan dette ha ført til toppen.",
+      "text": "Activation of high-power appliances — Appliances such as water heater, washing machines or ovens can draw large amounts of power, and if several of these were activated at the same time, this may have led to the peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av kraftkrevende hvitevarer eller varmeanlegg — Hvis huset har store motorkrevende apparater (f.eks. varmepumpe i oppvarming, vaskemaskin, tørketrommel) som startet samtidig, kan dette summere til en betydelig økning. 6.5 kW ekstra last er mulig med flere store enheter.",
+      "text": "Activation of power-intensive white goods or heating systems — If the house has large motor-driven appliances (e.g. heat pump in heating, washing machine, tumble dryer) that started simultaneously, this can sum to a significant increase. 6.5 kW extra load is possible with several large units.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av kraftkrevende varmeelement — Hvis et stort varmeelement (f.eks. gulvvarme eller varmtvannsbereder) ble aktivert manuelt eller via feilaktig termostat, kan dette trekke 3-6 kW ekstra.",
+      "text": "Activation of a power-intensive heating element — If a large heating element (e.g. underfloor heating or a hot-water heater) was activated manually or via a faulty thermostat, this can draw 3-6 kW extra.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av stor varmelast (f.eks. gulvvarme eller poolpumpe) — Hvis det er en varmekilde som bruker direkte elektrisk oppvarming (PTC) eller en stor pumpesirkulasjon for gulvvarme/pool som ble slått på manuelt eller via termostat, kan dette gi en brå økning. 13 kW er høyt for vanlig oppvarming, men mulig ved kombinasjon av flere enheter eller feilaktig termostatoppsett.",
+      "text": "Activation of a large heat load (e.g. underfloor heating or pool pump) — If there is a heat source that uses direct electric heating (PTC) or a large pump circulation for underfloor heating/pool that was switched on manually or via thermostat, this can give a sudden increase. 13 kW is high for ordinary heating, but possible with a combination of several units or an incorrect thermostat setup.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Aktivering av store apparater — Aktivering av store apparater som varmtvannsbereder, vaskemaskin eller tørketrommel kan føre til en plutselig økning i forbruket. Hvis flere slike apparater ble aktivert samtidig, kan dette ha ført til den høye toppen.",
+      "text": "Activation of large appliances — Activation of large appliances such as hot-water heater, washing machine or tumble dryer can lead to a sudden increase in consumption. If several such appliances were activated at the same time, this may have led to the high peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern faktorer som vær eller sol — Selv om det var kveldstid, kan det ha vært en uventet endring i værforholdene eller solproduksjon som påvirket energiforbruket.",
+      "text": "External factors such as weather or sun — Even though it was evening, there may have been an unexpected change in the weather conditions or solar production that affected the energy consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern hendelse eller nabo-målerfeil (nett-side) — Hvis måleren er del av et felles system eller hvis det er en feil i transformator/nivåovergang, kan en naboens last eller nettfeil ha blitt registrert feilaktig i denne brukerens måler.",
+      "text": "External event or neighbor meter error (grid side) — If the meter is part of a shared system, or if there is a fault in the transformer/level transition, a neighbor's load or a grid fault may have been registered incorrectly in this user's meter.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern hendelse i det lokale strømnettet — Det er mulig at det var en midlertidig hendelse i det lokale strømnettet, som f.eks. en feil eller en uventet last fra naboer, som påvirket målingene.",
+      "text": "External event in the local power grid — It is possible that there was a temporary event in the local power grid, such as a fault or an unexpected load from neighbors, that affected the measurements.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern hendelse i nettselskapets system — En hendelse i det overordnede nettsystemet kan ha ført til en uventet økning i strømforbruk.",
+      "text": "External event in the grid company's system — An event in the overarching grid system may have led to an unexpected increase in power consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettendring eller feil i grenseverdier fra leverandør — Hvis nettselskapet midlertidig endret tillatt effektgrense eller hvis kommunikasjonen med nettselskapet tapte 'setpunkt'-signalet, og systemet falt tilbake til en default-høy verdi eller ingen grense, kunne lasten øke.",
+      "text": "External grid change or fault in limit values from the supplier — If the grid company temporarily changed the permitted power limit or if the communication with the grid company lost the 'setpoint' signal, and the system fell back to a default high value or no limit, the load could increase.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettforklaring eller oppstrøms hendelse — Selv om mindre sannsynlig for en enkeltkunde, kan en feil i nettselskapets måler eller en midlertidig spenningssvingning ha forårsaket at den lokale måleren registrerte feilaktig høy effekt, eller at en nabo-last ble feilaktig tillagt.",
+      "text": "External grid explanation or upstream event — Although less likely for a single customer, a fault in the grid company's meter or a temporary voltage fluctuation may have caused the local meter to register erroneously high power, or a neighbor's load to be erroneously attributed.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ekstern nettspenningssvingning eller feil i oppstrøms måling — Hvis den lokale måleren er følsom for spenningsvariasjoner, og det var en midlertidig spenningsøkning eller frekvensavvik i det lokale nettet, kan dette ha påvirket målingen. Alternativt kan det være en feil i kommunikasjonsleddet mellom måler og Opus.",
+      "text": "External grid voltage fluctuation or fault in upstream measurement — If the local meter is sensitive to voltage variations, and there was a temporary voltage increase or frequency deviation in the local grid, this may have affected the measurement. Alternatively, it may be a fault in the communication link between the meter and Opus.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Elbil-lading startet med høy effekt — En økning på ~6.5 kW er typisk for en AC-lader (Type 2) som opererer ved 16A/230V eller 32A/230V (avhengig av faser). Hvis en bil ble koblet til og lading startet manuelt eller automatisk, kan dette forklare spissen.",
+      "text": "EV charging started at high power — An increase of ~6.5 kW is typical for an AC charger (Type 2) operating at 16A/230V or 32A/230V (depending on phases). If a car was plugged in and charging started manually or automatically, this can explain the spike.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Elbil-lading startet uventet eller med høy effekt — En elbil-lader kan trekke 11-22 kW. Hvis en bil ble koblet til eller lading startet manuelt/automatisk uten at systemet var oppdatert på prognosen, kan dette forklare det store hoppet over setpunktet.",
+      "text": "EV charging started unexpectedly or at high power — An EV charger can draw 11-22 kW. If a car was plugged in or charging started manually/automatically without the system having been updated on the forecast, this can explain the large jump above the setpoint.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "En stor apparatlast ble aktivert — Et stort apparat, som en vaskemaskin eller oppvaskmaskin, kan ha blitt aktivert samtidig, noe som ville forklare den store økningen i strømforbruk.",
+      "text": "A large appliance load was activated — A large appliance, such as a washing machine or dishwasher, may have been activated at the same time, which would explain the large increase in power consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Endring i nettleie eller tariffvinduer — Hvis det var en endring i nettleie eller tariffvinduer som førte til at systemet automatisk justerte forbruksmønsteret, kan dette ha ført til et uventet høyt forbruk. Dette er spesielt sannsynlig hvis det var en endring i pris eller avgift.",
+      "text": "Change in grid tariff or tariff windows — If there was a change in grid tariff or tariff windows that led the system to automatically adjust the consumption pattern, this may have led to unexpectedly high consumption. This is especially likely if there was a change in price or fee.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i batteristyring (inverter drift) — Hvis batteriet feilaktig går fra lading til utlading eller omvendt med høy effekt, eller hvis inverteren oppfører seg ustabil, kan dette skape en momentant topp i nettforbruket som ikke er dekket av prognosemodellen.",
+      "text": "Fault in battery management (inverter operation) — If the battery erroneously goes from charging to discharging or vice versa at high power, or if the inverter behaves unstably, this can create a momentary peak in grid consumption that is not covered by the forecast model.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i elbil-lading — En elbil kan ha begynt å lade seg opp uventet, noe som førte til et plutselig hopp i strømforbruket. Dette er spesielt sannsynlig hvis det ikke var solproduksjon tilgjengelig og batteriet ikke var i bruk.",
+      "text": "Error in EV charging — An electric car may have started charging unexpectedly, which led to a sudden jump in power consumption. This is especially likely if no solar production was available and the battery was not in use.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i nettleverandørens måling — Hvis nettleverandørens måleinstrument har en feil, kan dette ha ført til en feilaktig registrert topp.",
+      "text": "Fault in the grid supplier's measurement — If the grid supplier's metering instrument has a fault, this may have led to an erroneously recorded peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i nettregulering eller oppstrøms hendelse — Det kan ha vært en hendelse i det lokale nettet som førte til at spenningen eller strømmen ble målt feil. Dette er mindre sannsynlig, men må vurderes hvis det ikke finnes noen andre forklaringer.",
+      "text": "Fault in grid regulation or upstream event — There may have been an event in the local grid that caused the voltage or current to be measured incorrectly. This is less likely, but must be considered if no other explanations exist.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i nettselskapets oppgjørsmåler eller dataleveranse — Hvis Symbioses interne måling (sub-målere) viser lav last, men nettselskapets API/data viser 13.272 kW, kan det skyldes at nettselskapets måler har en feil, eller at data fra nettselskapet er forsinket/feilaktig aggregert fra naboer eller andre punkter i transformatorstasjonen.",
+      "text": "Fault in the grid company's settlement meter or data delivery — If Symbiose's internal measurement (sub-meters) shows low load, but the grid company's API/data shows 13.272 kW, it may be because the grid company's meter has a fault, or because data from the grid company is delayed/incorrectly aggregated from neighbors or other points in the transformer station.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodell (feil antagelse om solproduksjon) — Hvis skydekke var verre enn forventet, og systemet ikke reduserte forbruk eller økte batterilading raskt nok, kan nett-trekket øke. Men 6.5 kW avvik er stort for kun solfeil.",
+      "text": "Error in the forecast model (wrong assumption about solar production) — If cloud cover was worse than expected, and the system did not reduce consumption or increase battery charging quickly enough, grid draw may increase. But a 6.5 kW deviation is large for solar error alone.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodell (solproduksjon) — Hvis solcellene produserte betydelig mindre enn forventet på grunn av skyer eller skygge, og husets last var høy, ville nettinntaket økt. Men siden setpunktet er 6.71 kW, må den faktiske lasten ha vært høyere enn forventet for å nå 13.272 kW.",
+      "text": "Fault in the forecast model (solar production) — If the solar cells produced significantly less than expected due to clouds or shade, and the house's load was high, the grid intake would have increased. But since the setpoint is 6.71 kW, the actual load must have been higher than expected to reach 13.272 kW.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodell eller setpunkt-konfigurasjon — Hvis setpunktet 6.71 kW var feil konfigurert (f.eks. basert på en utgående tariff eller feil antagelse om solproduksjon), kan systemet ha tillatt en last som egentlig var tillatt, men som ble flagget som 'ukjent' fordi prognosen ikke dekket den. Dette er mindre sannsynlig for en så stor avvik, men mulig hvis en ny tariff ble aktivert manuelt.",
+      "text": "Error in the forecast model or setpoint configuration — If the setpoint 6.71 kW was configured incorrectly (e.g. based on an outgoing tariff or a wrong assumption about solar production), the system may have permitted a load that was in fact permitted, but that was flagged as 'unknown' because the forecast did not cover it. This is less likely for such a large deviation, but possible if a new tariff was activated manually.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodell eller setpunkt-konfigurasjon — Hvis setpunktet på 6.71 kW faktisk var feil konfigurert i systemet, eller hvis nettoperatøren midlertidig tillot høyere effekt uten at Opus var oppdatert, kan den faktiske lasten ha vært legitim men 'uforventet' for systemet.",
+      "text": "Fault in forecast model or setpoint configuration — If the setpoint of 6.71 kW was in fact misconfigured in the system, or if the grid operator temporarily allowed higher power without Opus being updated, the actual load may have been legitimate but 'unexpected' to the system.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodell — Prognosemodellen kan ha feilet i å forutsi en plutselig endring i forbruk eller leveranse fra nettet.",
+      "text": "Fault in forecast model — The forecast model may have failed to predict a sudden change in consumption or supply from the grid.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodellen (ikke faktisk topp) — Hvis 'nett-topp' er beregnet basert på en feilaktig antakelse om nettleie eller dynamisk grense, og ikke faktisk målt forbruk, kan dette være en beregningsfeil. Men gitt at det sies 'oppdaget i huset-energi-styringen', er det mer sannsynlig at det er en faktisk målt verdi som ikke ble forutsagt.",
+      "text": "Fault in the forecast model (not an actual peak) — If 'grid peak' is calculated based on an incorrect assumption about grid tariff or dynamic limit, and not on actually measured consumption, this may be a calculation error. But given that it is said to be 'detected in the house energy control', it is more likely to be an actual measured value that was not predicted.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i prognosemodellen — Prognosen kan ha undervurdert forbruket basert på feil antakelser om vær, okkupasjon eller andre faktorer. Dette er mindre sannsynlig siden toppen er så langt over setpunktet.",
+      "text": "Fault in the forecast model — The forecast may have underestimated consumption based on wrong assumptions about weather, occupancy or other factors. This is less likely since the peak is so far above the setpoint.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i solcelleprodusjon eller værforhold — Solcellene kan ha produsert mindre enn forventet på grunn av skyer eller andre værforhold, noe som førte til at huset måtte trekke mer energi fra nettet. Dette er spesielt sannsynlig hvis det var en plutselig endring i værforholdene.",
+      "text": "Fault in solar production or weather conditions — The solar cells may have produced less than expected due to clouds or other weather conditions, which caused the house to have to draw more energy from the grid. This is especially likely if there was a sudden change in the weather conditions.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feil i tariffvinduer eller priser — Det er mulig at det var en uventet endring i tariffvinduer eller priser som førte til at systemet reagerte med høyere forbruk eller ladning.",
+      "text": "Fault in tariff windows or prices — It is possible that there was an unexpected change in tariff windows or prices that caused the system to respond with higher consumption or charging.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hvis ingen store forbrukere (somovn, lading) er aktivert, er det høyst sannsynlig at smartmåleren rapporterer feil eller at det er en kalibreringsfeil i datainnhentingen fra nettselskapet.",
+      "text": "Incorrect metering point or sensor fault — A jump from 6.71 kW to 13.272 kW is almost a doubling. If no large consumers (large oven, charging) are activated, it is highly likely that the smart meter is reporting errors or that there is a calibration fault in the data collection from the grid company.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hvis ingen store laster (som lading) er logget som aktive, er det sannsynlig at måleren rapporterer feil eller at det er en kalibreringsfeil, spesielt hvis verdien er stabil eller uregelmessig uten korresponderende last.",
+      "text": "Incorrect metering point or sensor fault — A jump from 6.71 kW to 13.272 kW is almost a doubling. If no large loads (such as charging) are logged as active, it is likely that the meter is reporting incorrectly or that there is a calibration error, especially if the value is stable or irregular without a corresponding load.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten korresponderende endring i andre laster tyder på at smartmeteret eller kommunikasjonsleddet har registrert en feil, f.eks. dobbeltregning eller støy i signalet.",
+      "text": "Erroneous metering point or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without corresponding change in other loads suggests that the smart meter or the communication link has registered a fault, e.g. double counting or noise in the signal.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten korresponderende forbruk i andre kanaler eller varsler om feil i smartmeteret tyder på at dataen er støy eller at målepunktet ble byttet/feilkoblet.",
+      "text": "Erroneous metering point or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without corresponding consumption in other channels or alarms about faults in the smart meter suggests that the data is noise or that the metering point was switched/miswired.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig målepunkt eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i forbruksmønster eller værforhold tyder på at måleren rapporterer feil data, f.eks. dobbeltregning eller støy i signalet.",
+      "text": "Erroneous measuring point or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without a corresponding change in consumption pattern or weather conditions indicates that the meter is reporting erroneous data, e.g. double counting or noise in the signal.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil på nettgrensen — Et hopp fra 6.71 kW til 13.272 kW er nesten en dobling. Hvis prognosen ikke forutså dette, og det ikke finnes synlige korrelater med kjent last (som lading eller varmekurser), er det sannsynlig at målepunktet (f.eks. smartmåler eller CT-klemme) rapporterte feil data, eller at det var en kortvarig støy i signalet som ble tolket som topp.",
+      "text": "Incorrect measurement or sensor error at the grid boundary — A jump from 6.71 kW to 13.272 kW is almost a doubling. If the forecast did not predict this, and there are no visible correlates with known load (such as charging or heating circuits), it is likely that the measurement point (e.g. smart meter or CT clamp) reported wrong data, or that there was brief noise in the signal that was interpreted as a peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil på nettmåleren — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilsvarende endring i forbruk eller produksjon tyder på at sensoren kan ha gitt feil data. Dette er spesielt sannsynlig hvis det ikke er noen andre enheter som rapporterer høy last samtidig.",
+      "text": "Incorrect measurement or sensor fault at the grid meter — A sudden jump from 6.71 kW to 13.272 kW without corresponding change in consumption or production indicates that the sensor may have given erroneous data. This is especially likely if there are no other devices reporting high load at the same time.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig og uventet topp på 13,272 kW, nesten dobbelt så høy som setpunktet (6,71 kW), kan skyldes en midlertidig feil i måleutstyret. Slike feil er vanlige og kan oppstå uten varsel.",
+      "text": "Erroneous measurement or sensor fault — A sudden and unexpected peak of 13,272 kW, almost twice as high as the setpoint (6,71 kW), may be due to a temporary fault in the measuring equipment. Such faults are common and can occur without warning.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig topp på 13.272 kW, nesten dobbelt så høy som setpunktet (6.71 kW), kan indikere en feil i måleutstyret, spesielt hvis det ikke er noen kjente hendelser som kan forklare dette.",
+      "text": "Erroneous measurement or sensor fault — A sudden peak of 13.272 kW, almost twice as high as the setpoint (6.71 kW), may indicate a fault in the measuring equipment, especially if there are no known events that can explain this.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig økning fra 4.8 kW til 13.182 kW uten tydelig forklaring kan indikere en feil i måleutstyret, spesielt hvis det ikke finnes andre korrelerende data som støtter en slik høy forbruk.",
+      "text": "Erroneous measurement or sensor fault — A sudden increase from 4.8 kW to 13.182 kW without a clear explanation may indicate a fault in the measuring equipment, especially if there are no other correlating data that support such high consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — En plutselig økning fra 4.8 kW til 13.272 kW uten tydelig forklaring kan indikere en feil i måleutstyret. Slike feil er vanlige og kan oppstå pga. kalibreringsproblemer eller midlertidige forstyrrelser.",
+      "text": "Erroneous measurement or sensor fault — A sudden increase from 4.8 kW to 13.272 kW without clear explanation may indicate a fault in the metering equipment. Such faults are common and can arise due to calibration problems or temporary disturbances.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Et plutselig hopp fra 6,71 kW til 13,272 kW uten tilhørende endringer i andre målepunkter (f.eks. solproduksjon eller batteri) kan tyde på at sensoren har gitt feil data. Dette er spesielt sannsynlig hvis det ikke finnes andre bevis for økt forbruk.",
+      "text": "Incorrect measurement or sensor fault — A sudden jump from 6,71 kW to 13,272 kW without corresponding changes in other metering points (e.g. solar production or battery) may indicate that the sensor has given erroneous data. This is especially likely if there is no other evidence of increased consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre data (f.eks. solproduksjon eller ladning) kan tyde på en feil i måleutstyret.",
+      "text": "Erroneous measurement or sensor fault — A sudden jump from 6.71 kW to 13.272 kW without a corresponding change in other data (e.g. solar production or charging) may indicate a fault in the metering equipment.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Oppmålt verdi (13.272 kW) er nesten dobbelt så høy som setpunktet (6.71 kW), noe som kan tyde på at sensoren har gitt feil data. Dette er spesielt sannsynlig hvis det ikke er noen tydelige forbrukere som skulle ha drevet opp forbruket.",
+      "text": "Erroneous measurement or sensor fault — The measured value (13.272 kW) is almost twice as high as the setpoint (6.71 kW), which may indicate that the sensor has given erroneous data. This is especially likely if there are no clear consumers that should have driven up consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Plutselig økning fra 6.71 kW til 13.272 kW uten tydelig årsak kan indikere at sensoren har gitt feilaktige målinger. Dette er spesielt sannsynlig hvis det ikke finnes noen andre korrelerte endringer i dataene.",
+      "text": "Erroneous measurement or sensor fault — A sudden increase from 6.71 kW to 13.272 kW without clear cause may indicate that the sensor has given erroneous measurements. This is especially likely if there are no other correlated changes in the data.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Siden det ikke finnes data i 'data_window_rundt_hendelsen' for å bekrefte lasten, er det mulig at måleinstrumentet har gitt en feilaktig lesning. Dette er spesielt sannsynlig hvis det ikke finnes korresponderende data fra andre kilder.",
+      "text": "Erroneous measurement or sensor fault — Since there are no data in 'data_window_rundt_hendelsen' to confirm the load, it is possible that the measuring instrument has given an erroneous reading. This is especially likely if there are no corresponding data from other sources.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling eller sensorfeil — Siden det ikke finnes noen dokumentert hendelse eller last som kan forklare den store økningen i nett-topp (13.272 kW), er det mulig at målingene fra energimåleren eller andre sensorer er korrupte eller feilaktige.",
+      "text": "Erroneous measurement or sensor fault — Since there is no documented event or load that can explain the large increase in grid peak (13.272 kW), it is possible that the measurements from the energy meter or other sensors are corrupt or erroneous.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig måling pga. sensorfeil eller kalibreringsdrift — En øyeblikkelig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre korrelerte signaler (f.eks. solproduksjon eller kjente store laster) tyder på at målepunktet rapporterer feil data, snarere enn fysisk strøm.",
+      "text": "Erroneous measurement due to sensor fault or calibration drift — An instantaneous jump from 6.71 kW to 13.272 kW without a corresponding change in other correlated signals (e.g. solar production or known large loads) suggests that the measurement point is reporting erroneous data, rather than physical current.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig sign-invertering i smartmåler — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i intern lastprofil eller solproduksjon tyder på at måleren rapporterte import som eksport, eller at en fase ble byttet. Siden prognosen ikke forutsa dette, er det usannsynlig at det er en reell lastendring.",
+      "text": "Incorrect sign inversion in the smart meter — An abrupt jump from 6.71 kW to 13.272 kW without a corresponding change in the internal load profile or solar production suggests that the meter reported import as export, or that a phase was swapped. Since the forecast did not predict this, it is unlikely to be a real load change.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilaktig signatur eller kalibrering av nett-måler — Et hopp fra 6.71 kW til 13.272 kW representerer en nesten dobling av effekten. Hvis intern last (EV, varmepumpe) ikke har endret seg markant i samme tidsvindu, indikerer dette at målepunktet rapporterer feil data fremfor at faktisk fysisk last har doblet seg brått uten forklaring.",
+      "text": "Incorrect signature or calibration of grid meter — A jump from 6.71 kW to 13.272 kW represents an almost doubling of the power. If internal load (EV, heat pump) has not changed markedly in the same time window, this indicates that the metering point is reporting incorrect data rather than that the actual physical load has doubled abruptly without explanation.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilkalibrert eller defekt strømavleser (CT-klemme) — En plutselig dobling av målt effekt (13.2 kW vs 6.7 kW setpunkt) uten tilhørende endring i andre korrelerte data (f.eks. batteristatus eller solproduksjon) tyder på målefeil. Sensorer kan gi falske høye verdier ved magnetisk interferens eller løse koblinger.",
+      "text": "Miscalibrated or defective current reader (CT clamp) — A sudden doubling of measured power (13.2 kW vs 6.7 kW setpoint) without a corresponding change in other correlated data (e.g. battery status or solar production) suggests a measurement error. Sensors can give false high values under magnetic interference or loose connections.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilkoblet eller defekt CT-sensor (falsk positiv) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i forbruksmønster eller værdata tyder ofte på målefeil, f.eks. løst kabel, støy eller at en CT er koblet feil (f.eks. doblet opp eller måler feil fase).",
+      "text": "Miswired or defective CT sensor (false positive) — A sudden jump from 6.71 kW to 13.272 kW without a corresponding change in consumption pattern or weather data often suggests a measurement fault, e.g. a loose cable, noise, or a CT wired incorrectly (e.g. doubled up or measuring the wrong phase).",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilkoblet eller defekt CT-sensor (strømmåler) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre laster (f.eks. varmtvannsbereder eller AC) tyder på målefeil. 13.272 kW er nesten nøyaktig dobbelt så mye som setpunktet, noe som kan indikere at en CT-sensor er koblet feil (f.eks. to faser målt som én, eller feil transformatorforhold) eller at en sensor har hoppet til en feil kalibrering.",
+      "text": "Incorrectly wired or defective CT sensor (current meter) — A sudden jump from 6.71 kW to 13.272 kW without a corresponding change in other loads (e.g. water heater or AC) indicates a measurement error. 13.272 kW is almost exactly twice the setpoint, which may indicate that a CT sensor is wired incorrectly (e.g. two phases measured as one, or wrong transformer ratio) or that a sensor has jumped to a wrong calibration.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilkoblet eller defekt måler (sensorfeil) — Et plutselig hopp fra 6.71 kW til 13.272 kW uten tilhørende endring i andre korrelerte signaler (f.eks. solproduksjon eller intern last) tyder på at måleren rapporterer feilaktige data, eller at det er en støyende lesing i smartmåleren.",
+      "text": "Miswired or defective meter (sensor fault) — A sudden jump from 6.71 kW to 13.272 kW without corresponding change in other correlated signals (e.g. solar production or internal load) indicates that the meter is reporting erroneous data, or that there is a noisy reading in the smart meter.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilkoblet eller defekt strømavleser (CT-klemme) — Et plutselig hopp fra setpunktet 6.71 kW til 13.272 kW uten tilhørende endring i forbruksmønster eller værdata tyder på målefeil. Dobbelt så høy verdi kan indikere at en CT-klemme er koblet feil (f.eks. doblet følsomhet) eller at en fase er gått tapt i beregningen.",
+      "text": "Miswired or defective current reader (CT clamp) — An abrupt jump from the setpoint 6.71 kW to 13.272 kW without a corresponding change in consumption pattern or weather data suggests a measurement error. A value twice as high may indicate that a CT clamp is wired incorrectly (e.g. doubled sensitivity) or that a phase has been lost in the calculation.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Feilkobling eller drift av EV-lader i høy effekt — En nettopp på 13,272 kW er konsistent med to elbiler som lader samtidig (f.eks. 2x 7-8 kW) eller en enkelt bil med hurtiglader, noe som enkelt overskrider setpunktet på 6,71 kW hvis ladningen ikke er regulert av Opus.",
+      "text": "Miswiring or operation of EV charger at high power — A net peak of 13,272 kW is consistent with two EVs charging simultaneously (e.g. 2x 7-8 kW) or a single car with a fast charger, which easily exceeds the setpoint of 6,71 kW if the charging is not regulated by Opus.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Høy forbruk fra varmeanlegg — Varmeanlegg, spesielt varmepumper, kan trekke mye strøm. Hvis det var en plutselig nedgang i utetemperatur eller en feil i styringen, kan dette ha ført til en uventet topp.",
+      "text": "High consumption from the heating system — Heating systems, especially heat pumps, can draw a lot of power. If there was a sudden drop in outdoor temperature or a fault in the control, this may have led to an unexpected peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Høy solcelleproduksjon kombinert med lavt forbruk — Hvis solcelleanlegget produserte mer energi enn husets forbruk, og overskuddet ble levert til nettet, kan dette ha ført til en topp i nettforbruket.",
+      "text": "High solar cell production combined with low consumption — If the solar cell installation produced more energy than the house's consumption, and the surplus was delivered to the grid, this may have led to a peak in grid consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Nedstrøms feil i nettleverandørdata (upstream) — Dersom Opus henter data fra en fellesmåler eller et system som aggregater flere enheter, kan en feil i oppstrømsdata (f.eks. at naboens forbruk ble tilordnet denne enheten i et kort vindu) forårsake en kunstig topp.",
+      "text": "Downstream fault in grid supplier data (upstream) — If Opus retrieves data from a shared meter or a system that aggregates several units, a fault in upstream data (e.g. that the neighbour's consumption was assigned to this unit in a short window) can cause an artificial peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Nedstrøms feil i nettselskapets målepunkt — Hvis det er en feil i nettselskapets måler eller kommunikasjon (f.eks. pulsfrekvensfeil), kan det rapportere en kunstig topp. Dette er mindre sannsynlig enn lokale feil, men mulig hvis naboen har en stor last som blir feiltolket.",
+      "text": "Downstream fault in the grid company's measurement point — If there is a fault in the grid company's meter or communication (e.g. pulse frequency fault), it may report an artificial peak. This is less likely than local faults, but possible if the neighbour has a large load that is misinterpreted.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Nettoperatør-justering eller målerfeil oppstrøms — Hvis måleren som rapporterer 'nett-topp' er en fellesmåler eller hvis det er støy på kommunikasjonslinjen fra nettselskapet, kan dataene være korrupte eller inkludere naboers forbruk (hvis fellesmåling).",
+      "text": "Grid operator adjustment or meter fault upstream — If the meter reporting the 'grid peak' is a shared meter, or if there is noise on the communication line from the grid company, the data may be corrupt or include neighbors' consumption (if shared metering).",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Oppstrøms nettfeil eller spenningssvikt som påvirker måling — Et plutselig spenningsfall eller frekvensavvik i det lokale nettet kan få visse måleinnretninger til å rapportere feil effekt, spesielt hvis de er kalibrert for nominell spenning. Hvis nabohus eller andre enheter i samme transformatorfelt opplever lignende anomali, er det en oppstrøms årsak.",
+      "text": "Upstream grid fault or voltage failure that affects measurement — A sudden voltage drop or frequency deviation in the local grid can cause certain measurement devices to report wrong power, especially if they are calibrated for nominal voltage. If neighboring houses or other units in the same transformer field experience a similar anomaly, it is an upstream cause.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Plutselig høy last fra varmepumpe eller varmekabler — Varmepumper og varmekabler har høy effektbehov. Hvis termostaten ble justert manuelt, eller hvis det var en plutselig temperaturstøt som aktiverte flere enheter samtidig uten at Opus' laststyring fikk reagere i tide, kan dette forklare hoppet.",
+      "text": "Sudden high load from heat pump or heating cables — Heat pumps and heating cables have a high power demand. If the thermostat was adjusted manually, or if there was a sudden temperature drop that activated several units at the same time without Opus' load control being able to react in time, this may explain the jump.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Plutselig nedgang i solproduksjon pga. skydekke — Hvis huset har solcelleanlegg, og det plutselig skyet til, må nettet kompensere for tapen i egenproduksjon. Hvis setpunktet (6.71 kW) var basert på forventet sol, og solen forsvant, vil nettinntaket stige for å dekke den samme baselasten. En reduksjon i sol på ca 6.5 kW ville gi den observerte toppen.",
+      "text": "Sudden drop in solar production due to cloud cover — If the house has a solar panel system, and it suddenly clouded over, the grid must compensate for the loss in self-production. If the setpoint (6.71 kW) was based on expected sun, and the sun disappeared, grid import will rise to cover the same base load. A reduction in solar of approx 6.5 kW would give the observed peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Samtidig drift av høyeffekt-apparater (f.eks. varmekumulerendeovn + vaskemaskin) — I Oslo kan det være vanlig å bruke varmekumulerendeovner (3-6 kW) i kveldstimer. Kombinasjonen med andre apparater kan skyve lasten opp. Uventet høy intern last forklarer hvorfor prognosen (som kanskje baserte seg på gjennomsnitt) feilet.",
+      "text": "Simultaneous operation of high-power appliances (e.g. heat-storage heater + washing machine) — In Oslo it can be common to use heat-storage heaters (3-6 kW) during the evening hours. The combination with other appliances can push the load up. Unexpectedly high internal load explains why the forecast (which may have been based on the average) failed.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Sensorfeil eller kommunikasjonstap i målerpunktet — En brå, uforklart topp som ikke er forutsagt og som ligger langt over setpunktet uten korresponderende lastendringer i andre submeter, tyder på at hovedmåleren rapporterer feil data (f.eks. støy eller feil kalibrering) snarere enn faktisk fysisk effekt.",
+      "text": "Sensor fault or loss of communication at the metering point — An abrupt, unexplained spike that is not predicted and that lies far above the setpoint without corresponding load changes in other submeters indicates that the main meter is reporting erroneous data (e.g. noise or incorrect calibration) rather than actual physical power.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Simultan aktivering av store varmeelementer — Hvis flere høyeffekt-apparater (f.eks. oppvaskmaskin, tørketrommel og ovn) starter samtidig, eller hvis oppvarmingssystemet (varmekabler/pumpe) går på full effekt pga. feil termostatinnstilling eller rask nedkjøling, kan lasten doble seg.",
+      "text": "Simultaneous activation of large heating elements — If several high-power appliances (e.g. dishwasher, tumble dryer and oven) start simultaneously, or if the heating system (heating cables/pump) runs at full power due to an incorrect thermostat setting or rapid cooling, the load can double.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Solcelle-produksjon falt bratt mens lasten var høy — Hvis solcelle-produksjonen falt bratt (f.eks. på grunn av skydekke) mens andre laster var aktive, kan dette ha ført til en økt trekning fra nettet. Dette kan forklare den høye toppen hvis solcelle-dataene viser en plutselig nedgang.",
+      "text": "Solar cell production fell steeply while the load was high — If the solar cell production fell steeply (e.g. due to cloud cover) while other loads were active, this may have led to increased draw from the grid. This can explain the high spike if the solar cell data show a sudden decrease.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Solcelleanlegget produserte mer enn forventet — Hvis solcelleanlegget produserte mer energi enn prognosen forutsa, og denne energien ble eksportert til nettet, kan det forklare toppen.",
+      "text": "The solar-cell installation produced more than expected — If the solar-cell installation produced more energy than the forecast predicted, and this energy was exported to the grid, that could explain the peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Solenergi-systemet produserte mer enn forventet — Hvis solenergi-systemet produserte mer strøm enn forventet, kan dette ha ført til en økning i netto-strømforbruk. Dette er spesielt sannsynlig hvis været var bedre enn forventet.",
+      "text": "The solar energy system produced more than expected — If the solar energy system produced more power than expected, this may have led to an increase in net power consumption. This is especially likely if the weather was better than expected.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uforutsett høy forbruk fra hvitevarer — Hvis flere store apparater (f.eks. vaskemaskin, tørketrommel, ovn) ble brukt samtidig, kan dette ha drevet opp forbruket. Dette er mindre sannsynlig, men mulig hvis det var en spesiell hendelse.",
+      "text": "Unforeseen high consumption from white goods — If several large appliances (e.g. washing machine, tumble dryer, oven) were used at the same time, this may have driven up consumption. This is less likely, but possible if there was a special event.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uforutsett høy last fra varmekabler/ovn — 13.272 kW tilsvarer ca. 13-14 kW varmeeffekt. Dette er typisk for flere varmekabler eller en stor ovn som er slått på manuelt eller via en feil i termostatstyringen, spesielt hvis det var kaldt eller omvendt feilaktig oppvarming i Oslo.",
+      "text": "Unforeseen high load from heating cables/oven — 13.272 kW corresponds to approx. 13-14 kW of heating power. This is typical of several heating cables or a large oven switched on manually or via a fault in the thermostat control, especially if it was cold or, conversely, erroneous heating in Oslo.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Ukjent stor last (f.eks. varmepumpe i defrost) — Varmepumper kan trekke betydelig strøm under defrost-sykluser eller ved ekstremt høye setpunkter. Hvis varmepumpen ikke er integrert i styringssystemet, kan den skape uforutsette topper.",
+      "text": "Unknown large load (e.g. heat pump in defrost) — Heat pumps can draw considerable power during defrost cycles or at extremely high setpoints. If the heat pump is not integrated into the control system, it can create unforeseen peaks.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt EV-lading startet — En elbil som lader med 11 kW (3-fase) eller 7.4 kW (1-fase) lagt oppå grunnlasten (~6 kW) kan lett skyve netto-forbruket over 13 kW. Dette er den vanligste årsaken til uforutsagte topp i boliger med ladeinfrastruktur.",
+      "text": "Unplanned EV charging started — An electric car charging at 11 kW (3-phase) or 7.4 kW (1-phase) on top of the base load (~6 kW) can easily push net consumption above 13 kW. This is the most common cause of unpredictable peaks in homes with charging infrastructure.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt EV-lading — Elbil-lading er den vanligste årsaken til utilsiktede netttopper i boliger. En ladeboks med høy effekt (f.eks. 11 kW) kan enkelt skyve forbruket over setpunktet hvis den starter utenfor tariffvinduet eller utenfor styringssystemets kontroll.",
+      "text": "Unplanned EV charging — EV charging is the most common cause of unintended grid peaks in dwellings. A high-power charging box (e.g. 11 kW) can easily push consumption above the setpoint if it starts outside the tariff window or outside the control system's control.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt aktivering av stor elektrisk varme eller poolpumpe — Differansen på ca. 6.5 kW samsvarer med typisk effekt for store varmeelementer (f.eks. gulvvarme, panelovner) eller store motorer. Hvis dette skjedde i Oslo om sommeren (02.07), er det uvanlig med varmekurs, men mulig med poolpumper eller industrielle maskiner i garasje.",
+      "text": "Unplanned activation of large electric heating or pool pump — The difference of approx. 6.5 kW corresponds to the typical power of large heating elements (e.g. underfloor heating, panel heaters) or large motors. If this happened in Oslo in summer (02.07), heating circuits are unusual, but possible with pool pumps or industrial machines in a garage.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt elbil-lading — 13.272 kW tilsvarer typisk ladeeffekt for en 3-faset lader (ca. 11-22 kW). Hvis en bil ble koblet til og startet lading uten at systemet registrerte dette som en planlagt hendelse, vil dette drive toppen oppover.",
+      "text": "Unplanned EV charging — 13.272 kW corresponds to typical charging power for a 3-phase charger (approx. 11-22 kW). If a car was plugged in and started charging without the system registering this as a planned event, this will drive the peak upwards.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt elektrisk bil-lading startet manuelt — El-biler har ofte høy effekt (7-11 kW). Hvis en bruker startet lading manuelt utenfor det automatiske vinduet, eller hvis en gammel ladeboks ikke kommuniserer med Opus, kan dette enkelt doble forbruket. 13.272 kW minus 6.71 kW setpunkt gir ca 6.5 kW ekstra last, som passer godt med en typisk AC-lader.",
+      "text": "Unplanned electric car charging started manually — Electric cars often have high power (7-11 kW). If a user started charging manually outside the automatic window, or if an old charging box does not communicate with Opus, this can easily double consumption. 13.272 kW minus 6.71 kW setpoint gives approx 6.5 kW extra load, which fits well with a typical AC charger.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt hurtiglading av elbil — 13.272 kW tilsvarer en typisk AC-ladeeffekt på 11-22 kW (3-fase). Hvis en EV-lader ble aktivert manuelt eller via en ukjent tidsskjema kl. 16:49, vil dette trekke kraft direkte fra nettet hvis solproduksjonen i Oslo ved solnedgang ikke dekker behovet.",
+      "text": "Unplanned fast charging of an EV — 13.272 kW corresponds to a typical AC charging power of 11-22 kW (3-phase). If an EV charger was activated manually or via an unknown time schedule at 16:49, this will draw power directly from the grid if the solar production in Oslo at sunset does not cover the need.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt høy varmepumpe- eller oppvarmingslast — Hvis det var en brå temperaturendring eller feil i termostatstyring (f.eks. 'boost'-modus) kl. 16:36, kunne varmepumpen eller gulvvarme trekke 5-10 kW ekstra, kombinert med grunnlast, for å nå 13 kW.",
+      "text": "Unplanned high heat pump or heating load — If there was a sudden temperature change or fault in thermostat control (e.g. 'boost' mode) at 16:36, the heat pump or underfloor heating could draw 5-10 kW extra, combined with base load, to reach 13 kW.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil med høy effekt — 13.272 kW tilsvarer typisk 3-fase lading på ca. 11-22 kW avhengig av spenning og effekt. Hvis en elbil ble koblet til laderen ved 13:42 og startet lading med maksimal effekt, vil dette skape en brå topp. At prognosen ikke fanget dette, tyder på at ladingen ikke var planlagt i kalenderen.",
+      "text": "Unplanned charging of an EV at high power — 13.272 kW typically corresponds to 3-phase charging at approx. 11-22 kW depending on voltage and power. If an EV was connected to the charger at 13:42 and started charging at maximum power, this would create an abrupt peak. That the forecast did not capture this suggests that the charging was not planned in the calendar.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil med høy effekt — Elbiler kan trekke 11 kW eller mer. Hvis en bil ble koblet til og startet lading manuelt eller via en ekstern app som omgjekk Opus' styring, ville dette lett kunne skyve netto-lasten fra ~6 kW til ~13 kW (6+11=17, men avhengig av solproduksjon/nettleveranse kan netto bli 13).",
+      "text": "Unplanned charging of an EV at high power — EVs can draw 11 kW or more. If a car was connected and started charging manually or via an external app that bypassed Opus's control, this could easily push the net load from ~6 kW to ~13 kW (6+11=17, but depending on solar production/grid delivery the net can become 13).",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil med høy effekt — En elbil som starter lading med maks effekt (f.eks. 11 kW eller 22 kW) kan enkelt doble nettoforbruket. Dersom bilen ikke var registrert i Opus' prognosemodul, vil dette fremstå som en 'ukjent' topp.",
+      "text": "Unplanned charging of electric car at high power — An electric car that starts charging at maximum power (e.g. 11 kW or 22 kW) can easily double net consumption. If the car was not registered in Opus' forecast module, this will appear as an 'unknown' peak.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil med høy effekt — En elbil-lader kan trekke 11 kW (3-fase). Hvis en bil ble koblet til eller startet lading ved 17:19, vil dette enkelt forklare et hopp på ca. 6-7 kW over setpunktet, noe som summerer til ~13 kW.",
+      "text": "Unplanned charging of electric car at high power — An EV charger can draw 11 kW (3-phase). If a car was plugged in or started charging at 17:19, this will easily explain a jump of approx. 6-7 kW above the setpoint, which sums to ~13 kW.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt lading av elbil — Elbiler kan trekke 11-22 kW. En ukjent lading (f.eks. gjest eller feilaktig tidsplan) kan enkelt forklare et hopp på ~6.5 kW over setpunktet.",
+      "text": "Unplanned EV charging — Electric cars can draw 11-22 kW. An unknown charging session (e.g. a guest or an incorrect schedule) can easily explain a jump of ~6.5 kW above the setpoint.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt start av stor elektrisk last (f.eks. EV-lader eller varmepumpe) — Økningen på ca. 6.5 kW samsvarer med typisk effekt for en 3-faset EV-lader (11 kW) eller en kraftig varmepumpe i toppmodus. Hvis prognosen ikke tok høyde for at brukeren manuelt startet ladning eller at termostaten utløste en ny syklus rett etter 16:12, er dette den mest sannsynlige fysiske årsaken.",
+      "text": "Unplanned start of a large electrical load (e.g. EV charger or heat pump) — The increase of approx. 6.5 kW matches the typical power for a 3-phase EV charger (11 kW) or a powerful heat pump in peak mode. If the forecast did not allow for the user manually starting charging or the thermostat triggering a new cycle right after 16:12, this is the most likely physical cause.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uplanlagt start av stor elektrisk last (f.eks. varmekumulativ oppvarming eller EV-lader) — Differansen på ca. 6.56 kW er typisk for en kombinasjon av store laster som varmekumulativ oppvarming (2-3 kW) og en rask EV-lader (11 kW AC, men kanskje delvis last) eller industrielt utstyr. Hvis dette skjedde i Oslo 14:42, kan det være en manuell overstyring eller en feil i styringslogikken som slått på en last utenfor tariffvinduet.",
+      "text": "Unplanned start of a large electrical load (e.g. thermal-storage heating or EV charger) — The difference of about 6.56 kW is typical of a combination of large loads such as thermal-storage heating (2-3 kW) and a fast EV charger (11 kW AC, but perhaps partial load) or industrial equipment. If this happened in Oslo at 14:42, it may have been a manual override or a fault in the control logic that switched on a load outside the tariff window.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy apparatlast i huset — Noen store apparater som varmekabler, oppvaskmaskin eller tørketrommel kan ha startet samtidig, noe som førte til en økning i forbruk. Dette er spesielt sannsynlig om det er mange slike enheter i bruk samtidig.",
+      "text": "Unexpected high appliance load in the house — Some large appliances such as heating cables, dishwasher or tumble dryer may have started at the same time, which led to an increase in consumption. This is especially likely if many such devices are in use simultaneously.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy belastning fra en stor apparat — En stor apparat som varmtvannsbereder, vaskemaskin eller tørketrommel kan ha startet opp uventet, noe som førte til et plutselig hopp i strømforbruket. Dette er spesielt sannsynlig hvis det ikke var solproduksjon tilgjengelig.",
+      "text": "Unexpectedly high load from a large appliance — A large appliance such as a water heater, washing machine or tumble dryer may have started unexpectedly, which led to a sudden jump in power consumption. This is especially likely if there was no solar production available.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy forbruk fra elektrisk lading — Elektrisk lading kan føre til store strømtopper. Hvis en elbil startet lading samtidig som andre høyforbrukende apparater var i bruk, kan dette ha ført til en topp over setpunktet.",
+      "text": "Unexpectedly high consumption from electric charging — Electric charging can lead to large power peaks. If an electric car started charging at the same time as other high-consumption appliances were in use, this may have led to a peak above the setpoint.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy forbrukslast fra husholdningen — Det er mulig at en stor elektrisk apparat, som f.eks. et varmtvannsbereder, oppvarmingssystem eller en stor vaskemaskin, ble aktivert samtidig og skapte en uventet topp i forbruket.",
+      "text": "Unexpectedly high consumption load from the household — It is possible that a large electrical appliance, such as a water heater, heating system or a large washing machine, was activated at the same time and created an unexpected peak in consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra elbil-lading — Elbil-lading kan bidra med høy effekt (opptil 11-22 kW avhengig av lader). Hvis en elbil startet lading rundt 17:04, kan dette ha drevet opp forbruket.",
+      "text": "Unexpectedly high load from EV charging — EV charging can contribute high power (up to 11-22 kW depending on the charger). If an EV started charging around 17:04, this may have driven up consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra elbil-lading — Elbil-lading kan trekke store strømer, spesielt hvis flere biler lader samtidig eller hvis en bil med høy ladefart starter lading. Dette kan forklare den høye toppen hvis lading ikke var planlagt.",
+      "text": "Unexpectedly high load from EV charging — EV charging can draw large currents, especially if several cars charge at the same time or if a car with a high charging rate starts charging. This can explain the high peak if charging was not planned.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra elektrisk bil-lading — Hvis en EV-lader startet i denne perioden, kan det forklare den høye lasten. Dette er spesielt sannsynlig hvis ladingen ikke var planlagt.",
+      "text": "Unexpectedly high load from electric-car charging — If an EV charger started in this period, that could explain the high load. This is especially likely if the charging was not planned.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra elektrisk lading — Hvis det var en elbil som startet lading i huset, kan dette forklare den store økningen i strømforbruk.",
+      "text": "Unexpectedly high load from electric charging — If there was an EV that started charging in the house, this could explain the large increase in power consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet høy last fra en elektrisk lader — En elektrisk bil kan ha startet lading med høy effekt, noe som ville forklare den store økningen i strømforbruket. Dette er spesielt sannsynlig hvis det er en ny eller uvanlig ladetid.",
+      "text": "Unexpectedly high load from an electric charger — An electric car may have started charging at high power, which would explain the large increase in power consumption. This is especially likely if it is a new or unusual charging time.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet stor apparatlast — Det er mulig at et høyforbrukende apparat (f.eks. varmtvannsbereder, oppvaskmaskin, eller elektriskovn) ble aktivert samtidig, noe som førte til en kortvarig topp i forbruket.",
+      "text": "Unexpectedly large appliance load — It is possible that a high-consumption appliance (e.g. water heater, dishwasher, or electric heater) was activated at the same time, which led to a brief peak in consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Uventet økning i elbil-lading — Elbiler med høy effekt kan trekke store mengder strøm, og hvis flere biler lader samtidig, kan dette føre til en betydelig topp i forbruket.",
+      "text": "Unexpected increase in EV charging — High-power EVs can draw large amounts of power, and if several cars charge at the same time, this can lead to a significant peak in consumption.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Værrelatert økning i varmepumpe-effekt (uforutsett temperaturfall) — Hvis det var en brå temperaturnedgang eller økt vind (som påvirker varmepumpes COP) rett etter 16:12, kan varmepumpen ha økt effektbehov betydelig. Hvis prognosen ikke tok høyde for denne lokale mikroklima-endringen, vil toppen være 'uforutsett'.",
+      "text": "Weather-related increase in heat pump power (unforeseen temperature drop) — If there was an abrupt temperature drop or increased wind (which affects the heat pump COP) right after 16:12, the heat pump may have increased its power demand considerably. If the forecast did not account for this local microclimate change, the peak will be 'unforeseen'.",
       "status": "weakened",
       "claim_type": null
     },
     {
-      "text": "Økt forbruk fra store apparater — Aktivering av flere store apparater samtidig (f.eks. ovn, vaskemaskin, tørketrommel) kan føre til en betydelig økning i strømforbruk.",
+      "text": "Increased consumption from large appliances — Activation of several large appliances at the same time (e.g. oven, washing machine, tumble dryer) can lead to a significant increase in power consumption.",
       "status": "weakened",
       "claim_type": null
     },

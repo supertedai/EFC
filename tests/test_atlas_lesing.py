@@ -1,32 +1,32 @@
-r"""Atlas-lesing: regelen er KJØRBAR, og referanser er HVITELISTET.
+r"""Atlas reading: the rule is EXECUTABLE, and references are WHITELISTED.
 
-To ting denne filen verner, og begge kom av reviewfunn:
+Two things this file protects, and both came from review findings:
 
-1. REGELEN. Den forrige utgaven leste dokumentet og krevde at ordene
-   «origin/main» og «working copy» fantes. En mutant som SNUDDE regelen —
-   «read from the working copy … Never from git:origin/main» — passerte
-   3/3. Samme feilklasse som `startswith("git:")` i PR #1016: formen ble
-   kontrollert, enhver verdi slapp gjennom.
+1. THE RULE. The previous edition read the document and required that the words
+   «origin/main» and «working copy» were present. A mutant that TURNED the rule
+   around — «read from the working copy … Never from git:origin/main» — passed
+   3/3. Same error class as `startswith("git:")` in PR #1016: the form was
+   checked, any value slipped through.
 
-     En test kan ikke lese mening ut av prosa. Regelen bor derfor i
-     `scripts/atlas_lesing.py`, og testes ved å endre VERDEN — testen
-     muterer arbeidsstreet og krever at lesningen er bit-for-bit identisk.
+     A test cannot read meaning out of prose. The rule therefore lives in
+     `scripts/atlas_lesing.py`, and is tested by changing the WORLD — the test
+     mutates the working tree and requires the reading to be bit-for-bit identical.
 
-2. REFERANSER. Tre runder prøvde å verne det publiserte dokumentet med en
-   SVARTELISTE over onde stiformer:
+2. REFERENCES. Three rounds tried to protect the published document with a
+   BLACKLIST of evil path forms:
 
-     runde 3: fast liste (/opt/agent-work, /home/morten)
-     runde 4: revieweren brøt den med /Users/morten, C:\\..., /srv/...
-     runde 5: revieweren brøt den med UNC, file:///, ett-ledds absolutte
-     runde 6: revieweren brøt den med path=..., markdown-tabellceller,
-              file://<vert>/..., windows extended-length (\\?\)
+     round 3: fixed list (/opt/agent-work, /home/morten)
+     round 4: the reviewer broke it with /Users/morten, C:\\..., /srv/...
+     round 5: the reviewer broke it with UNC, file:///, single-segment absolute
+     round 6: the reviewer broke it with path=..., markdown table cells,
+              file://<host>/..., windows extended-length (\\?\)
 
-   Og ga svaret: «Dette bør ikke løses med enda en lengre svarteliste. En
-   whitelist av tillatte publiserte referanser er bedre.»
+   And gave the answer: «This should not be solved with yet another longer
+   blacklist. A whitelist of allowed published references is better.»
 
-   Det er rett. En svarteliste må gjette BÅDE stiformene OG hvilke tegn som
-   kan stå foran dem, og begge kan alltid omgås. Spørsmålet er snudd: ikke
-   «er dette en vond sti?» men «er dette en form vi TILLATER?».
+   That is right. A blacklist must guess BOTH the path forms AND which characters
+   can stand in front of them, and both can always be evaded. The question is
+   turned around: not «is this an evil path?» but «is this a form we ALLOW?».
 """
 
 from __future__ import annotations
@@ -55,16 +55,16 @@ class TestAtlasLesing(unittest.TestCase):
         d = les_atlas(ROT)
         self.assertEqual(d["kilde"], "git:origin/main")
         self.assertEqual(d["ref"], "origin/main")
-        self.assertTrue(d["commit"], "commit mangler — kilden er ikke navngitt")
+        self.assertTrue(d["commit"], "commit missing — the source is not named")
         self.assertGreater(len(d["noder"]), 0)
 
     def test_arbeidsstreet_paavirker_ikke_lesningen(self):
-        """DEN AVGJØRENDE TESTEN — endrer verden, ikke teksten.
+        """THE DECISIVE TEST — changes the world, not the text.
 
-        Muterer arbeidsstreets fil og krever at resultatet er BIT-FOR-BIT
-        identisk. Reviewfunn runde 2: den forrige utgaven sammenlignet bare
-        node-ID-er, så en mutant som endret alle FELTER men beholdt id-ene
-        passerte. Nå sammenlignes hele strukturen.
+        Mutates the working tree's file and requires the result to be BIT-FOR-BIT
+        identical. Review finding round 2: the previous edition only compared
+        node IDs, so a mutant that changed all FIELDS but kept the ids
+        passed. Now the whole structure is compared.
         """
         forsta = les_atlas(ROT)
         fil = ROT / "schema" / "regime_nodes.jsonld"
@@ -78,50 +78,50 @@ class TestAtlasLesing(unittest.TestCase):
         finally:
             fil.write_bytes(opprinnelig)
         self.assertEqual(forsta["noder"], andre["noder"],
-                         "lesningen endret seg da arbeidsstreet endret seg — "
-                         "den leser arbeidsstreet, ikke refen")
+                         "the reading changed when the working tree changed — "
+                         "it reads the working tree, not the ref")
         self.assertEqual(json.dumps(forsta, sort_keys=True),
                          json.dumps(andre, sort_keys=True),
-                         "hele resultatet må være identisk")
+                         "the whole result must be identical")
         self.assertNotIn("tampered", json.dumps(andre))
 
     def test_ukjent_ref_feiler_og_faller_ikke_stille_tilbake(self):
-        """En stille fallback til arbeidsstreet er nettopp feilmodusen."""
+        """A silent fallback to the working tree is precisely the error mode."""
         with self.assertRaises(AtlasLesingFeil):
-            les_atlas(ROT, ref="finnes/ikke")
+            les_atlas(ROT, ref="no/such/ref")
 
     def test_den_leste_commiten_er_den_refen_peker_paa(self):
         self.assertEqual(les_atlas(ROT)["commit"],
                          _git("rev-parse", "origin/main").strip())
 
     def test_foreldet_ref_er_synlig_i_resultatet(self):
-        """`origin/main` kan være foreldet — den er en remote-tracking ref.
-        Funksjonen henter ikke av seg selv, men den RAPPORTERER full commit,
-        så en foreldet ref står i resultatet og ikke i leserens antakelse."""
+        """`origin/main` may be stale — it is a remote-tracking ref.
+        The function does not fetch by itself, but it REPORTS the full commit,
+        so a stale ref stands in the result and not in the reader's assumption."""
         self.assertEqual(len(les_atlas(ROT, hent=False)["commit"]), 40)
 
 
 class TestDokumentetPekerPaaKoden(unittest.TestCase):
-    """Dokumentet skal ikke bære regelen selv — den kan ikke testes.
+    """The document shall not carry the rule itself — it cannot be tested.
 
-    En prosa-regel kan snus uten at noen test feller (bevist i runde 1).
-    Derfor skal dokumentet PEKE PÅ funksjonen, og denne testen holder
-    pekeren fast.
+    A prose rule can be turned around without any test failing (proven in round 1).
+    The document shall therefore POINT AT the function, and this test holds
+    the pointer fixed.
     """
 
     def test_dokumentet_navngir_den_kjorbare_regelen(self):
         t = (ROT / "docs" / "atlas-lesing.md").read_text(encoding="utf-8")
         self.assertIn("scripts/atlas_lesing.py", t,
-                      "dokumentet peker ikke på den kjørbare regelen")
+                      "the document does not point at the executable rule")
 
     def test_funksjonen_som_dokumentet_peker_paa_finnes(self):
         self.assertTrue((ROT / "scripts" / "atlas_lesing.py").exists())
 
 
 class TestFunksjonensKanter(unittest.TestCase):
-    """Ugyldig JSON og manglende 'nodes' skal gi AtlasLesingFeil, ikke rå
-    JSONDecodeError/KeyError. Ingen stille eller feil-typet feil når en
-    leser skal kunne stole på resultatet."""
+    """Invalid JSON and a missing 'nodes' shall give AtlasLesingFeil, not a raw
+    JSONDecodeError/KeyError. No silent or wrongly-typed error when a
+    reader is to be able to trust the result."""
 
     def _repo(self, innhold: str) -> Path:
         r = Path(tempfile.mkdtemp())
@@ -137,15 +137,15 @@ class TestFunksjonensKanter(unittest.TestCase):
 
     def test_ugyldig_json_gir_AtlasLesingFeil(self):
         with self.assertRaises(AtlasLesingFeil):
-            les_atlas(self._repo("{ikke json"), ref="HEAD")
+            les_atlas(self._repo("{not json"), ref="HEAD")
 
     def test_manglende_nodes_gir_AtlasLesingFeil(self):
         with self.assertRaises(AtlasLesingFeil):
-            les_atlas(self._repo('{"noe": "annet"}'), ref="HEAD")
+            les_atlas(self._repo('{"something": "else"}'), ref="HEAD")
 
     def test_hent_oppdaterer_refen(self):
-        """`hent=True` skal faktisk hente. Revieweren beviste det manuelt;
-        det skal stå i testsettet, ikke bare i en rapport."""
+        """`hent=True` shall actually fetch. The reviewer proved it manually;
+        it shall stand in the test set, not only in a report."""
         opp = tempfile.mkdtemp()
         subprocess.run(["git", "init", "-q", "--bare", opp],
                        capture_output=True, text=True)
@@ -170,42 +170,42 @@ class TestFunksjonensKanter(unittest.TestCase):
             subprocess.run(["git", "-C", str(r), *cmd],
                            capture_output=True, text=True)
         andre = les_atlas(r, ref="origin/main", hent=True)["commit"]
-        self.assertNotEqual(forste, andre, "hent=True hentet ikke")
+        self.assertNotEqual(forste, andre, "hent=True did not fetch")
 
 
 class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
-    r"""Regel 16: `docs/` er Pages-roten — det som står der PUBLISERES.
+    r"""Rule 16: `docs/` is the Pages root — what stands there IS PUBLISHED.
 
-    HVITELISTE, ikke svarteliste. Se modulens docstring for historikken:
-    tre runder med stramming ble brutt tre ganger, og reviewen ga svaret
-    som står der. Her sjekkes det motsatte spørsmålet — er dette en form
-    vi TILLATER?
+    WHITELIST, not blacklist. See the module docstring for the history:
+    three rounds of tightening were broken three times, and the review gave the
+    answer that stands there. Here the opposite question is checked — is this a form
+    we ALLOW?
 
-    Tillatt: repo-relative stier (to eller flere ledd), http(s)-lenker, og
-    git-ref:sti. Alt annet som bærer en sti-separator er et avvik.
+    Allowed: repo-relative paths (two or more segments), http(s) links, and
+    git-ref:path. Everything else that carries a path separator is a deviation.
     """
 
-    # Tillatte former. `..` som HELT segment peker ut av repoet og avvises
-    # — reviewfunn runde 7: ../../etc/passwd slapp gjennom fordi '..'
-    # matchet [A-Za-z0-9_.-]+. Regex alene er feil verktøy for dette
-    # (lookahead ble for svak), saa segmentene sjekkes direkte.
+    # Allowed forms. `..` as a WHOLE segment points out of the repo and is
+    # rejected — review finding round 7: ../../etc/passwd slipped through
+    # because '..' matched [A-Za-z0-9_.-]+. Regex alone is the wrong tool
+    # for this (lookahead became too weak), so the segments are checked directly.
     FORME = [
         re.compile(r"^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+$"),
         re.compile(r"^https?://[^\s]+$"),
-        # Git-ref kan ha flere segmenter (origin/feature/foo), store
-        # bokstaver og bindestrek (Release-2026), og refs/-form
-        # (refs/heads/main). Reviewfunn runde 8: den forrige formen
-        # krevde [a-z]+/[a-z]+ og avviste alle disse.
-        # Sti-delen etter kolon maa STARTE med et vanlig tegn, ikke "/".
-        # Uten dette matchet `file:///Users/...` ref-formen med `file`
-        # som ref og `///Users/...` som sti — og rullet tilbake til
-        # noeyaktig det runde 5-6 hadde stengt.
+        # A git ref may have several segments (origin/feature/foo), capital
+        # letters and hyphens (Release-2026), and refs/ form
+        # (refs/heads/main). Review finding round 8: the previous form
+        # required [a-z]+/[a-z]+ and rejected all of these.
+        # The path part after the colon must START with an ordinary
+        # character, not "/". Without this, `file:///Users/...` matched the
+        # ref form with `file` as the ref and `///Users/...` as the path —
+        # and rolled back to exactly what rounds 5-6 had closed.
         re.compile(r"^[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*:[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*$"),
     ]
 
     @staticmethod
     def _traverserer(t: str) -> bool:
-        """`..` som eget segment, i stien eller etter git-refens kolon."""
+        """`..` as its own segment, in the path or after the git ref's colon."""
         sti = t.split(":", 1)[1] if re.match(r"^[a-z]+/[a-z]+:", t) else t
         return ".." in sti.split("/")
 
@@ -242,27 +242,27 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
                         .read_text(encoding="utf-8")), [])
 
     def test_modulens_docstring_har_bare_tillatte_referanser(self):
-        """Kun DOCSTRINGEN — filen inneholder også kode, og
-        `except ... as e:` er ikke en sti."""
+        """Only the DOCSTRING — the file also contains code, and
+        `except ... as e:` is not a path."""
         self.assertEqual(
             self._avvik(self._docstring(ROT / "scripts" / "atlas_lesing.py")),
             [])
 
     def test_volummodulens_docstring_har_bare_tillatte_referanser(self):
-        """Samme regel for den nye modulen. Denne testen ble til ved et
-        mål: `docs/atlas-lesing.md` fikk en henvisning til husets
-        verktøysti, og vakten over felte den. Regelen gjelder derfor også
-        den modulen som ble skrevet sammen med den — ellers ville det
-        publiserte dokumentet vært vernet og koden ikke."""
+        """Same rule for the new module. This test came about through a
+        measurement: `docs/atlas-lesing.md` got a reference to the house's
+        tool path, and the guard above failed it. The rule therefore also applies to
+        the module that was written together with it — otherwise the
+        published document would have been protected and the code not."""
         self.assertEqual(
             self._avvik(self._docstring(ROT / "scripts" / "atlas_volum.py")),
             [])
 
     def test_hvitelisten_fanger_formene_seks_runder_fant(self):
-        """Hver form svartelisten slapp gjennom skal hvitelisten felle.
-        Testet eksplisitt så listen ikke driver tilbake til en oppramsing av
-        onde former — den er en hviteliste over TILLATTE former, og alt
-        utenfor den felles uansett hvilken form det har."""
+        """Every form the blacklist let through the whitelist shall fail.
+        Tested explicitly so the list does not drift back into an enumeration of
+        evil forms — it is a whitelist of ALLOWED forms, and everything
+        outside it fails regardless of which form it has."""
         for form in (
                 "/Users", "/Users/morten/EFC", "C:\\Users\\morten",
                 "path=/Users/morten/EFC", "|/Users/morten/EFC|",
@@ -272,15 +272,15 @@ class TestIngenVertsspesifikkeReferanser(unittest.TestCase):
                 "\\\\?\\C:\\Users\\morten", "\\\\?\\UNC\\server\\share",
                 "//server/share", "~/EFC", "\\\\server\\share\\EFC",
                 "/opt/agent-work/EFC"):
-            self.assertTrue(self._avvik("se " + form),
-                            f"hvitelisten slipper gjennom {form}")
+            self.assertTrue(self._avvik("see " + form),
+                            f"the whitelist lets through {form}")
 
     def test_hvitelisten_slipper_legitime_referanser_gjennom(self):
         for form in ("scripts/atlas_lesing.py", "docs/atlas-lesing.md",
                      "origin/main:schema/regime_nodes.jsonld",
                      "https://example.com/a", "10.5281/zenodo.123"):
-            self.assertEqual(self._avvik("se " + form), [],
-                             f"hvitelisten felte {form}")
+            self.assertEqual(self._avvik("see " + form), [],
+                             f"the whitelist rejected {form}")
 
 
 if __name__ == "__main__":
@@ -288,11 +288,11 @@ if __name__ == "__main__":
 
 
 class TestTraversering(unittest.TestCase):
-    """Reviewfunn runde 7: hvitelisten tillot `..` som segment.
+    """Review finding round 7: the whitelist allowed `..` as a segment.
 
-    `../../etc/passwd` og `foo/../../etc` slapp gjennom fordi `..` matchet
-    `[A-Za-z0-9_.-]+`. En hviteliste som tillater traversering peker ut av
-    repoet og er ikke en hviteliste. Segmentet `..` avvises naa eksplisitt.
+    `../../etc/passwd` and `foo/../../etc` slipped through because `..` matched
+    `[A-Za-z0-9_.-]+`. A whitelist that allows traversal points out of the
+    repo and is not a whitelist. The segment `..` is now rejected explicitly.
     """
 
     T = TestIngenVertsspesifikkeReferanser()
@@ -300,27 +300,27 @@ class TestTraversering(unittest.TestCase):
     def test_traversering_avvises(self):
         for form in ("../../etc/passwd", "../outside/file", "foo/../../etc",
                      "origin/main:../../etc", "a/./../b"):
-            self.assertTrue(self.T._avvik("se " + form),
-                            f"traversering slipper gjennom: {form}")
+            self.assertTrue(self.T._avvik("see " + form),
+                            f"traversal slips through: {form}")
 
     def test_vanlige_dotnavn_avvises_ikke(self):
-        """`.github/workflows/x.yml` og `a.b/c.d` er legitime — prikker er
-        bare farlige som HELT segment."""
+        """`.github/workflows/x.yml` and `a.b/c.d` are legitimate — dots are
+        only dangerous as a WHOLE segment."""
         for form in (".github/workflows/x.yml", "a.b/c.d"):
-            self.assertEqual(self.T._avvik("se " + form), [],
-                             f"felte et legitimt navn: {form}")
+            self.assertEqual(self.T._avvik("see " + form), [],
+                             f"rejected a legitimate name: {form}")
 
 
 class TestGitRefFormer(unittest.TestCase):
-    """Reviewfunn runde 8: hvitelisten var for SNEVER, ikke for vid.
+    """Review finding round 8: the whitelist was too NARROW, not too wide.
 
-    Den avviste origin/feature/foo:..., upstream/release/v1:... og
-    Release-2026:... — alle legitime git-refs. En hviteliste som avviser
-    ekte referanser er ogsaa en feil; den tvinger fram omskrivinger av
-    korrekt dokumentasjon.
+    It rejected origin/feature/foo:..., upstream/release/v1:... and
+    Release-2026:... — all legitimate git refs. A whitelist that rejects
+    real references is also an error; it forces rewrites of
+    correct documentation.
 
-    Samtidig skal utvidelsen IKKE aapne for traversering: `..` er forbudt
-    som segment baade i refen og i stien.
+    At the same time the extension shall NOT open up for traversal: `..` is forbidden
+    as a segment both in the ref and in the path.
     """
 
     T = TestIngenVertsspesifikkeReferanser()
@@ -331,11 +331,11 @@ class TestGitRefFormer(unittest.TestCase):
                   "upstream/release/v1:schema/x.jsonld",
                   "origin/Release-2026:schema/x.jsonld",
                   "refs/heads/main:schema/x.jsonld"):
-            self.assertEqual(self.T._avvik("se " + f), [],
-                             f"felte en legitim git-ref: {f}")
+            self.assertEqual(self.T._avvik("see " + f), [],
+                             f"rejected a legitimate git ref: {f}")
 
     def test_utvidelsen_aapnet_ikke_for_traversering(self):
         for f in ("origin/main:../../etc", "../../etc/passwd", "../x",
                   "foo/../../etc", "origin/../..:x"):
-            self.assertTrue(self.T._avvik("se " + f),
-                            f"traversering slipper gjennom: {f}")
+            self.assertTrue(self.T._avvik("see " + f),
+                            f"traversal slips through: {f}")

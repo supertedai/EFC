@@ -1,32 +1,32 @@
 #!/usr/bin/env python3
-"""efc_4b — §4b genereres fra en datafil i stedet for å redigeres som HTML.
+"""efc_4b — §4b is generated from a data file instead of being edited as HTML.
 
-Hvorfor, målt 2026-08-23: fem arbeidere fikk hvert sitt eksterne funn å
-registrere. Alle fem la sin oppføring i samme `<ul>` i
-`EFC_Validation_Ledger.html`. Alle fem PR-er ble `CONFLICTING`, måtte trekkes
-og samles i én. Fremmingen måtte struped til ett kort om gangen.
+Why, measured 2026-08-23: five workers were each given an external finding to
+register. All five put their entry in the same `<ul>` in
+`EFC_Validation_Ledger.html`. All five PRs became `CONFLICTING`, had to be pulled
+and merged into one. The promotion had to be throttled to one card at a time.
 
-Det er ikke et samtidighetsproblem å strupe seg ut av — det er at **to
-tillegg i samme HTML-liste alltid kolliderer**. Legger arbeiderne i stedet til
-en *rad* i en JSON-fil, kolliderer de bare hvis de rører samme rad.
+It is not a concurrency problem you throttle your way out of — it is that **two
+additions to the same HTML list always collide**. If the workers instead add a
+*row* to a JSON file, they collide only if they touch the same row.
 
-Registeret er `docs/validation-ledger/data/external-references.json`. Det
-brukes av to:
+The register is `docs/validation-ledger/data/external-references.json`. It is
+used by two:
 
-* `efc_build_4b.py --skriv` skriver §4b-blokken i HTML-en fra det.
-* `efc_doi_coverage.py` leser `rolle` derfra, så en registrert ekstern
-  sitering ikke lenger rapporteres som anomali.
+* `efc_build_4b.py --skriv` writes the §4b block in the HTML from it.
+* `efc_doi_coverage.py` reads `rolle` from it, so a registered external
+  citation is no longer reported as an anomaly.
 
-**Tapsfritt med vilje.** Hver oppføring lagrer hele `<li>…</li>` ordrett i
-`html`. Generatoren gjengir den uendret; den skriver ikke om prosa. Feltene
-`tag`, `arxiv` og `rolle` er utledet *ved siden av* for verktøy, ikke i stedet
-for teksten. En generator som formulerer om en publisert påstand er ikke en
-generator — den er en forfatter.
+**Lossless on purpose.** Every entry stores the whole `<li>…</li>` verbatim in
+`html`. The generator renders it unchanged; it does not rewrite prose. The
+fields `tag`, `arxiv` and `rolle` are derived *next to* it for tools, not instead
+of the text. A generator that rephrases a published claim is not a
+generator — it is an author.
 
-Bruk:
-    efc_4b.py hent      # les §4b fra HTML → skriv registeret (engangs)
-    efc_4b.py bygg      # registeret → §4b i HTML
-    efc_4b.py sjekk     # bygg i minnet, exit 1 hvis HTML-en avviker
+Usage:
+    efc_4b.py hent      # read §4b from the HTML → write the register (one-time)
+    efc_4b.py bygg      # the register → §4b in the HTML
+    efc_4b.py sjekk     # build in memory, exit 1 if the HTML deviates
 """
 from __future__ import annotations
 
@@ -47,13 +47,13 @@ ROLLER = ("under_confrontation", "input_data", "context")
 
 
 def _blokk(t: str) -> tuple[int, int]:
-    """Grensene for §4b-listene. Bruker markørene når de finnes, ellers
-    fra første <ul> etter overskriften til siste </ul> før neste <h2>."""
+    """The bounds of the §4b lists. Uses the markers when they exist, otherwise
+    from the first <ul> after the heading to the last </ul> before the next <h2>."""
     if START in t and SLUTT in t:
         return t.index(START), t.index(SLUTT) + len(SLUTT)
     i = t.find("4b. External Observations Under Confrontation")
     if i < 0:
-        raise SystemExit("[4b] fant ikke §4b-overskriften")
+        raise SystemExit("[4b] did not find the §4b heading")
     ul = t.find("<ul>", i)
     j = t.find("<h2>5.", i)
     slutt = t.rfind("</ul>", ul, j if j > 0 else len(t)) + len("</ul>")
@@ -84,59 +84,59 @@ def hent() -> int:
             "html": s,
         })
     d = {
-        "_om": ("§4b i EFC_Validation_Ledger.html genereres fra denne fila. "
-                "Rediger HER, ikke i HTML-en — to tillegg i samme HTML-liste "
-                "kolliderer alltid, to rader i denne gjør det ikke."),
+        "_om": ("§4b in EFC_Validation_Ledger.html is generated from this file. "
+                "Edit HERE, not in the HTML — two additions to the same HTML list "
+                "always collide, two rows in this one do not."),
         "_roller": {
-            "under_confrontation": "tredjepartsfunn EFC prøver seg mot",
-            "input_data": "måling EFC bygger på",
-            "context": "bakgrunn, ikke konfrontert",
+            "under_confrontation": "third-party finding EFC tests itself against",
+            "input_data": "measurement EFC builds on",
+            "context": "background, not confronted",
         },
-        "_advarsel": ("`html` lagres ordrett og gjengis uendret. En generator "
-                      "som formulerer om en publisert påstand er ikke en "
-                      "generator, den er en forfatter."),
+        "_advarsel": ("`html` is stored verbatim and rendered unchanged. A generator "
+                      "that rephrases a published claim is not a "
+                      "generator, it is an author."),
         "grupper": grupper,
     }
     REG.parent.mkdir(parents=True, exist_ok=True)
     REG.write_text(json.dumps(d, ensure_ascii=False, indent=2) + "\n",
                    encoding="utf-8")
     n = sum(len(g["oppforinger"]) for g in grupper)
-    print(f"[4b] hentet {n} oppføringer i {len(grupper)} gruppe(r) → "
+    print(f"[4b] fetched {n} entries in {len(grupper)} group(s) → "
           f"{REG.relative_to(ROOT)}")
     return 0
 
 
 def _render(d: dict) -> str:
-    """Gjengir §4b med SAMME formatering som originalen.
+    """Renders §4b with the SAME formatting as the original.
 
-    Første utkast skrev `<li>` flushet til venstre uten blanke linjer mellom.
-    Innholdet var ordrett bevart, men diffen mot originalen ble 37 linjer.
-    En generator som endrer layout ved første kjøring kan ikke bevise at den
-    er tapsfri — og på en offentlig side er unødig layout-churn den samme
-    støyen som tidsstempel-commitene i §6 av ADR-024.
+    The first draft wrote `<li>` flush left with no blank lines in between.
+    The content was preserved verbatim, but the diff against the original was
+    37 lines. A generator that changes layout on its first run cannot prove that it
+    is lossless — and on a public page, needless layout churn is the same
+    noise as the timestamp commits in §6 of ADR-024.
 
-    Formatet som speiles: to mellomrom foran `<li>`, blank linje mellom
-    oppføringene, blank linje foran `<h3>`, ingen blank linje før `</ul>`.
+    The format mirrored: two spaces in front of `<li>`, a blank line between
+    the entries, a blank line before `<h3>`, no blank line before `</ul>`.
 
-    Ett sted NORMALISERES det: originalen manglet blank linje mellom to av
-    oppføringene — ujevn formatering fra tidligere håndredigering. Den jevnes
-    ut. Å kode historisk slurv inn i registeret for alltid ville vært å velge
-    troskap mot en tilfeldighet framfor mot innholdet. Innholdet er verifisert
-    byte-identisk hver for seg; det er bare mellomrom som endres.
+    One place is NORMALISED: the original was missing a blank line between two of
+    the entries — uneven formatting from earlier hand editing. It is evened
+    out. Coding historical sloppiness into the register forever would be to choose
+    fidelity to a coincidence over fidelity to the content. The content is verified
+    byte-identical one by one; it is only whitespace that changes.
     """
     ut = [START]
     for i, g in enumerate(d["grupper"]):
         if g.get("overskrift"):
             if i:
-                ut.append("")          # blank linje foran <h3>, som originalen
+                ut.append("")          # blank line before <h3>, as in the original
             ut.append(f'<h3 style="margin-bottom:4px;">{g["overskrift"]}</h3>')
         ut.append("<ul>")
-        # Registeret har to slags rader. De med `html` ER §4b-oppfoeringer og
-        # gjengis. De uten er REGISTRERTE siteringer — kjente eksterne verk med
-        # DOI og rolle, som staar i loepende tekst andre steder. De leses av
-        # `efc_doi_coverage.py`, men hoerer ikke i §4b-lista, og en generator
-        # som skrev dem dit ville blaast opp konfrontasjonsseksjonen med
-        # referanser ingen konfronterer.
+        # The register has two kinds of rows. Those with `html` ARE §4b entries
+        # and are rendered. Those without are REGISTERED citations — known
+        # external works with DOI and role, which stand in running text
+        # elsewhere. They are read by `efc_doi_coverage.py`, but do not belong
+        # in the §4b list, and a generator that wrote them there would inflate
+        # the confrontation section with references nobody confronts.
         rader = [o["html"] for o in g["oppforinger"] if o.get("html")]
         ut.append("\n\n".join("  " + r for r in rader))
         ut.append("</ul>")
@@ -146,22 +146,22 @@ def _render(d: dict) -> str:
 
 def bygg(bare_sjekk: bool) -> int:
     if not REG.exists():
-        print(f"[4b] registeret mangler: {REG}", file=sys.stderr)
+        print(f"[4b] the register is missing: {REG}", file=sys.stderr)
         return 2
     d = json.loads(REG.read_text(encoding="utf-8"))
     t = HTML.read_text(encoding="utf-8")
     a, b = _blokk(t)
     ny = t[:a] + _render(d) + t[b:]
     if ny == t:
-        print("[4b] uendret")
+        print("[4b] unchanged")
         return 0
     if bare_sjekk:
-        print("[4b] AVVIK: HTML-en stemmer ikke med registeret. "
-              "Kjør `efc_4b.py bygg`.", file=sys.stderr)
+        print("[4b] DEVIATION: the HTML does not match the register. "
+              "Run `efc_4b.py bygg`.", file=sys.stderr)
         return 1
     HTML.write_text(ny, encoding="utf-8")
     n = sum(len(g["oppforinger"]) for g in d["grupper"])
-    print(f"[4b] skrev {n} oppføringer til {HTML.relative_to(ROOT)}")
+    print(f"[4b] wrote {n} entries to {HTML.relative_to(ROOT)}")
     return 0
 
 

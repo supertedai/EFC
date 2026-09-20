@@ -1,20 +1,20 @@
-"""atlas_volum — volumet leses fra maalingen, og hullet sorteres etter det.
+"""atlas_volum — the volume is read from the measurement, and the gap is sorted by it.
 
-Kortet som gjorde denne testen nødvendig (t_29a426ac) ble funnet ved aa
-BRUKE atlasoppslaget, ikke ved aa teste det: `verden.vaer` (190 229
-meldinger) og `verden.utdanning` (2 598) svarte likt, fordi svaret ikke
-hadde stoerrelse.
+The card that made this test necessary (t_29a426ac) was found by
+USING the atlas lookup, not by testing it: `verden.vaer` (190 229
+messages) and `verden.utdanning` (2 598) answered the same, because the answer had no
+size.
 
-To ting maa derfor pinnes, og de er ulike:
+Two things must therefore be pinned, and they are different:
 
-1. **Tallet er maalt.** Testene under mater syntetiske maalinger der
-   deklarasjonen LYVER om volumet, og krever at leseren svarer med
-   maalingen. Uten dem ville «sortér etter betydning» kunne innfris av et
-   felt noen skrev for haand.
-2. **Sorteringen er en sortering.** Et hull paa to og et paa 190 000 skal
-   komme i den rekkefølgen, ogsaa naar navnene sier det motsatte.
-   Separerende tilfelle: `aaa.lite` mot `zzz.stort` — alfabetisk og
-   volummessig orden er motsatt.
+1. **The number is measured.** The tests below feed synthetic measurements where
+   the declaration LIES about the volume, and require that the reader answers with
+   the measurement. Without them, "sort by significance" could be fulfilled by a
+   field someone wrote by hand.
+2. **The sorting is a sorting.** A gap of two and one of 190 000 shall
+   come in that order, also when the names say the opposite.
+   Separating case: `aaa.lite` vs `zzz.stort` — alphabetical and
+   volume order are opposite.
 """
 
 from __future__ import annotations
@@ -55,14 +55,14 @@ def _snap(rader: dict) -> dict:
 
 class TestSorteringEtterBetydning(unittest.TestCase):
     def test_storrelse_gaar_foran_alfabet(self):
-        """Det separerende tilfellet. Alfabetisk ville sagt `aaa.lite`
-        foerst; det er nettopp lesningen kortet fant."""
+        """The separating case. Alphabetical order would have said `aaa.lite`
+        first; that is exactly the reading the card found."""
         dekl = _dekl({"aaa.lite": ("ikke_dekket", 2, ["a"]),
                       "zzz.stort": ("ikke_dekket", 190000, ["b"])})
         ut = av.hull(dekl)
         self.assertEqual([r["domene"] for r in ut], ["zzz.stort", "aaa.lite"],
-                         "hullene kom i alfabetisk rekkefølge — da kan et "
-                         "hull på 190 000 ikke skilles fra ett på 2")
+                         "the gaps came in alphabetical order — then a "
+                         "gap of 190 000 cannot be told from one of 2")
 
     def test_rekkefoelgen_henger_ikke_paa_innsettingsrekkefoelgen(self):
         fram = _dekl({"a": ("ikke_dekket", 5, []), "b": ("ikke_dekket", 500, []),
@@ -73,25 +73,25 @@ class TestSorteringEtterBetydning(unittest.TestCase):
                          [r["domene"] for r in av.hull(bak)])
 
     def test_like_store_hull_sorteres_paa_navn(self):
-        """Uten dette ville rekkefølgen mellom like store hull vaert
-        tilfeldig, og en diff ville sett ut som en endring."""
+        """Without this the order between equally large gaps would have been
+        random, and a diff would look like a change."""
         dekl = _dekl({"b": ("ikke_dekket", 10, []), "a": ("ikke_dekket", 10, [])})
         self.assertEqual([r["domene"] for r in av.hull(dekl)], ["a", "b"])
 
     def test_volumet_leses_fra_maalingen_naar_den_finnes(self):
-        """Deklarasjonen sier 3, maalingen sier 3000. Leseren skal svare
-        maalingen — ellers kan «sortert etter betydning» innfris av et tall
-        noen skrev for haand, som er nøyaktig feilmodusen kortet navngir."""
+        """The declaration says 3, the measurement says 3000. The reader shall answer
+        the measurement — otherwise "sorted by significance" can be fulfilled by a number
+        someone wrote by hand, which is exactly the failure mode the card names."""
         dekl = _dekl({"x": ("ikke_dekket", 3, ["e1"])})
         snap = _snap({"x": {"e1": 3000}})
         ut = av.hull(dekl, snap)
         self.assertEqual(ut[0]["meldinger"], 3000)
 
     def test_emnefordelingen_foelger_domenet(self):
-        snap = _snap({"x": {"liten": 2, "stor": 90}})
-        dekl = _dekl({"x": ("ikke_dekket", 92, ["liten", "stor"])})
+        snap = _snap({"x": {"small": 2, "large": 90}})
+        dekl = _dekl({"x": ("ikke_dekket", 92, ["small", "large"])})
         self.assertEqual(av.hull(dekl, snap)[0]["emner"],
-                         [("stor", 90), ("liten", 2)])
+                         [("large", 90), ("small", 2)])
 
     def test_standarden_er_bare_ikke_dekket(self):
         dekl = _dekl({"hull": ("ikke_dekket", 10, []),
@@ -100,8 +100,8 @@ class TestSorteringEtterBetydning(unittest.TestCase):
         self.assertEqual([r["domene"] for r in av.hull(dekl)], ["hull"])
 
     def test_alle_statuser_kan_vis_se_naar_statuser_er_none(self):
-        """`--alle` finnes fordi motsatt feil ogsaa er usynlig: en `dekket`
-        kanal med mye trafikk bak én node ser ferdig ut."""
+        """`--alle` exists because the opposite error is also invisible: a `dekket`
+        channel with much traffic behind one node looks finished."""
         dekl = _dekl({"hull": ("ikke_dekket", 10, []),
                       "dekket": ("dekket", 9000, [])})
         self.assertEqual([r["domene"] for r in av.hull(dekl, statuser=None)],
@@ -119,8 +119,8 @@ class TestSorteringEtterBetydning(unittest.TestCase):
         nokler = [(-r["meldinger"], r["domene"]) for r in rader]
         self.assertEqual(nokler, sorted(nokler))
         self.assertTrue(all(r["meldinger"] > 0 for r in rader),
-                        "et deklarert hull uten maalte meldinger er ikke "
-                        "maalt — det er et tall noen har skrevet")
+                        "a declared gap without measured messages is not "
+                        "measured — it is a number someone has written")
 
 
 class TestMaalingen(unittest.TestCase):
@@ -130,10 +130,10 @@ class TestMaalingen(unittest.TestCase):
         return fil
 
     def test_maal_bussen_normaliserer_emnet_til_domenets_form(self):
-        """Bussen navngir emnet fullt ut (`verden.vaer.prediksjon.metno`);
-        snapshottet bærer den korte formen. En maaling som skrev den fulle
-        formen ville dobbeltfoert domenet i hver rad — og falt testen i
-        test_atlas_dekning, som sammenligner emnelistene."""
+        """The bus names the topic in full (`verden.vaer.prediksjon.metno`);
+        the snapshot carries the short form. A measurement that wrote the full
+        form would have double-counted the domain in every row — and failed the test in
+        test_atlas_dekning, which compares the topic lists."""
         kropp = (
             "def verden_domener(_args):\n"
             "    return {'domener': {'verden.vaer': [\n"
@@ -157,45 +157,45 @@ class TestMaalingen(unittest.TestCase):
 
     def test_maal_bussen_nektar_aa_gjette_naar_verktoeyet_mangler(self):
         with self.assertRaises(av.VolumFeil) as ctx:
-            av.maal_bussen(Path("/finnes/ikke/verden-mcp.py"))
+            av.maal_bussen(Path("/no/such/verden-mcp.py"))
         self.assertIn("verden-mcp.py", str(ctx.exception))
 
     def test_modulen_har_ingen_volumtabell(self):
-        """Den mekaniske gaten mot feilmodusen kortet navngir: «ikke løs det
-        ved aa gjette». Et tall i koden er en paastand om bussen som ingen
-        maaling holder oppdatert — den råtner ved foerste endring i
-        trafikken. Kommentarer og docstrings bærer maalte tall; KODEN skal
-        ikke bære ett eneste et."""
+        """The mechanical gate against the failure mode the card names: "do not solve it
+        by guessing". A number in the code is a claim about the bus that no
+        measurement keeps up to date — it rots at the first change in
+        the traffic. Comments and docstrings carry measured numbers; the CODE shall
+        not carry a single one."""
         tre = ast.parse(MODUL.read_text(encoding="utf-8"))
         tall = [n.value for n in ast.walk(tre)
                 if isinstance(n, ast.Constant) and isinstance(n.value, int)
                 and not isinstance(n.value, bool) and abs(n.value) >= 1000]
         self.assertEqual(
             tall, [],
-            f"et tall større enn 999 staar i koden ({tall}) — volumet skal "
-            f"komme fra maalingen, ikke fra en tabell")
+            f"a number larger than 999 stands in the code ({tall}) — the volume shall "
+            f"come from the measurement, not from a table")
 
 
 class TestSkrivingen(unittest.TestCase):
     def test_oppdater_dekning_roerer_ikke_stillingtagen(self):
         dekl = {"_form": "x", "domener": {
             "a.b": {"status": "delvis", "noder": ["n1"],
-                    "begrunnelse": "fordi noen har vurdert det",
+                    "begrunnelse": "because someone has assessed it",
                     "emner": ["tilstand.k"]}}}
         ny, rapport = av.oppdater_dekning(dekl, {"a.b": {"tilstand.k": 41}})
         rad = ny["domener"]["a.b"]
         self.assertEqual(rad["meldinger"], 41)
         self.assertEqual(rad["status"], "delvis")
         self.assertEqual(rad["noder"], ["n1"])
-        self.assertEqual(rad["begrunnelse"], "fordi noen har vurdert det")
+        self.assertEqual(rad["begrunnelse"], "because someone has assessed it")
         self.assertEqual(ny["_form"], "x")
         self.assertEqual(rapport["nye_domener"], [])
         self.assertEqual(rapport["nye_emner"], {})
 
     def test_nye_domener_og_emner_rapporteres_og_deklareres_ikke(self):
-        """Maalingen faar ikke lov aa deklarere et domene: status og
-        begrunnelse er en stillingtagen. Den skal NAVNGI det som mangler,
-        slik at invarianten feller — ikke gjøre testen groenn."""
+        """The measurement is not allowed to declare a domain: status and
+        begrunnelse are a decision. It shall NAME what is missing,
+        so that the invariant fails — not make the test green."""
         dekl = {"domener": {"a.b": {"status": "ikke_dekket", "noder": [],
                                     "begrunnelse": "ingen node",
                                     "emner": ["tilstand.k"]}}}
@@ -208,8 +208,8 @@ class TestSkrivingen(unittest.TestCase):
         self.assertNotIn("diskusion.ny", ny["domener"]["a.b"]["emner"])
 
     def test_et_domene_ute_av_maalingen_faar_null_ikke_gammelt_tall(self):
-        """Retensjonen kan tømme et domene. Da er det gamle tallet en
-        loegn om naa; null er en maaling av at det ikke lenger bærer noe."""
+        """Retention can empty a domain. Then the old number is a
+        lie about now; zero is a measurement that it no longer carries anything."""
         dekl = {"domener": {"borte.nå": {"status": "ikke_dekket", "noder": [],
                                          "begrunnelse": "x",
                                          "emner": ["tilstand.k"]}}}
@@ -230,14 +230,14 @@ class TestSkrivingen(unittest.TestCase):
         self.assertTrue(prov["kilde"].strip())
         self.assertEqual(data["domener"]["a.c"]["emner"], {"tilstand.m": 1})
         self.assertEqual(list(data["domener"]), ["a.c", "b.d"],
-                         "domenene skal staa sortert — en usortert fil gir "
-                         "diff-støy uten informasjon")
+                         "the domains shall stand sorted — an unsorted file gives "
+                         "diff noise without information")
 
     def test_maal_skriver_begge_filene_og_leser_arbeidsstreet(self):
-        """Maalingen SKRIVER til arbeidsstreet, og maa derfor lese det
-        samme street. Foerste utgave leste deklarasjonen fra refen — en
-        ukommitert stillingtagen ville da blitt kastet stille av en
-        vedlikeholds-kjoering."""
+        """The measurement WRITES to the worktree, and must therefore read the
+        same worktree. The first version read the declaration from the ref — an
+        uncommitted decision would then be silently discarded by a
+        maintenance run."""
         with tempfile.TemporaryDirectory() as d:
             rot = Path(d)
             (rot / "schema").mkdir()
@@ -267,20 +267,20 @@ class TestSkrivingen(unittest.TestCase):
         self.assertTrue(snap["_proveniens"]["lest_av"].strip())
 
     def test_leseren_feiler_forstaaelig_paa_en_maaling_uten_antall(self):
-        """Refs eldre enn denne modulen bærer emnene som en navneliste.
-        Foerste utgave krasjet med `AttributeError: 'list' object has no
-        attribute 'values'` — en stakksporing som sier at noe er i stykker,
-        ikke hva som mangler. Volumet finnes ikke i den formen, og leseren
-        skal SI det."""
+        """Refs older than this module carry the topics as a list of names.
+        The first version crashed with `AttributeError: 'list' object has no
+        attribute 'values'` — a stack trace that says something is broken,
+        not what is missing. The volume does not exist in that shape, and the reader
+        shall SAY so."""
         with self.assertRaises(av.VolumFeil) as ctx:
             av.meldinger_per_domene({"domener": {"x": {"emner": ["tilstand.k"]}}})
         self.assertIn("--maal", str(ctx.exception))
 
     def test_les_fra_ref_feiler_hoeyt_paa_ukjent_ref(self):
-        """Samme regel som atlas_lesing: en ugyldig ref skal reise, ikke
-        stille falle tilbake til arbeidsstreet."""
+        """The same rule as atlas_lesing: an invalid ref shall raise, not
+        silently fall back to the worktree."""
         with self.assertRaises(av.VolumFeil):
-            av.les_fra_ref(ROT, "finnes-ikke-ref")
+            av.les_fra_ref(ROT, "no-such-ref")
 
     def test_les_fra_ref_leser_begge_filene(self):
         lest = av.les_fra_ref(ROT, "HEAD")

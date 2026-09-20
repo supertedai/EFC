@@ -1,15 +1,15 @@
-"""Test av det generiske regime-node-skjemaet og H2O-instansen (trinn 2).
+"""Test of the generic regime-node schema and the H2O instance (step 2).
 
-TDD: skrives FOER skjemaet finnes — skal feile ved innlesing.
+TDD: written BEFORE the schema exists — must fail on reading.
 
-Forankring (skjemaets kanoniske kilde):
-  regime/proxy/placement/episenter/compression er definert i
-  «Regime-Bound Measurement in Complex Systems: Proxy, Placement, and
-  Validity» (DOI 10.6084/m9.figshare.31564123, 2026-03-07) og i
-  meta-referansen docs/papers/meta/Proxy/. Mortens utvidelser (maal,
-  maaler, maaleinstrument, proxychain, buffer/holding, fase, ontologi,
-  observator-baandbredde, emergence-loop, fraktal, lokal-global
-  kobling) er strukturelle beholdere — skjemaet hevder ingen fysikk.
+Anchoring (the schema's canonical source):
+  regime/proxy/placement/episenter/compression are defined in
+  "Regime-Bound Measurement in Complex Systems: Proxy, Placement, and
+  Validity" (DOI 10.6084/m9.figshare.31564123, 2026-03-07) and in the
+  meta reference docs/papers/meta/Proxy/. Morten's extensions (target,
+  measurer, instrument, proxy chain, buffer/holding, phase, ontology,
+  observer bandwidth, emergence loop, fractal, local-global coupling)
+  are structural containers — the schema claims no physics.
 """
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ _REPO = Path(__file__).resolve().parents[1]
 if str(_REPO) not in sys.path:
     sys.path.insert(0, str(_REPO))
 
-# Felles leser av git-treet — se scripts/maintenance/_repo_tre.py.
+# Shared reader of the git tree — see scripts/maintenance/_repo_tre.py.
 _MAINT = _REPO / "scripts" / "maintenance"
 if str(_MAINT) not in sys.path:
     sys.path.insert(0, str(_MAINT))
@@ -33,10 +33,11 @@ from _repo_tre import filer as _tre_filer  # noqa: E402
 SCHEMA_PATH = _REPO / "schema" / "regime_node.schema.json"
 INSTANCE_PATH = _REPO / "schema" / "regime_nodes.jsonld"
 
-# Den private hjemmeadressen skrives aldri rett ut i denne fila. Den er selv
-# sporet, og regresjonsvernet nedenfor skanner alle sporede filer — skrevet
-# rett ut ville vakten felt seg selv og måttet hatt et unntak. Bygd av deler
-# er ingen fil unntatt, heller ikke vakten selv.
+# The private home address is never written out verbatim in this file. The
+# file is itself tracked, and the regression guard below scans every tracked
+# file — written out, the guard would have caught itself and would have
+# needed an exception. Built from parts, no file is exempt, not even the
+# guard itself.
 HJEM = "Hassel" + "vegen"
 POSTSTED = "4051 " + "Sola"
 
@@ -46,7 +47,7 @@ except ImportError:  # pragma: no cover
     jsonschema = None
 
 requires_jsonschema = pytest.mark.skipif(
-    jsonschema is None, reason="jsonschema ikke installert")
+    jsonschema is None, reason="jsonschema not installed")
 
 
 def _schema() -> dict:
@@ -58,7 +59,7 @@ def _instance() -> dict:
 
 
 # --------------------------------------------------------------------------
-# Skjemaet
+# The schema
 # --------------------------------------------------------------------------
 
 @requires_jsonschema
@@ -77,8 +78,8 @@ def test_schema_requires_mortens_node_fields():
 
 
 def test_schema_uses_canonical_episenter_spelling():
-    """Review runde 1: kanonisk term i kilde-README-en og PR-en er
-    «episenter» — det engelske «epicenter» skal ikke vaere feltnavn."""
+    """Review round 1: the canonical term in the source README and the PR is
+    "episenter" — the English "epicenter" must not be a field name."""
     s = _schema()
     props = s["$defs"]["RegimeNode"]["properties"]
     assert "episenter" in props
@@ -86,8 +87,8 @@ def test_schema_uses_canonical_episenter_spelling():
 
 
 def test_context_maps_ids_and_relation_targets_to_iris():
-    """Review runde 1: instansen skal vaere en lenket JSON-LD-graf —
-    node-id-er og relasjonsendepunkter er IRI-referanser, ikke loes tekst."""
+    """Review round 1: the instance must be a linked JSON-LD graph —
+    node ids and relation endpoints are IRI references, not loose text."""
     inst = _instance()
     ctx = inst["@context"]
     assert ctx.get("id") == "@id"
@@ -106,8 +107,8 @@ def test_schema_requires_measurement_chain():
 
 
 def test_schema_observer_bandwidth_is_explicit():
-    """Observatoren ser et vindu av spekteret — baandbredde er et paakrevd
-    felt, og bevissthetsstatusen er en deklarert klasse, ikke en pastand."""
+    """The observer sees a window of the spectrum — bandwidth is a required
+    field, and the awareness status is a declared class, not a claim."""
     s = _schema()
     obs = s["$defs"]["RegimeNode"]["properties"]["observer"]
     assert {"bandwidth", "awareness"} <= set(obs["required"])
@@ -126,7 +127,7 @@ def test_schema_relation_predicates_include_transition_and_emergence():
 
 
 # --------------------------------------------------------------------------
-# H2O-instansen
+# The H2O instance
 # --------------------------------------------------------------------------
 
 @requires_jsonschema
@@ -146,8 +147,8 @@ def test_h2o_instance_has_triple_point_node():
 
 
 def test_h2o_transitions_meet_at_triple_point():
-    """De tre faseovergangene skal alle vaere representert — det er det
-    trippelpunktet BETYR i denne strukturen."""
+    """All three phase transitions must be represented — that is what the
+    triple point MEANS in this structure."""
     rels = _instance()["relations"]
     preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
     assert ("h2o.solid", "TRANSITIONS_TO", "h2o.liquid") in preds
@@ -156,8 +157,8 @@ def test_h2o_transitions_meet_at_triple_point():
 
 
 def test_every_node_declares_empathy_coupling():
-    """Systemisk empati: hver node maa deklarere sin lokale rolle OG sin
-    globale rekkevidde — ingen node er bare lokal."""
+    """Systemic empathy: every node must declare its local role AND its
+    global reach — no node is only local."""
     inst = _instance()
     for n in inst["nodes"]:
         c = n["coupling"]
@@ -166,14 +167,14 @@ def test_every_node_declares_empathy_coupling():
 
 
 def test_every_node_has_ontology_source():
-    """Ontologiske antakelser skal ha kilde — ikke sveve loest."""
+    """Ontological assumptions must have a source — not float loose."""
     inst = _instance()
     for n in inst["nodes"]:
         assert n["ontology"]["source"], n["id"]
 
 
 def test_phase_nodes_declare_regime_validity():
-    """Hver fasenode maa si HVOR den gjelder (gyldighetsomraade)."""
+    """Every phase node must say WHERE it applies (validity domain)."""
     inst = _instance()
     for n in inst["nodes"]:
         if n["id"].startswith("h2o.") and n["id"] != "h2o.triple_point":
@@ -181,18 +182,18 @@ def test_phase_nodes_declare_regime_validity():
 
 
 # --------------------------------------------------------------------------
-# Trinn 3: regnbuen — generisitetstesten (en emergence, ikke en fase)
+# Step 3: the rainbow — the genericity test (an emergence, not a phase)
 # --------------------------------------------------------------------------
 
 def test_rainbow_nodes_exist():
-    """Regnbuen som andre instans: lys, draape, dispersjon, observator."""
+    """The rainbow as a second instance: light, droplet, dispersion, observer."""
     ids = {n["id"] for n in _instance()["nodes"]}
     assert {"lys.sol", "h2o.droplet", "optikk.dispersjon",
             "regnbue", "regnbue.observator"} <= ids
 
 
 def test_rainbow_emerges_from_droplets_and_light():
-    """Regnbuen er en EMERGENCE av draaper + lys — ikke en node ved siden av."""
+    """The rainbow is an EMERGENCE of droplets + light — not a node beside them."""
     rels = _instance()["relations"]
     preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
     assert ("regnbue", "EMERGES_FROM", "h2o.droplet") in preds
@@ -200,16 +201,17 @@ def test_rainbow_emerges_from_droplets_and_light():
 
 
 def test_rainbow_is_observed_through_observer():
-    """Uten observator i anti-solar geometri er det bare spredt lys —
-    regnbuen OBSERVED_THROUGH observatoren."""
+    """Without an observer in anti-solar geometry it is just scattered light
+    — the rainbow is OBSERVED_THROUGH the observer."""
     rels = _instance()["relations"]
     preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
     assert ("regnbue", "OBSERVED_THROUGH", "regnbue.observator") in preds
 
 
 def test_observer_bandwidth_states_visible_window():
-    """«Alt er paa et elektrospektrum totalt, observatoeren ser noen faa nm»
-    — oeyets vindu (400-700 nm) skal staa i observatorens baandbredde."""
+    """"Everything is on an electromagnetic spectrum in total, the observer
+    sees only a few nm" — the eye's window (400-700 nm) must stand in the
+    observer's bandwidth."""
     inst = _instance()
     obs = next(n for n in inst["nodes"] if n["id"] == "regnbue.observator")
     bw = obs["observer"]["bandwidth"]
@@ -217,40 +219,40 @@ def test_observer_bandwidth_states_visible_window():
 
 
 def test_rainbow_is_emergent_pattern_not_phase():
-    """Regnbuen er ingen termodynamisk fase — den er et emergert monster.
-    Skjemaet maa kunne baere emergences utover faser."""
+    """The rainbow is not a thermodynamic phase — it is an emerged pattern.
+    The schema must be able to carry emergences beyond phases."""
     inst = _instance()
     rb = next(n for n in inst["nodes"] if n["id"] == "regnbue")
     assert rb["phase"] == "emergent_pattern"
 
 
 def test_rainbow_requires_liquid_droplets():
-    """Regnbuen krever FLYTENDE (sfaeriske) draaper — iskrystaller gir
-    haloer, ikke regnbue. Gyldighetsomraadet maa si det."""
+    """The rainbow requires FLUID (spherical) droplets — ice crystals give
+    halos, not rainbows. The validity domain must say so."""
     inst = _instance()
     rb = next(n for n in inst["nodes"] if n["id"] == "regnbue")
     assert "requires liquid (spherical) droplets" in rb["regime"]["validity"].lower()
 
 
 def test_existing_h2o_nodes_untouched():
-    """H2O-nodene fra trinn 2 skal vaere urorte i samme atlas."""
+    """The H2O nodes from step 2 must be untouched in the same atlas."""
     ids = {n["id"] for n in _instance()["nodes"]}
     assert {"h2o.solid", "h2o.liquid", "h2o.gas",
             "h2o.supercritical", "h2o.triple_point"} <= ids
 
 
 # --------------------------------------------------------------------------
-# Trinn 5: L0–L3-kosmologien — EFCs kjerne inn i samme struktur
+# Step 5: the L0–L3 cosmology — EFC's core into the same structure
 # --------------------------------------------------------------------------
 
 def test_l0_l3_nodes_exist():
-    """EFCs fire regimer skal staa som noder i atlaset."""
+    """EFC's four regimes must stand as nodes in the atlas."""
     ids = {n["id"] for n in _instance()["nodes"]}
     assert {"efc.l0", "efc.l1", "efc.l2", "efc.l3"} <= ids
 
 
 def test_l0_l3_transition_chain():
-    """Regimene danner kjeden L0→L1→L2→L3 via TRANSITIONS_TO."""
+    """The regimes form the chain L0→L1→L2→L3 via TRANSITIONS_TO."""
     rels = _instance()["relations"]
     preds = {(r["subject"], r["predicate"], r["object"]) for r in rels}
     assert ("efc.l0", "TRANSITIONS_TO", "efc.l1") in preds
@@ -259,33 +261,33 @@ def test_l0_l3_transition_chain():
 
 
 def test_l1_l2_is_declared_regime_transition():
-    """L1→L2 er EFCs regimeovergang — trippelpunkt-analogien. Den skal
-    vaere deklarert i overgangsrelasjonens note (ikke bare en kant)."""
+    """L1→L2 is EFC's regime transition — the triple-point analogy. It must
+    be declared in the transition relation's note (not just an edge)."""
     rels = _instance()["relations"]
-    overgang = next(
+    transition = next(
         (r for r in rels
          if (r["subject"], r["predicate"]) == ("efc.l1", "TRANSITIONS_TO")
          and r["object"] == "efc.l2"),
         None)
-    assert overgang is not None
-    assert "regime transition" in overgang["note"].lower()
+    assert transition is not None
+    assert "regime transition" in transition["note"].lower()
 
 
 def test_regimes_declare_s_values():
-    """Hvert regime skal deklarere sin S-verdi i validity (S→0, S≈0,
-    S>0, S→1) — S er regimekoordinaten, ikke dekor."""
+    """Every regime must declare its S value in validity (S→0, S≈0,
+    S>0, S→1) — S is the regime coordinate, not decoration."""
     inst = _instance()
-    noder = {n["id"]: n for n in inst["nodes"]}
-    assert "S" in noder["efc.l0"]["regime"]["validity"]
-    assert "S" in noder["efc.l1"]["regime"]["validity"]
-    assert "S" in noder["efc.l2"]["regime"]["validity"]
-    assert "S" in noder["efc.l3"]["regime"]["validity"]
+    nodes = {n["id"]: n for n in inst["nodes"]}
+    assert "S" in nodes["efc.l0"]["regime"]["validity"]
+    assert "S" in nodes["efc.l1"]["regime"]["validity"]
+    assert "S" in nodes["efc.l2"]["regime"]["validity"]
+    assert "S" in nodes["efc.l3"]["regime"]["validity"]
 
 
 def test_observer_is_inside_l2():
-    """Observatoren er INNE i systemet: vi observerer FRA L2 og ser
-    bakover i tid til L1 (CMB) — observatorens plassering er en del av
-    strukturen, ikke en noeytral utsiktspost."""
+    """The observer is INSIDE the system: we observe FROM L2 and look back
+    in time to L1 (CMB) — the observer's placement is part of the structure,
+    not a neutral vantage point."""
     inst = _instance()
     obs = next(n for n in inst["nodes"] if n["id"] == "efc.l2")
     # L2-noden skal selv deklarere observatorens posisjon.
@@ -294,52 +296,52 @@ def test_observer_is_inside_l2():
 
 
 # --------------------------------------------------------------------------
-# Trinn 6: Victron/batteri — bufferens elektriske form
+# Step 6: Victron/battery — the buffer's electrical form
 # --------------------------------------------------------------------------
 
 def test_battery_nodes_exist():
-    """Batteridomenet skal staa som noder: celle, lading, buffer,
-    inverter — kjemisk regime, overgang, lagring, konvertering."""
+    """The battery domain must stand as nodes: cell, charging, buffer,
+    inverter — chemical regime, transition, storage, conversion."""
     ids = {n["id"] for n in _instance()["nodes"]}
     assert {"batteri.celle", "batteri.lading",
             "batteri.buffer", "batteri.inverter"} <= ids
 
 
 def test_cc_cv_transition_declared():
-    """CC -> CV-kneet er laderegimets faseovergang — trippelpunkt-
-    analogien i elektrisk form. Overgangen skal vaere deklarert i
-    relasjonen mellom celle og lading."""
+    """The CC -> CV knee is the charging regime's phase transition — the
+    triple-point analogy in electrical form. The transition must be declared
+    in the relation between cell and charging."""
     rels = _instance()["relations"]
-    overgang = next(
+    transition = next(
         (r for r in rels
          if (r["subject"], r["predicate"], r["object"])
          == ("batteri.celle", "TRANSITIONS_TO", "batteri.lading")),
         None)
-    assert overgang is not None
-    note = overgang["note"].upper()
+    assert transition is not None
+    note = transition["note"].upper()
     assert "CC" in note and "CV" in note
 
 
 def test_soc_is_regime_coordinate():
-    """SOC er batteriets regimekoordinat — flat midt, bratt i endene.
-    Cellenoden skal deklarere dette i validity."""
+    """SOC is the battery's regime coordinate — flat in the middle, steep at
+    the ends. The cell node must declare this in validity."""
     inst = _instance()
-    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
-    assert "SOC" in celle["regime"]["validity"]
+    cell = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    assert "SOC" in cell["regime"]["validity"]
 
 
 def test_buffer_is_broad_electric():
-    """Bufferen er Mortens brede buffer i elektrisk form: homeostase,
-    lagring, demping — ikke bare en lagerboks."""
+    """The buffer is Morten's broad buffer in electrical form: homeostasis,
+    storage, damping — not just a storage box."""
     inst = _instance()
     buffer_node = next(n for n in inst["nodes"] if n["id"] == "batteri.buffer")
-    rolle = buffer_node["buffer"]["role"].lower()
-    assert "homeost" in rolle or "lagr" in rolle or "energi" in rolle
+    role = buffer_node["buffer"]["role"].lower()
+    assert "homeost" in role or "lagr" in role or "energi" in role
 
 
 def test_inverter_is_regime_converter():
-    """Inverteren er regimekonverteren: DC <-> AC — transformasjonsnoden
-    der to regimer motes."""
+    """The inverter is the regime converter: DC <-> AC — the transformation
+    node where two regimes meet."""
     inst = _instance()
     inv = next(n for n in inst["nodes"] if n["id"] == "batteri.inverter")
     assert ("DC" in inv["emergence"]["loop"].upper()
@@ -347,18 +349,18 @@ def test_inverter_is_regime_converter():
 
 
 def test_proxy_chain_v_a_w_to_soc():
-    """Victron-instrumentene maaler V/A/W og avleder SOC/SOH — proxy-
-    kjeden skal vaere deklarert i cellenodens maaling."""
+    """The Victron instruments measure V/A/W and derive SOC/SOH — the proxy
+    chain must be declared in the cell node's measurement."""
     inst = _instance()
-    celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
-    kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
-    assert "V" in kjede and "SOC" in kjede
+    cell = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
+    chain = " ".join(cell["measure"]["proxy_chain"]).upper()
+    assert "V" in chain and "SOC" in chain
 
 
 def test_soc_proxy_is_qualified():
-    """SOC er et ESTIMAT, ikke en direkte maaling: proxychain skal skille
-    coulomb-telling (estimert) fra OCV (kun etter hvile) — ellers
-    forveksler vi ladespenning med hvilespenning."""
+    """SOC is an ESTIMATE, not a direct measurement: the proxy chain must
+    separate coulomb counting (estimated) from OCV (only after rest) —
+    otherwise we confuse charging voltage with rest voltage."""
     inst = _instance()
     celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
     kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
@@ -367,8 +369,8 @@ def test_soc_proxy_is_qualified():
 
 
 def test_pack_vs_cell_declared():
-    """Målingene er PAKKESpenning; cellenivaaet er BMS-intern proxy.
-    Skillet skal vaere deklarert i cellenodens validity."""
+    """The measurements are PACK voltage; the cell level is a BMS-internal
+    proxy. The distinction must be declared in the cell node's validity."""
     inst = _instance()
     celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
     validity = celle["regime"]["validity"].upper()
@@ -376,8 +378,8 @@ def test_pack_vs_cell_declared():
 
 
 def test_inverter_is_bidirectional():
-    """Inverteren er en TOVEIS konverterer: DC->AC (invertermodus) og
-    AC->DC (lademodus) — ikke bare den ene retningen."""
+    """The inverter is a TWO-WAY converter: DC->AC (inverter mode) and
+    AC->DC (charging mode) — not just the one direction."""
     inst = _instance()
     inv = next(n for n in inst["nodes"] if n["id"] == "batteri.inverter")
     tekst = (inv["regime"]["law_form"] + " " + inv["emergence"]["loop"]).upper()
@@ -387,34 +389,35 @@ def test_inverter_is_bidirectional():
 
 
 def test_no_private_site_info_in_public_instance():
-    """Den offentlige instansen skal IKKE baere privat site-info: adresse,
-    site-ID eller intern filsti. Full proveniens ligger i et privat
-    artifact — regresjonsvern mot aa gjeninnfoere den her."""
+    """The public instance must NOT carry private site info: address, site
+    ID or internal file path. Full provenance lives in a private artifact —
+    a regression guard against reintroducing it here."""
     raw = INSTANCE_PATH.read_text(encoding="utf-8")
-    for forbudt in [HJEM, "380961", "/opt/hermes-opus", "idSite",
-                    "maalt 2026-09-16T13:41:57Z", "intern MCP-bro",
-                    "feltkoder"]:
-        assert forbudt not in raw, f"privat info lekker: {forbudt}"
+    for forbidden in [HJEM, "380961", "/opt/hermes-opus", "idSite",
+                      "maalt 2026-09-16T13:41:57Z", "intern MCP-bro",
+                      "feltkoder"]:
+        assert forbidden not in raw, f"private info leaks: {forbidden}"
 
 
 # --------------------------------------------------------------------------
-# Trinn 7: BAO + kobling av kosmologiske observasjoner til regime-nodene
+# Step 7: BAO + coupling of cosmological observations to the regime nodes
 # --------------------------------------------------------------------------
 
-# De kosmologiske OBSERVASJONENE i docs/validation-ledger/data/atlas.json
-# (instrumentbaarne maalinger, ikke modellparametriseringer). Verdien er
-# LISTEN av regime-noder observasjonen er koblet til — bro-observasjoner
-# (bao, isw, h0_tension) bærer to regimer. Atlasets L-labels er en ANNEN
-# akse (lag-akse) enn fasekjeden efc.l0-l3; hver node deklarerer begge.
+# The cosmological OBSERVATIONS in docs/validation-ledger/data/atlas.json
+# (instrument-borne measurements, not model parameterisations). The value is
+# the LIST of regime nodes the observation is coupled to — bridge
+# observations (bao, isw, h0_tension) carry two regimes. The atlas's L labels
+# are a DIFFERENT axis (layer axis) than the phase chain efc.l0-l3; every
+# node declares both.
 KOSMOLOGISKE_OBSERVASJONER = {
-    "obs.bao": ["efc.l1", "efc.l2"],   # r_d frosset i L1, maalt i L2
+    "obs.bao": ["efc.l1", "efc.l2"],   # r_d frozen in L1, measured in L2
     "obs.cmb_tt": ["efc.l1"],
-    "obs.cmb_lensing": ["efc.l2"],     # linser L2-struktur
-    "obs.bbn": ["efc.l1"],             # fasekjedens tidligste avlesning
+    "obs.cmb_lensing": ["efc.l2"],     # lenses L2 structure
+    "obs.bbn": ["efc.l1"],             # the phase chain's earliest reading
     "obs.fsigma8": ["efc.l2"],
     "obs.s8": ["efc.l2"],
     "obs.eg": ["efc.l2"],
-    "obs.isw": ["efc.l1", "efc.l2"],   # kryssregime
+    "obs.isw": ["efc.l1", "efc.l2"],   # cross-regime
     "obs.ksz": ["efc.l2"],
     "obs.cluster_mass": ["efc.l2"],
     "obs.cluster_hmf": ["efc.l2"],
@@ -424,44 +427,44 @@ KOSMOLOGISKE_OBSERVASJONER = {
     "obs.jwst_ems": ["efc.l2"],
     "obs.gw_ct": ["efc.l2"],
     "obs.pta_gwb": ["efc.l2"],
-    "obs.h0_tension": ["efc.l1", "efc.l2"],  # spenningen MELLOM regimene
+    "obs.h0_tension": ["efc.l1", "efc.l2"],  # the tension BETWEEN the regimes
     "obs.w0wa": ["efc.l3"],
     "obs.cc": ["efc.l3"],
 }
 
 
 def test_cosmological_observation_nodes_exist():
-    """Hver kosmologisk observasjon i atlaset skal staa som node."""
+    """Every cosmological observation in the atlas must stand as a node."""
     ids = {n["id"] for n in _instance()["nodes"]}
     for obs_id in KOSMOLOGISKE_OBSERVASJONER:
-        assert obs_id in ids, f"mangler node: {obs_id}"
+        assert obs_id in ids, f"missing node: {obs_id}"
 
 
 def test_observations_are_coupled_to_regimes():
-    """Hver observasjon skal vaere koblet til sine regime(r) med
-    OBSERVED_IN — ikke bare ligge loest i atlaset."""
+    """Every observation must be coupled to its regime(s) with OBSERVED_IN —
+    not just lie loose in the atlas."""
     rels = _instance()["relations"]
-    koblede = {(r["subject"], r["object"])
+    coupled = {(r["subject"], r["object"])
                for r in rels if r["predicate"] == "OBSERVED_IN"}
-    for obs_id, regimer in KOSMOLOGISKE_OBSERVASJONER.items():
-        for regime in regimer:
-            assert (obs_id, regime) in koblede, \
-                f"mangler OBSERVED_IN-kobling: {obs_id} -> {regime}"
+    for obs_id, regimes in KOSMOLOGISKE_OBSERVASJONER.items():
+        for regime in regimes:
+            assert (obs_id, regime) in coupled, \
+                f"missing OBSERVED_IN coupling: {obs_id} -> {regime}"
 
 
 def test_bao_is_standard_ruler():
-    """BAO-noden skal deklarere lydhorisonten r_d som standardlinjal —
-    den eneste kjente fysiske lengden i kosmologien."""
+    """The BAO node must declare the sound horizon r_d as the standard ruler
+    — the only known physical length in cosmology."""
     inst = _instance()
     bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
-    tekst = (bao["regime"]["validity"] + " " + bao["episenter"]).upper()
-    assert "R_D" in tekst or "STANDARDLINJAL" in tekst or \
-        "STANDARD RULER" in tekst or "LYDHORISONT" in tekst
+    text = (bao["regime"]["validity"] + " " + bao["episenter"]).upper()
+    assert "R_D" in text or "STANDARDLINJAL" in text or \
+        "STANDARD RULER" in text or "LYDHORISONT" in text
 
 
 def test_bao_declares_lag_axis_vs_phase_chain():
-    """BAO-noden skal deklarere at atlasets L-akse er en ANNEN inndeling
-    enn regime-nodenes fasekjede — aksene blandes ikke."""
+    """The BAO node must declare that the atlas's L axis is a DIFFERENT
+    division than the regime nodes' phase chain — the axes are not mixed."""
     inst = _instance()
     bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
     kilde = bao["ontology"]["source"].lower()
@@ -469,48 +472,48 @@ def test_bao_declares_lag_axis_vs_phase_chain():
 
 
 def test_observation_nodes_sourced_from_atlas():
-    """Hver observasjonsnode skal peke til atlas.json som kilde —
-    koblingen er maskinelt forankret, ikke ad hoc."""
+    """Every observation node must point to atlas.json as its source — the
+    coupling is machine-anchored, not ad hoc."""
     inst = _instance()
-    noder = {n["id"]: n for n in inst["nodes"]}
+    nodes = {n["id"]: n for n in inst["nodes"]}
     for obs_id in KOSMOLOGISKE_OBSERVASJONER:
-        kilde = noder[obs_id]["ontology"]["source"].lower()
-        assert "atlas.json" in kilde or "validation-ledger" in kilde, \
-            f"{obs_id}: kilde peker ikke til atlaset"
+        source = nodes[obs_id]["ontology"]["source"].lower()
+        assert "atlas.json" in source or "validation-ledger" in source, \
+            f"{obs_id}: source does not point to the atlas"
 
 
-# Forbudte strenger for vernet under, bygd av de samme delene som over.
+# Forbidden strings for the guard below, built from the same parts as above.
 FORBUDTE_ADRESSER = (HJEM, POSTSTED, HJEM + " 5")
 
 
 def test_ingen_privat_info_i_hele_repoet():
-    """Regresjonsvern (utvidet 2026-09-17): hjemmeadressen skal ikke finnes i
-    NOEN sporet fil — vakten dekket bare schema-mappen, og efc-toolkit lakk
-    adresse + telefon i 13 filer.
+    """Regression guard (extended 2026-09-17): the home address must not exist
+    in ANY tracked file — the guard covered only the schema folder, and
+    efc-toolkit leaked address + phone in 13 files.
 
-    Leser git-treet, ikke disken (`_repo_tre`). En `rglob` over arbeidsstreet
-    fant `.worktrees/` i hovedklonen — gitignorert, men på disk — og felt
-    testen på filer som ikke er i repoet.
+    Reads the git tree, not the disk (`_repo_tre`). An `rglob` over the work
+    tree found `.worktrees/` in the main clone — gitignored, but on disk — and
+    failed the test on files that are not in the repo.
     """
-    for sti in _tre_filer(_REPO):
-        if sti.suffix.lower() in (".csv", ".png", ".pdf", ".jpg", ".pyc"):
-            continue  # vitenskapelige data / kompilert cache
+    for path in _tre_filer(_REPO):
+        if path.suffix.lower() in (".csv", ".png", ".pdf", ".jpg", ".pyc"):
+            continue  # scientific data / compiled cache
         try:
-            raw = sti.read_text(encoding="utf-8", errors="ignore")
+            raw = path.read_text(encoding="utf-8", errors="ignore")
         except OSError:
             continue
-        for forbudt in FORBUDTE_ADRESSER:
-            if forbudt in raw:
+        for forbidden in FORBUDTE_ADRESSER:
+            if forbidden in raw:
                 raise AssertionError(
-                    f"privat adresse lekker: {sti.relative_to(_REPO).as_posix()}")
+                    f"private address leaks: {path.relative_to(_REPO).as_posix()}")
 
 
 def test_ingen_tomme_redaksjons_felt_i_toolkit():
-    """Review-krav PR #455 r2: redaksjonen må ikke etterlate
-    «felt»: , — feltet skal fjernes, ikke tømmes."""
-    for sti in Path("docs/papers/efc").rglob("*"):
-        if not sti.is_file() or sti.suffix not in (".json", ".jsonld"):
+    """Review requirement PR #455 r2: the edit must not leave
+    "field": , behind — the field must be removed, not emptied."""
+    for path in Path("docs/papers/efc").rglob("*"):
+        if not path.is_file() or path.suffix not in (".json", ".jsonld"):
             continue
-        raw = sti.read_text(encoding="utf-8", errors="ignore")
+        raw = path.read_text(encoding="utf-8", errors="ignore")
         if re.search(r'"[^"]+"\s*:\s*,', raw):
-            raise AssertionError(f"tomt felt etter redaksjon: {sti}")
+            raise AssertionError(f"empty field after edit: {path}")

@@ -1,8 +1,8 @@
-"""Forseglings-test for L-043/L-044-pre-registreringen.
+"""Sealing test for the L-043/L-044 pre-registration.
 
-Mønsteret fra sealed_fs8_repro: forseglingen er en HASH som testes —
-endringer i pre-reg-dokumentet etter forsegling feiler testen, og
-krever et nytt dokument (ikke redigering).
+The pattern from sealed_fs8_repro: the seal is a HASH that is tested —
+changes to the pre-reg document after sealing fail the test, and
+require a new document (not editing).
 """
 from __future__ import annotations
 
@@ -15,9 +15,9 @@ import pytest
 DOK = Path("docs/papers/efc/EFC_L043_L044_PreRegistration/README.md")
 REGISTER = Path("docs/validation-ledger/data/evidence-register.json")
 
-# Forseglet 2026-09-17 — UAVHENGIG forventet digest, hardkodet her
-# (review-krav PR #452 r1: digesten må ikke beregnes dynamisk fra
-# fila, ellers kan dokument OG register endres sammen og passere).
+# Sealed 2026-09-17 — INDEPENDENT expected digest, hardcoded here
+# (review requirement PR #452 r1: the digest must not be computed
+# dynamically from the file, else document AND register change together).
 FORSEGLET = ("6dc7f912341529412e3f4e5c37d241e9"
              "28f683d35ce7aa50f5ee46ef820080a7")
 
@@ -34,14 +34,14 @@ def _register() -> dict:
 
 
 def test_pre_reg_dokumentet_finnes():
-    assert DOK.exists(), "pre-reg-dokumentet mangler"
+    assert DOK.exists(), "the pre-reg document is missing"
 
 
 def test_forseglingen_er_registrert():
     reg = _register()
     poster = reg.get("forseglinger", [])
     assert any(p.get("dok") == str(DOK) for p in poster), \
-        "forseglingen mangler i evidence-registeret"
+        "the seal is missing from the evidence register"
 
 
 def test_forseglingen_matcher_registeret():
@@ -49,60 +49,60 @@ def test_forseglingen_matcher_registeret():
     for p in reg.get("forseglinger", []):
         if p.get("dok") == str(DOK):
             assert p.get("sha256") == FORSEGLET, (
-                "registeret avviker fra den hardkodede digesten — "
-                "endringer i register OG dokument kan ikke begge passere")
+                "the register differs from the hardcoded digest — "
+                "changes to register AND document cannot both pass")
             return
-    pytest.fail("forseglingen ikke funnet")
+    pytest.fail("the seal was not found")
 
 
 def test_filen_matcher_den_hardkodede_digesten():
-    """Uavhengig digest-kontroll: filen selv må matche konstanten —
-    redigering etter forsegling krever nytt dokument."""
+    """Independent digest check: the file itself must match the constant —
+    editing after sealing requires a new document."""
     assert _fil_sha() == FORSEGLET, (
-        "dokumentet er endret etter forsegling — et nytt dokument "
-        "kreves, ikke redigering")
+        "the document was changed after sealing — a new document "
+        "is required, not editing")
 
 
 TESTPLAN = Path("docs/papers/efc/EFC_L043_L044_PreRegistration/testplan.md")
 
 
 def test_lag_b_finnes_og_er_registrert():
-    """To-lagsdesignet er håndhevbart: testplanen (Lag B) må finnes
-    og være registrert i evidence-registeret (review-krav r3)."""
-    assert TESTPLAN.exists(), "testplanen (Lag B) mangler"
+    """The two-layer design is enforceable: the test plan (Lag B) must exist
+    and be registered in the evidence register (review requirement r3)."""
+    assert TESTPLAN.exists(), "the test plan (Lag B) is missing"
     reg = _register()
     assert any(p.get("dok") == str(TESTPLAN)
                for p in reg.get("forseglinger", [])), \
-        "Lag B er ikke registrert i evidence-registeret"
+        "Lag B is not registered in the evidence register"
 
 
 def test_lag_b_maaler_ingen_trengsel():
-    """Ingen måling kan skje før Lag B er FORSEGLET — testen feiler
-    hvis noen fjerner placeholder-statusen uten å forsegle, og feiler
-    aldri for en korrekt forseglet eller korrekt åpen plan."""
+    """No measurement may happen before Lag B is SEALED — the test fails
+    if someone removes the placeholder status without sealing, and never
+    fails for a correctly sealed or correctly open plan."""
     tekst = TESTPLAN.read_text(encoding="utf-8")
     reg = _register()
     post = next((p for p in reg.get("forseglinger", [])
                  if p.get("dok") == str(TESTPLAN)), None)
     forseglet = bool(post and post.get("sha256"))
     if "Status: FORSEGLET" in tekst:
-        assert forseglet, ("testplanen erklærer FORSEGLET uten "
-                           "SHA-registrering — forseglingen er ugyldig")
+        assert forseglet, ("the test plan declares FORSEGLET without "
+                           "SHA registration — the seal is invalid")
     else:
         assert "IKKE LÅST" in tekst, (
-            "testplanen har verken FORSEGLET-status eller ærlig "
-            "IKKE-LÅST-status")
+            "the test plan has neither a FORSEGLET status nor an honest "
+            "IKKE-LÅST status")
 
 
 def test_prediksjonene_har_falsifikatorer():
-    """Hver prediksjon skal ha en eksplisitt falsifikator —
-    KILL-matrise-disippelen."""
+    """Every prediction must have an explicit falsifier —
+    the KILL matrix discipline."""
     tekst = DOK.read_text(encoding="utf-8")
     assert tekst.count("**Falsifikator:**") == 3, \
-        "alle tre prediksjonene skal ha falsifikatorer"
+        "all three predictions must have falsifiers"
 
 
 def test_avhengigheten_er_deklarert():
-    """P2s manglende datakilde skal være deklarert, ikke skjult."""
+    """P2's missing data source must be declared, not hidden."""
     tekst = DOK.read_text(encoding="utf-8")
     assert "ingen kilde på bussen ennå" in tekst

@@ -1,10 +1,10 @@
-"""Test av Victron-lademotoren (trinn 8): CC->CV-kneet i tidsserier.
+"""Test of the Victron charge engine (step 8): the CC->CV knee in time series.
 
-Motoren klassifiserer lade-regimet (0=CC, 1=CV) langs tiden — samme
-mønster som WaterPhaseEngine klassifiserer faser i P-T-rommet. Kneet er
-overgangen i label-serien.
+The engine classifies the charge regime (0=CC, 1=CV) along time — the same
+pattern as WaterPhaseEngine classifying phases in P-T space. The knee is the
+transition in the label series.
 
-TDD: skrives foer motoren finnes — skal feile ved import.
+TDD: written before the engine exists — must fail at import.
 """
 from __future__ import annotations
 
@@ -20,8 +20,8 @@ def syntetisk_cccv(t_k: float = 60.0, dt: float = 1.0, n: int = 200,
                    v_start: float = 3.2, v_k: float = 3.45,
                    i_cc: float = 10.0, tau: float = 30.0,
                    stoy: float = 0.0, seed: int = 42) -> tuple:
-    """Ren CC/CV-ladekurve: konstant strøm + stigende spenning (CC),
-    deretter konstant spenning + eksponentielt avtagende strøm (CV)."""
+    """Pure CC/CV charge curve: constant current + rising voltage (CC),
+    then constant voltage + exponentially falling current (CV)."""
     rng = np.random.default_rng(seed)
     t = np.arange(n) * dt
     v = np.empty(n)
@@ -51,25 +51,25 @@ def params_for(t, v, i, v_knee_tol=0.05, di_threshold=0.1,
 
 
 def bro_kanoniske() -> dict:
-    """Kanoniske parametre for motorens ATLAS-NODE.
+    """Canonical parameters for the engine's ATLAS NODE.
 
-    Én kilde for testen og bro-synken (scripts/maintenance/efc_bro_synk.py):
-    parametrene finnes ikke som et modulnivaa-dict her — de KONSTRUERES av
-    den syntetiske CC/CV-kurven testene selv bruker, og en synk som gjettet
-    ville maalt en annen node enn testen.
+    One source for the test and the bridge sync (scripts/maintenance/
+    efc_bro_synk.py): the parameters do not exist as a module-level dict here —
+    they are CONSTRUCTED by the synthetic CC/CV curve the tests use, and a sync
+    that guessed would measure a different node than the test.
     """
     return params_for(*syntetisk_cccv())
 
 
 # ---------------------------------------------------------------------------
-# Klassifisering langs tiden
+# Classification along time
 # ---------------------------------------------------------------------------
 
 def test_ren_cccv_klassifiserer_regimer():
     t, v, i = syntetisk_cccv(t_k=60.0)
     engine = VictronChargeEngine()
     labels = engine.compute(params_for(t, v, i), t)
-    # Foer kneet: CC (0); etter: CV (1). Kneet ligger ved t=60 (indeks 60).
+    # Before the knee: CC (0); after: CV (1). The knee sits at t=60 (index 60).
     assert np.all(labels[:55] == 0)
     assert np.all(labels[65:] == 1)
 
@@ -79,13 +79,13 @@ def test_find_knee_treffer_kjent_kne():
     engine = VictronChargeEngine()
     knee = engine.find_knee(params_for(t, v, i), t)
     assert knee["found"] is True
-    assert abs(knee["t_knee"] - 60.0) <= 2.0  # innenfor 2*dt
+    assert abs(knee["t_knee"] - 60.0) <= 2.0  # within 2*dt
     assert abs(knee["v_knee"] - 3.45) < 0.1
-    assert knee["i_knee"] > 5.0  # strømmen er fortsatt nær CC-nivå ved kneet
+    assert knee["i_knee"] > 5.0  # the current is still near the CC level
 
 
 def test_ingen_kne_uten_lading():
-    """Flat serie (batteri i ro): ingen overgang — found=False, labels 0."""
+    """Flat series (battery at rest): no transition — found=False, labels 0."""
     t = np.arange(100, dtype=float)
     v = np.full(100, 3.3)
     i = np.zeros(100)
@@ -97,22 +97,22 @@ def test_ingen_kne_uten_lading():
 
 
 def test_stoy_robust():
-    """Kneet skal finnes ogsa med maalestoey paa V og I."""
+    """The knee must be found also with measurement noise on V and I."""
     t, v, i = syntetisk_cccv(t_k=60.0, stoy=0.02, seed=7)
     engine = VictronChargeEngine()
     knee = engine.find_knee(params_for(t, v, i, v_knee_tol=0.10,
                                        di_threshold=0.05), t)
     assert knee["found"] is True
-    assert abs(knee["t_knee"] - 60.0) <= 5.0  # stoey => loosere toleranse
+    assert abs(knee["t_knee"] - 60.0) <= 5.0  # noise => looser tolerance
 
 
 def test_solstyrt_lading_finner_ikke_falskt_kne():
-    """Kilde-kontrakten (maalt mot levende VRM-data): solstyrt lading
-    har VARIABEL effekt — strømmen foelger solkurven, ikke et CC-plataa.
-    Motoren skal si found=False i stedet for aa kalle soltoppen for
-    CV-start."""
-    t = np.arange(400, dtype=float) * 60.0  # minutt-opploesning
-    # Myk solkurve: stiger, topper ved t ~ 3.3 timer, synker.
+    """The source contract (measured against live VRM data): solar-driven
+    charging has VARIABLE power — the current follows the solar curve, not a
+    CC plateau. The engine must say found=False instead of calling the solar
+    peak a CV start."""
+    t = np.arange(400, dtype=float) * 60.0  # minute resolution
+    # Soft solar curve: rises, peaks at t ~ 3.3 hours, falls.
     i = 10.0 * np.sin(np.pi * np.arange(400) / 400.0) + 0.5
     v = np.minimum(3.2 + 0.25 * (np.arange(400) / 400.0), 3.45)
     engine = VictronChargeEngine()
@@ -121,8 +121,8 @@ def test_solstyrt_lading_finner_ikke_falskt_kne():
 
 
 def test_klassifiserer_fortsatt_ladefase_paa_grove_data():
-    """Paa grove data klassifiserer motoren fortsatt lading vs ikke-
-    lading — CC/CV-kneet er ikke synlig, men ladefasen er det."""
+    """On coarse data the engine still classifies charging vs non-charging —
+    the CC/CV knee is not visible, but the charge phase is."""
     t, v, i = syntetisk_cccv(t_k=7200.0, dt=60.0, n=400, tau=3600.0)
     def midle(s):
         return np.array([s[k:k + 15].mean() for k in range(0, 400, 15)])
@@ -131,15 +131,15 @@ def test_klassifiserer_fortsatt_ladefase_paa_grove_data():
     i15 = midle(i)
     engine = VictronChargeEngine()
     labels = engine.compute(params_for(t15, v15, i15), t15)
-    # Hele serien er en ladefase med synkende stroem over tid; motoren
-    # skal ikke krasje og returnere like mange labels som punkter.
+    # The whole series is a charge phase with falling current over time; the
+    # engine must not crash and returns as many labels as points.
     assert len(labels) == len(t15)
     assert set(np.unique(labels)) <= {0, 1}
 
 
 def test_labels_same_length_as_coordinates():
-    """compute() skal returnere like mange labels som koordinater
-    (engine-kontrakten)."""
+    """compute() must return as many labels as coordinates (the engine
+    contract)."""
     t, v, i = syntetisk_cccv()
     engine = VictronChargeEngine()
     labels = engine.compute(params_for(t, v, i), t)
@@ -147,13 +147,13 @@ def test_labels_same_length_as_coordinates():
 
 
 # ---------------------------------------------------------------------------
-# Ugyldig input — NaN-kontrakt
+# Invalid input — the NaN contract
 # ---------------------------------------------------------------------------
 
 def test_ugyldig_input_gir_ikke_krasj():
     engine = VictronChargeEngine()
     t = np.arange(10, dtype=float)
-    # Ulik lengde V/I
+    # Different lengths for V/I
     darlig = {
         "v_series": np.ones(10),
         "i_series": np.ones(5),
@@ -181,7 +181,7 @@ def test_validate_params_krever_serier():
 
 
 def test_compute_none_params_lukket():
-    """compute(None, ...) skal ikke kaste — lukket håndtering (zeros)."""
+    """compute(None, ...) must not raise — closed handling (zeros)."""
     engine = VictronChargeEngine()
     t = np.arange(20, dtype=float)
     labels = engine.compute(None, t)
@@ -190,7 +190,7 @@ def test_compute_none_params_lukket():
 
 
 def test_ugyldige_terskler_lukket():
-    """Negative/ikke-endelige terskler => ingen overgang (zeros)."""
+    """Negative/non-finite thresholds => no transition (zeros)."""
     engine = VictronChargeEngine()
     t, v, i = syntetisk_cccv(t_k=60.0)
     for darlig_tol, darlig_di in [(-0.05, 0.1), (0.05, -0.1),
@@ -201,27 +201,27 @@ def test_ugyldige_terskler_lukket():
 
 
 def test_ikke_monotone_tider_lukket():
-    """Uordnede tidskoordinater => zeros, ingen krasj."""
+    """Unordered time coordinates => zeros, no crash."""
     engine = VictronChargeEngine()
     t, v, i = syntetisk_cccv(t_k=60.0)
     t_kaos = t.copy()
-    t_kaos[10] = t_kaos[9] - 5.0  # bryter monotoni
+    t_kaos[10] = t_kaos[9] - 5.0  # breaks monotonicity
     labels = engine.compute(params_for(t, v, i), t_kaos)
     assert np.all(labels == 0)
 
 
 def test_dt_uavhengighet():
-    """Samme fysiske kurve, ulik sampling => samme t_knee.
+    """Same physical curve, different sampling => same t_knee.
 
-    Terskelen di_threshold er per TIDSENHET (dI/dt), ikke per sample —
-    motoren skal dele på faktisk dt. Dekimering av en fin serie maa
-    gi samme kne-tidspunkt."""
+    The di_threshold threshold is per TIME UNIT (dI/dt), not per sample — the
+    engine must divide by the actual dt. Decimating a fine series must give the
+    same knee time."""
     engine = VictronChargeEngine()
     t, v, i = syntetisk_cccv(t_k=60.0, dt=1.0, n=200)
     knee_fin = engine.find_knee(params_for(t, v, i), t)
     assert knee_fin["found"] is True
     assert abs(knee_fin["t_knee"] - 60.0) <= 4.0
-    # Samme kurve, hvert 10. sample (dt=10).
+    # Same curve, every 10th sample (dt=10).
     step = 10
     t10, v10, i10 = t[::step], v[::step], i[::step]
     knee_grov = engine.find_knee(params_for(t10, v10, i10), t10)
@@ -230,17 +230,17 @@ def test_dt_uavhengighet():
 
 
 def test_dt_skalering_mutersikker():
-    """Dekay som er SUB-terskel per tidsenhet men SUPER-terskel per
-    sample skal IKKE gi kne — motoren MA dele på faktisk dt.
+    """A decay that is SUB-threshold per time unit but SUPER-threshold per
+    sample must NOT give a knee — the engine MUST divide by the actual dt.
 
-    Mutasjonsfølsom: med /2.0 i stedet for /dt_mid blir |dI/dt| per
-    sample 0.6/2 = 0.3 > terskelen, og koden ville finne et falskt kne."""
-    step = 60.0  # sample hvert 60. sekund
+    Mutation-sensitive: with /2.0 instead of /dt_mid, |dI/dt| per sample
+    becomes 0.6/2 = 0.3 > the threshold, and the code finds a false knee."""
+    step = 60.0  # sample every 60 seconds
     n = 120
     t = np.arange(n) * step
     v = np.full(n, 3.45)
     i = np.full(n, 10.0)
-    # Svak dekay: -0.01 A/s => -0.6 A per sample (langt over 0.05).
+    # Weak decay: -0.01 A/s => -0.6 A per sample (far above 0.05).
     i[60:] = 10.0 - 0.01 * (t[60:] - t[60])
     engine = VictronChargeEngine()
     knee = engine.find_knee(params_for(t, v, i, di_threshold=0.05), t)
@@ -248,33 +248,33 @@ def test_dt_skalering_mutersikker():
 
 
 def test_enkeltstaaende_stroemspike_gir_ikke_kne():
-    """Én negativ spike midt i flatt CC-plataa => ingen overgang.
+    """One negative spike in the middle of a flat CC plateau => no transition.
 
-    Krav: overgangen krever et bekreftelsesvindu — ett punkt er ikke
-    nok til aa skru alle etterfoelgende samples til CV."""
+    Requirement: the transition needs a confirmation window — one point is not
+    enough to switch every subsequent sample to CV."""
     n = 200
     t = np.arange(n, dtype=float)
     i = np.full(n, 10.0)
-    i[100] = 9.0  # enkeltstaaende spike ned
-    v = np.full(n, 3.45)  # naer grensen: near_limit er oppfylt
+    i[100] = 9.0  # single isolated spike down
+    v = np.full(n, 3.45)  # near the limit: near_limit is satisfied
     engine = VictronChargeEngine()
     knee = engine.find_knee(params_for(t, v, i), t)
     assert knee["found"] is False
 
 
 def test_stroemrebound_etter_falskt_decay():
-    """Kort decay + rebound (soltopp) foer det ekte kneet => det EKTE
-    kneet finnes, ikke det falske."""
+    """Short decay + rebound (solar peak) before the real knee => the REAL
+    knee is found, not the false one."""
     n = 300
     t = np.arange(n, dtype=float)
-    v = np.full(n, 3.45)  # flat, naer grensen
+    v = np.full(n, 3.45)  # flat, near the limit
     i = np.full(n, 10.0)
-    # Falsk decay + rebound ved k=80-85.
+    # False decay + rebound at k=80-85.
     i[80] = 9.9
     i[81] = 9.8
     i[82] = 10.0
     i[83] = 10.0
-    # Ekte CV-start ved k=150: eksponentielt avtagende.
+    # Real CV start at k=150: exponentially decaying.
     i[150:] = 10.0 * np.exp(-(np.arange(150, n) - 150) / 30.0)
     engine = VictronChargeEngine()
     knee = engine.find_knee(params_for(t, v, i), t)
@@ -283,26 +283,26 @@ def test_stroemrebound_etter_falskt_decay():
 
 
 # ---------------------------------------------------------------------------
-# regime_node()-broen (trinn 4-mønsteret)
+# the regime_node() bridge (the step 4 pattern)
 # ---------------------------------------------------------------------------
 
 def test_regime_node_bro():
-    """Motoren beskriver seg selv som regime-node — broen til atlaset."""
+    """The engine describes itself as a regime node — the atlas bridge."""
     t, v, i = syntetisk_cccv()
     engine = VictronChargeEngine()
     node = engine.regime_node(params_for(t, v, i))
     assert node["id"] == "efc.victron_cccv_engine"
-    # Noden skal deklarere koblingen til batteri.lading (CC/CV-overgangen).
+    # The node must declare its coupling to batteri.lading (the CC/CV knee).
     koblinger = [r for r in node.get("couplings", [])]
     if koblinger:
         assert any("batteri.lading" in str(k) for k in koblinger)
-    # Og gyldighetsomraadet skal nevne CC og CV.
+    # And the validity range must mention CC and CV.
     assert "CC" in node["regime"]["validity"] and "CV" in node["regime"]["validity"]
 
 
 def test_regime_node_validity_reflekterer_parametre():
-    """Validity-strengen skal baere de EFFEKTIVE parametrene — ikke
-    hardkodede default-tall — saa broen er generisk."""
+    """The validity string must carry the EFFECTIVE parameters — not hardcoded
+    default numbers — so the bridge is generic."""
     engine = VictronChargeEngine()
     t, v, i = syntetisk_cccv()
     node = engine.regime_node(params_for(t, v, i, v_knee_tol=0.20,
@@ -312,9 +312,9 @@ def test_regime_node_validity_reflekterer_parametre():
 
 
 def test_engine_node_matches_atlas():
-    """Maskinell konsistens: motorens regime_node() skal stemme med
-    atlas-noden i regime_nodes.jsonld — samme id, samme validity-tall,
-    og CARRIES-kobling til batteri.lading."""
+    """Mechanical consistency: the engine's regime_node() must agree with the
+    atlas node in regime_nodes.jsonld — same id, same validity numbers, and a
+    CARRIES relation to batteri.lading."""
     import json
     from pathlib import Path
     t, v, i = syntetisk_cccv()

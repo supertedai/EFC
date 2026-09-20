@@ -1,14 +1,14 @@
-"""Tester for KlimaEngine — strålingsbalanse som energiflyt (L-040).
+"""Tests for KlimaEngine — radiative balance as energy flow (L-040).
 
-Klimaets energibalansemodell er EFC i ren form på jorden: energi inn
-(sol), buffer (havets varmekapasitet, is-albedo), terskeloverganger
-(iskollaps). Motoren er en IDEALISERT 0D-energibalansemodell — IKKE en
-klimamodell-konkurrent, og det står i selvbeskrivelsen.
+The climate's energy-balance model is EFC in pure form on Earth: energy in
+(sun), buffer (the ocean's heat capacity, ice albedo), threshold transitions
+(ice collapse). The engine is an IDEALISED 0D energy-balance model — NOT a
+climate-model competitor, and that is stated in the self-description.
 
-Kortet navnga TO regimebrytere: is-albedo og AMOC. Bare is-albedo er
-kodet. AMOC-bryteren er VURDERT og BEVISST UTELATT (t_9978fc90) — den
-avgrensningen testes eksplisitt nedenfor, så fraværet ikke kan bli
-taushet igjen.
+The card named TWO regime switches: ice albedo and AMOC. Only ice albedo is
+coded. The AMOC switch is CONSIDERED and DELIBERATELY OMITTED (t_9978fc90) — that
+boundary is tested explicitly below, so the absence cannot become
+silence again.
 """
 from __future__ import annotations
 
@@ -19,22 +19,22 @@ from efc_inference.engine.klima import KlimaEngine
 
 PARAMS = {
     "solarkonstant": 1361.0,       # W/m^2
-    "albedo": 0.30,                # jordas gjennomsnitt
-    "emissivitet": 0.61,           # effektiv (drivhuseffekt inkludert)
+    "albedo": 0.30,                # the Earth's average
+    "emissivitet": 0.61,           # effective (greenhouse effect included)
     "stefan_boltzmann": 5.670374419e-8,  # W/(m^2 K^4)
-    "hav_varmekapasitet": 1.0e8,   # J/(m^2 K) — blandingslaget
+    "hav_varmekapasitet": 1.0e8,   # J/(m^2 K) — the mixed layer
 }
 
 
 def test_likevektstemperatur_maten():
-    """Jordas effektive likevektstemperatur: ~288 K med drivhus."""
+    """The Earth's effective equilibrium temperature: ~288 K with a greenhouse."""
     e = KlimaEngine()
     t = e.likevektstemperatur(PARAMS)
-    assert 280.0 < t < 295.0  # jorda ligger her med drivhus
+    assert 280.0 < t < 295.0  # the Earth sits here with a greenhouse
 
 
 def test_likevektstemperatur_uten_drivhus_kaldere():
-    """Med emissivitet 1 (svart legeme) og albedo 0.3: ~255 K."""
+    """With emissivity 1 (black body) and albedo 0.3: ~255 K."""
     params_uten = {**PARAMS, "emissivitet": 1.0}
     e = KlimaEngine()
     t = e.likevektstemperatur(params_uten)
@@ -44,45 +44,45 @@ def test_likevektstemperatur_uten_drivhus_kaldere():
 
 
 def test_is_albedo_tilbakekobling_er_positiv():
-    """Is-albedo: kaldere -> mer is -> høyere albedo -> enda kaldere.
-    Positiv tilbakekobling (forsterkning)."""
+    """Ice albedo: colder -> more ice -> higher albedo -> even colder.
+    Positive feedback (amplification)."""
     e = KlimaEngine()
     forsterkning = e.albedo_tilbakekobling(PARAMS, delta_t=-1.0)
-    assert forsterkning > 1.0  # forsterker, demper ikke
+    assert forsterkning > 1.0  # amplifies, does not damp
 
 
 def test_bufferen_demper_forstyrrelser():
-    """Havets varmekapasitet er bufferen: responsen på en
-    strålingsforstyrrelse er treg — dempet og forsinket."""
+    """The ocean's heat capacity is the buffer: the response to a
+    radiative perturbation is slow — damped and delayed."""
     e = KlimaEngine()
     respons = e.tidskonstant(PARAMS)
-    # tidskonstant = C / (4 eps sigma T^3) — år i praksis
+    # time constant = C / (4 eps sigma T^3) — years in practice
     assert respons > 0
-    assert respons / (365.25 * 86400) < 100  # under 100 år
+    assert respons / (365.25 * 86400) < 100  # under 100 years
 
 
 def test_regimeskifte_ved_albedo_terskel():
-    """Is-albedo-bryteren: over en terskel-albedo finnes ingen varm
-    likevekt — systemet faller til snøballjord."""
+    """The ice-albedo switch: above a threshold albedo there is no warm
+    equilibrium — the system falls to snowball Earth."""
     e = KlimaEngine()
     albedoer = np.linspace(0.3, 0.9, 7)
     stabile = [e.har_varm_likevekt({**PARAMS, "albedo": a})
                for a in albedoer]
-    # ved høy albedo forsvinner den varme likevekten
+    # at high albedo the warm equilibrium disappears
     assert stabile[-1] is False
     assert stabile[0] is True
 
 
 def test_hysterese_to_tilstandsavhengige_terskler():
-    """Ekte hysterese: systemet faller fra «varm» ved alpha_fall,
-    men returnerer fra «snøball» først ved alpha_retur (< alpha_fall).
-    I vinduet mellom dem avhenger svaret av TILSTANDEN."""
+    """Real hysteresis: the system falls from «varm» at alpha_fall,
+    but returns from «snøball» only at alpha_retur (< alpha_fall).
+    In the window between them the answer depends on the STATE."""
     e = KlimaEngine()
     alpha_fall = e._alpha_ved_frysepunkt(PARAMS)
     alpha_retur = PARAMS.get("alpha_retur", 0.35)
     assert alpha_retur < alpha_fall
-    # I hysteresebåndet: varm-tilstand sier «varm», snøball-tilstand
-    # sier «ingen varm likevekt»
+    # In the hysteresis band: the warm state says «varm», the snowball state
+    # says «no warm equilibrium»
     midt = (alpha_fall + alpha_retur) / 2
     p = {**PARAMS, "albedo": midt}
     assert e.har_varm_likevekt(p, tilstand="varm") is True
@@ -103,20 +103,20 @@ import json  # noqa: E402
 
 
 # ----------------------------------------------------------------------
-# AMOC-avgrensningen (t_9978fc90)
+# The AMOC boundary (t_9978fc90)
 #
-# Kortet for klima-motoren navngir to regimebrytere: is-albedo og AMOC.
-# Bare is-albedo er kodet. Disse testene holder avgrensningen synlig:
-# fraværet skal stå i selvbeskrivelsen, med grunn og med en henvisning
-# til hvor bryteren hører hjemme — og det skal fortsatt være SANT at
-# koden ikke har den.
+# The card for the climate engine names two regime switches: ice albedo and AMOC.
+# Only ice albedo is coded. These tests keep the boundary visible:
+# the absence must stand in the self-description, with a reason and a reference
+# to where the switch belongs — and it must still be TRUE that
+# the code does not have it.
 # ----------------------------------------------------------------------
 
 
 def test_amoc_bryteren_er_bevisst_utelatt_ikke_glemt():
-    """AMOC er VURDERT og BEVISST UTELATT. Avgrensningen skal stå i
-    moduldocstringen, i node.ontology.assumes og i node.regime.validity
-    — ikke bare i hodet på den som vurderte den."""
+    """AMOC is CONSIDERED and DELIBERATELY OMITTED. The boundary must stand in
+    the module docstring, in node.ontology.assumes and in node.regime.validity
+    — not only in the head of the one who assessed it."""
     import efc_inference.engine.klima as modul
 
     doc = (modul.__doc__ or "").lower()
@@ -135,9 +135,9 @@ def test_amoc_bryteren_er_bevisst_utelatt_ikke_glemt():
 
 
 def test_amoc_avgrensningen_oppgir_grunn_og_tilhørighet():
-    """En avgrensning uten grunn er en forglemmelse med finere ord.
-    Grunnen her: 0D-energibalansen har ingen sirkulasjonsvariabel.
-    Og den skal si hvor bryteren HØRER hjemme — egen motor, eget fag."""
+    """A boundary without a reason is an oversight in finer words.
+    The reason here: the 0D energy balance has no circulation variable.
+    And it must say where the switch BELONGS — its own engine, its own discipline."""
     node = KlimaEngine().regime_node(PARAMS)
     tekst = (node["regime"]["validity"] + " "
              + " ".join(node["ontology"]["assumes"])).lower()
@@ -148,15 +148,15 @@ def test_amoc_avgrensningen_oppgir_grunn_og_tilhørighet():
 
 
 def test_amoc_er_faktisk_ikke_kodet():
-    """Avgrensningen skal være SANN: det finnes ingen AMOC-bryter i
-    koden, og parameterrommet er fortsatt strålingsboksens. Koder noen
-    bryteren senere, må de røre deklarasjonen — testen gjør det
-    maskinelt synlig i stedet for stille."""
+    """The boundary must be TRUE: there is no AMOC switch in
+    the code, and the parameter space is still the radiation box's. If anyone
+    codes the switch later, they must touch the declaration — the test makes that
+    machine-visible instead of silent."""
     e = KlimaEngine()
     assert [m for m in dir(e) if "amoc" in m.lower()] == [], \
-        "AMOC er kodet — da holder ikke avgrensningen lenger"
+        "AMOC is coded — then the boundary no longer holds"
     for navn in ("ferskvann", "salinitet", "omvelting"):
         treff = [p for p in KlimaEngine.REQUIRED_PARAMS if navn in p.lower()]
-        assert treff == [], f"AMOC-parameter i REQUIRED_PARAMS: {treff}"
+        assert treff == [], f"AMOC parameter in REQUIRED_PARAMS: {treff}"
     assert len(KlimaEngine.REQUIRED_PARAMS) == 5, \
-        "REQUIRED_PARAMS er utvidet — oppdater AMOC-avgrensningen"
+        "REQUIRED_PARAMS has been extended — update the AMOC boundary"

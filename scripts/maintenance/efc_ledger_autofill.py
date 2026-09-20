@@ -187,12 +187,12 @@ def insert_into_changelog(changelog_text, items, year):
 
 
 def kanonisk_nav(innhold: str, sti: str) -> str:
-    """Navbaren for DENNE siden, eller innholdet uendret om den ikke kan hentes.
+    """The navbar for THIS page, or the content unchanged if it cannot be fetched.
 
-    Navbaren eies av ``efc_navbar_sync.py``; ``_nav_helper.ensure_nav`` spør
-    den om den kanoniske blokken for ``sti`` (med «du er her»-markeringen).
-    Uten sidens navn røres navbaren ikke i det hele tatt — en skriver skal
-    aldri kunne strippe markeringen til siden den skriver.
+    The navbar is owned by ``efc_navbar_sync.py``; ``_nav_helper.ensure_nav``
+    asks it for the canonical block for ``sti`` (with the "you are here"
+    marker). Without the page's name the navbar is not touched at all — a
+    writer must never be able to strip the marker for the page it writes.
     """
     try:
         import os as _os
@@ -205,7 +205,7 @@ def kanonisk_nav(innhold: str, sti: str) -> str:
 
 
 def skriv_side(sti: str, innhold: str) -> None:
-    """Skriv en offentlig side med kanonisk navbar for nettopp denne siden."""
+    """Write a public page with the canonical navbar for exactly this page."""
     with open(sti, "w", encoding="utf-8") as f:
         f.write(kanonisk_nav(innhold, sti))
 
@@ -250,9 +250,9 @@ def main():
         print("[efc-ledger-autofill] nothing to add — Ledger + Changelog already cover every empirical/sealed DOI")
         return 0
 
-    # Navbaren har én eier: efc_navbar_sync.py. Vi normaliserer den til den
-    # kanoniske blokken FOR DENNE SIDEN før vi skriver (se skriv_side), slik at
-    # autofyllingen aldri etterlater siden med navbar_drift.
+    # The navbar has one owner: efc_navbar_sync.py. We normalise it to the
+    # canonical block FOR THIS PAGE before writing (see skriv_side), so that
+    # the autofill never leaves the page with navbar_drift.
     if missing_ledger_items:
         skriv_side(LEDGER, insert_into_ledger(ledger_text, missing_ledger_items))
         print(f"[efc-ledger-autofill] Ledger: added {len(missing_ledger_items)} "

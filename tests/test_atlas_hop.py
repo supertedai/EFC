@@ -1,13 +1,14 @@
-"""KOBLINGENE — 1-hop, 2-hop, 3-hop.
+"""THE COUPLINGS — 1-hop, 2-hop, 3-hop.
 
-Morten, 2026-09-18: «kan du navigere med enkelhet nå og i dybde og se lokal
-global koblinger, se sammenhengene, 1hop, 2, hop, 3hop, rotere rundt hver
-fragment en observasjon vi gjør plasser alt i atalsest?»
+Morten, 2026-09-18 (translated from Norwegian): "can you navigate with ease now
+and in depth and see local global couplings, see the connections, 1hop, 2, hop,
+3hop, rotate around each fragment an observation we make places everything in
+the atlas?"
 
-MAALT: verktoeyet hadde `--emne`, `--akse`, `--node`, `--oversikt` og
-`--proxy`. Det hadde INGEN hopp. Koblingene fantes i dataene —
+MEASURED: the tool had `--emne`, `--akse`, `--node`, `--oversikt` and
+`--proxy`. It had NO hops. The couplings existed in the data —
 `nivaa.forelder`, `coupling.local/global`, `analogi`, `stipulasjoner.motor`,
-`buss_domene`, `measure.proxy_chain` — og ingen av dem kunne FOELGES.
+`buss_domene`, `measure.proxy_chain` — and none of them could be FOLLOWED.
 """
 from __future__ import annotations
 
@@ -30,22 +31,22 @@ def atlas() -> dict:
 class TestEttHopp:
 
     def test_naboer_finner_forelder_og_barn(self, atlas: dict) -> None:
-        """Hierarkiet er den sterkeste koblingen vi har."""
+        """The hierarchy is the strongest coupling we have."""
         n = atlas_lesing.naboer(atlas, "regnbue")
-        assert n, "regnbue har ingen naboer"
+        assert n, "regnbue has no neighbours"
         assert "optikk.dispersjon" in n.get("forelder", []), n.keys()
 
     def test_naboer_finner_samme_domene(self, atlas: dict) -> None:
-        """Noden velges fra DATAENE: bare 48 av 89 har et buss_domene."""
-        med = [x["id"] for x in atlas["noder"] if x.get("buss_domene")]
-        assert med, "ingen noder har buss_domene"
-        n = atlas_lesing.naboer(atlas, med[0])
-        assert n.get("samme_domene"), f"{med[0]} deler ikke domene med noen"
+        """The node comes from the DATA: only 48 of 89 have buss_domene."""
+        domain = [x["id"] for x in atlas["noder"] if x.get("buss_domene")]
+        assert domain, "no nodes have buss_domene"
+        n = atlas_lesing.naboer(atlas, domain[0])
+        assert n.get("samme_domene"), f"{domain[0]} shares no domain"
 
     def test_naboer_finner_delt_analogi(self, atlas: dict) -> None:
-        """Isomorfismen er en KOBLING, ikke bare et felt."""
+        """The isomorphism is a COUPLING, not just a field."""
         n = atlas_lesing.naboer(atlas, "homo.homeostase_buffer")
-        assert n.get("deler_analogi"), "analogi-noder skal lenkes sammen"
+        assert n.get("deler_analogi"), "analogy nodes must be linked together"
 
     def test_naboer_finner_samme_motor(self, atlas: dict) -> None:
         n = atlas_lesing.naboer(atlas, "h2o.solid")
@@ -53,7 +54,7 @@ class TestEttHopp:
 
     def test_ukjent_node_feiler(self, atlas: dict) -> None:
         with pytest.raises(KeyError):
-            atlas_lesing.naboer(atlas, "finnes.ikke")
+            atlas_lesing.naboer(atlas, "no.such.node")
 
 
 class TestFlereHopp:
@@ -61,7 +62,7 @@ class TestFlereHopp:
     def test_to_hopp_utvider_mengden(self, atlas: dict) -> None:
         ett = atlas_lesing.hop(atlas, "regnbue", 1)
         to = atlas_lesing.hop(atlas, "regnbue", 2)
-        assert len(to) > len(ett), f"2 hop ({len(to)}) gav ikke mer enn 1 ({len(ett)})"
+        assert len(to) > len(ett), f"2 hops ({len(to)}) <= 1 hop ({len(ett)})"
 
     def test_tre_hopp_utvider_enda(self, atlas: dict) -> None:
         to = atlas_lesing.hop(atlas, "regnbue", 2)
@@ -69,19 +70,19 @@ class TestFlereHopp:
         assert len(tre) >= len(to)
 
     def test_hopp_gir_stien_ikke_bare_mengden(self, atlas: dict) -> None:
-        """Dybden er poenget — HVORFOR henger de sammen, ikke bare at de gjor."""
+        """The depth is the point — WHY they connect, not just that they do."""
         stier = atlas_lesing.hop_stier(atlas, "regnbue", 2)
-        assert stier, "ingen stier"
+        assert stier, "no paths"
         nodesti, _ = next(iter(stier.values()))
-        assert len(nodesti) >= 2, f"stien er for kort: {nodesti}"
+        assert len(nodesti) >= 2, f"the path is too short: {nodesti}"
 
     def test_hopp_utelater_startnoden(self, atlas: dict) -> None:
         for n in atlas_lesing.hop(atlas, "regnbue", 3):
-            assert n != "regnbue", "startnoden skal ikke vaere sin egen nabo"
+            assert n != "regnbue", "the start node cannot be its own neighbour"
 
 
 class TestRotasjonRundtEtFragment:
-    """«rotere rundt hver fragment en observasjon vi gjor»."""
+    """(translated) "rotate around each fragment an observation we make"."""
 
     def test_fragment_gir_koblinger_og_felt(self, atlas: dict) -> None:
         f = atlas_lesing.fragment(atlas, "obsf.bao")
@@ -91,5 +92,5 @@ class TestRotasjonRundtEtFragment:
     def test_fragment_paa_ekte_node_gir_alt(self, atlas: dict) -> None:
         f = atlas_lesing.fragment(atlas, "regnbue")
         assert f["finnes"] is True
-        assert f["koblinger"], "regnbue skal ha koblinger"
+        assert f["koblinger"], "regnbue must have couplings"
         assert f["node"]["id"] == "regnbue"

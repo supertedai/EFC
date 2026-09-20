@@ -1,22 +1,25 @@
-"""Tester for atlasoppslaget — inngangen til atlaset.
+"""Tests for the atlas lookup — the entry point to the atlas.
 
-Maalt behov 2026-09-17: atlaset hadde en leser (`les_atlas`) men ingen
-inngang. Prisen for aa konsultere det var aa laste alle 82 noder og lete
-selv, saa det skjedde ikke spontant i samtale. Atlaset var en katalog man
-kan lese, ikke et oppslagsverk man kan spoerre.
+Measured need 2026-09-17: the atlas had a reader (`les_atlas`) but no
+entry point. The price of consulting it was loading all 82 nodes and
+searching by hand, so it never happened spontaneously in conversation.
+The atlas was a catalogue you could read, not a reference work you could
+query.
 
-Disse testene vernet om TRE ting, og de er ikke de samme:
+These tests defended THREE things, and they are not the same:
 
-  1. Oppslaget leser fra GIT-REFEN, ikke fra arbeidsstreet. Samme feilmodus
-     som `les_atlas` finnes for aa hindre — en kopi som svarer, leser som
-     et levende atlas. En mutant som bytter til arbeidsstreet skal felles.
+  1. The lookup reads from the GIT REF, not from the working tree. The
+     same failure mode `les_atlas` exists to prevent — a copy that
+     answers reads like a living atlas. A mutant that switches to the
+     working tree must be killed.
 
-  2. Et tomt svar er et SVAR. «Atlaset vet ikke» maa kunne skilles fra
-     «oppslaget feilet». En test som bare teller treff, kan ikke se det.
+  2. An empty answer is an ANSWER. "The atlas does not know" must be
+     distinguishable from "the lookup failed". A test that only counts
+     hits cannot see that.
 
-  3. Hvert treff navngir sin epistemiske status. Et oppslagsverk som lister
-     navn uten aa si hva som er kjent og hva som er stipulert, flytter
-     arbeidet tilbake til leseren.
+  3. Each hit names its epistemic status. A reference work that lists
+     names without saying what is known and what is stipulated moves the
+     work back to the reader.
 """
 
 from __future__ import annotations
@@ -42,7 +45,7 @@ def _git(repo: Path, *args: str) -> str:
 
 @pytest.fixture
 def ekte_repo() -> Path:
-    """Repoen testene kjoerer i — atlaset finnes paa origin/main eller HEAD."""
+    """The repo the tests run in — the atlas exists on origin/main or HEAD."""
     return REPO
 
 
@@ -66,15 +69,16 @@ class TestOppslagetSvarer:
 
     def test_kjent_emne_gir_treff(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
-        assert svar["antall"] > 0, "h2o skal finnes i atlaset"
+        assert svar["antall"] > 0, "h2o must exist in the atlas"
         assert svar["hull"] is False
 
     def test_ukjent_emne_er_et_hull_ikke_en_feil(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "kvantegravitasjon_xyzzy", ref="HEAD")
         assert svar["antall"] == 0
         assert svar["hull"] is True, (
-            "et tomt svar maa NAVNGIS som hull — 'atlaset vet ikke' er et "
-            "svar, og maa kunne skilles fra 'oppslaget feilet'")
+            "an empty answer must be NAMED as a hole — 'the atlas does not "
+            "know' is an answer, and must be distinguishable from 'the "
+            "lookup failed'")
 
     def test_soket_er_case_insensitivt(self, ekte_repo: Path) -> None:
         a = atlas_lesing.finn(ekte_repo, "H2O", ref="HEAD")
@@ -89,11 +93,11 @@ class TestKildenErNavngitt:
         assert svar["kilde"].startswith("git:")
 
     def test_oppslaget_leser_ikke_arbeidsstreet(self, tmp_path: Path) -> None:
-        """MUTANT-FELLE: en arbeidskopi som avviker skal ikke kunne svare.
+        """MUTANT KILL: a deviating working copy must not be able to answer.
 
-        Dette er hele grunnen til at modulen finnes. Lager en arbeidskopi med
-        en node som IKKE finnes i git-treet, og krever at oppslaget ikke ser
-        den naar det leser fra refen.
+        This is the whole reason the module exists. Builds a working copy
+        with a node that does NOT exist in the git tree, and requires that
+        the lookup does not see it when reading from the ref.
         """
         repo = tmp_path / "repo"
         repo.mkdir()
@@ -107,18 +111,19 @@ class TestKildenErNavngitt:
         _git(repo, "add", "-A")
         _git(repo, "commit", "-q", "-m", "x")
 
-        # Arbeidsstreet faar en node som IKKE er i git-treet.
+        # The working tree gets a node that is NOT in the git tree.
         (repo / "schema" / "regime_nodes.jsonld").write_text(
             json.dumps({"nodes": [{"id": "ekte.node"}, {"id": "spokelse.node"}]}),
             encoding="utf-8")
 
         svar = atlas_lesing.finn(repo, "spokelse", ref="HEAD")
         assert svar["antall"] == 0, (
-            "oppslaget leste arbeidsstreet — det er feilmodusen modulen finnes "
-            "for aa hindre. En ucommittet node skal ikke kunne svare.")
+            "the lookup read the working tree — that is the failure mode "
+            "the module exists to prevent. An uncommitted node must not "
+            "answer.")
         assert svar["hull"] is True
 
-        # ...og den ekte noden skal finnes, fra git-treet.
+        # ...and the real node must be found, from the git tree.
         assert atlas_lesing.finn(repo, "ekte", ref="HEAD")["antall"] == 1
 
 
@@ -126,130 +131,134 @@ class TestEpistemiskStatus:
     def test_hvert_treff_navngir_status(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
         for t in svar["treff"]:
-            assert "synlighet" in t, "et treff maa si om noden publiseres"
+            assert "synlighet" in t, "a hit must say whether the node is published"
             assert "har_falsifikator" in t, (
-                "et treff maa si om noden kan felles av en observasjon — "
-                "ellers kan leseren ikke skille en test fra en pastand")
+                "a hit must say whether the node can be killed by an "
+                "observation — otherwise the reader cannot tell a test "
+                "from a claim")
             assert "har_prediksjon" in t
             assert "har_oppgjoer" in t
 
     def test_falsifikator_telles_riktig(self, ekte_repo: Path) -> None:
-        """Nodene med `ville_falsifisere` skal merkes — de andre ikke."""
+        """The nodes with `ville_falsifisere` must be flagged — the others not."""
         atlas = atlas_lesing.les_atlas(ekte_repo, ref="HEAD")
-        med = [n["id"] for n in atlas["noder"]
-               if "ville_falsifisere" in json.dumps(n, ensure_ascii=False)]
-        assert med, "forutsetning: noen noder har ville_falsifisere"
-        svar = atlas_lesing.finn(ekte_repo, med[0].split(".")[0], ref="HEAD")
-        merket = [t for t in svar["treff"] if t["id"] == med[0]]
+        with_falsifier = [n["id"] for n in atlas["noder"]
+                          if "ville_falsifisere" in json.dumps(n, ensure_ascii=False)]
+        assert with_falsifier, "precondition: some nodes have ville_falsifisere"
+        svar = atlas_lesing.finn(ekte_repo, with_falsifier[0].split(".")[0], ref="HEAD")
+        merket = [t for t in svar["treff"] if t["id"] == with_falsifier[0]]
         assert merket and merket[0]["har_falsifikator"] is True
 
     def test_hull_sier_hva_som_ble_sokt(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "finnesikke", ref="HEAD")
         assert svar["emne"] == "finnesikke", (
-            "et hull maa navngi hva som ble søkt etter — ellers kan ikke "
-            "leseren se om hullet skyldes soket eller atlaset")
+            "a hole must name what was searched for — otherwise the reader "
+            "cannot see whether the hole comes from the search or the atlas")
 
 
 class TestFeilErIkkeStille:
     def test_ukjent_ref_reiser(self, ekte_repo: Path) -> None:
         with pytest.raises(atlas_lesing.AtlasLesingFeil):
-            atlas_lesing.finn(ekte_repo, "h2o", ref="finnes/ikke")
+            atlas_lesing.finn(ekte_repo, "h2o", ref="no/such/ref")
 
     def test_refen_er_parameter_ikke_hardkodet(self, ekte_repo: Path) -> None:
-        """Standardrefen skal vaere navngitt, ikke skjult i kallet."""
+        """The default ref must be named, not hidden inside the call."""
         assert atlas_lesing.STANDARD_REF == "origin/main"
         svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
         assert svar["ref"] == "HEAD"
 
 
 class TestTrefftypenErSynlig:
-    """Et delstreng-treff er ikke det samme som et ord-treff.
+    """A substring hit is not the same as a word hit.
 
-    Maalt 2026-09-17: `--emne sol` ga 20 treff, hvorav `h2o.solid` kom med
-    fordi «sol» er en delstreng av «solid». Et oppslagsverk som ikke skiller
-    disse, tvinger leseren til aa gjette hvilke treff som er ekte — og da
-    flyttet vi bare arbeidet tilbake til leseren.
+    Measured 2026-09-17: `--emne sol` gave 20 hits, of which `h2o.solid`
+    came along because "sol" is a substring of "solid". A reference work
+    that does not separate them forces the reader to guess which hits are
+    real — and then we merely moved the work back to the reader.
     """
 
     def test_fire_nivaaer_og_rekkefolgen(self, ekte_repo: Path) -> None:
         """`id` > `domene` > `ord` > `delstreng`.
 
-        «sol» traff `batteri.lading` som ORD — fordi ordet finnes i en tekst
-        inne i noden. Det er ikke det samme som at noden handler om sol.
-        Nivaaene maa derfor skilles: i id-en, som eget ord, som delstreng.
+        "sol" hit `batteri.lading` as a WORD — because the word exists in a
+        text inside the node. That is not the same as the node being about
+        the sun. The levels must therefore be separated: in the id, as a
+        standalone word, as a substring.
         """
         svar = atlas_lesing.finn(ekte_repo, "sol", ref="HEAD")
         assert svar["antall"] > 0
         typer = [t["trefftype"] for t in svar["treff"]]
-        assert "id" in typer, "lys.sol har sol i id-en"
+        assert "id" in typer, "lys.sol has sol in the id"
         for svakere, sterkere in (("domene", "id"), ("ord", "domene"),
                                   ("delstreng", "ord")):
             if svakere in typer and sterkere in typer:
                 assert typer.index(sterkere) < typer.index(svakere), (
-                    f"{sterkere} skal komme foran {svakere}")
+                    f"{sterkere} must come before {svakere}")
         rekkefolge = {"id": 0, "domene": 1, "ord": 2, "delstreng": 3}
         assert typer == sorted(typer, key=lambda x: rekkefolge[x]), (
-            f"feil rekkefolge: {typer}")
+            f"wrong order: {typer}")
 
     def test_delstreng_treffet_navngir_seg_selv(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "sol", ref="HEAD")
         solid = [t for t in svar["treff"] if t["id"] == "h2o.solid"]
-        assert solid, "forutsetning: h2o.solid finnes"
+        assert solid, "precondition: h2o.solid exists"
         assert solid[0]["trefftype"] == "delstreng"
 
     def test_id_treffet_er_id_treff(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "regnbue", ref="HEAD")
-        assert svar["treff"], "forutsetning: regnbue finnes"
+        assert svar["treff"], "precondition: regnbue exists"
         egne = [t for t in svar["treff"] if t["id"].startswith("regnbue")]
-        assert egne, "forutsetning: noden regnbue finnes"
+        assert egne, "precondition: the node regnbue exists"
         assert all(t["trefftype"] == "id" for t in egne), (
-            "naar emnet staar i node-id-en, er det et id-treff — det sterkeste")
-        # ...og de skal ligge foran alt som bare nevner ordet i teksten.
+            "when the topic stands in the node id, it is an id hit — the "
+            "strongest")
+        # ...and they must come before anything that merely mentions the word in text.
         typer = [t["trefftype"] for t in svar["treff"]]
         if "ord" in typer:
             assert typer.index("id") < typer.index("ord"), (
-                f"id-treff skal ligge foran ord-treff: {typer}")
+                f"id hits must come before word hits: {typer}")
 
 
 class TestSeparatorer:
-    """Underscore er en separator i id-er, ikke et ordtegn.
+    """Underscore is a separator in ids, not a word character.
 
-    Maalt i review 2026-09-17: `sovn` i `homo.sovn_vaaken` ble klassifisert
-    som `delstreng`, fordi `\\b` regner `_` som ordtegn. Men i node-id-er
-    skiller `_` ledd — `homo.sovn_vaaken`, `efc.solar_flare_engine`. Saa
-    `sovn` ER et eget ledd i id-en, og skal merkes som `id`, ikke svekkes
-    til en delstreng.
+    Measured in review 2026-09-17: `sovn` in `homo.sovn_vaaken` was
+    classified as `delstreng`, because `\\b` counts `_` as a word
+    character. But in node ids `_` separates parts — `homo.sovn_vaaken`,
+    `efc.solar_flare_engine`. So `sovn` IS a separate part of the id, and
+    must be marked `id`, not weakened to a substring.
     """
 
     def test_underscore_skiller_ledd_i_id(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "sovn", ref="HEAD")
         treff = [t for t in svar["treff"] if t["id"] == "homo.sovn_vaaken"]
-        assert treff, "forutsetning: homo.sovn_vaaken finnes"
+        assert treff, "precondition: homo.sovn_vaaken exists"
         assert treff[0]["trefftype"] == "id", (
-            f"`sovn` er et eget ledd i `homo.sovn_vaaken` — underscore "
-            f"skiller ledd, den limer dem ikke sammen. Fikk: {treff[0]['trefftype']}")
+            f"`sovn` is a separate part of `homo.sovn_vaaken` — underscore "
+            f"separates parts, it does not glue them together. Got: {treff[0]['trefftype']}")
 
     def test_bindestrek_skiller_ledd_i_id(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "dayahead", ref="HEAD")
         for t in svar["treff"]:
             if "-" in str(t["id"]):
                 assert t["trefftype"] == "id", (
-                    "ogsaa bindestrek skiller ledd i en id")
+                    "a hyphen also separates parts in an id")
 
     def test_delstreng_i_midten_av_et_ledd_er_fortsatt_delstreng(self, ekte_repo: Path) -> None:
-        """`sol` i `solid` skal FORTSATT vaere delstreng — skillet skal ikke slakkes."""
+        """`sol` in `solid` must STILL be a substring — the distinction must not loosen."""
         svar = atlas_lesing.finn(ekte_repo, "sol", ref="HEAD")
         solid = [t for t in svar["treff"] if t["id"] == "h2o.solid"]
         assert solid and solid[0]["trefftype"] == "delstreng", (
-            "`sol` er midt inne i leddet `solid` — det er en delstreng, "
-            "og skal ikke bli id-treff naar vi utvider separator-settet")
+            "`sol` is in the middle of the part `solid` — that is a "
+            "substring, and must not become an id hit when we widen the "
+            "separator set")
 
 
 class TestKommandolinjen:
-    """CLI-en er en PASTAND i PR-beskrivelsen — og den skal kunne kjores.
+    """The CLI is a CLAIM in the PR description — and it must be runnable.
 
-    Review 2026-09-17: `finn()` var dekket, men ikke subprocess-kjoringen.
-    En CLI som ikke testes, er en pastand om at den virker.
+    Review 2026-09-17: `finn()` was covered, but not the subprocess run.
+    A CLI that is not tested is a claim that it works.
     """
 
     def _kjoer(self, *args: str) -> subprocess.CompletedProcess:
@@ -270,21 +279,21 @@ class TestKommandolinjen:
         assert "THE ATLAS DOES NOT KNOW" in p.stdout
 
     def test_uten_emne_listes_hele_atlaset(self) -> None:
-        """Antallet leses fra kilden — ikke skrevet inn.
+        """The count is read from the source — not written in.
 
-        Foerste utgave hadde `assert "82 noder" in p.stdout`. Det var sant
-        da det ble skrevet, og usant samme kveld: atlaset gikk til 83 og
-        deretter 84, og testen feilet paa TALLET mens den trodde den
-        maalte at CLI-en lister hele atlaset. Et hardkodet tall blir
-        staaende lenger enn kilden sin og lyver til slutt — det er samme
-        klasse som resten av huset verner mot.
+        The first version had `assert "82 noder" in p.stdout`. It was true
+        when written, and false the same evening: the atlas went to 83 and
+        then 84, and the test failed on the NUMBER while it believed it was
+        measuring that the CLI lists the whole atlas. A hardcoded number
+        outlives its source and eventually lies — that is the same class
+        the rest of the house guards against.
 
-        Det som faktisk skal maales er at CLI-en og filen er ENIGE — og
-        filen maa leses fra SAMME sted som CLI-en. Foerste rettelse leste
-        arbeidsstreet mens CLI-en leste `--ref HEAD`; de gikk fra
-        hverandre i det oyeblikket en node var lagt til men ikke
-        committet. Arbeidsstreet og git-treet svarer ikke paa samme
-        spoersmaal — samme klasse en gang til.
+        What actually needs measuring is that the CLI and the file AGREE —
+        and the file must be read from the SAME place as the CLI. The first
+        fix read the working tree while the CLI read `--ref HEAD`; they
+        drifted apart the moment a node was added but not committed. The
+        working tree and the git tree do not answer the same question —
+        the same class once more.
         """
         import json as _json
         import subprocess as _sp
@@ -298,83 +307,85 @@ class TestKommandolinjen:
 
 
 class TestKjenteHull:
-    """«Atlaset vet ikke» og «dette er et KJENT hull» er ikke samme svar.
+    """"The atlas does not know" and "this is a KNOWN hole" are not the same answer.
 
-    Maalt 2026-09-17: `finn()` leste bare `regime_nodes.jsonld`, mens
-    dekningsstatusen ligger i `schema/atlas_dekning.json` (27 ikke_dekket,
-    6 delvis, 6 dekket). Et oppslagsverk som svarer «vet ikke» om noe noen
-    faktisk har maalt og funnet manglende, kaster bort det dyreste det vet.
+    Measured 2026-09-17: `finn()` read only `regime_nodes.jsonld`, while
+    the coverage status sits in `schema/atlas_dekning.json` (27
+    ikke_dekket, 6 delvis, 6 dekket). A reference work that answers "does
+    not know" about something someone actually measured and found missing
+    throws away the most expensive thing it knows.
     """
 
     def test_kjent_hull_navngis_som_kjent(self, ekte_repo: Path) -> None:
-        """Dekningsfilens form er maalt, ikke antatt: `domener` er en DICT
-        fra domenenavn til {status, noder, begrunnelse, emner}."""
+        """The coverage file's shape is measured, not assumed: `domener` is
+        a DICT from domain name to {status, noder, begrunnelse, emner}."""
         import json as _json
         dek = _json.loads(_git(ekte_repo, "show", "HEAD:schema/atlas_dekning.json"))
         domener = dek["domener"]
-        assert isinstance(domener, dict), "forutsetning: domener er en dict"
+        assert isinstance(domener, dict), "precondition: domener is a dict"
         ikke_dekket = [k for k, v in domener.items()
                        if isinstance(v, dict) and v.get("status") == "ikke_dekket"]
-        # 2026-09-18: alle 39 domener har naa en node. At lista er tom er
-        # maalet naadd — men da finnes det heller ingen kjent-hull-oppslag
-        # aa teste. Vi hopper aerlig over i stedet for aa feile paa at
-        # verden ble bedre.
+        # 2026-09-18: all 39 domains now have a node. An empty list means
+        # the goal is reached — but then there is no known-hole lookup to
+        # test either. We skip honestly instead of failing because the
+        # world got better.
         if not ikke_dekket:
             import pytest as _pytest
-            _pytest.skip("ingen kjente hull — alle 39 domener er dekket")
+            _pytest.skip("no known holes — all 39 domains are covered")
         svar = atlas_lesing.finn(ekte_repo, ikke_dekket[0], ref="HEAD")
         assert svar["kjent_hull"] is not None, (
-            f"`{ikke_dekket[0]}` er maalt som ikke_dekket — oppslaget skal "
-            f"si det, ikke bare «vet ikke»")
+            f"`{ikke_dekket[0]}` is measured as ikke_dekket — the lookup "
+            f"must say so, not just 'does not know'")
         assert svar["kjent_hull"]["status"] == "ikke_dekket"
 
     def test_ukjent_emne_uten_dekning_er_fortsatt_bare_ukjent(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "kvantegravitasjon_xyzzy", ref="HEAD")
         assert svar["hull"] is True
         assert svar["kjent_hull"] is None, (
-            "noe ingen har maalt skal ikke meldes som et kjent hull — "
-            "det ville gjort «kjent» meningsloest")
+            "something nobody has measured must not be reported as a known "
+            "hole — that would make 'known' meaningless")
 
     def test_svaret_sier_hvor_dekningen_kom_fra(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
         assert "dekning_fil" in svar, (
-            "leseren maa kunne se hvilken fil dekningsstatusen kom fra")
+            "the reader must be able to see which file the coverage status came from")
 
 
 class TestRelevans:
-    """Et oppslagsverk som svarer med alt, svarer ikke.
+    """A reference work that answers with everything answers nothing.
 
-    Maalt 2026-09-17 ved aa BRUKE oppslaget paa ekte spoersmaal:
-      «EF»         → 80 treff, ALLE delstreng av «efc»/«buffer»/«celle»
-      «instrument» → 82 treff — alle 82 noder, fordi ordet finnes i alle
-      «atlas»      → 46 treff, ETT er relevant (efc.selv.atlas)
+    Measured 2026-09-17 by USING the lookup on real questions:
+      "EF"         → 80 hits, ALL substrings of "efc"/"buffer"/"celle"
+      "instrument" → 82 hits — all 82 nodes, because the word is in all
+      "atlas"      → 46 hits, ONE is relevant (efc.selv.atlas)
 
-    Svakeste trefftype maa derfor ikke dominere svaret. `buss_domene` er
-    ogsaa et signal: en node som dekker domenet `verden.energi` ER relevant
-    for «energi», selv om ordet bare staar i prosaen.
+    The weakest hit type must therefore not dominate the answer.
+    `buss_domene` is also a signal: a node that covers the domain
+    `verden.energi` IS relevant for "energi", even if the word only stands
+    in the prose.
     """
 
     def test_buss_domene_treff_rangeres_over_prosa(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "energi", ref="HEAD")
         domene = [t for t in svar["treff"] if t.get("buss_domene") == "verden.energi"]
-        assert domene, "forutsetning: verden.energi finnes"
+        assert domene, "precondition: verden.energi exists"
         assert domene[0]["trefftype"] in ("id", "domene"), (
-            f"en node som DEKKER domenet skal ikke rangeres som loes prosa: "
-            f"{domene[0]}")
+            f"a node that COVERS the domain must not be ranked as loose "
+            f"prose: {domene[0]}")
 
     def test_for_bredt_sok_navngis(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "instrument", ref="HEAD")
-        assert svar["antall"] > 50, "forutsetning: instrument treffer bredt"
+        assert svar["antall"] > 50, "precondition: instrument hits broadly"
         assert svar["for_bredt"] is True, (
-            "et sok som treffer nesten hele atlaset skal SI det, ikke late "
-            "som det er et presist svar")
-        assert svar["raad"] is not None, "naar soket er for bredt, si hva man kan gjore"
+            "a search that hits almost the whole atlas must SAY so, not "
+            "pretend to be a precise answer")
+        assert svar["raad"] is not None, "when the search is too broad, say what can be done"
 
     def test_presist_sok_er_ikke_for_bredt(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "regnbue", ref="HEAD")
         assert svar["for_bredt"] is False, (
-            "et presist sok skal ikke merkes som bredt — da blir varselet "
-            "stoy og ignoreres")
+            "a precise search must not be flagged as broad — then the "
+            "warning becomes noise and is ignored")
 
     def test_cli_viser_relevante_forst(self, ekte_repo: Path) -> None:
         import subprocess as _sp
@@ -385,28 +396,29 @@ class TestRelevans:
         linjer = [l for l in p.stdout.splitlines() if "efc." in l or "batteri" in l]
         assert linjer, p.stdout[:300]
         assert "efc." in linjer[0], (
-            f"offentlige motor-noder skal ikke ligge under interne batteri-"
-            f"noder naar begge er ord-treff: {linjer[:3]}")
+            f"public engine nodes must not rank below internal battery "
+            f"nodes when both are word hits: {linjer[:3]}")
 
 
 class TestBareNavnetTeller:
-    """Matching skjer paa domeneNAVN — aldri paa begrunnelsesteksten.
+    """Matching happens on the domain NAME — never on the rationale text.
 
-    Pastanden stod i commit-meldingen for 0a41054b, men var IKKE dekket av
-    en test. Review runde 3 viste det: mutanten som ogsaa matcher begrunnelsen
-    passerte hele suiten (40/40). En pastand om vernet som vernet ikke kan
-    felle, er den samme feilen som resten av denne perioden.
+    The claim stood in the commit message for 0a41054b, but was NOT covered
+    by a test. Review round 3 showed it: the mutant that also matches the
+    rationale passed the whole suite (40/40). A claim about a guard that
+    the guard itself cannot kill is the same error as the rest of this
+    period.
 
-    Proben er reviewens egen: `mast-caom-observasjonen` staar i
-    `kosmos.galakser`s BEGRUNNELSE, men er ikke et domenenavn. Hadde
-    matchingen lest prosa, ville den sluppet gjennom som «kjent hull».
+    The probe is the reviewer's own: `mast-caom-observasjonen` stands in
+    the RATIONALE of `kosmos.galakser`, but is not a domain name. Had the
+    matching read prose, it would have slipped through as a "known hole".
     """
 
     def test_begrunnelsestekst_er_ikke_et_treff(self, ekte_repo: Path) -> None:
         import json as _json
         dek = _json.loads(_git(ekte_repo, "show", "HEAD:schema/atlas_dekning.json"))
         domener = dek["domener"]
-        # Finn et ord som staar i en begrunnelse men ikke er et domenenavn.
+        # Find a word that stands in a rationale but is not a domain name.
         kandidat = None
         for dom, v in domener.items():
             tekst = (v or {}).get("begrunnelse") or ""
@@ -417,105 +429,105 @@ class TestBareNavnetTeller:
                     break
             if kandidat:
                 break
-        assert kandidat, "forutsetning: en begrunnelse inneholder et ord som ikke er et domenenavn"
+        assert kandidat, "precondition: a rationale contains a word that is not a domain name"
 
         svar = atlas_lesing.finn(ekte_repo, kandidat, ref="HEAD")
         assert svar["kjent_hull"] is None, (
-            f"`{kandidat}` staar i en BEGRUNNELSE, ikke i et domenenavn — "
-            f"oppslaget leste prosa og meldte «kjent hull». Matching skal "
-            f"bare skje paa navnet: {svar['kjent_hull']}")
+            f"`{kandidat}` stands in a RATIONALE, not in a domain name — "
+            f"the lookup read prose and reported a 'known hole'. Matching "
+            f"must only happen on the name: {svar['kjent_hull']}")
 
     def test_ordet_finnes_faktisk_i_en_begrunnelse(self, ekte_repo: Path) -> None:
-        """Negativ kontroll: uten denne kunne testen over passere fordi
-        ordet ikke fantes noe sted — og da testet den ingenting."""
+        """Negative control: without this the test above could pass because
+        the word existed nowhere — and then it tested nothing."""
         import json as _json
         dek = _json.loads(_git(ekte_repo, "show", "HEAD:schema/atlas_dekning.json"))
         all_tekst = " ".join((v or {}).get("begrunnelse", "")
                              for v in dek["domener"].values())
         assert "mast-caom" in all_tekst, (
-            "reviewens probe skal finnes i en begrunnelse — ellers er "
-            "testen over tom")
+            "the reviewer's probe must exist in a rationale — otherwise "
+            "the test above is empty")
         svar = atlas_lesing.finn(ekte_repo, "mast-caom", ref="HEAD")
         assert svar["kjent_hull"] is None, (
-            "`mast-caom` er ikke et domenenavn. At det staar i en begrunnelse "
-            "skal ikke gjore det til et kjent hull.")
+            "`mast-caom` is not a domain name. That it stands in a "
+            "rationale must not make it a known hole.")
 
 
 class TestBreddeKriteriet:
-    """«For bredt» skal hvile paa et PRESIST treff, ikke paa et tall.
+    """"Too broad" must rest on a PRECISE hit, not on a number.
 
-    Review runde 4 maalte terskelen jeg hadde valgt (50 treff eller 60 %):
-    sol=20, energi=25, kosmos=32, h2o=36 — alle langt under. instrument=82,
-    over. Ingen ekte spoersmaal laa i naarheten. Tallet var gjettet.
+    Review round 4 measured the threshold I had chosen (50 hits or 60 %):
+    sol=20, energi=25, kosmos=32, h2o=36 — all far below. instrument=82,
+    above. No real question was close. The number was guessed.
 
-    Det meningsfulle kriteriet er om soket har NOE presist: et `id`-treff
-    eller et `domene`-treff. `sol` har `lys.sol` — det er ikke bredt, uansett
-    hvor mange som ellers nevner ordet i prosa. `instrument` har null presise
-    treff; alt er loes prosa.
+    The meaningful criterion is whether the search has ANYTHING precise:
+    an `id` hit or a `domene` hit. `sol` has `lys.sol` — that is not
+    broad, no matter how many others mention the word in prose.
+    `instrument` has zero precise hits; everything is loose prose.
     """
 
     def test_sok_uten_presist_treff_er_bredt(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "instrument", ref="HEAD")
         presise = [t for t in svar["treff"] if t["trefftype"] in ("id", "domene")]
-        assert not presise, "forutsetning: instrument har ingen presise treff"
+        assert not presise, "precondition: instrument has no precise hits"
         assert svar["for_bredt"] is True, (
-            "et sok med NULL presise treff er bredt — uansett antall")
+            "a search with ZERO precise hits is broad — regardless of count")
 
     def test_sok_med_presist_treff_er_ikke_bredt(self, ekte_repo: Path) -> None:
         svar = atlas_lesing.finn(ekte_repo, "sol", ref="HEAD")
         presise = [t for t in svar["treff"] if t["trefftype"] in ("id", "domene")]
-        assert presise, "forutsetning: sol har id-treffet lys.sol"
+        assert presise, "precondition: sol has the id hit lys.sol"
         assert svar["for_bredt"] is False, (
-            f"et sok med et presist treff er ikke bredt, selv om "
-            f"{svar['antall']} noder nevner ordet i prosa")
+            f"a search with a precise hit is not broad, even if "
+            f"{svar['antall']} nodes mention the word in prose")
 
     def test_de_maalte_spoersmaalene_fra_reviewen(self, ekte_repo: Path) -> None:
-        """Reviewens egne maalinger — de skal holde som grenseverdier."""
+        """The reviewer's own measurements — they must hold as boundary values."""
         forventet = {"sol": False, "energi": False, "kosmos": False,
                      "h2o": False, "instrument": True}
         for emne, skal_vaere_bredt in forventet.items():
             s = atlas_lesing.finn(ekte_repo, emne, ref="HEAD")
             assert s["for_bredt"] is skal_vaere_bredt, (
-                f"«{emne}»: forventet for_bredt={skal_vaere_bredt}, "
-                f"fikk {s['for_bredt']} ({s['antall']} treff)")
+                f"'{emne}': expected for_bredt={skal_vaere_bredt}, "
+                f"got {s['for_bredt']} ({s['antall']} hits)")
 
     def test_mange_treff_med_presist_er_ikke_bredt(self, ekte_repo: Path) -> None:
-        """DET AVGJOERENDE TILFELLET — der de to kriteriene er uenige.
+        """THE DECISIVE CASE — where the two criteria disagree.
 
-        `efc` gir 68 treff, hvorav 32 presise (`efc.*`-nodene). En
-        ANTALLS-terskel sier «bredt» fordi 68 > 50. Det er feil: 32 presise
-        treff er det stikk motsatte av bredt.
+        `efc` gives 68 hits, of which 32 are precise (`efc.*` nodes). A
+        COUNT threshold says "broad" because 68 > 50. That is wrong: 32
+        precise hits are the exact opposite of broad.
 
-        Uten denne testen passerer begge kriteriene paa de samme dataene —
-        og da maaler testene ikke skillet de paastaar aa verne.
+        Without this test both criteria pass on the same data — and then
+        the tests do not measure the distinction they claim to defend.
         """
         svar = atlas_lesing.finn(ekte_repo, "efc", ref="HEAD")
         presise = [t for t in svar["treff"] if t["trefftype"] in ("id", "domene")]
-        assert len(presise) > 10, f"forutsetning: efc har mange presise ({len(presise)})"
-        assert svar["antall"] > 50, f"forutsetning: efc har mange treff ({svar['antall']})"
+        assert len(presise) > 10, f"precondition: efc has many precise ({len(presise)})"
+        assert svar["antall"] > 50, f"precondition: efc has many hits ({svar['antall']})"
         assert svar["for_bredt"] is False, (
-            f"«efc» har {len(presise)} PRESISE treff av {svar['antall']} — "
-            f"det er ikke et bredt sok. En antalls-terskel ville sagt bredt.")
+            f"'efc' has {len(presise)} PRECISE hits out of {svar['antall']} — "
+            f"that is not a broad search. A count threshold would say broad.")
 
     def test_kriteriet_skalerer_med_atlaset(self, ekte_repo: Path) -> None:
-        """Kriteriet skal ikke avhenge av hvor STORT atlaset er.
+        """The criterion must not depend on how BIG the atlas is.
 
-        En prosent-terskel ville flyttet seg naar atlaset vokste; «finnes
-        det et presist treff» gjoer det ikke.
+        A percentage threshold would move as the atlas grew; "is there a
+        precise hit" does not.
         """
         s = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
         presise = [t for t in s["treff"] if t["trefftype"] in ("id", "domene")]
-        assert presise, "h2o har id-treff"
+        assert presise, "h2o has an id hit"
         assert s["for_bredt"] is False
 
 
 class TestVisningsgrensen:
-    """`_VIS_MAKS` skal faktisk begrense — mutanten 999 ble ikke felt."""
+    """`_VIS_MAKS` must actually limit — the mutant 999 was not killed."""
 
     def test_grensen_er_satt_og_lav_nok(self) -> None:
         assert 0 < atlas_lesing._VIS_MAKS <= 30, (
-            f"_VIS_MAKS={atlas_lesing._VIS_MAKS} — en grense som ikke "
-            f"begrenser noe er ikke en grense")
+            f"_VIS_MAKS={atlas_lesing._VIS_MAKS} — a limit that limits "
+            f"nothing is not a limit")
 
     def test_cli_kutter_og_sier_hvor_mange_som_ligger_under(self, ekte_repo: Path) -> None:
         import subprocess as _sp
@@ -531,17 +543,17 @@ class TestVisningsgrensen:
 
 
 class TestStorrelsenPaaHullet:
-    """«Kjent hull» uten størrelse kan ikke prioriteres.
+    """"A known hole" without size cannot be prioritised.
 
-    Maalt 2026-09-17: `verden.vaer` (190 770 meldinger) og
-    `kosmos.asteroider` (228) ga IDENTISK svar. PR #475 gjør at
-    dekningsfilen bærer `meldinger` per domene — men den er ikke merget, så
-    lesingen må være VALGFRI: finnes feltet, vises det; finnes det ikke,
-    virker oppslaget som før.
+    Measured 2026-09-17: `verden.vaer` (190 770 messages) and
+    `kosmos.asteroider` (228) gave an IDENTICAL answer. PR #475 makes the
+    coverage file carry `meldinger` per domain — but it is not merged, so
+    the read must be OPTIONAL: if the field exists, it is shown; if it does
+    not, the lookup works as before.
 
-    Alternativet — å kreve feltet — ville låst denne PR-en til #475, og et
-    oppslagsverk som ikke virker før en annen PR lander, er et oppslagsverk
-    som ikke virker.
+    The alternative — requiring the field — would have locked this PR to
+    #475, and a reference work that does not work until another PR lands is
+    a reference work that does not work.
     """
 
     def _repo_med(self, tmp_path: Path, ekstra: dict) -> Path:
@@ -566,18 +578,18 @@ class TestStorrelsenPaaHullet:
         svar = atlas_lesing.finn(repo, "kosmos.asteroider", ref="HEAD")
         assert svar["kjent_hull"] is not None
         assert svar["kjent_hull"]["meldinger"] == 228, (
-            f"stoerrelsen mangler: {svar['kjent_hull']}")
+            f"the size is missing: {svar['kjent_hull']}")
 
     def test_uten_feltet_virker_oppslaget_som_foer(self, tmp_path: Path) -> None:
         repo = self._repo_med(tmp_path, {})
         svar = atlas_lesing.finn(repo, "kosmos.asteroider", ref="HEAD")
         assert svar["kjent_hull"] is not None, (
-            "oppslaget skal virke ogsaa uten `meldinger` — feltet er valgfritt")
+            "the lookup must work without `meldinger` too — the field is optional")
         assert svar["kjent_hull"]["meldinger"] is None
 
     def test_navnet_matches_fortsatt_bare_paa_domenenavn(self, tmp_path: Path) -> None:
-        """Stoerrelsen skal ikke gjore at flere ting matcher."""
+        """The size must not make more things match."""
         repo = self._repo_med(tmp_path, {"meldinger": 228})
         svar = atlas_lesing.finn(repo, "228", ref="HEAD")
         assert svar["kjent_hull"] is None, (
-            "tallet 228 er ikke et domenenavn")
+            "the number 228 is not a domain name")

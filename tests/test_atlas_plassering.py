@@ -1,13 +1,13 @@
-"""PLASSERING: ingen fallback, og ingen doede noekler.
+"""PLACEMENT: no fallback, and no dead keys.
 
-Maalt 2026-09-18 (kort t_aadbf18d): PLASSERING var noklet paa GAMLE navn
-(`efc.rotation` mot `efc.rotation_engine`, `efc.water` mot
-`efc.water_phase_engine`). 17 av 28 noekler pekte paa noder som aldri har
-hatt det navnet, og fallbacken `("ghost", 8)` svarte i stedet for aa si
-fra. 68 av 73 offentlige noder endte som «Not yet built» — hvorav 10 med
+Measured 2026-09-18 (card t_aadbf18d): PLASSERING was keyed on OLD names
+(`efc.rotation` against `efc.rotation_engine`, `efc.water` against
+`efc.water_phase_engine`). 17 of 28 keys pointed at nodes that never have
+had that name, and the fallback `("ghost", 8)` answered instead of saying
+so. 68 of 73 public nodes ended up as «Not yet built» — of which 10 with
 `evidensstatus: replikert`.
 
-Samme klasse som #476 (kodene), i en annen tabell.
+The same class as #476 (the codes), in a different table.
 """
 from __future__ import annotations
 
@@ -30,21 +30,21 @@ def noder() -> list[dict]:
 
 
 def test_ingen_nokkel_peker_paa_ingenting(noder: list[dict]) -> None:
-    """En noekkel som ikke matcher en node er en stille bom."""
+    """A key that matches no node is a silent miss."""
     ider = {n["id"] for n in noder}
     dode = sorted(k for k in g.PLASSERING if k not in ider)
-    assert not dode, f"PLASSERING-noekler uten node: {dode[:8]}"
+    assert not dode, f"PLASSERING keys without a node: {dode[:8]}"
 
 
 def test_alle_offentlige_noder_har_plassering(noder: list[dict]) -> None:
-    """Ingen skal falle tilbake: ghost er et VALG og staar eksplisitt."""
+    """Nobody must fall back: ghost is a CHOICE and stands explicitly."""
     off = [n["id"] for n in noder if n.get("synlighet") == "offentlig"]
     uten = [i for i in off if i not in g.PLASSERING]
-    assert not uten, f"offentlige uten plassering: {uten[:8]}"
+    assert not uten, f"public nodes without placement: {uten[:8]}"
 
 
 def test_fallbacken_er_borte() -> None:
-    """Kilden skal ikke lenger ha en `.get(navn, default)` for plassering."""
+    """The source must no longer have a `.get(navn, default)` for placement."""
     src = (ROT / "scripts" / "maintenance" / "efc_atlas_generator.py").read_text(
         encoding="utf-8")
     assert 'PLASSERING.get(navn, ("ghost", 8))' not in src, (

@@ -1,4 +1,4 @@
-"""Regresjonstester for epistemisk scope og motoridentifikatorer."""
+"""Regression tests for epistemic scope and engine identifiers."""
 from __future__ import annotations
 
 import json
@@ -18,7 +18,7 @@ ENGINE_STEMS = {
 
 
 def test_dommekraft_skiller_lokal_stottet_fra_global_hypotese() -> None:
-    """Lokal måling kan være støttet uten å gjøre hele ledgeren støttet."""
+    """A local measurement can be supported without making the whole ledger supported."""
     epistemikk = NODE_BY_ID["opus.dommekraft"]["epistemikk"]
     kobling = NODE_BY_ID["opus.dommekraft"]["coupling"]
 
@@ -30,7 +30,7 @@ def test_dommekraft_skiller_lokal_stottet_fra_global_hypotese() -> None:
 
 
 def test_motoridentifikatorer_er_filer_eller_eksplisitt_virtuelle() -> None:
-    """De fem kjente avvikene skal ikke late som de er motorfiler."""
+    """The five known deviations shall not pretend to be engine files."""
     berorte = {"efc.l0", "efc.l1", "efc.l2", "efc.l3", "efc.victron_cccv_engine"}
     for node_id in berorte:
         stipulasjoner = NODE_BY_ID[node_id]["stipulasjoner"]
@@ -42,7 +42,7 @@ def test_motoridentifikatorer_er_filer_eller_eksplisitt_virtuelle() -> None:
 
 
 def test_virtuelle_lag_er_merket_uten_motorfelt() -> None:
-    """L0–L3 er abstrakte fase-lag, ikke motorfiler."""
+    """L0–L3 are abstract phase layers, not engine files."""
     for node_id in ("efc.l0", "efc.l1", "efc.l2", "efc.l3"):
         stipulasjoner = NODE_BY_ID[node_id]["stipulasjoner"]
         assert "motor" not in stipulasjoner
@@ -50,7 +50,7 @@ def test_virtuelle_lag_er_merket_uten_motorfelt() -> None:
 
 
 def test_victron_peker_paa_victron_motorfil() -> None:
-    """Victron-noden skal følge filstammen victron.py."""
+    """The Victron node shall follow the file stem victron.py."""
     stipulasjoner = NODE_BY_ID["efc.victron_cccv_engine"]["stipulasjoner"]
     assert stipulasjoner["motor"] == "victron"
     assert stipulasjoner["motor"] in ENGINE_STEMS
