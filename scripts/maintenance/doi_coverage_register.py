@@ -276,6 +276,7 @@ def _findings() -> list[dict]:
                 "docs/validation-ledger/reviews/deleg_65a996ff/; "
                 "docs/validation-ledger/data/form_status_register.json"
             ),
+            "classification": "provenance/metadata (not physical)",
             "claim": (
                 "Three Gamma(rho) forms are published for one intended target: "
                 "A = rho/(rho+rho_crit), B = rho^(3/2)/(rho+rho_crit), "

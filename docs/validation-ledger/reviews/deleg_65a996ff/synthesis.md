@@ -6,7 +6,7 @@
 
 - **Independence caveat:** all six reviewers are the *same model family*. Their agreement is intra-family reading consistency, **not independent validation**. No external or physical validation is claimed.
 - **Normalization:** reviewer outputs were written partly in a Scandinavian language; this archive normalizes them to English. Structured fields (`finding_type`, `doi`, `status`, `conflict_class`, `falsified_by`) are preserved; narrative prose is summarized, not reproduced verbatim.
-- **Archive shape:** six reviewer deliveries are normalized into one structured `roles.json` (one entry per role, each with its verdict and conflict classes) plus this synthesis. Six separate files are not used because the structured fields, not the narrative framing, are the review's evidence value, and per-role traceability is preserved by the `role` key inside `roles.json`.
+- **Archive shape:** six reviewer deliveries are normalized into six structured per-role files (`role_0.json` … `role_5.json`, one entry per role, each with its typed findings, verdict and conflict classes), plus one aggregated `roles.json` (verdict + conflict classes per role) and this `synthesis.md` (consensus, dissents, limitations). The per-role files carry the full typed-findings evidence; `roles.json` is a compact index over them.
 - **Raw record:** the verbatim fanout transcript lives outside the repo at `~/.hermes/profiles/researcher/cache/delegation/live/deleg_65a996ff/task-*.log`. This archive is the normalized, authoritative layer.
 
 ## Question under review
