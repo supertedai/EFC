@@ -51,6 +51,9 @@ permissions:
 jobs:
   atlas-gate:
     runs-on: ubuntu-latest
+    # Two test files; the generator regenerates data.mjs + runs node build.mjs,
+    # ~2-3 minutes end to end on ubuntu-latest. 10 is the ceiling, not the norm.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
         with:
