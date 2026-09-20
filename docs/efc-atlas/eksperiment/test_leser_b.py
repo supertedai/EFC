@@ -1,9 +1,13 @@
 import hashlib
 import importlib.util
 import json
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent
+sys.path.insert(0, str(ROOT))
+
+import bank  # noqa: E402
 # Pinnet til den RETTEDE nokkelen (67938617). Den forrige pinningen pekte paa
 # d3fd75b6, som inneholdt fire tellefeil funnet av to uavhengige spor.
 # Formaalet er det samme: en stille endring av nokkelen skal feile her.
@@ -20,10 +24,10 @@ def load_reader():
 def load_fixture():
     key = json.loads((ROOT / "key.json").read_text())
     evidence = json.loads((ROOT / "evidenslag.json").read_text())
-    bank = json.loads(__import__("subprocess").check_output(
-        ["git", "show", "origin/main:schema/regime_nodes.jsonld"], cwd=ROOT.parent.parent.parent
-    ))
-    return bank, key, evidence
+    # The SEALED bank, not origin/main: the key is a dated measurement, and
+    # reading the living atlas here is what made these tests red on main.
+    # See bank.py and the note at the end of RESULTAT.md.
+    return bank.load_sealed(), key, evidence
 
 
 def answer(answers, question_id):

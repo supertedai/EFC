@@ -84,8 +84,22 @@ antallet rettede nøkler rapporteres. Aldri stille.
 | `leser_b.py` | system B |
 | `evidenslag.json` | Bs sidefil: usikkerhet per tallpåstand og eksplisitte støtte-/motsigelseskanter |
 | `scorer.py` | mekanisk sammenligning mot nøkkelen |
-| `test_eksperiment.py`, `test_leser_b.py` | selftester |
+| `bank.py` | HVILKEN bank målingen gjelder — den forseglede commiten, pinnet |
+| `test_eksperiment.py`, `test_leser_b.py`, `test_repro.py` | selftester |
+
+**Hvilken bank leses.** `key.json` er en datert måling, ikke en beskrivelse av
+dagens atlas. Leserne leste tidligere `origin/main` i kjøringsøyeblikket, og da
+krevde den forseglede nøkkelen at banken aldri endret seg — målt 2026-09-19 ble
+4 av 12 tester røde av den grunn. `bank.py` pinner derfor målingens input (den
+forseglede commiten + blobens sha256), og leserne har den som default.
 
 ```sh
-/opt/venvs/t_123ed6d9/bin/python -m pytest tests/ -q -k eksperiment -p no:randomly
+/opt/venvs/t_123ed6d9/bin/python -m pytest docs/efc-atlas/eksperiment -q   # 18 passed
+make eksperiment PYTHON=/opt/venvs/t_123ed6d9/bin/python
+
+# mot den LEVENDE banken — et annet spørsmål, og svarene SKAL kunne avvike:
+/opt/venvs/t_123ed6d9/bin/python leser_b.py --ref origin/main
 ```
+
+Hva som ikke lenger reproduserer mot den levende banken, og hvorfor, står i
+`RESULTAT.md` under «Reproducibility note».

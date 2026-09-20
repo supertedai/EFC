@@ -82,3 +82,108 @@ oppslagsnøyaktighet»; det er at to spørsmål i dag ikke har noe svar å gi.
 
 **Kort sagt: eksperimentet ga ikke støtte-kantene rett — og det ga ikke atlaset
 urett. Det viste at jeg hadde bygget et instrument som lot begge slippe unna.**
+
+---
+
+## Reproducibility note — appended 2026-09-20, after the seal
+
+*(In English per the language rule: new text is written in English; the
+Norwegian above is historical and is not translated.)*
+
+**This is a CLOSED, DATED measurement.** Its input is not «the atlas» — it is
+the atlas as it stood when `key.json` was sealed. Both readers read
+`origin/main` at run time, which quietly made every sealed answer depend on a
+bank that is still being edited. That is the defect this note records.
+
+* Sealed input: `schema/regime_nodes.jsonld` at commit
+  `c70e004d508dbd341271bd3f272e656e8d14db1a` (the commit that added `key.json`,
+  both readers and this file), sha256
+  `f61049c40463e3eaa22d6d822f165faba59b85d1c28864caba2a6df38f014b2a`.
+* The pin lives in `bank.py`, and `test_repro.py` re-derives the table below
+  from it.
+
+### What the break was
+
+Measured 2026-09-19 on `origin/main` (`bbc2c3b1`): `pytest
+docs/efc-atlas/eksperiment -q` gave **4 failed, 8 passed**. The key was intact
+(`key.json` sha256 unchanged, matching `KEY_SHA256`); the bank under the
+readers had moved. Two commits landed on 2026-09-18, **68 and 75 minutes after
+the seal (21:26)**:
+
+| commit | when | what it did | questions it falsifies |
+|---|---|---|---|
+| `10087393` (#567) | 2026-09-18 22:34 | the six `OBSERVED_IN` rows with an **engine as subject** became `obs.X --OBSERVED_THROUGH--> efc.motor`; the duplicated `ANALOGOUS_TO` row was removed and the predicate's symmetry declared | Q1, Q4, Q5 |
+| `fe865b95` (#568) | 2026-09-18 22:41 | ADR-086 §3.1, adopted by Morten 2026-09-18: the optional `usikkerhet` field came in — `obs.rar` k = 0.415 ± 0.029, `obs.bao` β = 0.16 as a HOLE | Q7 |
+
+The direction matters: **the bank was not broken, it was repaired.** `#567`
+closes K6 (`t_efcfe7f0`) and measures exactly the defect Q4 measured here — six
+engine-subject edges, one pair stated in both directions. It does not cite this
+experiment; the two findings are independent and agree. `#568` is the
+uncertainty layer coming in, the question the §"Hva det betyr for ADR-086"
+section above fed.
+
+Per-reference measurement (reader B):
+
+| ref | Q1 `observasjon` | Q4 | Q5 `syklus` | Q7 `antall` |
+|---|---|---|---|---|
+| `c70e004d`, and its parent | `[obs.fsigma8, obs.s8]` | finds `efc.hubble_engine OBSERVED_IN obs.bao` | true | 0 |
+| `10087393` | `[]` | abstains (no inverted edge) | false | 0 |
+| `fe865b95` … `origin/main` | `[]` | abstains | false | **1** |
+
+### What reproduces, and what does not
+
+**Reproduces — on the sealed bank, exactly.** Re-derived with `scorer.py`, not
+asserted by hand:
+
+```text
+A: {"korrekt": 5, "feil": 1, "avstaaelse": 2, "falske_stoettepastander": 0, "proveniens": 6}
+B: {"korrekt": 7, "feil": 1, "avstaaelse": 0, "falske_stoettepastander": 0, "proveniens": 8}
+```
+
+That is the table at the top of this file, number for number. The argument that
+survives is the one about the instrument: the decisive criterion could not fire
+because system A was allowed to abstain, and that is a property of the design,
+reproducible forever.
+
+**Does NOT reproduce — on the living atlas.** Measured on `origin/main`
+2026-09-20: A `{"korrekt": 3, "feil": 3, "avstaaelse": 2, "falske_stoettepastander": 0, "proveniens": 6}`,
+B `{"korrekt": 4, "feil": 3, "avstaaelse": 1, "falske_stoettepastander": 0, "proveniens": 8}`.
+Everything in this file that describes the *state of the bank* is a statement
+about 2026-09-18 and nothing else:
+
+* the row counts in Q3 and the inverted-edge count in Q4 — the six edges are
+  gone;
+* Q5's «2 rows for the pair» — the pair now stands once, with symmetry declared
+  in the predicate;
+* Q7's «no node carries an uncertainty field» — one does;
+* the coverage gain that survived the run («B answers two questions A abstains
+  from, Q3 and Q7, both correctly») no longer holds on the living atlas: the
+  bank has the field, B answers 1 where the sealed key says 0, and A still
+  abstains on Q7 by construction.
+
+**No new key was written, and that is deliberate.** A re-run against today's
+bank is a *different* experiment with a new key: the §"Neste iterasjon" rule
+above requires key → verify → freeze → build, and both systems already exist.
+Writing a key now would repeat the ordering error this file lists as its second
+self-inflicted finding, and would erase the dated measurement.
+
+### How to run it
+
+```sh
+/opt/venvs/t_123ed6d9/bin/python -m pytest docs/efc-atlas/eksperiment -q   # 18 passed
+make eksperiment PYTHON=/opt/venvs/t_123ed6d9/bin/python
+```
+
+`bank.py` reads the seal commit; a shallow clone cannot see it and says so
+instead of falling back to another ref. The readers keep `--ref` for honest
+runs against the living atlas:
+
+```sh
+/opt/venvs/t_123ed6d9/bin/python docs/efc-atlas/eksperiment/leser_b.py --ref origin/main
+```
+
+`test_repro.py` asserts both claims: that the sealed table reproduces on the
+snapshot, and that the living atlas has drifted in exactly the two ways named
+above. If the drift is undone, that test fails and points back to this note —
+so this note cannot quietly stop being true.
+
