@@ -261,3 +261,46 @@ def test_en_taus_node_er_et_hull_og_ikke_et_svar() -> None:
     assert d["dom"] == "hull", d
     m = O.dom_banken(bank)
     assert m["hull"] == 1 and m["hull_noder"] == ["efc.rotation_engine"], m["hull_noder"]
+
+
+MOTORENE = ("efc.rotation_engine", "efc.lensing_engine",
+            "efc.cluster_engine", "efc.efc_background_engine")
+
+
+def test_de_fire_motorene_navngir_sin_arbiter() -> None:
+    """K4 (coverage-rule plan, t_c3930d65): a threshold shall name WHICH KIND
+    of arbiter it binds to — an observation or a derivation.
+
+    A threshold that does not name its kind cannot be placed in the counter
+    that splits judged contracts on that axis (K1). All four bind to an
+    OBSERVATION: a fit, a lensing measurement, cluster profiles, DESI DR2.
+    """
+    bank = O.read(O.ATLAS)
+    noder = {n["id"]: n for n in bank["nodes"]}
+    for i in MOTORENE:
+        a = O.kontrakt_arbiter(noder[i])
+        assert a["slag"] == "observasjon", (
+            f"{i}: arbiter kind is {a['slag']!r} — expected observasjon, and it "
+            f"shall be DECLARED, not left for the reader to infer")
+
+
+def test_utledningen_som_ikke_er_navngitt_er_et_hull() -> None:
+    """The background engine's SECOND obligation is a derivation, and it is
+    NOT named: WHICH limiting case must reproduce LCDM is still open.
+
+    Measured 2026-09-20: the coverage-rule plan predicted 3 observasjon + 1
+    utledning among the four, reading the phrase «reproduce LCDM in one
+    limit» from the base text. That phrase named the MISSING piece, not an
+    arbiter. The piece is still missing — so it is pinned as a hole with a
+    name, and not as a second arbiter.
+    """
+    bank = O.read(O.ATLAS)
+    node = next(n for n in bank["nodes"]
+                if n["id"] == "efc.efc_background_engine")
+    c = json.loads(node["prediction"]["criteria"])
+    assert c["arbiter_kind"] == "observasjon", c
+    assert c["second_arbiter_kind"] == "utledning", c
+    assert c["second_arbiter"] is None, (
+        "a second arbiter was declared — then it must be NAMED, and the "
+        "hole this test pins must be removed in the same change")
+    assert "NOT named" in c["second_arbiter_note"], c
