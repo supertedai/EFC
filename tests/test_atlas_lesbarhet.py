@@ -199,6 +199,11 @@ def test_alle_renderte_tekster_er_noeyaktig_klipp_av_kilden():
         rolle, kuttet = GEN_MOD.klipp_med_status(
             buf.get("role") or "—", G["how"])
         sakse = GEN_MOD.sakse_tekst(b)
+        # The verification chain is part of `how` for the nodes that have taken
+        # a position (card t_bf62ce48): the field must sit in a place both
+        # builds ACTUALLY read, or it exists only in the diff. The expectation
+        # calls the generator's own function rather than copying its expression.
+        vkt = GEN_MOD.verifisering_tekst(b)
         assert n["how"] == (
             f"Buffer role: {rolle}{'' if kuttet else '.'} "
             f"Epistemic: {ep.get('sannhetsstatus', '—')} / "
@@ -206,6 +211,8 @@ def test_alle_renderte_tekster_er_noeyaktig_klipp_av_kilden():
             f"{ep.get('konsensusstatus', '—')}."
             + (f" S-axis: {sakse}"
                f"{'' if sakse.endswith(('.', '…')) else '.'}" if sakse else "")
+            + (f" Verification: {vkt}"
+               f"{'' if vkt.endswith(('.', '…')) else '.'}" if vkt else "")
         ), n["id"]
 
         assert n["steps"][2][1] == GEN_MOD.klipp(
@@ -376,6 +383,37 @@ def test_saksen_naar_teksttvillingen_og_headeren():
     assert f"{maalt} of {len(noder)} measured" in atlas_html, (
         "the header does not show how much of the S-axis is measured")
     assert f"{maalt} of {len(noder)} measured" in data, (
+        "the number is not in data.mjs")
+
+
+def test_verifiseringskjeden_naar_teksttvillingen_og_headeren():
+    """The chain must reach the BUILT surfaces, not only data.mjs (t_bf62ce48).
+
+    The whole point of the layer is that a reader can SEE that a fit result is
+    not a verified posterior. A key that exists only in data.mjs is shown
+    nowhere — which is exactly how the S-axis was invisible — so the built text
+    twin and the header are the thing tested.
+    """
+    noder, data = _bygg_og_les()
+    bank = _bank()
+    funnet = [n for n in noder if GEN_MOD.verifisering_tekst(bank[n["name"]])]
+    assert funnet, "no node with a chain position in the built atlas"
+    eksempel = funnet[0]
+    tekst = GEN_MOD.verifisering_tekst(bank[eksempel["name"]])
+
+    system_md = (ATLAS / "SYSTEM.md").read_text(encoding="utf-8")
+    assert tekst in system_md, (
+        "the chain position does not reach SYSTEM.md (the text twin)")
+
+    atlas_html = (ATLAS / "atlas.html").read_text(encoding="utf-8")
+    assert '"k":"Verification"' in atlas_html, (
+        "the chain is missing from the atlas's stats header (META.stats -> STATS)")
+
+    maalt = len([n for n in noder
+                 if GEN_MOD.verifisering_tekst(bank[n["name"]])])
+    assert f"{maalt} of {len(noder)} carry a chain position" in atlas_html, (
+        "the header does not show how much of the chain is measured")
+    assert f"{maalt} of {len(noder)} carry a chain position" in data, (
         "the number is not in data.mjs")
 
 

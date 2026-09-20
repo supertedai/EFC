@@ -521,7 +521,7 @@ def _perspektiv_tekst(p: str | None) -> str:
 #: `[:70]` inside `_node_rad`, because the test in `tests/test_atlas_lesbarhet.py`
 #: reads them: a limit that a test cannot read cannot be locked.
 GRENSER = {"short": 14, "one": 70, "what": 90, "how": 80, "sosial": 120,
-           "sakse": 120}
+           "sakse": 120, "verifisering": 90}
 
 
 def klipp(tekst: str, grense: int) -> str:
@@ -641,6 +641,34 @@ def sakse_tekst(node: dict) -> str:
     return " · ".join(parter)
 
 
+def verifisering_tekst(node: dict) -> str:
+    """The verification chain position — empty when the node has not taken one.
+
+    Card t_bf62ce48: a fit result and a verified posterior are two DIFFERENT
+    epistemic states, and this is the one field both builds read (`how` is
+    rendered in the node panel and in the text twin; a key that only exists in
+    data.mjs is shown nowhere).
+
+    It is written ONLY when the node has taken a position. A node that has not
+    is not a hole in the text: the coverage is counted ONCE, as a number in
+    META.stats, the same way the S-axis gap is — one generated «not measured»
+    line per node would be the template defect the question list was cleaned of.
+
+    A break is named by its transformation, so the text answers WHERE the chain
+    stopped, not only which status the node carries.
+    """
+    v = (node.get("epistemikk") or {}).get("verifisering")
+    if not isinstance(v, dict) or not v.get("tilstand"):
+        return ""
+    parter = [str(v["tilstand"])]
+    if v.get("instrument"):
+        parter.append(f"instrument {klipp(str(v['instrument']), GRENSER['verifisering'])}")
+    brudd = v.get("brudd")
+    if isinstance(brudd, dict) and brudd.get("transformasjon"):
+        parter.append(f"broke at {brudd['transformasjon']}")
+    return " · ".join(parter)
+
+
 def _node_rad(node: dict, i: int) -> dict:
     nid = node["id"]
     gr = _gruppe(nid)
@@ -703,6 +731,7 @@ def _node_rad(node: dict, i: int) -> dict:
     # would have been the same template the question tab was just cleaned of.
     # The emptiness is reported instead ONCE, as a number in META.stats.
     sakse = sakse_tekst(node)
+    vkt = verifisering_tekst(node)
     return {
         "id": nid.replace(".", "-").replace("_", "-")[:40],
         "code": kode_for(nid),
@@ -731,7 +760,12 @@ def _node_rad(node: dict, i: int) -> dict:
                # did: «… gyldighetsdomene.». Therefore the tail full stop is only set
                # when the text does not already end itself.
                + (f" S-axis: {sakse}"
-                  f"{'' if sakse.endswith(('.', '…')) else '.'}" if sakse else ""),
+                  f"{'' if sakse.endswith(('.', '…')) else '.'}" if sakse else "")
+               # The verification chain: where the node's result stands — a fit
+               # result and a verified posterior are NOT the same state. Written
+               # only when the node has taken a position (see verifisering_tekst).
+               + (f" Verification: {vkt}"
+                  f"{'' if vkt.endswith(('.', '…')) else '.'}" if vkt else ""),
         "sAxis": {
             "regime": node.get("maale_paradigme", {}).get("s_regime"),
             "sector": node.get("maale_paradigme", {}).get("sektor"),
@@ -932,6 +966,17 @@ def hoved() -> int:
     # that the question tab was just cleaned of.
     sakse_maalt = sum(1 for n in noder if sakse_tekst(n))
 
+    # The verification chain, counted the same way and for the same reason
+    # (card t_bf62ce48): how many nodes have taken a position, and how many of
+    # them stand posterior-verified. The number is the answer to «is this
+    # result fit-verified or posterior-verified?» — the question the atlas
+    # could not answer at all while the state lived nowhere.
+    verifisering_maalt = sum(1 for n in noder if verifisering_tekst(n))
+    posterior_verifisert = sum(
+        1 for n in noder
+        if ((n.get("epistemikk") or {}).get("verifisering") or {}).get("tilstand")
+        == "posterior_verifisert")
+
     indeks = _indeks(noder, rader)
     (ATLAS_DIR.parent / "INDEKS.md").write_text(indeks, encoding="utf-8")
 
@@ -963,6 +1008,7 @@ export const META = {{
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
   stats: [{{ k: 'Nodes', v: '{len(noder)} · {uten_gruppe_kort}' }},
           {{ k: 'S-axis', v: '{sakse_maalt} of {len(noder)} measured · {uten_gruppe_kort}' }},
+          {{ k: 'Verification', v: '{verifisering_maalt} of {len(noder)} carry a chain position · {posterior_verifisert} posterior-verified' }},
           {{ k: 'Perspectives', v: 'paradigm / consensus / academia' }}],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
   onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. {len(noder)} nodes, {motorer} engine nodes. {buss_frase(buss)} {uten_gruppe_egne}.`,
@@ -977,6 +1023,7 @@ export const DECISIONS = [
   {{ axis: 'Epistemics', decision: 'truth, evidence and consensus are three separate axes — consensus is never truth (const true).', adr: 'schema/regime_node.schema.json' }},
   {{ axis: 'Levels', decision: 'a parent must have a lower index than its child; no cycles.', adr: 'tests/test_epistemikk_v6.py' }},
   {{ axis: 'Analogy', decision: 'every analogy carries both an avbildning and a bryter_der — without the disanalogy it does not harden.', adr: 'schema/regime_node.schema.json' }},
+  {{ axis: 'Verification', decision: 'a fit result is not a verified posterior: the chain fit ->[identifiability]-> inferable ->[sampling]-> posterior_verifisert is named, and a break says WHERE it broke (brudd.transformasjon) and WHY (brudd.aarsak) — never only that the status is X.', adr: 'tests/test_epistemikk_v7.py' }},
   {{ axis: 'Sources', decision: 'a finding belongs to the bank it came from — not where I sat when I found it.', adr: 'SOUL.md' }},
 ];
 

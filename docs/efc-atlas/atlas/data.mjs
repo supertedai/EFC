@@ -7,6 +7,7 @@ export const META = {
   buildCmd: 'node docs/efc-atlas/atlas/build.mjs',
   stats: [{ k: 'Nodes', v: '116 · 52 without a group yet' },
           { k: 'S-axis', v: '39 of 116 measured · 52 without a group yet' },
+          { k: 'Verification', v: '4 of 116 carry a chain position · 0 posterior-verified' },
           { k: 'Perspectives', v: 'paradigm / consensus / academia' }],
   intro: `_**One source, two views.** This atlas is generated from regime_nodes.jsonld — the bank is the truth; the atlas is its mirror._`,
   onePara: `Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).`,
@@ -24,6 +25,7 @@ export const DECISIONS = [
   { axis: 'Epistemics', decision: 'truth, evidence and consensus are three separate axes — consensus is never truth (const true).', adr: 'schema/regime_node.schema.json' },
   { axis: 'Levels', decision: 'a parent must have a lower index than its child; no cycles.', adr: 'tests/test_epistemikk_v6.py' },
   { axis: 'Analogy', decision: 'every analogy carries both an avbildning and a bryter_der — without the disanalogy it does not harden.', adr: 'schema/regime_node.schema.json' },
+  { axis: 'Verification', decision: 'a fit result is not a verified posterior: the chain fit ->[identifiability]-> inferable ->[sampling]-> posterior_verifisert is named, and a break says WHERE it broke (brudd.transformasjon) and WHY (brudd.aarsak) — never only that the status is X.', adr: 'tests/test_epistemikk_v7.py' },
   { axis: 'Sources', decision: 'a finding belongs to the bank it came from — not where I sat when I found it.', adr: 'SOUL.md' },
 ];
 
@@ -609,7 +611,7 @@ export const NODES = [
     "ghost": true,
     "one": "fsigma8, P(k), weak lensing (S8) \u00b7 perspective: paradigm",
     "what": "galaxy survey + weak lensing (KiDS, DES, Euclid) \u2014 proxy chain: galaxy distribution -> P(k) full-shape -> redshift-space distortion -> fsigma8 -> shear ->\u2026",
-    "how": "Buffer role: the structure itself is an inertia buffer: galaxies and clusters hold mass\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 clarity C(S) at S>0: differentiated clarity \u2014 the window of reflection, R above R_c~0.37 gives self-modelling \u00b7 EBE claim validity = f(S, L, proxy-chain).",
+    "how": "Buffer role: the structure itself is an inertia buffer: galaxies and clusters hold mass\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 clarity C(S) at S>0: differentiated clarity \u2014 the window of reflection, R above R_c~0.37 gives self-modelling \u00b7 EBE claim validity = f(S, L, proxy-chain). Verification: fit_only \u00b7 instrument the deposited EFC Screening Model (DOI 10.6084/m9.figshare.31940469) \u2014 deterministic fits\u2026",
     "sAxis": {
       "regime": "S>0",
       "sector": null,
@@ -1591,7 +1593,7 @@ export const NODES = [
     "ghost": false,
     "one": "v(r) \u2014 rotation velocity as a function of radius \u00b7 perspective: paradigm",
     "what": "the observation side is galaxy spectra; the engine computes the curve \u2014 proxy chain: spectral lines -> v(r) (observation) -> v(r) -> EFC parameters (inference)",
-    "how": "Buffer role: the matter buffer of the galaxy keeps the curve flat through the coupling field\u2026 Epistemic: hypotese / proxy / minoritet.",
+    "how": "Buffer role: the matter buffer of the galaxy keeps the curve flat through the coupling field\u2026 Epistemic: hypotese / proxy / minoritet. Verification: fit_only \u00b7 instrument the engine's own deterministic curve v(r) (efc_core, parametric fallback) \u2014 the\u2026",
     "sAxis": {
       "regime": null,
       "sector": null,
@@ -3200,7 +3202,7 @@ export const NODES = [
     "ghost": true,
     "one": "the structure that the energy-flow field holds up \u00b7 perspective: paradigm",
     "what": "none directly \u2014 the structure is derived from the field, not measured as structure \u2014 proxy chain: energy-flow field -> density gradient -> potential -> structure -> structure -> rotation\u2026",
-    "how": "Buffer role: the halo itself is the buffer: it holds the form while the field varies beneath. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 sector S \u00b7 clarity C(S) at S>0: structural clarity \u2014 the form reads the energy flow at equilibrium \u00b7 EBE claim validity = f(S, L, proxy-chain).",
+    "how": "Buffer role: the halo itself is the buffer: it holds the form while the field varies beneath. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 \u00b7 sector S \u00b7 clarity C(S) at S>0: structural clarity \u2014 the form reads the energy flow at equilibrium \u00b7 EBE claim validity = f(S, L, proxy-chain). Verification: inferens_feil \u00b7 instrument NUTS re-test of the SPARC fit (the sparc_nuts run: 175 galaxies / 3391 points / 531\u2026 \u00b7 broke at sampling.",
     "sAxis": {
       "regime": "S>0",
       "sector": "S",
@@ -3278,7 +3280,7 @@ export const NODES = [
     "ghost": true,
     "one": "the entropy field S and its boundaries \u00b7 perspective: paradigm",
     "what": "none directly \u2014 S is a field, not a measurement \u2014 proxy chain: S -> Omega-hat (differentiation) and kappa-hat (integration) -> Omega x kappa -> C\u2026",
-    "how": "Buffer role: entropy itself: it absorbs energy without the structure changing, until the\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 \u00b7 sector C \u00b7 clarity C(S) at S->1: saturated clarity locally \u2014 propofol-EEG (Omega, kappa) measures clarity variation at small scale \u00b7 EBE claim validity = f(S, L, proxy-chain).",
+    "how": "Buffer role: entropy itself: it absorbs energy without the structure changing, until the\u2026 Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 \u00b7 sector C \u00b7 clarity C(S) at S->1: saturated clarity locally \u2014 propofol-EEG (Omega, kappa) measures clarity variation at small scale \u00b7 EBE claim validity = f(S, L, proxy-chain). Verification: inferens_feil \u00b7 instrument the same NUTS re-test of the SPARC fit as the structural sector (175 galaxies / 3391\u2026 \u00b7 broke at sampling.",
     "sAxis": {
       "regime": "S->1",
       "sector": "C",
