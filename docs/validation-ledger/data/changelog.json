@@ -6,6 +6,33 @@
   "changes": [
     {
       "date": "2026-09-20",
+      "sha": "a5593eca5f65",
+      "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
+      "categories": {
+        "papers": 1
+      },
+      "id": "a5593eca5f65"
+    },
+    {
+      "date": "2026-09-20",
+      "sha": "1c1e7bdcdd4c",
+      "summary": "fix(efc): state KC1 as an explicit falsification condition (author word, 2026-09-20)",
+      "categories": {
+        "papers": 1
+      },
+      "id": "1c1e7bdcdd4c"
+    },
+    {
+      "date": "2026-09-20",
+      "sha": "69cbef7049ad",
+      "summary": "docs(validation-ledger): record KC1 wording resolution; F9 provenance gap remains open",
+      "categories": {
+        "ledger_data": 5
+      },
+      "id": "69cbef7049ad"
+    },
+    {
+      "date": "2026-09-20",
       "sha": "a51a78c5b1f9",
       "summary": "docs(validation-ledger): reconcile KC1 two-reading status and update coverage register",
       "categories": {
@@ -242,7 +269,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a51a78c5b1f9d86ac6c1ac2431248b2beac6a3e0",
+    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
