@@ -256,10 +256,18 @@ while it sat inside that 30-entry window.
 | `--commits RANGE` | commit subjects in the range | nothing | the range |
 | `--changelog` | changelog entries, newest first | nothing | declared, default 30 |
 
-House interfaces: `--json`, a `make full-check` line, and the workflow
+House interfaces: `--json`, a `make check` line, and the workflow
 `.github/workflows/efc-spraak.yml`. Exit codes: 0 clean, 1 findings, 2 could
 not measure (a measurement that could not be made is a finding, not an empty
 answer).
+
+**Who runs the default mode.** `make check` runs the scan against the committed
+record — the ratchet. CI cannot: it is change-relative by design (`--referanse`),
+so nothing in CI ever compares the tree to the record. Measured 2026-09-19
+(card t_aad5f41e): the record was written once, no line ran it, and the tree
+grew 1 212 hits past it while every PR stayed green. A ratchet with no runner
+is a number nobody reads, which is why the line was added and the residual
+written in per file (measured, not regenerated blindly): see `spraak-baseline.json`.
 
 The vocabulary is `scripts/maintenance/spraak-ord.json` — the same alternation
 the changelog step inlines. `tests/test_spraakvakt.py` fails when the two drift
@@ -277,18 +285,25 @@ cannot be read is exit 2 (could not measure) — never a fallback that blames th
 change for its base branch.
 
 **The residual is recorded, never silenced.** `spraak-baseline.json` holds the
-measured count per file (131 files, 6254 hits, measured 2026-09-18 on
-`bc3ebe98`). The gate fails when a file exceeds its recorded count, and reports
-slack when a file drops below it, so the translation work has a finish line
-instead of a number nobody checks. Regenerate after a translation lands:
+measured count per file (110 files, 5033 hits, measured on `74565031`; the first
+record was written 2026-09-18 with 131 files and 6254 hits, and no number rose
+when it was written in per file after the translations landed). The gate fails
+when a file exceeds its recorded count, and reports slack when a file drops
+below it, so the translation work has a finish line instead of a number nobody
+checks. Regenerate after a translation lands:
 
 ```
 python3 scripts/maintenance/efc_spraakvakt.py --oppdater-baseline
 ```
 
 Growth is never a baseline update: a new Norwegian string fails the PR that
-adds it, which is the point of the ratchet. `--grenser` prints the declared
-limits with the measured count of what sits outside the guard.
+adds it, which is the point of the ratchet. A recorded entry may carry `owner`
+(who owns the residual) and `reason` (why it is left standing) — the generator
+preserves both, so a declared residual does not become an anonymous number
+again. One file is recorded that way today: `tests/test_atlas_dekning_aerlighet.py`,
+whose pattern pins `schema/atlas_dekning.json`, outside the guard (U2).
+`--grenser` prints the declared limits with the measured count of what sits
+outside the guard.
 
 **Declared limits.** R1 reads a hyphen-adjacent match as an identifier, so a
 hyphen-joined compound is invisible — that is the rule that removes the
