@@ -270,7 +270,7 @@ def _findings() -> list[dict]:
         },
         {
             "id": "F9",
-            "title": "Gamma(rho) form split (bifurcation) and BE exponent split; KC1 is an unexecuted conjecture",
+            "title": "Gamma(rho) form split (bifurcation) and BE exponent split; KC1 wording admits threshold and result readings",
             "location": (
                 "31942821 + 31942800 + 31941465 + 31878760 + 31878334 + 31941543; "
                 "docs/validation-ledger/reviews/deleg_65a996ff/; "
@@ -284,19 +284,26 @@ def _findings() -> list[dict]:
                 "rational shape (argument r vs sqrt(r)); B alone is a non-saturating power "
                 "(grows as sqrt(rho) at high density; the source's own requirement row R2 records "
                 "'not saturation'). This is a shape BIFURCATION, not a trifurcation. A separate "
-                "two-way split exists in the Bose-Einstein exponent: exp(g/a0) (linear) vs "
-                "exp(sqrt(g/a0)) (sqrt, derived in 31878334/31878760/31941465). KC1 in 31941465 "
-                "claims >=5sigma exclusion of the sqrt form, but that package's own fields record "
-                "delta_chi2=null, significance_sigma=null, 'no new fit performed' — an analytical "
-                "conjecture, not an executed test. No physical falsification is established: this "
-                "is a provenance/representation/version split plus an unexecuted empirical "
-                "discrimination."
+                "two-way split exists in the Bose-Einstein exponent: exp(g/a0) (linear, lingering "
+                "in 31942821 metadata and 31941543) vs exp(sqrt(g/a0)) (sqrt, derived in "
+                "31878334/31878760/31941465). KC1 in 31941465 admits two readings. Threshold: a "
+                "pre-registered kill condition (if linear wins and sqrt is excluded at >=5sigma, "
+                "the sqrt-g theorem is falsified), consistent with PDF Section 2.4 Table 1 (C3 "
+                "linear eliminated, C5 sqrt survives, SPARC best fit by sqrt(g/a0)). Result: 'data "
+                "demonstrate ... exclude' is present-tense, asserting an executed exclusion. Both "
+                "readings are supported by the text; neither is privileged; resolution author-"
+                "gated. A PDF-to-metadata gap remains: the PDF asserts a >5sigma SPARC chi-square "
+                "while datasets_used says 'no new fit performed' and delta_chi2/significance_sigma "
+                "are null — whether the discrimination is an executed fit or echoes referenced "
+                "external SPARC work is author-gated. No physical falsification of EFC is "
+                "established by this review."
             ),
             "status": "open",
             "next": (
                 "Author word required to: (1) fix B's final claim status (derived + internal "
-                "non-saturation conflict vs superseded by B+); (2) confirm the KC1 downgrade to "
-                "conjectured/not executed; (3) choose the discriminating test(s). See "
+                "non-saturation conflict vs superseded by B+); (2) resolve the PDF-to-metadata "
+                "gap on 31941465's >5sigma SPARC claim (executed fit vs referenced external "
+                "work); (3) choose the discriminating test(s). See "
                 "docs/validation-ledger/reviews/deleg_65a996ff/synthesis.md and "
                 "docs/validation-ledger/data/form_status_register.json. Do NOT edit any published "
                 "index.json without author word."
