@@ -56,6 +56,13 @@ def test_relation_vocabulary_closed(built):
         assert r["relation"] in allowed, r["id"]
 
 
+def test_reserved_relations_disjoint_from_vocabulary(built):
+    chain, _ = built
+    vocab = set(chain["relation_vocabulary"])
+    reserved = set(chain["reserved_relations"])
+    assert not (vocab & reserved), "reserved relations must not be emitted"
+
+
 def test_status_vocabulary_closed(built):
     chain, _ = built
     allowed = set(chain["status_vocabulary"])

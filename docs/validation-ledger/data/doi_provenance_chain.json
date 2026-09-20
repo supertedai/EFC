@@ -1,16 +1,18 @@
 {
  "name": "EFC DOI provenance chain (side register)",
  "schema": "efc-doi-provenance-chain/1",
- "input_digest": "c7876e3d3c282cbb8f7a7616348ba1f124b85c591cfdf422f671d8a5e9c1b671",
+ "input_digest": "da26203004c6e4ef21866aa473b20614cdd3b80cad5475e96ceea61855b59e40",
  "relation_vocabulary": [
   "CITES",
   "COMPANION_TO",
+  "OPEN_MAPPING"
+ ],
+ "reserved_relations": [
   "DERIVES",
   "TESTS",
   "FALSIFIES",
   "CONSTRAINS",
-  "SUPERSEDES",
-  "OPEN_MAPPING"
+  "SUPERSEDES"
  ],
  "status_vocabulary": [
   "source_verified",

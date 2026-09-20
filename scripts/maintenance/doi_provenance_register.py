@@ -59,12 +59,18 @@ DOI_8 = re.compile(r"(\d{8})$")
 RELATION_VOCAB = (
     "CITES",            # machine-verified citation; does NOT assert "builds on"
     "COMPANION_TO",     # machine-verified code-header companion claim
-    "DERIVES",          # reserved for future reviewed pass
-    "TESTS",            # reserved
-    "FALSIFIES",        # reserved
-    "CONSTRAINS",       # reserved
-    "SUPERSEDES",       # reserved
     "OPEN_MAPPING",     # hypothesis, not grounded in any citation
+)
+
+# Reserved for a future reviewed pass; NOT emitted by this generator. They are
+# declared here so a consumer that sees the closed vocabulary does not mistake
+# their absence for an omission.
+RESERVED_RELATIONS = (
+    "DERIVES",
+    "TESTS",
+    "FALSIFIES",
+    "CONSTRAINS",
+    "SUPERSEDES",
 )
 
 STATUS_VOCAB = ("source_verified", "open_mapping")
@@ -355,6 +361,7 @@ def build() -> tuple[dict, dict]:
         "schema": "efc-doi-provenance-chain/1",
         "input_digest": input_digest,
         "relation_vocabulary": list(RELATION_VOCAB),
+        "reserved_relations": list(RESERVED_RELATIONS),
         "status_vocabulary": list(STATUS_VOCAB),
         "direction_note": (
             "from_doi -> to_doi means the source package (from_doi) cites the target "

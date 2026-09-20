@@ -1,7 +1,7 @@
 {
  "name": "EFC DOI metadata correction proposals",
  "schema": "efc-doi-metadata-corrections/1",
- "input_digest": "c7876e3d3c282cbb8f7a7616348ba1f124b85c591cfdf422f671d8a5e9c1b671",
+ "input_digest": "da26203004c6e4ef21866aa473b20614cdd3b80cad5475e96ceea61855b59e40",
  "note": "Proposals only; nothing is edited. Each 'current' value is read live from 31942821/index.json by JSON pointer at build time, so a drifted file changes this register instead of silently going stale. Each entry requires author word because it touches a published DOI package. PDF and code are normative and are never the target of these proposals.",
  "corrections": [
   {
