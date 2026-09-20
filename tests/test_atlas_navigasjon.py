@@ -393,9 +393,12 @@ class TestFalsifiserbarhetsSkillet:
         assert "kan_felles" in e, "the distinction is missing"
         n, t_ = e["kan_felles"]
         assert t_ == 31, f"the denominator must be the 31 EFC nodes, got {t_}"
-        assert n == 27, (
-            f"can be falsified: {n} of {t_} — expected 19 (9 pending, "
-            f"48 measuring)")
+        # Measured 2026-09-20 (card t_2d7a6537): the two engines that carried
+        # `terskel_ikke_fastsatt` in a fragment now carry the contract form and
+        # count on the claim side: 27 -> 29. Same 31 EFC nodes.
+        assert n == 29, (
+            f"can be falsified: {n} of {t_} — expected 29 (2 stubs that "
+            f"compute nothing, 85 measuring or established)")
 
     def test_instrumentene_telles_for_seg(self):
         d = atlas_navigasjon.naviger(REPO, "HEAD")

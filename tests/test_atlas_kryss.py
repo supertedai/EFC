@@ -83,10 +83,24 @@ def test_rotation_partitions_the_population(noder: list[dict]) -> None:
 
 
 def test_a_hole_is_printed_as_a_hole_never_as_zero(noder: list[dict]) -> None:
-    """The population of a hole is visible: the sealing count must match."""
+    """The population of a hole is visible: the sealing count must match.
+
+    Measured 2026-09-20 (card t_2d7a6537): TWO nodes carry a bound —
+    `obs.rar` (0.029) and `efc.rotation_engine` (0.015 and 0.045), both read
+    back from their sealed sources and checked against the source's own
+    `file:line` by the uncertainty layer. Everything else is a NAMED hole, and
+    a hole shall be counted as one — never as zero.
+
+    The bound set is named rather than counted, so that a third bound cannot
+    appear without someone saying where it came from.
+    """
+    bundet = {n["id"] for n in noder if K.axis_value(n, "uncertainty")}
+    assert bundet == {"obs.rar", "efc.rotation_engine"}, (
+        f"the set of bounded nodes changed: {sorted(bundet)}")
     r = K.rotate(noder, [K.DERIVED[2]])
     holes = sum(c for key, c in r["cells"] if key[0] == "—")
-    assert holes == len(noder) - 1, f"expected exactly one bounded node, got {holes}"
+    assert holes == len(noder) - len(bundet), (
+        f"expected {len(noder) - len(bundet)} unbounded nodes, got {holes}")
 
 
 def test_an_unknown_axis_is_refused(noder: list[dict], capsys) -> None:
