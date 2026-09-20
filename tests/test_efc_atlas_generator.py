@@ -1,9 +1,18 @@
-"""EFC-atlasets ene invariant: data.mjs er alltid fersk.
+"""EFC's atlas has one invariant: the generated atlas is always fresh.
 
-Atlaset har ingen egen sannhet — det genereres fra regime_nodes.jsonld.
-En utdatert data.mjs er derfor ikke en kosmetisk drift; det er to
-navnerom for samme system, og hele poenget med generatoren er at den
-feilen skal vaere UMULIG aa committe.
+The atlas holds no truth of its own — it is generated from
+regime_nodes.jsonld, and the generator writes all four surfaces in ONE run:
+data.mjs, INDEKS.md, SYSTEM.md and atlas.html. A stale file is not cosmetic
+drift but two namespaces for one system, and the whole point of the generator
+is that this error must be IMPOSSIBLE to commit.
+
+MEASURED 2026-09-20 (t_31a7afd9): the freshness claim covered data.mjs and
+INDEKS.md only. When `docs/efc-atlas/atlas/template.html` or the generator's
+strip step was changed without regenerating, the generator rewrote SYSTEM.md
+and atlas.html while pytest said GREEN (exit 0, 23 passed). The published
+docs/efc-atlas/atlas.html could therefore lag behind the bank with green CI.
+Both arms are now covered by one mechanism: the generator writes all four in
+the same run.
 """
 import pathlib
 import subprocess
@@ -20,14 +29,40 @@ PYTHON = sys.executable
 ROT = pathlib.Path(__file__).resolve().parents[1]
 
 
-def test_data_mjs_er_fersk_etter_regenerering():
+#: Every surface the generator writes in ONE run. Split this list and one arm
+#: is freshness-gated while the other is not — that was the measured failure.
+GENERATED_SURFACES = (
+    "docs/efc-atlas/atlas/data.mjs",
+    "docs/efc-atlas/INDEKS.md",
+    "docs/efc-atlas/SYSTEM.md",
+    "docs/efc-atlas/atlas.html",
+)
+
+
+def test_all_generated_surfaces_are_fresh_after_regeneration():
+    """MEASURED 2026-09-20 (t_31a7afd9); the command is the CI job's last step:
+
+        python3 -m pytest tests/test_efc_atlas_generator.py tests/test_atlas_lesbarhet.py -q
+
+    The build arm was not gated: `template.html` changed without regenerating
+    -> exit 0 while the generator wrote `M docs/efc-atlas/atlas.html`; the
+    generator's strip step changed without regenerating -> exit 0 while it
+    wrote `M docs/efc-atlas/SYSTEM.md`, `M docs/efc-atlas/atlas.html`. Only
+    the data.mjs arm went red (exit 1).
+
+    The comparison is against HEAD, not against the index: `git diff` alone
+    answers "does the working tree match what you staged", so a regenerated
+    but staged and uncommitted output would pass. The gate protects what is
+    COMMITTED.
+    """
     r = subprocess.run(
         [PYTHON,
          str(ROT / "scripts" / "maintenance" / "efc_atlas_generator.py")],
         capture_output=True, text=True, cwd=ROT, timeout=60)
     assert r.returncode == 0, r.stderr[:400]
-    for generated in ("docs/efc-atlas/atlas/data.mjs", "docs/efc-atlas/INDEKS.md"):
-        r2 = subprocess.run(["git", "diff", "--exit-code", "--", generated],
+    for generated in GENERATED_SURFACES:
+        r2 = subprocess.run(["git", "diff", "HEAD", "--exit-code", "--",
+                             generated],
                             capture_output=True, cwd=ROT, timeout=30)
         assert r2.returncode == 0, (
             f"{generated} er utdatert — generatoren endret den. Kjør "
@@ -53,11 +88,29 @@ def test_generert_atlas_har_doctype_og_charset():
 
 
 def test_bygget_output_har_ingen_trailing_whitespace():
-    """build.mjs skriver tomme linjer med mellomrom — generatoren
-    stripper dem. Denne testen laaser at den COMMITTEDE tilstanden
-    er strippet, ikke bare arbeidstreet."""
+    """This test locks the COMMITTED state as stripped, not the working tree,
+    so the bytes come from HEAD and not from the file.
+
+    MEASURED 2026-09-20 (t_31a7afd9): it read SYSTEM.md/atlas.html AFTER an
+    earlier test had run the generator, and so measured what the generator had
+    just written. The claim ("the committed state") and the measurement were
+    two different things, and in practice the order on the command line made
+    the test blind to a stale commit.
+
+    The failure it catches, which the freshness gate cannot: output that is
+    REGENERATED and COMMITTED with whitespace. Then HEAD == the generator, but
+    the artefact itself is broken.
+
+    MEASURED the same day: build.mjs writes no trailing whitespace today (raw
+    `node build.mjs` -> 0 such lines, last byte '\\n'), so the generator's
+    strip step is a no-op. It is the freshness gate above that catches build
+    drift, not this test.
+    """
     for navn in ("SYSTEM.md", "atlas.html"):
-        p = ROT / "docs" / "efc-atlas" / navn
-        darlige = [i for i, l in enumerate(
-            p.read_text().splitlines(), 1) if l.rstrip() != l]
+        sti = f"docs/efc-atlas/{navn}"
+        r = subprocess.run(["git", "show", f"HEAD:{sti}"],
+                           capture_output=True, text=True, cwd=ROT, timeout=30)
+        assert r.returncode == 0, f"{sti} is not in HEAD: {r.stderr[:200]}"
+        darlige = [i for i, l in enumerate(r.stdout.splitlines(), 1)
+                   if l.rstrip() != l]
         assert not darlige, f"{navn}: trailing whitespace pa linjene {darlige}"
