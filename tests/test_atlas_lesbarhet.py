@@ -1,23 +1,25 @@
-"""Atlasets lesbarhet: det brukeren moeter skal svare paa det det ser ut som.
+"""The atlas's readability: what the user meets must answer what it looks like.
 
-Maalt 2026-09-18 (origin/main f4a3e4f2) var fire avvik i det RENDERte atlaset —
-alle i generatoren, ingen i banken:
+Measured 2026-09-18 (origin/main f4a3e4f2) there were four deviations in the
+RENDERED atlas — all in the generator, none in the bank:
 
-1. Alle 116 one-linere aapnet med samme mal, «Perspective: …». Hover-teksten
-   sa hvem som mener det, ikke hva tingen ER, og substansen ble kuttet bakerst.
-2. Tekstene ble kuttet med `[:70]`/`[:90]`/`[:80]` midt i ord — «fase
+1. All 116 one-liners opened with the same template, «Perspective: …». The
+   hover text said who holds the view, not what the thing IS, and the substance
+   was cut at the back.
+2. The texts were cut with `[:70]`/`[:90]`/`[:80]` mid-word — «fase
    identifisert via P_sat(T) o», «rotation engin», «holder temperaturen under
-   oppvarming . Epistemic». Et kutt uten merke ser ut som hele teksten.
-3. Spoersmaalsfanen fikk en generert linje per node uten evidens, identisk for
-   alle sju: «no evidence yet — hypothesis marked honestly». Den spurte ikke om
-   noe; den gjentok `how`. Det er fallbacken som svarer.
-4. S-aksen (regime, sektor, klarhet, EBE, RCMP) ble skrevet til data.mjs, men
-   ingen av de to byggene leser noekkelen — det laget som skal gjoere atlaset
-   forskbart var usynlig.
+   oppvarming . Epistemic». A cut without a mark looks like the whole text.
+3. The question tab got one generated line per node without evidence, identical
+   for all seven: «no evidence yet — hypothesis marked honestly». It asked about
+   nothing; it repeated `how`. It is the fallback that answers.
+4. The S-axis (regime, sektor, klarhet, EBE, RCMP) was written to data.mjs, but
+   neither of the two builds reads the key — the layer that was meant to make
+   the atlas researchable was invisible.
 
-Testene under er ikke en gjentakelse av implementasjonen: de krever LIKHET der
-de gamle krevde delstreng, de proever kanttilfellene (tomt felt, langt enkelt-
-token), og de leser de BYGGEDE filene — ikke bare data.mjs.
+The tests below are not a repetition of the implementation: they require
+EQUALITY where the old ones required a substring, they probe the edge cases
+(empty field, long single token), and they read the BUILT files — not only
+data.mjs.
 """
 from __future__ import annotations
 
@@ -62,7 +64,7 @@ def _les_konstant(navn: str):
 
 @functools.lru_cache(maxsize=1)
 def _bygg_og_les():
-    """Bygg atlaset fra banken, og les den RENDERte nodelista."""
+    """Build the atlas from the bank, and read the RENDERED node list."""
     r = subprocess.run(
         [PYTHON, str(GEN)],
         capture_output=True, text=True, cwd=ROT, timeout=180)
@@ -80,20 +82,21 @@ def _perspektiv(b):
     return GEN_MOD._perspektiv_tekst(b.get("perspektiv"))
 
 
-# --- 1. one-lineren sier hva tingen er ------------------------------------
+# --- 1. the one-liner says what the thing is ------------------------------
 
 def test_ingen_oneliner_aapner_med_perspektivmalen():
     noder, _ = _bygg_og_les()
     darlige = [n["id"] for n in noder
                if n["one"].lower().startswith(("perspective", "perspektiv"))]
-    assert not darlige, f"one-lineren aapner med malen: {darlige[:8]}"
+    assert not darlige, f"the one-liner opens with the template: {darlige[:8]}"
 
 
 def test_onelineren_leder_med_substansen():
-    """Nøkkelkravet: `one` skal BEGYNNE med maalets target, ikke med en mal.
+    """The key requirement: `one` must BEGIN with the target's target, not with
+    a template.
 
-    Svakere krav («target finnes et sted i strengen») slipper gjennom en
-    one-liner som fortsatt leder med noe annet.
+    A weaker requirement («target exists somewhere in the string») lets through
+    a one-liner that still leads with something else.
     """
     noder, _ = _bygg_og_les()
     bank = _bank()
@@ -103,20 +106,20 @@ def test_onelineren_leder_med_substansen():
         target = GEN_MOD.klipp((b.get("measure") or {}).get("target", ""),
                                G["one"])
         if not target:
-            continue          # ingen substans i banken -> perspektiv alene
+            continue          # no substance in the bank -> perspective alone
         if not n["one"].startswith(target):
             feil.append((n["id"], n["one"][:70]))
     assert not feil, feil[:6]
 
 
 def test_onelinerne_deler_ikke_ett_prefiks():
-    """En mal er ikke innhold, selv naar den ikke heter «Perspective»."""
+    """A template is not content, even when it is not called «Perspective»."""
     noder, _ = _bygg_og_les()
     prefiks = [n["one"][:20] for n in noder]
     vanligst = max(set(prefiks), key=prefiks.count)
     assert prefiks.count(vanligst) <= len(noder) * 0.2, (
-        f"{prefiks.count(vanligst)} av {len(noder)} one-linere deler "
-        f"prefikset {vanligst!r}")
+        f"{prefiks.count(vanligst)} of {len(noder)} one-liners share "
+        f"the prefix {vanligst!r}")
 
 
 def test_perspektivet_er_ikke_borte_fra_noden():
@@ -128,7 +131,7 @@ def test_perspektivet_er_ikke_borte_fra_noden():
         assert ["Perspective", forventet] in n["steps"], n["id"]
 
 
-# --- 2. et kutt skal vaere merket, og paa ordgrense -----------------------
+# --- 2. a cut must be marked, and on a word boundary ----------------------
 
 def test_klipp_kutter_paa_ordgrense_og_merker():
     k = GEN_MOD.klipp
@@ -139,16 +142,16 @@ def test_klipp_kutter_paa_ordgrense_og_merker():
 
 
 def test_klipp_med_ett_langt_ord():
-    """Kanttilfellet reviewer fant: foerste ord er lengre enn grensen.
+    """The edge case the reviewer found: the first word is longer than the limit.
 
-    Da finnes det ingen ordgrense aa kutte paa. Den ENE tillatte midt-i-ord-
-    kuttingen er greit — men den skal vaere MERKET, ikke stille.
+    Then there is no word boundary to cut on. The ONE allowed mid-word cut is
+    fine — but it must be MARKED, not silent.
     """
     langt = "a" * 40
     ut = GEN_MOD.klipp(langt, 10)
     assert ut.endswith("…"), repr(ut)
     assert len(ut) == 11, repr(ut)
-    ut2 = GEN_MOD.klipp(langt + " og mer tekst", 10)
+    ut2 = GEN_MOD.klipp(langt + " and more text", 10)
     assert ut2.endswith("…"), repr(ut2)
     tekst, kuttet = GEN_MOD.klipp_med_status(langt, 10)
     assert kuttet is True
@@ -157,7 +160,7 @@ def test_klipp_med_ett_langt_ord():
 
 
 def test_klipp_med_status_avslorer_banktekst_som_selv_ender_med_ellipsis():
-    """Poenget med statusen: ordet «…» i RESULTATET sier ikke at VI kuttet."""
+    """The point of the status: a «…» in the RESULT does not say that WE cut."""
     tekst, kuttet = GEN_MOD.klipp_med_status("banken skrev …", 100)
     assert tekst == "banken skrev …" and kuttet is False
     tekst2, kuttet2 = GEN_MOD.klipp_med_status("banken skrev ...", 100)
@@ -165,10 +168,11 @@ def test_klipp_med_status_avslorer_banktekst_som_selv_ender_med_ellipsis():
 
 
 def test_alle_renderte_tekster_er_noeyaktig_klipp_av_kilden():
-    """LIKHET, ikke delstreng — og alle de sammensatte feltene med.
+    """EQUALITY, not substring — and all the composite fields with it.
 
-    Delstreng-kravet (som foerste utgave brukte) kan passere naar produksjon og
-    test deler samme feil. Her bygges hele den forventede strengen opp.
+    The substring requirement (which the first version used) can pass when
+    production and test share the same bug. Here the whole expected string is
+    built up.
     """
     noder, _ = _bygg_og_les()
     bank = _bank()
@@ -221,7 +225,7 @@ def test_ingen_renderte_tekster_baerer_kutteartefakter():
 
 
 def test_tomme_felter_blir_ikke_til_tom_tekst():
-    """`role: None` og `role: ""` ga «Buffer role: . Epistemic: …»."""
+    """`role: None` and `role: ""` gave «Buffer role: . Epistemic: …»."""
     rad = GEN_MOD._node_rad(
         {"id": "h2o.solid", "buffer": {"role": None},
          "epistemikk": {}, "measure": {}}, 0)
@@ -235,18 +239,18 @@ def test_tomme_felter_blir_ikke_til_tom_tekst():
     assert rad3["one"] == "perspective: agnostic", rad3["one"]
 
 
-# --- 3. spoersmaalene er ikke generert ------------------------------------
+# --- 3. the questions are not generated -----------------------------------
 
 def test_den_genererte_spoersmaalsteksten_kommer_aldri_tilbake():
-    """Den maalte fallback-linja skal ikke kunne gjenoppstaas i noen form.
+    """The measured fallback line must not be able to reappear in any form.
 
-    Foerste utgave av denne testen sa «en node med evidensstatus=ingen faar
-    ingen cond». Det var riktig saa lenge cond BARE kunne komme fra den
-    genererte linja — men feil i det oeyeblikket banken fikk et ekte
-    spoersmaalsfelt: en node kan mangle evidens OG ha et reelt, aapent
-    spoersmaal fra banken samtidig. Kravet er ikke «ingen spoersmaal», det er
-    «ingen spoersmaal skrevet av generatoren». Derfor maales den konkrete
-    teksten, og proveniensen maales i testen over.
+    The first version of this test said «a node with evidensstatus=ingen gets no
+    cond». That was right as long as cond could ONLY come from the generated
+    line — but wrong the moment the bank got a real question field: a node can
+    lack evidence AND have a real, open question from the bank at the same time.
+    The requirement is not «no questions», it is «no questions written by the
+    generator». Therefore the concrete text is measured, and the provenance is
+    measured in the test above.
     """
     noder, _ = _bygg_og_les()
     forbudt = ("no evidence yet", "hypothesis marked honestly")
@@ -256,11 +260,11 @@ def test_den_genererte_spoersmaalsteksten_kommer_aldri_tilbake():
 
 
 def test_hvert_spoersmaal_kommer_fra_banken():
-    """Et spoersmaal skal kunne pekes paa i banken — ikke bare mangle.
+    """A question must be traceable to the bank — not merely be missing.
 
-    To lovlige kilder: `open_questions` paa noden, eller `stipulasjoner.motor`
-    som begynner paa KANDIDAT (broen venter paa konnektor-deploy). Kommer det et
-    spoersmaal i atlaset uten en av dem, er det generatorens eget.
+    Two legal sources: `open_questions` on the node, or `stipulasjoner.motor`
+    that begins with KANDIDAT (the bridge waits for the connector deploy). If a
+    question appears in the atlas without one of them, it is the generator's own.
     """
     noder, _ = _bygg_og_les()
     bank = _bank()
@@ -270,24 +274,26 @@ def test_hvert_spoersmaal_kommer_fra_banken():
         b = bank[n["name"]]
         motor = (b.get("stipulasjoner") or {}).get("motor", "")
         assert b.get("open_questions") or str(motor).startswith("KANDIDAT"), (
-            f"{n['id']} baerer et spoersmaal ({n['cond']}) uten "
-            f"open_questions i banken og uten KANDIDAT-motor (motor={motor!r})")
+            f"{n['id']} carries a question ({n['cond']}) without "
+            f"open_questions in the bank and without a KANDIDAT engine "
+            f"(motor={motor!r})")
 
 
 def test_bankfoedte_spoersmaal_naar_atlaset():
-    """Feltet `open_questions` skal faktisk leses — ellers er det et tomt loft.
+    """The field `open_questions` must actually be read — otherwise it is an
+    empty promise.
 
-    Baade tekstformen og {q, r, to}-formen, og ukjente noekler skal ikke
-    lekke gjennom til den bygde spoersmaalslista.
+    Both the text form and the {q, r, to} form, and unknown keys must not leak
+    through to the built question list.
     """
     rad = GEN_MOD._node_rad(
         {"id": "h2o.solid", "open_questions": [
-            "stilles det en maaling vi ikke har gjort?",
+            "is there a measurement we have not made?",
             {"q": "holder testen?", "to": "connector deploy", "tull": "nei"},
             {"q": "   "},
             ""]}, 0)
     assert rad["cond"] == [
-        "stilles det en maaling vi ikke har gjort?",
+        "is there a measurement we have not made?",
         {"q": "holder testen?", "to": "connector deploy"}], rad["cond"]
 
 
@@ -295,15 +301,16 @@ def test_spoersmaalene_er_unike():
     noder, _ = _bygg_og_les()
     sett = [c["q"] if isinstance(c, dict) else c
             for n in noder for c in (n["cond"] or [])]
-    assert len(sett) == len(set(sett)), f"dupliserte spoersmaal: {sett}"
+    assert len(sett) == len(set(sett)), f"duplicate questions: {sett}"
 
 
 def test_kapittel9_sier_hva_atlaset_bestaar_av():
-    """«Alt paa en gang» maa ikke se fyldigere ut enn det er.
+    """«All at once» must not look fuller than it is.
 
-    Målt: 116 publiserte noder, 53 av dem uten gruppe ennå — og hvorfor de
-    mangler den (observasjon, regime eller motor). "Designet og ikke bygget" var
-    en byggestatus teksten fant på; se tests/test_atlas_byggestatus.py.
+    Measured: 116 published nodes, 53 of them designed and not built. If the
+    number stood only in prose, it would stay there and lie. Here both sides are
+    derived and compared: the text in chapter 9 against the actual count in
+    data.mjs.
     """
     noder, _ = _bygg_og_les()
     ch = _les_konstant("CH")
@@ -314,45 +321,43 @@ def test_kapittel9_sier_hva_atlaset_bestaar_av():
     uten_evidens = sum(1 for n in noder
                        if (bank[n["name"]].get("epistemikk") or {})
                        .get("evidensstatus") == "ingen")
-    assert ikke_bygget > 0 and uten_evidens > 0, "tellingene er doede"
+    assert ikke_bygget > 0 and uten_evidens > 0, "the counts are dead"
     grunn = GEN_MOD.uten_gruppe_grunner(list(bank.values()))
     assert (f"{ikke_bygget} of them without a group yet "
             f"({grunn['observation']} observations") in siste["lede"], (
-        f"kapittel 9 sier ikke hvor mange som mangler gruppe, og hvorfor: "
+        f"chapter 9 does not say how many lack a group, and why: "
         f"{siste['lede']}")
     assert f"{uten_evidens} nodes carry no evidence yet" in siste["story"], (
-        f"kapittel 9 sier ikke hvor mange som mangler evidens: {siste['story']}")
+        f"chapter 9 does not say how many lack evidence: {siste['story']}")
     assert len(noder) and f"{len(noder)} nodes" in siste["lede"]
 
 
-# --- 4. S-aksen naar BEGGE byggene ----------------------------------------
+# --- 4. the S-axis reaches BOTH builds -------------------------------------
 
 def test_saksen_staar_i_how_naar_den_er_maalt():
     noder, _ = _bygg_og_les()
     bank = _bank()
     maalt = [n for n in noder if GEN_MOD.sakse_tekst(bank[n["name"]])]
-    assert maalt, "ingen noder med S-akse i utsnittet — maalingen er doed"
+    assert maalt, "no nodes with an S-axis in the excerpt — the measurement is dead"
     mangler = [n["id"] for n in maalt
                if f"S-axis: {GEN_MOD.sakse_tekst(bank[n['name']])}" not in n["how"]]
-    assert not mangler, f"S-aksen naar ikke `how` for: {mangler[:8]}"
+    assert not mangler, f"the S-axis does not reach `how` for: {mangler[:8]}"
 
 
 def test_saksen_er_ikke_en_gjentatt_mal():
-    """Er S-aksen maalt, skal teksten vaere nodens egen — ikke én felles linje."""
+    """If the S-axis is measured, the text must be the node's own — not one shared line."""
     noder, _ = _bygg_og_les()
     tekster = [n["how"].split("S-axis: ", 1)[1] for n in noder
                if "S-axis: " in n["how"]]
-    assert tekster, "ingen S-akse-tekster"
-    assert len(set(tekster)) > 1, "S-aksen er identisk paa alle noder"
+    assert tekster, "no S-axis texts"
+    assert len(set(tekster)) > 1, "the S-axis is identical on all nodes"
 
 
 def test_saksen_naar_teksttvillingen_og_headeren():
-    """data.mjs er ikke nok: begge byggene leser `how`, og headeren leser META.
+    """data.mjs is not enough: both builds read `how`, and the header reads META.
 
-    The renderer is a HAND-COPIED copy of the skill's asset, not read-only, so the
-    BUILT files are what gets tested — not just that the key exists in data.mjs
-    (the copy carries the code-namespace fix from #506; the asset carries it too
-    since 2026-09-19, so a further edit belongs in both).
+    The renderer is a READ-ONLY copy of the skill's assets — therefore the BUILT
+    files are tested, not only that the key exists in data.mjs.
     """
     noder, data = _bygg_og_les()
     bank = _bank()
@@ -361,27 +366,28 @@ def test_saksen_naar_teksttvillingen_og_headeren():
     tekst = GEN_MOD.sakse_tekst(bank[eksempel["name"]])
 
     system_md = (ATLAS / "SYSTEM.md").read_text(encoding="utf-8")
-    assert tekst in system_md, "S-aksen naar ikke SYSTEM.md"
+    assert tekst in system_md, "the S-axis does not reach SYSTEM.md"
 
     atlas_html = (ATLAS / "atlas.html").read_text(encoding="utf-8")
     assert '"k":"S-axis"' in atlas_html, (
-        "S-aksen mangler i atlasets stats-header (META.stats -> STATS)")
+        "the S-axis is missing from the atlas's stats header (META.stats -> STATS)")
 
     maalt = len([n for n in noder if GEN_MOD.sakse_tekst(bank[n["name"]])])
     assert f"{maalt} of {len(noder)} measured" in atlas_html, (
-        "headeren viser ikke hvor mye av S-aksen som er maalt")
+        "the header does not show how much of the S-axis is measured")
     assert f"{maalt} of {len(noder)} measured" in data, (
-        "tallet staar ikke i data.mjs")
+        "the number is not in data.mjs")
 
 
-# --- 5. ett ord, ett tall ------------------------------------------------
+# --- 5. one word, one number -----------------------------------------------
 
 def test_motorordet_betyr_bare_en_ting_paa_hver_flate():
-    """«motorer» sto for 32 (motorfiler) ett sted og 19 (motornoder) et annet.
+    """«motorer» stood for 32 (engine files) in one place and 19 (engine nodes)
+    in another.
 
-    To ulike maalinger med samme navn er ikke en navnekonflikt man kan leve
-    med: den som leser 32 og 19 tror ett av tallene lyver. Utad heter de naa
-    MOTORFILER og ENGINE NODES.
+    Two different measurements with the same name are not a naming conflict one
+    can live with: whoever reads 32 and 19 believes one of the numbers lies.
+    Outward they are now called MOTORFILER and ENGINE NODES.
     """
     import subprocess as sp
     r = sp.run([PYTHON,
@@ -390,11 +396,11 @@ def test_motorordet_betyr_bare_en_ting_paa_hver_flate():
                timeout=120)
     assert r.returncode == 0, r.stderr[-300:]
     assert "engine files" in r.stdout, (
-        f"navigatoren kaller dem fortsatt motorer:\n{r.stdout[:200]}")
-    assert " motorer · " not in r.stdout, "tvetydig ord staar igjen"
+        f"the navigator still calls them engines:\n{r.stdout[:200]}")
+    assert " motorer · " not in r.stdout, "the ambiguous word still stands"
 
     system_md = (ATLAS / "SYSTEM.md").read_text(encoding="utf-8")
     noder, _ = _bygg_og_les()
     motorer = sum(1 for n in noder if "_engine" in n["name"])
     assert f"{len(noder)} nodes, {motorer} engine nodes" in system_md, (
-        "teksttvillingen skiller ikke motorfil fra motornode")
+        "the text twin does not tell engine file from engine node")

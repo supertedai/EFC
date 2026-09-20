@@ -23,7 +23,7 @@ FORVENTET = {
 
 
 def test_de_tre_stroemnodene_eier_riktig_bussdomene():
-    """Hver levende strøm skal ha en egen instrument-node."""
+    """Every live stream shall own an instrument node."""
     noder = {node["id"]: node for node in NODER}
     for node_id, (domene, _) in FORVENTET.items():
         assert node_id in noder
@@ -63,7 +63,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
 
 
 def test_de_to_domenene_er_dekket_med_stroemmene():
-    """Dekningsfilen skal vise de målte domenene som dekket."""
+    """The coverage file shall show the measured domains as covered."""
     assert DEKNING["kosmos.galakser"]["status"] == "dekket"
     assert DEKNING["verden.klima"]["status"] == "dekket"
     assert "mast-caom" in DEKNING["kosmos.galakser"]["begrunnelse"]

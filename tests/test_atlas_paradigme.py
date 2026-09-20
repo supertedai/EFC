@@ -1,4 +1,4 @@
-"""Vokter eksplisitt eierskap til paradigme-paastander i atlaset."""
+"""Guards explicit ownership of the paradigm claims in the atlas."""
 
 import json
 import re
@@ -23,9 +23,14 @@ def _tekst(verdi):
 
 
 def test_paradigme_spesialtilfelle_baerer_eierskap():
-    """Et spesialtilfellekrav skal vaere EFCs paastand, ikke et faktum."""
-    eierskap = re.compile(r"\bEFC\s+(?:predikerer|plasserer|hevder)\b", re.I)
-    krav = re.compile(r"er\s+spesialtilfelle\s+av", re.I)
+    """A special-case claim shall be EFC's claim, not a fact.
+
+    The two patterns are the bank's own wording, so they move with the bank
+    (measured 2026-09-20, after t_648190ca translated it): the Norwegian
+    patterns matched zero nodes, i.e. this test passed by absence.
+    """
+    eierskap = re.compile(r"\bEFC\s+(?:predicts|places|claims)\b", re.I)
+    krav = re.compile(r"special\s+case\s+of", re.I)
     brudd = []
     for node in _atlas()["nodes"]:
         if node.get("perspektiv") != "paradigme":
@@ -33,11 +38,11 @@ def test_paradigme_spesialtilfelle_baerer_eierskap():
         tekst = " ".join(_tekst(node))
         if krav.search(tekst) and not eierskap.search(tekst):
             brudd.append(node["id"])
-    assert not brudd, f"paradigme-paastand uten eierskap: {brudd}"
+    assert not brudd, f"paradigm claim without ownership: {brudd}"
 
 
 def test_desi_nullmaaling_kalles_ikke_motbevis():
-    """DESI DR2 0.52 sigma skal beskrives som utestet/ikke-diskriminerende."""
+    """DESI DR2 0.52 sigma shall be described as untested/non-discriminating."""
     for node in _atlas()["nodes"]:
         tekst = " ".join(_tekst(node)).lower()
         if node["id"] == "obs.bao" and re.search(r"0[.,]52\s*(?:sigma|σ)", tekst):
@@ -46,7 +51,7 @@ def test_desi_nullmaaling_kalles_ikke_motbevis():
 
 
 def test_efc_l1_baerer_ontologisk_eierskap():
-    """L1 skal si hvem som paastaar og hva retrofittingen betyr."""
+    """L1 shall say who claims it, and what the retrofitting means."""
     node = next(node for node in _atlas()["nodes"] if node["id"] == "efc.l1")
     tekst = " ".join(_tekst(node))
     assert "EFC predicts" in tekst

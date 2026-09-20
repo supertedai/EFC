@@ -20,6 +20,12 @@ check:
 	$(PYTHON) scripts/maintenance/validate_activity_log.py
 	$(PYTHON) scripts/maintenance/validate_risk_register.py
 	$(PYTHON) scripts/maintenance/verifier_bench.py
+# The language rule, in DEFAULT mode: the whole tree against the committed
+# record. CI can only run the change-relative mode (--referanse), because a PR
+# must not be blamed for its base branch -- so this line is the only runner the
+# ratchet has. Measured 2026-09-19 (t_aad5f41e): without it the record was
+# written once and never compared, and the tree grew 1 212 hits past it.
+	$(PYTHON) scripts/maintenance/efc_spraakvakt.py
 # The bridge sync reads the CANONICAL parameters from the test modules (one
 # source for test and sync), and those modules import numpy/pytest (see
 # PYTHON above).

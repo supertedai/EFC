@@ -1,20 +1,20 @@
 {
  "schema": "efc-spraak-baseline/1",
- "measured_on": "bc3ebe98",
- "generated_at": "2026-09-18T09:59:44.551499+00:00",
+ "measured_on": "74565031",
+ "generated_at": "2026-09-20T00:35:06.618357+00:00",
  "rule": "scripts/maintenance/efc_spraakvakt.py over the vocabulary in scripts/maintenance/spraak-ord.json; the residual is recorded, never silenced",
  "areas": {
   "docs/public/": 0,
   "docs/validation-ledger/": 1525,
   "public/": 38,
-  "scripts/": 1699,
-  "tests/": 3018
+  "scripts/": 923,
+  "tests/": 2573
  },
  "measured_scope": {
-  "guarded_paths": 6280,
-  "debt_recorded": 6254,
+  "guarded_paths": 5059,
+  "debt_recorded": 5033,
   "exempt": 26,
-  "outside_guard": 6152
+  "outside_guard": 1069
  },
  "files": {
   "docs/validation-ledger/data/external-references.json": {
@@ -39,19 +39,7 @@
    "count": 23
   },
   "scripts/atlas_lesing.py": {
-   "count": 293
-  },
-  "scripts/atlas_navigasjon.py": {
-   "count": 65
-  },
-  "scripts/atlas_volum.py": {
-   "count": 177
-  },
-  "scripts/efc_semantic_extract.py": {
-   "count": 1
-  },
-  "scripts/generate_paper.py": {
-   "count": 3
+   "count": 21
   },
   "scripts/maintenance/README.md": {
    "count": 4
@@ -65,9 +53,6 @@
   "scripts/maintenance/blast_radius.py": {
    "count": 59
   },
-  "scripts/maintenance/bygg_kildenoder.py": {
-   "count": 49
-  },
   "scripts/maintenance/changelog_projeksjon.py": {
    "count": 26
   },
@@ -77,20 +62,11 @@
   "scripts/maintenance/efc_4b.py": {
    "count": 66
   },
-  "scripts/maintenance/efc_ai_brain.py": {
-   "count": 7
-  },
-  "scripts/maintenance/efc_atlas_generator.py": {
-   "count": 95
-  },
   "scripts/maintenance/efc_bro_konvensjon.py": {
-   "count": 84
+   "count": 75
   },
   "scripts/maintenance/efc_bro_synk.py": {
-   "count": 69
-  },
-  "scripts/maintenance/efc_dataset_scanner.py": {
-   "count": 3
+   "count": 62
   },
   "scripts/maintenance/efc_doi_coverage.py": {
    "count": 36
@@ -152,29 +128,11 @@
   "scripts/maintenance/validate_repo.py": {
    "count": 5
   },
-  "scripts/maintenance/validate_risk_register.py": {
-   "count": 50
-  },
   "scripts/maintenance/vedlikeholdsrunde.py": {
    "count": 15
   },
   "scripts/maintenance/verifier_bench.py": {
    "count": 33
-  },
-  "scripts/organize_papers.sh": {
-   "count": 2
-  },
-  "scripts/repro/README.md": {
-   "count": 13
-  },
-  "scripts/repro/sealed_fs8_repro.py": {
-   "count": 14
-  },
-  "scripts/run_efc_baseline.py": {
-   "count": 2
-  },
-  "scripts/validate_efc.py": {
-   "count": 7
   },
   "tests/fixtures/nats-oppgjoer-metno.json": {
    "count": 9
@@ -197,11 +155,12 @@
   "tests/test_atlas_akser.py": {
    "count": 39
   },
-  "tests/test_atlas_avgjorelse.py": {
-   "count": 26
-  },
   "tests/test_atlas_dekning.py": {
    "count": 117
+  },
+  "tests/test_atlas_dekning_aerlighet.py": {
+   "count": 1,
+   "reason": "its pattern pins the wording of schema/atlas_dekning.json (the field `begrunnelse`), which is outside the guard -- scope class U2: the bank and its own owner decide their language, and the field is not English yet. Rewriting the pattern to English would make it match nothing, i.e. trade a recorded hit for a guard that is green by absence. Owned by the atlas coverage surface, not by the language gate."
   },
   "tests/test_atlas_falsifiserbarhet_dekning.py": {
    "count": 9
@@ -213,7 +172,7 @@
    "count": 28
   },
   "tests/test_atlas_helhet.py": {
-   "count": 16
+   "count": 1
   },
   "tests/test_atlas_hop.py": {
    "count": 24
@@ -222,7 +181,7 @@
    "count": 20
   },
   "tests/test_atlas_koder.py": {
-   "count": 91
+   "count": 90
   },
   "tests/test_atlas_lesing.py": {
    "count": 115
@@ -230,20 +189,14 @@
   "tests/test_atlas_motor_og_auto.py": {
    "count": 24
   },
-  "tests/test_atlas_motsigelse.py": {
-   "count": 27
-  },
-  "tests/test_atlas_navigasjon.py": {
-   "count": 163
-  },
   "tests/test_atlas_oppslag.py": {
-   "count": 251
+   "count": 250
   },
   "tests/test_atlas_oyer.py": {
    "count": 23
   },
   "tests/test_atlas_plassering.py": {
-   "count": 18
+   "count": 17
   },
   "tests/test_atlas_rotasjon.py": {
    "count": 15
@@ -252,13 +205,13 @@
    "count": 35
   },
   "tests/test_atlas_scope_and_motor_identifiers.py": {
-   "count": 9
+   "count": 8
   },
   "tests/test_atlas_synlighet.py": {
    "count": 39
   },
   "tests/test_atlas_volum.py": {
-   "count": 71
+   "count": 68
   },
   "tests/test_biologi2_atlas.py": {
    "count": 18
@@ -271,9 +224,6 @@
   },
   "tests/test_biologi_lagdeling.py": {
    "count": 14
-  },
-  "tests/test_blast_radius.py": {
-   "count": 34
   },
   "tests/test_bro_konvensjon.py": {
    "count": 47
@@ -306,58 +256,49 @@
    "count": 4
   },
   "tests/test_enerflyt_engine.py": {
-   "count": 18
+   "count": 3
   },
   "tests/test_engine_manifest_bridge.py": {
    "count": 69
   },
-  "tests/test_epistemikk_v2.py": {
-   "count": 33
-  },
   "tests/test_epistemikk_v3.py": {
-   "count": 23
+   "count": 22
   },
   "tests/test_epistemikk_v4.py": {
    "count": 10
   },
   "tests/test_epistemikk_v5.py": {
-   "count": 26
+   "count": 25
   },
   "tests/test_epistemikk_v6.py": {
    "count": 17
   },
-  "tests/test_falsifiserbarhet.py": {
-   "count": 78
-  },
   "tests/test_gap_nats_bro.py": {
    "count": 6
-  },
-  "tests/test_grid_mikro_engine.py": {
-   "count": 4
   },
   "tests/test_growth_mu_kanal.py": {
    "count": 25
   },
   "tests/test_holding_release_motorer.py": {
-   "count": 126
+   "count": 125
   },
   "tests/test_homo_fluxus_atlas.py": {
    "count": 25
   },
   "tests/test_klima_engine.py": {
-   "count": 49
+   "count": 47
   },
   "tests/test_kunnskapslivssyklus.py": {
    "count": 9
   },
   "tests/test_mu_kz_module.py": {
-   "count": 25
+   "count": 22
   },
   "tests/test_nav_helper_canonical.py": {
    "count": 35
   },
   "tests/test_oekonomi_engine.py": {
-   "count": 19
+   "count": 15
   },
   "tests/test_orbital_engine.py": {
    "count": 21
@@ -375,7 +316,7 @@
    "count": 25
   },
   "tests/test_regime_node_schema.py": {
-   "count": 89
+   "count": 88
   },
   "tests/test_repo_konfigurasjon.py": {
    "count": 133
@@ -384,19 +325,16 @@
    "count": 77
   },
   "tests/test_repro_kit.py": {
-   "count": 11
-  },
-  "tests/test_risiko_register.py": {
-   "count": 20
+   "count": 10
   },
   "tests/test_romvaer_engine.py": {
-   "count": 13
+   "count": 9
   },
   "tests/test_samfunn_engine.py": {
-   "count": 14
+   "count": 12
   },
   "tests/test_sealed_fs8_arbiter.py": {
-   "count": 59
+   "count": 55
   },
   "tests/test_tidevann_engine.py": {
    "count": 5

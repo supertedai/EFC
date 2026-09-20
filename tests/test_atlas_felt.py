@@ -1,4 +1,4 @@
-"""Ontologisk feltdeklarasjon og C(S)-posisjoner for observatoerer."""
+"""Ontological field declaration and the C(S) positions for observers."""
 from __future__ import annotations
 
 import json

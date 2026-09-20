@@ -1,44 +1,46 @@
 #!/usr/bin/env python3
-"""validate_risk_register.py — fail-closed kontroll av risikoregisteret.
+"""validate_risk_register.py — fail-closed control of the risk register.
 
-Registeret er append-only og ligger i governance/risiko/risiko-register.jsonl.
-Én linje = én risikopost. Denne kontrollen er registerets egen vakt:
+The register is append-only and lives in governance/risiko/risiko-register.jsonl.
+One line = one risk post. This control is the register's own guard:
 
-  1. Skjema: alle feltene finnes, har riktig type, og UKJENTE felter avvises.
-     Registeret er lukket — et felt som ikke står i spesifikasjonen er en
-     endring av registeret, ikke en opplysning i en post.
-  2. Enumer: type, klasse, sannsynlighet, alvorlighet, status, gate_decision,
-     registerversjon. Ukjent verdi = feil (ingen «ukjent»-utvei).
-  3. Identitet: risk_id er unik, har formen RISK-<TYPE>-<4 siffer>, og
-     TYPE-segmentet må stemme med `type`. supersedes/related_ids må peke på
-     risk_id-er som finnes i registeret — en hengende referanse er en feil.
-  4. Fail-closed kobling mellom score og klasse: en score på 16+ KAN ikke
-     kalles grønn, og 4+ ikke grønn. Klassen kan være strengere enn scoren
-     (en kvalitativ vurdering), aldri laxere.
-  5. Gaten: rød klasse krever gate_required=true; gate_required=true krever
-     gate_decision i {venter, godkjent, avslått}; en LUKKET post krever en
-     avgjort beslutning; og en avgjort beslutning krever
-     gate_besluttet_av = «menneske». Ingen automatikk kan lukke en gate.
-  6. Eierskap: `eier` må være en av eierne i eierregisteret, hver id i
-     `berorte_komponenter` må finnes der, og hver fil under governance/risiko/
-     må treffe en komponent-glob («0 filer uten eier» gjelder registeret selv).
-  7. Ingen selv-review: reviewer må være forskjellig fra utfører.
-  8. Evidens: hver lenke er prefikset `repo:` (stien må finnes i treet),
-     `url:` (http/https) eller `ekstern:` (kilde utenfor treet — ærlig
-     merking i stedet for en falsk repo-sti).
-  9. Append-only er en git-egenskap: med --base <ref> avvises en diff som
-     fjerner eller endrer en linje i risiko-register.jsonl — med ETT unntak:
-     lukkefeltene (status, gate_decision, gate_besluttet_av, sist_vurdert) på
-     en eksisterende post kan endres i stedet for å appendes, fordi det er
-     menneskets beslutningssti. Alt annet (sletting, omskriving av et annet
-     felt, omordning) er fortsatt forbudt. Målingen er hermetisk: hvilket
-     repo den leser kommer fra `rot`, og diffen leses med --no-ext-diff,
-     --no-textconv and --text, so a local git config (diff.external, textconv,
-     binary) cannot blind the gate.
+  1. Schema: every field exists, has the right type, and UNKNOWN fields are
+     rejected. The register is closed — a field that is not in the
+     specification is a change of the register, not a piece of information in
+     a post.
+  2. Enums: type, klasse, sannsynlighet, alvorlighet, status, gate_decision,
+     registerversjon. An unknown value = error (no «unknown» escape hatch).
+  3. Identity: risk_id is unique, has the form RISK-<TYPE>-<4 digits>, and the
+     TYPE segment must agree with `type`. supersedes/related_ids must point at
+     risk_ids that exist in the register — a dangling reference is an error.
+  4. Fail-closed coupling between score and class: a score of 16+ may NOT be
+     called green, and 4+ not green. The class may be stricter than the score
+     (a qualitative judgement), never laxer.
+  5. The gate: a red class requires gate_required=true; gate_required=true
+     requires gate_decision in {venter, godkjent, avslått}; a CLOSED post
+     requires a decided decision; and a decided decision requires
+     gate_besluttet_av = «menneske». No automation can close a gate.
+  6. Ownership: `eier` must be one of the owners in the ownership register,
+     every id in `berorte_komponenter` must be found there, and every file
+     under governance/risiko/ must hit a component glob («0 files without an
+     owner» applies to the register itself).
+  7. No self-review: the reviewer must differ from the performer.
+  8. Evidence: every link is prefixed `repo:` (the path must exist in the
+     tree), `url:` (http/https) or `ekstern:` (a source outside the tree —
+     honest marking instead of a false repo path).
+  9. Append-only is a git property: with --base <ref> a diff that removes or
+     changes a line in risiko-register.jsonl is rejected — with ONE exception:
+     the closing fields (status, gate_decision, gate_besluttet_av,
+     sist_vurdert) on an existing post may be changed instead of appended,
+     because that is the human decision path. Everything else (deletion,
+     rewriting another field, reordering) is still forbidden. The measurement
+     is hermetic: which repo it reads comes from `rot`, and the diff is read
+     with --no-ext-diff, --no-textconv and --text, so a local git config
+     (diff.external, textconv, binary) cannot blind the gate.
 
-Bruk:
+Usage:
   python3 scripts/maintenance/validate_risk_register.py [--json] [--base origin/main]
-Exit: 0 = OK, 1 = feil (inkludert verktøyfeil — registeret er fail-closed).
+Exit: 0 = OK, 1 = error (including a tool error — the register is fail-closed).
 """
 from __future__ import annotations
 
@@ -56,9 +58,10 @@ ROT = Path(__file__).resolve().parents[2]
 REGISTER = "governance/risiko/risiko-register.jsonl"
 EIERREGISTER = "governance/ownership-register.json"
 
-# Miljøvariabler som flytter hvilket repo git snakker med. Gaten måler repoet
-# på en KJENT sti (`rot`), så et arvet GIT_DIR/GIT_WORK_TREE fra omgivelsen —
-# en annen testprosess, en CI-wrapper, et skall — peker den et annet sted.
+# Environment variables that move which repo git talks to. The gate measures
+# the repo at a KNOWN path (`rot`), so an inherited GIT_DIR/GIT_WORK_TREE from
+# the surroundings — another test process, a CI wrapper, a shell — points it
+# elsewhere.
 AMBARTE_REPO_VARS = (
     "GIT_DIR", "GIT_WORK_TREE", "GIT_COMMON_DIR", "GIT_INDEX_FILE",
     "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
@@ -115,11 +118,12 @@ MAKS_SCORE = 256  # 4×4×4×4 — taket i blast-radius-modellen
 # Minimumsklassen en gitt score kan ha. Strengere er lov, laxere er feil.
 SCORE_MIN_KLASSE = ((16, "rød"), (4, "gul"))
 
-# Lukkefeltene er de ENESTE feltene som kan endres på en eksisterende post i
-# stedet for å appendes. De utgjør menneskets beslutningssti: en rød post går
-# fra «venter» til «godkjent»/«avslått» ved at status, gate_decision og
-# gate_besluttet_av flippes, og sist_vurdert oppdateres til beslutningsdatoen.
-# Alt annet er immutabelt funndata — en endring der er fortsatt not_append_only.
+# The closing fields are the ONLY fields that may be changed on an existing
+# post instead of appended. They make up the human decision path: a red post
+# goes from «venter» to «godkjent»/«avslått» by flipping status, gate_decision
+# and gate_besluttet_av, and sist_vurdert is updated to the decision date.
+# Everything else is immutable finding data — a change there is still
+# not_append_only.
 LUKKE_FELTER = ("status", "gate_decision", "gate_besluttet_av", "sist_vurdert")
 
 
@@ -298,9 +302,10 @@ def valider_innhold(register: Path, eierregister: dict, rot: Path) -> list[dict]
     for nr, post in poster:
         feil += valider_post(post, nr, eierregister, ider)
 
-    # Filene under governance/risiko/ er registerets egne artefakter: de må ha
-    # en eier som alt annet i repoet (validate_ownership.py dekker governance/**,
-    # dette er registerets egen kontroll av at den regelen holder her).
+    # The files under governance/risiko/ are the register's own artefacts: they
+    # must have an owner like everything else in the repo (validate_ownership.py
+    # covers governance/**, and this is the register's own check that the rule
+    # holds here).
     komponenter = eierregister.get("components") or []
     base = rot / "governance" / "risiko"
     if base.is_dir():
@@ -324,25 +329,26 @@ def _lukkefelter_endret(gammel: dict, ny: dict) -> bool:
 
 
 def _git_miljo() -> dict[str, str]:
-    """Et git-miljø der «hvilket repo» kommer fra kallet, ikke fra omgivelsen."""
+    """A git environment where «which repo» comes from the call, not the surroundings."""
     return {k: v for k, v in os.environ.items() if k not in AMBARTE_REPO_VARS}
 
 
 def append_only(base: str, rot: Path) -> list[dict]:
-    """Diffen på risiko-register.jsonl skal BARE legge til linjer — med ETT unntak.
+    """The diff of risiko-register.jsonl shall ONLY add lines — with ONE exception.
 
-    Lukkefeltene (status, gate_decision, gate_besluttet_av, sist_vurdert) på en
-    eksisterende post kan endres i stedet for å appendes: det er menneskets
-    beslutningssti, og den skjer som en linjeendring («venter» → «godkjent»/«avslått»),
-    ikke som en ny linje. Alt annet — sletting av en post, endring av et annet
-    felt, eller en identisk linje som bare flyttes (omordning) — er not_append_only.
+    The closing fields (status, gate_decision, gate_besluttet_av, sist_vurdert)
+    on an existing post may be changed instead of appended: that is the human
+    decision path, and it happens as a line change («venter» → «godkjent»/«avslått»),
+    not as a new line. Everything else — deleting a post, changing another
+    field, or an identical line merely moved (reordering) — is not_append_only.
 
-    Kallet er hermetisk med vilje: en gate hvis dom kan endres av
-    git-konfigurasjonen utenfor prosessen er ikke en gate. `--no-ext-diff`
-    stenger `diff.external`/`GIT_EXTERNAL_DIFF`, `--no-textconv` stenger en
-    textconv-driver, `--text` stenger `diff.<driver>.binary` (som ellers lar
-    git svare «Binary files differ» uten noen fjernet linje), og `_git_miljo()`
-    drops the inherited GIT_* variables that point git at a repo other than `rot`.
+    The call is hermetic on purpose: a gate whose verdict can be changed by the
+    git configuration outside the process is not a gate. `--no-ext-diff`
+    closes `diff.external`/`GIT_EXTERNAL_DIFF`, `--no-textconv` closes a
+    textconv driver, `--text` closes `diff.<driver>.binary` (which would
+    otherwise let git answer «Binary files differ» without any removed line),
+    and `_git_miljo()` drops the inherited GIT_* variables that point git at a
+    repo other than `rot`.
     """
     r = subprocess.run(["git", "diff", "-U0", "--no-ext-diff", "--no-textconv",
                         "--text", base, "--", REGISTER],
@@ -350,7 +356,7 @@ def append_only(base: str, rot: Path) -> list[dict]:
                        env=_git_miljo())
     if r.returncode != 0:
         return [{"type": "tool_error",
-                 "msg": f"git diff mot «{base}» feilet: "
+                 "msg": f"git diff against «{base}» failed: "
                         f"{r.stderr.decode('utf-8', 'replace').strip()[:200]}"}]
     linjer = r.stdout.decode("utf-8", errors="replace").splitlines()
     fjernet = [ln for ln in linjer if ln.startswith("-") and not ln.startswith("---")]
@@ -376,16 +382,16 @@ def append_only(base: str, rot: Path) -> list[dict]:
         rid = gammel.get("risk_id") if (gammel is not None
                                         and isinstance(gammel.get("risk_id"), str)) else None
         if gammel is None or rid is None or rid not in ny_etter_rid:
-            # Slettet post, ulesbar linje, eller omskrevet til en annen risk_id.
+            # Deleted post, unreadable line, or rewritten to another risk_id.
             return [{"type": "not_append_only", "base": base,
                      "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
         ny = ny_etter_rid[rid]
         if _uten_lukkefelter(gammel) != _uten_lukkefelter(ny):
-            # Et annet felt enn lukkefeltene ble endret.
+            # A field other than the closing fields was changed.
             return [{"type": "not_append_only", "base": base, "risk_id": rid,
                      "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
         if not _lukkefelter_endret(gammel, ny):
-            # Identisk linje fjernet og lagt til igjen = ren omordning.
+            # An identical line removed and added again = pure reordering.
             return [{"type": "not_append_only", "base": base, "risk_id": rid,
                      "fjernede_linjer": len(fjernet), "eksempel": ln[:120]}]
     return []
@@ -395,7 +401,7 @@ def hoved() -> int:
     p = argparse.ArgumentParser(description="Fail-closed kontroll av risikoregisteret")
     p.add_argument("--json", action="store_true")
     p.add_argument("--base", default=None,
-                   help="git-ref å kreve append-only mot (f.eks. origin/main eller PR-base-SHA)")
+                   help="git ref to require append-only against (e.g. origin/main or the PR base SHA)")
     p.add_argument("--register", default=None)
     p.add_argument("--eierregister", default=None)
     p.add_argument("--rot", default=None)
@@ -406,7 +412,7 @@ def hoved() -> int:
     try:
         eierregister = json.loads(eiersti.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as ex:
-        feil = [{"type": "tool_error", "msg": f"eierregisteret kunne ikke leses: {a.eierregister or EIERREGISTER}: {ex}"}]
+        feil = [{"type": "tool_error", "msg": f"the ownership register could not be read: {a.eierregister or EIERREGISTER}: {ex}"}]
     else:
         feil = valider_innhold(register, eierregister, rot)
     if a.base:

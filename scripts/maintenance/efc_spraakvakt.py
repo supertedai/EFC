@@ -75,7 +75,11 @@ DECLARED LIMITS (what this gate does NOT see)
 * The commit mode sees only the commits in the range it is handed. A violation
   merged before this gate existed is not caught retroactively.
 * The residual is ratcheted, not zero. The baseline is the record of what is
-  left, per file; ``filer`` in it is the work queue, not a permission.
+  left, per file; ``filer`` in it is the work queue, not a permission. A file
+  the record deliberately does not ask to shrink may carry an ``owner`` (who
+  owns it) and a ``reason`` (why it is left standing); both are preserved by
+  ``--oppdater-baseline``, so a declared residual cannot become an anonymous
+  number again. Growth is never a baseline update.
 
 JSON keys are English: this gate is new, nothing consumes its --json yet, and
 the language rule is newer than the sibling checkers' Norwegian keys.
@@ -601,8 +605,13 @@ def write_baseline(root: Path, baseline_path: Path) -> dict:
     files = {}
     for rel in sorted(scanned["counts"]):
         entry = {"count": scanned["counts"][rel]}
-        if isinstance(keep.get(rel), dict) and keep[rel].get("owner"):
-            entry["owner"] = keep[rel]["owner"]
+        # A recorded residual keeps what it was recorded WITH. `owner` says who
+        # owns it and `reason` says why it is left standing, so a regeneration
+        # cannot turn a declared residual into an anonymous number.
+        if isinstance(keep.get(rel), dict):
+            for felt in ("owner", "reason"):
+                if keep[rel].get(felt):
+                    entry[felt] = keep[rel][felt]
         files[rel] = entry
     payload = {
         "schema": "efc-spraak-baseline/1",

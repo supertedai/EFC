@@ -1,25 +1,25 @@
-"""Testene skal ikke avhenge av hvilke andre tester som kjørte før dem.
+"""The tests shall not depend on which other tests ran before them.
 
-To målte måter en test i denne suiten kunne endre utfall av tilstand utenfor
-seg selv (t_122b4022, 2026-09-18):
+Two measured ways a test in this suite could change the outcome of state
+outside itself (t_122b4022, 2026-09-18):
 
-  1. REKKEFØLGE. `tests/test_growth_friction.py` importerer `efc`, som ligger
-     under `src/`. Den ble bare importerbar fordi en fil som samles før den
-     (`tests/test_cosmology_engine_bridges.py`, «c» < «g») importerer
-     `efc_inference.engine.rotation`, og den modulen setter `src/` inn i
-     sys.path som bivirkning av importen. Snu rekkefølgen, og samlingen
-     stopper med en collection-feil. `pythonpath = ["src"]` i pyproject.toml
-     gjør importen uavhengig av rekkefølgen.
+  1. ORDER. `tests/test_growth_friction.py` imports `efc`, which lives under
+     `src/`. It was only importable because a file collected before it
+     (`tests/test_cosmology_engine_bridges.py`, "c" < "g") imports
+     `efc_inference.engine.rotation`, and that module puts `src/` into
+     sys.path as a side effect of the import. Reverse the order, and
+     collection stops with a collection error. `pythonpath = ["src"]` in
+     pyproject.toml makes the import independent of the order.
 
-  2. MILJØ. Git-kallene i `test_risiko_register.py` og `test_blast_radius.py`
-     kjørte med det arvede miljøet: en GIT_DIR felte 9 tester, en lokal
-     gitconfig med `commit.gpgsign` felte begge append_only-testene, og
-     `diff.external` gjorde registerets append-only-gate blind. Begge filene
-     skrubbet miljøet via `tests/_gitmiljo.py`.
+  2. ENVIRONMENT. The git calls in `test_risiko_register.py` and
+     `test_blast_radius.py` ran with the inherited environment: a GIT_DIR
+     felled 9 tests, a local gitconfig with `commit.gpgsign` felled both
+     append_only tests, and `diff.external` made the register's append-only
+     gate blind. Both files scrub the environment through `tests/_gitmiljo.py`.
 
-Vaktene under kjører de berørte filene på nytt og krever at de er grønne i et
-miljø som er laget for å velte dem. Kanarifuglene går først, slik at en vakt
-som har mistet tennene melder det i stedet for å være grønn av ingenting.
+The guards below re-run the affected files and require them to be green in an
+environment built to topple them. The canaries go first, so a guard that has
+lost its teeth reports it instead of being green out of nothing.
 """
 from __future__ import annotations
 
@@ -44,24 +44,25 @@ def _pytest(*args: str, env: dict[str, str] | None = None) -> subprocess.Complet
 
 
 def test_en_testfil_kan_samles_alene(tmp_path):
-    """En fil som importerer `efc` må kunne kjøres uten hjelp av en annen fil.
+    """A file that imports `efc` must be runnable without another file's help.
 
-    Før fiksen: `pytest tests/test_growth_friction.py` ga
-    `ModuleNotFoundError: No module named 'efc'` — den var bare grønn fordi en
-    annen testfil ble samlet først. Exit 4 fra pytest ER collection-feilen, så
-    kravet er både exit 0 og minst én kjørt test.
+    Before the fix: `pytest tests/test_growth_friction.py` gave
+    `ModuleNotFoundError: No module named 'efc'` — it was green only because
+    another test file was collected first. Exit 4 from pytest IS the collection
+    error, so the requirement is both exit 0 and at least one test run.
     """
     r = _pytest("tests/test_growth_friction.py")
     assert r.returncode == 0, (
-        f"filen kan ikke samles alene (exit {r.returncode}):\n{r.stdout[-3000:]}")
+        f"the file cannot be collected alone (exit {r.returncode}):\n{r.stdout[-3000:]}")
     siste = [ln for ln in r.stdout.splitlines() if ln.strip()][-1]
     assert " passed" in siste and not siste.startswith("0 passed"), \
-        f"ingen test ble kjørt — da beviser dette ingenting: {siste!r}"
+        f"no test ran — so this proves nothing: {siste!r}"
 
 
 def _fiendtlig_miljo(tmp_path: Path) -> dict[str, str]:
-    """Miljøet de to git-filene må tåle: et annet repo GIT_DIR peker på, og en
-    lokal gitconfig som gjør en commit usignert og en rå diff tom."""
+    """The environment the two git files must tolerate: another repo that
+    GIT_DIR points at, plus a local gitconfig that makes a commit unsigned and
+    a raw diff empty."""
     annet = tmp_path / "annet-repo"
     annet.mkdir()
     subprocess.run(GIT + ["init", "-q"], cwd=annet, check=True,
@@ -80,9 +81,9 @@ def _fiendtlig_miljo(tmp_path: Path) -> dict[str, str]:
 def test_de_git_baserte_filene_taaler_git_tilstand_utenfor_seg(tmp_path):
     miljo = _fiendtlig_miljo(tmp_path)
 
-    # --- kanarifugl: er forgiftningen virksom? -----------------------------
-    # Uten kanarifugl kunne denne vakten blitt grønn av at en kanal sluttet å
-    # virke — og da måler den ingenting.
+    # --- canary: is the poisoning in force? --------------------------------
+    # Without a canary this guard could go green because a channel stopped
+    # working — and then it measures nothing.
     a, b = tmp_path / "a.txt", tmp_path / "b.txt"
     a.write_text("én\n", encoding="utf-8")
     b.write_text("to\n", encoding="utf-8")
@@ -93,13 +94,13 @@ def test_de_git_baserte_filene_taaler_git_tilstand_utenfor_seg(tmp_path):
 
     ren = {k: v for k, v in miljo.items() if k != "GIT_CONFIG_GLOBAL"}
     assert "-én" in _diff(ren).stdout, \
-        "kanarifuglen er blind også uten forgiftning — da måler den feil ting"
+        "the canary is blind without the poisoning too — then it measures the wrong thing"
     assert _diff(miljo).stdout.strip() == "", \
-        "diff.external gjør ikke diffen tom — da er ikke miljøet fiendtlig"
+        "diff.external does not empty the diff — then the environment is not hostile"
     assert subprocess.run(["git", "config", "--get", "commit.gpgsign"],
                           env=miljo, capture_output=True, text=True
                           ).stdout.strip() == "true", \
-        "den lokale gitconfig-en blir ikke lest — da er ikke miljøet fiendtlig"
+        "the local gitconfig is not being read — then the environment is not hostile"
 
     kanar = tmp_path / "kanar"
     kanar.mkdir()
@@ -108,10 +109,10 @@ def test_de_git_baserte_filene_taaler_git_tilstand_utenfor_seg(tmp_path):
     gitdir = subprocess.run(GIT + ["rev-parse", "--git-dir"], cwd=kanar,
                             env=miljo, capture_output=True, text=True).stdout.strip()
     assert gitdir == str(tmp_path / "annet-repo" / ".git"), \
-        f"GIT_DIR blir ikke lyttet til ({gitdir!r}) — da er ikke miljøet fiendtlig"
+        f"GIT_DIR is not being listened to ({gitdir!r}) — then the environment is not hostile"
 
-    # --- kravet: filene er grønne også her --------------------------------
+    # --- the requirement: the files are green here too ---------------------
     r = _pytest(*GIT_FILER, env=miljo)
     assert r.returncode == 0, (
-        "en test i de git-baserte filene endret utfall av git-tilstanden "
-        f"utenfor seg (exit {r.returncode}):\n{r.stdout[-4000:]}\n{r.stderr[-2000:]}")
+        "a test in the git-based files changed the outcome of the git state "
+        f"outside itself (exit {r.returncode}):\n{r.stdout[-4000:]}\n{r.stderr[-2000:]}")
