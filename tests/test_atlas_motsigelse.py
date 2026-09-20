@@ -1,8 +1,8 @@
 """THE CONTRADICTION: a node shall not say two opposite things at the same time.
 
 Measured 2026-09-18, after #514: all 12 homo nodes had BOTH —
-`buss_domene: verden.helse` AND `buss_status: «ingen buss — emnet
-finnes ikke som domene i snapshotet»`. The field was set, the old
+`buss_domene: verden.helse` AND `buss_status: «no bus route — the subject
+does not exist as a domain in the snapshot»`. The field was set, the old
 status remained, and both were readable.
 
 That is worse than an empty field. An empty field says «not decided».
@@ -59,7 +59,11 @@ def test_ingen_status_sier_imot_sitt_eget_felt(noder: list[dict]) -> None:
         s = n.get("stipulasjoner") or {}
         b = n.get("buss_domene")
         st = (s.get("buss_status") or "").lower()
-        if b and ("ingen buss" in st or "ikke som domene" in st):
+        # The strings are the bank's own buss_status wording, so they move with
+        # the bank (measured 2026-09-20, after t_648190ca translated it): the
+        # Norwegian phrases matched no node, i.e. this guard was green by
+        # absence. Counted: 19 nodes carry "no bus route" today.
+        if b and ("no bus route" in st or "does not exist as a domain" in st):
             motsigelser.append(n["id"])
     assert not motsigelser, (
         f"{len(motsigelser)} node(s) say both that they HAVE a bus and that they "

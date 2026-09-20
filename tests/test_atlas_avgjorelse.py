@@ -97,9 +97,11 @@ def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
 
 GRUNN = "ikke_falsifiserbar_grunn"
 
-#: Texts that look like an answer without being one.
-PLASSHOLDERE = ("vet ikke", "ukjent", "ikke relevant", "n/a", "todo",
-                "fylles ut", "kommer", "tbd", "-")
+#: Texts that look like an answer without being one. The bank's own text is
+#: English (t_648190ca), so the placeholders are English; the Norwegian forms
+#: were dead checks against data that no longer carries them.
+PLASSHOLDERE = ("i don't know", "unknown", "not relevant", "n/a", "todo",
+                "to be filled in", "coming", "tbd", "-")
 
 
 def _grunn(n: dict) -> str | None:
