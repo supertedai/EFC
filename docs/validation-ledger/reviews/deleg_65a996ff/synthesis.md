@@ -1,4 +1,4 @@
-# Review synthesis — Γ(ρ) trifurcation and KC1 status
+# Review synthesis — Γ(ρ) form split (bifurcation) and KC1 status
 
 **Delegation:** `deleg_65a996ff` · **Dispatched:** 2026-09-20 · **Model:** gpt-5.6-luna
 
@@ -6,6 +6,7 @@
 
 - **Independence caveat:** all six reviewers are the *same model family*. Their agreement is intra-family reading consistency, **not independent validation**. No external or physical validation is claimed.
 - **Normalization:** reviewer outputs were written partly in a Scandinavian language; this archive normalizes them to English. Structured fields (`finding_type`, `doi`, `status`, `conflict_class`, `falsified_by`) are preserved; narrative prose is summarized, not reproduced verbatim.
+- **Archive shape:** six reviewer deliveries are normalized into one structured `roles.json` (one entry per role, each with its verdict and conflict classes) plus this synthesis. Six separate files are not used because the structured fields, not the narrative framing, are the review's evidence value, and per-role traceability is preserved by the `role` key inside `roles.json`.
 - **Raw record:** the verbatim fanout transcript lives outside the repo at `~/.hermes/profiles/researcher/cache/delegation/live/deleg_65a996ff/task-*.log`. This archive is the normalized, authoritative layer.
 
 ## Question under review
