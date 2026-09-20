@@ -6,6 +6,15 @@
   "changes": [
     {
       "date": "2026-09-20",
+      "sha": "f80b733a6303",
+      "summary": "audit(doi): provenance side register with machine-verified citation edges",
+      "categories": {
+        "ledger_data": 5
+      },
+      "id": "f80b733a6303"
+    },
+    {
+      "date": "2026-09-20",
       "sha": "b8ebfb16aac1",
       "summary": "fix(doi): remove HEAD dependence from register and sharpen F7/F1 diagnoses",
       "categories": {
@@ -161,7 +170,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "b8ebfb16aac164443d3c791b0a867c8194db0897",
+    "last_processed_sha": "f80b733a630337871b19181a4d44367051319f06",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
