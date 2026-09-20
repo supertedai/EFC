@@ -48,19 +48,19 @@ def test_deff_er_sqrt_formen():
 
 def test_regime_skifte_ved_rho_crit():
     e = GridMikroEngine()
-    assert e.regime({**P, "rho": 0.5}) == "lav_tetthet"
-    assert e.regime({**P, "rho": 1.0}) == "mettet"
+    assert e.regime({**P, "rho": 0.5}) == "low_density"
+    assert e.regime({**P, "rho": 1.0}) == "saturated"
 
 
 def test_regime_ugyldige_innganger_gir_ugyldig():
     """Review requirement PR #458 r1: NaN/negative inputs shall give
-    'ugyldig', not fall through to 'mettet'."""
+    'invalid', not fall through to 'saturated'."""
     e = GridMikroEngine()
-    assert e.regime({**P, "rho": float("nan")}) == "ugyldig"
-    assert e.regime({**P, "rho_crit": float("nan")}) == "ugyldig"
-    assert e.regime({**P, "rho_crit": -1.0}) == "ugyldig"
-    assert e.regime({**P, "rho": -0.5}) == "ugyldig"
-    assert e.regime({**P, "rho": float("inf")}) == "ugyldig"
+    assert e.regime({**P, "rho": float("nan")}) == "invalid"
+    assert e.regime({**P, "rho_crit": float("nan")}) == "invalid"
+    assert e.regime({**P, "rho_crit": -1.0}) == "invalid"
+    assert e.regime({**P, "rho": -0.5}) == "invalid"
+    assert e.regime({**P, "rho": float("inf")}) == "invalid"
 
 
 def test_negativ_tetthet_gir_nan():
@@ -78,7 +78,7 @@ def test_noden_deklarerer_doi_kildene():
 def test_noden_deklarerer_hypotese_ikke_konsensus():
     n = GridMikroEngine().regime_node(P)
     assert n["epistemikk"]["sannhetsstatus"] == "hypotese"
-    assert "HYPOTESE" in n["ontology"]["assumes"][2]
+    assert "HYPOTHESIS" in n["ontology"]["assumes"][2]
 
 
 def test_compute_returnerer_gamma_per_punkt():

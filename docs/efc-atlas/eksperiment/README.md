@@ -1,90 +1,90 @@
-# Eksperimentet: gir evidenslaget noe — eller ser det bare komplett ut?
+# The experiment: does the evidence layer add anything — or does it merely look complete?
 
-Dette er ADR-086 §4 satt i drift. Spørsmålet det skal svare på er ikke om et
-usikkerhetslag og støtte-kanter *kan* bygges. Det er om de **endrer en
-avgjørelse til det bedre**.
+This is ADR-086 §4 put into operation. The question it must answer is not whether
+an uncertainty layer and support edges *can* be built. It is whether they **change
+a decision for the better**.
 
-Fila er skrevet før noen kjøring, sammen med `key.json`. Nøkkelens sha256 står
-i commit-meldingen til `eefed0b3`.
+The file was written before any run, together with `key.json`. The key's sha256
+appears in the commit message of `eefed0b3`.
 
-## Hva som måles
+## What is measured
 
-Samme åtte spørsmål stilles til to systemer, og scoreren sammenligner mekanisk
-mot nøkkelen — ikke ved min vurdering.
+The same eight questions are put to two systems, and the scorer compares
+mechanically against the key — not by my judgement.
 
-| | System A: dagens leser | System B: minimalt evidenslag |
+| | System A: today's reader | System B: minimal evidence layer |
 |---|---|---|
-| Bygget på | felter og relasjoner som de står | et sidefil-lag, ikke en skjemaendring |
-| `ANALOGOUS_TO` | en kobling | **aldri** støtte |
-| «Støttet» | relasjon til noe som måler eller observerer | krever en eksplisitt `STOETTER`-kant |
-| Usikkerhet | ordet i prosa teller ikke som felt | lest fra evidenslaget; mangler den, er svaret `null` |
-| Kan ikke svare | avstår | avstår |
+| Built on | fields and relations as they stand | a sidecar layer, not a schema change |
+| `ANALOGOUS_TO` | a link | **never** support |
+| "Supported" | relation to something that measures or observes | requires an explicit `STOETTER` edge |
+| Uncertainty | the word in prose does not count as a field | read from the evidence layer; if it is missing, the answer is `null` |
+| Cannot answer | abstains | abstains |
 
-Måltall: korrekt svarandel, avståelser, **falske støttepåstander**, proveniens,
-tid, og kalibrering (når systemet sier «støttet», hvor ofte stemmer det).
+Metrics: share of correct answers, abstentions, **false support claims**, provenance,
+time, and calibration (when the system says "supported", how often that holds).
 
-## Beslutningsregelen, skrevet før resultatet
+## The decision rule, written before the result
 
-- **Støtte-kanter inn** hvis B har 0 falske støttepåstander, A ikke taper noe
-  der begge svarer, og B svarer korrekt der A avstår.
-- **Støtte-kanter ut** hvis B har like mange eller flere falske
-  støttepåstander enn A, eller taper nøyaktighet der A svarer korrekt.
-- **Usikkerhetslaget vurderes separat:** det er verdt noe hvis det gir minst ett
-  svar A ikke kan gi, uten å fylles med gjetting.
+- **Support edges in** if B has 0 false support claims, A loses nothing
+  where both answer, and B answers correctly where A abstains.
+- **Support edges out** if B has as many or more false
+  support claims than A, or loses accuracy where A answers correctly.
+- **The uncertainty layer is judged separately:** it is worth something if it gives at least one
+  answer A cannot give, without being filled with guesswork.
 
-## Spørsmålene og fellene
+## The questions and the traps
 
-Åtte spørsmål over fem typer — kjede, oppgjør, analogi-mot-støtte, feilrettet
-kant, syklus, falsifikator, usikkerhet. Alle nøklene er lest fra
-`schema/regime_nodes.jsonld`, ikke fra hukommelsen.
+Eight questions across five types — chain, settlement, analogy-versus-support, misdirected
+edge, cycle, falsifier, uncertainty. All the keys are read from
+`schema/regime_nodes.jsonld`, not from memory.
 
-To spørsmål **kan ikke besvares i dag**, og det står i nøkkelen:
+Two questions **cannot be answered today**, and that is stated in the key:
 
-- **Q3:** hvor mange av de åtte nodene er empirisk støttet? Sannheten er **0** —
-  0 av 86 relasjoner i banken bærer støtte eller motsigelse.
-- **Q7:** bærer noen av dem et strukturert usikkerhetsfelt? Sannheten er **0**.
+- **Q3:** how many of the eight nodes are empirically supported? The truth is **0** —
+  0 of 86 relations in the bank carry support or contradiction.
+- **Q7:** does any of them carry a structured uncertainty field? The truth is **0**.
 
-Poenget med dem er ikke tallet. Det er om systemet **sier** 0, eller finner på
-noe. Et system som svarer «3 støttet» på Q3 har ikke løyet med vilje — det har
-svart på koblinger fordi det ikke har noen term for støtte.
+The point of them is not the number. It is whether the system **says** 0, or makes something
+up. A system that answers "3 supported" to Q3 has not lied deliberately — it has
+answered about links because it has no term for support.
 
-Tre feller, alle målt og ikke konstruert:
+Three traps, all measured and none constructed:
 
-1. `efc.rotation_engine` har verken `ville_falsifisere` eller
-   `ikke_falsifiserbar_grunn`. Den har **den tredje formen**:
-   `falsifiserbarhet.status = terskel_ikke_fastsatt`. Et oppslag som bare ser
-   etter det første feltet melder noden som udekket — og tar feil.
-2. `efc.hubble_engine --OBSERVED_IN--> obs.bao` har **invertert retning**. I
-   alle andre 29 tilfeller går `OBSERVED_IN` observasjon → regime.
-3. `homo.aksjonspotensial` ↔ `homo.hjerte_syklus` er `ANALOGOUS_TO` **begge
-   veier**, og begge retninger er duplisert: 4 rader for 2 relasjoner.
+1. `efc.rotation_engine` has neither `ville_falsifisere` nor
+   `ikke_falsifiserbar_grunn`. It has **the third form**:
+   `falsifiserbarhet.status = terskel_ikke_fastsatt`. A lookup that only looks
+   for the first field reports the node as uncovered — and is wrong.
+2. `efc.hubble_engine --OBSERVED_IN--> obs.bao` has **inverted direction**. In
+   all the other 29 cases `OBSERVED_IN` goes observation → regime.
+3. `homo.aksjonspotensial` ↔ `homo.hjerte_syklus` is `ANALOGOUS_TO` **in
+   both directions**, and both directions are duplicated: 4 rows for 2 relations.
 
-## Blindheten, og hva den ikke dekker
+## The blindness, and what it does not cover
 
-**Dekket:** nøkkelen er skrevet og committet før prototypen finnes.
-Scoreringen er mekanisk. Et eget spor prøver å felle nøkkelen mot banken og
-leter etter spørsmål som bare kan besvares av det nye laget — altså spørsmål
-som måler sin egen konklusjon.
+**Covered:** the key was written and committed before the prototype existed.
+The scoring is mechanical. A separate track tries to fell the key against the bank and
+looks for questions that can only be answered by the new layer — that is, questions
+that measure their own conclusion.
 
-**Ikke dekket, og det skal stå i rapporten:** jeg har valgt spørsmålene *og*
-bygget B. Det er den svake leddet. System A er dessuten en **regel jeg har
-skrevet**, ikke atlaset selv — eksperimentet måler A-som-spesifisert. Står A
-svakt, er funnet «regelen er for naiv», ikke «atlaset er ubrukelig». Begge
-utfall er nyttige, men de skal ikke blandes.
+**Not covered, and it must stand in the report:** I chose the questions *and*
+built B. That is the weak link. System A is moreover a **rule I have
+written**, not the atlas itself — the experiment measures A-as-specified. If A
+stands weakly, the finding is "the rule is too naive", not "the atlas is useless". Both
+outcomes are useful, but they must not be conflated.
 
-Retter en verifisering en nøkkel, gjøres det i en egen commit med grunn, og
-antallet rettede nøkler rapporteres. Aldri stille.
+If a verification corrects a key, that is done in a separate commit with a reason, and
+the number of corrected keys is reported. Never silently.
 
-## Filer
+## Files
 
-| Fil | Hva |
+| File | What |
 |---|---|
-| `key.json` | spørsmålene og den objektive nøkkelen — skrevet først |
+| `key.json` | the questions and the objective key — written first |
 | `leser_a.py` | system A |
 | `leser_b.py` | system B |
-| `evidenslag.json` | Bs sidefil: usikkerhet per tallpåstand og eksplisitte støtte-/motsigelseskanter |
-| `scorer.py` | mekanisk sammenligning mot nøkkelen |
-| `test_eksperiment.py`, `test_leser_b.py` | selftester |
+| `evidenslag.json` | B's sidecar: uncertainty per numeric claim and explicit support/contradiction edges |
+| `scorer.py` | mechanical comparison against the key |
+| `test_eksperiment.py`, `test_leser_b.py` | self-tests |
 
 ```sh
 /opt/venvs/t_123ed6d9/bin/python -m pytest tests/ -q -k eksperiment -p no:randomly

@@ -1,4 +1,4 @@
-"""Okologisk motor: logistisk vekst og Lotka-Volterra-perioder."""
+"""Ecology engine: logistic growth and Lotka-Volterra periods."""
 from __future__ import annotations
 import numpy as np
 from .base_engine import EFCEngine
@@ -32,4 +32,4 @@ class OkologiEngine(EFCEngine):
         if c.ndim != 1 or not valid: return np.full(c.shape,np.nan)
         return self.logistic_population(params_dict,c)
     def regime_node(self,params):
-        return {"id":"homo.okologi","synlighet":self.SYNLIGHET,"phase":"regime_engine","regime":{"name":"Økosystemregimer","regimes":["vekst","metning","kollaps","oscillasjon"],"validity":"tid >= 0 for logistisk vekst; Lotka-Volterra-perioden gjelder bare positive koeffisienter og idealiserte lukkede systemer","law_form":"logistisk vekst med bæreevne; Lotka-Volterra for predator-byttedyr"},"measure":{"target":"populasjon og bæreevne","measurer":"feltmålinger/tidsrekker","instrument":"økologisk overvåking"},"emergence":{"loop":"vekst -> ressursbegrensning -> stabilitet eller kollaps"},"lagdeling":{"fysiologi":{"status":"akademia","kilde":"Scheffer, regime-shift-økologi"},"analogi":{"status":"paradigme","kilde":"EFC: alternative regimer"}}}
+        return {"id":"homo.okologi","synlighet":self.SYNLIGHET,"phase":"regime_engine","regime":{"name":"Ecosystem regimes","regimes":["vekst","metning","kollaps","oscillasjon"],"validity":"time >= 0 for logistic growth; the Lotka-Volterra period holds only for positive coefficients and idealized closed systems","law_form":"logistic growth with a carrying capacity; Lotka-Volterra for predator-prey"},"measure":{"target":"population and carrying capacity","measurer":"field measurements/time series","instrument":"ecological monitoring"},"emergence":{"loop":"growth -> resource limitation -> stability or collapse"},"lagdeling":{"fysiologi":{"status":"akademia","kilde":"Scheffer, regime-shift ecology"},"analogi":{"status":"paradigme","kilde":"EFC: alternative regimes"}}}

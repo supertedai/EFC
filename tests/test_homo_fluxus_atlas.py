@@ -60,7 +60,7 @@ def test_analogi_merking_til_batteri():
     AN ANALOGY to the battery, not identity. It shall stand explicitly."""
     node = _node("homo.homeostase_buffer")
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "batteri" in tekst
+    assert "battery" in tekst
     assert "analogi" in tekst
 
 

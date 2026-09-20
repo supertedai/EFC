@@ -42,10 +42,10 @@ def test_repro_skriptet_rapporterer_kilden():
 
 
 def test_readme_har_instruksjoner_og_aerlighet():
-    text = README.read_text(encoding="utf-8")
-    assert "git clone" in text
-    assert "sealed_fs8_repro.py" in text
-    assert "Viser ikke" in text  # the honesty section
+    tekst = README.read_text(encoding="utf-8")
+    assert "git clone" in tekst
+    assert "sealed_fs8_repro.py" in tekst
+    assert "Does not show" in tekst  # ærlighetsseksjonen
 
 
 def test_repro_skriptet_feiler_kontrollert_ved_gal_mu0():

@@ -233,11 +233,11 @@ def _prober(repo: pathlib.Path, ref: str, atlas: dict,
                            for a in ("perspektiv", "phase", "synlighet")],
             "finn": [_svar(al.finn, repo, n, ref) for n in naaler_],
         },
-        "atlas_inngang": {i: _svar(ai.les, repo, i, ref) for i in ider},
+        "atlas_inngang": {i: _svar(ai.read, repo, i, ref) for i in ider},
         "atlas_navigasjon": {"naviger": _svar(an.naviger, repo, ref)},
         "atlas_volum": {
             "hull": kanon(hull),
-            "formater": _svar(av.formater, hull),
+            "formater": _svar(av.format_table, hull),
             "meldinger": _svar(av.meldinger_per_domene, dekning["snapshot"]),
         },
         "efc_atlas_generator": {

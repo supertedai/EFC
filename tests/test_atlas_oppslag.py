@@ -270,13 +270,13 @@ class TestKommandolinjen:
         p = self._kjoer("--emne", "sovn", "--ref", "HEAD")
         assert p.returncode == 0, p.stderr
         assert "homo.sovn_vaaken" in p.stdout
-        assert "1 treff" in p.stdout
+        assert "1 hit(s) on" in p.stdout
 
     def test_hull_paa_kommandolinjen_er_tydelig(self) -> None:
         p = self._kjoer("--emne", "kvantegravitasjon_xyzzy", "--ref", "HEAD")
         assert p.returncode == 0, (
-            "a hole is a valid answer — the command line must not fail on it")
-        assert "ATLASET VET IKKE" in p.stdout
+            "et hull er et gyldig svar — kommandolinjen skal ikke feile paa det")
+        assert "THE ATLAS DOES NOT KNOW" in p.stdout
 
     def test_uten_emne_listes_hele_atlaset(self) -> None:
         """The count is read from the source — not written in.
@@ -302,8 +302,8 @@ class TestKommandolinjen:
         noder = _json.loads(raa.stdout)["nodes"]
         p = self._kjoer("--ref", "HEAD")
         assert p.returncode == 0, p.stderr
-        assert f"{len(noder)} noder" in p.stdout, (
-            f"the CLI and the file disagree about the count: {p.stdout[:200]}")
+        assert f"{len(noder)} nodes" in p.stdout, (
+            f"CLI-en og filen er uenige om antallet: {p.stdout[:200]}")
 
 
 class TestKjenteHull:
@@ -537,9 +537,9 @@ class TestVisningsgrensen:
         assert p.returncode == 0, p.stderr
         linjer = [l for l in p.stdout.splitlines() if "(ord)" in l or "(delstreng)" in l]
         assert len(linjer) <= atlas_lesing._VIS_MAKS, (
-            f"CLI showed {len(linjer)} hits, the limit is {atlas_lesing._VIS_MAKS}")
-        assert "flere" in p.stdout, (
-            "when the hits are cut, the CLI must say how many lie below")
+            f"CLI viste {len(linjer)} treff, grensen er {atlas_lesing._VIS_MAKS}")
+        assert "more — use --alle" in p.stdout, (
+            "naar treffene kuttes, skal CLI si hvor mange som ligger under")
 
 
 class TestStorrelsenPaaHullet:

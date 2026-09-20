@@ -1,12 +1,12 @@
-"""gap_nats_bro — tre broer fra NATS inn i EFC-motorene (hav, planter, vulkan).
+"""gap_nats_bro — three bridges from NATS into the EFC engines (ocean, plants, volcano).
 
-    kosmos.jord.tilstand.usgs-vulkan        -> vulkan-tilstand (regime-status)
-    verden.klima.tilstand.noaa-tides     -> hav-temperatur-proxy
-    verden.miljo.tilstand.gbif-planter -> biosfaere-tellinger
+    kosmos.jord.tilstand.usgs-vulkan        -> volcano state (regime status)
+    verden.klima.tilstand.noaa-tides     -> ocean temperature proxy
+    verden.miljo.tilstand.gbif-planter -> biosphere counts
 
-Tilstandene er beskrevet i kaldarkiv-seed (Hetzner PR #1006). Disse
-broene LESER stroemmene og mater motorene — injiserbarhetsdesignet:
-NATS er ikke en atlas-node, NATS -> bro -> motor -> atlas-node.
+The states are described in the cold-archive seed (Hetzner PR #1006). These
+bridges READ the streams and feed the engines — the injectability design:
+NATS is not an atlas node, NATS -> bridge -> engine -> atlas node.
 """
 from __future__ import annotations
 
@@ -15,77 +15,77 @@ import os
 import re
 import socket
 
-EMNE_VULKAN = "kosmos.jord.tilstand.usgs-vulkan"
-EMNE_HAV = "verden.klima.tilstand.noaa-tides"
-EMNE_PLANTER = "verden.miljo.tilstand.gbif-planter"
-EMNE_DESI_BAO = "kosmos.kosmologi.observasjon.desi-bao"
+SUBJECT_VOLCANO = "kosmos.jord.tilstand.usgs-vulkan"
+SUBJECT_OCEAN = "verden.klima.tilstand.noaa-tides"
+SUBJECT_PLANTS = "verden.miljo.tilstand.gbif-planter"
+SUBJECT_DESI_BAO = "kosmos.kosmologi.observasjon.desi-bao"
 
 LEGITIMASJON = os.environ.get("NATS_LEGITIMASJON",
                               "/etc/nats/legitimasjon.env")
-TIDSAVBRUDD = 20
+TIMEOUT = 20
 
 
-def _legit(rolle: str = "KONSUMENT"):
+def _legit(role: str = "KONSUMENT"):
     try:
-        for linje in open(LEGITIMASJON, encoding="utf-8"):
-            if linje.startswith(f"NATS_{rolle}="):
+        for line in open(LEGITIMASJON, encoding="utf-8"):
+            if line.startswith(f"NATS_{role}="):
                 m = re.match(r"nats://([^:]+):([^@]+)@([^:]+):(\d+)",
-                             linje.split("=", 1)[1].strip())
+                             line.split("=", 1)[1].strip())
                 if m:
                     return (m.group(1), m.group(2), m.group(3),
                             int(m.group(4)), "")
     except OSError as e:
         return None, None, None, None, f"{LEGITIMASJON}: {type(e).__name__}"
-    return None, None, None, None, f"rollen {rolle} mangler"
+    return None, None, None, None, f"the role {role} is missing"
 
 
-def analyser_vulkan(melding: dict) -> dict:
-    """VHP-tilstand -> regime-klassifisering (statuslisten)."""
-    tilstand = melding.get("tilstand", {})
-    antall_aktive = sum(1 for v in tilstand.values()
-                        if str(v.get("nivaa", "")).upper()
-                        not in ("", "NORMAL", "GREEN"))
-    return {"antall_spurte": melding.get("antall_spurte", 0),
-            "antall_aktive": antall_aktive,
-            "prosent_aktive": round(100 * antall_aktive /
-                                    max(1, melding.get("antall_spurte", 1)),
+def analyser_vulkan(message: dict) -> dict:
+    """VHP state -> regime classification (the status list)."""
+    state = message.get("tilstand", {})
+    active_count = sum(1 for v in state.values()
+                       if str(v.get("nivaa", "")).upper()
+                       not in ("", "NORMAL", "GREEN"))
+    return {"antall_spurte": message.get("antall_spurte", 0),
+            "antall_aktive": active_count,
+            "prosent_aktive": round(100 * active_count /
+                                    max(1, message.get("antall_spurte", 1)),
                                     1)}
 
 
-def analyser_hav(melding: dict) -> dict:
-    """NOAA-temperaturer -> proxy for hav-energi (klima-motoren)."""
-    temp = melding.get("temperaturer_c", {})
-    verdier = [v for v in temp.values()
-               if isinstance(v, (int, float)) and v == v]
-    if not verdier:
+def analyser_hav(message: dict) -> dict:
+    """NOAA temperatures -> proxy for ocean energy (the climate engine)."""
+    temps = message.get("temperaturer_c", {})
+    values = [v for v in temps.values()
+              if isinstance(v, (int, float)) and v == v]
+    if not values:
         return {"maalt": False, "antall_stasjoner":
-                melding.get("antall_stasjoner", 0)}
-    return {"maalt": True, "middel_c": round(sum(verdier) /
-                                             len(verdier), 2),
-            "min_c": round(min(verdier), 2),
-            "max_c": round(max(verdier), 2),
-            "antall_maalte": len(verdier)}
+                message.get("antall_stasjoner", 0)}
+    return {"maalt": True, "middel_c": round(sum(values) /
+                                             len(values), 2),
+            "min_c": round(min(values), 2),
+            "max_c": round(max(values), 2),
+            "antall_maalte": len(values)}
 
 
-def analyser_planter(melding: dict) -> dict:
-    """GBIF-tellinger -> biosfaere-fotavtrykk (enerflyt-motoren)."""
-    tellinger = melding.get("tellinger", {})
-    return {"tellinger": tellinger,
-            "sum": sum(tellinger.values()),
-            "feil": len(melding.get("feil", []))}
+def analyser_planter(message: dict) -> dict:
+    """GBIF counts -> biosphere footprint (the energy-flow engine)."""
+    counts = message.get("tellinger", {})
+    return {"tellinger": counts,
+            "sum": sum(counts.values()),
+            "feil": len(message.get("feil", []))}
 
 
 def analyser_desi_bao(melding: dict) -> dict:
-    """DESI DR2 BAO-observasjon -> hubble/growth-motor-input.
+    """DESI DR2 BAO observation -> hubble/growth engine input.
 
-    Bakgrunnen (alpha) er publisert og leses; veksten (fsigma8) venter paa
-    DESI DR2 full-shape og rapporteres som «venter» inntil den finnes i
-    meldingen. Broen dikter aldri en fsigma8-verdi.
+    The background (alpha) is published and read; the growth (fsigma8) waits
+    for DESI DR2 full-shape and is reported as «waiting» until it exists in
+    the message. The bridge never invents an fsigma8 value.
     """
     alpha = melding.get("alpha")
     if alpha is None:
         return {"lesbar": False,
-                "note": "ingen alpha i meldingen — broen venter"}
+                "note": "no alpha in the message — the bridge waits"}
     ut = {"lesbar": True,
           "alpha": alpha,
           "alpha_usikkerhet": melding.get("alpha_usikkerhet"),
@@ -96,13 +96,13 @@ def analyser_desi_bao(melding: dict) -> dict:
     return ut
 
 
-def bro_runde(emner: dict) -> dict:
-    """Én runde: les tilstandene (via lesergrensesnittet som mates
-    inn), analyser, returner motoren-input. Lesingen selv skjer
-    gjennom verden-mcp (husets STREAM.MSG.GET-form)."""
-    resultat = {}
-    for navn, (emne, analyser, melding) in emner.items():
-        resultat[navn] = analyser(melding) if melding else {
-            "lesbar": False,
-            "note": "ingen melding — broen venter paa konnektor-deploy"}
-    return resultat
+def bro_runde(subjects: dict) -> dict:
+    """One round: read the states (via the reader interface that is fed
+    in), analyse, return the engine input. The reading itself happens
+    through the verden-MCP (the house STREAM.MSG.GET form)."""
+    results = {}
+    for name, (subject, analyse, message) in subjects.items():
+        results[name] = analyse(message) if message else {
+            "readable": False,
+            "note": "no message — the bridge waits for connector deploy"}
+    return results

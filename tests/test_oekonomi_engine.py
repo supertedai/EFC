@@ -73,7 +73,7 @@ def test_regime_node_selvbeskrivelse():
     assert node["id"] == "efc.oekonomi_engine"
     tekst = json.dumps(node, ensure_ascii=False).lower()
     assert "idealis" in tekst
-    assert "ikke en økonomisk" in tekst or "ikke økonomisk" in tekst
+    assert "not an economic model competitor" in tekst
     assert "minsky" in tekst
     assert node["regime"]["law_form"].strip()
 
@@ -85,9 +85,8 @@ def test_avgresning_minsky_og_ikke_prediksjon():
     e = OekonomiEngine()
     node = e.regime_node(PARAMS)
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "én tradisjon" in tekst or "en tradisjon" in tekst
-    assert "predikerer ikke kriser" in tekst or \
-           "ikke krisers tidspunkt" in tekst
+    assert "one tradition among several" in tekst
+    assert "does not predict the timing or occurrence of crises" in tekst
 
 
 def test_negativ_drift_er_aerlig_nan():

@@ -71,10 +71,10 @@ def test_uten_maaling_venter_arbiteren():
 def test_manglende_felt_venter():
     for field in ("fsigma8", "sigma", "z_eff", "tracer", "kilde"):
         m = _m(0.440, 0.03)
-        m[field] = None
-        verdict = _arbiter().vurder(m)
-        assert verdict["status"] == "VENTER", field
-        assert "ugyldig" in verdict["årsak"]
+        m[felt] = None
+        dom = _arbiter().vurder(m)
+        assert dom["status"] == "VENTER", felt
+        assert "invalid" in dom["årsak"]
 
 
 def test_ugyldig_sigma_venter():
@@ -181,9 +181,9 @@ def test_rapporten_maaler_mu_kanalen_arlig():
     rep = report["mu_reproduksjon_variantc"]
     assert rep["variant"] == "EFCVariantC"
     assert abs(rep["fs8_mu_0_5"] - 0.430) < 0.005
-    assert "reproduserbar" in report["ærlighet"]
-    assert "IKKE" in report["ærlighet"]  # does not prove sealed mu_0
-    assert "har IKKE" in report["ærlighet"]  # injected variant reported
+    assert "reproducible" in rapport["ærlighet"]
+    assert "NOT" in rapport["ærlighet"]  # beviser ikke forseglet mu_0
+    assert "does NOT have the μ channel" in rapport["ærlighet"]  # injisert variant rapportert
 
 
 def test_rapporten_med_variantc_sier_den_injiserte_har_kanalen():
@@ -192,9 +192,9 @@ def test_rapporten_med_variantc_sier_den_injiserte_har_kanalen():
     from efc_inference.core.cosmology_model import EFCVariantC
     from efc_inference.engine.growth import EFCGrowth
     arb = SealedFs8Arbiter(growth=EFCGrowth(cosmology=EFCVariantC()))
-    report = arb.rapport()
-    assert report["mu_kanal_i_injisert_motor"] is True
-    assert "HAR" in report["ærlighet"]
+    rapport = arb.rapport()
+    assert rapport["mu_kanal_i_injisert_motor"] is True
+    assert "HAS" in rapport["ærlighet"]
 
 
 def test_payload_har_kriterium_og_proveniens():

@@ -40,7 +40,7 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
     noder = {node["id"]: node for node in NODER}
     for node_id, (domene, stroem) in FORVENTET.items():
         node = noder[node_id]
-        assert node["measure"]["placement"] == "observasjon"
+        assert node["measure"]["placement"] == "observation"
         assert node["measure"]["target"]
         assert node["measure"]["measurer"]
         assert node["measure"]["instrument"]
@@ -51,9 +51,11 @@ def test_de_tre_stroemnodene_baerer_maalingskontrakten():
         assert prov["kilder"][0]["ref"] == stroem
         assert prov["begrensning"]
         assert prov["fullstendig"] is False
-        assert node["stipulasjoner"]["motor_status"] == "instrument — trenger ingen motor"
+        assert node["stipulasjoner"]["motor_status"] == "instrument — needs no engine"
         assert node["stipulasjoner"]["ikke_falsifiserbar_grunn"] == (
-            "Instrument-noden kan ikke felles av en observasjon — den ER målingen; eventuell falsifikasjon hører til påstanden som bruker målingen."
+            "The instrument node cannot be felled by an observation — it IS the "
+            "measurement; any falsification belongs to the claim that uses the "
+            "measurement."
         )
         assert node["epistemikk"]["konsensus_er_ikke_sannhet"] is True
         assert node["perspektiv"] == "konsensus"

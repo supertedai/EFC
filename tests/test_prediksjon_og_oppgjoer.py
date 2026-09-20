@@ -90,7 +90,16 @@ class TestPrediksjonOgOppgjoer(unittest.TestCase):
         self.assertEqual(p["sealed_doi"], fixture["forseglet_doi"])
         self.assertEqual(p["sealing_sha256"], fixture["forsegling_sha256"])
         self.assertEqual(p["criterion"], fixture["kriterium"])
-        self.assertEqual(p["tolerance_rule"], fixture["toleranse_regel"])
+        # The fixture is the MEASURED Norwegian message, frozen. The producer
+        # (the atlas) now speaks English, so the mirror is pinned to the
+        # producer's text — and the fixture is still pinned as an unedited
+        # measured message.
+        self.assertEqual(p["tolerance_rule"],
+                         "within 1 sigma of the DR2 measurement's OWN "
+                         "uncertainty, not a fixed band")
+        self.assertIn("EGEN usikkerhet", fixture["toleranse_regel"],
+                      "the fixture is the measured message — it is not edited "
+                      "by hand")
 
     def test_expected_er_speilet_ikke_avskrevet(self):
         """`forventet` is sent as a JSON-encoded string on the bus. The mirroring

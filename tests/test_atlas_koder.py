@@ -173,9 +173,9 @@ class TestAtlasKoder(unittest.TestCase):
         for_ut = _sha(DATA_MJS)
         bank = _bank() + [{"id": "test.ny_uten_kode", "synlighet": "offentlig"}]
         rc, utskrift, skrevet = self._hoved_mot(bank)
-        self.assertEqual(rc, 1, f"the generator let it through:\n{utskrift}")
-        self.assertIn("mangler kode", utskrift,
-                      "failed for the wrong reason — the proof must name the cause")
+        self.assertEqual(rc, 1, f"generatoren slapp gjennom:\n{utskrift}")
+        self.assertIn("missing a code", utskrift,
+                      "feilet av feil grunn — proven maa navngi aarsaken")
         self.assertIn("test.ny_uten_kode", utskrift)
         self.assertFalse(skrevet, "data.mjs was written before the guard fired")
         self.assertEqual(_sha(DATA_MJS), for_ut,
@@ -187,9 +187,9 @@ class TestAtlasKoder(unittest.TestCase):
         for_ut = _sha(DATA_MJS)
         rc, utskrift, skrevet = self._hoved_mot(_bank(),
                                                 koder={"h2o.solid": "LI"})
-        self.assertEqual(rc, 1, f"the generator let it through:\n{utskrift}")
-        self.assertIn("flere noder", utskrift,
-                      "failed for the wrong reason — the proof must name the cause")
+        self.assertEqual(rc, 1, f"generatoren slapp gjennom:\n{utskrift}")
+        self.assertIn("several nodes", utskrift,
+                      "feilet av feil grunn — proven maa navngi aarsaken")
         self.assertIn("h2o.liquid", utskrift)
         self.assertFalse(skrevet, "data.mjs was written before the guard fired")
         self.assertEqual(_sha(DATA_MJS), for_ut,
@@ -201,10 +201,10 @@ class TestAtlasKoder(unittest.TestCase):
         for_ut = _sha(DATA_MJS)
         rc, utskrift, skrevet = self._hoved_mot(_bank(),
                                                 koder={"efc.hubble": "ZZ"})
-        self.assertEqual(rc, 1, f"the generator let it through:\n{utskrift}")
+        self.assertEqual(rc, 1, f"generatoren slapp gjennom:\n{utskrift}")
         self.assertIn("do not exist", utskrift,
-                      "failed for the wrong reason — the proof must name the cause")
-        self.assertFalse(skrevet, "data.mjs was written before the guard fired")
+                      "feilet av feil grunn — proven maa navngi aarsaken")
+        self.assertFalse(skrevet, "data.mjs ble skrevet for vakten fyrte")
         self.assertEqual(_sha(DATA_MJS), for_ut,
                          "the generator touched the real atlas")
 

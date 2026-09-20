@@ -122,10 +122,10 @@ def test_the_count_is_derived_and_moves_with_the_bank():
     uten = [n for n in noder if GEN._gruppe(n["id"]) == "ghost"]
     assert len(uten) > 1, "too few group-less nodes in the bank to mutate"
     mindre = [n for n in noder if n["id"] != uten[0]["id"]]
-    for spraak, anker in (("en", "of them"), ("nb", "")):
-        full = GEN.uten_gruppe_frase(noder, spraak, anker)
-        reduced = GEN.uten_gruppe_frase(mindre, spraak, anker)
-        assert full != reduced, f"the {spraak} phrase is a constant: {full}"
+    for anker in ("of them", ""):
+        full = GEN.uten_gruppe_frase(noder, anker)
+        reduced = GEN.uten_gruppe_frase(mindre, anker)
+        assert full != reduced, f"the phrase with {anker!r} is a constant: {full}"
         assert reduced.startswith(f"{len(uten) - 1} "), reduced
 
 
@@ -155,14 +155,12 @@ def test_system_md_chapter_lede_carries_the_group_less_count():
 
 
 def test_indeks_header_carries_the_group_less_count():
-    """Count only: the header is Norwegian, and this file is English.
-
-    The wording of the Norwegian header is already pinned, derived, by
+    """Count only: the header wording is pinned, derived, by
     tests/test_atlas_indeks.py — including the split behind the number.
     """
     noder = _public_nodes()
-    linje = _line_with(_text(INDEKS_MD), "publiserte noder")
-    assert f"{len(noder)} publiserte noder" in linje, linje
+    linje = _line_with(_text(INDEKS_MD), "published nodes")
+    assert f"{len(noder)} published nodes" in linje, linje
     _states_count(linje, noder)
 
 
@@ -196,23 +194,23 @@ def test_every_surface_is_written_by_the_generators_one_derivation():
     thing worse than one.
     """
     noder = _public_nodes()
-    kort = GEN.uten_gruppe_frase(noder, "en", "", med_grunn=False)
+    kort = GEN.uten_gruppe_frase(noder, "", med_grunn=False)
     hold = {
         "One paragraph": (
             _one_paragraph_section(_text(SYSTEM_MD)),
-            GEN.uten_gruppe_frase(noder, "en", f"of the {len(noder)}")),
+            GEN.uten_gruppe_frase(noder, f"of the {len(noder)}")),
         "chapter-9 lede": (
             _line_with(_text(SYSTEM_MD), "**The whole atlas**"),
-            GEN.uten_gruppe_frase(noder, "en", "of them")),
+            GEN.uten_gruppe_frase(noder, "of them")),
         "index header": (
-            _line_with(_text(INDEKS_MD), "publiserte noder"),
-            GEN.uten_gruppe_frase(noder, "nb")),
+            _line_with(_text(INDEKS_MD), "published nodes"),
+            GEN.uten_gruppe_frase(noder, "")),
         "META.onePara": (
             _line_with(_text(DATA_MJS), "onePara: `"),
-            GEN.uten_gruppe_frase(noder, "en", f"of the {len(noder)}")),
+            GEN.uten_gruppe_frase(noder, f"of the {len(noder)}")),
         "chapter-9 in data.mjs": (
             _line_with(_text(DATA_MJS), '"lede": "Everything at once'),
-            GEN.uten_gruppe_frase(noder, "en", "of them")),
+            GEN.uten_gruppe_frase(noder, "of them")),
     }
     for navn, (flate, frase) in hold.items():
         assert frase in flate, f"{navn}: {frase!r} missing from {flate.strip()[:120]}"

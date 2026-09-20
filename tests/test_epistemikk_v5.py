@@ -39,18 +39,18 @@ def test_paradigme_tid_har_to_valgte_rammer():
     """Time is not one coordinate — SI proper time and spacetime time
     are two different chosen frames."""
     n = _node("efc.selv.paradigme_tid")
-    options = n["maale_paradigme"]["alternativer"]
-    assert any("romtid" in a for a in options), \
-        "the romtid frame is missing from the alternatives"
+    alt = n["maale_paradigme"]["alternativer"]
+    assert any("spacetime" in a for a in alt), \
+        "romtid-rammen mangler i alternativene"
 
 
 def test_paradigme_masse_skiller_gravitasjons_rammene():
     """The EFC frame is the general one; LCDM is the SPECIAL CASE (mu -> 1)."""
     n = _node("efc.selv.paradigme_masse")
-    options = n["maale_paradigme"]["alternativer"]
-    assert any("entropi" in a for a in options), "the EFC frame is missing"
-    assert any("SPESIALTILFELLE" in a for a in options), \
-        "LCDM is not declared as a special case"
+    alt = n["maale_paradigme"]["alternativer"]
+    assert any("entropy" in a for a in alt), "EFC-rammen mangler"
+    assert any("SPECIAL CASE" in a for a in alt), \
+        "LCDM er ikke deklarert som spesialtilfelle"
 
 
 def test_kosmologi_motorene_deklarerer_romtid_veving():
@@ -59,8 +59,8 @@ def test_kosmologi_motorene_deklarerer_romtid_veving():
                 "efc.lensing_engine", "efc.cluster_engine",
                 "efc.growth_engine", "efc.mu_kz_engine"):
         n = _node(nid)
-        options = n["maale_paradigme"]["alternativer"]
-        assert any("romtid" in a for a in options), nid
+        alt = n["maale_paradigme"]["alternativer"]
+        assert any("spacetime" in a for a in alt), nid
 
 
 def test_efc_motorene_deklarerer_entropi_rammen():
@@ -69,7 +69,7 @@ def test_efc_motorene_deklarerer_entropi_rammen():
     for nid in ("efc.growth_engine", "efc.mu_kz_engine"):
         n = _node(nid)
         assumes = n["ontology"]["assumes"]
-        assert any("entropi" in a for a in assumes), nid
+        assert any("entropy" in a for a in assumes), nid
 
 
 def test_lcdm_motorene_deklarerer_spesialtilfelle():
@@ -88,8 +88,8 @@ def test_mu_kz_koblingen_er_deklarert_som_plan():
     the node must say so explicitly, not pretend the code couples them."""
     n = _node("efc.mu_kz_engine")
     assumes = n["ontology"]["assumes"]
-    assert any("IKKE implementert" in a for a in assumes), (
-        "the mu_kz node overclaims the coupling to growth")
+    assert any("NOT implemented" in a for a in assumes), (
+        "mu_kz-noden overpåstår koblingen til growth")
 
 
 def test_egentid_er_metrikk_og_verdenslinje():
@@ -97,6 +97,6 @@ def test_egentid_er_metrikk_og_verdenslinje():
     world line — mass is a source of the metric, not a direct kinematic
     variable."""
     n = _node("efc.selv.paradigme_tid")
-    options = n["maale_paradigme"]["alternativer"]
-    assert any("METRIKKEN" in a and "verdenslinjen" in a for a in options), (
-        "the formulation of proper time is imprecise")
+    alt = n["maale_paradigme"]["alternativer"]
+    assert any("METRIC" in a and "worldline" in a for a in alt), (
+        "formuleringen av egentiden er upresis")

@@ -74,9 +74,8 @@ def test_regime_node_selvbeskrivelse():
     node = e.regime_node(PARAMS)
     assert node["id"] == "efc.samfunn_engine"
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "idealis" in tekst
-    assert "ikke en epidemiologisk" in tekst or \
-           "ikke epidemiologisk" in tekst
+    assert "idealized homogeneous sir" in tekst
+    assert "not an epidemiological" in tekst
     assert "sir" in tekst
     assert node["regime"]["law_form"].strip()
 

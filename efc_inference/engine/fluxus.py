@@ -47,9 +47,9 @@ class FluxusEngine(EFCEngine):
     def regime_node(self, params):
         return {"id": "homo.fluxus", "synlighet": self.SYNLIGHET,
                 "perspektiv": "paradigme",
-                "epistemikk": {"sannhetsstatus": "hypotese", "evidensstatus": "proxy", "konsensusstatus": "minoritet", "sosial_mekanisme": "vår egen ramme", "konsensus_er_ikke_sannhet": True},
+                "epistemikk": {"sannhetsstatus": "hypotese", "evidensstatus": "proxy", "konsensusstatus": "minoritet", "sosial_mekanisme": "our own frame", "konsensus_er_ikke_sannhet": True},
                 "stipulasjoner": {"stipulert_av_oss": True},
-                "regime": {"name": "Homo Fluxus", "validity": "energy_density > 0; R < 1/e flytobjekt, R >= 1/e flytsubjekt; NaN utenfor", "law_form": "R = kappa * rho_E / ((sigma+epsilon) * tau_leak)"},
-                "phase": "regime_engine", "measure": {"target": "R", "measurer": "EFC-beregning", "instrument": "FluxusEngine", "proxy_chain": ["rho_E, sigma, tau_leak, kappa -> R"], "placement": "EFC-rammeverkets hypotese", "compression": "energiflyt -> R"},
-                "episenter": "R-terskelen", "buffer": {"role": "tau_leak", "note": "EFC-analogi"}, "ontology": {"assumes": ["EFC-loven som hypotese"], "source": "Homo Fluxus v1/v2"},
-                "observer": {"bandwidth": "EFC-parametre", "awareness": "hypothesis_open", "er_del_av_systemet": True}, "emergence": {"loop": "energiflyt -> R", "properties": ["R"]}, "fractal": {"pattern": "flyt -> persistens", "note": "analogi"}, "coupling": {"local": "EFC-beregning", "global": "homo.fluxus"}, "maale_paradigme": {"koordinater": ["energi"], "enheter": "EFC-enheter", "status": "avledet"}, "nivaa": {"indeks": 0, "forelder": None, "tidsskala": "motortid", "lengdeskala": "system"}}
+                "regime": {"name": "Homo Fluxus", "validity": "energy_density > 0; R < 1/e flow object, R >= 1/e flow subject; NaN outside", "law_form": "R = kappa * rho_E / ((sigma+epsilon) * tau_leak)"},
+                "phase": "regime_engine", "measure": {"target": "R", "measurer": "EFC calculation", "instrument": "FluxusEngine", "proxy_chain": ["rho_E, sigma, tau_leak, kappa -> R"], "placement": "the hypothesis of the EFC framework", "compression": "energy flow -> R"},
+                "episenter": "the R threshold", "buffer": {"role": "tau_leak", "note": "EFC analogy"}, "ontology": {"assumes": ["the EFC law as a hypothesis"], "source": "Homo Fluxus v1/v2"},
+                "observer": {"bandwidth": "EFC parameters", "awareness": "hypothesis_open", "er_del_av_systemet": True}, "emergence": {"loop": "energy flow -> R", "properties": ["R"]}, "fractal": {"pattern": "flow -> persistence", "note": "analogy"}, "coupling": {"local": "EFC calculation", "global": "homo.fluxus"}, "maale_paradigme": {"koordinater": ["energi"], "enheter": "EFC units", "status": "avledet"}, "nivaa": {"indeks": 0, "forelder": None, "tidsskala": "motor time", "lengdeskala": "system"}}

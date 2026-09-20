@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
 run_efc_baseline.py
-Kjører baseline EFC-kjøring for utvikling og debugging.
+Runs a baseline EFC run for development and debugging.
 
-Leser:
+Reads:
 - output/parameters.json
 
-Produserer:
+Produces:
 - output/run_metadata.json
 - output/validation/rotation_curve.json
 """
@@ -53,7 +53,7 @@ def simple_rotation_curve(model: EFCModel):
 
 def main():
     if not PARAMS_PATH.exists():
-        raise FileNotFoundError(f"Fant ikke parameterfil: {PARAMS_PATH}")
+        raise FileNotFoundError(f"Parameter file not found: {PARAMS_PATH}")
 
     params = load_parameters(PARAMS_PATH)
     model = EFCModel(params)
@@ -74,7 +74,7 @@ def main():
     with meta_path.open("w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2)
 
-    print("[EFC] Baseline run fullført.")
+    print("[EFC] Baseline run complete.")
     print(f"- rotation curve: {out_json}")
     print(f"- metadata: {meta_path}")
 

@@ -29,8 +29,8 @@ def test_modulkartet_nevner_faktiske_funksjoner() -> None:
              "plasser", "kjent_hull", "naboer", "hop", "fragment",
              "maaleformer", "proxy_kjeder"]
     mangler = [n for n in lovet if not hasattr(atlas_lesing, n)]
-    assert not mangler, f"the module map promises names that do not exist: {mangler}"
-    assert "API-KARTET" in dok, "the module map is gone from the docstring"
+    assert not mangler, f"modulkartet lover navn som ikke finnes: {mangler}"
+    assert "THE API MAP" in dok, "modulkartet er borte fra docstringen"
 
 
 def test_kjent_hull_er_offentlig_og_tar_et_emne() -> None:

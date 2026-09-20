@@ -160,9 +160,8 @@ def test_mukz_engine_deklarerer_bakgrunn_som_inngang():
     e = MuKZEngine()
     node = e.regime_node(PARAMS)
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "inngang" in tekst or "bakgrunn" in tekst
-    assert "ikke avledet" in tekst or "ikke løst" in tekst or \
-           "ikke lost" in tekst
+    assert "input" in tekst or "background" in tekst
+    assert "not derived" in tekst or "not solved" in tekst
 
 
 def test_k_rho_grenseoppforsel():

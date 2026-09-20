@@ -8,7 +8,7 @@
     "orchestrator",
     "menneske"
   ],
-  "_om": "Eierskapsregister over HELE repoet (design v2 + HAZID/HAZOP/GAP 2026-09-17). researcher eier faglig sannhet, faber implementerer, orchestrator eier flyt, mennesket godkjenner irreversibelt/eksternt. validate_ownership.py feiler (fail-closed) på filer uten komponent-treff.",
+  "_om": "Ownership register covering the ENTIRE repository (design v2 + HAZID/HAZOP/GAP 2026-09-17). researcher owns scholarly truth, faber implements, orchestrator owns flow, and \"menneske\" (the human) approves anything irreversible/external. validate_ownership.py fails (fail-closed) on files that match no component.",
   "components": [
     {
       "id": "public-graf",
@@ -282,9 +282,9 @@
     }
   ],
   "_unntak": [
-    "data/inntak/** (gitignored råinntak)",
+    "data/inntak/** (gitignored raw intake)",
     ".venv/ (gitignored)",
-    ".worktrees/ (kanban-arbeidsområder)",
+    ".worktrees/ (kanban work areas)",
     ".git/**"
   ],
   "changes": []
