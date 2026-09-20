@@ -229,7 +229,7 @@ def test_rainbow_requires_liquid_droplets():
     haloer, ikke regnbue. Gyldighetsomraadet maa si det."""
     inst = _instance()
     rb = next(n for n in inst["nodes"] if n["id"] == "regnbue")
-    assert "flytende" in rb["regime"]["validity"].lower()
+    assert "requires liquid (spherical) droplets" in rb["regime"]["validity"].lower()
 
 
 def test_existing_h2o_nodes_untouched():
@@ -268,7 +268,7 @@ def test_l1_l2_is_declared_regime_transition():
          and r["object"] == "efc.l2"),
         None)
     assert overgang is not None
-    assert "overgang" in overgang["note"].lower()
+    assert "regime transition" in overgang["note"].lower()
 
 
 def test_regimes_declare_s_values():
@@ -289,8 +289,8 @@ def test_observer_is_inside_l2():
     inst = _instance()
     obs = next(n for n in inst["nodes"] if n["id"] == "efc.l2")
     # L2-noden skal selv deklarere observatorens posisjon.
-    assert "observat" in obs["observer"]["bandwidth"].lower() or \
-        "observat" in obs["episenter"].lower()
+    assert "observer" in obs["observer"]["bandwidth"].lower() or \
+        "observer" in obs["episenter"].lower()
 
 
 # --------------------------------------------------------------------------
@@ -362,7 +362,7 @@ def test_soc_proxy_is_qualified():
     inst = _instance()
     celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
     kjede = " ".join(celle["measure"]["proxy_chain"]).upper()
-    assert "COULOMB" in kjede and "ETTER HVILE" in kjede
+    assert "COULOMB" in kjede and "AFTER REST" in kjede
     assert "ESTIMAT" in kjede or "ESTIMATOR" in kjede
 
 
@@ -372,7 +372,7 @@ def test_pack_vs_cell_declared():
     inst = _instance()
     celle = next(n for n in inst["nodes"] if n["id"] == "batteri.celle")
     validity = celle["regime"]["validity"].upper()
-    assert "PAKKE" in validity and "BMS" in validity
+    assert "PACK" in validity and "BMS" in validity
 
 
 def test_inverter_is_bidirectional():
@@ -383,7 +383,7 @@ def test_inverter_is_bidirectional():
     tekst = (inv["regime"]["law_form"] + " " + inv["emergence"]["loop"]).upper()
     assert "DC -> AC" in tekst.replace("DC->AC", "DC -> AC").replace(
         "AC->DC", "AC -> DC") or ("DC->AC" in tekst and "AC->DC" in tekst)
-    assert ("LADEMODUS" in tekst or "LADING" in tekst)
+    assert ("CHARGE MODE" in tekst or "CHARGING" in tekst)
 
 
 def test_no_private_site_info_in_public_instance():
@@ -465,7 +465,7 @@ def test_bao_declares_lag_axis_vs_phase_chain():
     inst = _instance()
     bao = next(n for n in inst["nodes"] if n["id"] == "obs.bao")
     kilde = bao["ontology"]["source"].lower()
-    assert "lag-akse" in kilde and "fasekjede" in kilde
+    assert "different axis" in kilde and "phase chain" in kilde
 
 
 def test_observation_nodes_sourced_from_atlas():

@@ -174,7 +174,7 @@ class TestAtlasKoder(unittest.TestCase):
         bank = _bank() + [{"id": "test.ny_uten_kode", "synlighet": "offentlig"}]
         rc, utskrift, skrevet = self._hoved_mot(bank)
         self.assertEqual(rc, 1, f"generatoren slapp gjennom:\n{utskrift}")
-        self.assertIn("mangler kode", utskrift,
+        self.assertIn("missing a code", utskrift,
                       "feilet av feil grunn — proven maa navngi aarsaken")
         self.assertIn("test.ny_uten_kode", utskrift)
         self.assertFalse(skrevet, "data.mjs ble skrevet for vakten fyrte")
@@ -188,7 +188,7 @@ class TestAtlasKoder(unittest.TestCase):
         rc, utskrift, skrevet = self._hoved_mot(_bank(),
                                                 koder={"h2o.solid": "LI"})
         self.assertEqual(rc, 1, f"generatoren slapp gjennom:\n{utskrift}")
-        self.assertIn("flere noder", utskrift,
+        self.assertIn("several nodes", utskrift,
                       "feilet av feil grunn — proven maa navngi aarsaken")
         self.assertIn("h2o.liquid", utskrift)
         self.assertFalse(skrevet, "data.mjs ble skrevet for vakten fyrte")
@@ -202,7 +202,7 @@ class TestAtlasKoder(unittest.TestCase):
         rc, utskrift, skrevet = self._hoved_mot(_bank(),
                                                 koder={"efc.hubble": "ZZ"})
         self.assertEqual(rc, 1, f"generatoren slapp gjennom:\n{utskrift}")
-        self.assertIn("ikke finnes", utskrift,
+        self.assertIn("do not exist", utskrift,
                       "feilet av feil grunn — proven maa navngi aarsaken")
         self.assertFalse(skrevet, "data.mjs ble skrevet for vakten fyrte")
         self.assertEqual(_sha(DATA_MJS), for_ut,

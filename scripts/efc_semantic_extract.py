@@ -2,13 +2,13 @@
 """
 EFC Semantic Extractor
 
-Leser gjennom theory/formal/*, henter ut essens pr. modul,
-og bygger:
+Reads through theory/formal/*, extracts the essence per module,
+and builds:
 - schema/modules/<module-id>.json
 - schema/efc_master.json
 - schema/efc_graph.json
 
-Ingen eksterne avhengigheter – kun stdlib.
+No external dependencies – stdlib only.
 """
 
 import json
@@ -119,8 +119,8 @@ def classify_layer(module_id: str, title: str) -> str:
 
 def infer_dependencies(layer: str) -> List[str]:
     """
-    Grov modell av avhengigheter mellom lag.
-    Dette kan finjusteres senere.
+    Coarse model of the dependencies between layers.
+    This can be fine-tuned later.
     """
     if layer == "EFC-D":
         return ["EFC-S", "EFC-C0"]

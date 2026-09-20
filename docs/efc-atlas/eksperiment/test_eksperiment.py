@@ -11,9 +11,9 @@ import leser_a  # noqa: E402
 import scorer  # noqa: E402
 
 KEY_PATH = HERE / "key.json"
-# Pinnet til den RETTEDE nokkelen (67938617). Den forrige pinningen pekte paa
-# d3fd75b6, som inneholdt fire tellefeil funnet av to uavhengige spor.
-# Formaalet er det samme: en stille endring av nokkelen skal feile her.
+# Pinned to the CORRECTED key (67938617). The previous pinning pointed at
+# d3fd75b6, which contained four counting errors found by two independent tracks.
+# The purpose is the same: a silent change of the key must fail here.
 KEY_SHA256 = "f3e4b880a2c474608053fc553c4f80580a636069066751425fd66d49e1d094f9"
 
 

@@ -1,166 +1,174 @@
-# Risikoregisteret (reviewer-funksjonen, fase 1)
+# The risk register (the reviewer function, phase 1)
 
-Dette er EFC-repoets ene, append-only risikoregister. Registeret er
-**sannhetskilden** for risiko: et funn som bare ligger som rapporttekst
-teller som åpent.
+This is the EFC repository's one append-only risk register. The register is
+**the source of truth** for risk: a finding that exists only as report prose
+counts as open.
 
-Beslutningsgrunnlaget: `/home/morten/hermes-filer/efc-reviewer-avgjorelse.md`
-(2026-09-17, fanout `deleg_2465ee23`, fem perspektiver, konvergerende):
-**ingen ny Reviewer-profil** — en reviewer-FUNKSJON eid av orchestrator-laget,
-med ekstern attestant ved middels/høy risiko og mennesket som faglig godkjenner
-for irreversibelt/kritisk.
+The basis for the decision: `/home/morten/hermes-filer/efc-reviewer-avgjorelse.md`
+(2026-09-17, fanout `deleg_2465ee23`, five perspectives, converging):
+**no new Reviewer profile** — a reviewer FUNCTION owned by the orchestrator
+layer, with an external attesting party at medium/high risk and the human as the
+professional approver for the irreversible/critical.
 
-## Filene
+## The files
 
-| Fil | Hva |
+| File | What |
 |---|---|
-| `risiko-register.jsonl` | Selve registeret. Én linje = én post. **Append-only.** |
-| `README.md` | Denne fila: skjema, terskler, gater, bruk. |
+| `risiko-register.jsonl` | The register itself. One line = one entry. **Append-only.** |
+| `README.md` | This file: schema, thresholds, gates, usage. |
 
-Append-only er en **git-egenskap**, ikke en fil-egenskap. CI krever at diffen
-på `risiko-register.jsonl` bare legger til linjer
-(`validate_risk_register.py --base <ref>`), og at hver post validerer
-fail-closed. Alt under `governance/risiko/` er eid innhold som alt annet i
-repoet (`governance/**` → komponenten `rotfiler`, eier `orchestrator`), og
-validatoren kontrollerer det selv i tillegg til `validate_ownership.py`.
+Append-only is a **git property**, not a file property. CI requires that the
+diff on `risiko-register.jsonl` only adds lines
+(`validate_risk_register.py --base <ref>`), and that every entry validates
+fail-closed. Everything under `governance/risiko/` is owned content like
+everything else in the repository (`governance/**` → the component `rotfiler`,
+owner `orchestrator`), and the validator checks that itself in addition to
+`validate_ownership.py`.
 
-## Feltspesifikasjon (`registerversjon: "1.0"`)
+## Field specification (`registerversjon: "1.0"`)
 
-Registeret er **lukket**: et felt som ikke står her er en feil, ikke en
-opplysning. Norske etiketter fra bestillingen står i parentes der JSON-nøkkelen
-er translitterert. Feltene merket **lukkefelt** er de eneste som kan endres på
-en eksisterende post — det er menneskets gatebeslutning (se «Gaten»).
+The register is **closed**: a field that is not listed here is an error, not a
+piece of information. The field names are the register's own JSON keys and
+stand verbatim — they are the schema the validator reads, not prose. Where a
+key is a transliteration of a Norwegian word, its plain-English reading stands
+in parentheses. The fields marked **closing field** are the only ones that may
+be changed on an existing entry — that is the human's gate decision (see
+"The gate").
 
-| Felt | Type | Krav |
+| Field | Type | Requirement |
 |---|---|---|
-| `risk_id` | str | `RISK-<TYPE>-<4 siffer>`, unik, TYPE må stemme med `type` |
+| `risk_id` | str | `RISK-<TYPE>-<4 digits>`, unique, TYPE must match `type` |
 | `type` | str | `HAZID` \| `HAZOP` \| `BLAST_RADIUS` \| `GAP` |
-| `hazard_or_deviation` | str | Faren eller feilstanden, én setning |
-| `source_change_id` | str | `t_<hex>` \| `pr<nummer>` \| `<base-sha>..<head-sha>` |
-| `release_id` | str\|null | null når posten ikke hører til en release |
-| `berorte_komponenter` (berørte komponenter) | list[str] | id-er fra `governance/ownership-register.json` — må finnes |
-| `arsak` (årsak) | str | Hvorfor dette kan skje |
-| `konsekvens` | str | Hva som står på spill |
-| `barrierer` | list[str] | Hva som allerede står imot |
+| `hazard_or_deviation` | str | The hazard or the deviation, one sentence |
+| `source_change_id` | str | `t_<hex>` \| `pr<number>` \| `<base-sha>..<head-sha>` |
+| `release_id` | str\|null | null when the entry does not belong to a release |
+| `berorte_komponenter` (affected components) | list[str] | ids from `governance/ownership-register.json` — must exist |
+| `arsak` (cause) | str | Why this can happen |
+| `konsekvens` | str | What is at stake |
+| `barrierer` | list[str] | What already stands against it |
 | `sannsynlighet` | str | `lav` \| `middels` \| `høy` |
 | `alvorlighet` | str | `lav` \| `middels` \| `høy` \| `kritisk` |
 | `blast_radius_score` | int | 1–256 (`F × E × P × I`) |
-| `klasse` | str | `grønn` \| `gul` \| `rød` — **aldri laxere enn scoren** |
-| `eier` | str | Én av `owners` i eierregisteret |
-| `utforer` (utfører) | str | Den som registrerte posten |
-| `reviewer` | str | **Må være forskjellig fra `utforer`** (ingen selv-review) |
-| `status` | str | `oppdaget` → `lukket` \| `superseded` — **lukkefelt** |
-| `tiltak` | list[str] | Handlingsbare tiltak |
-| `kanban_card_id` | str | `t_<hex>` \| `pr<nummer>` |
-| `gate_required` | bool | Påkrevd (`true`) for rød klasse |
-| `gate_decision` | str | `venter` \| `godkjent` \| `avslått` \| `ikke_nodvendig` — **lukkefelt** |
-| `gate_besluttet_av` | str\|null | Påkrevd når beslutningen er `godkjent`/`avslått`, og må da være `menneske` — **lukkefelt** |
-| `evidenslenker` | list[str] | Prefiks `repo:` (stien må finnes) \| `url:` (http/https) \| `ekstern:` (kilde utenfor treet) |
+| `klasse` | str | `grønn` \| `gul` \| `rød` — **never laxer than the score** |
+| `eier` | str | One of the `owners` in the ownership register |
+| `utforer` (executor) | str | Whoever registered the entry |
+| `reviewer` | str | **Must differ from `utforer`** (no self-review) |
+| `status` | str | `oppdaget` → `lukket` \| `superseded` — **closing field** |
+| `tiltak` | list[str] | Actionable measures |
+| `kanban_card_id` | str | `t_<hex>` \| `pr<number>` |
+| `gate_required` | bool | Required (`true`) for the red class |
+| `gate_decision` | str | `venter` \| `godkjent` \| `avslått` \| `ikke_nodvendig` — **closing field** |
+| `gate_besluttet_av` | str\|null | Required when the decision is `godkjent`/`avslått`, and must then be `menneske` — **closing field** |
+| `evidenslenker` | list[str] | Prefix `repo:` (the path must exist) \| `url:` (http/https) \| `ekstern:` (source outside the tree) |
 | `opprettet_tid` | str | ISO-8601 |
-| `forfall` | str\|null | `YYYY-MM-DD`, `null` = ingen avtalt frist |
-| `sist_vurdert` | str | `YYYY-MM-DD` — **lukkefelt** |
-| `rest_risiko` (rest-risiko) | str | Hva som fortsatt står åpent |
-| `supersedes` | list[str] | risk_id-er denne posten erstatter — må finnes |
-| `related_ids` | list[str] | Beslektede risk_id-er — må finnes |
-| `registerversjon` | str | `1.0` (ukjent versjon = feil) |
+| `forfall` | str\|null | `YYYY-MM-DD`, `null` = no agreed deadline |
+| `sist_vurdert` | str | `YYYY-MM-DD` — **closing field** |
+| `rest_risiko` (residual risk) | str | What still stands open |
+| `supersedes` | list[str] | risk_ids this entry replaces — must exist |
+| `related_ids` | list[str] | Related risk_ids — must exist |
+| `registerversjon` | str | `1.0` (unknown version = error) |
 
-`ekstern:`-prefikset er med vilje: HAZID/HAZOP-analysen som seedet registeret
-ligger i dag utenfor treet. En falsk `repo:`-sti ville skjult det.
+The `ekstern:` prefix is deliberate: the HAZID/HAZOP analysis that seeded the
+register sits outside the tree today. A false `repo:` path would have hidden it.
 
-## Klasse, terskler og hva de krever
+## Class, thresholds and what they demand
 
-`blast_radius.py` regner `BR = F × E × P × I` (hver faktor 1–4, laveste verdi 1
-så «ukjent» aldri maskerer risiko):
+`blast_radius.py` computes `BR = F × E × P × I` (each factor 1–4, lowest value 1
+so "unknown" never masks risk). The class names below are the literals the
+scorer itself emits:
 
-| Score | Klasse | Krav |
+| Score | Class | Requirement |
 |---|---|---|
-| 1–3 | liten | kan lande automatisk |
-| 4–7 | material | uavhengig reviewer + rollbackplan + readback |
-| 8–15 | høy | 2 uavhengige kontroller (eller reviewer + verifier), ADR |
-| 16–31 | kritisk | eiersign-off + canary + **menneskegate** |
-| 32+ | blokkerende | freeze/quarantine — bare mennesket kan beslutte |
+| 1–3 | `liten` | may land automatically |
+| 4–7 | `material` | independent reviewer + rollback plan + readback |
+| 8–15 | `høy` | 2 independent controls (or reviewer + verifier), ADR |
+| 16–31 | `kritisk` | owner sign-off + canary + **human gate** |
+| 32+ | `blokkerende` | freeze/quarantine — only the human can decide |
 
-En **kritisk trigger overstyrer tallet**: privilegium, produksjon
-(`figshare/**`, `docs/public/**`), destruktiv (migrering/sletting),
-gate-endring (`.github/**`, `governance/**`, `*gate*.py`, scheduler-skriptene)
-og ukjent grenseflate (fil uten eier). De fire første gir blokkerende klasse,
-ukjent grenseflate gir kritisk.
+A **critical trigger overrides the number**: `privilegium`, `produksjon`
+(`figshare/**`, `docs/public/**`), `destruktiv` (migration/deletion) and
+`gate-endring` (`.github/**`, `governance/**`, `*gate*.py`, the scheduler
+scripts) each force the blocking class, while `ukjent-grenseflate` (a file with
+no owner) forces the critical class on its own. A trigger beats the score in
+both directions of that table — never the other way round.
 
-Registerets `klasse` er `grønn|gul|rød` og mappes slik: liten → grønn,
-material/høy → gul, kritisk/blokkerende → rød. Validatoren håndhever at
-klassen **aldri er laxere enn scoren**: 4+ kan ikke være grønn, 16+ kan ikke
-være gul. Strengere er lov — en kvalitativ vurdering kan løfte en post.
+The register's `klasse` is `grønn|gul|rød`, mapped like this: `liten` → `grønn`,
+`material`/`høy` → `gul`, `kritisk`/`blokkerende` → `rød`. The validator enforces
+that the class is **never laxer than the score**: 4+ cannot be `grønn`, 16+
+cannot be `gul`. Stricter is allowed — a qualitative assessment may lift an
+entry.
 
-## Gaten
+## The gate
 
-`gate_required: true` + `gate_decision: "venter"` betyr: **endringen kan ikke
-lukkes før mennesket har besluttet den.** En lukket post med gatekrav krever
-`godkjent`/`avslått`, og begge krever `gate_besluttet_av: "menneske"`.
-Ingen automatikk — verken CI, vedlikeholdsrunden eller en profil — kan skrive
-en menneskelig beslutning. `blast_radius.py --gate` nekter (exit 1) å slippe
-gjennom en kritisk/blokkerende endring uten en slik beslutning i registeret.
+`gate_required: true` + `gate_decision: "venter"` means: **the change cannot be
+closed before the human has decided it.** A closed entry with a gate demand
+requires `godkjent`/`avslått`, and both of those require
+`gate_besluttet_av: "menneske"`. Nothing automatic — neither CI, the maintenance
+round nor a profile — can write a human decision. `blast_radius.py --gate`
+refuses (exit 1) to let a critical/blocking change through without such a
+decision in the register.
 
-**Hvordan mennesket skriver beslutningen.** Registeret er append-only, men
-beslutningen er IKKE en ny linje — den er en endring av **lukkefeltene** på den
-posten som venter: `status` (`oppdaget` → `lukket`/`superseded`),
+**How the human writes the decision.** The register is append-only, but the
+decision is NOT a new line — it is a change of the **closing fields** on the
+entry that is waiting: `status` (`oppdaget` → `lukket`/`superseded`),
 `gate_decision` (`venter` → `godkjent`/`avslått`), `gate_besluttet_av`
-(`null` → `menneske`) og `sist_vurdert` (beslutningsdatoen). Det er det ENE
-unntaket `append_only()` tillater: alt annet på posten er immutabelt funndata,
-og en diff som rører et annet felt — eller sletter posten, eller bare flytter
-den (omordning) — er fortsatt `not_append_only` og stopper CI.
+(`null` → `menneske`) and `sist_vurdert` (the date of the decision). That is the
+ONE exception `append_only()` allows: everything else on the entry is immutable
+finding data, and a diff that touches another field — or deletes the entry, or
+merely moves it (reordering) — still counts as `not_append_only` and stops CI.
 
-**Beslutningen er per post, ikke per change-id.** En change-id kan ha flere
-åpne gate-poster (seedet har to for `t_f882cfca`). `--gate` slipper ikke
-gjennom bare fordi én av dem er godkjent: `slaa_opp_gate` krever at HVER
-gate-post for change-id-en er avgjort, at ingen står `venter` og ingen er
-`avslått`, og at minst én er `godkjent` av mennesket. Én godkjent post dekker
-altså ikke den andre som fortsatt venter.
+**The decision is per entry, not per change-id.** A change-id may carry several
+open gate entries (the seed has two for `t_f882cfca`). `--gate` does not let a
+change through merely because one of them is approved: `slaa_opp_gate` demands
+that EVERY gate entry for the change-id is decided, that none stands at `venter`
+and none is `avslått`, and that at least one is `godkjent` by the human. One
+approved entry therefore does not cover the other one that is still waiting.
 
-## Slik brukes det
+## How it is used
 
 ```bash
-# scorer en diff (rapport; --gate nekter kritisk/blokkerende uten beslutning)
+# scores a diff (report; --gate refuses critical/blocking without a decision)
 python3 scripts/maintenance/blast_radius.py --diff origin/main
 python3 scripts/maintenance/blast_radius.py --diff origin/main --gate
 
-# validerer registeret fail-closed, og krever append-only mot en ref
+# validates the register fail-closed, and demands append-only against a ref
 python3 scripts/maintenance/validate_risk_register.py --json
 python3 scripts/maintenance/validate_risk_register.py --json --base origin/main
 
-# den ukentlige runden kjører begge og oppretter ett idempotent kort per funnklasse
+# the weekly round runs both and opens one idempotent card per finding class
 python3 scripts/maintenance/vedlikeholdsrunde.py --dry-run
 
-# statusordene i aktivitetsloggen
+# the status words in the activity log
 python3 scripts/maintenance/validate_activity_log.py --json
 ```
 
-CI: `.github/workflows/efc-risiko.yml` (PR + push til main). Scoreren kjøres
-der som **rapport** — gaten er menneskets merge på protected main, ikke en
-grønn CI-jobb. Registervalidatoren kjører fail-closed.
+CI: `.github/workflows/efc-risiko.yml` (PR + push to main). The scorer runs
+there as a **report** — the gate is the human's merge on protected main, not a
+green CI job. The register validator runs fail-closed.
 
-## Statusordene (aktivitetsloggen)
+## The status words (the activity log)
 
-`logs/activity.jsonl` kan bære `statusord`: en liste fra
-`{maskinelt kontrollert, eksternt verifisert, faglig godkjent}`. Ordene er
-**gjensidig uavhengige** — ingen av dem impliserer de to andre, og vakten
-legger aldri til eller krever et ord som ikke står i posten. Det ene kravet:
-`faglig godkjent` kan bare stå på en post med `role: "menneske"`, fordi
-faglig godkjenning ikke kan delegeres til en etikett.
+`logs/activity.jsonl` may carry `statusord`: a list drawn from
+`{maskinelt kontrollert, eksternt verifisert, faglig godkjent}`. The words are
+**mutually independent** — none of them implies the other two, and the guard
+never adds or demands a word that the entry does not carry. The one demand:
+`faglig godkjent` may stand only on an entry with `role: "menneske"`, because
+professional approval cannot be delegated to a label.
 
 ## Seed (2026-09-17)
 
-To poster er seedet fra de eksisterende analysene
-(HAZID: 29 farer, HAZOP: 70 feilstater), hver med sin analyses **topp-3**
-navngitt i `tiltak`:
+Two entries are seeded from the existing analyses
+(HAZID: 29 hazards, HAZOP: 70 failure states), each with its analysis's
+**top 3** named in `tiltak`:
 
-- `RISK-HAZID-0001` — privilegiekonsentrasjon, alvorlighet kritisk, score 64,
-  rød, gaten venter på mennesket.
-- `RISK-BLAST_RADIUS-0001` — kortets egen gate-endring, målt av scoreren
-  (`F=3 × E=2 × P=1 × I=4 = 24`, trigger `gate-endring` → blokkerende).
+- `RISK-HAZID-0001` — privilege concentration, severity critical, score 64,
+  red, the gate is waiting for the human.
+- `RISK-BLAST_RADIUS-0001` — the card's own gate change, measured by the scorer
+  (`F=3 × E=2 × P=1 × I=4 = 24`, trigger `gate-endring` → `blokkerende`).
 
-## Hva registeret ikke er
+## What the register is not
 
-Ærlighetslisten fra designet står: et register er ikke en sannhetsgaranti.
-En post er sporbarhet, ikke bevis for at risikoen er håndtert; `superseded`
-betyr erstattet, ikke borte; og «ingen registrerte avvik» betyr «ingen
-registrerte» — ikke «ingen».
+The honesty list from the design stands: a register is not a guarantee of truth.
+An entry is traceability, not proof that the risk is handled; `superseded` means
+replaced, not gone; and "no registered deviations" means "none registered" — not
+"none".

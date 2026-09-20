@@ -1,21 +1,21 @@
-# Reproduksjonssett — forseglet EFC-prediksjon fσ8(z≈0.7) = 0.430
+# Reproduction kit — the sealed EFC prediction fσ8(z≈0.7) = 0.430
 
-Dette settet lar en person **utenfor byOpus** reprodusere den forseglede
-EFC-prediksjonen direkte fra kildekoden.
+This kit lets a person **outside byOpus** reproduce the sealed
+EFC prediction directly from the source code.
 
-## Hva du reproduserer
+## What you reproduce
 
-Den forseglede prediksjonen:
+The sealed prediction:
 
 > fσ8(z ≈ 0.7) = **0.430**
 
-Forseglet i `DOI 10.6084/m9.figshare.32013156` (DESI DR2 full-shape
-fσ8-kriterium). Prediksjonen hviler på μ-kanalen («linear growth with
-entropy damping»): μ(a) = 1 + (μ_0 − 1)·g(a) med μ_0 = 0.5 i
-EFCVariantC, kjørt med kanoniske parametre (Ω_m = 0.3, H0 = 70,
+Sealed in `DOI 10.6084/m9.figshare.32013156` (the DESI DR2 full-shape
+fσ8 criterion). The prediction rests on the μ channel ("linear growth with
+entropy damping"): μ(a) = 1 + (μ_0 − 1)·g(a) with μ_0 = 0.5 in
+EFCVariantC, run with canonical parameters (Ω_m = 0.3, H0 = 70,
 σ8 = 0.8).
 
-## Slik gjør du
+## How to do it
 
 ```bash
 git clone https://github.com/supertedai/EFC.git
@@ -25,24 +25,24 @@ pip install numpy scipy
 python scripts/repro/sealed_fs8_repro.py
 ```
 
-Forventet resultat:
+Expected result:
 
 ```
-Forseglet verdi:       fσ8(z≈0.7) = 0.430
-Beregnet:              fσ8(z=0.7) = 0.4301
-Avvik:                 0.0001 (OK — innen 0.5 %)
+Sealed value:          fσ8(z≈0.7) = 0.430
+Computed:              fσ8(z=0.7) = 0.4301
+Deviation:             0.0001 (OK — within 0.5 %)
 ```
 
-## Hva reproduksjonen viser — og ikke viser
+## What the reproduction shows — and does not show
 
-- **Viser:** at motoren gir den forseglede verdien med de deklarerte
-  inngangene. Forseglingen ble gjort FØR denne koden var offentlig;
-  reproduksjonen bekrefter konsistensen.
-- **Viser ikke:** at prediksjonen er riktig mot data. Det er
-  arbiterens dom: `efc_inference/arbiter/sealed_fs8.py` sammenligner
-  med den faktiske DESI DR2-målingen når den foreligger.
+- **Shows:** that the engine returns the sealed value with the declared
+  inputs. The seal was made BEFORE this code was public;
+  the reproduction confirms the consistency.
+- **Does not show:** that the prediction is right against data. That is
+  the arbiter's verdict: `efc_inference/arbiter/sealed_fs8.py` compares
+  against the actual DESI DR2 measurement once it exists.
 
-## Kontakt
+## Contact
 
-Spørsmål om settet eller resultatet: åpne en issue på
+Questions about the kit or the result: open an issue at
 github.com/supertedai/EFC.

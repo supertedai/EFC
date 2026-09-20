@@ -22,15 +22,15 @@ def _observatoer_ids(noder: dict[str, dict]) -> list[str]:
 
 def test_c0_deklarerer_bevissthetsfeltet_som_ontologi() -> None:
     gyldighet = _noder()["efc.lag_c0"]["regime"]["validity"].lower()
-    assert "feltet" in gyldighet
-    assert "lar alt vaere" in gyldighet
+    assert "the field" in gyldighet
+    assert "lets everything be" in gyldighet
     assert "c(s)" in gyldighet
 
 
 def test_dommekraft_har_c_s_posisjon_fra_som_selvmodellerende_observatoer() -> None:
     posisjon = _noder()["opus.dommekraft"]["observer"]["c_s_posisjon"].lower()
     assert "s>0" in posisjon
-    assert "differensiert" in posisjon
+    assert "differentiated" in posisjon
     assert "r_c" in posisjon
 
 

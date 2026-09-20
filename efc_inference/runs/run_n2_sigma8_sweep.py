@@ -2,12 +2,12 @@
 """
 N2: σ8 prior-sweep — is the α hint driven by σ8 freedom?
 
-All runs use rd FIXED = 147.09 (N1a-modus, rd is clean).
+All runs use rd FIXED = 147.09 (N1a mode, rd is clean).
 Three σ8 treatments:
 
-  N2a: σ8 ~ N(0.81, 0.02)  — stram (Planck-ish)
-  N2b: σ8 ~ N(0.81, 0.06)  — middels
-  N2c: σ8 ~ U(0.6, 1.0)    — flat bred (= original)
+  N2a: σ8 ~ N(0.81, 0.02)  — tight (Planck-ish)
+  N2b: σ8 ~ N(0.81, 0.06)  — medium
+  N2c: σ8 ~ U(0.6, 1.0)    — flat and wide (= original)
 
 Free params (EFC):  [Omega_m, H0, sigma8, alpha_cosmo]  (4 params, rd=147.09)
 Free params (LCDM): [Omega_m, H0, sigma8]               (3 params, rd=147.09)
@@ -151,12 +151,12 @@ def summarize(label, param_names, chain, logprob, n_data):
     print(f"{'='*60}")
 
     for i, name in enumerate(param_names):
-        med = np.median(chain[:, i])
+        median = np.median(chain[:, i])
         mean = np.mean(chain[:, i])
         std = np.std(chain[:, i])
         lo, hi = np.percentile(chain[:, i], [2.5, 97.5])
         print(f"  {name:18s}: {mean:.4f} ± {std:.4f}  "
-              f"median={med:.4f}  95%CI=[{lo:.4f}, {hi:.4f}]")
+              f"median={median:.4f}  95%CI=[{lo:.4f}, {hi:.4f}]")
 
     if "alpha_cosmo" in param_names:
         idx_a = param_names.index("alpha_cosmo")
@@ -275,8 +275,8 @@ def main():
     results = {}
 
     for label, s8_mode in [
-        ("N2a: σ8~N(0.81,0.02) stram", "stram"),
-        ("N2b: σ8~N(0.81,0.06) middels", "middels"),
+        ("N2a: σ8~N(0.81,0.02) tight", "stram"),
+        ("N2b: σ8~N(0.81,0.06) medium", "middels"),
         ("N2c: σ8~U(0.6,1.0) flat", "flat"),
     ]:
         chain, lp, daic, dbic = run_variant(
@@ -338,15 +338,15 @@ def main():
 
     if r_stram["sig"] >= 1.7 and r_stram["daic"] <= 0:
         print("  VERDICT: α SURVIVES σ8 control — signal is genuine")
-        print(f"    σ8 stram: {r_stram['sig']:.2f}σ, ΔAIC={r_stram['daic']:.2f}")
+        print(f"    σ8 tight: {r_stram['sig']:.2f}σ, ΔAIC={r_stram['daic']:.2f}")
         print(f"    σ8 flat:  {r_flat['sig']:.2f}σ, ΔAIC={r_flat['daic']:.2f}")
     elif r_stram["sig"] < 1.3:
         print("  VERDICT: α COLLAPSED — signal was σ8-freedom artifact")
-        print(f"    σ8 stram: {r_stram['sig']:.2f}σ (collapsed)")
+        print(f"    σ8 tight: {r_stram['sig']:.2f}σ (collapsed)")
         print(f"    σ8 flat:  {r_flat['sig']:.2f}σ")
     else:
         print("  VERDICT: α PARTIALLY DEPENDENT on σ8 — marginal signal")
-        print(f"    σ8 stram: {r_stram['sig']:.2f}σ")
+        print(f"    σ8 tight: {r_stram['sig']:.2f}σ")
         print(f"    σ8 flat:  {r_flat['sig']:.2f}σ")
 
     # Degeneracy evolution

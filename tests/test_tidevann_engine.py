@@ -75,8 +75,8 @@ def test_regime_node_selvbeskrivelse():
     node = e.regime_node(PARAMS)
     assert node["id"] == "efc.tidevann_engine"
     tekst = json.dumps(node, ensure_ascii=False).lower()
-    assert "idealis" in tekst
-    assert "resonans" in tekst or "basseng" in tekst
+    assert "idealized equilibrium model" in tekst
+    assert "resonance" in tekst or "basin" in tekst
     assert node["regime"]["law_form"].strip()
 
 

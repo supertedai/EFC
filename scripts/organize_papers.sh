@@ -10,29 +10,29 @@ echo "=== EFC Full-Automatic Paper Organizer ==="
 
 mkdir -p "$ARTICLES_DIR"
 
-# Finn alle PDF-filer i docs/
+# Find all PDF files in docs/
 PDFS=$(find "$SOURCE_DIR" -maxdepth 3 -type f -name "*.pdf")
 
 for pdf in $PDFS; do
     filename=$(basename "$pdf")
     base="${filename%.pdf}"
 
-    # Lag mappe
+    # Create the directory
     target_dir="$ARTICLES_DIR/$base"
     mkdir -p "$target_dir/assets"
 
-    echo "→ Organiserer: $base"
+    echo "→ Organizing: $base"
 
-    # Flytt PDF
+    # Move the PDF
     mv "$pdf" "$target_dir/" 2>/dev/null || true
 
-    # Finn matchende JSON-LD
+    # Find the matching JSON-LD
     json=$(find "$SOURCE_DIR" -maxdepth 3 -type f -name "$base.jsonld" | head -n 1)
     if [[ -n "$json" ]]; then
         mv "$json" "$target_dir/" 2>/dev/null || true
     fi
 
-    # Finn matchende `.md` eller `.html`
+    # Find the matching `.md` or `.html`
     md=$(find "$SOURCE_DIR" -maxdepth 3 -type f -name "$base.md" | head -n 1)
     html=$(find "$SOURCE_DIR" -maxdepth 3 -type f -name "$base.html" | head -n 1)
 
@@ -41,7 +41,7 @@ for pdf in $PDFS; do
 
 done
 
-echo "=== Flytter gjenværende JSON-LD som ikke er matchet ==="
+echo "=== Moving the remaining JSON-LD that was not matched ==="
 UNASSIGNED=$(find "$SOURCE_DIR" -maxdepth 3 -type f -name "*.jsonld")
 
 for json in $UNASSIGNED; do
@@ -55,7 +55,7 @@ for json in $UNASSIGNED; do
 
 done
 
-echo "=== Fjerner gamle tomme mapper ==="
+echo "=== Removing old empty directories ==="
 find "$SOURCE_DIR" -type d -empty -delete || true
 
-echo "=== FULL ORGANISERING FULLFØRT ==="
+echo "=== FULL ORGANIZATION COMPLETE ==="
