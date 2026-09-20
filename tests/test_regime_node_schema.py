@@ -269,8 +269,8 @@ def test_l1_l2_is_declared_regime_transition():
          if (r["subject"], r["predicate"]) == ("efc.l1", "TRANSITIONS_TO")
          and r["object"] == "efc.l2"),
         None)
-    assert overgang is not None
-    assert "regime transition" in overgang["note"].lower()
+    assert transition is not None
+    assert "regime transition" in transition["note"].lower()
 
 
 def test_regimes_declare_s_values():

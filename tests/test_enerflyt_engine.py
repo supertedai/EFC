@@ -65,10 +65,10 @@ def test_fraksjonsinvariant_per_kapita():
     large = e.vurder(BASE)
     per_kapita = dict(BASE, produksjon=1.0, forbruk=0.9, tap=0.05,
                       buffer=5.0, terskel=0.5)
-    liten = e.vurder(per_kapita)
-    assert stor["regime"] == liten["regime"] == "abundance"
-    assert stor["dS_dt"] / BASE["buffer"] == pytest.approx(
-        liten["dS_dt"] / per_kapita["buffer"])
+    small = e.vurder(per_kapita)
+    assert large["regime"] == small["regime"] == "abundance"
+    assert large["dS_dt"] / BASE["buffer"] == pytest.approx(
+        small["dS_dt"] / per_kapita["buffer"])
 
 
 def test_negativ_drift_med_tomt_lager_gir_nan():
