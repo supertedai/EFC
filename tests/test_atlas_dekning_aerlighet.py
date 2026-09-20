@@ -28,7 +28,7 @@ def test_dekket_stromdomene_eies_av_instrument_eller_observasjon():
     per_domene = {}
     for node in NODER:
         domene = node.get("buss_domene")
-        if domene and node.get("phase") in {"instrument", "observasjon"}:
+        if domene and node.get("phase") in {"instrument", "observation"}:
             per_domene.setdefault(domene, []).append(node["id"])
     uten_maling = []
     for domene, rad in DEKNING["domener"].items():

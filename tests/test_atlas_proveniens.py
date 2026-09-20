@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROT = Path(__file__).resolve().parents[1]
 ATLAS = ROT / "schema" / "regime_nodes.jsonld"
-KLAUSUL = "DOI etablerer identitet og persistens, ikke sannhet"
+KLAUSUL = "DOI establishes identity and persistence, not truth"
 DOI = re.compile(r"^10\.\d{4,9}/\S+$")
 
 

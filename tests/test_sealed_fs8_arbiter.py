@@ -74,7 +74,7 @@ def test_manglende_felt_venter():
         m[felt] = None
         dom = _arbiter().vurder(m)
         assert dom["status"] == "VENTER", felt
-        assert "ugyldig" in dom["årsak"]
+        assert "invalid" in dom["årsak"]
 
 
 def test_ugyldig_sigma_venter():
@@ -181,9 +181,9 @@ def test_rapporten_maaler_mu_kanalen_arlig():
     rep = rapport["mu_reproduksjon_variantc"]
     assert rep["variant"] == "EFCVariantC"
     assert abs(rep["fs8_mu_0_5"] - 0.430) < 0.005
-    assert "reproduserbar" in rapport["ærlighet"]
-    assert "IKKE" in rapport["ærlighet"]  # beviser ikke forseglet mu_0
-    assert "har IKKE" in rapport["ærlighet"]  # injisert variant rapportert
+    assert "reproducible" in rapport["ærlighet"]
+    assert "NOT" in rapport["ærlighet"]  # beviser ikke forseglet mu_0
+    assert "does NOT have the μ channel" in rapport["ærlighet"]  # injisert variant rapportert
 
 
 def test_rapporten_med_variantc_sier_den_injiserte_har_kanalen():
@@ -194,7 +194,7 @@ def test_rapporten_med_variantc_sier_den_injiserte_har_kanalen():
     arb = SealedFs8Arbiter(growth=EFCGrowth(cosmology=EFCVariantC()))
     rapport = arb.rapport()
     assert rapport["mu_kanal_i_injisert_motor"] is True
-    assert "HAR" in rapport["ærlighet"]
+    assert "HAS" in rapport["ærlighet"]
 
 
 def test_payload_har_kriterium_og_proveniens():

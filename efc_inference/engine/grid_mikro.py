@@ -1,28 +1,28 @@
-"""GridMikroEngine — grid-mikrofysikken bak μ(g) (L-031).
+"""GridMikroEngine — the grid microphysics behind μ(g) (L-031).
 
-Bygger på Mortens publiserte DOI-er — formlene er HENTET fra
-papirene, ikke diktet opp:
+Builds on Morten's published DOIs — the formulas are TAKEN from
+the papers, not invented:
 
 - DOI 10.6084/m9.figshare.31942821 (Derivation of Γ(ρ)):
-  Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) — lineær ved lav tetthet, mettende ved
-  høy, med ρcrit fra grid-mode-skalaen a0. Γ(ρ) (dynamisk) er skilt
-  fra μBE(g) (statisk) — ingen dobbelttelling.
+  Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) — linear at low density, saturating at
+  high, with ρcrit from the grid-mode scale a0. Γ(ρ) (dynamic) is separated
+  from μBE(g) (static) — no double counting.
 - DOI 10.6084/m9.figshare.31942800 (Density of States Deff(ρ)):
-  Deff(ρ) ∝ √(ρ/ρcrit) med ρcrit = a0/(GN·lg) — boundary-mode-
-  aktivering på en endelig gitterbrønn. Dette oppgraderer broen til
-  Scenario B+: Γ(ρ) = Γ0·y/(1+y) med y = √(ρ/ρcrit).
+  Deff(ρ) ∝ √(ρ/ρcrit) with ρcrit = a0/(GN·lg) — boundary-mode
+  activation on a finite lattice well. This upgrades the bridge to
+  Scenario B+: Γ(ρ) = Γ0·y/(1+y) with y = √(ρ/ρcrit).
 
-To scenarioer implementeres og deklareres eksplisitt:
+Two scenarios are implemented and declared explicitly:
   scenario A  (31942821): Γ = Γ0·ρ/(ρ+ρcrit)
   scenario B+ (31942800): Γ = Γ0·y/(1+y), y = √(ρ/ρcrit)
 
-Regimer (begge scenarioer):
-  lav tetthet : Γ ~ lineær i ρ (eller ~√ρ i B+)
-  mettet      : Γ → Γ0 når ρ >> ρcrit
+Regimes (both scenarios):
+  low density : Γ ~ linear in ρ (or ~√ρ in B+)
+  saturated   : Γ → Γ0 when ρ >> ρcrit
 
-Ærlighet: dette er EFCs mikrofysiske hypotese (Scenario B+ er
-papirets egen oppgradering), IKKE konsensus-fysikk. L-031 står åpen
-til prediksjonene fra papirenes forseglede tabeller er testet.
+Honesty: this is the microphysical hypothesis of EFC (Scenario B+ is the
+paper's own upgrade), NOT consensus physics. L-031 stands open
+until the predictions from the papers' sealed tables are tested.
 """
 from __future__ import annotations
 
@@ -34,7 +34,7 @@ from efc_inference.engine.base_engine import EFCEngine
 
 
 class GridMikroEngine(EFCEngine):
-    """Entropi-produksjonen Γ(ρ) og Deff(ρ) fra grid-modene."""
+    """The entropy production Γ(ρ) and Deff(ρ) from the grid modes."""
 
     REQUIRED_PARAMS = ["rho", "rho_crit", "Gamma0"]
 
@@ -49,18 +49,18 @@ class GridMikroEngine(EFCEngine):
 
     def compute(self, params_dict: dict,
                 coordinates: np.ndarray) -> np.ndarray:
-        """Gitt tetthetsverdier, returner Γ(ρ) per punkt (scenario B+)."""
+        """Given density values, return Γ(ρ) per point (scenario B+)."""
         if not self.validate_params(params_dict):
             return np.full((len(np.atleast_1d(coordinates)),), np.nan)
-        koord = np.asarray(coordinates, dtype=float)
-        ut = []
-        for rho in koord:
+        coords = np.asarray(coordinates, dtype=float)
+        out = []
+        for rho in coords:
             p = {**params_dict, "rho": float(rho)}
-            ut.append(self.gamma(p, scenario="B_plus"))
-        return np.array(ut)
+            out.append(self.gamma(p, scenario="B_plus"))
+        return np.array(out)
 
     def deff(self, params: dict) -> float:
-        """Deff(ρ) ∝ √(ρ/ρcrit) — boundary-mode-aktivering (31942800)."""
+        """Deff(ρ) ∝ √(ρ/ρcrit) — boundary-mode activation (31942800)."""
         rho = float(params["rho"])
         rho_crit = float(params["rho_crit"])
         if rho < 0 or rho_crit <= 0:
@@ -68,7 +68,7 @@ class GridMikroEngine(EFCEngine):
         return float(math.sqrt(rho / rho_crit))
 
     def gamma(self, params: dict, scenario: str = "B_plus") -> float:
-        """Γ(ρ) i scenario A eller B+.
+        """Γ(ρ) in scenario A or B+.
 
         A:  Γ0·ρ/(ρ+ρcrit)                    (31942821)
         B+: Γ0·y/(1+y), y = √(ρ/ρcrit)        (31942800)
@@ -83,17 +83,17 @@ class GridMikroEngine(EFCEngine):
         if scenario == "B_plus":
             y = math.sqrt(rho / rho_crit)
             return float(G0 * y / (1.0 + y))
-        raise ValueError(f"ukjent scenario: {scenario}")
+        raise ValueError(f"unknown scenario: {scenario}")
 
     def regime(self, params: dict) -> str:
         rho = float(params["rho"])
         rho_crit = float(params["rho_crit"])
         if not (math.isfinite(rho) and math.isfinite(rho_crit)) \
                 or rho < 0 or rho_crit <= 0:
-            return "ugyldig"
+            return "invalid"
         if rho < rho_crit:
-            return "lav_tetthet"
-        return "mettet"
+            return "low_density"
+        return "saturated"
 
     def regime_node(self, params: dict) -> dict:
         return {
@@ -101,79 +101,79 @@ class GridMikroEngine(EFCEngine):
             "synlighet": self.SYNLIGHET,
             "regime": {
                 "name": self.regime(params),
-                "validity": ("lav_tetthet: Gamma ~ lineaer (A) eller ~ "
-                             "sqrt-rho (B+); mettet: Gamma -> Gamma0 for "
-                             "rho >> rho_crit. Predikerer IKKE observerte "
-                             "rotasjonskurver alene — dette er broen, "
-                             "ikke den ferdige responsen."),
+                "validity": "low_density: Gamma ~ linear (A) or ~ "
+                            "sqrt-rho (B+); saturated: Gamma -> Gamma0 for "
+                            "rho >> rho_crit. Does NOT predict observed "
+                            "rotation curves alone — this is the bridge, "
+                            "not the finished response.",
             },
             "phase": self.regime(params),
             "measure": {
-                "target": "Gamma(rho) og Deff(rho)",
-                "measurer": "den teoretiske avledningen (von Neumann-"
-                            "entropi over grid-modenes BE-okkuperings-"
-                            "statistikk)",
-                "instrument": "ingen direkte — mikrofysisk avledning, "
-                              "modellavhengig",
-                "proxy_chain": ["tetthet -> grid-mode-okkupering -> "
-                                "entropi-produksjon — ren teori-kjede"],
-                "placement": "teorirom",
-                "compression": "grid-mikrofysikken komprimeres til "
+                "target": "Gamma(rho) and Deff(rho)",
+                "measurer": "the theoretical derivation (von Neumann "
+                            "entropy over the BE occupancy statistics of "
+                            "the grid modes)",
+                "instrument": "no direct one — microphysical derivation, "
+                              "model-dependent",
+                "proxy_chain": ["density -> grid-mode occupancy -> "
+                                "entropy production — a pure theory chain"],
+                "placement": "theory space",
+                "compression": "the grid microphysics is compressed to "
                                "y = sqrt(rho/rho_crit)",
             },
-            "episenter": ("grid-rammen: rho_crit = a0/(GN lg) er en "
-                          "lesning av tettheten i grid-modens skala — "
-                          "ikke en direkte observabel"),
+            "episenter": ("the grid frame: rho_crit = a0/(GN lg) is a "
+                          "reading of the density at the scale of the "
+                          "grid mode — not a direct observable"),
             "buffer": {
-                "role": "grid-modene er bufferen — okkuperte moders "
-                        "entropi lader opp med tettheten og metter",
-                "note": "samme mettende buffer-form som batteriet og "
-                        "hjemostasen — her pa gitter-skala",
+                "role": "the grid modes are the buffer — the entropy of "
+                        "occupied modes charges with the density and saturates",
+                "note": "the same saturating buffer form as the battery "
+                        "and the homeostat — here at lattice scale",
             },
             "ontology": {
                 "assumes": [
-                    "grid-modene følger Bose-Einstein-okkuperings-"
-                    "statistikk (31942821)",
-                    "Deff(ρ) kommer fra boundary-mode-aktivering på en "
-                    "endelig gitterbrønn (31942800)",
-                    "Scenario B+ er EFCs mikrofysiske HYPOTESE — ikke "
-                    "konsensus-fysikk; L-031 står åpen til papirenes "
-                    "forseglede prediksjoner er testet",
-                    "Gamma(rho) er DYNAMISK og skilles fra muBE(g) som "
-                    "er statisk — dobbelttelling er eksplisitt "
-                    "oppløst",
+                    "the grid modes follow Bose-Einstein occupation "
+                    "statistics (31942821)",
+                    "Deff(ρ) comes from boundary-mode activation on a "
+                    "finite lattice well (31942800)",
+                    "Scenario B+ is the microphysical HYPOTHESIS of EFC — "
+                    "not consensus physics; L-031 stands open until the "
+                    "sealed predictions of the papers are tested",
+                    "Gamma(rho) is DYNAMIC and is separated from muBE(g), "
+                    "which is static — double counting is explicitly "
+                    "resolved",
                 ],
-                "source": ("DOI 10.6084/m9.figshare.31942821 og "
+                "source": ("DOI 10.6084/m9.figshare.31942821 and "
                            "10.6084/m9.figshare.31942800 (Magnusson, "
                            "2026)"),
             },
             "observer": {
-                "bandwidth": "ingen instrumentvindu — ren avledning; "
-                             "det er et hull i seg selv at det ikke "
-                             "finnes en direkte måling",
+                "bandwidth": "no instrument window — pure derivation; "
+                             "it is a hole in itself that no direct "
+                             "measurement exists",
                 "awareness": "instrument_window",
                 "er_del_av_systemet": True,
             },
             "emergence": {
-                "loop": "tetthet -> mod-okkupering -> entropi-"
-                        "produksjon -> effektiv gravitasjonsrespons — "
-                        "loopen er papirets bro",
-                "properties": ["linearitet ved lav tetthet",
-                               "metning ved hoy tetthet"],
+                "loop": "density -> mode occupancy -> entropy "
+                        "production -> effective gravitational response — "
+                        "the loop is the paper's bridge",
+                "properties": ["linearity at low density",
+                               "saturation at high density"],
             },
             "fractal": {
-                "pattern": "gitter-mode -> grid-bronn -> galakse-"
-                           "respons: samme mettende form på hver skala",
-                "note": "y = sqrt(rho/rho_crit) er den mikrofysiske "
-                        "versjonen av buffer-metningen",
+                "pattern": "lattice mode -> grid well -> galaxy "
+                           "response: the same saturating form at every scale",
+                "note": "y = sqrt(rho/rho_crit) is the microphysical "
+                        "version of the buffer saturation",
             },
             "coupling": {
-                "local": "hver gitter-celle bidrar lokalt",
-                "global": "Deff(ρ) aggregerer modene til den "
-                          "gravitasjonelt aktive tettheten av tilstander",
-                "empathy_note": "det usynligste laget bærer broen "
-                                "mellom GR og QFT — og det er avledet, "
-                                "ikke målt",
+                "local": "each lattice cell contributes locally",
+                "global": "Deff(ρ) aggregates the modes into the "
+                          "gravitationally active density of states",
+                "empathy_note": "the most invisible layer carries the bridge "
+                                "between GR and QFT — and it is derived, "
+                                "not measured",
             },
             "perspektiv": "paradigme",
             "epistemikk": {
@@ -187,29 +187,29 @@ class GridMikroEngine(EFCEngine):
                 "koordinater": ["masse", "rom", "energi"],
                 "enheter": "rho_crit = a0/(GN lg)",
                 "status": "avledet",
-                "alternativer": ["konsensus-QFT uten grid-struktur"],
+                "alternativer": ["consensus QFT without grid structure"],
             },
             "stipulasjoner": {
                 "stipulert_av_oss": True,
-                "terskler": [("rho_crit = a0/(GN lg) — grensen mellom "
-                              "lav og mettet er VÅR skala-definisjon")],
+                "terskler": ["rho_crit = a0/(GN lg) — the boundary between "
+                             "low and saturated is OUR scale definition"],
                 "motor": "grid_mikro",
             },
             "analogi": {
-                "avbildning": ("grid-moders metning -> batteriets "
-                               "ladekurve / hjemostasens setpunkt"),
-                "bryter_der": ("gitter-modene er en teoretisk "
-                               "konstruksjon — batteriet er målt; "
-                               "formen er lik, substratets status er "
-                               "ikke"),
+                "avbildning": ("the grid mother's saturation -> the battery's "
+                               "charging curve / the homeostasis setpoint"),
+                "bryter_der": ("the lattice modes are a theoretical "
+                               "construct — the battery is measured; "
+                               "the form is the same, the substrate's "
+                               "status is not"),
             },
-            # Plataseringen eies av ATLASET (scripts/maintenance/efc_bro_konvensjon.py):
-            # motoren kan ikke vite hvor i stigen dens node hoerer. Feltet maa
-            # likevel staa her fordi RegimeNode krever det — testen binder dem.
+            # The placement is owned by the ATLAS (scripts/maintenance/efc_bro_konvensjon.py):
+            # the engine cannot know where in the staircase its node belongs. The field must
+            # nevertheless stand here because RegimeNode requires it — the test binds them.
             "nivaa": {
                 "indeks": 3,
                 "forelder": "efc.grid_mikrofysikk",
-                "tidsskala": "gitter-skala",
-                "lengdeskala": "lg (grid-lengden)",
+                "tidsskala": "lattice scale",
+                "lengdeskala": "lg (the grid length)",
             },
         }

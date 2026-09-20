@@ -41,13 +41,13 @@ def test_desi_nullmaaling_kalles_ikke_motbevis():
     for node in _atlas()["nodes"]:
         tekst = " ".join(_tekst(node)).lower()
         if node["id"] == "obs.bao" and re.search(r"0[.,]52\s*(?:sigma|σ)", tekst):
-            assert "motbevis" not in tekst
-            assert any(uttrykk in tekst for uttrykk in ("utestet", "ikke-diskriminerende"))
+            assert not re.search(r"counter[- ]?evidence", tekst)
+            assert any(uttrykk in tekst for uttrykk in ("untested", "non-discriminating"))
 
 
 def test_efc_l1_baerer_ontologisk_eierskap():
     """L1 skal si hvem som paastaar og hva retrofittingen betyr."""
     node = next(node for node in _atlas()["nodes"] if node["id"] == "efc.l1")
     tekst = " ".join(_tekst(node))
-    assert "EFC predikerer" in tekst
-    assert "ontologisk" in tekst.lower()
+    assert "EFC predicts" in tekst
+    assert "ontologically" in tekst.lower()

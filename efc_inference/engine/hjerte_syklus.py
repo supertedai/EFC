@@ -54,8 +54,8 @@ class CardiacCycleEngine(EFCEngine):
     def regime_node(self, p: dict) -> dict:
         cycle = 60.0 / p["heart_rate_bpm"]
         return {"id": "homo.hjerte_syklus", "synlighet": self.SYNLIGHET,
-                "phase": "regime_engine", "regime": {"name": "hjerte_syklus",
-                "validity": f"t i [0, {cycle}] s; utenfor NaN",
-                "law_form": "fylling -> isovolumetrisk kontraksjon -> ejeksjon -> isovolumetrisk relaksasjon"},
-                "measure": {"target": "ventrikkelvolum [mL]", "instrument": "ekkokardiografi"},
-                "emergence": {"loop": "fyll -> press -> fyll", "properties": ["SV", "EF", "HR"]}}
+                "phase": "regime_engine", "regime": {"name": "cardiac cycle",
+                "validity": f"t in [0, {cycle}] s; NaN outside",
+                "law_form": "filling -> isovolumetric contraction -> ejection -> isovolumetric relaxation"},
+                "measure": {"target": "ventricular volume [mL]", "instrument": "echocardiography"},
+                "emergence": {"loop": "fill -> press -> fill", "properties": ["SV", "EF", "HR"]}}

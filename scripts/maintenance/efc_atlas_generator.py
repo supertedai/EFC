@@ -1,14 +1,14 @@
-"""efc_atlas_generator — generer atlasets data.mjs FRA regime_nodes.jsonld.
+"""efc_atlas_generator — generates the atlas's data.mjs FROM regime_nodes.jsonld.
 
-En kilde, to visninger: regime_nodes.jsonld er sannheten; atlaset er
-et SPEIL. Ingen dobbelbokfoering — data.mjs bygges alltid herfra, og
-en drift mellom banken og atlaset er en feil i denne fila, ikke en
-feil i atlaset.
+One source, two views: regime_nodes.jsonld is the truth; the atlas is
+a MIRROR. No double bookkeeping — data.mjs is always built from here, and
+a drift between the bank and the atlas is an error in this file, not an
+error in the atlas.
 
     python3 scripts/maintenance/efc_atlas_generator.py
 
-Kapitlene foelger nivaa-grafens plataa-kjeder: hvert kapittel avsloerer
-en kjede av gangen (progressiv avsloering), og det siste viser alt.
+The chapters follow the plateau chains of the level graph: each chapter reveals
+one chain at a time (progressive disclosure), and the last one shows everything.
 """
 from __future__ import annotations
 
@@ -35,26 +35,26 @@ WORKFLOW_DIR = ROT / ".github" / "workflows"
 #: drift. The scan below looks for it with the `--maal` flag.
 MAALING = "atlas_volum"
 
-#: Koden er nodens KORTE IDENTIFIKATOR (1-2 tegn) — ikke en visuell etikett.
+#: The code is the node's SHORT IDENTIFIER (1-2 characters) — not a visual label.
 #:
-#: Maalt 2026-09-17: tabellen dekket 28 av 82 noder; resten falt tilbake til
-#: `nid[:2].upper()`. De 73 offentlige nodene fikk dermed 18 koder — «EF»
-#: pekte paa 20 noder, «OB» paa 20 — og 15 av de 28 noeklene navnga noder som
-#: ikke finnes (efc.hubble, efc.water, … de heter `*_engine` i banken). Ingen
-#: av feilene var synlige, fordi fallbacken svarte i stedet for aa si fra.
+#: Measured 2026-09-17: the table covered 28 of 82 nodes; the rest fell back to
+#: `nid[:2].upper()`. The 73 public nodes thereby got 18 codes — «EF»
+#: pointed at 20 nodes, «OB» at 20 — and 15 of the 28 keys named nodes that
+#: do not exist (efc.hubble, efc.water, … they are called `*_engine` in the bank). None
+#: of the errors was visible, because the fallback answered instead of speaking up.
 #:
-#: Koden ER en identifikator, og den brukes som en: `build.mjs` bygger
-#: spoersmaal-ID-er av den (`Q-<kode><n>`, og indeksen sier «Reference by
-#: ID»), og FLOWS navngir hoppene sine med den (HA, BI, VU, EF). En kode som
-#: peker paa tjue noder samtidig identifiserer ingen av dem.
+#: The code IS an identifier, and it is used as one: `build.mjs` builds
+#: question IDs from it (`Q-<code><n>`, and the index says «Reference by
+#: ID»), and FLOWS names its hops with it (HA, BI, VU, EF). A code that
+#: points at twenty nodes at once identifies none of them.
 #:
-#: Derfor: hver node i banken SKAL staa her, koden skal vaere entydig, og
-#: generatoren FEILER heller enn aa gjette (se `manglende_koder`). Brikken
-#: som tegner koden er 16 px bred (template.html), derav 1-2 tegn.
+#: Therefore: every node in the bank SHALL stand here, the code shall be unambiguous, and
+#: the generator FAILS rather than guessing (see `manglende_koder`). The tile
+#: that draws the code is 16 px wide (template.html), hence 1-2 characters.
 #:
-#: Koden er stabil: den foelger noden, ikke navnet den hadde i en tidligere
-#: tanke. Endres en node-id, skal koden flyttes med — testen
-#: `test_deklarasjonen_raatner_ikke` feller etterlatte noekler.
+#: The code is stable: it follows the node, not the name it carried in an earlier
+#: thought. If a node id changes, the code must move with it — the test
+#: `test_deklarasjonen_raatner_ikke` kills orphaned keys.
 KODER = {
     "kosmos.romfart": "RF",
     "kosmos.gammaglimt": "KG",
@@ -87,13 +87,13 @@ KODER = {
     "efc.lag_s": "LS",
     "efc.lag_d": "LD",
     "efc.lag_c0": "C0",
-    # Rot og selv-referanse
+    # Root and self-reference
     "efc.l0": "L0", "efc.l1": "L1", "efc.l2": "L2", "efc.l3": "L3",
-    # Gitteret — publiserte arbeider
+    # The grid — published works
     "efc.grid_higgs": "GH", "efc.gr_qft_bro": "GQ",
     "efc.grid_mikrofysikk": "GM", "efc.grid_mikro_engine": "GE",
     "efc.double_slit": "DS", "efc.sort_hull": "SH",
-    # Kosmos — motorene paa bussen
+    # Cosmos — the engines on the bus
     "efc.mu_kz_engine": "MK", "efc.growth_engine": "GR",
     "efc.rotation_engine": "RO", "efc.hubble_engine": "HB",
     "efc.lensing_engine": "LN", "efc.cluster_engine": "CL",
@@ -101,19 +101,19 @@ KODER = {
     "efc.orbital_engine": "OR", "efc.tidevann_engine": "TI",
     "efc.klima_engine": "KL", "efc.solar_flare_engine": "SF",
     "efc.jordskjelv_engine": "JS",
-    # Broer — gap-domenene
+    # Bridges — the gap domains
     "verden.hav": "HA", "verden.biosfaere": "BI",
     "kosmos.jord.vulkan": "VU",
-    # Strukturer — vann og kjemi
+    # Structures — water and chemistry
     "kjemi.periodesystemet": "PS", "efc.water_phase_engine": "WA",
     "h2o.solid": "SO", "h2o.liquid": "LI", "h2o.gas": "GA",
     "h2o.supercritical": "SC", "h2o.triple_point": "TP",
     "h2o.droplet": "DR", "lys.sol": "LY", "optikk.dispersjon": "OP",
     "regnbue": "RB", "regnbue.observator": "OB",
-    # Samfunn — energiflyt
+    # Society — energy flow
     "efc.enerflyt_engine": "EF", "efc.oekonomi_engine": "OK",
     "efc.samfunn_engine": "SA", "efc.victron_cccv_engine": "VC",
-    # Observasjoner — hver med sitt eget maal
+    # Observations — each with its own target
     "obs.bao": "BA", "obs.cmb_tt": "TT", "obs.cmb_lensing": "LC",
     "obs.bbn": "BB", "obs.fsigma8": "F8", "obs.s8": "S8",
     "obs.eg": "EG", "obs.isw": "IS", "obs.ksz": "KS",
@@ -130,21 +130,21 @@ KODER = {
     "kosmos.romvaer_swpc": "RK", "kosmos.sol_goes": "SG",
     "kosmos.transienter_alerce": "TA",
     "kosmos.kosmologi_desi_bao": "DB", "verden.klima_isbre": "IB",
-    # Homo — regime-motoren
+    # Homo — the regime engine
     "homo.fluxus": "HF", "homo.homeostase_buffer": "HO",
     "homo.feber_regime": "FE", "homo.aksjonspotensial": "AP",
     "homo.hjerte_syklus": "HJ", "homo.genregulering": "GN",
     "homo.cellesyklus": "CY", "homo.metabolisme": "ME",
     "homo.immunologi": "IM", "homo.sovn_vaaken": "SV",
     "homo.okologi": "OE", "homo.evolusjon": "EV",
-    # Interne noder — ikke publisert, men samme navnerom
+    # Internal nodes — not published, but the same namespace
     "batteri.celle": "BC", "batteri.lading": "BL",
     "batteri.buffer": "BF", "batteri.inverter": "IN",
     "efc.selv.atlas": "AT", "efc.selv.skjema": "SK",
     "efc.selv.paradigme_tid": "PT", "efc.selv.paradigme_masse": "PM",
 }
 
-#: Gruppe- og kapittel-tilhoerighet: (gruppe, kapittel).
+#: Group and chapter membership: (group, chapter).
 PLASSERING = {
     "batteri.buffer": ("ghost", 8),
     "batteri.celle": ("ghost", 8),
@@ -183,7 +183,7 @@ PLASSERING = {
     "verden.teknologi": ("samfunn", 6),
     "verden.transport": ("samfunn", 6),
     "verden.utdanning": ("samfunn", 6),
-    # Ghost er et VALG: disse er maalt aa ikke ha en gruppe ennaa.
+    # Ghost is a CHOICE: these have been measured not to have a group yet.
     "efc.efc_background_engine": ("ghost", 8),
     "efc.jordskjelv_engine": ("ghost", 8),
     "efc.l1": ("ghost", 8),
@@ -278,11 +278,11 @@ GRUPPER = [
     {"id": "ghost", "title": "No group yet"},
 ]
 
-#: De tre bro-kjedene som dataflyt. Hoppene navngir nodene med KODEN — det
-#: er derfor koden maa vaere entydig: «EF» betyr `efc.enerflyt_engine`, og
-#: bare den. (At rendereren i atlas/template.html i dag slår opp hoppene i
-#: `id`-navnerommet og derfor ikke tegner dem, er en egen feil med egen
-#: rotårsak — den hoerer ikke i denne tabellen.)
+#: The three bridge chains as data flow. The hops name the nodes by their CODE — that
+#: is why the code must be unambiguous: «EF» means `efc.enerflyt_engine`, and
+#: only that. (That the renderer in atlas/template.html today looks the hops up in the
+#: `id` namespace and therefore does not draw them is a separate bug with its own
+#: root cause — it does not belong in this table.)
 FLOWS = [
     {"id": "hav", "name": "Ocean state",
      "hops": [["HA", "KL", "temperature proxy",
@@ -299,9 +299,9 @@ FLOWS = [
 def _kap(navn: str) -> int:
     if navn not in PLASSERING:
         raise SystemExit(
-            f"[efc-atlas] `{navn}` staar ikke i PLASSERING — og en fallback "
-            f"ville skjult at noen glemte den. Legg den i riktig gruppe, "
-            f"eller si eksplisitt at den er ghost.")
+            f"[efc-atlas] `{navn}` is not in PLASSERING — and a fallback "
+            f"would hide that someone forgot it. Put it in the right group, "
+            f"or say explicitly that it is ghost.")
     return PLASSERING[navn][1]
 
 
@@ -316,36 +316,36 @@ def gruppe_grunn(node: dict) -> str:
     """WHY this node has no group. "" when it has one."""
     fase = str(node.get("phase") or "")
     motor = str((node.get("stipulasjoner") or {}).get("motor") or "").strip()
-    if fase == "observasjon":
-        return "observasjon"
+    if fase == "observation":
+        return "observation"
     if "regime" in fase:
         return "regime"
     if motor:
-        return "motor"
-    return "ovrig"
+        return "engine"
+    return "other"
 
 
 def uten_gruppe_grunner(noder: list[dict]) -> dict[str, int]:
     """Split the group-less by WHAT is missing — measured, not assumed."""
-    tell = {"observasjon": 0, "regime": 0, "har_motor": 0, "ovrige": 0}
+    tell = {"observation": 0, "regime": 0, "engine": 0, "other": 0}
     for n in noder:
         if _gruppe(n["id"]) != "ghost":
             continue
         fase = str(n.get("phase") or "")
         motor = str((n.get("stipulasjoner") or {}).get("motor") or "").strip()
-        if fase == "observasjon":
-            tell["observasjon"] += 1
+        if fase == "observation":
+            tell["observation"] += 1
         elif "regime" in fase:
             tell["regime"] += 1
         elif motor:
-            tell["har_motor"] += 1
+            tell["engine"] += 1
         else:
-            tell["ovrige"] += 1
+            tell["other"] += 1
     return tell
 
 
-def uten_gruppe_frase(noder: list[dict], spraak: str = "en",
-                      anker: str = "of them", med_grunn: bool = True) -> str:
+def uten_gruppe_frase(noder: list[dict], anker: str = "of them",
+                      med_grunn: bool = True) -> str:
     """The group-less count, and why — derived once, carried by every surface.
 
     A surface that states how many nodes the atlas has must state this number
@@ -357,21 +357,18 @@ def uten_gruppe_frase(noder: list[dict], spraak: str = "en",
     wordings with their own numbers would drift apart, and a counter that is
     almost right is worse than none. `med_grunn=False` is the compact form for
     a nowrap stat card, where the split does not fit.
+
+    One language, deliberately: the surfaces are English, so a `spraak`
+    parameter that could also render the phrase in Norwegian was removed
+    (t_648190ca) rather than left in the producer as an unused branch.
     """
     gr = uten_gruppe_grunner(noder)
     antall = sum(gr.values())
-    if spraak == "nb":
-        tekst = f"{antall} uten gruppe ennaa"
-        if not med_grunn:
-            return tekst
-        return (f"{tekst} ({gr['observasjon']} observasjoner, {gr['regime']} "
-                f"regimenoder, {gr['har_motor']} med motor, {gr['ovrige']} "
-                f"ovrige)")
     tekst = f"{antall}{' ' + anker if anker else ''} without a group yet"
     if not med_grunn:
         return tekst
-    return (f"{tekst} ({gr['observasjon']} observations, {gr['regime']} regime "
-            f"nodes, {gr['har_motor']} with an engine, {gr['ovrige']} other)")
+    return (f"{tekst} ({gr['observation']} observations, {gr['regime']} regime "
+            f"nodes, {gr['engine']} with an engine, {gr['other']} other)")
 
 
 def arbeidsflyt_filer(katalog: pathlib.Path | None = None) -> list[pathlib.Path]:
@@ -511,7 +508,7 @@ def buss_html(f: dict) -> str:
 def _gruppe(navn: str) -> str:
     if navn not in PLASSERING:
         raise SystemExit(
-            f"[efc-atlas] `{navn}` staar ikke i PLASSERING — se _kapittel().")
+            f"[efc-atlas] `{navn}` is not in PLASSERING — see `_kapittel()`.")
     return PLASSERING[navn][0]
 
 
@@ -520,32 +517,32 @@ def _perspektiv_tekst(p: str | None) -> str:
             "paradigme": "paradigm"}.get(p or "", "agnostic")
 
 
-#: Tekstgrensene for det atlaset RENDERER. De staar her og ikke spredt som
-#: `[:70]` inne i `_node_rad`, fordi testen i `tests/test_atlas_lesbarhet.py`
-#: leser dem: en grense som ikke kan leses av en test kan ikke laases.
+#: The text limits for the atlas RENDERS. They stand here and not spread out as
+#: `[:70]` inside `_node_rad`, because the test in `tests/test_atlas_lesbarhet.py`
+#: reads them: a limit that a test cannot read cannot be locked.
 GRENSER = {"short": 14, "one": 70, "what": 90, "how": 80, "sosial": 120,
            "sakse": 120}
 
 
 def klipp(tekst: str, grense: int) -> str:
-    """Kutt paa ordgrense — og SI at det er kuttet.
+    """Cut at the word boundary — and SAY that it was cut.
 
-    Maalt 2026-09-18 (origin/main f4a3e4f2): `[:70]`, `[:90]` og `[:80]` kuttet
-    midt i ord. Det ga atlaset «fase identifisert via P_sat(T) o», «rotation
-    engin» og «holder temperaturen under oppvarming . Epistemic». En avkuttet
-    streng uten merke ser ut som hele teksten og blir lest som den — samme
-    klasse som fallbacken som svarer: svaret finnes, men det svarer ikke paa
-    det det ser ut som det svarer paa.
+    Measured 2026-09-18 (origin/main f4a3e4f2): `[:70]`, `[:90]` and `[:80]` cut
+    mid-word. That gave the atlas «fase identifisert via P_sat(T) o», «rotation
+    engin» and «holder temperaturen under oppvarming . Epistemic». A truncated
+    string with no mark looks like the whole text and is read as it — the same
+    class as the fallback that answers: the answer exists, but it does not answer
+    what it looks like it answers.
 
-    Kutter paa naermeste ordgrense innenfor grensen og henger paa «…» naar noe
-    faktisk ble borte. Ett tegn er billigere enn et svar som lyver om at det er
-    komplett.
+    Cuts at the nearest word boundary within the limit and appends «…» when something
+    actually was lost. One character is cheaper than an answer that lies about being
+    complete.
 
-    Ett tilfelle har ingen ordgrense: naar det FOERSTE ordet alene er lengre enn
-    grensen, finnes det ikke noe mellomrom aa kutte paa. Da kuttes tokenet — og
-    merkes. Det er den ene tillatte midt-i-ord-kuttingen, og den er bare mulig
-    fordi alternativet (aa kutte uten merke) er det funksjonen finnes for aa
-    hindre.
+    One case has no word boundary: when the FIRST word alone is longer than
+    the limit, there is no space to cut at. Then the token is cut — and
+    marked. That is the one permitted mid-word cut, and it is only possible
+    because the alternative (cutting without a mark) is what the function exists to
+    prevent.
     """
     t = " ".join(str(tekst or "").split())
     if len(t) <= grense:
@@ -556,52 +553,52 @@ def klipp(tekst: str, grense: int) -> str:
 
 
 def klipp_med_status(tekst: str, grense: int) -> tuple[str, bool]:
-    """`klipp()` pluss om noe faktisk ble borte.
+    """`klipp()` plus whether something actually was lost.
 
-    Punktet etter bufferrolla skal ikke staa etter et kuttemerke. Foerste
-    utgave gjettet dette ved aa se etter «…» i RESULTATET — og tok da feil for
-    en banktekst som selv slutter med «…», og bommet paa en tekst som slutter
-    med «...». Kutteren vet svaret; derfor returnerer den det.
+    The full stop after the buffer role shall not follow a cut mark. The first
+    version guessed this by looking for «…» in the RESULT — and then read wrong
+    for a bank text that itself ends with «…», and missed a text that ends
+    with «...». The cutter knows the answer; therefore it returns it.
     """
     kuttet = len(" ".join(str(tekst or "").split())) > grense
     return klipp(tekst, grense), kuttet
 
 
 def kode_for(nid: str) -> str:
-    """Nodens korte identifikator. Ingen fallback.
+    """The node's short identifier. No fallback.
 
-    En node uten kode er en feil som skal SEES. Fallbacken
-    (`nid[:2].upper()`) gjorde den usynlig i maanedene den sto her: den
-    svarte med en kode som saa riktig ut, og 20 noder delte den.
+    A node without a code is an error that must be SEEN. The fallback
+    (`nid[:2].upper()`) made it invisible in the months it stood here: it
+    answered with a code that looked right, and 20 nodes shared it.
     """
     try:
         return KODER[nid]
     except KeyError:
         raise KeyError(
-            f"{nid} har ingen kode. Legg den inn i KODER i "
-            f"scripts/maintenance/efc_atlas_generator.py — koden er nodens "
-            f"korte identifikator, og spoersmaal-ID-er (Q-<kode><n>) og "
-            f"FLOWS-hopp bygges av den.") from None
+            f"{nid} has no code. Put it into KODER in "
+            f"scripts/maintenance/efc_atlas_generator.py — the code is the node's "
+            f"short identifier, and question IDs (Q-<code><n>) and the "
+            f"FLOWS hops are built from it.") from None
 
 
 def manglende_koder(noder: list[dict]) -> list[str]:
-    """Noder i banken uten deklarert kode, sortert. Skal vaere tom."""
+    """Nodes in the bank without a declared code, sorted. Shall be empty."""
     return sorted(n["id"] for n in noder if n["id"] not in KODER)
 
 
 def foreldede_koder(noder: list[dict]) -> list[str]:
-    """Koder deklarert for noder som ikke finnes, sortert. Skal vaere tom.
+    """Codes declared for nodes that do not exist, sorted. Shall be empty.
 
-    Fanget ikke seg selv: 15 av de 28 noeklene navnga noder som aldri har
-    eksistert under det navnet (`efc.hubble` mot `efc.hubble_engine`), og
-    fallbacken svarte i stedet for aa melde fra.
+    Did not catch itself: 15 of the 28 keys named nodes that have never
+    existed under that name (`efc.hubble` vs `efc.hubble_engine`), and the
+    fallback answered instead of reporting.
     """
     id_er = {n["id"] for n in noder}
     return sorted(set(KODER) - id_er)
 
 
 def kollisjoner(noder: list[dict]) -> dict[str, list[str]]:
-    """Koder som baeres av mer enn en node: {kode: [node-id, …]}."""
+    """Codes carried by more than one node: {code: [node-id, …]}."""
     per: dict[str, list[str]] = {}
     for n in noder:
         if n["id"] in KODER:
@@ -610,28 +607,29 @@ def kollisjoner(noder: list[dict]) -> dict[str, list[str]]:
 
 
 def sakse_tekst(node: dict) -> str:
-    """S-aksen som lesbar tekst — tom streng naar den ikke er maalt.
+    """The S-axis as readable text — an empty string when it is not measured.
 
-    S-aksen (regime, sektor, klarhet, EBE, RCMP) ble skrevet til data.mjs som
-    `sAxis`, men ingen av de to byggene leser den noekkelen: node-panelet viser
-    `what`/`how`/`cond`, og teksttvillingen likesaa. The renderer is a HAND-COPIED
+    The S-axis (regime, sector, clarity, EBE, RCMP) was written to data.mjs as
+    `sAxis`, but neither of the two builds reads that key: the node panel shows
+    `what`/`how`/`cond`, and so does the text twin. The renderer is a HAND-COPIED
     copy of the skill's asset, not read-only: this copy carries the code-namespace
     fix from #506 (pinned by tests/test_atlas_flows.py, red before it), and the
     asset carries the same mechanism since 2026-09-19 — so the two agree, and any
     further edit must be made in BOTH, or the next `cp` from SKILL.md drops it.
-    Laget maa derfor uttrykkes i et felt visningene FAKTISK leser — `how` er det
-    rette: regimet og maalekjeden er hvordan noden er bygget.
+    The layer must therefore be expressed in a field the views ACTUALLY read —
+    `how` is the right one: the regime and the measurement chain are how the node
+    is built.
 
-    Rekkefoelgen er maalerekken: regime -> sektor -> klarhet -> EBE -> RCMP.
+    The order is the measurement chain: regime -> sector -> clarity -> EBE -> RCMP.
     """
     mp = node.get("maale_paradigme") or {}
     parter: list[str] = []
     if mp.get("s_regime"):
         parter.append(f"regime {mp['s_regime']}")
     if mp.get("sektor"):
-        parter.append(f"sektor {mp['sektor']}")
+        parter.append(f"sector {mp['sektor']}")
     if mp.get("klarhetsfunksjon"):
-        parter.append(f"klarhet {klipp(mp['klarhetsfunksjon'], GRENSER['sakse'])}")
+        parter.append(f"clarity {klipp(mp['klarhetsfunksjon'], GRENSER['sakse'])}")
     if mp.get("ebe_function"):
         parter.append(f"EBE {klipp(mp['ebe_function'], GRENSER['sakse'])}")
     rcmp = node.get("rcmp")
@@ -651,27 +649,29 @@ def _node_rad(node: dict, i: int) -> dict:
     ep = node.get("epistemikk", {})
     maal = node.get("measure", {})
     buf = node.get("buffer", {})
-    # Spoersmaalene her er ikke skrevet av generatoren.
+    # The questions here are not written by the generator.
     #
-    # Maalt 2026-09-18: for hver node uten evidens la generatoren inn linjen
-    # «no evidence yet — hypothesis marked honestly». Den var IDENTISK for alle
-    # sju, den spurte ikke om noe, og den gjentok `how` («Epistemic: … ingen»)
-    # inne i spoersmaalsfanen. «7 open · 0 resolved» var dermed ett og samme
-    # ord sju ganger — fallbacken som svarer, i spoersmaalsfanen.
+    # Measured 2026-09-18: for every node without evidence the generator inserted the line
+    # «no evidence yet — hypothesis marked honestly». It was IDENTICAL for all
+    # seven, it asked about nothing, and it repeated `how` («Epistemic: … ingen») inside the
+    # question tab. «7 open · 0 resolved» was thereby one and the same
+    # word seven times — the fallback that answers, in the question tab.
     #
-    # Evidensstatusen staar der den er maalt: i `how`. Et ekte aapent
-    # spoersmaal maa komme FRA BANKEN (et felt paa noden), aldri fra
-    # generatorens penn — en generator som dikter spoersmaal lager arbeidsko
-    # av sin egen mal.
+    # The evidence status stands where it is measured: in `how`. A real open
+    # question must come FROM THE BANK (a field on the node), never from
+    # the generator's pen — a generator that makes up questions produces busywork
+    # out of its own template.
     cond = []
-    # Et EKTE aapent spoersmaal kommer fra banken — feltet `open_questions` paa
-    # noden. Generatoren skriver aldri et spoersmaal selv (se `cond = []` over).
+    # A REAL open question comes from the bank — the field `open_questions` on
+    # the node. The generator never writes a question itself (see `cond = []` above).
     for spm in node.get("open_questions") or []:
         if isinstance(spm, str) and spm.strip():
             cond.append(spm.strip())
         elif isinstance(spm, dict) and str(spm.get("q", "")).strip():
             cond.append({k: v for k, v in spm.items()
                          if k in ("q", "r", "to") and str(v).strip()})
+    # The literal below is the bank's declared value in `stipulasjoner.motor`
+    # (a data enum) and is compared verbatim — it stays as it is in the bank.
     if node.get("stipulasjoner", {}).get("motor") in (None, "", "KANDIDAT "
         "(broen venter paa konnektor-deploy)"):
         pass
@@ -679,29 +679,29 @@ def _node_rad(node: dict, i: int) -> dict:
     if motor and motor.startswith("KANDIDAT"):
         cond.append({"q": f"{nid}: motor waits for connector deploy",
                      "to": "connector deploy (human step)"})
-    # One-lineren er det foerste brukeren leser naar de hover-er over en node.
-    # Den skal svare paa HVA tingen er. Foer aapnet den med perspektivet, og da
-    # begynte ALLE 116 nodene med samme ord («Perspective: …»): en mal som sier
-    # hvem som mener det, ikke hva det er — og som dyttet substansen bakerst,
-    # der `[:70]` kuttet den. Perspektivet er ikke borte: det staar i `steps`
-    # og som kort merke til slutt.
+    # The one-liner is the first thing the user reads when they hover a node.
+    # It shall answer WHAT the thing is. Previously it opened with the perspective, and then
+    # ALL 116 nodes began with the same word («Perspective: …»): a template that says
+    # who holds the view, not what it is — and that pushed the substance to the back,
+    # where `[:70]` cut it. The perspective is not gone: it stands in `steps`
+    # and as a short mark at the end.
     substans = klipp(maal.get("target", ""), GRENSER["one"])
     perspektiv = _perspektiv_tekst(node.get("perspektiv"))
-    # `role` kan mangle, vaere None eller tom. Foer ga None/"" en tom tekst, og
-    # linja ble «Buffer role: . Epistemic: …»; «—» sier at feltet ikke er
-    # utfylt, som er sant.
+    # `role` may be missing, be None or empty. Previously None/"" gave an empty text, and
+    # the line became «Buffer role: . Epistemic: …»; «—» says that the field is not
+    # filled in, which is true.
     bufferrolle, bufferrolle_kuttet = klipp_med_status(
         buf.get("role") or "—", GRENSER["how"])
-    # Et kutt slutter paa «…». Da skal malens eget punktum ikke etter, ellers
-    # staar det «… tolkning…. Epistemic» — et kuttemerke og et punktum som
-    # begge proever aa avslutte samme setning. Punktet leses fra kuttets
-    # STATUS, ikke fra et tegn i resultatet: en banktekst kan selv slutte med
-    # «…», og da ville tegnet loyet.
+    # A cut ends with «…». Then the template's own full stop shall not follow, otherwise
+    # it reads «… tolkning…. Epistemic» — a cut mark and a full stop that
+    # both try to end the same sentence. The full stop is read from the cut's
+    # STATUS, not from a character in the result: a bank text can itself end with
+    # «…», and then the character would have lied.
     punktum = "" if bufferrolle_kuttet else "."
-    # S-aksen maa staa i `how` for aa bli SETT: det er feltet begge byggene
-    # viser. Den settes bare inn naar den er maalt — 96 identiske «ikke maalt»
-    # ville vaert samme mal som spoersmaalsfanen nettopp ble ryddet for.
-    # Tomrommet meldes i stedet EN gang, som tall i META.stats.
+    # The S-axis must stand in `how` to be SEEN: that is the field both builds
+    # show. It is only inserted when it is measured — 96 identical «not measured»
+    # would have been the same template the question tab was just cleaned of.
+    # The emptiness is reported instead ONCE, as a number in META.stats.
     sakse = sakse_tekst(node)
     return {
         "id": nid.replace(".", "-").replace("_", "-")[:40],
@@ -714,12 +714,12 @@ def _node_rad(node: dict, i: int) -> dict:
         "w": 2, "d": 2, "h": 34,
         "kind": "tall" if node.get("phase") == "motor" else "box",
         "ghost": gr == "ghost",
-        "one": (f"{substans} · perspektiv: {perspektiv}" if substans
-                else f"perspektiv: {perspektiv}"),
-        # `what` er to merkede deler — instrumentet OG proxy-kjeden — ikke ett
-        # felt. Grensen gjelder hver del, saa hele feltet kan bli lengre enn
-        # GRENSER["what"]. Det er tilsiktet: en felles grense ville kuttet
-        # instrumentet for aa faa plass til kjeden.
+        "one": (f"{substans} · perspective: {perspektiv}" if substans
+                else f"perspective: {perspektiv}"),
+        # `what` is two labelled parts — the instrument AND the proxy chain — not one
+        # field. The limit applies to each part, so the whole field can become longer than
+        # GRENSER["what"]. That is intentional: a shared limit would cut the
+        # instrument to make room for the chain.
         "what": f"{klipp(maal.get('instrument', ''), GRENSER['what'])} — "
                 f"proxy chain: "
                 f"{klipp(' -> '.join(maal.get('proxy_chain', [''])), GRENSER['what'])}",
@@ -727,18 +727,18 @@ def _node_rad(node: dict, i: int) -> dict:
                f"Epistemic: {ep.get('sannhetsstatus', '—')} / "
                f"{ep.get('evidensstatus', '—')} / "
                f"{ep.get('konsensusstatus', '—')}."
-               # S-aksen slutter ofte med punktum selv (RCMP-deklarasjonen
-               # gjorde det: «… gyldighetsdomene.». Derfor settes hale-punktumet
-               # bare naar teksten ikke allerede avslutter seg.
+               # The S-axis often ends with a full stop itself (the RCMP declaration
+               # did: «… gyldighetsdomene.». Therefore the tail full stop is only set
+               # when the text does not already end itself.
                + (f" S-axis: {sakse}"
                   f"{'' if sakse.endswith(('.', '…')) else '.'}" if sakse else ""),
         "sAxis": {
             "regime": node.get("maale_paradigme", {}).get("s_regime"),
             "sector": node.get("maale_paradigme", {}).get("sektor"),
             "ebe": node.get("maale_paradigme", {}).get("ebe_function"),
-            # `klarhetsfunksjon` var utfylt paa like mange noder som s_regime
-            # (19 av 126, maalt 2026-09-18) og ble IKKE lest av generatoren:
-            # S-aksen saa tommere ut i atlaset enn den er i banken.
+            # `klarhetsfunksjon` was filled in on as many nodes as s_regime
+            # (19 of 126, measured 2026-09-18) and was NOT read by the generator:
+            # the S-axis looked emptier in the atlas than it is in the bank.
             "klarhet": node.get("maale_paradigme", {}).get("klarhetsfunksjon"),
             "rcmp": node.get("rcmp"),
         },
@@ -764,42 +764,42 @@ def _indeks(noder: list[dict], rader: list[dict]) -> str:
     evidens = sum((node.get("epistemikk") or {}).get("evidensstatus") == "ingen"
                   for node in noder)
     spoersmaal = sum(len(node.get("open_questions") or []) for node in noder)
-    lines = ["# Atlasindeks", "",
-             (f"> {len(noder)} publiserte noder · "
-              f"{uten_gruppe_frase(noder, 'nb')} · "
-              f"{evidens} mangler evidens · {spoersmaal} aapne spoersmaal"), "",
-             "Hver rad er generert fra samme bank som atlaset.", ""]
+    lines = ["# Atlas index", "",
+             (f"> {len(noder)} published nodes · "
+              f"{uten_gruppe_frase(noder, '')} · "
+              f"{evidens} without evidence · {spoersmaal} open questions"), "",
+             "Each row is generated from the same bank as the atlas.", ""]
     for gruppe in ("roots", "grid", "kosmos", "broer", "struktur", "samfunn",
                    "epist", "ghost"):
         if not grupper.get(gruppe):
             continue
         lines.append(f"## {titler[gruppe]}")
         for rad, node in grupper[gruppe]:
-            st = sakse_tekst(node) or "ikke maalt"
+            st = sakse_tekst(node) or "not measured"
             stip = node.get("stipulasjoner") or {}
-            motor = stip.get("motor") or "ikke oppgitt"
-            buss = stip.get("buss_status") or "ikke oppgitt"
+            motor = stip.get("motor") or "not specified"
+            buss = stip.get("buss_status") or "not specified"
             spm = len(node.get("open_questions") or [])
             perspektiv = _perspektiv_tekst(node.get("perspektiv"))
-            # Linja er en LESEFLAte, ikke en dump. Foerste utgave ga ni kolonner
-            # uten navn — blant dem «1 · nei» — og perspektivet sto BAAE som
-            # avkuttet hale av one-lineren og som egen kolonne. Et tall uten
-            # etikett er en gaate, ikke en opplysning; den som skanner skal
-            # kunne lese raden uten aa sla opp hva kolonnene betyr.
-            substans = rad["one"].split(" · perspektiv:")[0].strip()
+            # The line is a READING SURFACE, not a dump. The first version gave nine columns
+            # without names — among them «1 · nei» — and the perspective stood BOTH as
+            # the truncated tail of the one-liner and as a separate column. A number without
+            # a label is a riddle, not information; whoever scans shall
+            # be able to read the row without looking up what the columns mean.
+            substans = rad["one"].split(" · perspective:")[0].strip()
             lines.append(f"- **{rad['code']} · {node['id']}**"
                          + (f" — {klipp(substans, 90)}" if substans else ""))
             lines.append("  " + " · ".join([
-                f"perspektiv={perspektiv}",
-                f"motor={motor}",
-                f"buss={klipp(str(buss), 40)}",
-                f"S-akse={klipp(st, 60)}",
-                f"spoersmaal={spm}",
-                (f"gruppe=ingen ({gruppe_grunn(node)})" if rad["ghost"]
-                 else "gruppe=ja"),
+                f"perspective={perspektiv}",
+                f"engine={motor}",
+                f"bus={klipp(str(buss), 40)}",
+                f"S-axis={klipp(st, 60)}",
+                f"questions={spm}",
+                (f"group=none ({gruppe_grunn(node)})" if rad["ghost"]
+                 else "group=yes"),
             ]))
         lines.append("")
-    lines.append("## Uten gruppe ennaa")
+    lines.append("## With no group yet")
     lines.append("")
     for rad, node in (item for item in sum(grupper.values(), []) if item[0]["ghost"]):
         lines.append(f"- {node['id']} — {klipp(node.get('navn') or node['id'], 100)}")
@@ -811,54 +811,54 @@ def hoved() -> int:
     atlas = json.load(open(JSONLD, encoding="utf-8"))
     alle = atlas["nodes"]
 
-    # Kode-preflight. Denne staar FOER noe skrives, og den FEILER — den
-    # gjetter ikke. Rekkefoelgen er poenget: et atlas som bygges med en
-    # kode som peker paa tjue noder, er verre enn et atlas som ikke
-    # bygges, fordi det foerste ser ferdig ut.
+    # Code preflight. It stands BEFORE anything is written, and it FAILS — it
+    # does not guess. The order is the point: an atlas built with a
+    # code that points at twenty nodes is worse than an atlas that is not
+    # built, because the first one looks finished.
     mangler = manglende_koder(alle)
     if mangler:
-        print(f"FEIL: {len(mangler)} node(r) i banken mangler kode i KODER:")
+        print(f"ERROR: {len(mangler)} node(s) in the bank are missing a code in KODER:")
         for m in mangler:
             print(f"  {m}")
-        print("Koden er nodens korte identifikator (Q-ID-er og FLOWS-hopp "
-              "bygges av den). Legg den inn i KODER i denne fila.")
+        print("The code is the node's short identifier (Q-IDs and the FLOWS hops "
+              "are built from it). Put it into KODER in this file.")
         return 1
     doede = foreldede_koder(alle)
     if doede:
-        print(f"FEIL: {len(doede)} kode(r) er deklarert for noder som ikke "
-              f"finnes:")
+        print(f"ERROR: {len(doede)} code(s) are declared for nodes that do not "
+              f"exist:")
         for d in doede:
             print(f"  {d} -> {KODER[d]}")
-        print("Tabellen har raatnet (en node-id er endret uten at koden "
-              "flyttet med). Rett noekkelen.")
+        print("The table has rotted (a node id was changed without the code "
+              "moving along). Fix the key.")
         return 1
     koll = kollisjoner(alle)
     if koll:
-        print(f"FEIL: {len(koll)} kode(r) baeres av flere noder:")
+        print(f"ERROR: {len(koll)} code(s) are carried by several nodes:")
         for k, ids in koll.items():
             print(f"  {k}: {', '.join(ids)}")
-        print("En kode som peker paa flere noder identifiserer ingen av "
-              "dem. Velg en entydig kode per node.")
+        print("A code that points at several nodes identifies none of "
+              "them. Choose an unambiguous code per node.")
         return 1
-    print(f"koder: {len(KODER)} entydige for {len(alle)} noder")
+    print(f"codes: {len(KODER)} unambiguous for {len(alle)} nodes")
 
-    # Bare offentlige noder gaar til GitHub Pages. Filteret er DEKLARERT per
-    # node (`synlighet`), ikke en skjult regel her — en node som forsvinner
-    # uten at noen ser hvorfor er samme feilklasse som resten av huset
-    # finnes for aa hindre. Interne noder er ikke slettet: de lever videre
-    # i det komplette atlaset, og telles eksplisitt i utskriften saa
-    # tilbakeholdelsen er synlig.
+    # Only public nodes go to GitHub Pages. The filter is DECLARED per
+    # node (`synlighet`), not a hidden rule here — a node that disappears
+    # without anyone seeing why is the same error class the rest of the house
+    # exists to prevent. Internal nodes are not deleted: they live on
+    # in the complete atlas, and are counted explicitly in the output so
+    # the withholding is visible.
     noder = [n for n in alle if n.get("synlighet") == "offentlig"]
     interne = [n["id"] for n in alle if n.get("synlighet") != "offentlig"]
-    print(f"nodes: {len(noder)} offentlige av {len(alle)}")
+    print(f"nodes: {len(noder)} public of {len(alle)}")
     if interne:
-        print(f"  holdt tilbake ({len(interne)}): {', '.join(sorted(interne))}")
+        print(f"  withheld ({len(interne)}): {', '.join(sorted(interne))}")
 
-    # Tallene under er DYNAMISKE med vilje. De stod hardkodet som «82 nodes,
-    # 79 relations» og «82 nodes, 18 engines», og ble dermed staaende og
-    # lyve i det offentlige kartet i det oyeblikket filteret tok virkning —
-    # 73 noder publisert, 82 paastatt. Det røpet i tillegg at noe var holdt
-    # tilbake, som er noeyaktig det filteret skal skjule.
+    # The numbers below are DYNAMIC on purpose. They stood hardcoded as «82 nodes,
+    # 79 relations» and «82 nodes, 18 engines», and thereby stayed and
+    # lied in the public map the moment the filter took effect —
+    # 73 nodes published, 82 claimed. It besides revealed that something was held
+    # back, which is exactly what the filter is meant to hide.
     offentlige_id = {n["id"] for n in noder}
     relasjoner = [r for r in atlas.get("relations", [])
                   if r.get("subject") in offentlige_id
@@ -866,14 +866,14 @@ def hoved() -> int:
     motorer = sum(1 for n in noder if "_engine" in str(n.get("id", "")))
 
     rader = [_node_rad(n, i) for i, n in enumerate(noder)]
-    # Ghost-noder: de uten PLASSERING og med epistemikk «ingen»
+    # Ghost nodes: those without PLASSERING and with epistemics «ingen»
     for r in rader:
         nid = r["name"]
         if nid not in PLASSERING:
             r["group"] = "ghost"
             r["ghost"] = True
 
-    # Kapitler: 1-8 + hele-systemet (9)
+    # Chapters: 1-8 + the whole system (9)
     kap = {i: [] for i in range(1, 9)}
     for r in rader:
         k = _kap(r["name"])
@@ -913,7 +913,7 @@ def hoved() -> int:
     ch.append({
         "id": "all", "title": "The whole atlas",
         "reveal": [], "lede": f"Everything at once — {len(noder)} nodes, "
-                              f"{uten_gruppe_frase(noder, 'en', 'of them')}, "
+                              f"{uten_gruppe_frase(noder, 'of them')}, "
                               f"{len(relasjoner)} relations.",
         "story": "<p>Free exploration. Hover, click to pin, go inside.</p>"
                  f"<p>{uten_evidens} nodes carry no evidence yet — that is what "
@@ -923,13 +923,13 @@ def hoved() -> int:
         "flow": None,
     })
 
-    # FLOWS: de tre bro-kjedene som dataflyt (tabellen staar oeverst i fila)
+    # FLOWS: the three bridge chains as data flow (the table stands at the top of the file)
     flows = FLOWS
 
-    # S-aksen maalt paa N av M noder. Tallet staar EN gang, i headeren: et tomt
-    # felt og et felt som ikke finnes er to ulike svar, og bare ett av dem er et
-    # hull. En linje per node («ikke maalt») ville derimot vaert den samme malen
-    # som spoersmaalsfanen nettopp ble ryddet for.
+    # The S-axis measured on N of M nodes. The number stands ONCE, in the header: an empty
+    # field and a field that does not exist are two different answers, and only one of them is a
+    # gap. One line per node («not measured») would on the other hand have been the same template
+    # that the question tab was just cleaned of.
     sakse_maalt = sum(1 for n in noder if sakse_tekst(n))
 
     indeks = _indeks(noder, rader)
@@ -939,9 +939,9 @@ def hoved() -> int:
     # the atlas stat strip. Both carry the group-less count from the SAME
     # derivation as the index header and the chapter-9 lede — the strip uses
     # the compact form because a stat card is nowrap and the split does not fit.
-    uten_gruppe_en = uten_gruppe_frase(noder, "en", "of them")
-    uten_gruppe_egne = uten_gruppe_frase(noder, "en", f"of the {len(noder)}")
-    uten_gruppe_kort = uten_gruppe_frase(noder, "en", "", med_grunn=False)
+    uten_gruppe_en = uten_gruppe_frase(noder, "of them")
+    uten_gruppe_egne = uten_gruppe_frase(noder, f"of the {len(noder)}")
+    uten_gruppe_kort = uten_gruppe_frase(noder, "", med_grunn=False)
 
     # The bus, measured three ways: the snapshot's own numbers, the routes the
     # bank names, and the schedules that run the measurement (measured
@@ -954,8 +954,8 @@ def hoved() -> int:
           f"{len(buss['kadenser'])} of {buss['arbeidsflyter']} workflows run "
           f"the measurement")
 
-    data = f"""// GENERERT av scripts/maintenance/efc_atlas_generator.py —
-// IKKE rediger for haand. Kilden er schema/regime_nodes.jsonld.
+    data = f"""// GENERATED by scripts/maintenance/efc_atlas_generator.py —
+// DO NOT edit by hand. The source is schema/regime_nodes.jsonld.
 export const META = {{
   title: 'EFC',
   artifactUrl: '',
@@ -970,7 +970,7 @@ export const META = {{
   busHull: {json.dumps(buss_tekst(buss), indent=2)},
   weOwn: 'The atlas itself — every node, every epistemic declaration, every threshold.',
   costModel: [],
-  filesystem: `schema/regime_nodes.jsonld\\n  efc_inference/engine/*.py\\n  efc_inference/bridge/*.py`,
+  filesystem: `schema/regime_nodes.jsonld\\\\n  efc_inference/engine/*.py\\\\n  efc_inference/bridge/*.py`,
 }};
 
 export const DECISIONS = [
@@ -993,13 +993,13 @@ export const HOW_HTML = `<div class="eyebrow">EFC · generated</div><h1 class="t
 <h3 class="sec">Generator</h3><pre>scripts/maintenance/efc_atlas_generator.py</pre>
 {buss_html(buss)}`;
 """
-    # Trailing whitespace bryter git diff --check — stripp hver linje
+    # Trailing whitespace breaks git diff --check — strip every line
     data = "\n".join(linje.rstrip() for linje in data.splitlines()) + "\n"
     (ATLAS_DIR / "data.mjs").write_text(data, encoding="utf-8")
     print("data.mjs written:", len(data), "bytes")
 
-    # Bygg begge visningene og stripp whitespace fra build-outputen
-    # (build.mjs skriver tomme linjer med mellomrom i SYSTEM.md).
+    # Build both views and strip whitespace from the build output
+    # (build.mjs writes blank lines with spaces in SYSTEM.md).
     import subprocess as _sp
     r = _sp.run(["node", "build.mjs"], capture_output=True, text=True,
                 cwd=ATLAS_DIR, timeout=120)

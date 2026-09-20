@@ -52,8 +52,8 @@ class MetabolismEngine(EFCEngine):
     def regime_node(self, p: dict) -> dict:
         th = p["anaerobic_intensity_threshold"]
         return {"id": "homo.metabolisme", "synlighet": self.SYNLIGHET,
-                "phase": "regime_engine", "regime": {"name": "metabolisme",
-                "validity": f"intensitet i [0, 1]; aerob hvile/aktiv under {th}, anaerob fra {th}; utenfor NaN",
-                "law_form": "glykolyse -> Krebs -> elektrontransport/oksidativ fosforylering; anaerob glykolyse ved begrenset O2"},
-                "measure": {"target": "ATP per glukose", "instrument": "respirometri/metabolomikk"},
-                "emergence": {"loop": "substrat -> ATP -> arbeid -> ADP -> substrat", "properties": ["ATP", "RQ", "O2"]}}
+                "phase": "regime_engine", "regime": {"name": "Metabolism",
+                "validity": f"intensity in [0, 1]; aerobic rest/active below {th}, anaerobic from {th}; NaN outside",
+                "law_form": "glycolysis -> Krebs -> electron transport/oxidative phosphorylation; anaerobic glycolysis at limited O2"},
+                "measure": {"target": "ATP per glucose", "instrument": "respirometry/metabolomics"},
+                "emergence": {"loop": "substrate -> ATP -> work -> ADP -> substrate", "properties": ["ATP", "RQ", "O2"]}}

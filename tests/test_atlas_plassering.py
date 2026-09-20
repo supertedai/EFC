@@ -49,10 +49,10 @@ def test_fallbacken_er_borte() -> None:
         encoding="utf-8")
     assert 'PLASSERING.get(navn, ("ghost", 8))' not in src, (
         "fallbacken svarer fortsatt i stedet for aa si fra")
-    assert "staar ikke i PLASSERING" in src, "vakten mangler"
+    assert "is not in PLASSERING" in src, "vakten mangler"
 
 
 def test_ghost_er_deklarert_som_valg() -> None:
     src = (ROT / "scripts" / "maintenance" / "efc_atlas_generator.py").read_text(
         encoding="utf-8")
-    assert "Ghost er et VALG" in src, "ghost staar uten begrunnelse"
+    assert "Ghost is a CHOICE" in src, "ghost staar uten begrunnelse"

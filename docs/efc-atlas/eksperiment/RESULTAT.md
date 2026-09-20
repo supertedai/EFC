@@ -1,84 +1,84 @@
-# Resultat: eksperimentet felte instrumentet, ikke hypotesen
+# Result: the experiment felled the instrument, not the hypothesis
 
-Kjørt 2026-09-18 mot `origin/main`. Nøkkel (rettet, `67938617`) og protokoll
-(`f8bbd7c6`) ble skrevet og committet **før** kjøring.
+Run 2026-09-18 against `origin/main`. The key (corrected, `67938617`) and the protocol
+(`f8bbd7c6`) were written and committed **before** the run.
 
-## Tallene
+## The numbers
 
-| | A: dagens leser | B: prototype med evidenslag |
+| | A: today's reader | B: prototype with evidence layer |
 |---|---|---|
-| Korrekt | **5** | **7** |
-| Feil | 1 | 1 |
-| Avståelser | **2** | 0 |
-| Falske støttepåstander | **0** | **0** |
-| Proveniens (fil:felt) | 6 av 8 | **8 av 8** |
-| Tid | 0,08 s | 0,07 s |
+| Correct | **5** | **7** |
+| Wrong | 1 | 1 |
+| Abstentions | **2** | 0 |
+| False support claims | **0** | **0** |
+| Provenance (file:field) | 6 of 8 | **8 of 8** |
+| Time | 0.08 s | 0.07 s |
 
 ```text
 A: {"korrekt": 5, "feil": 1, "avstaaelse": 2, "falske_stoettepastander": 0, "proveniens": 6}
 B: {"korrekt": 7, "feil": 1, "avstaaelse": 0, "falske_stoettepastander": 0, "proveniens": 8}
 ```
 
-Begge systemer svarer likt og korrekt på Q1, Q2, Q5, Q6 og Q8. Begge feiler Q4.
+Both systems answer alike and correctly on Q1, Q2, Q5, Q6 and Q8. Both fail Q4.
 
-## Dette avgjør ikke spørsmålet — og grunnen er min
+## This does not settle the question — and the reason is mine
 
-Protokollen satte opp tre kriterier for å ta støtte-kantene inn. To av dem falt:
+The protocol set up three criteria for taking the support edges in. Two of them fell:
 
-**Kriteriet som skulle avgjøre, skilte ikke.** «B skal ha færre falske
-støttepåstander enn A» — begge har **0**. System A **løy ikke**; den avstod på
-Q3 og Q7 i stedet for å svare på koblinger. Det var jeg som ga A lov til å avstå,
-og dermed fjernet jeg nøyaktig den feilmodusen eksperimentet var bygget for å
-finne. Instrumentet kan ikke avgjøre det det ble laget for.
+**The criterion that was to decide, did not discriminate.** "B shall have fewer false
+support claims than A" — both have **0**. System A **did not lie**; it abstained on
+Q3 and Q7 instead of answering about links. It was I who gave A permission to abstain,
+and thereby I removed precisely the error mode the experiment was built to
+find. The instrument cannot settle what it was made for.
 
-**Q4 er ugyldig for begge.** Nøkkelen ble rettet fra «1 kant» til «3 kanter»
-*etter* at systemene var bygget mot den gamle versjonen. Begge svarer én kant.
-Det er min rekkefølgefeil, ikke en systemfeil — men observasjonen står: **ingen
-av dem finner alle tre inverterte kantene.**
+**Q4 is invalid for both.** The key was corrected from "1 edge" to "3 edges"
+*after* the systems had been built against the old version. Both answer one edge.
+That is my sequencing error, not a system error — but the observation stands: **neither
+of them finds all three inverted edges.**
 
-**Det som står igjen, er en dekningsgevinst — og den er smal.** B svarer på to
-spørsmål A avstår fra (Q3 og Q7), begge korrekt. Det er ikke «bedre
-oppslagsnøyaktighet»; det er at to spørsmål i dag ikke har noe svar å gi.
+**What remains is a coverage gain — and it is narrow.** B answers two
+questions A abstains from (Q3 and Q7), both correctly. That is not "better
+lookup accuracy"; it is that two questions today have no answer to give.
 
-## Dette felte jeg selv på veien, og det skal stå
+## What I felled myself along the way, and it must stand
 
-1. **Scoreren målte seg selv.** Første kjøring ga 3 korrekt for begge. Feilene
-   var ordet `merknad` — forklarende prosa jeg selv hadde lagt inn i nøkkelen,
-   som scoreren sammenlignet som om det var svaret. Det måler instrumentet, ikke
-   systemene. Begge scoringer står her; rettingen er å **deklarere** i
-   `key.json` hvilke nøkler som er forklaring.
-2. **Nøkkelen hadde fire tellefeil.** Q3: 16 → 18 relasjonsrader. Q4: 1 → 3
-   kanter. Q5: 4 rader og «duplisert» → 2 rader, ingen duplisering. Q7:
-   `kan_besvares_i_dag` false → true. Funnet av to spor uavhengig av hverandre,
-   rettet før kjøring i egen commit. Årsaken er min: jeg leste en utskrift som
-   kuttet en liste med `[:4]` og behandlet kuttet som tallet.
-3. **A ble sterkere enn spesifisert.** Jeg skrev «finnes feltet ikke, er svaret
-   nei». Implementasjonen sjekket alle tre falsifikatorformene og svarte Q6
-   korrekt — inkludert fellen med `efc.rotation_engine`. Det er ikke galt, men
-   det betyr at A som ble målt ikke er den naive leseren jeg så for meg.
+1. **The scorer measured itself.** The first run gave 3 correct for both. The errors
+   were the word `merknad` — explanatory prose I had myself put into the key,
+   which the scorer compared as if it were the answer. That measures the instrument, not
+   the systems. Both scorings stand here; the fix is to **declare** in
+   `key.json` which keys are explanation.
+2. **The key had four counting errors.** Q3: 16 → 18 relation rows. Q4: 1 → 3
+   edges. Q5: 4 rows and "duplicated" → 2 rows, no duplication. Q7:
+   `kan_besvares_i_dag` false → true. Found by two tracks independently of each other,
+   corrected before the run in a separate commit. The cause is mine: I read an output that
+   cut a list with `[:4]` and treated the cut as the number.
+3. **A became stronger than specified.** I wrote "if the field does not exist, the answer is
+   no". The implementation checked all three falsifier forms and answered Q6
+   correctly — including the trap with `efc.rotation_engine`. That is not wrong, but
+   it means the A that was measured is not the naive reader I had imagined.
 
-## Hva det betyr for ADR-086
+## What it means for ADR-086
 
-- **Usikkerhetslaget:** svakt støttet. Det gir et svar A ikke kan gi (Q7 med
-  begrunnelse), uten å fylle noe med gjetting. Ikke mer enn det.
-- **Støtte-kantene:** **uavklart, ikke avvist.** Det avgjørende kriteriet kunne
-  ikke fyre fordi A fikk avstå. Vedtaket i ADR §3 står uendret: nei nå.
-- **Pipeline-omleggingen:** ikke berørt. Ingenting her taler for den.
+- **The uncertainty layer:** weakly supported. It gives an answer A cannot give (Q7 with
+  a reason), without filling anything with guesswork. Not more than that.
+- **The support edges:** **unresolved, not rejected.** The decisive criterion could
+  not fire because A was allowed to abstain. The decision in ADR §3 stands unchanged: no for now.
+- **The pipeline change:** not affected. Nothing here argues for it.
 
-## Neste iterasjon — det instrumentet må endres på
+## Next iteration — the instrument must be changed here
 
-1. **Fjern A sin avståelsesrett på Q3 og Q7.** Tving A til å svare med en
-   regel den faktisk har (koblinger = støtte), og mål hvor mange falske
-   støttepåstander den da produserer. Først da kan kriteriet skille.
-2. **Rett nøkkelen før systemene bygges** — eller bygg systemene etter at
-   nøkkelen er frosset og verifisert. Kjeden var: nøkkel → bygg A/B → verifiser
-   → rett nøkkel. Den skal være: nøkkel → verifiser → frys → bygg.
-3. **Q4 skal kreve listen, ikke ett eksempel.** Tre kanter, ikke én.
-4. **Legg til et spørsmål der A med sikkerhet svarer feil.** Kandidat målt i
-   dag: `efc.rotation_engine` — et oppslag som bare ser etter
-   `ville_falsifisere` melder den som udekket. Q6 fanger det bare hvis A er
-   spesifisert til å være så naiv som den faktisk ville vært uten barnets
-   velvillige implementasjon.
+1. **Remove A's right to abstain on Q3 and Q7.** Force A to answer with a
+   rule it actually has (links = support), and measure how many false
+   support claims it then produces. Only then can the criterion discriminate.
+2. **Correct the key before the systems are built** — or build the systems after
+   the key is frozen and verified. The chain was: key → build A/B → verify
+   → correct key. It should be: key → verify → freeze → build.
+3. **Q4 must require the list, not one example.** Three edges, not one.
+4. **Add a question where A answers incorrectly with certainty.** Candidate measured
+   today: `efc.rotation_engine` — a lookup that only looks for
+   `ville_falsifisere` reports it as uncovered. Q6 catches that only if A is
+   specified to be as naive as it would actually have been without the child's
+   obliging implementation.
 
-**Kort sagt: eksperimentet ga ikke støtte-kantene rett — og det ga ikke atlaset
-urett. Det viste at jeg hadde bygget et instrument som lot begge slippe unna.**
+**In short: the experiment did not give the support edges right — and it did not give the atlas
+wrong. It showed that I had built an instrument that let both get away.**

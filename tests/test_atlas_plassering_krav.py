@@ -85,7 +85,7 @@ def test_strukturfelt_uten_grunnlag_faar_ingen_verdi(atlas):
     p = atlas_lesing.plasser(atlas, "xylofonstemning i mars")
     k = _krav(p, "phase")
     assert k["forslag"] is None, k
-    assert "kjerne" in k["grunn"], k
+    assert "core" in k["grunn"], k
 
 
 def test_alle_strukturfelt_har_enten_verdi_eller_grunn(atlas):

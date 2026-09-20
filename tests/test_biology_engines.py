@@ -43,4 +43,4 @@ def test_evolution_calculates_hardy_weinberg_selection_and_fixation():
     assert 0.5 < m.compute(p, np.array([0.5]))[0] < 0.56
     assert np.isfinite(m.fixation_time(0.1, 1000.0, 0.1))
     assert np.isnan(m.compute(p, np.array([1.2]))[0])
-    assert "artsdannelse" in EvolusjonEngine.__doc__
+    assert "speciation" in EvolusjonEngine.__doc__
