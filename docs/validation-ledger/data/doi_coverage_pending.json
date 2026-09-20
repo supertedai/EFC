@@ -1,0 +1,736 @@
+{
+ "name": "EFC DOI atlas-ingest backlog (atlas scope, missing from atlas)",
+ "schema": "efc-doi-coverage-pending/1",
+ "input_digest": "5b2f6aa3a1419b02421206e0820c27ac29962274bd28503a3ec9ac6be7c2f201",
+ "measured_on": "1ceee11a2c8da4ed08e9e96664ecc9ea06ce55f8",
+ "count": 60,
+ "disposition": "semantic_mapping",
+ "note": "Every atlas-scope (empirical) DOI that does not appear as a literal Figshare URL in the atlas union. Node mapping is semantic and is not auto-applied here. Each entry is pre-computed with DOI, title, categories and repo dirs so the mapping step only needs to approve a node link.",
+ "pending": [
+  {
+   "doi": "10.6084/m9.figshare.28098299",
+   "id8": "28098299",
+   "title": "EFC — Observational Evidence for Entropy in Cosmic Evolution",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-Observational-Evidence-Entropy-Cosmic-Evolution"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.28098365",
+   "id8": "28098365",
+   "title": "EFC — Observational Evidence for Energy Flow",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-Observational-Evidence-for-Energy-Flow"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.28112096",
+   "id8": "28112096",
+   "title": "EFC — Flow, Entropy, and Spacetime Distortion in Cosmological Clusters",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-Flow-Entropy-and-Spacetime-Distortion-in-Cosmological-Clusters"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31007248",
+   "id8": "31007248",
+   "title": "Regime-Dependent Validity in Energy-Flow Cosmology: Evidence from SPARC Galaxy Rotation Curves and the EFC-R Framework",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-R-SPARC",
+    "EFC-R-SPARC-Regime-Validity"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31026151",
+   "id8": "31026151",
+   "title": "Resolving the H0 and S8 Tensions Through Local-Global Inference Separation: An Energy-Flow Cosmology Analysis",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-H0-S8-Tensions"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31045126",
+   "id8": "31045126",
+   "title": "Regime-Dependent Validity in Galaxy Rotation Curve Modeling: Comprehensive Analysis of 175 SPARC Galaxies",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Comprehensive-analysis-of-175-SPARC-galaxies-demonstrating-regime-dependent-validity-in-rotation-curve-modeling"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31047703",
+   "id8": "31047703",
+   "title": "Entropy-Bounded Empiricism: Regime-Dependent Validity in Galaxy Rotation Curves",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "entropy-bounded-empiricism-EBE-SPARC175-complete-documentation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31059964",
+   "id8": "31059964",
+   "title": "Observed Galaxy Abundances at z > 6 Exceed Halo-Limited Predictions in COSMOS-Web",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "observed-galaxy-abundances-at-z-6-exceed-halo-limited-predictions-in-COSMOS-web"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31061665",
+   "id8": "31061665",
+   "title": "Regime-Dependent Breakdown of LCDM Across Cosmic Time",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "regime-dependent-breakdown-of-LCDM-across-cosmic-time"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31064929",
+   "id8": "31064929",
+   "title": "CMB Thermodynamic Interpretation: A Compatibility and Null-Test Framework Under Entropy-Constrained Structure Formation",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "CMB-Thermodynamic-Interpretation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31095466",
+   "id8": "31095466",
+   "title": "Systematic CMB Constraints on Early-Universe Modifications: Parameter Degeneracies and Null Results",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Systematic-CMB-Constraints-on-Early-Universe-Modifications-Parameter-Degeneracies-and-Null-Results"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31127380",
+   "id8": "31127380",
+   "title": "EFC Phenomenology vs DESI DR2 BAO: A Comparative Fit Analysis",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-Phenomenology-vs-DESI-DR2-BAO-A-Comparative-Fit-Analysis"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31144030",
+   "id8": "31144030",
+   "title": "Regime-Dependent Growth Enhancement: A Transition Metric Interpretation of the Fugaku–DESI Matter Density Offset",
+   "categories": [
+    "empirical",
+    "methodological"
+   ],
+   "repo_dirs": [
+    "Regime_Dependent_Growth_Enhancement___A_Transition_Metric_Interpretation_of_the_Fugaku_DESI_Matter_Density_Offset"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31173850",
+   "id8": "31173850",
+   "title": "Structural Constraints on Entropy-Gradient Gravity from Cluster Merger Geometry",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Structural-Constraints-on-Entropy-Gradient-Gravity-from-Cluster-Merger-Geometry"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31190233",
+   "id8": "31190233",
+   "title": "EFC Validation: Cluster Lensing and Galaxy Rotation Curves",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Empirical-Validation-of-Energy-Flow-Cosmology-Cluster-Lensing-and-Galaxy-Rotation-Curves"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31211437",
+   "id8": "31211437",
+   "title": "R(k,S) as a Regime Response Surface in Energy-Flow Cosmology",
+   "categories": [
+    "empirical",
+    "structural"
+   ],
+   "repo_dirs": [
+    "R_k_S__as_a_Regime_Response_Surface_in_Energy_Flow_Cosmology"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31215259",
+   "id8": "31215259",
+   "title": "WP3: First Empirical Slice Through the Regime Response Surface R(k, S)",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "WP3__First_Empirical_Slice_Through_the_Regime_Response_Surface_R_k_S_"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31215613",
+   "id8": "31215613",
+   "title": "Energy-Flow Cosmology: Unified Analysis of BAO, SN Ia, and RSD",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Energy-Flow-Cosmology-Unified-Analysis-of-BAO"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31224538",
+   "id8": "31224538",
+   "title": "EFC Phase 3: SPARC Validation",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC_Phase_3__SPARC_Validation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31230703",
+   "id8": "31230703",
+   "title": "Energy-Flow Cosmology: Regime-Transition Fit to DESI DR2 BAO",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Energy_Flow_Cosmology__Regime_Transition_Fit_to_DESI_DR2_BAO_With_Cross_Validation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31231522",
+   "id8": "31231522",
+   "title": "Independent Validation of Energy-Flow Cosmology BAO Predictions: Cross-Survey Transfer from DESI DR2 to BOSS DR12",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "WP4_BOSS_validation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31243828",
+   "id8": "31243828",
+   "title": "Phenomenological constraints on entropy-flow modifications to expansion and growth from BOSS DR12",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Phenomenological_constraints_on_entropy-flow_modifications_to_expansion_and_growth_from_BOSS_DR12"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31244827",
+   "id8": "31244827",
+   "title": "GR Recovery in Energy-Flow Cosmology via Density Saturation: Quantitative PPN Analysis for the Solar System",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC_v1_3_PPN_Recovery_via_Density_Saturation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31271917",
+   "id8": "31271917",
+   "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the Interpretation of S8",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31286368",
+   "id8": "31286368",
+   "title": "A Pre-Registered Test of Entropy–Structure Coupling in Simulated and Observed Galaxy Clusters",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "A_Pre-Registered_Test_of_Entropy–Structure_Coupling_in_Simulated_and_Observed_Galaxy_Clusters"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31288063",
+   "id8": "31288063",
+   "title": "Directional Lensing Residuals at Cluster Merger Shock Fronts",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Directional_Lensing_Residuals"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31289806",
+   "id8": "31289806",
+   "title": "Consciousness as Field Resonance: From Ego-Filtered Ontology to Differentiation-Dominant Dynamics",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-C_Consciousness_Field_Resonance"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31292827",
+   "id8": "31292827",
+   "title": "From RSD to Clusters: A Parameter-Locked Test of Late-Time Structure Growth",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "paper_rsd_to_clusters"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31301953",
+   "id8": "31301953",
+   "title": "ISW Cross-Correlation Predictions for Energy-Flow Cosmology with DESI DR1 Tracers",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "ISW_Cross-Correlation_Predictions_for_Energy-Flow_Cosmology_with_DESI_DR1_Tracers"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31304980",
+   "id8": "31304980",
+   "title": "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling (β · T(a))",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "A One-Parameter, Four-Channel Consistency Test for EFC Background Coupling"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31304995",
+   "id8": "31304995",
+   "title": "Regime Consistency of an Entropy-Gradient Coupling: Lyα, BAO and RSD Tests within a Structural Coherence Framework",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "regime_consistency_lya_bao_rsd_sce"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31305550",
+   "id8": "31305550",
+   "title": "EFC vs Stage-III Cosmology State Assessment",
+   "categories": [
+    "empirical",
+    "methodological"
+   ],
+   "repo_dirs": [
+    "efc_state_vs_stageIII"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31314922",
+   "id8": "31314922",
+   "title": "Covariance-Aware BAO Consistency Test of Energy-Flow Cosmology Using the BOSS DR12 Consensus Likelihood",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "efc_boss_bao_cobaya_research_note"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31332730",
+   "id8": "31332730",
+   "title": "Robustness of the EFC Growth-Sector Signal: Leave-One-Out, Sound-Horizon, and Amplitude-Prior Controls for the Hubble-Friction Channel",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Robustness_of_the_EFC_Growth-Sector_Signal_Leave-One-Out_Sound-Horizon_and_Amplitude-Prior_Controls_for_the_Hubble-Friction_Channel"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31333600",
+   "id8": "31333600",
+   "title": "Perturbation-Level σ8 Suppression via μ(a) < 1: Structural Limits of Scale-Free Modifications",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Perturbation-Level_σ₈_Suppression_via_μ_Sructural_Limits_of_Scale-Free_Modifications"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31348414",
+   "id8": "31348414",
+   "title": "Cosmological Growth Constraints on Λ-Locked Discrete Entropic Gravity",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Cosmological_Growth_Constraints_on_Λ-Locked_Discrete_Entropic_Gravity"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31368433",
+   "id8": "31368433",
+   "title": "Systematic Localization of Late-Time Cosmological Signals in Modified Gravity: CMB Survival, the Lensing Barrier, and a Growth-Sector Sign Constraint",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Systematic_Localization_of_Late-Time_Cosmological_Signals_in_Modified_Gravity_CMB_Survival_the-Lensing_Barrier"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31940535",
+   "id8": "31940535",
+   "title": "Reinforcement Learning from Human Feedback as Thermodynamic Entropy Minimisation: A Formal Isomorphism and Testable Predictions",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31941543",
+   "id8": "31941543",
+   "title": "Consistency of Scale-Dependent Gravitational Response in EFC: Numerical Regime Transition Test",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Consistency_of_Scale_Dependent_Gravitational_Response_in_EFC_Numerical_Regime_Transition_Test"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31942677",
+   "id8": "31942677",
+   "title": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "void_isw_signflip_v2.1_final"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31943361",
+   "id8": "31943361",
+   "title": "ΛCDM as a Special Case of Energy-Flow Cosmology: Regime Structure, Empirical Confrontation, and the Limits of Background-Level Testing",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31951992",
+   "id8": "31951992",
+   "title": "EFC Lensing Validation Update: DES Year 6 Is Consistent With S8 Suppression Prediction",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "efc_des_y6_validation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31954125",
+   "id8": "31954125",
+   "title": "Cross-Survey Parameter Transfer Validation of Energy-Flow Cosmology: DESI DR2 Parameters Applied to BOSS/eBOSS BAO Without Refitting",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "WP4_BOSS_transfer_validation"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31955871",
+   "id8": "31955871",
+   "title": "Multi-epoch Growth Rate Test of EFC Perturbation-Sector Coupling: f σ8(z) from BOSS DR12, eBOSS DR16, and DESI DR1",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Multi_epoch_Growth_Rate_Test_of_EFC"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31963668",
+   "id8": "31963668",
+   "title": "The Bullet Cluster Under EFC: Confronting Entropy-Gradient Gravity with JWST-Era Mass Reconstructions",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "bullet_cluster_efc"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31964847",
+   "id8": "31964847",
+   "title": "EFC vs ΛCDM: Complete Kill-Test — From Rotation Curves to Planck: A Consistent Low-Dimensional Alternative",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC_vs_LCDM_Kill_Test_v6_final"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31970904",
+   "id8": "31970904",
+   "title": "Energy-Flow Cosmology, Part 3: Data, Validation Ledger, and Falsification Protocol",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "efc_white_paper_part_1_to_4/White_paper_part_3_efc_validation_falsification",
+    "white-paper-part-3-of-4-energy-flow-cosmology-part-3-data-validation-ledger-and-"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31985163",
+   "id8": "31985163",
+   "title": "EFC Background No-Go Theorem: Why Background-Level Modification Cannot Suppress Structure Growth",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC_Background_NoGo_Theorem"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31985313",
+   "id8": "31985313",
+   "title": "Scale-Localised Modified Gravity from the EFC Action: A Single-Parameter Forecast via EG(k, z)",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Scale_Localised_Modified_Gravity"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31986762",
+   "id8": "31986762",
+   "title": "Kill-Test v6 Universality — Extension of the EFC vs ΛCDM Kill-Test to the Full SPARC 175 Sample",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Kill-Test v6 Universality_SPARC175"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31990053",
+   "id8": "31990053",
+   "title": "EFC Euclid DR1 Boltzmann Pre-Registration",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "efc_euclid_prediction"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31990194",
+   "id8": "31990194",
+   "title": "Consistent Modified Gravity Weak Lensing in Energy-Flow Cosmology: The µ–Σ Eigenmode, Destructive Interference, and E_G as the Orthogonal Probe",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "efc_case_b_eigenmode"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.31990212",
+   "id8": "31990212",
+   "title": "ISW Void Sign-Flip Observational Pipeline: From EFC Theory to Data Confrontation",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "ISW_Void_SignFlip_Pipeline"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32010399",
+   "id8": "32010399",
+   "title": "Pre-Registered Predictions for the Entropy Flow Cosmology (EFC) Model",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC_PreRegistered_Predictions"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32029704",
+   "id8": "32029704",
+   "title": "Systematic elimination of local gravitational models on the SPARC 175 sample: Evidence for an irreducible galaxy-specific degree of freedom",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "sparc175_elimination"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32045592",
+   "id8": "32045592",
+   "title": "Expected Outcomes for Energy-Flow Cosmology Cross-Survey Invariance and BIG-SPARC Tests",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC_Outcome_Estimation_CrossSurvey"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32084670",
+   "id8": "32084670",
+   "title": "A structural closure of growth-sector couplings between discrete gravity and cosmology",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "A_structural_closure_of_growth_sector_couplings"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32101213",
+   "id8": "32101213",
+   "title": "Non-MCMC Constraints on the EFC α-Parameter: BAO, Growth-Rate, and Cluster Evidence",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "Non-MCMC_Constraints_on_the_EFC_α-Parameter"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32114530",
+   "id8": "32114530",
+   "title": "EFC-VAL-2026-006: Interim Audit Corrigendum to VAL-005 Stub-to-Real Data Transition, VariantH Genuine",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "EFC-VAL-2026-006"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  },
+  {
+   "doi": "10.6084/m9.figshare.32149654",
+   "id8": "32149654",
+   "title": "Pre-Registration: EFC dN/dM (z>7) Halo Mass Function via µ(a) Perturbation Channel",
+   "categories": [
+    "empirical"
+   ],
+   "repo_dirs": [
+    "jwst_hmf_prereg_v4"
+   ],
+   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
+  }
+ ]
+}

@@ -1,0 +1,82 @@
+{
+ "name": "EFC DOI coverage and consistency — findings",
+ "schema": "efc-doi-coverage-findings/1",
+ "input_digest": "5b2f6aa3a1419b02421206e0820c27ac29962274bd28503a3ec9ac6be7c2f201",
+ "measured_on": "1ceee11a2c8da4ed08e9e96664ecc9ea06ce55f8",
+ "status_vocabulary": [
+  "open",
+  "reviewed_no_conflict_found",
+  "conditional"
+ ],
+ "counts": {
+  "open": 5,
+  "conditional": 1,
+  "reviewed_no_conflict_found": 2
+ },
+ "findings": [
+  {
+   "id": "F1",
+   "title": "31942821 metadata drift: ansatz presented as derived, plus sqrt transcription",
+   "location": "docs/papers/efc/Derivation_of_the_Entropy_Production/{index.json,src,PDF}",
+   "claim": "index.json description/main_finding present the phenomenological ansatz rho/(rho+rho_crit) as a 'derived result'; key_result, the code and the PDF Section 5-6 state the derived form as Scenario B rho^(3/2)/(rho+rho_crit) with the ansatz as an approximation (~20% deviation). There is also a sqrt transcription discrepancy (g = sqrt(beta*rho/a0) vs beta*rho).",
+   "status": "open",
+   "next": "Reconcile index.json metadata to label the ansatz as a phenomenological approximation; confirm the sqrt form against the PDF equation."
+  },
+  {
+   "id": "F2",
+   "title": "31876324 default code does not reach the survival valley (pedagogical, not a defect)",
+   "location": "docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/src/efc_relativistic.py",
+   "claim": "Default parameters give epsilon ~ 1e-12..1e-18, hence mu=Sigma=0.9995 and eta=1.000000 everywhere; the survival valley (mu in [0.93,0.96], eta ~ 1.1, Sigma in [1.03,1.07]) is not reached. The module is declared 'pedagogical implementation, not production-ready'. eta=1.000000 is six-decimal rounding, NOT evidence of zero slip.",
+   "status": "reviewed_no_conflict_found",
+   "next": "Not a defect. Document that reaching the valley requires targeted parameters, not defaults; report eta-1 analytically where slip is claimed."
+  },
+  {
+   "id": "F3",
+   "title": "epsilon ~ k^-2 holds only in the quasi-static regime",
+   "location": "31876324 Eq. 24-26 (compute_epsilon_*)",
+   "claim": "The epsilon terms scale as 1/k^2 (measured ratio 10000.00 under k/10). This is a quasi-static sub-horizon result and cannot be extrapolated to horizon/CMB scales. Any earlier statement that the slip grows toward large scales contradicts the motor intuition is an over-interpretation of that regime restriction.",
+   "status": "reviewed_no_conflict_found",
+   "next": "Formulate eta(k,z) only inside the quasi-static validity domain; no horizon extrapolation without a full ADM/Boltzmann treatment."
+  },
+  {
+   "id": "F4",
+   "title": "a0 = 6.5e-10 appears in no index.json; a0_eff = C^2 a0 ~ 5.4 a0 is derived in two DOIs",
+   "location": "figshare/doi-map.json + schema/framework_atlas.jsonld + EFC-VAL-2026-006/atlas_seed.json",
+   "claim": "The value 6.5e-10 m/s^2 appears only in a framework_atlas.jsonld note, the EFC-VAL-2026-006 atlas seed and a test comment — not in any paper index.json. The papers carry 1.2e-10 (MOND). Two DOIs (31348411 Discrete Entropic Gravity, 31348417 Regime Structure) derive a0_eff = C^2 a0 ~ 5.4 a0 (C ~ 2.32). The '5x divergence' is therefore simultaneously a derived relation and an unreconciled flag; the derivation explains the relationship between the two scales but does not by itself establish observational agreement with MOND.",
+   "status": "open",
+   "next": "Reconcile whether 6.5e-10 is intended as a0_eff = C^2 a0, and whether the atlas 'divergence' flag is a residual or an open contradiction. Human decision."
+  },
+  {
+   "id": "F5",
+   "title": "eta_grav (Phi/Psi) vs the motor 'lag' is a mapping hypothesis, not an identity",
+   "location": "31876324 observables.eta + session 2026-09-19",
+   "claim": "Gravitational slip eta = Phi/Psi is a measurable modified-gravity parameter. That it equals the two-velocity 'lag' of the garn/flow picture is an undeclared hypothesis (an 'A -> C without B' gap), not an established identity.",
+   "status": "open",
+   "next": "Separate proof obligation: define the lag operationally before it can be tested against eta_grav."
+  },
+  {
+   "id": "F6",
+   "title": "'variable c' vs c_T=c: only propagation-speed equality is locked",
+   "location": "31876324 tensor_sector (c_T=c, FA3 PASSED) + 30642497 + 31305421",
+   "claim": "c_T=c establishes that gravitational waves and light share the model's propagation speed under its conventions; it does not by itself lock absolute light speed or a time-invariant effective speed. A 'variable effective speed' over the grid is a distinct quantity and requires separate analysis; it only contradicts c_T=c if it is claimed to be the signal speed.",
+   "status": "open",
+   "next": "Separate 'c' (signal speed, locked to c) from a flow speed over the grid (undefined). No conflation."
+  },
+  {
+   "id": "F7",
+   "title": "Sigma = mu(1+eta)/2: joint typical values give 0.987, declared 1.05",
+   "location": "31876324 observables.sigma + survival_valley",
+   "claim": "With mu=0.94 and eta=1.10, Sigma = mu(1+eta)/2 = 0.987, but sigma.typical_value = 1.05 and survival_valley.sigma_range = [1.03,1.07]. A target Sigma=1.05 at mu=0.94 requires eta ~ 1.234. This is a conditional arithmetic issue: it is a real inconsistency only if the three 'typical' values are asserted for the same scale, epoch, parameter point, convention and approximation order, which is not yet established.",
+   "status": "conditional",
+   "next": "Verify whether the mu/eta/Sigma typical values are one shared parameter point. If yes, the declaration is arithmetically inconsistent; if not, downgrade to explained_not_conflict."
+  },
+  {
+   "id": "F8",
+   "title": "ontology.source is a single string; multi-source provenance needs a decision, not a proof of absence",
+   "location": "schema/regime_node.schema.json (ontology.source: type string)",
+   "claim": "The regime-node schema stores ontology.source as a single string. This does not prove that no multi-source provenance mechanism exists elsewhere (relations, references, provenance registers). It does mean that, if this register becomes the canonical DOI-chain source, a decision is needed: extend the field to an array, or keep a single source and record the chain in a side register.",
+   "status": "open",
+   "next": "Design decision (human word): array, or side register? This PR ships the register, not a schema change."
+  }
+ ]
+}
