@@ -12,8 +12,8 @@ This file separates the two claims that were tangled together:
 1. **The measurement reproduces** — on the bank it was measured against, the
    sealed table in `RESULTAT.md` must come out exactly. Deterministic forever.
 2. **The bank still moves, and the movement is NAMED** — the living atlas is
-   allowed to leave the sealed premise, but not silently. The two commits that
-   did it are named with their measured effect, and this file fails if the
+   allowed to leave the sealed premise, but not silently. The commits that did
+   it are named with their measured effect, and this file fails if the
    documented drift is undone, so the note in `RESULTAT.md` cannot quietly stop
    being true.
 """
@@ -47,8 +47,8 @@ INVERTED = [
     ("efc.growth_engine", "obs.s8"),
 ]
 
-#: The two commits that moved the bank after the seal, with what they did. See
-#: the note appended to `RESULTAT.md`.
+#: The commits that moved the bank after the seal, with what they did. See the
+#: note appended to `RESULTAT.md`.
 DRIFT_COMMITS = {
     "10087393": "2026-09-18 22:34 — the six engine-subject OBSERVED_IN rows "
                 "became obs.X --OBSERVED_THROUGH--> efc.motor, and the "
@@ -57,6 +57,10 @@ DRIFT_COMMITS = {
     "fe865b95": "2026-09-18 22:41 — ADR-086 §3.1, adopted 2026-09-18: the "
                 "optional usikkerhet field came in; obs.bao carries beta as a "
                 "HOLE (#568)",
+    "e8afd591": "2026-09-19 — the producers in English (#575): the phase "
+                "vocabulary on the living bank became observasjon -> "
+                "observation. It changes no score, but it makes leser_b's Q4 "
+                "direction rule inert against the living atlas",
 }
 
 
@@ -157,3 +161,22 @@ def test_the_sealed_answer_to_q1_is_no_longer_what_the_living_atlas_says():
     assert q1["svar"]["observasjon"] == [], (
         "the living atlas answers Q1 the way the sealed key does; the drift "
         "note in RESULTAT.md no longer describes the living atlas")
+
+
+def test_the_phase_vocabulary_drifted_and_it_is_why_q4_is_inert_live():
+    """`e8afd591` renamed the phase values; no score moved, a rule went dead.
+
+    Measured 2026-09-20: the sealed bank says `observasjon` (20 nodes), the
+    living one says `observation`. `leser_b`'s Q4 rule compares `phase` against
+    the literal `observasjon`, so against the living atlas the rule can never
+    fire and the reader abstains for a second reason.
+    """
+    def phases(bank_data):
+        return {n.get("phase") for n in bank_data.get("nodes", [])}
+
+    assert "observasjon" in phases(bank.load_sealed()), (
+        "the sealed bank no longer speaks the phase vocabulary the readers "
+        f"were written against ({DRIFT_COMMITS['e8afd591']})")
+    assert "observasjon" not in phases(bank.load_live()), (
+        "the living atlas speaks the sealed phase vocabulary again; Q4 is no "
+        f"longer inert there ({DRIFT_COMMITS['e8afd591']})")
