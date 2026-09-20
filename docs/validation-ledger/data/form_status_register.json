@@ -1,0 +1,76 @@
+{
+  "name": "EFC claim-status register (Gamma forms and BE exponents)",
+  "schema": "efc-claim-status/1",
+  "curation_note": "Hand-curated additive register; provenance (when) is carried by the commit, not this file.",
+  "purpose": "Canonical claim-maturity status for the published Gamma(rho) forms and BE exponents. Additive; does not replace status-levels.json or the findings/proposals status vocabularies.",
+  "crosswalk": {
+    "note": "Three vocabularies coexist by design: (1) status-levels.json = test/observation axis; (2) findings status (open/conditional/reviewed_no_conflict_found) = finding lifecycle; (3) this register = claim maturity. A claim can be declared_derived here and still open as a finding. 'representation_status' records WHERE a form appears (metadata, code header, derivation); it is not part of the claim-maturity vocabulary.",
+    "claim_maturity_vocabulary": ["proposed", "declared_derived", "declared_companion_upgrade", "tested", "conjectured", "superseded", "falsified"]
+  },
+  "entries": [
+    {
+      "object": "Gamma_A",
+      "doi": "10.6084/m9.figshare.31942821",
+      "form": "rho/(rho+rho_crit)",
+      "claim_maturity": "proposed",
+      "representation_status": "named_phenomenological_in_code",
+      "tested": false,
+      "note": "Phenomenological baseline; the code names it the phenomenological ansatz, not the derived result.",
+      "requires_author_word": false,
+      "supersession_status": null
+    },
+    {
+      "object": "Gamma_B",
+      "doi": "10.6084/m9.figshare.31942821",
+      "form": "rho^(3/2)/(rho+rho_crit)",
+      "claim_maturity": "declared_derived",
+      "representation_status": "declared_in_key_result_and_code",
+      "internal_conflict": "violates the package's own requirement row R2 (non-saturation)",
+      "tested": false,
+      "note": "Derived form per key_result and code gamma_total; non-saturating at high density. Whether this conflicts with the supersession-to-B+ reading is gated on author word.",
+      "requires_author_word": true,
+      "supersession_status": "not_established"
+    },
+    {
+      "object": "Gamma_C",
+      "doi": "10.6084/m9.figshare.31942800",
+      "form": "sqrt(rho/rho_crit)/(1+sqrt(rho/rho_crit))",
+      "claim_maturity": "declared_companion_upgrade",
+      "representation_status": "declared_in_companion_package",
+      "tested": false,
+      "note": "Declared in 31942800 as Scenario B+; the 31942821 code header names it an upgrade.",
+      "relation_to_B": "declared_companion_upgrade",
+      "requires_author_word": true,
+      "supersession_status": "not_established"
+    },
+    {
+      "object": "BE_linear_exponent",
+      "form": "exp(g/a0)",
+      "claim_maturity": "proposed",
+      "representation_status": "declared_in_metadata",
+      "tested": false,
+      "note": "Appears in 31942821 metadata and 31941543; not the derived form.",
+      "requires_author_word": true,
+      "status": "unresolved"
+    },
+    {
+      "object": "BE_sqrt_exponent",
+      "form": "exp(sqrt(g/a0))",
+      "claim_maturity": "declared_derived",
+      "representation_status": "derived_in_three_packages",
+      "tested_as_discriminating_result": false,
+      "note": "Derived in 31878334, 31878760, 31941465 (E proportional to sqrt(g)).",
+      "requires_author_word": true,
+      "status": "unresolved"
+    },
+    {
+      "object": "KC1",
+      "doi": "10.6084/m9.figshare.31941465",
+      "claim_maturity": "conjectured",
+      "representation_status": "analytical_kill_criterion",
+      "note": "Analytical kill criterion; empirical execution absent (delta_chi2=null, significance_sigma=null, no new fit performed).",
+      "requires_author_word": true,
+      "status": "requires_author_word"
+    }
+  ]
+}
