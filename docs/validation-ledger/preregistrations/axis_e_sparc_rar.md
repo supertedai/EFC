@@ -103,9 +103,12 @@ criterion. The threshold and statistic are fixed before the fit, not after.
 
 ## 10. Compute-gate note
 
-Freezing a₀ is a **prior choice**, not a new compute mode — the existing `sparc_nuts`
-allowlisted mode already covers a frozen-a₀ retrodiction. No new `.14` allowlist entry is
-required for Axis 1. (Contrast Axis 2, which requires a new human-authorized mode.)
+Whether a frozen-a₀ retrodiction fits inside the existing `sparc_nuts` allowlisted mode is
+**an author decision, not an assumption here.** The `.14` queue (`/opt/hermes-opus/efc-arbeid/koe.py`)
+currently exposes only `{steg, kjeder}` for `sparc_nuts` and rejects unknown fields. A frozen-a₀
+retrodiction therefore either needs a new human-authorized allowlist entry
+(e.g. `sparc_retrodiction_frozen_a0`) or a field extension to the queue contract. This document
+registers the intent; it does not authorize any `.14` run.
 
 ## 11. Open author decisions (blocking)
 

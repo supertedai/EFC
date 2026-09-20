@@ -8,17 +8,30 @@
 
 Whether the gravitational-wave luminosity distance dL^GW and the electromagnetic luminosity
 distance dL^EM, measured for the same source, are equal. ΛCDM/GR predicts exact equality;
-a deviation would be a signal that the propagation sector carries a model field (the class of
-deviation the motor/slip picture predicts, but does not yet specify).
+a deviation would signal a model field in the propagation sector. EFC already predicts this
+deviation class in code (see §2).
 
 ## 2. Hypothesis under test
 
 **H0 (ΛCDM/GR null):** dL^GW = dL^EM at all redshifts.
-**H1 (EFC deviation):** dL^GW ≠ dL^EM, with a sign/shape/z-dependence IF EFC provides one.
+**H1 (EFC deviation):** dL^GW ≠ dL^EM, with a specific predicted ratio (see below).
 
-**Honesty requirement:** EFC does not currently supply an explicit dL^GW/dL^EM formula. Until
-one is derived, this is a **test candidate**, not a finished preregistered prediction. This
-document records the candidate and the protocol; it does not claim a predicted deviation.
+**Candidate prediction (code-supported, not a frozen numeric prediction):** 31876324's
+executable source (`src/efc_relativistic.py`, lines 148–156) defines a closed-form ratio,
+Eq. 40/41:
+
+  d_L^GW / d_L^EM = √(F(φ₀) / F(φ_z)),   F(φ) = 1 + αφ
+
+with the linearisation d_L^GW/d_L^EM ≈ 1 − (α/2)(φ_z − φ₀). The same package's `index.json`
+states a "modified GW amplitude (dL^GW ≠ dL^EM)", and `c_eff_parameterization` (31305421)
+supplies a standard-siren test operator (`siren_test`).
+
+**Honesty requirement:** the closed form exists in code and package metadata, but its numeric
+parameters (`α`, φ₀, φ normalization) are illustrative defaults in the source, not frozen
+predictions. The PDF (31876324) establishes the *mechanism* — anomalous GW friction producing
+a luminosity-distance mismatch — but the extracted text does not expose the same explicit
+closed form. So this is a **code/metadata-supported candidate**, not yet a uniformly
+PDF-and-code-established, frozen prediction.
 
 ## 3. Frozen observable
 
@@ -73,9 +86,9 @@ host-galaxy identification.
 
 - **For the null:** H0 (equality) is rejected if r(z) deviates from 1 beyond a pre-declared
   combined-significance threshold across the sample.
-- **For EFC:** a specific deviation is only tested once a derived r(z) prediction exists;
-  until then a null result (r = 1) is a legitimate and informative outcome that constrains
-  the slip hypothesis.
+- **For EFC:** the candidate relation √(F(φ₀)/F(φ_z)) is tested only once its parameters are
+  frozen into a numeric prediction; until then a null result (r = 1) is a legitimate and
+  informative outcome that constrains the slip hypothesis.
 
 ## 9. What this test does NOT decide
 
@@ -91,6 +104,7 @@ does not authorize the run.
 
 ## 11. Open author decisions (blocking)
 
-1. Whether to derive a specific EFC dL^GW/dL^EM prediction first (making this a real
-   preregistration) or register it as a null-constraint candidate now.
+1. Whether to freeze the code-supported formula's parameters (α, φ₀, φ normalization) into a
+   numeric prediction first (making this a real preregistration) or register it as a
+   null-constraint candidate now.
 2. Whether this axis runs before, after, or in parallel with Axis 1.
