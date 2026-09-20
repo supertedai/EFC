@@ -13,10 +13,12 @@ Kortet ba meg måle forutsetningene først. Begge ble målt, og **ingen av dem h
 
 | Forutsetning | Kortets sjekk | Målt utfall |
 |---|---|---|
-| K1 `t_1a49ea8d` — hulltelleren i emitteren | `grep -n "forpliktelser\|fritak som motsier" …/metrikk/atlasoppgjoer.py` | **0 treff.** Og id-en finnes ikke som kort: `select … from tasks` er tom på alle brett-databaser. K1 er ikke «ikke landet» — K1 finnes ikke. |
+| K1 `t_1a49ea8d` — hulltelleren i emitteren | `grep -n "forpliktelser\|fritak som motsier" …/metrikk/atlasoppgjoer.py` | **0 treff, og emitterens sha256 er uendret** (`b9a7c97d…`, samme fil som #1016) → K1 har **ikke landet**. Kortet finnes: `t_1a49ea8d`, status `ready`, assignee `faber`, på default-brettet i **toppnivå-databasen** `/opt/hermes-tavle/kanban.db`. *(Rettelse: min første måling sa «finnes ikke» — jeg globbet `boards/*/*.db`, og default-brettets kort bor IKKE i undermappen. `boards/default/kanban.db` er en 0-byte dekoy, kjent i huset fra `t_acf4d0e7`. Feil klasse: sjekken så i feil sett og svarte selvsikkert. Se `t_97c240a5`.)* |
 | K2 `t_c355bf46` — de to fritakene tar stilling | `print([n['id'] for n in d['nodes'] if n['id'] in ('obs.bao','obs.fsigma8')])` | **Sjekken kan ikke feile** (den skriver ut id-ene uansett). Målt på ekte vis: `obs.bao` og `obs.fsigma8` har `ville_falsifisere = null` OG `falsifiserbarhet = null` → de har **ikke** tatt stilling. K2 har ikke landet. |
 
 Orchestrator bekreftet korreksjonen midt i kjøringen og ba meg fullføre med grunnlaget skrevet inn i leveransen i stedet for å blokkere. Det er gjort.
+
+**Rettelse nr. 2 (samme kjøring):** min første K1-måling konkluderte «K1 finnes ikke». Det var feil, og feilen var i søkesettet, ikke i funnet — default-brettets kort ligger i toppnivå-databasen, ikke i `boards/default/`. Konklusjonen står (K1 har ikke landet); begrunnelsen er rettet i raden over, og den er målt på nytt: emitteren er byte-identisk med #1016 og `grep` gir 0 treff.
 
 ### Derfor står denne lista som PRE-K2
 
