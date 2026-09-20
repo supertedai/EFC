@@ -41,3 +41,11 @@ The published corpus carries three competing Γ(ρ) realisations for one intende
 ## Conclusion
 
 A, B and C are three declared forms of one target with one shape bifurcation and one internal unresolved conflict. KC1's wording admits both a falsification-threshold and a result reading; the open items are that wording resolution (author-gated) and a PDF-to-metadata provenance gap, not an established physical falsification. This is a provenance/representation issue, not an established physical falsification. No claim here is "measured" or "verified" — the audit reads source text and arithmetic only.
+
+## Post-author-word resolution (2026-09-20)
+
+The KC1 wording question was subsequently resolved by author word: `kill_criteria[0]` in 31941465 was rephrased to an explicit conditional falsification threshold ("If … then the E ∝ √g theorem is falsified"), matching the array's own semantics (KC2–KC5 are counterfactual) and PDF Section 2.4 / Table 1 (C3 linear eliminated, C5 sqrt survives). This is a field-semantic correction — KC1 was the only kill criterion phrased present-tense — not a new scientific interpretation.
+
+What remains **open and author-gated** is execution/attribution provenance, not the wording: the package metadata records `delta_chi2=null`, `significance_sigma=null`, and "no new fit performed", so whether the >5σ SPARC comparison is an executed fit or echoes referenced external SPARC work is unresolved.
+
+The reviewer deliveries (`role_0..5.json`, `roles.json`) are preserved unchanged as the historical record; this note is an addendum, not a rewrite. The correction is a repo-metadata change only — the published Figshare record is not modified (a version bump would be a separate action).
