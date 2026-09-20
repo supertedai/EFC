@@ -1,42 +1,27 @@
 {
  "schema": "efc-spraak-baseline/1",
- "measured_on": "74565031",
- "generated_at": "2026-09-20T00:35:06.618357+00:00",
+ "measured_on": "3faf65cf",
+ "generated_at": "2026-09-20T01:56:44.931966+00:00",
  "rule": "scripts/maintenance/efc_spraakvakt.py over the vocabulary in scripts/maintenance/spraak-ord.json; the residual is recorded, never silenced",
  "areas": {
   "docs/public/": 0,
-  "docs/validation-ledger/": 1525,
-  "public/": 38,
-  "scripts/": 923,
-  "tests/": 2573
+  "docs/validation-ledger/": 1,
+  "public/": 2,
+  "scripts/": 155,
+  "tests/": 161
  },
  "measured_scope": {
-  "guarded_paths": 5059,
-  "debt_recorded": 5033,
+  "guarded_paths": 319,
+  "debt_recorded": 293,
   "exempt": 26,
-  "outside_guard": 1069
+  "outside_guard": 1066
  },
  "files": {
-  "docs/validation-ledger/data/external-references.json": {
-   "count": 17
-  },
-  "docs/validation-ledger/data/grav.json": {
-   "count": 1152
-  },
-  "docs/validation-ledger/data/inference.json": {
-   "count": 12
-  },
   "docs/validation-ledger/index.md": {
-   "count": 344
+   "count": 1
   },
   "public/candidates/open/INS-ab01cd02.yaml": {
    "count": 2
-  },
-  "public/graph/evidence.yaml": {
-   "count": 13
-  },
-  "public/graph/statements.yaml": {
-   "count": 23
   },
   "scripts/atlas_lesing.py": {
    "count": 21
@@ -44,95 +29,17 @@
   "scripts/maintenance/README.md": {
    "count": 4
   },
-  "scripts/maintenance/_repo_tre.py": {
-   "count": 48
-  },
-  "scripts/maintenance/arbiter_vakt_kjoer.py": {
-   "count": 12
-  },
-  "scripts/maintenance/blast_radius.py": {
-   "count": 59
-  },
   "scripts/maintenance/changelog_projeksjon.py": {
    "count": 26
-  },
-  "scripts/maintenance/efc-tex.Dockerfile": {
-   "count": 9
-  },
-  "scripts/maintenance/efc_4b.py": {
-   "count": 66
-  },
-  "scripts/maintenance/efc_bro_konvensjon.py": {
-   "count": 75
   },
   "scripts/maintenance/efc_bro_synk.py": {
    "count": 62
   },
-  "scripts/maintenance/efc_doi_coverage.py": {
-   "count": 36
-  },
-  "scripts/maintenance/efc_figshare_presence.py": {
-   "count": 120
-  },
-  "scripts/maintenance/efc_forside.py": {
-   "count": 47
-  },
-  "scripts/maintenance/efc_identity.py": {
-   "count": 12
-  },
-  "scripts/maintenance/efc_inntak.py": {
-   "count": 11
-  },
-  "scripts/maintenance/efc_ledger_autofill.py": {
-   "count": 9
-  },
   "scripts/maintenance/efc_ledger_impact_sync.py": {
    "count": 1
   },
-  "scripts/maintenance/efc_ontology.py": {
-   "count": 5
-  },
-  "scripts/maintenance/efc_pdf_bygg.sh": {
-   "count": 12
-  },
-  "scripts/maintenance/efc_release_publisher.py": {
-   "count": 3
-  },
-  "scripts/maintenance/efc_watch.py": {
-   "count": 72
-  },
-  "scripts/maintenance/figshare-avvik.json": {
-   "count": 40
-  },
-  "scripts/maintenance/gate_log.py": {
-   "count": 5
-  },
-  "scripts/maintenance/kanon_hash.py": {
-   "count": 12
-  },
-  "scripts/maintenance/statement_graph_check.py": {
-   "count": 11
-  },
-  "scripts/maintenance/triage_insikt.py": {
-   "count": 10
-  },
-  "scripts/maintenance/validate_activity_log.py": {
-   "count": 26
-  },
-  "scripts/maintenance/validate_links.py": {
-   "count": 23
-  },
-  "scripts/maintenance/validate_ownership.py": {
-   "count": 7
-  },
-  "scripts/maintenance/validate_repo.py": {
-   "count": 5
-  },
   "scripts/maintenance/vedlikeholdsrunde.py": {
    "count": 15
-  },
-  "scripts/maintenance/verifier_bench.py": {
-   "count": 33
   },
   "tests/fixtures/nats-oppgjoer-metno.json": {
    "count": 9
@@ -143,20 +50,8 @@
   "tests/fixtures/nats-prediksjon-metno.json": {
    "count": 5
   },
-  "tests/test_aktivitet_statusord.py": {
-   "count": 22
-  },
-  "tests/test_arbiter_emne_kontrakt.py": {
-   "count": 24
-  },
-  "tests/test_arbiter_vakt_kjoer.py": {
-   "count": 11
-  },
   "tests/test_atlas_akser.py": {
-   "count": 39
-  },
-  "tests/test_atlas_dekning.py": {
-   "count": 117
+   "count": 2
   },
   "tests/test_atlas_dekning_aerlighet.py": {
    "count": 1,
@@ -165,188 +60,44 @@
   "tests/test_atlas_falsifiserbarhet_dekning.py": {
    "count": 9
   },
-  "tests/test_atlas_flows.py": {
-   "count": 8
-  },
   "tests/test_atlas_grensesnitt.py": {
-   "count": 28
-  },
-  "tests/test_atlas_helhet.py": {
-   "count": 1
-  },
-  "tests/test_atlas_hop.py": {
-   "count": 24
-  },
-  "tests/test_atlas_inngang.py": {
-   "count": 20
+   "count": 3
   },
   "tests/test_atlas_koder.py": {
-   "count": 90
-  },
-  "tests/test_atlas_lesing.py": {
-   "count": 115
-  },
-  "tests/test_atlas_motor_og_auto.py": {
-   "count": 24
+   "count": 1
   },
   "tests/test_atlas_oppslag.py": {
-   "count": 250
-  },
-  "tests/test_atlas_oyer.py": {
-   "count": 23
+   "count": 5
   },
   "tests/test_atlas_plassering.py": {
-   "count": 17
-  },
-  "tests/test_atlas_rotasjon.py": {
-   "count": 15
+   "count": 1
   },
   "tests/test_atlas_rotasjon_alt.py": {
    "count": 35
   },
-  "tests/test_atlas_scope_and_motor_identifiers.py": {
-   "count": 8
-  },
-  "tests/test_atlas_synlighet.py": {
-   "count": 39
-  },
-  "tests/test_atlas_volum.py": {
-   "count": 68
-  },
-  "tests/test_biologi2_atlas.py": {
-   "count": 18
-  },
-  "tests/test_biologi_atlas.py": {
-   "count": 17
-  },
-  "tests/test_biologi_engines.py": {
-   "count": 4
-  },
-  "tests/test_biologi_lagdeling.py": {
-   "count": 14
-  },
   "tests/test_bro_konvensjon.py": {
    "count": 47
-  },
-  "tests/test_cosmology_engine_bridges.py": {
-   "count": 26
-  },
-  "tests/test_cross_probe_s8.py": {
-   "count": 38
   },
   "tests/test_efc_atlas_generator.py": {
    "count": 12
   },
   "tests/test_efc_background.py": {
-   "count": 136
-  },
-  "tests/test_efc_candidates.py": {
-   "count": 10
-  },
-  "tests/test_efc_concepts.py": {
-   "count": 9
-  },
-  "tests/test_efc_ontology.py": {
-   "count": 29
-  },
-  "tests/test_efc_provenance.py": {
-   "count": 46
-  },
-  "tests/test_efc_schema_check.py": {
-   "count": 4
-  },
-  "tests/test_enerflyt_engine.py": {
-   "count": 3
-  },
-  "tests/test_engine_manifest_bridge.py": {
-   "count": 69
-  },
-  "tests/test_epistemikk_v3.py": {
-   "count": 22
-  },
-  "tests/test_epistemikk_v4.py": {
-   "count": 10
+   "count": 2
   },
   "tests/test_epistemikk_v5.py": {
-   "count": 25
-  },
-  "tests/test_epistemikk_v6.py": {
-   "count": 17
-  },
-  "tests/test_gap_nats_bro.py": {
-   "count": 6
-  },
-  "tests/test_growth_mu_kanal.py": {
-   "count": 25
+   "count": 3
   },
   "tests/test_holding_release_motorer.py": {
-   "count": 125
-  },
-  "tests/test_homo_fluxus_atlas.py": {
-   "count": 25
+   "count": 3
   },
   "tests/test_klima_engine.py": {
-   "count": 47
-  },
-  "tests/test_kunnskapslivssyklus.py": {
-   "count": 9
-  },
-  "tests/test_mu_kz_module.py": {
-   "count": 22
-  },
-  "tests/test_nav_helper_canonical.py": {
-   "count": 35
-  },
-  "tests/test_oekonomi_engine.py": {
-   "count": 15
-  },
-  "tests/test_orbital_engine.py": {
-   "count": 21
-  },
-  "tests/test_perspektiv_akse.py": {
-   "count": 12
-  },
-  "tests/test_prediksjon_og_oppgjoer.py": {
-   "count": 52
+   "count": 7
   },
   "tests/test_prereg_l043_l044.py": {
-   "count": 29
-  },
-  "tests/test_rapid_response_vakt.py": {
-   "count": 25
+   "count": 1
   },
   "tests/test_regime_node_schema.py": {
-   "count": 88
-  },
-  "tests/test_repo_konfigurasjon.py": {
-   "count": 133
-  },
-  "tests/test_repo_tre.py": {
-   "count": 77
-  },
-  "tests/test_repro_kit.py": {
-   "count": 10
-  },
-  "tests/test_romvaer_engine.py": {
-   "count": 9
-  },
-  "tests/test_samfunn_engine.py": {
-   "count": 12
-  },
-  "tests/test_sealed_fs8_arbiter.py": {
-   "count": 55
-  },
-  "tests/test_tidevann_engine.py": {
-   "count": 5
-  },
-  "tests/test_vaerkontrakten.py": {
-   "count": 64
-  },
-  "tests/test_victron_engine.py": {
-   "count": 52
-  },
-  "tests/test_water_engine.py": {
-   "count": 48
+   "count": 1
   }
  },
  "exempt": {
