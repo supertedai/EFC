@@ -1,8 +1,8 @@
 {
  "name": "EFC DOI atlas-ingest backlog (atlas scope, missing from atlas)",
  "schema": "efc-doi-coverage-pending/1",
- "input_digest": "74bcdefb5eadfcde9078bd207ce3008c4e9b9726f2a9766f2b0232b8ae8fa302",
- "count": 60,
+ "input_digest": "fac80a59bb59fa3cffd849d796425eeeacf2e372052f6dc73d87269ecff4a359",
+ "count": 58,
  "disposition": "semantic_mapping",
  "note": "Every atlas-scope (empirical) DOI that does not appear as a literal Figshare URL in the atlas union. Node mapping is semantic and is not auto-applied here. Each entry is pre-computed with DOI, title, categories and repo dirs so the mapping step only needs to approve a node link.",
  "pending": [
@@ -282,18 +282,6 @@
    ],
    "repo_dirs": [
     "EFC_v1_3_PPN_Recovery_via_Density_Saturation"
-   ],
-   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
-  },
-  {
-   "doi": "10.6084/m9.figshare.31271917",
-   "id8": "31271917",
-   "title": "A Regime-Activated Lensing Response Improves the Fit to KiDS-1000 Cosmic Shear and Reframes the Interpretation of S8",
-   "categories": [
-    "empirical"
-   ],
-   "repo_dirs": [
-    "A_Regime_Activated_Lensing_Response_Improves_the_Fit_to_KiDS_1000_Cosmic_Shear_and_Reframes"
    ],
    "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
   },
@@ -668,18 +656,6 @@
    ],
    "repo_dirs": [
     "sparc175_elimination"
-   ],
-   "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
-  },
-  {
-   "doi": "10.6084/m9.figshare.32045592",
-   "id8": "32045592",
-   "title": "Expected Outcomes for Energy-Flow Cosmology Cross-Survey Invariance and BIG-SPARC Tests",
-   "categories": [
-    "empirical"
-   ],
-   "repo_dirs": [
-    "EFC_Outcome_Estimation_CrossSurvey"
    ],
    "reason_not_auto_mapped": "Atlas enrichment is semantic: each DOI must be linked to the correct obs.* node or efc.* engine based on the observable it tests. That is not mechanically derivable without reading each paper's claims. In addition, ontology.source is single-string (see F8), so multi-DOI provenance needs a schema decision. Queued for semantic mapping, not auto-applied."
   },

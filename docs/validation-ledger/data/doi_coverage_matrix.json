@@ -1,7 +1,7 @@
 {
  "name": "EFC DOI coverage and consistency matrix",
  "schema": "efc-doi-coverage-matrix/1",
- "input_digest": "74bcdefb5eadfcde9078bd207ce3008c4e9b9726f2a9766f2b0232b8ae8fa302",
+ "input_digest": "fac80a59bb59fa3cffd849d796425eeeacf2e372052f6dc73d87269ecff4a359",
  "sources": {
   "inventory": "figshare/doi-map.json",
   "classification": "docs/validation-ledger/data/evidence-register.json",
@@ -16,12 +16,12 @@
   "unique_dois": 165,
   "duplicate_doi_groups": 7,
   "dirs_without_doi": 2,
-  "atlas_union_literal_urls": 20,
+  "atlas_union_literal_urls": 22,
   "empirical": 67,
   "methodological": 27,
   "structural": 88,
   "atlas_scope": 67,
-  "atlas_candidate_missing_from_atlas": 60
+  "atlas_candidate_missing_from_atlas": 58
  },
  "_note": "Category counts are DOI-set counts: a DOI carrying N categories is counted in each, so empirical+methodological+structural may exceed unique_dois. That is multi-label overlap, recorded per row as category_overlap, not a contradiction. 'empirical' is the evidence register's own label, not a physics verdict: the atlas-scope rule (empirical -> atlas candidate) is a triage heuristic, and atlas_candidate rows require semantic node mapping.",
  "dirs_without_doi": [
@@ -1496,8 +1496,8 @@
    ],
    "category_overlap": false,
    "class": "atlas_scope",
-   "in_atlas_literal_url": false,
-   "disposition": "atlas_candidate"
+   "in_atlas_literal_url": true,
+   "disposition": "atlas_covered"
   },
   {
    "doi": "10.6084/m9.figshare.31286368",
@@ -2645,8 +2645,8 @@
    ],
    "category_overlap": false,
    "class": "atlas_scope",
-   "in_atlas_literal_url": false,
-   "disposition": "atlas_candidate"
+   "in_atlas_literal_url": true,
+   "disposition": "atlas_covered"
   },
   {
    "doi": "10.6084/m9.figshare.32080059",

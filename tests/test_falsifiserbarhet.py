@@ -133,7 +133,12 @@ class TestFalsifiserbarhet:
         avventer = [n for n in _offentlige()
                     if (n.get("falsifiserbarhet") or {}).get("status")
                     in ("terskel_ikke_fastsatt", "stub")]
-        assert len(avventer) == 4, f"expected 4 without a fixed threshold, got {len(avventer)}"
+        # Measured 2026-09-20 (card t_2d7a6537): the two engines that carried
+        # `terskel_ikke_fastsatt` in a fragment now carry the contract their
+        # thresholds stand in (BIG-SPARC/DH_over_rd), so they left this set.
+        # The two STUBS stay: they compute nothing, and a stub shall not count
+        # as satisfied falsifiability.
+        assert len(avventer) == 2, f"expected 2 without a fixed threshold, got {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} lacks a threshold BUT has a falsifier")
@@ -152,13 +157,16 @@ class TestFalsifiserbarhet:
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 116, f"the public set changed: {len(off)}"
-        assert kan == 27, (
-            f"can be felled: {kan} — expected 27. 19 was wrong: 2 stubs and 6 "
-            f"framework nodes without a fixed threshold could not be felled")
-        assert avventer == 4, (
-            f"waiting: {avventer} — expected 4 (2 stubs + 2 without a fixed "
-            f"threshold). Five nodes got a criterion written and are thus FIXED; "
-            f"the two categories are disjoint.")
+        assert kan == 29, (
+            f"can be felled: {kan} — expected 29. 19 was wrong: 2 stubs and 6 "
+            f"framework nodes without a fixed threshold could not be felled; "
+            f"27 became 29 when two engines got the contract their threshold "
+            f"stands in (2026-09-20, card t_2d7a6537)")
+        assert avventer == 2, (
+            f"waiting: {avventer} — expected 2 (the two stubs that compute "
+            f"nothing: lensing and cluster). Was 4 while the two engines "
+            f"carried `terskel_ikke_fastsatt` in a fragment; the two "
+            f"categories stay disjoint.")
         assert kan + avventer == 31, (
-            f"{kan} + {avventer} = {kan + avventer}, but there are 28 EFC nodes "
-            f"among the public ones")
+            f"{kan} + {avventer} = {kan + avventer}, but there are 31 EFC "
+            f"nodes among the public ones")
