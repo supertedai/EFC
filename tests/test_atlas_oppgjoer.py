@@ -166,14 +166,14 @@ def test_hver_av_de_fire_motorene_har_en_entydig_avgjorelse() -> None:
         assert len(d["grunn"]) >= 40, f"{nid}: the reason is a fragment: {d['grunn']!r}"
     for nid in ("efc.lensing_engine", "efc.cluster_engine"):
         node = noder[nid]
-        assert node["falsifiserbarhet"]["status"] == "stub", (
-            f"{nid}: a stub must not be given a threshold — it computes "
-            f"nothing, and the schema says a stub shall not count as "
-            f"satisfied falsifiability")
+        assert node["falsifiserbarhet"]["status"] == "terskel_ikke_fastsatt", (
+            f"{nid}: a node that cannot fix its threshold honestly must say "
+            f"`terskel_ikke_fastsatt` — it computes nothing, so no threshold "
+            f"can be fixed, and it shall not count as satisfied falsifiability")
     # Two nodes, two DIFFERENT reasons — one sentence on four nodes is one case.
     tekster = {noder[i]["falsifiserbarhet"]["grunn"] for i in
                ("efc.lensing_engine", "efc.cluster_engine")}
-    assert len(tekster) == 2, "the two stubs share one generic reason"
+    assert len(tekster) == 2, "the two share one generic reason"
 
 
 def test_den_armerte_kontrakten_navngir_arbiter_toleranse_og_dom() -> None:
@@ -239,8 +239,8 @@ def test_de_tre_tallene_holder_seg_fra_hverandre() -> None:
     # The four motors must NOT carry one generic threshold.
     fire = [noder[i].get("ville_falsifisere", "") for i in FIRE_MOTORER]
     assert len({t for t in fire if t}) == 2, (
-        "the two contracts must be two distinct claims, and the two stubs "
-        "must carry none")
+        "the two contracts must be two distinct claims, and the two that "
+        "keep a status must carry none")
 
 
 def test_en_taus_node_er_et_hull_og_ikke_et_svar() -> None:

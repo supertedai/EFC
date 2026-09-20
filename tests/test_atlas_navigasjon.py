@@ -397,7 +397,7 @@ class TestFalsifiserbarhetsSkillet:
         # `terskel_ikke_fastsatt` in a fragment now carry the contract form and
         # count on the claim side: 27 -> 29. Same 31 EFC nodes.
         assert n == 29, (
-            f"can be falsified: {n} of {t_} — expected 29 (2 stubs that "
+            f"can be falsified: {n} of {t_} — expected 29 (2 that "
             f"compute nothing, 85 measuring or established)")
 
     def test_instrumentene_telles_for_seg(self):

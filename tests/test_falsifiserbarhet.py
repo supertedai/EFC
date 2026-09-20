@@ -106,10 +106,15 @@ class TestFalsifiserbarhet:
 
         A node whose engine raises NotImplementedError shall not have a
         falsifier. It shall have a reason.
+
+        Measured 2026-09-20 (card t_2d7a6537, review round 1): the two
+        stubs (lensing, cluster) were reclassified to `terskel_ikke_fastsatt`
+        — the card's own word for «the threshold cannot be fixed honestly».
+        So no public node is a `stub` anymore; a new stub is a decision.
         """
         stubber = [n for n in _offentlige()
                    if (n.get("falsifiserbarhet") or {}).get("status") == "stub"]
-        assert len(stubber) == 2, f"expected 2 stubs, got {len(stubber)}"
+        assert len(stubber) == 0, f"expected 0 stubs, got {len(stubber)}"
         for n in stubber:
             assert "ville_falsifisere" not in n, (
                 f"{n['id']} is a stub BUT has a falsifier — then a description "
@@ -136,8 +141,9 @@ class TestFalsifiserbarhet:
         # Measured 2026-09-20 (card t_2d7a6537): the two engines that carried
         # `terskel_ikke_fastsatt` in a fragment now carry the contract their
         # thresholds stand in (BIG-SPARC/DH_over_rd), so they left this set.
-        # The two STUBS stay: they compute nothing, and a stub shall not count
-        # as satisfied falsifiability.
+        # The two that compute nothing (lensing, cluster) stay — now as
+        # `terskel_ikke_fastsatt` (the card's word for the honest position),
+        # and they still shall not count as satisfied falsifiability.
         assert len(avventer) == 2, f"expected 2 without a fixed threshold, got {len(avventer)}"
         for n in avventer:
             assert "ville_falsifisere" not in n, (
@@ -163,10 +169,10 @@ class TestFalsifiserbarhet:
             f"27 became 29 when two engines got the contract their threshold "
             f"stands in (2026-09-20, card t_2d7a6537)")
         assert avventer == 2, (
-            f"waiting: {avventer} — expected 2 (the two stubs that compute "
-            f"nothing: lensing and cluster). Was 4 while the two engines "
-            f"carried `terskel_ikke_fastsatt` in a fragment; the two "
-            f"categories stay disjoint.")
+            f"waiting: {avventer} — expected 2 (the two that compute "
+            f"nothing: lensing and cluster, now `terskel_ikke_fastsatt`). "
+            f"Was 4 while the two engines carried `terskel_ikke_fastsatt` "
+            f"in a fragment; the two categories stay disjoint.")
         assert kan + avventer == 31, (
             f"{kan} + {avventer} = {kan + avventer}, but there are 31 EFC "
             f"nodes among the public ones")

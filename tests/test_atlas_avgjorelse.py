@@ -94,8 +94,8 @@ def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
 # `stub` — while their thresholds DO exist in sealed sources. Two of them
 # (`efc.rotation_engine`, `efc.efc_background_engine`) now carry the contract
 # and therefore a falsifier: 33 can be felled, 2 keep a status. The two
-# remaining stubs keep it deliberately: a stub computes nothing, and the
-# schema says a stub shall NOT count as satisfied falsifiability.
+# remaining keep it deliberately: they compute nothing, and the schema says a
+# node that says so shall NOT count as satisfied falsifiability.
 #
 # The rule is the same as for bus and engine: the choice must be TAKEN. An
 # instrument node cannot be felled by an observation — that is a valid answer.
@@ -142,7 +142,7 @@ def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> 
         f"number fell, a node lost its falsifier")
     assert len(skylder) == 2, (
         f"with a falsifiability status: {len(skylder)} — expected 2 "
-        f"(the two stubs that compute nothing: lensing and cluster)")
+        f"(the two that compute nothing: lensing and cluster)")
     assert len(maa) == 91, (
         f"with a written reason: {len(maa)} — expected 91. If the number fell, "
         f"a node has been given a falsifier; someone must have decided that")

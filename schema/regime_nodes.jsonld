@@ -5015,8 +5015,8 @@
       "buss_domene": "kosmos.kosmologi",
       "synlighet": "offentlig",
       "falsifiserbarhet": {
-        "status": "stub",
-        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_lens = 0.0, kappa_EFC = 0.0, compute() raises NotImplementedError), so there is no number for an arbiter to be compared against. The arbiter is an OBSERVATION (observasjon), not a derivation: KiDS-1000 weak lensing (our own analysis of it: DOI 10.6084/m9.figshare.31271917) and the lensing maps themselves (Planck, ACT, SPT; obs.cmb_lensing). The criterion in plain text: the lens maps must not be explained just as well by a mass model that is not a potential well from the field, and the KiDS-1000 fit must not deteriorate when the background model is replaced. What must happen FIRST: kappa(theta) must be computed from alpha_lens. Until then any tolerance would be a band around a calculation that does not exist — the node keeps `stub`, and does not count as satisfied falsifiability."
+        "status": "terskel_ikke_fastsatt",
+        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_lens = 0.0, kappa_EFC = 0.0, compute() raises NotImplementedError), so there is no number for an arbiter to be compared against. The arbiter is an OBSERVATION (observasjon), not a derivation: KiDS-1000 weak lensing (our own analysis of it: DOI 10.6084/m9.figshare.31271917) and the lensing maps themselves (Planck, ACT, SPT; obs.cmb_lensing). The criterion in plain text: the lens maps must not be explained just as well by a mass model that is not a potential well from the field, and the KiDS-1000 fit must not deteriorate when the background model is replaced. What must happen FIRST: kappa(theta) must be computed from alpha_lens. Until then any tolerance would be a band around a calculation that does not exist — the node keeps `terskel_ikke_fastsatt`, and does not count as satisfied falsifiability."
       }
     },
     {
@@ -5122,8 +5122,8 @@
       "buss_domene": "kosmos.hoper",
       "synlighet": "offentlig",
       "falsifiserbarhet": {
-        "status": "stub",
-        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_cluster = 0.0, compute() raises NotImplementedError), so n(M,z) does not exist and no arbiter can be met. The arbiter is an OBSERVATION (observasjon), not a derivation: the threshold that will apply is already declared — the frozen mu_0 = 0.415 from SPARC must keep Delta chi^2 < 4 in the independent channel (KT-3 in the validation ledger) — and the strict test is the Bullet Cluster, where gas and mass are separated (obs.bullet; HST + Chandra). The observations exist: cluster mass and lensing profiles (DES, SDSS, eROSITA; obs.cluster_hmf and obs.cluster_mass). What must happen FIRST: n(M,z) must be computed from alpha_cluster. Until then a tolerance here would be a band around a calculation that does not exist — the node keeps `stub`, and does not count as satisfied falsifiability."
+        "status": "terskel_ikke_fastsatt",
+        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_cluster = 0.0, compute() raises NotImplementedError), so n(M,z) does not exist and no arbiter can be met. The arbiter is an OBSERVATION (observasjon), not a derivation: the threshold that will apply is already declared — the frozen mu_0 = 0.415 from SPARC must keep Delta chi^2 < 4 in the independent channel (KT-3 in the validation ledger) — and the strict test is the Bullet Cluster, where gas and mass are separated (obs.bullet; HST + Chandra). The observations exist: cluster mass and lensing profiles (DES, SDSS, eROSITA; obs.cluster_hmf and obs.cluster_mass). What must happen FIRST: n(M,z) must be computed from alpha_cluster. Until then a tolerance here would be a band around a calculation that does not exist — the node keeps `terskel_ikke_fastsatt`, and does not count as satisfied falsifiability."
       }
     },
     {
