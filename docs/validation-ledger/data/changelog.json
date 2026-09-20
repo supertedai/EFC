@@ -6,6 +6,15 @@
   "changes": [
     {
       "date": "2026-09-20",
+      "sha": "a51a78c5b1f9",
+      "summary": "docs(validation-ledger): reconcile KC1 two-reading status and update coverage register",
+      "categories": {
+        "ledger_data": 5
+      },
+      "id": "a51a78c5b1f9"
+    },
+    {
+      "date": "2026-09-20",
       "sha": "a39fa7194859",
       "summary": "fix(doi-coverage): normalize Planned-row DOIs to prevent punctuation-strip leakage",
       "categories": {
@@ -233,7 +242,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a39fa7194859fe1ef239429a96d9d38ea25062c0",
+    "last_processed_sha": "a51a78c5b1f9d86ac6c1ac2431248b2beac6a3e0",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
