@@ -6,6 +6,15 @@
   "changes": [
     {
       "date": "2026-09-20",
+      "sha": "a39fa7194859",
+      "summary": "fix(doi-coverage): normalize Planned-row DOIs to prevent punctuation-strip leakage",
+      "categories": {
+        "public_pages": 1
+      },
+      "id": "a39fa7194859"
+    },
+    {
+      "date": "2026-09-20",
       "sha": "ea52a910488a",
       "summary": "docs(validation-ledger): correct preregistration provenance (code-supported GW ratio) and .14 queue contract",
       "categories": {
@@ -224,7 +233,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "ea52a910488a66a839913b0d417a202f79353d7c",
+    "last_processed_sha": "a39fa7194859fe1ef239429a96d9d38ea25062c0",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
