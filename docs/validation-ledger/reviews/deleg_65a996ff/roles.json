@@ -1,0 +1,39 @@
+{
+  "name": "Reviewer roles — typed findings (normalized to English)",
+  "delegation_id": "deleg_65a996ff",
+  "model": "gpt-5.6-luna",
+  "independence": "same model family — agreement is reading consistency, not independent validation",
+  "roles": [
+    {
+      "role": "mathematical-thermodynamic",
+      "verdict": "A, B and C are mathematically distinct functions of the same physical variable rho. A and C saturate; B grows as sqrt(rho) at high density and does not saturate. C is the same rational saturation template as A under the variable transform y=sqrt(rho/rho_crit), but not the same law in rho. The source presents BE -> von Neumann -> chain rule -> per-mode n(n+1) -> mode activation as the mediator, but supplies no single consistent derivation linking both BE exponents to one Gamma.",
+      "conflict_classes": ["mathematical", "provenance", "terminological", "physical"],
+      "corrected": "B labeled 'requires_prefactor_units'; agent qualified to 'normalization_convention_unresolved'."
+    },
+    {
+      "role": "doi-provenance",
+      "verdict": "The corpus contains explicit CITES edges and a smaller set of explicit BUILDS_ON edges. Gamma is not normatively consistent across packages. Supersession is declared only as the 31942821 -> 31942800 companion upgrade to Scenario B+; full replacement is not declared. Seven DOI duplicate groups exist, all with divergent citations.bib.",
+      "conflict_classes": ["provenance-layer-distinction", "internal-formula-contradiction", "cross-package-form-conflict", "duplicate-citations-bib-divergence"]
+    },
+    {
+      "role": "regime-emergence",
+      "verdict": "A, B and C compete for the same Gamma role, not documented separate regimes. B and C carry different mediators (D_eff = rho/(rho+rho_crit) vs D_eff proportional to sqrt(rho/rho_crit)). No source shows a regime-bound transition making both valid in disjoint domains. The two BE exponents are also competing. 'Emergence' is parametric language, not a defined non-reducible property.",
+      "conflict_classes": ["model-internal-contradiction", "theoretical-form-conflict", "terminology-conflict"]
+    },
+    {
+      "role": "proxy-measurement",
+      "verdict": "One intended unobserved target Gamma(rho) with three competing definitions, not three observables. Gamma is emergent in the theory but operates as a proxy when inferred. The public surface uses the square-root BE exponent for mu(g), not a direct Gamma measurement. This is a public-surface/DOI/code provenance conflict, not a physical falsification.",
+      "conflict_classes": ["public-surface-conflict", "proxy-chain-instrument-gap", "definition-version-conflict"]
+    },
+    {
+      "role": "adversarial",
+      "verdict": "A -> B -> B+ cannot be defended as a pure maturation chain. KC1 is a proposed kill criterion, not an executed >=5sigma test. The square-root form is the theoretical consequence in 31941465 and 31878760, while 31942821 holds both linear and square-root notation. B -> B+ changes mode activation without a reported dataset or likelihood. The most direct discriminating base is galactic RAR/rotation curves (SPARC), not documented as pre-selected or actually used.",
+      "conflict_classes": ["epistemic-overclaim", "model-internal-contradiction", "retrofitting-risk", "missing-empirical-pre-testing"]
+    },
+    {
+      "role": "public-surface",
+      "verdict": "The public surface publishes B, B+ and the phenomenological rho/(rho+rho_crit) form simultaneously without selecting one. The public BE exponent is sqrt(g/a0), agreeing with code but conflicting with 31942821 metadata. The primary issue is public-surface and metadata consistency, not an established physical contradiction.",
+      "conflict_classes": ["public-surface", "terminological", "metadata"]
+    }
+  ]
+}

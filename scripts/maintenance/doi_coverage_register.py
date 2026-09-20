@@ -268,6 +268,40 @@ def _findings() -> list[dict]:
                 "register, not a schema change."
             ),
         },
+        {
+            "id": "F9",
+            "title": "Gamma(rho) form split (bifurcation) and BE exponent split; KC1 is an unexecuted conjecture",
+            "location": (
+                "31942821 + 31942800 + 31941465 + 31878760 + 31878334 + 31941543; "
+                "docs/validation-ledger/reviews/deleg_65a996ff/; "
+                "docs/validation-ledger/data/form_status_register.json"
+            ),
+            "classification": "provenance/metadata (not physical)",
+            "claim": (
+                "Three Gamma(rho) forms are published for one intended target: "
+                "A = rho/(rho+rho_crit), B = rho^(3/2)/(rho+rho_crit), "
+                "C/B+ = sqrt(rho/rho_crit)/(1+sqrt(rho/rho_crit)). A and C share a saturating "
+                "rational shape (argument r vs sqrt(r)); B alone is a non-saturating power "
+                "(grows as sqrt(rho) at high density; the source's own requirement row R2 records "
+                "'not saturation'). This is a shape BIFURCATION, not a trifurcation. A separate "
+                "two-way split exists in the Bose-Einstein exponent: exp(g/a0) (linear) vs "
+                "exp(sqrt(g/a0)) (sqrt, derived in 31878334/31878760/31941465). KC1 in 31941465 "
+                "claims >=5sigma exclusion of the sqrt form, but that package's own fields record "
+                "delta_chi2=null, significance_sigma=null, 'no new fit performed' — an analytical "
+                "conjecture, not an executed test. No physical falsification is established: this "
+                "is a provenance/representation/version split plus an unexecuted empirical "
+                "discrimination."
+            ),
+            "status": "open",
+            "next": (
+                "Author word required to: (1) fix B's final claim status (derived + internal "
+                "non-saturation conflict vs superseded by B+); (2) confirm the KC1 downgrade to "
+                "conjectured/not executed; (3) choose the discriminating test(s). See "
+                "docs/validation-ledger/reviews/deleg_65a996ff/synthesis.md and "
+                "docs/validation-ledger/data/form_status_register.json. Do NOT edit any published "
+                "index.json without author word."
+            ),
+        },
     ]
 
 
