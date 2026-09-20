@@ -127,6 +127,15 @@ KONTRAKT_FELT = ("observable", "expected", "tolerance_rule",
 #: that does not say this has been WRITTEN — it is a judgement, not a wait.
 VENTER_PREFIKS = "waiting for arbiter"
 
+#: The house words for the arbiter axis: which KIND of instance can fell the
+#: claim. `observasjon` = a measurement can; `utledning` = only a derivation
+#: can (a limit, an identity, a self-application). Measured and named by the
+#: coverage-rule plan (t_c3930d65); the counter that splits judged contracts on
+#: it is K1. Order matters: the first word a node uses is taken as its
+#: declaration, so a node that is felled by a measurement shall not open with
+#: the other one.
+ARBITER_KIND = ("observasjon", "utledning")
+
 
 def kontrakt_mangler(node: dict) -> list[str]:
     """What a node's settlement contract is missing. Empty means complete.
@@ -200,30 +209,82 @@ def dom(node: dict) -> dict:
             "mangler_av_kontrakt": mangler}
 
 
+def kontrakt_arbiter(node: dict) -> dict:
+    """Which KIND of arbiter the node binds to — declared, or not declared.
+
+    The axis the coverage-rule plan splits judged contracts on: `observasjon`
+    (a measurement can fell the claim) or `utledning` (only a derivation can).
+    A threshold that does not name its kind cannot be placed in the counter, so
+    it is read back here — from the structured statement first, because that is
+    the one a machine should use, and from the node's own words second, because
+    the two STUBS have no contract to put it in (`falsifiserbarhet` is a closed
+    block in the schema; whether the kind becomes a field there is a gate, not
+    a choice this tool may make).
+    """
+    p = node.get("prediction") or {}
+    try:
+        c = json.loads(str(p.get("criteria") or "{}"))
+    except (ValueError, TypeError):
+        c = {}
+    if not isinstance(c, dict):
+        c = {}
+    slag = str(c.get("arbiter_kind") or "").strip()
+    if slag:
+        return {"slag": slag, "hvor": "prediction.criteria.arbiter_kind"}
+    tekst = " ".join([
+        str(node.get("ville_falsifisere") or ""),
+        str((node.get("falsifiserbarhet") or {}).get("grunn") or "")])
+    for ord_ in ARBITER_KIND:
+        if ord_ in tekst:
+            return {"slag": ord_, "hvor": "the node's own words"}
+    return {"slag": None, "hvor": None}
+
+
 def dom_banken(bank: dict) -> dict:
     """Every node's verdict, and the counts. `hull` must be 0."""
     per: dict[str, dict] = {}
     telling = {"armer": 0, "gjort_opp": 0, "hull": 0}
     slag: dict[str, int] = {}
+    arbtelling: dict[str, int] = {}
+    art_hvor: dict[str, int] = {}
+    uten_art: list[str] = []
     for n in bank.get("nodes", []):
         d = dom(n)
         per[n["id"]] = d
         telling[d["dom"]] = telling.get(d["dom"], 0) + 1
         if d["dom"] == "nekt":
             slag[d.get("slag", "?")] = slag.get(d.get("slag", "?"), 0) + 1
+        # The arbiter axis is READ BACK for the nodes that carry a contract:
+        # a threshold that does not name its kind cannot be placed in the
+        # counter (K1 in the coverage-rule plan), so an unnamed kind is a
+        # named hole — reported, not required (the requirement is K3's gate,
+        # and four nodes outside this card carry contracts without one).
+        a = kontrakt_arbiter(n)
+        if a["slag"]:
+            arbtelling[a["slag"]] = arbtelling.get(a["slag"], 0) + 1
+            art_hvor[a["hvor"]] = art_hvor.get(a["hvor"], 0) + 1
+        elif d["dom"] in ("armer", "gjort_opp"):
+            uten_art.append(n["id"])
     return {"noder": len(bank.get("nodes", [])), **telling,
             "nekt_slag": slag,
+            "arbiter_slag": arbtelling,
+            "arbiter_deklarert_hvor": art_hvor,
+            "arbiter_uten_slag": sorted(uten_art),
             "hull_noder": sorted(i for i, d in per.items() if d["dom"] == "hull"),
             "per_node": per}
 
 
-def vis(dom_og_grunn: dict, node_id: str, p: dict) -> None:
+def vis(dom_og_grunn: dict, node_id: str, node: dict) -> None:
     """One node's verdict as it will be read."""
     d = dom_og_grunn["dom"]
+    p = node.get("prediction") or {}
     print(f"{d.upper()} — {node_id}")
     if d == "armer":
         print(f"  correlation:  {p['correlation']}")
         print(f"  arbiter:      {p['arbiter_waiting_for']}")
+        a = kontrakt_arbiter(node)
+        print(f"  arbiter kind: {a['slag'] or 'NOT declared'}"
+              + (f"  (from {a['hvor']})" if a["slag"] else ""))
         print(f"  observable:   {p['observable']}")
         print(f"  tolerance:    {p['tolerance_rule']}")
         print(f"  settlement:   {dom_og_grunn.get('grunn')}")
@@ -250,6 +311,17 @@ def hoved(app) -> int:
             print(f"  nekt:       {m['nekt']}  " + ", ".join(
                 f"{k}: {v}" for k, v in sorted(m["nekt_slag"].items())))
             print(f"  hull:       {m['hull']}")
+            art = ", ".join(f"{k}: {v}" for k, v in sorted(m["arbiter_slag"].items()))
+            hvor = ", ".join(f"{k}: {v}" for k, v in
+                             sorted(m["arbiter_deklarert_hvor"].items()))
+            print(f"  arbiter kind, declared: {art or 'none'}"
+                  + (f"  ({hvor})" if hvor else ""))
+            print(f"  arbiter kind, not declared by a CONTRACT: "
+                  f"{len(m['arbiter_uten_slag'])}"
+                  + (f" — {', '.join(m['arbiter_uten_slag'])}"
+                     if m["arbiter_uten_slag"] else ""))
+            print("    (reported, not required: the gate that makes the kind "
+                  "mandatory is K3 in the coverage-rule plan)")
             if m["hull_noder"]:
                 print("\nHOLE — a node that neither can be settled nor says "
                       "why (that is a defect, not a third state):")
@@ -277,7 +349,7 @@ def hoved(app) -> int:
                               "settlement": node.get("settlement")},
                              ensure_ascii=False, indent=2))
         else:
-            vis(d, i, node.get("prediction") or {})
+            vis(d, i, node)
             print()
     return siste
 

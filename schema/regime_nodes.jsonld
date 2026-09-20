@@ -4619,7 +4619,7 @@
       },
       "buss_domene": "kosmos.galakser",
       "synlighet": "offentlig",
-      "ville_falsifisere": "A fit of k on a rotation-curve sample the law was NOT calibrated on (BIG-SPARC, arXiv:2411.13329) that lands outside 3 sigma of the combined uncertainty of the two fits — k_BIG outside 0.415 ± 0.045 (KC2 of DOI 10.6084/m9.figshare.32045592) — or a fit that needs its own K per galaxy. Then the screening form is a per-galaxy parameter choice, not a law.",
+      "ville_falsifisere": "An OBSERVATION fells this node — a fit of k on a rotation-curve sample the law was NOT calibrated on (BIG-SPARC, arXiv:2411.13329) that lands outside 3 sigma of the combined uncertainty of the two fits — k_BIG outside 0.415 ± 0.045 (KC2 of DOI 10.6084/m9.figshare.32045592) — or a fit that needs its own K per galaxy. Then the screening form is a per-galaxy parameter choice, not a law. The arbiter kind is declared in the contract as `arbiter_kind`; no derivation is needed to read the fit, only the sample.",
       "prediction": {
         "source": "efc-sealed-prediction",
         "observable": "k",
@@ -4632,7 +4632,7 @@
         "arbiter": "no",
         "arbiter_waiting_for": "BIG-SPARC (arXiv:2411.13329) — k fitted on the sample the law was not calibrated on",
         "criterion": "k fitted on BIG-SPARC must fall within 3 sigma of the SPARC baseline 0.415 (P5 of DOI 10.6084/m9.figshare.32045592)",
-        "criteria": "{\"description\": \"k fitted on BIG-SPARC must fall within 3 sigma of the SPARC baseline 0.415\", \"settlement_rule\": \"stemte if |k_BIG - 0.415| <= 3 sigma of the combined uncertainty; avvek if k_BIG falls outside 0.415 +- 0.045 (KC2) or the fit needs its own K per galaxy; uavgjort only together with blokkert — the arbiter never arrived\", \"secondary_dependence\": \"no > 3 sigma dependence of k on mass, size, surface brightness or gas fraction (P8)\", \"global_performance\": \"BIG-SPARC AIC and BIC win rates both above 50 percent (P6)\"}",
+        "criteria": "{\"description\": \"k fitted on BIG-SPARC must fall within 3 sigma of the SPARC baseline 0.415\", \"settlement_rule\": \"stemte if |k_BIG - 0.415| <= 3 sigma of the combined uncertainty; avvek if k_BIG falls outside 0.415 +- 0.045 (KC2) or the fit needs its own K per galaxy; uavgjort only together with blokkert — the arbiter never arrived\", \"secondary_dependence\": \"no > 3 sigma dependence of k on mass, size, surface brightness or gas fraction (P8)\", \"global_performance\": \"BIG-SPARC AIC and BIC win rates both above 50 percent (P6)\", \"arbiter_kind\": \"observasjon\", \"arbiter\": \"BIG-SPARC (arXiv:2411.13329) — a fit to a rotation-curve sample\", \"arbiter_note\": \"the kind is named so the contract can be placed in the counter; an observation decides it, not a derivation\"}",
         "tolerance_rule": "within 3 sigma of the COMBINED uncertainty of the two fits — SPARC's own bound +-0.029 (read from the package) and the predicted +-0.015 for BIG-SPARC (P5) — not a band chosen in the node",
         "basis": "pre-registered cross-survey invariance (P5/KC2), sealed 2026-04-17 before BIG-SPARC was analysed; the numbers are read from the package, not derived here"
       },
@@ -5016,7 +5016,7 @@
       "synlighet": "offentlig",
       "falsifiserbarhet": {
         "status": "stub",
-        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_lens = 0.0, kappa_EFC = 0.0, compute() raises NotImplementedError), so there is no number for an arbiter to be compared against. What IS named: the arbiter is external and already exists — KiDS-1000 weak lensing (our own analysis of it: DOI 10.6084/m9.figshare.31271917) and the lensing maps themselves (Planck, ACT, SPT; obs.cmb_lensing). The criterion in plain text: the lens maps must not be explained just as well by a mass model that is not a potential well from the field, and the KiDS-1000 fit must not deteriorate when the background model is replaced. What must happen FIRST: kappa(theta) must be computed from alpha_lens. Until then any tolerance would be a band around a calculation that does not exist — the node keeps `stub`, and does not count as satisfied falsifiability."
+        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_lens = 0.0, kappa_EFC = 0.0, compute() raises NotImplementedError), so there is no number for an arbiter to be compared against. The arbiter is an OBSERVATION (observasjon), not a derivation: KiDS-1000 weak lensing (our own analysis of it: DOI 10.6084/m9.figshare.31271917) and the lensing maps themselves (Planck, ACT, SPT; obs.cmb_lensing). The criterion in plain text: the lens maps must not be explained just as well by a mass model that is not a potential well from the field, and the KiDS-1000 fit must not deteriorate when the background model is replaced. What must happen FIRST: kappa(theta) must be computed from alpha_lens. Until then any tolerance would be a band around a calculation that does not exist — the node keeps `stub`, and does not count as satisfied falsifiability."
       }
     },
     {
@@ -5123,7 +5123,7 @@
       "synlighet": "offentlig",
       "falsifiserbarhet": {
         "status": "stub",
-        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_cluster = 0.0, compute() raises NotImplementedError), so n(M,z) does not exist and no arbiter can be met. What IS named: the threshold that will apply is already declared — the frozen mu_0 = 0.415 from SPARC must keep Delta chi^2 < 4 in the independent channel (KT-3 in the validation ledger), and the strict test is the Bullet Cluster, where gas and mass are separated (obs.bullet; HST + Chandra). The arbiters are external and exist: cluster mass and lensing profiles (DES, SDSS, eROSITA; obs.cluster_hmf and obs.cluster_mass). What must happen FIRST: n(M,z) must be computed from alpha_cluster. Until then a tolerance here would be a band around a calculation that does not exist — the node keeps `stub`, and does not count as satisfied falsifiability."
+        "grunn": "THE THRESHOLD IS NOT fixed — and it cannot be fixed honestly before the physics exists: the engine computes nothing (alpha_cluster = 0.0, compute() raises NotImplementedError), so n(M,z) does not exist and no arbiter can be met. The arbiter is an OBSERVATION (observasjon), not a derivation: the threshold that will apply is already declared — the frozen mu_0 = 0.415 from SPARC must keep Delta chi^2 < 4 in the independent channel (KT-3 in the validation ledger) — and the strict test is the Bullet Cluster, where gas and mass are separated (obs.bullet; HST + Chandra). The observations exist: cluster mass and lensing profiles (DES, SDSS, eROSITA; obs.cluster_hmf and obs.cluster_mass). What must happen FIRST: n(M,z) must be computed from alpha_cluster. Until then a tolerance here would be a band around a calculation that does not exist — the node keeps `stub`, and does not count as satisfied falsifiability."
       }
     },
     {
@@ -9607,7 +9607,7 @@
       },
       "buss_domene": "kosmos.kosmologi",
       "synlighet": "offentlig",
-      "ville_falsifisere": "DESI DR2 full-shape D_H/r_d at z = 0.7 or z = 1.0 that does not lie below the LCDM values (20.719 and 17.466) fells the node — the self-consistent background would then not deviate where the action says it must. What is still open and is NOT named here: WHICH limiting case must reproduce LCDM; that step is a named comparison against efc.hubble_engine, and until it is named only the deviation side can be settled.",
+      "ville_falsifisere": "An OBSERVATION fells this node — DESI DR2 full-shape D_H/r_d at z = 0.7 or z = 1.0 that does not lie below the LCDM values (20.719 and 17.466): the self-consistent background would then not deviate where the action says it must. The SECOND obligation is a DERIVATION and is NOT named yet: WHICH limiting case must reproduce LCDM has to be fixed against efc.hubble_engine before that side can be settled, so it does not count as an arbiter here. Until it is named, only the observation side is a contract; the derivation side is a hole with a name.",
       "prediction": {
         "source": "efc-sealed-prediction",
         "observable": "DH_over_rd",
@@ -9622,7 +9622,7 @@
         "arbiter": "no",
         "arbiter_waiting_for": "DESI DR2 full-shape",
         "criterion": "DESI DR2 full-shape DH_over_rd must remain below LCDM at z=0.7 and z=1.0 (EFC 19.797 and 16.527 against LCDM 20.719 and 17.466)",
-        "criteria": "{\"description\": \"DH_over_rd must remain below LCDM at z=0.7 and z=1.0\", \"settlement_rule\": \"stemte if the DR2 measurement lies within its OWN 1 sigma of the EFC value at both redshifts; avvek if it lies at or above the LCDM value at either redshift; uavgjort only together with blokkert — the arbiter never arrived\", \"required_DH_rd_trend\": \"below LCDM at z=0.7 and z=1.0\", \"multi_tracer_consistency\": \"LRG and ELG must agree\"}",
+        "criteria": "{\"description\": \"DH_over_rd must remain below LCDM at z=0.7 and z=1.0\", \"settlement_rule\": \"stemte if the DR2 measurement lies within its OWN 1 sigma of the EFC value at both redshifts; avvek if it lies at or above the LCDM value at either redshift; uavgjort only together with blokkert — the arbiter never arrived\", \"required_DH_rd_trend\": \"below LCDM at z=0.7 and z=1.0\", \"multi_tracer_consistency\": \"LRG and ELG must agree\", \"arbiter_kind\": \"observasjon\", \"arbiter\": \"DESI DR2 full-shape — a measurement of D_H/r_d\", \"second_arbiter_kind\": \"utledning\", \"second_arbiter\": null, \"second_arbiter_note\": \"NOT named: which limiting case must reproduce LCDM against efc.hubble_engine. Named here as a hole so it cannot be read as a declared arbiter\"}",
         "tolerance_rule": "within 1 sigma of the DR2 measurement's OWN uncertainty, not a fixed band",
         "basis": "mirrored from the sealed DH_over_rd contract carried by obs.bao — the same case, read on the node that computes the expansion the prediction rests on; the numbers are read from the package, not derived here"
       },
