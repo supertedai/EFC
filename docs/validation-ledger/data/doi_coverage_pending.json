@@ -1,7 +1,7 @@
 {
  "name": "EFC DOI atlas-ingest backlog (atlas scope, missing from atlas)",
  "schema": "efc-doi-coverage-pending/1",
- "input_digest": "5fd403a039586ca107453ec8b347eb55a0936ba05eec97ba368bd7fb1af08c7e",
+ "input_digest": "1f97d81a2421317bd429aef1720589e3880653b5b35fd27dd6ea02c54aae6848",
  "count": 60,
  "disposition": "semantic_mapping",
  "note": "Every atlas-scope (empirical) DOI that does not appear as a literal Figshare URL in the atlas union. Node mapping is semantic and is not auto-applied here. Each entry is pre-computed with DOI, title, categories and repo dirs so the mapping step only needs to approve a node link.",
