@@ -312,9 +312,9 @@ eksempler på target_classification for exoplanet-radene:
 Reproduserbar uten å legge til noe i repoet — kjør dette fra scratch:
 
 ```python
-import importlib.machinery, importlib.util, json, time, urllib.parse, urllib.request
-sp = importlib.util.spec_from_loader("mk", importlib.machinery.SourceFileLoader(
-    "mk", "/opt/hermes-drift/nats/mast-konnektor.py"))
+import importlib.machinery, importlib.util, json, os, time, urllib.parse, urllib.request
+STI = os.environ.get("MAST_KONNEKTOR", "/opt/hermes-drift/nats/mast-konnektor.py")
+sp = importlib.util.spec_from_loader("mk", importlib.machinery.SourceFileLoader("mk", STI))
 mk = importlib.util.module_from_spec(sp); sp.loader.exec_module(mk)
 now = time.time(); mj = lambda t: t / 86400.0 + 40587.0
 fra, til = mj(now) - mk.VINDU_DOEGN, mj(now)
@@ -329,6 +329,12 @@ print(len(rader), sum(1 for x in rader if mk.domene(x.get("target_classification
 print(sum(1 for x in rader if len([d for d, mo in mk._DOMENER
       if mo.search(mk.hodetrygg(x.get("target_classification")).upper())]) > 1))
 ```
+
+Stien over er et **standardvalg, ikke en forutsetning**: konnektoren bor i et
+annet repo og kan ligge annetsteds. Det som identifiserer fila er innholdet —
+**md5 `7c2278d5bbc79d7ba8e46687f78c197c`** (lest 2026-09-21). Er ikke md5-en
+den samme, er målingen gjort på en annen konnektor, og da er den ikke en
+gjentakelse. (Påpekt av Copilot-revisjonen på PR #620: stien var hardkodet.)
 
 **Hva målingen viser, og den retter panelet i én retning mens den bekrefter
 det i en annen:**
