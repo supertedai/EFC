@@ -66,7 +66,15 @@ write access the owners have not yet granted.
 | Subject | Content | Producer |
 |---|---|---|
 | `kosmos.kosmologi.prediksjon.efc-fs8` | EFC **prediction** (modelled fσ8) | `growth` produces the prediction (fσ8(z=0.7), parameter-derived); `SealedFs8Arbiter` (step 12) judges it against the baseline |
+| `kosmos.kosmologi.oppgjoer.efc-fs8` | The arbiter's **measurement** — DESI DR2 full-shape fσ8(z~0.7), with the fields `must_arrive.required_fields` and provenance (`seq`, `Nats_Msg_Id`, `referanse`, `survey`, `tracer`) | `scripts/atlas_arbiter_konnektor.py` (t_8e217b72). **0 messages measured 2026-09-18**, and that is the correct state: the connector publishes nothing before the measurement exists, and writes the reason to its own log (`logs/atlas-arbiter-konnektor.jsonl`). A measurement outside `z_window [0.6, 0.8]` is routed to `kosmos.kosmologi.tilstand.efc-fs8` with `arbiter: "nei"` — it is a baseline, not the arbiter |
 | `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | The arbiter's **outcome** (PASS/FAIL/VENTER with rule and source) | the arbiter itself — payload format defined in step 12 |
+
+**Two subjects, one correlation — and they are not the same feed.** The
+measurement (`…oppgjoer.efc-fs8`) and the verdict (`…oppgjoer.efc-fs8-arbiter`)
+are two independent subjects: NATS matches subjects token by token, so
+`efc-fs8-arbiter` is its own token and a subscriber to one does not receive the
+other. Both carry the layer word `oppgjoer`, which is the token VERDEN_PROGNOSE
+catches (measured 2026-09-17, `tests/test_arbiter_emne_kontrakt.py`).
 
 ### Candidates (subjects that exist, connection not built)
 
@@ -117,6 +125,10 @@ This repo **never reads the bus itself** — the engine is injectable and
 site-anonymous (the step 8 design). The bridge that reads the bus is an external
 data source with a read-only consumer role. The separation is deliberate: the atlas
 must not depend on a live bus; the bus is one of several sources that
-can feed it. It applies both ways: **publishing back to
-the bus** (e.g. the arbiter's outcome) is not built in — it is a
-door the owners can open, not a door the repo closes.
+can feed it. It applies to the read side, and only to it: **publishing back to
+the bus** now exists in two tracks — the measurement
+(`scripts/atlas_arbiter_konnektor.py`, t_8e217b72) and the verdict
+(`scripts/maintenance/arbiter_vakt_kjoer.py`, L-016). Both are best-effort and
+require `NATS_PRODUSENT` in the environment; the repo never carries credentials,
+and a run without one reports «no producer credentials» instead of doing
+anything. The opening is therefore the owners': the key, not the code.

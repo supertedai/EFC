@@ -46,9 +46,9 @@ import atlas_oppgjoer as O  # noqa: E402
 import arbiter_vakt_kjoer as V  # noqa: E402
 from efc_inference.arbiter.rapid_response import RapidResponseVakt  # noqa: E402
 from efc_inference.arbiter.sealed_fs8 import (  # noqa: E402
-    ANKER_EFC,
-    TILLATTE_TRACERE,
-    Z_MAKS,
+    ANCHOR_EFC,
+    ALLOWED_TRACERS,
+    Z_MAX,
     Z_MIN,
 )
 
@@ -125,22 +125,22 @@ def test_the_window_is_the_declarations_and_inside_the_arbiters_own(arb: dict) -
     """
     lo, hi = K.window(arb)
     assert (lo, hi) == (0.6, 0.8)
-    assert Z_MIN <= lo and hi <= Z_MAKS, (
+    assert Z_MIN <= lo and hi <= Z_MAX, (
         f"the declaration's window {K.window(arb)} is not inside the arbiter's own "
-        f"[{Z_MIN}, {Z_MAKS}] — the connector could then publish a measurement the "
+        f"[{Z_MIN}, {Z_MAX}] — the connector could then publish a measurement the "
         "arbiter calls out of window")
 
 
 def test_the_declaration_and_the_arbiter_agree_on_the_tracers(arb: dict) -> None:
     """One list, two readers. The connector reads the declaration's copy."""
-    assert set(K.tracers(arb)) == set(TILLATTE_TRACERE) == {"LRG", "ELG"}
+    assert set(K.tracers(arb)) == set(ALLOWED_TRACERS) == {"LRG", "ELG"}
 
 
 def test_the_bus_expectation_is_the_sealed_anchor(arb: dict, bro: dict) -> None:
     """The settlement computes its gap against the bus's number; the arbiter
     judges against the sealed anchor. If those two ever part, the loop lands on
     the wrong reference and every test on either side still passes."""
-    assert O.expected(bro)["fsigma8_efc"] == ANKER_EFC == 0.430
+    assert O.expected(bro)["fsigma8_efc"] == ANCHOR_EFC == 0.430
 
 
 # ---------------------------------------------------------------------------
@@ -374,7 +374,7 @@ def test_the_transport_is_the_house_publisher(monkeypatch) -> None:
     emne = K.subject(K.declaration())
     assert (K.publiser_best_effort(emne, "{}")
             == V.publiser_best_effort(emne, "{}")
-            == "ingen produsent-legitimasjon (NATS_PRODUSENT mangler)")
+            == "no producer credentials (NATS_PRODUSENT is missing)")
 
 
 def test_a_crashing_transport_does_not_lose_the_record(tmp_path) -> None:

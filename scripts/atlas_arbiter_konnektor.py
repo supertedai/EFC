@@ -157,7 +157,7 @@ def required_fields(arb: dict) -> list:
 
 def tracers(arb: dict) -> list:
     """The tracers that count. The rule is the sealed arbiter's own membership
-    test (efc_inference/arbiter/sealed_fs8.py:TILLATTE_TRACERE, galakse-RSD); the
+    test (efc_inference/arbiter/sealed_fs8.py:ALLOWED_TRACERS, galakse-RSD); the
     declaration carries it so the connector does not need a second copy."""
     return [str(t).upper() for t in arb["must_arrive"]["tracers"]]
 
