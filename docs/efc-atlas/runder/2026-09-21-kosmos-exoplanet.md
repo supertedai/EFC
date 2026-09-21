@@ -280,18 +280,22 @@ grensen vi trekker på den er vår egen.
 - **F3 (kjørt her, se under):** hvis andelen er invariant under en permutasjon
   av domenerekkefølgen, er presedensen ikke en drivkraft. Målt: den er ikke
   invariant — den er total.
-- **F1 (lagt til side):** «en CAOM-spørring avgrenset til rene exoplanetklasser
-  returnerer rader som bærer planetens parametre» er nesten a priori usann — en
-  avgrensning velger rader, den kan ikke legge til kolonner i et fast skjema.
-  Den står her som stråmann, ikke som falsifikator. (Innvendt av panelet, og
-  innvendigen er riktig.)
+- **F1 (stilt, skjemastengt):** «en CAOM-spørring avgrenset til rene
+  exoplanetklasser returnerer rader som bærer planetens parametre». Den kan
+  nesten ikke inntreffe — en avgrensning velger rader, den legger ikke til
+  kolonner i et fast skjema (målt: kolonnene i §3). Nettopp derfor er den
+  billig og verdt å ha stilt: fyrer den, faller C1 — og med den C4. Kjøring 1
+  av panelet ville ta den ut som dekorativ; kjøring 2 vil ha den stående.
+  Begge er enige om *utfallet*; uenigheten gjelder merkelappen. Se §10 og
+  vedlegg D.1.
 
-Ingen av F2 er kjørt her. C4 står som `tolket`, ikke som `observert`.
+F2 er ikke kjørt her. C4 står som `tolket`, ikke som `observert`.
 
 ### Den kontrafaktiske målingen: rekkefølgen ER domenet
 
-Panelet (begge runder) pekte på at C1–C3 ikke alene bærer «måler praksis»,
-fordi konnektorens egen presedensrekkefølge er en *egen* årsak. Den ble målt,
+Panelet pekte på at C1–C3 ikke alene bærer «måler praksis», fordi konnektorens
+egen presedensrekkefølge er en *egen* årsak — og beholdt permutasjonen som det
+høyest rangerte motbeviset i begge kjøringer (§10, vedlegg D.1). Den ble målt,
 med konnektorens egen kode (importert, ikke gjenfortalt), mot hans eget vindu
 og hans eget kolonnesett — 2 døgn, MJD 61302,251–61304,251, 366 rader:
 
@@ -339,11 +343,13 @@ gjentakelse. (Påpekt av Copilot-revisjonen på PR #620: stien var hardkodet.)
 **Hva målingen viser, og den retter panelet i én retning mens den bekrefter
 det i en annen:**
 
-- Panelet sa: en tidligere domene kan stjele exoplanet-rader. **Det kan den
-  ikke** — `exoplanet` står *først* i `DOMENER`; ingenting står foran. Retningen
-  på årsaken er den motsatte.
-- Panelet sa: presedensen er en drivkraft av første orden. **Det er den, og
-  målingen er total:** alle 12 exoplanet-rader matcher også `stjerner`, og med
+- Panelet sa (kjøring 1, `claude-opus-5`): en tidligere domene kan stjele
+  exoplanet-rader. **Det kan den ikke** — `exoplanet` står *først* i `DOMENER`;
+  ingenting står foran. Retningen på årsaken er den motsatte. (Kjøring 2 sier
+  det ikke; leddet står her fordi det ble *målt*, ikke fordi det ble sagt.)
+- Panelet sa (kjøring 1, og kjøring 2 beholder permutasjonen som motbevis) at
+  presedensen er en drivkraft av første orden. **Det er den, og målingen er
+  total:** alle 12 exoplanet-rader matcher også `stjerner`, og med
   `exoplanet` sist ville **0** blitt igjen. Domenet er ikke *funnet* i kilden —
   det er *skåret ut* av stjernedomenet av vår egen rekkefølge.
 - Typen er dermed målt i klartekst: `Star; Exoplanet Systems` er en
@@ -355,6 +361,9 @@ det i en annen:**
 
 Det er dette som gjør C4 `tolket` og ikke `observert`: retningen er målt, men
 *vekten* mellom praksis, allokering og vår egen ruting er ikke bestemt.
+«Ikke planetfysikk» skal derfor leses som **dominert av**, ikke som
+*uttømmende*: målutvelgelsen er selv delvis fysikkdrevet (kjøring 2,
+`claude-opus-5`).
 
 ---
 
@@ -452,9 +461,9 @@ som den ikke hadde da den startet.
 |---|---|---|---|
 | C1 | `observasjon.mast-caom` bærer observasjonsmetadata (mål, instrument, kalibreringsnivå, tidsvindu, fotavtrykk), ikke en målt størrelse ved himmelen | **observert** | H1 + egen API-lesning (§3) |
 | C2a | de fysiske størrelsene ligger i en annen kjede (TOI/Planetary Systems) | **observert** | B2 + A1 (API-nøklene i §3) |
-| C2b | … og hos en annen institusjon | **ukjent** | ingen av kildene skiller MAST fra IPAC for kandidattabellen; A1 sier den ligger på MAST, B2 henter til arkivets egen tabell. Panelet fant motsetningen; jeg har ikke løst den |
+| C2b | … og hos en annen institusjon | **ukjent** | ingen av kildene skiller MAST fra IPAC for kandidattabellen; A1 sier den ligger på MAST, B2 henter til arkivets egen tabell. Panelet fant motsetningen i begge kjøringer; jeg har ikke løst den |
 | C3 | `kosmos.exoplanet` er dannet av vårt regex + vår presedensrekkefølge over kildens `target_classification` | **observert** | `mast-konnektor.py`:471-511 (md5 + commit) og målingen i §4 |
-| C4 | andelen er ikke planetfysikk; den er et signal fra observatørens merkelapp, utgivelsesvinduet **og vår egen regex + rekkefølge** (målt total: 12 → 0) | **tolket** | C1–C3 + målingen i §4; *vekten* mellom leddene er ikke bestemt |
+| C4 | andelen er ikke planetfysikk — den er **dominert av** signalet fra observatørens merkelapp, utgivelsesvinduet **og vår egen regex + rekkefølge** (målt total: 12 → 0) | **tolket** | C1–C3 + målingen i §4; *vekten* mellom leddene er ikke bestemt («ikke planetfysikk» = dominert av, ikke uttømmende; §4) |
 | C5a | ingen ekstern kilde i det søkte settet kobler observasjonene til entropi/EFC | **observert** | N5, med virkende positiv kontroll |
 | C5b | det finnes ingen slik kobling | **ukjent** | et universelt negativ kan ikke etableres av et søk |
 | H | hva noden bør måle | **hypotese** | under |
@@ -628,40 +637,64 @@ gjenta dem, og det er riktig innvendt: det ER ikke reproduserbart. Det som nå
 er lagt inn, er den eksakte spørrestrengen, slik at uenighet kan gjelde
 *treffene* og ikke hva som ble spurt.
 
-### Andre mening — to panelister, og hva som ble tatt inn
+### Andre mening — to panelister, to kjøringer, og hva som ble tatt inn
 
 Panelet fikk et nøytralisert spørsmål: fakta og påstander, ingen av mine
 konklusjoner, ingen ledende ord. Begge svarte med verifisert modell-id.
 
-| runde | modell (`model_verified`) | dom | konfidens |
-|---|---|---|---|
-| 1 | `gpt-5.6-luna` (true) | **BLOCK** | 0,91 |
-| 2 (eskalert etter stigen: BLOCK er grunn alene) | `claude-opus-5` (true) | **PASS** | 0,78 |
+**Kanalens bokføring.** Første kjøring ble gjort *uten* `--kort`, altså uten
+spor i `/opt/opus-ledger/andremening.jsonl`: den fantes bare som prosa i
+vedlegget, og prosa er en selvrapport. Kjøringen er derfor **gjort om** med
+`--kort t_a0e3260f`, og ledgeren bærer nå én skriptskrevet linje per kall.
+Kjøring 1s to svar står uendret i git-historikken (`48faaf7f`) og leses her som
+motprøve, ikke som spor. Invokasjonen, ledgerlinjene og spørsmålets sha256 står
+i vedlegg B.1; svarene ordrett i vedlegg C og D.
 
-Hele svarene ligger i vedlegget. Det jeg tok inn:
+| kjøring | modell (`model_verified`) | dom | konfidens | spor |
+|---|---|---|---|---|
+| 2 — panel | `gpt-5.6-luna` (true) | **BLOCK** | 0,91 | ledgerlinje `ts 1789972052`, rute `openai`, 3 199 tegn |
+| 2 — eskalert (BLOCK er grunn alene) | `claude-opus-5` (true) | **PASS** | 0,78 | ledgerlinje `ts 1789972125`, rute `anthropic`, 5 409 tegn |
+| 1 — utgår som spor, brukes som motprøve | begge (true) | BLOCK 0,91 / PASS 0,78 | uendret | **ingen ledgerlinje** — git `48faaf7f` |
+
+**Kjøring 1 og 2 gir samme dom og samme konfidens for begge modeller.** Det er
+svaret på om andremeningen er stabil: *dommen* er det; *begrunnelsene* er det
+ikke punkt for punkt. Vedlegg D.1 er den punktvise sammenligningen. Det jeg tok
+inn — med kjøringen navngitt, fordi to av punktene ikke er reprodusert:
 
 1. **C2 deles** i kjede (`observert`) og institusjon (`ukjent`). Panelet fant en
    reell motsetning mellom A1 og B2 som jeg hadde skrevet bort: A1 sier
    kandidatkatalogen ligger *på MAST*, mens B2 henter til arkivets egen tabell.
-   Uavklart er det ærlige svaret.
+   Uavklart er det ærlige svaret. (Begge kjøringer.)
 2. **C5 nedgraderes** til et *avgrenset* fravær. Et universelt negativ kan ikke
-   etableres av et søk; det er nå to påstander med hver sin status.
+   etableres av et søk; det er nå to påstander med hver sin status. (Begge
+   kjøringer.)
 3. **C4 får rutingleddet inn i selve påstanden** — ikke som fotnote, men som
-   tredje årsaksledd.
-4. **F1 er en stråmann** og er flyttet ut av falsifikatorsettet. Riktig innvendt:
-   en avgrensning velger rader, den kan ikke legge til kolonner.
-5. **Uavhengighetstallet for C1** er rettet til «1 ekstern + 1 intern». API-svaret
-   og konnektorens kode er komplementære, ikke to bekreftelser.
+   tredje årsaksledd. *Målt i §4, ikke sitert*: påstanden om at et tidligere
+   domene kunne stjele radene kom fra kjøring 1 og gjentas ikke i kjøring 2.
+   Leddets plass hviler på målingen.
+4. **F1 står, med sperren navngitt.** Kjøring 1 ville ta den ut som dekorativ;
+   kjøring 2 vil ha den stående som billig test som nesten sikkert ikke kan
+   fyre. Begge er enige om *utfallet*. Merkelappen snudde, utfallet gjorde det
+   ikke — se §4.
+5. **Uavhengighetstallet for C1** er rettet til «1 ekstern + 1 intern».
+   API-svaret og konnektorens kode er komplementære, ikke to bekreftelser.
+   (Begge kjøringer; kjøring 2 formulerer grunnen skarpere: koden er en påstand
+   fra systemet som revideres.)
+6. **«Ikke planetfysikk» leses som dominert av, ikke uttømmende** (kjøring 2,
+   `claude-opus-5`): målutvelgelse er selv delvis fysikkdrevet. §4 bærer
+   forbeholdet; C4 står fortsatt som `tolket`.
 
-Det jeg **avviste, fordi det ble målt**: panelet antok at en *tidligere* domene
-kan stjele exoplanet-rader, og at C4 dermed tilskriver himmelen et
+Det jeg **avviste, fordi det ble målt**: kjøring 1 antok at en *tidligere*
+domene kan stjele exoplanet-rader, og at C4 dermed tilskriver himmelen et
 konnektorartefakt. `exoplanet` står først i `DOMENER` — ingenting står foran —
 og målingen i §4 gir 12 → 0 i den *motsatte* retningen. Presedensen er en
-drivkraft av første orden, akkurat som panelet sa; men den skjærer domenet *ut
-av* stjernedomenet, den skjuler det ikke bak et tidligere domene.
+drivkraft av første orden, slik panelet sa; men den skjærer domenet *ut av*
+stjernedomenet, den skjuler det ikke bak et tidligere domene. Avvisningen
+hviler på målingen alene og ville stått også om kjøring 2 hadde sagt det samme.
 
 Panelets høyest rangerte test («permuter domenelisten og se om andelen flytter
-seg») er dermed **kjørt**, med konnektorens egen kode: den flytter seg totalt.
+seg») er **kjørt**, med konnektorens egen kode: den flytter seg totalt. Den
+foreslås i begge kjøringer og er dermed det ene panelet ba om som holdt seg.
 
 ---
 
@@ -686,9 +719,19 @@ seg») er dermed **kjørt**, med konnektorens egen kode: den flytter seg totalt.
                                  "interstellart": 27, "galakser": 12, "exoplanet": 12},
                    "flerdomene_rader": 99, "exoplanet_forst": 12, "exoplanet_sist": 0,
                    "funnet": "domenet er skaaret ut av stjernedomenet av vaar egen rekkefoelge"},
- "panel": [{"modell": "gpt-5.6-luna", "model_verified": true, "dom": "BLOCK", "konfidens": 0.91},
-           {"modell": "claude-opus-5", "model_verified": true, "dom": "PASS", "konfidens": 0.78,
-            "eskalert": "BLOCK er grunn alene (stigen)"}],
+ "panel": {"runde": 2, "spor": "/opt/opus-ledger/andremening.jsonl",
+           "sporsmal_sha256": "920a06170286dae8954e0a738b13d23090bea00f664191f0529f23968818da7e",
+           "ledgerlinjer": [
+             {"ts": 1789972052.4276996, "modell": "gpt-5.6-luna", "modell_verifisert": true, "bruk": "panel", "rute": "openai", "svar_lengde": 3199},
+             {"ts": 1789972125.9047637, "modell": "claude-opus-5", "modell_verifisert": true, "bruk": "panel", "rute": "anthropic", "svar_lengde": 5409}],
+           "svar": [{"modell": "gpt-5.6-luna", "model_verified": true, "dom": "BLOCK", "konfidens": 0.91},
+                    {"modell": "claude-opus-5", "model_verified": true, "dom": "PASS", "konfidens": 0.78,
+                     "eskalert": "BLOCK er grunn alene (stigen)"}],
+           "kjoring_1": {"spor": "ingen ledgerlinje — git 48faaf7f",
+                       "dom_konfidens": "identisk med kjøring 2 (BLOCK 0.91 / PASS 0.78)",
+                       "ikke_reprodusert": ["C4s rutingledd (kjøring 1s egen påstand)",
+                                            "F1 dekorativ — snudd i kjøring 2"],
+                       "se": "vedlegg D.1"}},
  "negativkontroll": {"bein": 5, "ok": 3, "feiler_aapent": 2,
                      "laert": "200 COMPLETE er ikke bevis for at et felt finnes"},
  "readback": {"av": "isolert kontekst (annen, ikke uavhengig modell)",
@@ -705,7 +748,8 @@ seg») er dermed **kjørt**, med konnektorens egen kode: den flytter seg totalt.
  "grenser": ["ingen bankskriving", "ingen ny konnektor", "ingen scheduler",
              "ingen vakt", "ingen endring i atlas_dekning.json",
              "ingen endring i mast-konnektor.py"],
- "falsifikator": {"F1": "CAOM-rad bærer planetens fysiske parametre",
-                  "F2": "andelen følger en fysisk fordeling, ikke allokeringen"},
+ "falsifikator": {"F2": "andelen følger en fysisk fordeling, ikke allokeringen — bærende, ikke kjørt",
+                  "F3": "andelen er invariant under permutasjon av domenerekkefølgen — kjørt: ikke invariant (12 -> 0)",
+                  "F1": "CAOM-rad bærer planetens fysiske parametre — stilt, skjemastengt (en avgrensning legger ikke til kolonner)"},
  "gjort_av": "researcher", "lest_tilbake_av": "vedlegg"}
 ```

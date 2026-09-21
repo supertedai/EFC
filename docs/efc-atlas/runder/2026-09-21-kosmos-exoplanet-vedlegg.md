@@ -152,146 +152,184 @@ physical distribution rather than telescope allocation and the release window.
 
 ---
 
-## C. Panel runde 1 — `gpt-5.6-luna`
+### B.1 Kanalens bokføring — hvilken kjøring vedlegget gjengir
 
-Proveniens fra svaret: `{"ok": true, "provider": "openai", "model": "gpt-5.6-luna",
-"model_requested": "gpt-5.6-luna", "model_verified": true, "bruk": "panel",
-"route": "openai", "http_status": 200}` — modell-id-en er API-ets eget ekko,
-ikke vår anmodning.
+Spørsmålet over (blokken mellom ```` ```markdown ```` og ```` ``` ````, 4 168
+byte over 67 linjer) ble skrevet til scratch og sendt som fil. Kallene gikk
+gjennom `claude_opus_api.py` **med `--kort t_a0e3260f`** — det flagget er det
+som får kanalens eget spor til å lande i `/opt/opus-ledger/andremening.jsonl`:
 
-> 1. **C1 — observed: defensible.** The returned columns and connector
->    description directly support that the subject carries observation metadata,
->    not planetary physical parameters. The negative formulation is justified by
->    the measured schema, within the inspected data.
-> 2. **C2 — observed: too strong.** The facts support that the CAOM rows do not
->    contain those physical parameters and that relevant products exist in
->    candidate/planetary data products. They do not establish that the parameters
->    are at a wholly different institution; the stated pipeline-to-archive chain
->    includes overlapping institutions and services.
-> 3. **C3 — observed: defensible.** The source code explicitly documents regex
->    matching, ordered domain evaluation, and precedence. That directly supports
->    the claim that the boundary is connector-created rather than a natural
->    source partition.
-> 4. **C4 — interpreted: the grade is appropriate, but the claim is
->    over-claimed.** The evidence supports the interpretation that routing is
->    strongly influenced by archive labels, telescope coverage, release timing,
->    and connector precedence. It does not yet show that the resulting domain
->    share *measures* observation practice, nor exclude all correlation with
->    planetary physics.
-> 5. **C5 — observed: too strong.** The measurements show no such field or
->    connection in the examined materials, and the fabricated-field test supports
->    caution about API/schema claims. They cannot establish the universal
->    negative that no external source connects the observations to entropy
->    production or gradients. The proposed node being a hypothesis is defensible.
->
-> **C4 assessment:** Over-claimed. The facts support "the current connector share
-> is an observation/archive-routing signal rather than a direct measurement of
-> planetary physics." They do not support the stronger causal or exclusive
-> wording that it therefore measures observation practice rather than planetary
-> physics.
->
-> **Evidence that would change my mind about C4:** a longitudinal,
-> denominator-aware analysis showing domain share versus telescope allocation,
-> survey footprint, cadence, and public-release timing; a join to authoritative
-> candidate/planetary tables showing whether the share tracks physical
-> distributions after controlling for sky coverage, survey, instrument, and
-> release date; CAOM rows carrying stable candidate/planet identifiers and
-> measured physical parameters, or a documented connector rule that uses such
-> parameters; a routing audit or counterfactual replay showing how often changing
-> the regex or precedence order changes domain membership; evidence that the
-> domain share predicts physical quantities independently of observation
-> selection effects.
->
-> **Confidence: 0.91**
-> **VERDICT: BLOCK**
+```
+python3 claude_opus_api.py --prompt-file panelsporsmal-t_a0e3260f.md \
+    --kort t_a0e3260f --max-tokens 10000
+python3 claude_opus_api.py --eskaler --dom block \
+    --prompt-file panelsporsmal-t_a0e3260f.md --kort t_a0e3260f --max-tokens 10000
+```
 
-Eskalert etter stigen: `BLOCK` er grunn alene (uavhengig av konfidens).
+Ledgeren bærer nå én **skriptskrevet** linje per kall (feltene er kanalens,
+ikke mine):
+
+```
+{"ts": 1789972052.4276996, "kort": "t_a0e3260f", "modell": "gpt-5.6-luna", "modell_verifisert": true, "bruk": "panel", "rute": "openai", "svar_lengde": 3199}
+{"ts": 1789972125.9047637, "kort": "t_a0e3260f", "modell": "claude-opus-5", "modell_verifisert": true, "bruk": "panel", "rute": "anthropic", "svar_lengde": 5409}
+```
+
+**Dette er kjøring 2** (heretter «kjøring 1» og «kjøring 2» om de to
+panelkjøringene — hver kjøring rommer begge panelistene). Kjøring 1 ble gjort
+uten `--kort`, altså uten spor: den fantes bare som prosa i dette vedlegget, og
+prosa er en selvrapport. Kjøring 1s to svar står i git-historikken (`48faaf7f`);
+D.1 stiller de to kjøringene mot hverandre punkt for punkt. Selve spørsmålet er
+uendret — samme fil, samme byte, samme sha256.
 
 ---
 
-## D. Panel runde 2 — `claude-opus-5`
+## C. Panel — `gpt-5.6-luna` (panelkjøring 2, den ledgerførte)
+
+Proveniens fra svaret: `{"ok": true, "provider": "openai", "model":
+"gpt-5.6-luna", "model_requested": "gpt-5.6-luna", "model_verified": true,
+"bruk": "panel", "route": "openai", "http_status": 200, "id":
+"chatcmpl-EQRmbtGI9akR8QrEK1LLNSMetzIyX"}` — modell-id-en er API-ets eget
+ekko, ikke vår anmodning. Bruk: 1 003 inn / 1 620 ut (hvorav 1 024
+resonneringstokens).
+
+> 1. **C1 — observed: defensible.** The returned columns and connector description directly establish that the payload contains observational metadata, with no planetary physical parameters.
+>
+> 2. **C2 — observed: too strong.** The facts support that the CAOM rows lack those parameters and that candidate/planetary data are a separate data product or chain. They do not establish that the physical-parameter data come from a different institution; the cited material instead shows substantial institutional and pipeline continuity.
+>
+> 3. **C3 — observed: defensible, with a minor qualification.** The source code directly establishes regex matching and precedence-order routing. “Not a natural line in the source” is an interpretation of that mechanism, but is a reasonable one given the arbitrary connector-controlled boundary.
+>
+> 4. **C4 — interpreted: too strong.** The facts support that the measured share is a share of routed archive observations and is affected by targeting, release timing, and connector classification. They do not show that it measures those factors *rather than* planetary physics, especially without a share analysis or controls for selection effects.
+>
+> 5. **C5 — observed: too strong.** The negative control supports that the proposed field is unsupported and that fabricated API details are unreliable, but it does not demonstrate an exhaustive absence of external connections to entropy-related quantities. “No connection was found in the searched sources” would be defensible; the unqualified negative is not.
+>
+> **C4 overall:** It is **over-claimed**, not wholly unsupported. Its descriptive premise is sound, but the causal/semantic conclusion that the share measures observation practice rather than planetary physics requires evidence beyond the row schema and routing logic. F1 would be a strong challenge, while F2 is directionally appropriate but needs a specified statistical test and controls.
+>
+> Evidence that would change my mind would include:
+>
+> - A documented join from the CAOM observations to candidate/planet tables containing radius, period, mass, temperature, or transit depth, with those parameters actually present in or deterministically recoverable from the bus payload.
+> - A time-series analysis of domain share controlling for telescope, instrument, sky coverage, observing cadence, survey, and release latency, showing a robust relationship to a physical-parameter distribution rather than to allocation or publication effects.
+> - Conversely, a matched analysis showing that the share is fully explained by targeting and release processes, with no residual relationship to planetary properties, would substantially strengthen C4.
+> - Evidence that connector classification is based on a physically defined exoplanet taxonomy rather than a source label and regex would also weaken the stated interpretation.
+>
+> The independence count is questionable where sources share the same mission pipelines and institutional chain. Those sources may corroborate one another, but they should not automatically be counted as independent evidence; C5 in particular has no demonstrated independent external support in the supplied facts.
+>
+> **Confidence: 0.91**
+>
+> VERDICT: BLOCK
+
+---
+
+## D. Panel — `claude-opus-5` (eskalert i panelkjøring 2, den ledgerførte)
 
 Proveniens: `{"ok": true, "provider": "anthropic", "model": "claude-opus-5",
 "model_requested": "claude-opus-5", "model_verified": true, "bruk": "panel",
-"route": "anthropic", "http_status": 200}`. Begge panelister står i protokollen;
-en eskalering erstatter ikke en runde.
+"route": "anthropic", "http_status": 200, "id":
+"msg_011CfG7MaPdUTHLDZ5oVwDQF"}`. Bruk: 1 505 inn / 4 445 ut (hvorav 2 610
+tenketokens). Eskalert etter stigen: `BLOCK` er grunn alene (uavhengig av
+konfidens). Begge panelister står i protokollen; en eskalering erstatter ikke
+en kjøring.
 
-> **C1 — "observed": defensible.** The column list from a live CAOM response is
-> direct, white-box evidence, and the absence of radius/period/mass/depth is a
-> schema fact, not a sampling fact, so n=16 from one cone is sufficient. One
-> caveat on the bookkeeping, not the grade: the "2 sources" are the API response
-> and the connector's own code, which are *complementary* (what the archive emits
-> + what the connector forwards), not two independent confirmations of the same
-> proposition. Report it as 1 external + 1 internal.
+> ## 1. Grade-by-grade
 >
-> **C2 — "observed": too strong as bundled.** The "different chain" half is
-> observed. The "different institution" half is undercut by your own Fact 3,
-> which says the TESS *candidate catalogue* is published on MAST, and by Fact 4's
-> note that all the counts share the same institutions. Split it: chain =
-> observed, institution = interpreted.
+> **C1 — "observed": defensible.**
+> The column inventory of a real CAOM response is a direct measurement, and the absence of radius/period/mass/depth/temperature is a property of the schema, not of the sample. Minor weakness: it rests on one cone query (n=16, one target) used as a proxy for the 63 actual messages; the CAOM schema is fixed, so the extrapolation is cheap, but a census of the 63 payloads would make it airtight.
 >
-> **C3 — "observed": defensible.** Precedence order and regex matching are read
-> directly from source, and the code's own statement that "the order IS the
-> decision" is about as direct as evidence gets. The "not a natural line in the
-> source" clause is carried by Fact 1's multi-survey heterogeneity at one sky
-> position plus the code's admission that the classification fields are the
-> source's judgements — thin but adequate.
+> **C2 — "observed": too strong, and partly contradicted by your own fact.**
+> Fact 3 says the TESS *candidate catalogue* is publicly available **on MAST** — i.e. same institution (STScI). Only the parameters table (NASA Exoplanet Archive / IPAC) supports the "different institution" clause. "Different table/product chain" is observed; "different institution" is an inference that the evidence half-refutes. Split it, or downgrade the institutional clause to "interpreted". Fact 4's own note — all three numbers share pipelines and institutions — cuts the same way.
 >
-> **C4 — "interpreted": correct grade, incomplete statement.** … Supported in
-> direction, **under-specified in attribution**. C1–C3 license "the share is not
-> planetary physics." They do not license "the share measures observation
-> practice" *alone*, because C3 establishes a second driver: with
-> first-match-wins precedence, any earlier domain whose regex also matches an
-> exoplanet-ish `target_classification` silently absorbs those rows. The 63/zero-
-> node result is therefore a joint function of telescope pointing, release
-> timing, **and the connector's domain ordering**. As written, C4 attributes a
-> connector artifact to the sky. Rewrite: "measures observation practice as
-> filtered through the connector's regex and precedence order." Also note that no
-> share-over-time series was measured at all, so C4's temporal content ("when it
-> became public") is inference from the polling design, not from data.
+> **C3 — "observed": defensible, arguably the strongest claim in the set.**
+> Reading the connector's source is the best available evidence for what the connector does, and the code says it outright ("the order IS the decision"; the classification fields are the *source's* judgements). Fact 1 (five surveys at one sky position) independently corroborates that the boundary can't be a natural line in the sky. Independence of 1 is conservative here; 2 would be defensible.
 >
-> Separately: **F1 is not a risky falsifier.** Restricting a query to exoplanet
-> classes selects rows, it cannot add columns to a fixed schema — F1 is close to
-> a priori false and buys no information. F2 is genuinely risky and was not run.
-> Half the falsifier set is decorative; say so.
+> **C4 — "interpreted": correct grade.**
+> It is a conclusion assembled from C1 + C3, not a measurement; no time series of the 63 messages was examined and the "when it became public" half is entirely unmeasured. "Observed" would have been wrong; "hypothesis" would have been too weak given C1/C3 are solid.
 >
-> **What would change my mind:** the reorder test (highest value, cheapest):
-> permute the connector's domain list, replay the same 63 messages, and record
-> the resulting shares. If the share moves materially, the connector's precedence
-> is a first-order driver and C4-as-written is wrong; if it is stable, C4's
-> attribution holds. Shadow-route audit: log every row whose
-> `target_classification` matched an exoplanet-ish pattern but was claimed by an
-> earlier domain. F2, actually executed. A CAOM extension or joined view that
-> attaches planetary parameters at the observation row level. A named institution
-> check resolving Fact 3 vs Fact 4.
+> **C5 — "observed": defensible only under the scoped reading.**
+> "Our search returned zero supporting sources" is a measured fact; "no external source connects these" as a universal is unmeasurable. Re-word to the search-scoped form. The negative control is the good part: the API silently ignoring a fabricated column while still returning "COMPLETE" means a naive confirmation query would have produced a false positive, and the report caught that. Grading the proposed node "hypothesis" is right (I'd accept "unsupported").
 >
-> **Confidence: 0.78.** High on C1/C3; the residual is concentrated in C2's
-> institution clause, the unmeasured share-over-time behind C4, and the un-run
-> reorder test.
+> **Independence counts:** honest overall. C1's "2" is slightly generous — the API response and the connector's self-description are different artifacts but the code comment is an assertion by the system under audit, not a second measurement of the payload. C2's "1" is correctly conservative given the shared pipeline→MAST→IPAC→NASA provenance.
 >
-> The report errs conservative where it counts: it refuses the entropy node,
-> keeps independence counts low and honest, and does not upgrade an inference to
-> a measurement. The defects — one bundled over-grade (C2), one universal
-> negative graded as observed (C5), one missing causal term in C4, and one
-> decorative falsifier (F1) — are all repairable in place and none invert a
-> conclusion.
+> ## 2. Is C4 supported?
 >
-> **VERDICT: PASS**
+> Supported at the grade assigned, with one over-reach and one under-evidenced half. Over-reach: "rather than planetary physics" read exclusively — target selection is itself partly physics-driven (who gets pointed at is not random with respect to what's there), so the honest form is "dominated by observation practice." Under-evidenced: the "when it became public" clause has no measurement behind it at all; nothing in facts 1–5 touches release timing. The core — that a share computed over rows containing only pointing/time/instrument, partitioned by a locally-authored regex in a precedence list, cannot be a physical quantity — is well carried by C1 and C3.
+>
+> ## 3. What would change my mind about C4
+>
+> - **Run F1 concretely:** a CAOM query filtered to exoplanet-ish `target_classification` values, checked for any column carrying `pl_rade`/`pl_orbper`/depth/mass. If such columns appear, C1 collapses and C4 with it. (Prediction: they won't — CAOM has no such fields — so this is a cheap, near-certain-to-fail test; that is what makes it a good falsifier to have *stated*.)
+> - **Run F2 with a real series:** bin the 63 messages by `t_min` and by public-release date against TESS sector boundaries and proposal-cycle allocation. Correlation with sector/release cadence confirms C4; a share tracking, say, a planet-radius or period distribution independent of allocation refutes it.
+> - **Census the 63 messages' `target_classification` values.** If the regex is in fact matching a field that the source populates from a physical determination (not a survey-desk label), C3 weakens and C4 becomes over-claimed.
+> - **A counter-example to the precedence claim:** evidence that reordering the domain list leaves the assignment of these 63 rows unchanged would show the boundary is not regex-order-produced after all.
+> - **For C2 specifically:** confirm whether the connector could reach the candidate catalogue *on MAST* — if yes, the "different institution" framing must go.
+>
+> ## 4. Confidence
+>
+> **0.78.** High on C1/C3/C4 (the schema and code facts are dispositive); the residual uncertainty is concentrated in C2's institutional clause and in whether the 16-row proxy faithfully represents all 63 messages.
+>
+> ## 5. Disposition
+>
+> The one real defect (C2's institution clause, contradicted by fact 3) is localised, does not propagate into C4, and is fixable by splitting the claim. The headline inference is correctly hedged and carries two concrete, runnable falsifiers, and the negative control is properly constructed.
+>
+> Required amendment before publication: split C2 into "different table/product chain" (observed) and "different institution" (interpreted, partly contradicted); re-word C5 to the search-scoped form.
+>
+> VERDICT: PASS
 
 ---
 
+## D.1 Stabilitet — kjøring 1 mot kjøring 2, punkt for punkt
+
+Begge kjøringer svarte på den samme filen, med de samme fakta og de samme
+påstandene. Det som er likt, er reprodusert. Det som ikke er likt, skal ikke
+leses som om det var det.
+
+| punkt | kjøring 1 | kjøring 2 | stabilt |
+|---|---|---|---|
+| `gpt-5.6-luna` dom / konfidens | BLOCK / 0,91 | BLOCK / 0,91 | **ja** |
+| `claude-opus-5` dom / konfidens | PASS / 0,78 | PASS / 0,78 | **ja** |
+| C1 | defensible (begge) | defensible (begge) | ja |
+| C2 for sterkt — del kjede fra institusjon | begge ba om delingen | begge ba om delingen | ja |
+| C3 holdes | begge | begge (Luna med ett forbehold: «ikke en naturlig grense» er tolkning) | ja |
+| C5 er et universelt negativ | Luna: for sterkt. Opus: for sterkt | Luna: for sterkt. Opus: holdbar *bare* i den avgrensede formen | ja, i retning |
+| C1s uavhengighetstall | Opus: 1 ekstern + 1 intern | Opus: samme — kodekommentaren er «an assertion by the system under audit» | ja |
+| C4 mangler rutingleddet | Opus: en *tidligere* domene kan stjele radene | **ikke sagt**, i noen av svarene | **nei** |
+| F1 dekorativ | Opus: «half the falsifier set is decorative» | Opus: billig test som nesten sikkert ikke kan fyre, «that is what makes it a good falsifier to have stated». Luna: «would be a strong challenge» | **nei — snudd** |
+| C4: «rather than planetary physics» lest eksklusivt | ikke sagt | Opus: for sterkt — målutvelgelse er selv delvis fysikkdrevet | kun kjøring 2 |
+
+**Hva dette sier, og ikke sier.** Dommen og konfidensen ligger fast mellom to
+kjøringer; det gjør også de fleste punktene i arbitreringen (F). To punkter er
+ikke stabile, og begge er håndtert i hovedartefaktet:
+
+1. **C4s rutingledd.** Kjøring 1s `claude-opus-5` påstod at en *tidligere*
+   domene kan absorbere exoplanet-radene. Kjøring 2 sier det ikke. Påstanden
+   ble målt i §4, og målingen ga det motsatte utfallet — `exoplanet` står
+   først, og domenet ville hatt 0 rader hvis det stod sist. Leddets plass i
+   §4 hviler derfor på **målingen**, ikke på sitatet; panelet pekte på at
+   rekkefølgen kunne være en drivkraft, og det holder i begge kjøringer.
+2. **F1.** Kjøring 1 ba om at den ble tatt ut; kjøring 2 behandler den som en
+   billig test som er verdt å ha stilt. Begge er enige om *hvorfor den nesten
+   ikke kan fyre* (en avgrensning legger ikke til kolonner i et fast skjema).
+   F1 er ført tilbake til falsifikatorsettet som *stilt, skjemastengt* (§4):
+   merkelappen snudde, utfallet gjorde det ikke.
+
+Det er verdt å si rett ut hva dette betyr for prosedyren: **en andremening er
+en måling av et svar, ikke av en sannhet.** To kjøringer av de samme modellene
+på de samme fakta er to lesninger, ikke to vitner. At *dommen* er stabil sier
+at spørsmålet ikke er støyfølsomt. At to *begrunnelser* ikke er det, sier at
+en begrunnelse ikke kan siteres som en fasit. Kravet heretter: gjengi kjøringen
+med ledgerlinja si, og hold «panelet sa» atskilt fra «jeg målte».
+
+---
 ## E. Arbitrering — punkt for punkt
 
-| # | panelets punkt | dom | tag | hvorfor |
-|---|---|---|---|---|
-| 1 | C2 for sterkt: del kjede fra institusjon | **akseptert** | L0 | A1 sier kandidatkatalogen ligger på MAST; B2 henter til arkivets egen tabell. Motsetningen er reell og uavklart → `ukjent` |
-| 2 | C5 er et universelt negativ | **akseptert** | L0 | et søk kan ikke lukke en ubegrenset korpus. Delt i C5a (`observert`) og C5b (`ukjent`) |
-| 3 | C4 mangler rutingleddet | **akseptert, og målt** | L0 | panelet sa «en tidligere domene kan absorbere radene». Målt: `exoplanet` står først; retningen er motsatt, og effekten er total (12 → 0) |
-| 4 | F1 er dekorativ | **akseptert** | L1 | en avgrensning velger rader, den legger ikke til kolonner. Flyttet ut av falsifikatorsettet |
-| 5 | C1: «2 kilder» er komplementære | **akseptert** | L1 | svaret og koden svarer på to ulike spørsmål. Rettet til «1 ekstern + 1 intern» |
-| 6 | C4s tidsinnhold er ikke målt | **akseptert** | L0 | ingen serie er kjørt. Står nå som «ikke målt», ikke som «målt» |
-| 7 | C3 holdes | **akseptert** | L0 | både kode og måling bærer den |
-| 8 | C1 holdes | **akseptert** | L0 | skjemaet er et faktum, ikke et utvalg |
+| # | panelets punkt | dom | tag | kjøring 2 bærer? | hvorfor |
+|---|---|---|---|---|---|
+| 1 | C2 for sterkt: del kjede fra institusjon | **akseptert** | L0 | ja, begge | A1 sier kandidatkatalogen ligger på MAST; B2 henter til arkivets egen tabell. Motsetningen er reell og uavklart → `ukjent` |
+| 2 | C5 er et universelt negativ | **akseptert** | L0 | ja (Luna: for sterkt; Opus: holdbar bare avgrenset) | et søk kan ikke lukke en ubegrenset korpus. Delt i C5a (`observert`) og C5b (`ukjent`) |
+| 3 | C4 mangler rutingleddet | **akseptert, og målt** | L0 | **nei** — påstanden er kjøring 1s | panelet sa «en tidligere domene kan absorbere radene». Målt: `exoplanet` står først; retningen er motsatt, og effekten er total (12 → 0). Leddets plass i §4 hviler på målingen, ikke på sitatet |
+| 4 | F1 er dekorativ | **snudd i kjøring 2** | L1 | nei — kjøring 2 sier det motsatte | begge kjøringer er enige om at F1 nesten ikke kan fyre (en avgrensning legger ikke til kolonner). F1 er **ført tilbake** til settet, merket *stilt, skjemastengt* (§4) |
+| 5 | C1: «2 kilder» er komplementære | **akseptert** | L1 | ja, begge | svaret og koden svarer på to ulike spørsmål. Rettet til «1 ekstern + 1 intern» |
+| 6 | C4s tidsinnhold er ikke målt | **akseptert** | L0 | ja, begge (Opus: «nothing in facts 1–5 touches release timing») | ingen serie er kjørt. Står nå som «ikke målt», ikke som «målt» |
+| 7 | C3 holdes | **akseptert** | L0 | ja, begge | både kode og måling bærer den |
+| 8 | C1 holdes | **akseptert** | L0 | ja, begge | skjemaet er et faktum, ikke et utvalg |
+| 9 | «rather than planetary physics» lest eksklusivt er for sterkt | **akseptert** | L1 | kun kjøring 2 | målutvelgelse er selv delvis fysikkdrevet. §4 sier nå «dominert av», ikke «uttømmende» |
 
 **Meta-punktet panelet reiste og som jeg tok inn:** «the report errs conservative
 where it counts» er ikke en attestasjon på at konklusjonen er *sann* — den er en
@@ -300,8 +338,14 @@ vurdering av *retningen* på feilene. Det står slik i artefaktet, ikke som stø
 **Samlet:** konklusjonen endres ikke — gapet er fortsatt et målt hull uten node,
 og den foreslåtte noden står som `hypotese`. To statuser er **svekket** (C2
 delt, C5 avgrenset), én påstand er **skjerpet** (C4 med rutingleddet, nå målt),
-og én falsifikator er **fjernet**. Ingen av dem velter en konklusjon; alle er
+og én falsifikator er **tatt inn igjen med sperren navngitt** (F1: kjøring 2
+snudde merkelappen, ikke utfallet). Ingen av dem velter en konklusjon; alle er
 rettet i filen.
+
+**Ett forbehold til protokollen:** ni punkter, og to av dem bæres av bare én av
+to kjøringer. Det er ikke et argument mot panelet — det er argumentet *for*
+ledgerlinja: hadde kjøring 1 vært det eneste sporet, ville F1-avgjørelsen stått
+som «innvendt av panelet» uten at noen kunne se at den ikke reproduserte.
 
 ## F. Hva som gjenstår å bestemme av et menneske
 
