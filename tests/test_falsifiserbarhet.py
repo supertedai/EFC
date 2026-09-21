@@ -152,13 +152,19 @@ class TestFalsifiserbarhet:
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
         assert len(off) == 116, f"the public set changed: {len(off)}"
-        assert kan == 27, (
-            f"can be felled: {kan} — expected 27. 19 was wrong: 2 stubs and 6 "
-            f"framework nodes without a fixed threshold could not be felled")
+        assert kan == 28, (
+            f"can be felled: {kan} — expected 28. 19 was wrong: 2 stubs and 6 "
+            f"framework nodes without a fixed threshold could not be felled. "
+            f"Measured 2026-09-21 (t_c355bf46): `obs.bao` carries a sealed "
+            f"prediction with nowhere else to live and left the instrument "
+            f"exemption, 27 -> 28")
         assert avventer == 4, (
             f"waiting: {avventer} — expected 4 (2 stubs + 2 without a fixed "
             f"threshold). Five nodes got a criterion written and are thus FIXED; "
             f"the two categories are disjoint.")
-        assert kan + avventer == 31, (
-            f"{kan} + {avventer} = {kan + avventer}, but there are 28 EFC nodes "
-            f"among the public ones")
+        assert kan + avventer == 32, (
+            f"{kan} + {avventer} = {kan + avventer}, but 32 public nodes have "
+            f"declared a contract: the 31 public EFC claims (27 with a "
+            f"falsifier + the 4 whose threshold is not fixed) and `obs.bao`, "
+            f"which is an observation and not a claim, but whose sealed "
+            f"prediction has no other node to live in")

@@ -89,6 +89,13 @@ def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
 # Measured 2026-09-19: 126 nodes (13 new since), 31 can be felled, 4 with a
 # status, 91 with a written class.
 #
+# Measured 2026-09-21 (card t_c355bf46): `obs.bao` carries a sealed prediction
+# contract in its own node and was exempt on the instrument ground -- a claim
+# that has nowhere else to live, since `efc.hubble_engine` (which it is
+# OBSERVED_THROUGH) carries no prediction block and no sealed DOI. It has now
+# taken its position: 32 can be felled (28 public + 4 internal), 90 with a
+# written class, and the 63-node instrument class is a 62-node class.
+#
 # The rule is the same as for bus and engine: the choice must be TAKEN. An
 # instrument node cannot be felled by an observation — that is a valid answer.
 # An empty field is not an answer, and a text that recurs on fifty nodes is
@@ -128,13 +135,13 @@ def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> 
     skylder = [n["id"] for n in nodes if n.get("falsifiserbarhet")]
     maa = [n["id"] for n in nodes if _grunn(n)]
     assert len(nodes) == 126, f"the atlas changed size: {len(nodes)}"
-    assert len(kan) == 31, (
-        f"falsifiable: {len(kan)} — expected 31 (27 public + 4 "
+    assert len(kan) == 32, (
+        f"falsifiable: {len(kan)} — expected 32 (28 public + 4 "
         f"internal). If the number fell, a node lost its falsifier")
     assert len(skylder) == 4, (
         f"with a falsifiability status: {len(skylder)} — expected 4")
-    assert len(maa) == 91, (
-        f"with a written reason: {len(maa)} — expected 91. If the number fell, "
+    assert len(maa) == 90, (
+        f"with a written reason: {len(maa)} — expected 90. If the number fell, "
         f"a node has been given a falsifier; someone must have decided that")
     assert len(kan) + len(skylder) + len(maa) == len(nodes), (
         "at least one node has answered twice — see test_atlas_motsigelse.py")
@@ -148,6 +155,10 @@ def test_grunnen_er_en_deklarert_klasse(nodes: list[dict]) -> None:
     and one self-description. Requiring a UNIQUE sentence per node would
     require 91 paraphrases of two ideas; that was this test's earlier demand,
     and the data broke it the right way.
+
+    Measured 2026-09-21 (card t_c355bf46): 90 reasons - the instrument class
+    is 62, because `obs.bao` left it for a falsifier of its own. The classes
+    are still closed; the pin below is the decision, and it moved with it.
 
     What must hold instead: the class vocabulary is CLOSED (the counts are
     pinned here, so a node joining or leaving a class is a decision someone
@@ -179,8 +190,8 @@ def test_grunnen_er_en_deklarert_klasse(nodes: list[dict]) -> None:
         sett[nok] = t
 
     klasse = sorted(len(ids) for ids in tekster.values() if len(ids) > 1)
-    assert klasse == [27, 63], (
-        f"the classes changed: {klasse} - expected [27, 63]. A node moved "
+    assert klasse == [27, 62], (
+        f"the classes changed: {klasse} - expected [27, 62]. A node moved "
         f"between classes; that is a decision someone must make")
 
 def test_grunnen_navngir_ikke_feltet_den_erstatter(nodes: list[dict]) -> None:
