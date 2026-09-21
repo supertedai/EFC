@@ -1,8 +1,17 @@
 {
  "name": "EFC DOI metadata correction proposals",
  "schema": "efc-doi-metadata-corrections/1",
- "input_digest": "da26203004c6e4ef21866aa473b20614cdd3b80cad5475e96ceea61855b59e40",
- "note": "Proposals only; nothing is edited. Each 'current' value is read live from 31942821/index.json by JSON pointer at build time, so a drifted file changes this register instead of silently going stale. Each entry requires author word because it touches a published DOI package. PDF and code are normative and are never the target of these proposals.",
+ "input_digest": "1158e29913ac8e73612f1a113862ca11e3282f36d48fc911f368e049aefff670",
+ "status_vocabulary": [
+  "proposed",
+  "applied"
+ ],
+ "counts": {
+  "total": 8,
+  "applied": 8,
+  "proposed": 0
+ },
+ "note": "Each 'current' value is read live from 31942821/index.json by JSON pointer at build time, so a drifted file changes this register instead of silently going stale; 'status' is computed by comparing that live value with 'expected_value' (applied = the package carries exactly the corrected value, proposed = it does not). Every entry touches a published DOI package, so each one needs author word; 'author_word_ref' names the instruction that licensed an edit, and a licensed entry that is not applied is drift after the edit. PDF and code are normative and are never the target of these corrections.",
  "corrections": [
   {
    "id": "corr-F1-description",
@@ -17,10 +26,16 @@
     "src/entropy_production.py gamma_total vs gamma_phenomenological",
     "index.json key_result (Scenario B)"
    ],
+   "mirrors": [
+    "metadata.json:/abstract (same sentence)",
+    "README.md:/Overview (same sentence)"
+   ],
    "requires_author_word": true,
-   "status": "proposed",
-   "current": "Derives the entropy production function Γ(ρ) from first principles using Bose–Einstein occupation statistics of grid modes and the von Neumann entropy functional. The work yields a saturating form Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) with ρcrit emerging from the grid-mode energy scale a0, satisfying low-density linearity and high-density saturation. It also clarifies that Γ(ρ) and the gravitational response μBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
-   "verified_against_file": true
+   "expected_value": "Derives the entropy production function Γ(ρ) from first principles using Bose–Einstein occupation statistics of grid modes and the von Neumann entropy functional. The derivation yields the Scenario B form Γ(ρ) ∝ ρ^(3/2)/(ρ + ρcrit), with ρcrit emerging from the grid-mode energy scale a0; it is sub-linear at low density (exponent 3/2, not 1) and non-saturating at high density (grows as ρ^(1/2)). The saturating form Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) is a phenomenological approximation to the derived result, valid to about 20% over the cosmologically relevant density range; it is not the derived output of the microphysics (§5–6 of the paper). The work also clarifies that Γ(ρ) and the gravitational response μBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "Derives the entropy production function Γ(ρ) from first principles using Bose–Einstein occupation statistics of grid modes and the von Neumann entropy functional. The derivation yields the Scenario B form Γ(ρ) ∝ ρ^(3/2)/(ρ + ρcrit), with ρcrit emerging from the grid-mode energy scale a0; it is sub-linear at low density (exponent 3/2, not 1) and non-saturating at high density (grows as ρ^(1/2)). The saturating form Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) is a phenomenological approximation to the derived result, valid to about 20% over the cosmologically relevant density range; it is not the derived output of the microphysics (§5–6 of the paper). The work also clarifies that Γ(ρ) and the gravitational response μBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
+   "verified_against_file": true,
+   "status": "applied"
   },
   {
    "id": "corr-F1-mainfinding",
@@ -36,9 +51,11 @@
     "index.json key_result"
    ],
    "requires_author_word": true,
-   "status": "proposed",
-   "current": "From BE occupation plus von Neumann entropy, Γ(ρ) takes the saturating form Γ0·ρ/(ρ+ρcrit) with ρcrit emerging from the a0 grid-mode scale, and Γ is shown to be distinct from μBE(g), resolving double-counting.",
-   "verified_against_file": true
+   "expected_value": "From BE occupation plus von Neumann entropy the derived form is Scenario B, Γ(ρ) ∝ ρ^(3/2)/(ρ+ρcrit), with ρcrit emerging from the a0 grid-mode scale; the saturating ρ/(ρ+ρcrit) is a phenomenological approximation to it (~20% accuracy), not the derived result. Γ is shown to be distinct from μBE(g), resolving double-counting.",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "From BE occupation plus von Neumann entropy the derived form is Scenario B, Γ(ρ) ∝ ρ^(3/2)/(ρ+ρcrit), with ρcrit emerging from the a0 grid-mode scale; the saturating ρ/(ρ+ρcrit) is a phenomenological approximation to it (~20% accuracy), not the derived result. Γ is shown to be distinct from μBE(g), resolving double-counting.",
+   "verified_against_file": true,
+   "status": "applied"
   },
   {
    "id": "corr-F1-xofrho",
@@ -50,12 +67,15 @@
    "proposed": "x(rho) = sqrt(g/a0) = sqrt(beta*rho/a0)",
    "normative_basis": [
     "src/entropy_production.py x_from_rho: x = sqrt(beta*rho/a0)",
-    "g = beta*rho implies x = sqrt(g/a0), not g/a0"
+    "g = beta*rho implies x = sqrt(g/a0), not g/a0",
+    "PDF Eq. 4 and Eq. 11: x = sqrt(g/a0)"
    ],
    "requires_author_word": true,
-   "status": "proposed",
-   "current": "x(\\rho) = \\frac{g}{a_0} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
-   "verified_against_file": true
+   "expected_value": "x(\\rho) = \\sqrt{\\frac{g}{a_0}} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "x(\\rho) = \\sqrt{\\frac{g}{a_0}} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
+   "verified_against_file": true,
+   "status": "applied"
   },
   {
    "id": "corr-F1-beoccupation",
@@ -67,12 +87,94 @@
    "proposed": "n(g) = mu_BE(g) = 1/(exp(sqrt(g/a0)) - 1)",
    "normative_basis": [
     "src/entropy_production.py BEOccupation header: n(g) = 1/(exp(sqrt(g/a0)) - 1)",
-    "occupation(x) = 1/(e^x - 1) with x = sqrt(beta*rho/a0)"
+    "occupation(x) = 1/(e^x - 1) with x = sqrt(beta*rho/a0)",
+    "PDF Eq. 1: n(g) = mu_BE(g) = 1/(exp(sqrt(g/a0)) - 1)"
    ],
    "requires_author_word": true,
-   "status": "proposed",
-   "current": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp(g/a_0) - 1}",
-   "verified_against_file": true
+   "expected_value": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp\\left(\\sqrt{g/a_0}\\right) - 1}",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp\\left(\\sqrt{g/a_0}\\right) - 1}",
+   "verified_against_file": true,
+   "status": "applied"
+  },
+  {
+   "id": "corr-F1-entropymarginal",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/core_equations/entropy_marginal/latex",
+   "problem": "third instance of the same sqrt transcription: the middle term is written g/a0, but ds/dn = x = sqrt(g/a0) (PDF Eq. 11; the code returns x)",
+   "proposed": "ds/dn = x = sqrt(g/a0)",
+   "normative_basis": [
+    "PDF Eq. 11: ds/dn = ln(e^x) = x = sqrt(g/a0)",
+    "src/entropy_production.py von_neumann_entropy.ds_dn_for_BE returns x"
+   ],
+   "scope_note": "Not named individually in the card, which names the sqrt transcription for be_occupation; this is the same defect class in the same file and was corrected in the same pass. Revert alone if the author wants it out.",
+   "requires_author_word": true,
+   "expected_value": "\\frac{ds}{dn} = x = \\sqrt{\\frac{g}{a_0}}",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "\\frac{ds}{dn} = x = \\sqrt{\\frac{g}{a_0}}",
+   "verified_against_file": true,
+   "status": "applied"
+  },
+  {
+   "id": "corr-F1-gammaresult",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/core_equations/gamma_result/latex",
+   "problem": "the derived-result slot carried the saturating ansatz Gamma_0*rho/(rho+rho_crit) as if it were derived",
+   "proposed": "Derived (Scenario B) form Gamma(rho) ~ rho^(3/2)/(rho+rho_crit), matching PDF Eq. 37-38, key_result and src gamma_total",
+   "normative_basis": [
+    "PDF Eq. 37-38 (derived form is rho^(3/2)/(rho+rho_crit))",
+    "src/entropy_production.py GammaDerivation.gamma_total",
+    "index.json key_result"
+   ],
+   "requires_author_word": true,
+   "expected_value": "\\Gamma(\\rho) \\propto \\frac{\\rho^{3/2}}{\\rho + \\rho_{\\mathrm{crit}}}",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "\\Gamma(\\rho) \\propto \\frac{\\rho^{3/2}}{\\rho + \\rho_{\\mathrm{crit}}}",
+   "verified_against_file": true,
+   "status": "applied"
+  },
+  {
+   "id": "corr-F1-gammaphenomenological",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/core_equations/gamma_phenomenological_approx/latex",
+   "problem": "the ansatz had no slot of its own, so it could only be read as the derived result; the paper calls it a phenomenological approximation (~20%)",
+   "proposed": "A separate gamma_phenomenological_approx entry holding the saturating ansatz, so 'derived' and 'phenomenological' cannot be confused again",
+   "normative_basis": [
+    "PDF Section 4.5 Eq. 35 and Section 5.3 (~20% approximation)",
+    "src/entropy_production.py GammaDerivation.gamma_phenomenological"
+   ],
+   "requires_author_word": true,
+   "expected_value": "\\Gamma(\\rho) \\simeq \\Gamma_0 \\, \\frac{\\rho}{\\rho + \\rho_{\\mathrm{crit}}}",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "\\Gamma(\\rho) \\simeq \\Gamma_0 \\, \\frac{\\rho}{\\rho + \\rho_{\\mathrm{crit}}}",
+   "verified_against_file": true,
+   "status": "applied"
+  },
+  {
+   "id": "corr-F1-kc5",
+   "finding_id": "F1",
+   "doi": "10.6084/m9.figshare.31942821",
+   "file": "index.json",
+   "json_pointer": "/kill_criteria/4",
+   "problem": "KC5 restates the BE response with the exponent g/a0 instead of sqrt(g/a0) — the same transcription error as be_occupation, in prose",
+   "proposed": "KC5 uses mu_BE(g) = 1/(e^{sqrt(g/a0)} - 1)",
+   "normative_basis": [
+    "PDF Eq. 1",
+    "src/entropy_production.py BEOccupation"
+   ],
+   "scope_note": "Transcription only; KC5's kill substance (mu_BE ruled out) is untouched. Not named individually in the card — same defect class, same pass.",
+   "requires_author_word": true,
+   "expected_value": "KC5: Observational constraints decisively rule out μBE(g) = 1/(e^{√(g/a_0)}−1) as the grid-mode response, thereby invalidating the shared statistical basis used to derive Γ(ρ).",
+   "author_word_ref": "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata",
+   "current": "KC5: Observational constraints decisively rule out μBE(g) = 1/(e^{√(g/a_0)}−1) as the grid-mode response, thereby invalidating the shared statistical basis used to derive Γ(ρ).",
+   "verified_against_file": true,
+   "status": "applied"
   }
  ]
 }

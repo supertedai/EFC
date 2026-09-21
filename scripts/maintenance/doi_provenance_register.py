@@ -14,11 +14,16 @@ Produces two additive, machine-readable files under
      time: the source package's ``citations.bib`` (or code header, for the one
      COMPANION_TO edge) is actually read, and the target DOI's 8-digit id must
      be present. An unconfirmable edge ABORTS the build instead of degrading.
-  2. ``doi_metadata_correction_proposals.json`` — proposed metadata-only
-     corrections. Each ``current`` value is read live from the package's
-     ``index.json`` by JSON pointer at build time, so a drifted file changes the
-     register instead of silently going stale. Every entry is a PROPOSAL
-     (``requires_author_word``); nothing is edited.
+  2. ``doi_metadata_correction_proposals.json`` — metadata-only corrections with
+     an explicit lifecycle. Each ``current`` value is read live from the
+     package's ``index.json`` by JSON pointer at build time, so a drifted file
+     changes the register instead of silently going stale, and ``status`` is
+     COMPUTED by comparing that live value with the entry's ``expected_value``
+     (``applied`` / ``proposed``). Every entry touches a published DOI package
+     and therefore carries ``requires_author_word``; ``author_word_ref`` names
+     the human instruction that licensed an edit. Tests own the gate: a licensed
+     entry that is not applied is drift after the edit, and an unlicensed entry
+     that IS applied is an edit without word. PDF and code are never a target.
 
 Scope honesty:
   * A ``CITES`` edge records CITATION provenance, not empirical truth. "A cites
@@ -74,6 +79,65 @@ RESERVED_RELATIONS = (
 )
 
 STATUS_VOCAB = ("source_verified", "open_mapping")
+
+# Correction lifecycle: ``proposed`` = the package does NOT carry the value yet
+# (nothing has been edited); ``applied`` = the package DOES carry exactly the
+# proposed value. The status is computed by build(), never hand-written, and
+# ``author_word_ref`` says which human instruction licensed an edit. The gate
+# is one-sided on purpose: an entry with a word MUST be applied (a re-drift of
+# index.json flips it back to ``proposed`` and fails the test), and an entry
+# WITHOUT a word must NOT be applied (an unlicensed edit of a published
+# package fails the same way).
+CORRECTION_STATUS_VOCAB = ("proposed", "applied")
+
+# The author instruction this pass was carried out under (card t_3a2d983f,
+# 2026-09-19): correct the machine-package metadata so the exact form reads as
+# derived and the ansatz as phenomenological, fix the sqrt transcription, and
+# keep the DOI rule (builds on, does not break). The published PDF is out of
+# scope; only the machine package is corrected.
+AUTHOR_WORD_CARD = "kanban card t_3a2d983f (2026-09-19): correct the machine package metadata"
+
+# Exact target values for the 31942821 metadata corrections. These are the
+# ONLY strings the register accepts as "applied"; they are compared with the
+# value read live from index.json by JSON pointer.
+DESC_CORRECTED = (
+    "Derives the entropy production function \u0393(\u03c1) from first principles using "
+    "Bose\u2013Einstein occupation statistics of grid modes and the von Neumann entropy "
+    "functional. The derivation yields the Scenario B form \u0393(\u03c1) \u221d "
+    "\u03c1^(3/2)/(\u03c1 + \u03c1crit), with \u03c1crit emerging from the grid-mode energy "
+    "scale a0; it is sub-linear at low density (exponent 3/2, not 1) and non-saturating "
+    "at high density (grows as \u03c1^(1/2)). The saturating form \u0393(\u03c1) = \u03930 "
+    "\u00b7 \u03c1/(\u03c1 + \u03c1crit) is a phenomenological approximation to the derived "
+    "result, valid to about 20% over the cosmologically relevant density range; it is not "
+    "the derived output of the microphysics (\u00a75\u20136 of the paper). The work also "
+    "clarifies that \u0393(\u03c1) and the gravitational response \u03bcBE(g) are distinct "
+    "dynamical and static quantities, resolving potential double-counting."
+)
+MAIN_FINDING_CORRECTED = (
+    "From BE occupation plus von Neumann entropy the derived form is Scenario B, "
+    "\u0393(\u03c1) \u221d \u03c1^(3/2)/(\u03c1+\u03c1crit), with \u03c1crit emerging from "
+    "the a0 grid-mode scale; the saturating \u03c1/(\u03c1+\u03c1crit) is a "
+    "phenomenological approximation to it (~20% accuracy), not the derived result. \u0393 "
+    "is shown to be distinct from \u03bcBE(g), resolving double-counting."
+)
+BE_OCCUPATION_LATEX = (
+    "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp\\left(\\sqrt{g/a_0}\\right) - 1}"
+)
+X_OF_RHO_LATEX = (
+    "x(\\rho) = \\sqrt{\\frac{g}{a_0}} = \\sqrt{\\frac{\\beta\\rho}{a_0}}"
+)
+ENTROPY_MARGINAL_LATEX = "\\frac{ds}{dn} = x = \\sqrt{\\frac{g}{a_0}}"
+GAMMA_RESULT_LATEX = (
+    "\\Gamma(\\rho) \\propto \\frac{\\rho^{3/2}}{\\rho + \\rho_{\\mathrm{crit}}}"
+)
+GAMMA_PHENOMENOLOGICAL_LATEX = (
+    "\\Gamma(\\rho) \\simeq \\Gamma_0 \\, \\frac{\\rho}{\\rho + \\rho_{\\mathrm{crit}}}"
+)
+KC5_CORRECTED = (
+    "KC5: Observational constraints decisively rule out \u03bcBE(g) = "
+    "1/(e^{\u221a(g/a_0)}\u22121) as the grid-mode response, thereby invalidating the "
+    "shared statistical basis used to derive \u0393(\u03c1)."
+)
 
 
 def _doi8(doi: str) -> str:
@@ -196,8 +260,12 @@ def _edge(frm: str, to: str, claim: str, src_file: str) -> dict:
 
 # ---------------------------------------------------------------------------
 # Corrections. Each has a json_pointer into 31942821/index.json; build() reads
-# the CURRENT value live so the register cannot silently drift. ``proposed``
-# and ``problem`` are human text; ``current`` is machine-populated.
+# the CURRENT value live so the register cannot silently drift, and COMPUTES
+# the status by comparing that live value with ``expected_value``: "applied"
+# when they are equal, "proposed" when they are not. ``proposed`` and
+# ``problem`` are human text; ``current``, ``status`` and ``verified_against_file``
+# are machine-populated. An entry with an ``author_word_ref`` must be applied;
+# an entry without one must not be (see CORRECTION_STATUS_VOCAB above).
 # ---------------------------------------------------------------------------
 def _corrections() -> list[dict]:
     return [
@@ -220,8 +288,13 @@ def _corrections() -> list[dict]:
                 "src/entropy_production.py gamma_total vs gamma_phenomenological",
                 "index.json key_result (Scenario B)",
             ],
+            "mirrors": [
+                "metadata.json:/abstract (same sentence)",
+                "README.md:/Overview (same sentence)",
+            ],
             "requires_author_word": True,
-            "status": "proposed",
+            "expected_value": DESC_CORRECTED,
+            "author_word_ref": AUTHOR_WORD_CARD,
         },
         {
             "id": "corr-F1-mainfinding",
@@ -243,7 +316,8 @@ def _corrections() -> list[dict]:
                 "index.json key_result",
             ],
             "requires_author_word": True,
-            "status": "proposed",
+            "expected_value": MAIN_FINDING_CORRECTED,
+            "author_word_ref": AUTHOR_WORD_CARD,
         },
         {
             "id": "corr-F1-xofrho",
@@ -256,9 +330,11 @@ def _corrections() -> list[dict]:
             "normative_basis": [
                 "src/entropy_production.py x_from_rho: x = sqrt(beta*rho/a0)",
                 "g = beta*rho implies x = sqrt(g/a0), not g/a0",
+                "PDF Eq. 4 and Eq. 11: x = sqrt(g/a0)",
             ],
             "requires_author_word": True,
-            "status": "proposed",
+            "expected_value": X_OF_RHO_LATEX,
+            "author_word_ref": AUTHOR_WORD_CARD,
         },
         {
             "id": "corr-F1-beoccupation",
@@ -271,9 +347,103 @@ def _corrections() -> list[dict]:
             "normative_basis": [
                 "src/entropy_production.py BEOccupation header: n(g) = 1/(exp(sqrt(g/a0)) - 1)",
                 "occupation(x) = 1/(e^x - 1) with x = sqrt(beta*rho/a0)",
+                "PDF Eq. 1: n(g) = mu_BE(g) = 1/(exp(sqrt(g/a0)) - 1)",
             ],
             "requires_author_word": True,
-            "status": "proposed",
+            "expected_value": BE_OCCUPATION_LATEX,
+            "author_word_ref": AUTHOR_WORD_CARD,
+        },
+        {
+            "id": "corr-F1-entropymarginal",
+            "finding_id": "F1",
+            "doi": "10.6084/m9.figshare.31942821",
+            "file": "index.json",
+            "json_pointer": "/core_equations/entropy_marginal/latex",
+            "problem": (
+                "third instance of the same sqrt transcription: the middle term is written "
+                "g/a0, but ds/dn = x = sqrt(g/a0) (PDF Eq. 11; the code returns x)"
+            ),
+            "proposed": "ds/dn = x = sqrt(g/a0)",
+            "normative_basis": [
+                "PDF Eq. 11: ds/dn = ln(e^x) = x = sqrt(g/a0)",
+                "src/entropy_production.py von_neumann_entropy.ds_dn_for_BE returns x",
+            ],
+            "scope_note": (
+                "Not named individually in the card, which names the sqrt transcription for "
+                "be_occupation; this is the same defect class in the same file and was "
+                "corrected in the same pass. Revert alone if the author wants it out."
+            ),
+            "requires_author_word": True,
+            "expected_value": ENTROPY_MARGINAL_LATEX,
+            "author_word_ref": AUTHOR_WORD_CARD,
+        },
+        {
+            "id": "corr-F1-gammaresult",
+            "finding_id": "F1",
+            "doi": "10.6084/m9.figshare.31942821",
+            "file": "index.json",
+            "json_pointer": "/core_equations/gamma_result/latex",
+            "problem": (
+                "the derived-result slot carried the saturating ansatz "
+                "Gamma_0*rho/(rho+rho_crit) as if it were derived"
+            ),
+            "proposed": (
+                "Derived (Scenario B) form Gamma(rho) ~ rho^(3/2)/(rho+rho_crit), matching "
+                "PDF Eq. 37-38, key_result and src gamma_total"
+            ),
+            "normative_basis": [
+                "PDF Eq. 37-38 (derived form is rho^(3/2)/(rho+rho_crit))",
+                "src/entropy_production.py GammaDerivation.gamma_total",
+                "index.json key_result",
+            ],
+            "requires_author_word": True,
+            "expected_value": GAMMA_RESULT_LATEX,
+            "author_word_ref": AUTHOR_WORD_CARD,
+        },
+        {
+            "id": "corr-F1-gammaphenomenological",
+            "finding_id": "F1",
+            "doi": "10.6084/m9.figshare.31942821",
+            "file": "index.json",
+            "json_pointer": "/core_equations/gamma_phenomenological_approx/latex",
+            "problem": (
+                "the ansatz had no slot of its own, so it could only be read as the derived "
+                "result; the paper calls it a phenomenological approximation (~20%)"
+            ),
+            "proposed": (
+                "A separate gamma_phenomenological_approx entry holding the saturating "
+                "ansatz, so 'derived' and 'phenomenological' cannot be confused again"
+            ),
+            "normative_basis": [
+                "PDF Section 4.5 Eq. 35 and Section 5.3 (~20% approximation)",
+                "src/entropy_production.py GammaDerivation.gamma_phenomenological",
+            ],
+            "requires_author_word": True,
+            "expected_value": GAMMA_PHENOMENOLOGICAL_LATEX,
+            "author_word_ref": AUTHOR_WORD_CARD,
+        },
+        {
+            "id": "corr-F1-kc5",
+            "finding_id": "F1",
+            "doi": "10.6084/m9.figshare.31942821",
+            "file": "index.json",
+            "json_pointer": "/kill_criteria/4",
+            "problem": (
+                "KC5 restates the BE response with the exponent g/a0 instead of "
+                "sqrt(g/a0) — the same transcription error as be_occupation, in prose"
+            ),
+            "proposed": "KC5 uses mu_BE(g) = 1/(e^{sqrt(g/a0)} - 1)",
+            "normative_basis": [
+                "PDF Eq. 1",
+                "src/entropy_production.py BEOccupation",
+            ],
+            "scope_note": (
+                "Transcription only; KC5's kill substance (mu_BE ruled out) is untouched. "
+                "Not named individually in the card — same defect class, same pass."
+            ),
+            "requires_author_word": True,
+            "expected_value": KC5_CORRECTED,
+            "author_word_ref": AUTHOR_WORD_CARD,
         },
     ]
 
@@ -284,6 +454,8 @@ def _resolve_pointer(doc: dict, pointer: str):
     for p in parts:
         if isinstance(cur, dict) and p in cur:
             cur = cur[p]
+        elif isinstance(cur, list) and p.isdigit() and int(p) < len(cur):
+            cur = cur[int(p)]
         else:
             raise SystemExit(f"json_pointer {pointer} not found in 31942821/index.json")
     return cur
@@ -338,6 +510,13 @@ def build() -> tuple[dict, dict]:
     for c in corrections:
         c["current"] = _resolve_pointer(idx_doc, c["json_pointer"])
         c["verified_against_file"] = True
+        # ``status`` is COMPUTED, never hand-written: "applied" means the
+        # package already carries exactly the proposed value. A licensed entry
+        # that is not applied is drift AFTER the edit, and an unlicensed entry
+        # that IS applied is an edit without author word; tests own that gate.
+        c["status"] = ("applied" if c["current"] == c["expected_value"]
+                       else "proposed")
+    n_applied = sum(1 for c in corrections if c["status"] == "applied")
     verified_files["docs/papers/efc/Derivation_of_the_Entropy_Production/index.json"] = \
         idx_path.read_bytes()
 
@@ -387,12 +566,21 @@ def build() -> tuple[dict, dict]:
         "name": "EFC DOI metadata correction proposals",
         "schema": "efc-doi-metadata-corrections/1",
         "input_digest": input_digest,
+        "status_vocabulary": list(CORRECTION_STATUS_VOCAB),
+        "counts": {
+            "total": len(corrections),
+            "applied": n_applied,
+            "proposed": len(corrections) - n_applied,
+        },
         "note": (
-            "Proposals only; nothing is edited. Each 'current' value is read live from "
-            "31942821/index.json by JSON pointer at build time, so a drifted file changes this "
-            "register instead of silently going stale. Each entry requires author word because "
-            "it touches a published DOI package. PDF and code are normative and are never the "
-            "target of these proposals."
+            "Each 'current' value is read live from 31942821/index.json by JSON pointer at "
+            "build time, so a drifted file changes this register instead of silently going "
+            "stale; 'status' is computed by comparing that live value with 'expected_value' "
+            "(applied = the package carries exactly the corrected value, proposed = it does "
+            "not). Every entry touches a published DOI package, so each one needs author "
+            "word; 'author_word_ref' names the instruction that licensed an edit, and a "
+            "licensed entry that is not applied is drift after the edit. PDF and code are "
+            "normative and are never the target of these corrections."
         ),
         "corrections": corrections,
     }
@@ -416,10 +604,12 @@ def main() -> int:
         json.dumps(corrections_doc, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     c = chain["counts"]
+    cc = corrections_doc["counts"]
     print(
         f"doi-provenance-register: {c['total']} relations "
         f"(source_verified {c['source_verified']}, open_mapping {c['open_mapping']}); "
-        f"{len(corrections_doc['corrections'])} metadata correction proposals"
+        f"{cc['total']} metadata corrections "
+        f"(applied {cc['applied']}, proposed {cc['proposed']})"
     )
     return 0
 

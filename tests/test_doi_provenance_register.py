@@ -185,3 +185,99 @@ def test_generated_files_match_build(built):
         assert path.exists(), f"missing generated register: {path.name}"
         on_disk = json.loads(path.read_text(encoding="utf-8"))
         assert on_disk == doc, path.name
+
+
+# ---------------------------------------------------------------------------
+# The correction lifecycle gate (F1 / card t_3a2d983f). The status is computed
+# from the value read live out of index.json, so these tests fail the moment the
+# published package drifts back to the old forms — or the moment someone edits
+# it without author word.
+# ---------------------------------------------------------------------------
+def test_correction_status_vocabulary_closed(built):
+    _, corrections = built
+    allowed = set(corrections["status_vocabulary"])
+    for c in corrections["corrections"]:
+        assert c["status"] in allowed, c["id"]
+
+
+def test_licensed_corrections_are_applied(built):
+    """Every correction licensed by an author instruction MUST be applied.
+
+    A failure here is not a test bug: index.json no longer carries the value the
+    author word licensed. Either the file drifted (restore it) or the edit was
+    intentional (then update the entry's expected_value and its author_word_ref
+    deliberately, in the same change).
+    """
+    _, corrections = built
+    not_applied = [c["id"] for c in corrections["corrections"]
+                   if c.get("author_word_ref") and c["status"] != "applied"]
+    assert not not_applied, (
+        "licensed metadata corrections are not applied in 31942821/index.json: "
+        f"{not_applied}"
+    )
+
+
+def test_unlicensed_corrections_are_not_applied(built):
+    """An entry without author word must NOT already be present in the package."""
+    _, corrections = built
+    applied = [c["id"] for c in corrections["corrections"]
+               if not c.get("author_word_ref") and c["status"] == "applied"]
+    assert not applied, (
+        "published package carries corrections that no author instruction "
+        f"licensed: {applied}"
+    )
+
+
+def test_correction_counts_reconcile(built):
+    _, corrections = built
+    counts = corrections["counts"]
+    entries = corrections["corrections"]
+    assert counts["total"] == len(entries)
+    assert counts["applied"] == sum(1 for c in entries if c["status"] == "applied")
+    assert counts["proposed"] == sum(1 for c in entries if c["status"] == "proposed")
+    assert counts["applied"] + counts["proposed"] == counts["total"]
+
+
+def test_corrections_carry_expected_values(built):
+    _, corrections = built
+    for c in corrections["corrections"]:
+        assert c.get("expected_value"), c["id"]
+        assert c["current"] == c["expected_value"] or c["status"] == "proposed", c["id"]
+
+
+def test_pointer_into_a_list_is_resolved(gen):
+    """/kill_criteria/4 addresses an array element; the resolver must handle it."""
+    doc = {"kill_criteria": ["a", "b", "c", "d", "KC5: target"]}
+    assert gen._resolve_pointer(doc, "/kill_criteria/4") == "KC5: target"
+    with pytest.raises(SystemExit):
+        gen._resolve_pointer(doc, "/kill_criteria/9")
+
+
+def test_prose_no_longer_presents_the_ansatz_as_derived(built):
+    """Negative guard, independent of expected_value: the drifted sentences.
+
+    The description and main_finding must not read the saturating ansatz as the
+    derivation's outcome.
+    """
+    idx = json.loads(
+        (ROOT / "docs" / "papers" / "efc" / "Derivation_of_the_Entropy_Production"
+         / "index.json").read_text(encoding="utf-8"))
+    prose = idx["description"] + " " + idx["key_results"]["main_finding"]
+    assert "phenomenological approximation" in prose
+    for drifted in ("The work yields a saturating form",
+                    "takes the saturating form",
+                    "satisfying low-density linearity and high-density saturation"):
+        assert drifted not in prose, drifted
+
+
+def test_be_exponent_is_the_sqrt_form_in_every_metadata_field(built):
+    """Widened guard: g/a0 appears nowhere as the BE exponent or as x."""
+    idx = json.loads(
+        (ROOT / "docs" / "papers" / "efc" / "Derivation_of_the_Entropy_Production"
+         / "index.json").read_text(encoding="utf-8"))
+    assert "exp(g/a0)" not in idx["description"]
+    for name, eq in idx["core_equations"].items():
+        latex = eq.get("latex", "")
+        if name in ("be_occupation", "x_of_rho", "entropy_marginal"):
+            assert "sqrt" in latex, f"{name} lost its sqrt: {latex}"
+    assert "e^{g/a0}" not in idx["kill_criteria"][4]
