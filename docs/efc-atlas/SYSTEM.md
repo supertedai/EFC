@@ -6,7 +6,7 @@ _Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 117 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 117 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
 
 ## Decisions locked
 
@@ -26,10 +26,10 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert, kosmos-galakser-mast, kosmos-romvaer-swpc, kosmos-sol-goes, kosmos-transienter-alerce, kosmos-kosmologi-desi-bao)_
 4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan, verden-vaer)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
-6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
+6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre, verden-kvanteinfo)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.
+9. **The whole atlas** — Everything at once — 117 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.
 
 ## Structures
 
@@ -973,6 +973,20 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 - **Q-IB1** verden.klima_isbre: the stream does not exist — waits for a connector
 
+#### QI · verden.kvanteinfo
+
+**In one line.** quantum-information publications · perspective: consensus
+
+**What it does.** category feeds (quant-ph) — proxy chain: publication -> title -> the field's activity
+
+**How it's built.** Buffer role: the field as a knowledge buffer. Epistemic: stottet / proxy / minoritet.
+
+**Steps in execution.**
+
+1. **Perspective** — consensus
+2. **Epistemics** — stottet / proxy / minoritet
+3. **Social mechanism** — the arXiv pre-print culture — publish first, judge after
+
 ### Epistemics
 
 ### No group yet
@@ -1809,7 +1823,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 
 **The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
 
-**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
+**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 96 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
 
 ## What the platform gives vs what we own
 

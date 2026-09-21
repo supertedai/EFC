@@ -1,6 +1,6 @@
 # Atlas index
 
-> 116 published nodes · 52 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other) · 7 without evidence · 21 open questions
+> 117 published nodes · 52 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other) · 7 without evidence · 21 open questions
 
 Each row is generated from the same bank as the atlas.
 
@@ -143,6 +143,8 @@ Each row is generated from the same bank as the atlas.
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **IB · verden.klima_isbre** — glacier/glaciology observations when the stream exists
   perspective=consensus · engine=not specified · bus=the stream does not exist — waits for a… · S-axis=not measured · questions=1 · group=yes
+- **QI · verden.kvanteinfo** — quantum-information publications
+  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 
 ## No group yet
 - **SO · h2o.solid** — thermodynamic phase

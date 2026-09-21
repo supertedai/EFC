@@ -130,6 +130,7 @@ KODER = {
     "kosmos.romvaer_swpc": "RK", "kosmos.sol_goes": "SG",
     "kosmos.transienter_alerce": "TA",
     "kosmos.kosmologi_desi_bao": "DB", "verden.klima_isbre": "IB",
+    "verden.kvanteinfo": "QI",
     # Homo — the regime engine
     "homo.fluxus": "HF", "homo.homeostase_buffer": "HO",
     "homo.feber_regime": "FE", "homo.aksjonspotensial": "AP",
@@ -239,6 +240,7 @@ PLASSERING = {
     "kosmos.romvaer_swpc": ("kosmos", 3), "kosmos.sol_goes": ("kosmos", 3),
     "kosmos.transienter_alerce": ("kosmos", 3),
     "kosmos.kosmologi_desi_bao": ("kosmos", 3), "verden.klima_isbre": ("samfunn", 6),
+    "verden.kvanteinfo": ("samfunn", 6),
     "optikk.dispersjon": ("ghost", 8),
     "regnbue": ("ghost", 8),
     "regnbue.observator": ("ghost", 8),

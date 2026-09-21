@@ -18,6 +18,8 @@ import socket
 SUBJECT_VOLCANO = "kosmos.jord.tilstand.usgs-vulkan"
 SUBJECT_OCEAN = "verden.klima.tilstand.noaa-tides"
 SUBJECT_PLANTS = "verden.miljo.tilstand.gbif-planter"
+SUBJECT_MICROBIOME = "verden.miljo.tilstand.mgnify-mikrobiom"
+SUBJECT_QUANTUM = "verden.teknologi.diskusjon.arxiv-quant"
 SUBJECT_DESI_BAO = "kosmos.kosmologi.observasjon.desi-bao"
 
 LEGITIMASJON = os.environ.get("NATS_LEGITIMASJON",
@@ -73,6 +75,19 @@ def analyser_planter(message: dict) -> dict:
     return {"tellinger": counts,
             "sum": sum(counts.values()),
             "feil": len(message.get("feil", []))}
+
+
+def analyser_mikrobiom(message: dict) -> dict:
+    """MGnify studies -> microbiome index."""
+    return {"nyeste_studier": message.get("nyeste_studier", []),
+            "proever_i_nyeste": message.get("proever_i_nyeste", 0),
+            "sist_oppdatert": message.get("sist_oppdatert", "")}
+
+
+def analyser_kvante(message: dict) -> dict:
+    """arXiv quant-ph -> field-activity index."""
+    return {"antall_hentet": message.get("antall_hentet", 0),
+            "nyeste_titler": message.get("nyeste_titler", [])}
 
 
 def analyser_desi_bao(melding: dict) -> dict:
