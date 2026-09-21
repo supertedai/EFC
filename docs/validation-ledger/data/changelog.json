@@ -5,6 +5,60 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-09-21",
+      "sha": "e3fda36c3e43",
+      "summary": "docs(papers): draft EFC model-family reconciliation manuscript (text phase, pre-publication)",
+      "categories": {
+        "papers": 2
+      },
+      "id": "e3fda36c3e43"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "6a53d1a36743",
+      "summary": "fix(efc): affiliation Sola, Norway in reconciliation manuscript (1A: new-only)",
+      "categories": {
+        "papers": 2
+      },
+      "id": "6a53d1a36743"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "ac4bc8eca842",
+      "summary": "review(efc): freeze blind round 1 findings (8 agents) for reconciliation manuscript, run deleg_7f3e9a1c",
+      "categories": {
+        "ledger_data": 8
+      },
+      "id": "ac4bc8eca842"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "dd0ec9a12f68",
+      "summary": "review(efc): freeze adversarial round 2 (advocate + attacker) for reconciliation manuscript, run deleg_dfcae231",
+      "categories": {
+        "ledger_data": 2
+      },
+      "id": "dd0ec9a12f68"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "4d6499da03f5",
+      "summary": "review(efc): freeze meta-review verdict (agent 9), run deleg_86a1241c",
+      "categories": {
+        "ledger_data": 2
+      },
+      "id": "4d6499da03f5"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "59c8cbed2d8c",
+      "summary": "docs(papers): apply 9-agent meta-review accepted findings to reconciliation manuscript",
+      "categories": {
+        "papers": 2
+      },
+      "id": "59c8cbed2d8c"
+    },
+    {
       "date": "2026-09-20",
       "sha": "a5593eca5f65",
       "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
@@ -269,7 +323,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
+    "last_processed_sha": "59c8cbed2d8c86c95a8d7c870c497400369acdd6",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
