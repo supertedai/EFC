@@ -5,6 +5,42 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-09-21",
+      "sha": "1d144cc69f49",
+      "summary": "chore(doi): re-derive the coverage register after the rebase — union of main and the branch",
+      "categories": {
+        "ledger_data": 3
+      },
+      "id": "1d144cc69f49"
+    },
+    {
+      "date": "2026-09-20",
+      "sha": "28e263143285",
+      "summary": "fix(atlas): the four EFC engine nodes can be settled or say why not",
+      "categories": {
+        "ledger_data": 3
+      },
+      "id": "28e263143285"
+    },
+    {
+      "date": "2026-09-20",
+      "sha": "4fe2fde27dd5",
+      "summary": "chore(atlas): regenerate the DOI coverage register after the arbiter-kind statements",
+      "categories": {
+        "ledger_data": 3
+      },
+      "id": "4fe2fde27dd5"
+    },
+    {
+      "date": "2026-09-20",
+      "sha": "257cfeff1fc1",
+      "summary": "fix(atlas): reclassify lensing/cluster from stub to terskel_ikke_fastsatt (review round 1)",
+      "categories": {
+        "ledger_data": 3
+      },
+      "id": "257cfeff1fc1"
+    },
+    {
       "date": "2026-09-20",
       "sha": "a5593eca5f65",
       "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
@@ -269,7 +305,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
+    "last_processed_sha": "1d144cc69f490024e5467ae50b85cc8634ca7baa",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }

@@ -89,6 +89,14 @@ def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
 # Measured 2026-09-19: 126 nodes (13 new since), 31 can be felled, 4 with a
 # status, 91 with a written class.
 #
+# Measured 2026-09-20 (card t_2d7a6537): the four EFC engine nodes could not
+# be settled at all — two carried `terskel_ikke_fastsatt` in a fragment, two
+# `stub` — while their thresholds DO exist in sealed sources. Two of them
+# (`efc.rotation_engine`, `efc.efc_background_engine`) now carry the contract
+# and therefore a falsifier: 33 can be felled, 2 keep a status. The two
+# remaining keep it deliberately: they compute nothing, and the schema says a
+# node that says so shall NOT count as satisfied falsifiability.
+#
 # The rule is the same as for bus and engine: the choice must be TAKEN. An
 # instrument node cannot be felled by an observation — that is a valid answer.
 # An empty field is not an answer, and a text that recurs on fifty nodes is
@@ -128,11 +136,13 @@ def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> 
     skylder = [n["id"] for n in nodes if n.get("falsifiserbarhet")]
     maa = [n["id"] for n in nodes if _grunn(n)]
     assert len(nodes) == 126, f"the atlas changed size: {len(nodes)}"
-    assert len(kan) == 31, (
-        f"falsifiable: {len(kan)} — expected 31 (27 public + 4 "
-        f"internal). If the number fell, a node lost its falsifier")
-    assert len(skylder) == 4, (
-        f"with a falsifiability status: {len(skylder)} — expected 4")
+    assert len(kan) == 33, (
+        f"falsifiable: {len(kan)} — expected 33 (27 public + 4 "
+        f"internal + the two engines given a contract 2026-09-20). If the "
+        f"number fell, a node lost its falsifier")
+    assert len(skylder) == 2, (
+        f"with a falsifiability status: {len(skylder)} — expected 2 "
+        f"(the two that compute nothing: lensing and cluster)")
     assert len(maa) == 91, (
         f"with a written reason: {len(maa)} — expected 91. If the number fell, "
         f"a node has been given a falsifier; someone must have decided that")

@@ -24,6 +24,22 @@ So the path is FAIL-CLOSED.
 A candidate must carry its own provenance (seq or Nats_Msg_Id) and its own
 uncertainty: a number without a source is a claim, and a tolerance without the
 measurement's own sigma is not the declared rule.
+
+THE SAME QUESTION, PER NODE (measured 2026-09-20, card t_2d7a6537): the four
+EFC engine nodes could neither be settled nor say why — two carried
+`falsifiserbarhet: terskel_ikke_fastsatt` in a fragment, and every other engine
+in the bank named its arbiter and its tolerance. The bank thus looked richer
+than it was: `falsifikator_unike` counted 28 unique tests while the four
+motors were silent about their own.
+
+    python3 scripts/atlas_oppgjoer.py --sjekk --node efc.rotation_engine
+        # ARMER — a complete contract, the arbiter named and not yet arrived (0)
+        # NEKT  — the node says why it cannot be settled yet (2)
+        # HULL  — neither: a defect, not a third state (4)
+
+    python3 scripts/atlas_oppgjoer.py --alle
+        # every node in the bank; exits 4 while any node is a hole — a silent
+        # node is the ONE state that may not stand.
 """
 from __future__ import annotations
 
@@ -88,13 +104,271 @@ def verdict(candidate: dict, exp: dict, arb: dict) -> dict:
     }
 
 
+EXIT_HOLE = 4
+
+#: The five fields that make a node's case settleable — mapped onto the mirrored
+#: bus form (`prediction` is CLOSED in the schema, so the card's names land here):
+#:
+#:   arbiter             -> prediction.arbiter_waiting_for
+#:   expected_observable -> prediction.observable + prediction.expected
+#:   tolerance           -> prediction.tolerance_rule
+#:   maturity            -> prediction.arbiter_waiting_for (what must arrive first)
+#:   settlement_rule     -> prediction.criteria
+#:
+#: `arbiter_waiting_for` therefore answers two of the five on purpose: in this
+#: house the deadline IS «what must arrive before the case is ripe», and the
+#: node may not name one without the other.
+KONTRAKT_FELT = ("observable", "expected", "tolerance_rule",
+                 "arbiter_waiting_for", "criteria")
+
+#: The open settlement's own words. Measured on the three sealed contracts the
+#: bank carried when this was written (`obs.fsigma8`, `obs.bao`,
+#: `efc.growth_engine`): all three answer `waiting for arbiter: …`. A settlement
+#: that does not say this has been WRITTEN — it is a judgement, not a wait.
+VENTER_PREFIKS = "waiting for arbiter"
+
+#: The house words for the arbiter axis: which KIND of instance can fell the
+#: claim. `observasjon` = a measurement can; `utledning` = only a derivation
+#: can (a limit, an identity, a self-application). Measured and named by the
+#: coverage-rule plan (t_c3930d65); the counter that splits judged contracts on
+#: it is K1. Order matters: the first word a node uses is taken as its
+#: declaration, so a node that is felled by a measurement shall not open with
+#: the other one.
+ARBITER_KIND = ("observasjon", "utledning")
+
+
+def kontrakt_mangler(node: dict) -> list[str]:
+    """What a node's settlement contract is missing. Empty means complete.
+
+    No field list is invented here: `prediction` is closed in the schema, so a
+    field outside it would not validate. The correlation is the shared key —
+    a settlement pointing at a DIFFERENT key belongs to another case.
+    """
+    p = node.get("prediction")
+    if not isinstance(p, dict):
+        return ["prediction"]
+    mangler = [f for f in KONTRAKT_FELT if not str(p.get(f) or "").strip()]
+    s = node.get("settlement")
+    if not isinstance(s, dict):
+        mangler.append("settlement")
+    elif not mangler and str(s.get("correlation") or "") != str(
+            p.get("correlation") or ""):
+        mangler.append("settlement.correlation (does not match "
+                       "prediction.correlation)")
+    return mangler
+
+
+def dom(node: dict) -> dict:
+    """One node's verdict: is the case SETTLEABLE, or does the node say why not?
+
+    Four answers, and each one is a measurement of the node — not a wish:
+
+      armer     — a complete contract and an OPEN settlement: the arbiter is
+                  named and has not arrived. The case can be settled the day it
+                  lands, and only then.
+      gjort_opp — the settlement carries a written outcome. Judged already.
+      nekt      — no complete contract, and the node SAYS WHY: a falsifiability
+                  status (`stub`, `terskel_ikke_fastsatt`) with a reason, an
+                  instrument reason, or a falsifier that stands in prose only.
+      hull      — neither. The node is SILENT about whether it can be felled,
+                  and that is a defect, not a third state.
+    """
+    s = node.get("settlement") or {}
+    utfall = str(s.get("outcome") or "").strip()
+    if utfall and not utfall.startswith(VENTER_PREFIKS):
+        return {"dom": "gjort_opp",
+                "grunn": f"a settlement is written: {utfall[:100]}"}
+
+    mangler = kontrakt_mangler(node)
+    if not mangler:
+        p = node["prediction"]
+        return {"dom": "armer",
+                "grunn": "the arbiter is named and has not arrived: "
+                         f"{p['arbiter_waiting_for']}"}
+
+    fb = node.get("falsifiserbarhet") or {}
+    status = str(fb.get("status") or "").strip()
+    grunn = str(fb.get("grunn") or "").strip()
+    if status and grunn:
+        return {"dom": "nekt", "slag": "status", "grunn": grunn,
+                "mangler_av_kontrakt": mangler}
+    if str((node.get("stipulasjoner") or {}).get(
+            "ikke_falsifiserbar_grunn") or "").strip():
+        return {"dom": "nekt", "slag": "instrument",
+                "grunn": "the node declares why it cannot be felled: "
+                         + str(node["stipulasjoner"]["ikke_falsifiserbar_grunn"]),
+                "mangler_av_kontrakt": mangler}
+    if str(node.get("ville_falsifisere") or "").strip():
+        return {"dom": "nekt", "slag": "prosa",
+                "grunn": "the falsifier stands in prose; no arbiter is named "
+                         "in the contract form",
+                "mangler_av_kontrakt": mangler}
+    return {"dom": "hull",
+            "grunn": "neither a settlement contract nor a stated reason — "
+                     f"missing {', '.join(mangler)}",
+            "mangler_av_kontrakt": mangler}
+
+
+def kontrakt_arbiter(node: dict) -> dict:
+    """Which KIND of arbiter the node binds to — declared, or not declared.
+
+    The axis the coverage-rule plan splits judged contracts on: `observasjon`
+    (a measurement can fell the claim) or `utledning` (only a derivation can).
+    A threshold that does not name its kind cannot be placed in the counter, so
+    it is read back here — from the structured statement first, because that is
+    the one a machine should use, and from the node's own words second, because
+    the two STUBS have no contract to put it in (`falsifiserbarhet` is a closed
+    block in the schema; whether the kind becomes a field there is a gate, not
+    a choice this tool may make).
+    """
+    p = node.get("prediction") or {}
+    try:
+        c = json.loads(str(p.get("criteria") or "{}"))
+    except (ValueError, TypeError):
+        c = {}
+    if not isinstance(c, dict):
+        c = {}
+    slag = str(c.get("arbiter_kind") or "").strip()
+    if slag:
+        return {"slag": slag, "hvor": "prediction.criteria.arbiter_kind"}
+    tekst = " ".join([
+        str(node.get("ville_falsifisere") or ""),
+        str((node.get("falsifiserbarhet") or {}).get("grunn") or "")])
+    for ord_ in ARBITER_KIND:
+        if ord_ in tekst:
+            return {"slag": ord_, "hvor": "the node's own words"}
+    return {"slag": None, "hvor": None}
+
+
+def dom_banken(bank: dict) -> dict:
+    """Every node's verdict, and the counts. `hull` must be 0."""
+    per: dict[str, dict] = {}
+    telling = {"armer": 0, "gjort_opp": 0, "hull": 0}
+    slag: dict[str, int] = {}
+    arbtelling: dict[str, int] = {}
+    art_hvor: dict[str, int] = {}
+    uten_art: list[str] = []
+    for n in bank.get("nodes", []):
+        d = dom(n)
+        per[n["id"]] = d
+        telling[d["dom"]] = telling.get(d["dom"], 0) + 1
+        if d["dom"] == "nekt":
+            slag[d.get("slag", "?")] = slag.get(d.get("slag", "?"), 0) + 1
+        # The arbiter axis is READ BACK for the nodes that carry a contract:
+        # a threshold that does not name its kind cannot be placed in the
+        # counter (K1 in the coverage-rule plan), so an unnamed kind is a
+        # named hole — reported, not required (the requirement is K3's gate,
+        # and four nodes outside this card carry contracts without one).
+        a = kontrakt_arbiter(n)
+        if a["slag"]:
+            arbtelling[a["slag"]] = arbtelling.get(a["slag"], 0) + 1
+            art_hvor[a["hvor"]] = art_hvor.get(a["hvor"], 0) + 1
+        elif d["dom"] in ("armer", "gjort_opp"):
+            uten_art.append(n["id"])
+    return {"noder": len(bank.get("nodes", [])), **telling,
+            "nekt_slag": slag,
+            "arbiter_slag": arbtelling,
+            "arbiter_deklarert_hvor": art_hvor,
+            "arbiter_uten_slag": sorted(uten_art),
+            "hull_noder": sorted(i for i, d in per.items() if d["dom"] == "hull"),
+            "per_node": per}
+
+
+def vis(dom_og_grunn: dict, node_id: str, node: dict) -> None:
+    """One node's verdict as it will be read."""
+    d = dom_og_grunn["dom"]
+    p = node.get("prediction") or {}
+    print(f"{d.upper()} — {node_id}")
+    if d == "armer":
+        print(f"  correlation:  {p['correlation']}")
+        print(f"  arbiter:      {p['arbiter_waiting_for']}")
+        a = kontrakt_arbiter(node)
+        print(f"  arbiter kind: {a['slag'] or 'NOT declared'}"
+              + (f"  (from {a['hvor']})" if a["slag"] else ""))
+        print(f"  observable:   {p['observable']}")
+        print(f"  tolerance:    {p['tolerance_rule']}")
+        print(f"  settlement:   {dom_og_grunn.get('grunn')}")
+        print(f"  written by:   {p.get('basis', '—')}")
+    else:
+        print(f"  grunn:        {dom_og_grunn['grunn']}")
+
+
+def hoved(app) -> int:
+    """The per-node path: `--sjekk --node <id>`, or `--alle`."""
+    bank = read(ATLAS)
+    noder = {n["id"]: n for n in bank.get("nodes", [])}
+
+    if app.alle:
+        m = dom_banken(bank)
+        if app.json:
+            print(json.dumps({k: v for k, v in m.items()
+                              if k != "per_node"}, ensure_ascii=False, indent=2))
+        else:
+            print(f"The bank: {m['noder']} nodes")
+            print(f"  armer:      {m['armer']}  (a complete contract, the "
+                  f"arbiter named and absent)")
+            print(f"  gjort opp:  {m['gjort_opp']}  (a settlement is written)")
+            print(f"  nekt:       {m['nekt']}  " + ", ".join(
+                f"{k}: {v}" for k, v in sorted(m["nekt_slag"].items())))
+            print(f"  hull:       {m['hull']}")
+            art = ", ".join(f"{k}: {v}" for k, v in sorted(m["arbiter_slag"].items()))
+            hvor = ", ".join(f"{k}: {v}" for k, v in
+                             sorted(m["arbiter_deklarert_hvor"].items()))
+            print(f"  arbiter kind, declared: {art or 'none'}"
+                  + (f"  ({hvor})" if hvor else ""))
+            print(f"  arbiter kind, not declared by a CONTRACT: "
+                  f"{len(m['arbiter_uten_slag'])}"
+                  + (f" — {', '.join(m['arbiter_uten_slag'])}"
+                     if m["arbiter_uten_slag"] else ""))
+            print("    (reported, not required: the gate that makes the kind "
+                  "mandatory is K3 in the coverage-rule plan)")
+            if m["hull_noder"]:
+                print("\nHOLE — a node that neither can be settled nor says "
+                      "why (that is a defect, not a third state):")
+                for i in m["hull_noder"]:
+                    print(f"  {i}: {m['per_node'][i]['grunn']}")
+                return EXIT_HOLE
+        return EXIT_HOLE if m["hull"] else EXIT_ARMED
+
+    ukjente = [i for i in app.node if i not in noder]
+    if ukjente:
+        print(f"REFUSED — not in the bank: {', '.join(ukjente)}")
+        return EXIT_REFUSED
+
+    siste = EXIT_ARMED
+    for i in app.node:
+        node = noder[i]
+        d = dom(node)
+        if d["dom"] == "hull":
+            siste = EXIT_HOLE
+        elif d["dom"] == "nekt":
+            siste = max(siste, EXIT_REFUSED)
+        if app.json:
+            print(json.dumps({"node": i, **{k: v for k, v in d.items()},
+                              "prediction": node.get("prediction"),
+                              "settlement": node.get("settlement")},
+                             ensure_ascii=False, indent=2))
+        else:
+            vis(d, i, node)
+            print()
+    return siste
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description="Settlement for the sealed prediction")
     p.add_argument("--sjekk", action="store_true", help="is the arbiter here?")
     p.add_argument("--kandidat", help="a measurement (json file) to try as arbiter")
     p.add_argument("--skriv", action="store_true", help="write the settlement")
+    p.add_argument("--node", action="append", default=[],
+                   help="ask ONE node in the bank: armer / nekt / hull "
+                        "(repeatable)")
+    p.add_argument("--alle", action="store_true",
+                   help="ask every node in the bank; exit 4 on any hole")
     p.add_argument("--json", action="store_true")
     a = p.parse_args()
+
+    if a.node or a.alle:
+        raise SystemExit(hoved(a))
 
     bro, arb = read(BRO), read(ARB)
     exp = expected(bro)
