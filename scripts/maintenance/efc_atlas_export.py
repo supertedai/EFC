@@ -3,10 +3,12 @@
 EFC Framework Atlas Export
 ===========================
 
-Dumps the live Framework Atlas from Symbiose (Neo4j) to
-schema/framework_atlas.jsonld so that the atlas is version-controlled
-in Git and any Claude session (with or without Symbiose MCP access)
-can query it via the EFC MCP server's atlas_query tool.
+RETIRED producer. Formerly dumped the live Framework Atlas from Symbiose
+    (Neo4j) to schema/framework_atlas.jsonld. Symbiose/Neo4j is no longer a
+    live source (measured 2026-09-21: last human write 2026-06-07). The
+    committed snapshot is now MAINTAINED IN-REPO and remains the C12 identity
+    source consumed by doi_coverage_register, efc_schema_check, efc_ontology,
+    efc_qdrant_ingest, and .github/workflows/efc-schema.yml. Do NOT delete.
 
 Modes:
   --dry-run   Read Symbiose, print counts, don't write file (default)

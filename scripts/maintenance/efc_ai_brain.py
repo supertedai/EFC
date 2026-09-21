@@ -66,7 +66,7 @@ LLM_PROVIDER_OVERRIDE = os.environ.get("EFC_LLM_PROVIDER", "").strip().lower()
 MAX_PDF_CHARS = 8000
 AUTHOR = "Morten Magnusson"
 ORCID = "0009-0002-4860-5095"
-AFFILIATION = "Symbiose Research, Sandnes, Norway"
+AFFILIATION = "Symbiose Research, Sola, Norway"
 
 SKIP_TOP = {
     "README.md", "cover_letter-2.pdf", "efc_graph_edges.json",
