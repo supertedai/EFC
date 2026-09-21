@@ -2148,8 +2148,7 @@
           "none — a pure observation node; the thresholds are the producer's (the survey's), not ours"
         ],
         "motor": "",
-        "motor_status": "no engine — observation — read off the stream. The node IS the measurement; an engine would compute what it already measured",
-        "ikke_falsifiserbar_grunn": "The instrument node cannot be felled by an observation — it IS the measurement; any falsification belongs to the claim that uses the measurement."
+        "motor_status": "no engine — observation — read off the stream. The node IS the measurement; an engine would compute what it already measured"
       },
       "epistemikk": {
         "sannhetsstatus": "modellrelativ",
@@ -2220,7 +2219,8 @@
             }
           }
         ]
-      }
+      },
+      "ville_falsifisere": "DESI DR2 full-shape BAO at z~0.7 and z=1.0 — the arbiter this node's own settlement names: felled if the measured DH/rd agrees with LCDM (20.719 at z=0.7, 17.466 at z=1.0) within <1 sigma, excludes the sealed EFC values (19.797 and 16.527) at >=2 sigma, or does not stay below LCDM at both redshifts. Criterion, tolerance rule and arbiter are the sealed prediction 10.6084/m9.figshare.32013156 (P2, P3) — mirrored here, and this node is its only home in the atlas: efc.hubble_engine, which it is OBSERVED_THROUGH, carries no prediction block and no sealed DOI."
     },
     {
       "id": "obs.cmb_tt",
