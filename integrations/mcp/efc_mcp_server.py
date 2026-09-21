@@ -11,6 +11,7 @@ This server enables AI agents to manage EFC resources across multiple surfaces:
 import os
 import json
 import logging
+import hashlib
 from pathlib import Path
 from typing import Any, Optional
 from datetime import datetime
@@ -283,8 +284,33 @@ class EFCMCPServer:
 
         return {"articles": response.json()}
 
+    def _release_gate_ok(self, slug: str) -> tuple[bool, str]:
+        """Fail-closed release-gate check before ANY Figshare write/publish.
+
+        Layer 3 — where irreversibility lives. Runs
+        scripts/maintenance/efc_review_gate.py (pure stdlib, in git) with
+        --confirmed-by morten. A non-zero exit is a hard refusal, and NO
+        Figshare API call is made on refusal. If the gate cannot be located or
+        run, that is also a refusal (fail-closed), never a pass.
+        """
+        import subprocess
+        import sys as _sys
+        gate = Path(self.efc_root) / "scripts" / "maintenance" / "efc_review_gate.py"
+        if not gate.exists():
+            return False, "review gate missing — refusing (fail-closed)"
+        try:
+            r = subprocess.run(
+                [_sys.executable, str(gate), "release", slug, "--confirmed-by", "morten"],
+                capture_output=True, text=True, timeout=60)
+        except Exception as e:  # noqa: BLE001 — fail-closed on any failure
+            return False, f"review gate could not run — refusing (fail-closed): {e}"
+        if r.returncode != 0:
+            return False, (r.stderr or "review gate refused").strip()
+        return True, (r.stdout or "").strip()
+
     def figshare_create_article(
         self,
+        slug: str,
         title: str,
         description: str,
         keywords: Optional[list] = None,
@@ -292,7 +318,12 @@ class EFCMCPServer:
         defined_type: str = "preprint",
         license_id: int = 1  # CC-BY
     ) -> dict:
-        """Create a new Figshare article."""
+        """Create a new Figshare article. Fail-closed: the release gate is the
+        FIRST thing checked (before library/token), so a refusal can never be
+        masked by a missing dependency (Layer 3 — where irreversibility lives)."""
+        ok, err = self._release_gate_ok(slug)
+        if not ok:
+            return {"error": f"release gate refused: {err}", "gated": True}
         if not REQUESTS_AVAILABLE:
             return {"error": "requests library not installed"}
         if not FIGSHARE_TOKEN:
@@ -324,8 +355,14 @@ class EFCMCPServer:
 
         return response.json()
 
-    def figshare_publish(self, article_id: int) -> dict:
-        """Publish a Figshare article (assigns DOI)."""
+    def figshare_publish(self, article_id: int, slug: str) -> dict:
+        """Publish a Figshare article (assigns DOI). Fail-closed: refuses unless
+        the manuscript's release gate passes — the gate is checked FIRST (before
+        library/token), so the irreversibility can never be masked by a missing
+        dependency."""
+        ok, err = self._release_gate_ok(slug)
+        if not ok:
+            return {"error": f"release gate refused: {err}", "gated": True}
         if not REQUESTS_AVAILABLE:
             return {"error": "requests library not installed"}
         if not FIGSHARE_TOKEN:
@@ -342,6 +379,58 @@ class EFCMCPServer:
             return {"error": f"Figshare API error: {response.status_code}", "details": response.text}
 
         return {"success": True, "article_id": article_id}
+
+    def figshare_upload_file(self, article_id: int, slug: str, file_path: str) -> dict:
+        """Upload a file to a Figshare article. Fail-closed: an upload is a
+        write, not a read, so it is gated by the release gate FIRST — an
+        ungated upload would be a Layer-3 bypass."""
+        ok, err = self._release_gate_ok(slug)
+        if not ok:
+            return {"error": f"release gate refused: {err}", "gated": True}
+        if not REQUESTS_AVAILABLE:
+            return {"error": "requests library not installed"}
+        if not FIGSHARE_TOKEN:
+            return {"error": "FIGSHARE_TOKEN not set"}
+
+        fpath = Path(self.efc_root) / file_path.lstrip("/")
+        if not fpath.is_file():
+            return {"error": f"file not found: {file_path}"}
+
+        headers = {"Authorization": f"token {FIGSHARE_TOKEN}"}
+        size = fpath.stat().st_size
+        md5 = hashlib.md5(fpath.read_bytes()).hexdigest()
+        init = requests.post(
+            f"https://api.figshare.com/v2/account/articles/{article_id}/files",
+            headers=headers, json={"name": fpath.name, "md5": md5, "size": size})
+        if init.status_code not in [200, 201]:
+            return {"error": f"Figshare API error: {init.status_code}", "details": init.text}
+        # Figshare returns the new file's location both in the JSON body (the
+        # convention scripts/figshare/upload_preregistration.py reads) and in
+        # the Location header; accept either so the two call sites cannot drift.
+        try:
+            location = init.json().get("location") or init.headers.get("Location", "")
+            file_id = int(str(location).rsplit("/", 1)[-1])
+        except (ValueError, AttributeError, KeyError):
+            return {"error": "Figshare file-init response had no usable location", "details": init.text}
+        finfo = requests.get(
+            f"https://api.figshare.com/v2/account/articles/{article_id}/files/{file_id}",
+            headers=headers)
+        if finfo.status_code != 200:
+            return {"error": f"Figshare API error: {finfo.status_code}", "details": finfo.text}
+        upload_url = finfo.json().get("upload_url", "")
+        parts = requests.get(upload_url, headers=headers).json().get("parts", [])
+        with fpath.open("rb") as fh:
+            for part in parts:
+                fh.seek(part["startOffset"])
+                chunk = fh.read(part["endOffset"] - part["startOffset"] + 1)
+                r = requests.put(f"{upload_url}/{part['partNo']}",
+                                 headers=headers, data=chunk, timeout=120)
+                if not r.ok:
+                    return {"error": f"part {part['partNo']} upload failed: {r.status_code}"}
+        requests.post(
+            f"https://api.figshare.com/v2/account/articles/{article_id}/files/{file_id}",
+            headers=headers)
+        return {"success": True, "article_id": article_id, "file_id": file_id, "name": fpath.name}
 
     # ==================== Synchronization ====================
 

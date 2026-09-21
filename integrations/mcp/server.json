@@ -120,6 +120,7 @@
       "name": "figshare_create_article",
       "description": "Create a new Figshare article",
       "parameters": {
+        "slug": {"type": "string", "required": true},
         "title": {"type": "string", "required": true},
         "description": {"type": "string", "required": true},
         "keywords": {"type": "array", "items": {"type": "string"}},
@@ -136,6 +137,7 @@
       "description": "Upload a file to a Figshare article",
       "parameters": {
         "article_id": {"type": "integer", "required": true},
+        "slug": {"type": "string", "required": true},
         "file_path": {"type": "string", "required": true}
       }
     },
@@ -143,7 +145,8 @@
       "name": "figshare_publish",
       "description": "Publish a Figshare article (assigns DOI)",
       "parameters": {
-        "article_id": {"type": "integer", "required": true}
+        "article_id": {"type": "integer", "required": true},
+        "slug": {"type": "string", "required": true}
       }
     },
     {

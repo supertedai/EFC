@@ -19,10 +19,9 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import subprocess
 import sys
 from pathlib import Path
-
-import requests
 
 BASE_URL = "https://api.figshare.com/v2"
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -30,15 +29,14 @@ ARTICLE_DIR = REPO_ROOT / "figshare" / "preregistration-eg-so-euclid-2026-04-15"
 METADATA_PATH = ARTICLE_DIR / "metadata.json"
 DOI_MAP_PATH = REPO_ROOT / "figshare" / "doi-map.json"
 
-TOKEN = os.environ.get("FIGSHARE_TOKEN") or os.environ.get("API_FIGSHARE_EFC")
-if not TOKEN:
-    print("ERROR: FIGSHARE_TOKEN / API_FIGSHARE_EFC not set", file=sys.stderr)
-    sys.exit(1)
 
-HEADERS = {
-    "Authorization": f"token {TOKEN}",
-    "Accept": "application/json",
-}
+def _headers() -> dict:
+    """Lazy, and only ever reached AFTER the release gate has passed, so a
+    missing token or library can never mask a gate refusal."""
+    token = os.environ.get("FIGSHARE_TOKEN") or os.environ.get("API_FIGSHARE_EFC")
+    if not token:
+        die("FIGSHARE_TOKEN / API_FIGSHARE_EFC not set")
+    return {"Authorization": f"token {token}", "Accept": "application/json"}
 
 
 def die(msg: str) -> None:
@@ -47,8 +45,9 @@ def die(msg: str) -> None:
 
 
 def api(method: str, path: str, **kwargs) -> dict | list:
+    import requests  # lazy: only reached after the gate has passed
     url = path if path.startswith("http") else BASE_URL + path
-    resp = requests.request(method, url, headers=HEADERS, timeout=60, **kwargs)
+    resp = requests.request(method, url, headers=_headers(), timeout=60, **kwargs)
     if not resp.ok:
         die(f"{method} {url} -> {resp.status_code}: {resp.text}")
     if not resp.content:
@@ -70,6 +69,7 @@ def md5sum(path: Path) -> tuple[str, int]:
 
 
 def upload_file(article_id: int, fpath: Path) -> None:
+    import requests  # lazy: only reached after the gate has passed
     checksum, size = md5sum(fpath)
     print(f"  initiating upload: {fpath.name} ({size} bytes, md5={checksum})")
     init = api(
@@ -91,7 +91,7 @@ def upload_file(article_id: int, fpath: Path) -> None:
             chunk = fh.read(end - start + 1)
             r = requests.put(
                 f"{upload_url}/{part['partNo']}",
-                headers=HEADERS,
+                headers=_headers(),
                 data=chunk,
                 timeout=120,
             )
@@ -102,7 +102,28 @@ def upload_file(article_id: int, fpath: Path) -> None:
     print(f"  file complete: {fpath.name} (id={file_id})")
 
 
+def _require_gate() -> None:
+    """Fail-closed (Layer 3): no Figshare create/upload/publish/DOI without the
+    release gate. Runs efc_review_gate.py release <slug> --confirmed-by morten
+    (pure stdlib, in git); a non-zero exit is a hard refusal. The slug MUST be
+    named explicitly — there is no default that could silently publish."""
+    slug = os.environ.get("EFC_RELEASE_SLUG", "").strip()
+    if not slug:
+        die("REFUSED (fail-closed): EFC_RELEASE_SLUG is not set — no Figshare "
+            "publish without the release gate")
+    gate = REPO_ROOT / "scripts" / "maintenance" / "efc_review_gate.py"
+    if not gate.exists():
+        die("REFUSED (fail-closed): review gate missing — cannot verify the manuscript")
+    r = subprocess.run(
+        [sys.executable, str(gate), "release", slug, "--confirmed-by", "morten"],
+        capture_output=True, text=True, timeout=60)
+    if r.returncode != 0:
+        die(f"REFUSED (fail-closed): {r.stderr.strip() or 'review gate refused'}")
+
+
 def main() -> None:
+    _require_gate()
+
     meta = json.loads(METADATA_PATH.read_text())
 
     if meta.get("doi"):

@@ -64,7 +64,7 @@ class Rigg(unittest.TestCase):
         _write(self.tmp / "i.json", inst)
         for n, s in enumerate(instanceless):
             _write(self.tmp / f"x{n}.json", s)
-        return self.mod.check(self.tmp, pairs=[("s.json", "i.json")], instanceless=[(f"x{n}.json", f"x{n}-data.json") for n in range(len(instanceless))])
+        return self.mod.check(self.tmp, pairs=[("s.json", "i.json")], instanceless=[(f"x{n}.json", f"x{n}-data.json") for n in range(len(instanceless))], schema_only=[])
 
     def test_groent_par_gir_ingen_problemer(self):
         self.assertEqual(self._check(CLOSED, GOOD), [])
@@ -119,7 +119,7 @@ class Rigg(unittest.TestCase):
         _write(self.tmp / "i.json", GOOD)
         _write(self.tmp / "x.json", CLOSED)
         _write(self.tmp / "x-data.json", GOOD)
-        problems = self.mod.check(self.tmp, pairs=[("s.json", "i.json")], instanceless=[("x.json", "x-data.json")])
+        problems = self.mod.check(self.tmp, pairs=[("s.json", "i.json")], instanceless=[("x.json", "x-data.json")], schema_only=[])
         self.assertEqual(len(problems), 1, problems)
         self.assertIn("x-data.json exists now — register", problems[0])
 
@@ -140,7 +140,7 @@ class Rigg(unittest.TestCase):
     def test_uleselig_instans_er_et_problem_ikke_et_krasj(self):
         _write(self.tmp / "s.json", CLOSED)
         (self.tmp / "i.json").write_text("{not json", encoding="utf-8")
-        problems = self.mod.check(self.tmp, pairs=[("s.json", "i.json")], instanceless=[])
+        problems = self.mod.check(self.tmp, pairs=[("s.json", "i.json")], instanceless=[], schema_only=[])
         self.assertTrue(any("i.json: unreadable" in p for p in problems), problems)
 
 
