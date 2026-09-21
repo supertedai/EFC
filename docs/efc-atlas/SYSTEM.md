@@ -6,7 +6,7 @@ _Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 16 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 17 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
 
 ## Decisions locked
 
@@ -15,6 +15,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 | Epistemics | truth, evidence and consensus are three separate axes — consensus is never truth (const true). | schema/regime_node.schema.json |
 | Levels | a parent must have a lower index than its child; no cycles. | tests/test_epistemikk_v6.py |
 | Analogy | every analogy carries both an avbildning and a bryter_der — without the disanalogy it does not harden. | schema/regime_node.schema.json |
+| Verification | a fit result is not a verified posterior: the chain fit ->[identifiability]-> inferable ->[sampling]-> posterior_verifisert is named, and a break says WHERE it broke (brudd.transformasjon) and WHY (brudd.aarsak) — never only that the status is X. | tests/test_epistemikk_v7.py |
 | Sources | a finding belongs to the bank it came from — not where I sat when I found it. | SOUL.md |
 
 ## Cost model
@@ -163,7 +164,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** the observation side is galaxy spectra; the engine computes the curve — proxy chain: spectral lines -> v(r) (observation) -> v(r) -> EFC parameters (inference)
 
-**How it's built.** Buffer role: the matter buffer of the galaxy keeps the curve flat through the coupling field… Epistemic: hypotese / proxy / minoritet.
+**How it's built.** Buffer role: the matter buffer of the galaxy keeps the curve flat through the coupling field… Epistemic: hypotese / proxy / minoritet. Verification: fit_only · instrument the engine's own deterministic curve v(r) (efc_core, parametric fallback) — the…
 
 **Steps in execution.**
 
@@ -1181,7 +1182,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** galaxy survey + weak lensing (KiDS, DES, Euclid) — proxy chain: galaxy distribution -> P(k) full-shape -> redshift-space distortion -> fsigma8 -> shear ->…
 
-**How it's built.** Buffer role: the structure itself is an inertia buffer: galaxies and clusters hold mass… Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · clarity C(S) at S>0: differentiated clarity — the window of reflection, R above R_c~0.37 gives self-modelling · EBE claim validity = f(S, L, proxy-chain).
+**How it's built.** Buffer role: the structure itself is an inertia buffer: galaxies and clusters hold mass… Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · clarity C(S) at S>0: differentiated clarity — the window of reflection, R above R_c~0.37 gives self-modelling · EBE claim validity = f(S, L, proxy-chain). Verification: fit_only · instrument the deposited EFC Screening Model (DOI 10.6084/m9.figshare.31940469) — deterministic fits…
 
 **Steps in execution.**
 
@@ -1721,7 +1722,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** none directly — the structure is derived from the field, not measured as structure — proxy chain: energy-flow field -> density gradient -> potential -> structure -> structure -> rotation…
 
-**How it's built.** Buffer role: the halo itself is the buffer: it holds the form while the field varies beneath. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · sector S · clarity C(S) at S>0: structural clarity — the form reads the energy flow at equilibrium · EBE claim validity = f(S, L, proxy-chain).
+**How it's built.** Buffer role: the halo itself is the buffer: it holds the form while the field varies beneath. Epistemic: hypotese / proxy / minoritet. S-axis: regime S>0 · sector S · clarity C(S) at S>0: structural clarity — the form reads the energy flow at equilibrium · EBE claim validity = f(S, L, proxy-chain). Verification: inferens_feil · instrument NUTS re-test of the SPARC fit (the sparc_nuts run: 175 galaxies / 3391 points / 531… · broke at sampling.
 
 **Steps in execution.**
 
@@ -1749,7 +1750,7 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 **What it does.** none directly — S is a field, not a measurement — proxy chain: S -> Omega-hat (differentiation) and kappa-hat (integration) -> Omega x kappa -> C…
 
-**How it's built.** Buffer role: entropy itself: it absorbs energy without the structure changing, until the… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · sector C · clarity C(S) at S->1: saturated clarity locally — propofol-EEG (Omega, kappa) measures clarity variation at small scale · EBE claim validity = f(S, L, proxy-chain).
+**How it's built.** Buffer role: entropy itself: it absorbs energy without the structure changing, until the… Epistemic: hypotese / proxy / minoritet. S-axis: regime S->1 · sector C · clarity C(S) at S->1: saturated clarity locally — propofol-EEG (Omega, kappa) measures clarity variation at small scale · EBE claim validity = f(S, L, proxy-chain). Verification: inferens_feil · instrument the same NUTS re-test of the SPARC fit as the structural sector (175 galaxies / 3391… · broke at sampling.
 
 **Steps in execution.**
 
@@ -1807,7 +1808,7 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 
 ## Known holes
 
-**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 16 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
+**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 17 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
 
 **Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
 

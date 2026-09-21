@@ -1,0 +1,74 @@
+name: efc-atlas-gate
+
+# The atlas BUILD gate (card t_bf62ce48, criterion 3 «CI»).
+#
+# The two test files that prove the verification state actually REACHES the
+# built surfaces run here, nowhere else:
+#   tests/test_efc_atlas_generator.py  — data.mjs is always fresh (the atlas
+#                                         has no truth of its own, it is
+#                                         generated from regime_nodes.jsonld)
+#   tests/test_atlas_lesbarhet.py       — what the reader meets answers what it
+#                                         looks like (equality on the rendered
+#                                         node list, the S-axis and the
+#                                         verification chain reach SYSTEM.md and
+#                                         atlas.html)
+#
+# The generator runs `node build.mjs` (scripts/maintenance/efc_atlas_generator.py
+# at the build step), so the job installs an EXPLICIT node version instead of
+# relying on the runner image — a hunk whose rendered outcome is not gated is
+# exactly the failure criterion 5 exists to prevent.
+#
+# fetch-depth: 0 so test_atlas_lesbarhet's navigator check
+# (`atlas_navigasjon.py . --ref origin/main`) can read origin/main.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "schema/regime_nodes.jsonld"
+      - "schema/regime_node.schema.json"
+      - "scripts/maintenance/efc_atlas_generator.py"
+      - "scripts/atlas_navigasjon.py"
+      - "docs/efc-atlas/**"
+      - "tests/test_atlas_lesbarhet.py"
+      - "tests/test_efc_atlas_generator.py"
+      - ".github/workflows/efc-atlas-gate.yml"
+  pull_request:
+    paths:
+      - "schema/regime_nodes.jsonld"
+      - "schema/regime_node.schema.json"
+      - "scripts/maintenance/efc_atlas_generator.py"
+      - "scripts/atlas_navigasjon.py"
+      - "docs/efc-atlas/**"
+      - "tests/test_atlas_lesbarhet.py"
+      - "tests/test_efc_atlas_generator.py"
+      - ".github/workflows/efc-atlas-gate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  atlas-gate:
+    runs-on: ubuntu-latest
+    # Two test files; the generator regenerates data.mjs + runs node build.mjs,
+    # ~2-3 minutes end to end on ubuntu-latest. 10 is the ceiling, not the norm.
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install the test runner
+        run: python3 -m pip install --quiet "pytest>=8,<9"
+
+      - name: The atlas build is a deterministic function of the bank
+        run: python3 -m pytest tests/test_efc_atlas_generator.py tests/test_atlas_lesbarhet.py -q
