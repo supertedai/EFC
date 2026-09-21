@@ -5,6 +5,24 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-09-21",
+      "sha": "6a0177426b1a",
+      "summary": "external research watchlist: the 2026-06-22 delta, merged into a list that has moved past it",
+      "categories": {
+        "public_pages": 1
+      },
+      "id": "6a0177426b1a"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "c8182289d2ce",
+      "summary": "fix(watch): the delta lands as one file per source, not as a hand-merged list",
+      "categories": {
+        "public_pages": 15
+      },
+      "id": "c8182289d2ce"
+    },
+    {
       "date": "2026-09-20",
       "sha": "a5593eca5f65",
       "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
@@ -269,7 +287,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
+    "last_processed_sha": "c8182289d2ce63a84b4524330affea832b8c2447",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
