@@ -12,11 +12,11 @@
 
 ## Overview
 
-Derives the entropy production function Γ(ρ) from first principles using Bose–Einstein occupation statistics of grid modes and the von Neumann entropy functional. The work yields a saturating form Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) with ρcrit emerging from the grid-mode energy scale a0, satisfying low-density linearity and high-density saturation. It also clarifies that Γ(ρ) and the gravitational response μBE(g) are distinct dynamical and static quantities, resolving potential double-counting.
+Derives the entropy production function Γ(ρ) from first principles using Bose–Einstein occupation statistics of grid modes and the von Neumann entropy functional. The derivation yields the Scenario B form Γ(ρ) ∝ ρ^(3/2)/(ρ + ρcrit), with ρcrit emerging from the grid-mode energy scale a0; it is sub-linear at low density (exponent 3/2, not 1) and non-saturating at high density (grows as ρ^(1/2)). The saturating form Γ(ρ) = Γ0 · ρ/(ρ + ρcrit) is a phenomenological approximation to the derived result, valid to about 20% over the cosmologically relevant density range; it is not the derived output of the microphysics (§5–6 of the paper). The work also clarifies that Γ(ρ) and the gravitational response μBE(g) are distinct dynamical and static quantities, resolving potential double-counting.
 
 ## Key Result
 
-From BE occupation plus von Neumann entropy, Γ(ρ) takes the saturating form Γ0·ρ/(ρ+ρcrit) with ρcrit emerging from the a0 grid-mode scale, and Γ is shown to be distinct from μBE(g), resolving double-counting.
+From BE occupation plus von Neumann entropy the derived form is Scenario B, Γ(ρ) ∝ ρ^(3/2)/(ρ+ρcrit), with ρcrit emerging from the a0 grid-mode scale; the saturating ρ/(ρ+ρcrit) is a phenomenological approximation to it (~20% accuracy), not the derived result. Γ is shown to be distinct from μBE(g), resolving double-counting.
 
 ## Sealed Predictions
 

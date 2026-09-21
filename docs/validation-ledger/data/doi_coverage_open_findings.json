@@ -1,7 +1,7 @@
 {
  "name": "EFC DOI coverage and consistency — findings",
  "schema": "efc-doi-coverage-findings/1",
- "input_digest": "74bcdefb5eadfcde9078bd207ce3008c4e9b9726f2a9766f2b0232b8ae8fa302",
+ "input_digest": "c32dc35a50b6a61774b92e3c57c9e1f1df9141ed66a0f98ca75d10cff63d1e4d",
  "status_vocabulary": [
   "open",
   "reviewed_no_conflict_found",
@@ -15,11 +15,11 @@
  "findings": [
   {
    "id": "F1",
-   "title": "31942821 metadata drift: ansatz presented as derived, plus two sqrt transcriptions (x_of_rho, be_occupation)",
+   "title": "31942821 metadata drift: ansatz presented as derived, plus the sqrt transcription class (be_occupation, x_of_rho, entropy_marginal, KC5)",
    "location": "docs/papers/efc/Derivation_of_the_Entropy_Production/index.json (metadata only; PDF + code are unambiguous)",
-   "claim": "index.json description (line 5) and main_finding (line 55) present the phenomenological ansatz rho/(rho+rho_crit) as the 'derived' result, while key_result (line 108), the code (gamma_total = rho^1.5/(1+rho), gamma_phenomenological = rho/(1+rho)) and the PDF Section 5-6 all state the derived form is Scenario B rho^(3/2)/(rho+rho_crit) with the ansatz as an approximation (~20%). Separately there are TWO sqrt transcriptions: (a) x_of_rho (line 38) writes 'x = g/a0 = sqrt(beta*rho/a0)' but the middle term should be sqrt(g/a0) (with g = beta*rho, x = sqrt(g/a0) = sqrt(beta*rho/a0)), matching the code's x_from_rho; (b) be_occupation (line 30) writes 'n(g) = 1/(exp(g/a0) - 1)' but the exponent should be sqrt(g/a0), matching the code header's 'n(g) = 1/(exp(sqrt(g/a0)) - 1)'. All three are index.json-metadata-only deviations from the normative PDF + code; the provenance/corrections register (doi_metadata_correction_proposals.json) expands F1 into four per-field proposals.",
+   "claim": "index.json description, main_finding and the derived-result equation slot (core_equations.gamma_result) all presented the phenomenological ansatz rho/(rho+rho_crit) as the 'derived' result, while key_result, the code (gamma_total = rho^1.5/(1+rho), gamma_phenomenological = rho/(1+rho)) and PDF Section 5-6 (Eq. 37-38) state the derived form is Scenario B rho^(3/2)/(rho+rho_crit), with the ansatz an approximation (~20%). The same file carried FOUR instances of one sqrt transcription: be_occupation (exponent g/a0 instead of sqrt(g/a0)), x_of_rho (middle term g/a0), entropy_marginal (x = g/a0) and the KC5 prose (e^{g/a0}) — PDF Eq. 1/4/11 and the code all use sqrt(g/a0); the earlier audit named only be_occupation and x_of_rho, and it did not flag the derived-result slot (gamma_result) at all. The same drifted sentence is mirrored in README.md Overview and metadata.json abstract. All of these are metadata-only deviations from the normative PDF + code; the provenance/corrections register (doi_metadata_correction_proposals.json) expands F1 into eight per-field corrections and reports each one's status.",
    "status": "open",
-   "next": "Metadata-only reconciliation: in index.json, label rho/(rho+rho_crit) as the phenomenological approximation and point description/main_finding at the Scenario B rho^(3/2) key_result; correct the x_of_rho middle term to sqrt(g/a0) and the be_occupation exponent to sqrt(g/a0). PDF and code are normative and stay untouched."
+   "next": "APPLIED (metadata-only) under card t_3a2d983f: eight corrections, all status=applied and machine-verified live against index.json, plus the two mirror sentences in README.md and metadata.json. Staged for review; closes on merge (human word). Remaining, author-gated: (a) the PUBLISHED PDF's abstract and Section 1.1 still present the saturating ansatz as the derivation's outcome — correct that only as a new published version; (b) sealed prediction P1's property list (linear at low rho, saturating at high rho) is the internal tension already registered under F9 and form_status_register Gamma_B, deliberately untouched here because rewriting a sealed prediction is a claim change, not a transcription; (c) the atlas/engine B+ node text (form split, F9). The findings vocabulary has no closed state, so how F1 is retired is itself a decision for the author."
   },
   {
    "id": "F2",

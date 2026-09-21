@@ -5,6 +5,16 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-09-21",
+      "sha": "e293a5709fb3",
+      "summary": "fix(doi): 31942821 metadata — the derived form is rho^(3/2), the ansatz is phenomenological (t_3a2d983f)",
+      "categories": {
+        "papers": 4,
+        "ledger_data": 5
+      },
+      "id": "e293a5709fb3"
+    },
+    {
       "date": "2026-09-20",
       "sha": "a5593eca5f65",
       "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
@@ -269,7 +279,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
+    "last_processed_sha": "e293a5709fb3b53f9218f75ef2c5cbc0c13f58e8",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }

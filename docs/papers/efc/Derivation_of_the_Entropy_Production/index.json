@@ -2,7 +2,7 @@
   "$schema": "./schema.json",
   "id": "derivation-of-the-entropy-production",
   "title": "Derivation of the Entropy Production Function \u0393(\u03c1) from Grid-Mode Bose\u2013Einstein Statistics",
-  "description": "Derives the entropy production function \u0393(\u03c1) from first principles using Bose\u2013Einstein occupation statistics of grid modes and the von Neumann entropy functional. The work yields a saturating form \u0393(\u03c1) = \u03930 \u00b7 \u03c1/(\u03c1 + \u03c1crit) with \u03c1crit emerging from the grid-mode energy scale a0, satisfying low-density linearity and high-density saturation. It also clarifies that \u0393(\u03c1) and the gravitational response \u03bcBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
+  "description": "Derives the entropy production function \u0393(\u03c1) from first principles using Bose\u2013Einstein occupation statistics of grid modes and the von Neumann entropy functional. The derivation yields the Scenario B form \u0393(\u03c1) \u221d \u03c1^(3/2)/(\u03c1 + \u03c1crit), with \u03c1crit emerging from the grid-mode energy scale a0; it is sub-linear at low density (exponent 3/2, not 1) and non-saturating at high density (grows as \u03c1^(1/2)). The saturating form \u0393(\u03c1) = \u03930 \u00b7 \u03c1/(\u03c1 + \u03c1crit) is a phenomenological approximation to the derived result, valid to about 20% over the cosmologically relevant density range; it is not the derived output of the microphysics (\u00a75\u20136 of the paper). The work also clarifies that \u0393(\u03c1) and the gravitational response \u03bcBE(g) are distinct dynamical and static quantities, resolving potential double-counting.",
   "version": "1.0",
   "date": "2026-04-06",
   "doi": "10.6084/m9.figshare.31942821",
@@ -27,32 +27,38 @@
       "description": "EFC flow constraint where the entropy production function \u0393(\u03c1) sources the scalar flow."
     },
     "be_occupation": {
-      "latex": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp(g/a_0) - 1}",
-      "description": "Bose\u2013Einstein occupation number for grid modes at gravitational acceleration g with characteristic scale a0."
+      "latex": "n(g) = \\mu_{\\mathrm{BE}}(g) = \\frac{1}{\\exp\\left(\\sqrt{g/a_0}\\right) - 1}",
+      "description": "Bose\u2013Einstein occupation number for grid modes at gravitational acceleration g, with characteristic scale a0; the exponent is the dimensionless energy x = \u221a(g/a0), not g/a0."
     },
     "g_of_rho": {
       "latex": "g(\\rho) = \\frac{4\\pi G_N}{3} \\, \\rho \\, r_\\ast \\equiv \\beta \\, \\rho",
       "description": "Characteristic gravitational acceleration at scale r\u2217, defining \u03b2 = 4\u03c0G_N r\u2217/3."
     },
     "x_of_rho": {
-      "latex": "x(\\rho) = \\frac{g}{a_0} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
-      "description": "Dimensionless energy variable controlling the BE occupation."
+      "latex": "x(\\rho) = \\sqrt{\\frac{g}{a_0}} = \\sqrt{\\frac{\\beta\\rho}{a_0}}",
+      "description": "Dimensionless energy variable controlling the BE occupation: x = \u221a(g/a0) = \u221a(\u03b2\u03c1/a0), with g = \u03b2\u03c1."
     },
     "vn_entropy_per_mode": {
       "latex": "s(n) = (1+n)\\ln(1+n) - n\\ln n",
       "description": "Von Neumann entropy per bosonic mode with occupation n."
     },
     "entropy_marginal": {
-      "latex": "\\frac{ds}{dn} = x = \\frac{g}{a_0}",
-      "description": "Marginal entropy per mode for the BE-distributed grid modes; a key step in the derivation."
+      "latex": "\\frac{ds}{dn} = x = \\sqrt{\\frac{g}{a_0}}",
+      "description": "Marginal entropy per mode for the BE-distributed grid modes, equal to the dimensionless energy x = \u221a(g/a0); a key step in the derivation."
     },
     "gamma_result": {
-      "latex": "\\Gamma(\\rho) = \\Gamma_0 \\, \\frac{\\rho}{\\rho + \\rho_{\\mathrm{crit}}}",
-      "description": "Derived functional form: linear at low density and saturating at high density, with an emergent critical density \u03c1crit set by the grid microphysics via a0."
+      "latex": "\\Gamma(\\rho) \\propto \\frac{\\rho^{3/2}}{\\rho + \\rho_{\\mathrm{crit}}}",
+      "status": "derived",
+      "description": "Derived (Scenario B) functional form of the entropy production function, from the BE + von Neumann chain with density-dependent mode activation. It is sub-linear at low density (exponent 3/2, not 1) and non-saturating at high density (grows as \u03c1^(1/2)); \u03c1crit is emergent. This is the derived result of the paper (Eqs. 37-38), not the saturating ansatz."
+    },
+    "gamma_phenomenological_approx": {
+      "latex": "\\Gamma(\\rho) \\simeq \\Gamma_0 \\, \\frac{\\rho}{\\rho + \\rho_{\\mathrm{crit}}}",
+      "status": "phenomenological",
+      "description": "Phenomenological ansatz used in the action; NOT the derived result. An effective approximation to the derived form, valid to about 20% accuracy over the cosmologically relevant density range (\u03c1 \u2272 \u03c1crit); the paper states this explicitly (\u00a74.5 Eq. 35, \u00a75.3)."
     }
   },
   "key_results": {
-    "main_finding": "From BE occupation plus von Neumann entropy, \u0393(\u03c1) takes the saturating form \u03930\u00b7\u03c1/(\u03c1+\u03c1crit) with \u03c1crit emerging from the a0 grid-mode scale, and \u0393 is shown to be distinct from \u03bcBE(g), resolving double-counting.",
+    "main_finding": "From BE occupation plus von Neumann entropy the derived form is Scenario B, \u0393(\u03c1) \u221d \u03c1^(3/2)/(\u03c1+\u03c1crit), with \u03c1crit emerging from the a0 grid-mode scale; the saturating \u03c1/(\u03c1+\u03c1crit) is a phenomenological approximation to it (~20% accuracy), not the derived result. \u0393 is shown to be distinct from \u03bcBE(g), resolving double-counting.",
     "delta_chi2": null,
     "significance_sigma": null,
     "parameters_tested": [
@@ -74,7 +80,7 @@
     "KC2: The transition (critical) density \u03c1crit inferred from fits is inconsistent with the a0-determined microphysical scale by more than an order of magnitude without compensating model changes; i.e., \u03c1crit cannot be tied to a0.",
     "KC3: Joint fits to galactic dynamics (\u03bcBE(g)) and cosmological evolution (\u0393(\u03c1)) require identifying \u03bcBE and \u0393 as the same effective quantity to succeed, indicating unresolved double-counting in contradiction with the paper\u2019s separation.",
     "KC4: Robust EFC simulations with the derived \u0393(\u03c1) yield negative total entropy production (dS/dt < 0) under monotonic density decrease, violating the second law.",
-    "KC5: Observational constraints decisively rule out \u03bcBE(g) = 1/(e^{g/a0}\u22121) as the grid-mode response, thereby invalidating the shared statistical basis used to derive \u0393(\u03c1)."
+    "KC5: Observational constraints decisively rule out \u03bcBE(g) = 1/(e^{\u221a(g/a_0)}\u22121) as the grid-mode response, thereby invalidating the shared statistical basis used to derive \u0393(\u03c1)."
   ],
   "tier": "T3",
   "paper_type": "theory",
