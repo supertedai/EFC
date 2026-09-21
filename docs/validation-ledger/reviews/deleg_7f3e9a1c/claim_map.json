@@ -1,0 +1,258 @@
+{
+  "claims": [
+    {
+      "claim_id": "C01",
+      "statement": "The reconciliation is not a new empirical test, physical confirmation, supersession claim, or independent peer review; no new fit is performed.",
+      "source_dois": [],
+      "depends_on": [],
+      "status": "documented_self_scope",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:83-91, 215-225"
+    },
+    {
+      "claim_id": "C02",
+      "statement": "The six primary corpus package slugs and DOI pairs in Table 1 are the intended source mappings.",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31942800", "10.6084/m9.figshare.31941465", "10.6084/m9.figshare.31878760", "10.6084/m9.figshare.31878334", "10.6084/m9.figshare.31876324"],
+      "depends_on": [],
+      "status": "verified_identity",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:104-123; each cited index.json doi/figshare_url",
+      "finding": "All six table paths exist and their index.json DOI fields match the manuscript. No wrong manuscript slug/DOI found."
+    },
+    {
+      "claim_id": "C03",
+      "statement": "Gamma is the entropy-flux derivative dS/drho and sigma_s = Gamma(rho) dot-rho follows by the chain rule.",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31876324"],
+      "depends_on": [],
+      "status": "partially_supported",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:125-131; 31942821/index.json:24-51; 31876324/index.json:28-39",
+      "finding": "The package indexes support Gamma as a flow/entropy source, but the exact dS/drho definition and chain-rule statement are not explicit in the six index files; this is a manuscript synthesis."
+    },
+    {
+      "claim_id": "C04",
+      "statement": "Three Gamma forms are present: Gamma_A = rho/(rho+rho_crit), Gamma_B = rho^(3/2)/(rho+rho_crit), and Gamma_C = sqrt(rho/rho_crit)/(1+sqrt(rho/rho_crit)).",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31942800"],
+      "depends_on": [],
+      "status": "verified_as_declared_forms",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:133-141; 31942821/index.json:49-55,108; 31942800/index.json:41-47,116",
+      "finding": "A and B are both represented in 31942821's index; C is represented in 31942800. The same 31942821 index is internally inconsistent: description/core equation/main_finding state A while key_result states B."
+    },
+    {
+      "claim_id": "C05",
+      "statement": "Gamma_A is proposed and phenomenological, Gamma_B is declared derived but non-saturating with supersession not established, and Gamma_C is a declared companion upgrade/untested with supersession not established.",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31942800"],
+      "depends_on": ["C04"],
+      "status": "verified_against_register",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:143-149; form_status_register.json:10-45",
+      "finding": "The maturity labels and supersession qualifications match the authoritative register."
+    },
+    {
+      "claim_id": "C06",
+      "statement": "The three Gamma forms constitute a shape bifurcation rather than an empirically established maturation chain A -> B -> C; B -> B+ is only a declared companion-upgrade relation.",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31942800"],
+      "depends_on": ["C04", "C05"],
+      "status": "supported_synthesis_not_empirical_result",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:151-153; form_status_register.json:28-44; 31942800/index.json:50-62",
+      "finding": "The non-supersession wording is supported. Hidden dependency: no explicit regime/selection rule maps A, B, and C into disjoint domains, so 'shape bifurcation' is a reconciliation label, not a source-derived theorem."
+    },
+    {
+      "claim_id": "C07",
+      "statement": "There are two orthogonal model-family axes: the E-exponent alpha = 1 versus 1/2, and the Gamma-density shape axis.",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31941465", "10.6084/m9.figshare.31878760", "10.6084/m9.figshare.31878334", "10.6084/m9.figshare.31942800"],
+      "depends_on": ["C04"],
+      "status": "partially_supported_synthesis",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:155-179; 31942821/index.json:29-39; 31941465/index.json:53-71; 31878760/index.json:37-47; 31878334/index.json:33-35; 31942800/index.json:41-47",
+      "finding": "The exponent alternatives and Gamma forms are documented, but independence/orthogonality is not demonstrated by the indexes. More importantly, the prose/table describes the Gamma-shape axis using only A and C and omits B, despite C04 and Section 3 identifying B as a third realized form."
+    },
+    {
+      "claim_id": "C08",
+      "statement": "The square-root E exponent follows from the minimal three-term gradient-coupled grid action, E proportional to sqrt(g).",
+      "source_dois": ["10.6084/m9.figshare.31941465"],
+      "depends_on": [],
+      "status": "declared_derived_not_tested",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:160; 31941465/index.json:28-75,144-152",
+      "finding": "Correct DOI and package mapping. The index has null delta_chi2/significance and no new fit, so this is a declared derivation, not an empirical result."
+    },
+    {
+      "claim_id": "C09",
+      "statement": "KC1 is a conditional falsification criterion: if the linear-g exponent form is preferred and sqrt(g) is excluded at >=5 sigma, the E proportional-to-sqrt(g) theorem is falsified.",
+      "source_dois": ["10.6084/m9.figshare.31941465"],
+      "depends_on": ["C08"],
+      "status": "proposed_conditional_criterion",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:181-186; 31941465/index.json:102-107; form_status_register.json:67-73",
+      "finding": "The current index wording and register support the conditional reading. The manuscript's historical 'author word' explanation is not contained in the six index files, but is recorded in the register."
+    },
+    {
+      "claim_id": "C10",
+      "statement": "The grid-action package's internal PDF favors the square-root operator and calls the linear operator too steep.",
+      "source_dois": ["10.6084/m9.figshare.31941465"],
+      "depends_on": ["C09"],
+      "status": "not_verified_from_requested_index",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:188",
+      "finding": "The manuscript cites PDF Section 2.4/Table 1, but this review was instructed to read index.json; the index supports operator uniqueness in general, not the quoted PDF wording. This dependency is undocumented in the requested index evidence and requires the package PDF for verification."
+    },
+    {
+      "claim_id": "C11",
+      "statement": "KC1's >=5 sigma SPARC comparison has open provenance because delta_chi2 and significance_sigma are null and the package records no new fit performed.",
+      "source_dois": ["10.6084/m9.figshare.31941465"],
+      "depends_on": ["C09"],
+      "status": "author_gated_provenance_gap",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:190; 31941465/index.json:74-88",
+      "finding": "Directly supported by the index fields. The manuscript correctly does not promote the threshold to an executed result."
+    },
+    {
+      "claim_id": "C12",
+      "statement": "The ledger vocabulary distinguishes proposed, declared derived, and declared companion upgrade from tested/superseded/falsified/conjectured prose descriptors.",
+      "source_dois": [],
+      "depends_on": [],
+      "status": "verified_against_ledger",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:192-204; form_status_register.json:6-9",
+      "finding": "No DOI dependency; this is a ledger-schema claim and matches the register."
+    },
+    {
+      "claim_id": "C13",
+      "statement": "Two preregistered discriminators are proposed and not executed: SPARC/RAR for the E-exponent axis and GW/EM luminosity-distance comparison for the propagation axis; Gamma shape has no preregistered discriminator.",
+      "source_dois": ["10.6084/m9.figshare.31878760", "10.6084/m9.figshare.31941465", "10.6084/m9.figshare.31876324"],
+      "depends_on": ["C07", "C11"],
+      "status": "partially_supported_pending_preregistration_evidence",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:206-213; 31878760/index.json:50-63; 31941465/index.json:74-88; 31876324/index.json:58-70",
+      "finding": "The six indexes support the theoretical channels and their unexecuted status, but do not establish that the two tests are preregistered, awaiting author freeze, or that Gamma shape has no preregistration. Those dependencies reside in separate ledger preregistration files, not in the six package indexes."
+    },
+    {
+      "claim_id": "C14",
+      "statement": "The normative a0 is 1.2e-10 m s^-2, but the canonical value is author-gated because several candidate values circulate; the SPARC/RAR test is invalid until one value is frozen.",
+      "source_dois": ["10.6084/m9.figshare.31878760", "10.6084/m9.figshare.31878334"],
+      "depends_on": ["C13"],
+      "status": "partially_supported_author_gated",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:211; 31878760/index.json:41-43,143-146; 31878334/index.json:57-60,162-166",
+      "finding": "The numerical a0 is present in both indexes. The several-candidates/author-gated/freeze requirement is not in either index; it depends on the separate preregistration record and ledger context."
+    },
+    {
+      "claim_id": "C15",
+      "statement": "The relativistic-action package supplies dL^GW/dL^EM = sqrt(F(phi0)/F(phiz)), with F(phi)=1+alpha phi, as a future standard-siren discriminator.",
+      "source_dois": ["10.6084/m9.figshare.31876324"],
+      "depends_on": ["C13"],
+      "status": "declared_prediction_not_executed",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:213; 31876324/index.json:58-70,281-301",
+      "finding": "Correct DOI. The index directly supports the distance formula, F(phi)=1+alpha phi through the parameter definition, and no dataset/fit."
+    },
+    {
+      "claim_id": "C16",
+      "statement": "The GW/EM siren discriminator is paradigm-resistant because its falsification condition does not depend on a Lambda-CDM prior; alpha and phi0 are not frozen here.",
+      "source_dois": ["10.6084/m9.figshare.31876324"],
+      "depends_on": ["C15"],
+      "status": "interpretive_and_parameter_freeze_open",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:213",
+      "finding": "The source index supports the mechanism and open parameterization, but not the stronger 'single paradigm-resistant discriminator' characterization. That is an uncited manuscript interpretation."
+    },
+    {
+      "claim_id": "C17",
+      "statement": "No new fits, selections, independent validations, or physical falsifications are performed or claimed in this reconciliation.",
+      "source_dois": ["10.6084/m9.figshare.31942821", "10.6084/m9.figshare.31942800", "10.6084/m9.figshare.31941465", "10.6084/m9.figshare.31878760", "10.6084/m9.figshare.31878334", "10.6084/m9.figshare.31876324"],
+      "depends_on": ["C05", "C09", "C11", "C13", "C15"],
+      "status": "documented_scope_consistent_with_metadata",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:215-225; all six index.json key_results fields",
+      "finding": "Consistent with null likelihood fields and empty/no-data statements in the source indexes."
+    },
+    {
+      "claim_id": "C18",
+      "statement": "The repository metadata for 31941465 was corrected while the published Figshare record still has pre-correction wording; a version bump is required.",
+      "source_dois": ["10.6084/m9.figshare.31941465"],
+      "depends_on": ["C09"],
+      "status": "not_verified_from_six_indexes",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:228-237",
+      "finding": "This is a repository/public-publication version-divergence claim, not inferable from the current index.json alone. The six-index review cannot verify Figshare's prior record or version history."
+    },
+    {
+      "claim_id": "C19",
+      "statement": "The reconciliation package is machine-readable/reproducible by construction, with a full AI-friendly stack, deterministic maintenance generators, and a build script/checksum workflow, while byte-for-byte reproducibility is not achieved.",
+      "source_dois": [],
+      "depends_on": [],
+      "status": "unverified_repository_workflow_claim",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:240-244",
+      "finding": "No DOI source is supplied and the claim was not established by the six source indexes. It requires direct inspection/execution of the named files, scripts, container, and CI."
+    },
+    {
+      "claim_id": "C20",
+      "statement": "The manuscript is a draft with DOI-PENDING, no Figshare record, and no authorized repository merge.",
+      "source_dois": [],
+      "depends_on": [],
+      "status": "verified_in_manuscript_only",
+      "source_ref": "EFC_Model_Family_Reconciliation.tex:34-36, 244, 249-250",
+      "finding": "Internal document-state claim; no source DOI dependency."
+    }
+  ],
+  "package_graph": {
+    "nodes": [
+      {"id": "P31942821", "slug": "Derivation_of_the_Entropy_Production", "doi": "10.6084/m9.figshare.31942821", "role": "Gamma_A/Gamma_B and linear BE metadata"},
+      {"id": "P31942800", "slug": "Density_of_States_of_Gravitationally", "doi": "10.6084/m9.figshare.31942800", "role": "Gamma_C/B+ square-root density-of-states bridge"},
+      {"id": "P31941465", "slug": "EFC_Gradient_Coupled_Grid_Action", "doi": "10.6084/m9.figshare.31941465", "role": "E proportional sqrt(g), KC1"},
+      {"id": "P31878760", "slug": "From_Grid_Microphysics_to_the_Radial_Acceleration", "doi": "10.6084/m9.figshare.31878760", "role": "grid-to-RAR square-root BE bridge"},
+      {"id": "P31878334", "slug": "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints", "doi": "10.6084/m9.figshare.31878334", "role": "covariant EFT and a0 context"},
+      {"id": "P31876324", "slug": "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction", "doi": "10.6084/m9.figshare.31876324", "role": "relativistic action and GW luminosity-distance ratio"},
+      {"id": "LFORM", "slug": "docs/validation-ledger/data/form_status_register.json", "doi": null, "role": "authoritative Gamma/BE/KC1 maturity register"},
+      {"id": "PREREG_E", "slug": "docs/validation-ledger/preregistrations/axis_e_sparc_rar.md", "doi": null, "role": "separate SPARC/RAR preregistration dependency"},
+      {"id": "PREREG_GW", "slug": "docs/validation-ledger/preregistrations/axis_dl_gw_em.md", "doi": null, "role": "separate GW/EM preregistration dependency"}
+    ],
+    "edges": [
+      {"from": "P31942821", "to": "P31942800", "type": "declared_companion_upgrade_not_established", "basis": "form_status_register.json:35-45; manuscript:148,153"},
+      {"from": "P31941465", "to": "P31878760", "type": "source/conceptual_bridge", "basis": "P31941465 index related_packages; manuscript:115-116,160"},
+      {"from": "P31941465", "to": "P31878334", "type": "source/conceptual_bridge", "basis": "P31941465 index related_packages; manuscript:115,160"},
+      {"from": "P31878760", "to": "P31878334", "type": "companion_macro_EFT", "basis": "P31878760 index related_packages"},
+      {"from": "P31942821", "to": "LFORM", "type": "status_registered", "basis": "form_status_register.json:11-33"},
+      {"from": "P31942800", "to": "LFORM", "type": "status_registered", "basis": "form_status_register.json:35-45"},
+      {"from": "P31941465", "to": "LFORM", "type": "KC1_status_registered", "basis": "form_status_register.json:67-73"},
+      {"from": "PREREG_E", "to": "P31941465", "type": "test_channel", "basis": "manuscript:209-211; separate prereg file"},
+      {"from": "PREREG_E", "to": "P31878760", "type": "test_channel", "basis": "manuscript:211; separate prereg file"},
+      {"from": "PREREG_GW", "to": "P31876324", "type": "test_channel", "basis": "manuscript:213; separate prereg file"}
+    ]
+  },
+  "assumptions": [
+    "The requested verification scope is the complete manuscript plus the six named index.json files and form_status_register.json; package PDFs, source code, Figshare records, and CI were not treated as read evidence.",
+    "'Shape bifurcation' is recorded as the manuscript's synthesis label, not as an independently derived theorem.",
+    "A DOI/slug mapping is considered correct only when the manuscript path exists and the package index doi and figshare_url agree; all six pass this identity check.",
+    "The phrase 'all claims' is operationalized as every substantive claim-bearing paragraph/table item in the manuscript, including scope, provenance, status, preregistration, reproducibility, and draft-state claims."
+  ],
+  "dependencies": [
+    {
+      "dependency_id": "D01",
+      "issue": "No wrong slug or DOI occurs in the manuscript's six-package Table 1. However, P31941465/index.json contains a dangling related-package DOI 10.6084/m9.figshare.31940469 with no matching repository package found under docs/papers/efc; this is a source-index metadata defect, not a manuscript Table 1 mapping.",
+      "severity": "medium",
+      "affected_claims": ["C02", "C08"]
+    },
+    {
+      "dependency_id": "D02",
+      "issue": "P31942821/index.json is internally inconsistent: description/core equation/main_finding present Gamma_A, while key_result presents Gamma_B; its BE metadata also states exp(g/a0), while related EFC packages use exp(sqrt(g/a0)). The manuscript reports the Gamma split but does not explicitly flag the BE-exponent metadata conflict.",
+      "severity": "high",
+      "affected_claims": ["C04", "C07", "C12"]
+    },
+    {
+      "dependency_id": "D03",
+      "issue": "The Gamma-shape axis in manuscript lines 162-174 omits Gamma_B even though Section 3 calls A, B, and C distinct realized forms. The axis is therefore incomplete unless B is intentionally excluded with an explicit rationale.",
+      "severity": "high",
+      "affected_claims": ["C07"]
+    },
+    {
+      "dependency_id": "D04",
+      "issue": "The manuscript's claim that the two tests are preregistered, proposed, awaiting author freeze, and that no Gamma-shape discriminator exists depends on separate preregistration files, not on the six package indexes. Those files must be treated as explicit dependencies, not as DOI-package evidence.",
+      "severity": "medium",
+      "affected_claims": ["C13", "C14", "C16"]
+    },
+    {
+      "dependency_id": "D05",
+      "issue": "The KC1 PDF direction claim and Figshare version-divergence claim cannot be verified from index.json. They require the package PDF and external/published-record version history.",
+      "severity": "medium",
+      "affected_claims": ["C10", "C18"]
+    },
+    {
+      "dependency_id": "D06",
+      "issue": "The 'orthogonality' of axes and the 'paradigm-resistant' characterization are interpretive assertions; no index provides a formal independence proof or paradigm-invariance analysis.",
+      "severity": "medium",
+      "affected_claims": ["C07", "C16"]
+    },
+    {
+      "dependency_id": "D07",
+      "issue": "Reproducibility/build/CI claims in Section 9 have no cited DOI or ledger source and were not verified by the requested package-index read.",
+      "severity": "medium",
+      "affected_claims": ["C19"]
+    }
+  ]
+}
