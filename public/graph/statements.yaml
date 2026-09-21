@@ -17,6 +17,7 @@ statements:
   appears_on:
   - page_id: atlas
     role: primary
+    anchor: efc.core.status.001
 - statement_id: efc.h1.001
   text: 'Late-time cosmic entropy gradients modify the effective gravitational coupling:
     mu(a) < 1 at z < z_t suppresses structural growth (σ₈) without changing early-universe
@@ -33,7 +34,13 @@ statements:
     type: explicit
     description: fσ₈(z) systematically ABOVE the ΛCDM curve at z < 1 would falsify
       the mu < 1 channel.
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: cited
+    anchor: efc.h1.001
+    note: 'Simplified carrier: the atlas shows the consequence (P2: fσ₈(z=0.7) = 0.430
+      under ΛCDM because the regime transition damps the growth in L1) and the μ <
+      1 form, not the full H1 formulation with z_t and the early-universe bound.'
 - statement_id: efc.h1.002
   text: 'DESI DR2: the background sector coupling parameter α collapsed from -1.00
     ± 0.46 (2.2σ) to -0.14 ± 0.21 (0.68σ) — the background signal is gone, and the
@@ -46,7 +53,16 @@ statements:
   - ev.efc.desidr2.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: validation-ledger
+    role: primary
+    anchor: efc.h1.002
+  - page_id: predictions
+    role: cited
+    anchor: efc.h1.002
+  - page_id: atlas
+    role: cited
+    anchor: efc.h1.002
 - statement_id: efc.h1.003
   text: 'Variant H (the entropy-gradient growth mechanism) shows no data preference:
     DAIC = +4.05, S₀ = 0.21 ± 0.14 at 1.5σ — the signal may lie below current
@@ -59,7 +75,16 @@ statements:
   - ev.efc.desidr2.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: predictions
+    role: primary
+    anchor: efc.h1.003
+  - page_id: validation-ledger
+    role: cited
+    anchor: efc.h1.003
+  - page_id: atlas
+    role: cited
+    anchor: efc.h1.003
 - statement_id: efc.h2.001
   text: 'EFC effects are regime-specific: L0 (CMB/linear) reduces to ΛCDM exactly,
     L1 (BAO/quasi-linear) has a small perturbative modification, L2 (galaxy/non-linear)
@@ -79,8 +104,10 @@ statements:
   appears_on:
   - page_id: atlas
     role: primary
+    anchor: efc.h2.001
   - page_id: white-paper-series
     role: cited
+    anchor: efc.h2.001
 - statement_id: efc.h3.001
   text: 'mu < 1 at late times is required: mu > 1 (strengthened gravity) is excluded
     by the fσ₈ data with Δχ² = +495 to +2680 (B0 Bridge Test).'
@@ -94,7 +121,12 @@ statements:
   supersedes: null
   appears_on:
   - page_id: atlas
-    role: primary
+    role: cited
+    note: 'Weakened 2026-09-17: the atlas carries the B0 Bridge Test row («μ must
+      be less than 1») but not the numbers Δχ² = +495…+2680. The anchor is therefore
+      missing — the row is generated from ledger.json and cannot be pinned without
+      a name dependency in build_atlas.py. Verify and set the anchor, or leave it
+      in the queue.'
 - statement_id: efc.h4.001
   text: 'Background lemma: DE²(z) ≤ 0 for all z > 0, so that H_EFC(z) ≤ H_ΛCDM(z) —
     reduced Hubble friction, improved growth. Analytically proved (Lemma 1) and
@@ -107,7 +139,13 @@ statements:
   - ev.efc.h4.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: primary
+    anchor: efc.h4.001
+  - page_id: predictions
+    role: cited
+    anchor: efc.h4.001
 - statement_id: efc.h5.001
   text: 'The EFC Lagrange-multiplier flow condition yields anisotropic stress without
     a standard Horndeski correspondence: mu < 1 AND Σ ≥ 1 at the same time — a regime
@@ -124,12 +162,13 @@ statements:
   appears_on:
   - page_id: atlas
     role: primary
+    anchor: efc.h5.001
   - page_id: predictions
     role: cited
-  - page_id: model-comparison
-    role: cited
+    anchor: efc.h5.001
   - page_id: validation-ledger
     role: cited
+    anchor: efc.h5.001
 - statement_id: efc.h5.002
   text: 'Prediction: a redshift-dependent lensing crossover at z ~ 0.44 with a
     percent-level amplitude — Σ_eff > 1 at z < 0.4, Σ_eff < 1 at z > 0.5. This
@@ -149,8 +188,13 @@ statements:
   appears_on:
   - page_id: predictions
     role: primary
+    anchor: efc.h5.002
   - page_id: atlas
     role: cited
+    anchor: efc.h5.002
+  - page_id: validation-ledger
+    role: cited
+    anchor: efc.h5.002
 - statement_id: efc.sparc.001
   text: ∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹ (EFC-R-SPARC) — the entropy gradient measured
     from galaxy rotation curves.
@@ -162,10 +206,4 @@ statements:
   - ev.efc.sparc.001
   contradicts: []
   supersedes: null
-  appears_on:
-  - page_id: atlas
-    role: cited
-  - page_id: likelihood-ledger
-    role: cited
-  - page_id: validation-ledger
-    role: cited
+  appears_on: []

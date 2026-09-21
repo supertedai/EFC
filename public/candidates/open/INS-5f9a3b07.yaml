@@ -1,0 +1,46 @@
+insight_id: INS-5f9a3b07
+source_role: researcher
+writer_role: researcher
+run_id: 20260917_t0061c7de
+claim: 'The 2026-09-17 page mapping listed four statements as orphans because they «do
+  not exist on the public pages». Measured against the actual page text, three of the
+  four are the opposite: efc.h1.002 (the DESI DR2 collapse, α: −1.00±0.46 → −0.14±0.21)
+  stands in the Validation Ledger and Predictions, efc.h1.003 (Variant H, ΔAIC = +4.05)
+  has its own section «Known negative result (Variant H)» in Predictions, and
+  efc.h4.001 (the background lemma, Lemma 1) stands in Atlas and Predictions;
+  efc.h1.001 is carried in simplified form in Atlas. The other direction: efc.sparc.001
+  was mapped to atlas, likelihood-ledger and validation-ledger, but
+  ∇S = (8.20 ± 2.44) × 10⁻² kpc⁻¹ exists on none of them. The real stale_page remainder
+  is Atlas: the primary page for efc.core.status.001, without carrying the DESI DR2
+  collapse, the perturbation-channel primary or the Variant H negative.'
+claim_type: correction
+scope: public/graph/statements.yaml (appears_on) and the public pages in docs/public/
+  — the coverage of the page mapping
+source_refs:
+- uri: repo:supertedai/EFC:public/graph/statements.yaml
+  retrieved_at: '2026-09-17T04:30:15.167778+00:00'
+- uri: repo:supertedai/EFC:docs/public/EFC_Validation_Ledger.html
+  retrieved_at: '2026-09-17T04:30:15.167778+00:00'
+- uri: repo:supertedai/EFC:docs/public/EFC_Predictions.html
+  retrieved_at: '2026-09-17T04:30:15.167778+00:00'
+- uri: repo:supertedai/EFC:docs/public/EFC_Atlas.html
+  retrieved_at: '2026-09-17T04:30:15.167778+00:00'
+- uri: repo:supertedai/EFC:evidence/01_hypothesis.md
+  retrieved_at: '2026-09-17T04:30:15.167778+00:00'
+confidence: 0.8
+counterevidence:
+- obs: Predictions phrases the collapse as «the fσ₈ signal collapsed», while the primary
+    source evidence/01_hypothesis.md and efc.h1.002 say that it is the background coupling
+    α that collapsed. The page text is thus not unambiguously honest even where the
+    statement exists; the channel is labelled wrongly.
+- obs: Three of the four couplings were confirmed with a marker regex, not by reading
+    the sentences of the whole page. A statement can be present as a number without
+    being present as meaning.
+falsification_test: 'Run the markers in tests/test_statement_ankere.py and
+  scripts/maintenance/statement_graph_check.py against the pages: if the four couplings
+  do not hold, the correction is wrong.'
+supersedes: []
+contradicts: []
+status: candidate
+created_at: '2026-09-17T04:30:15.167778+00:00'
+content_hash: sha256:b9b8fd140ddf7d5eadbe39b87a74a7b71dd8f76fd4529e59221fddf4bea672e1

@@ -268,8 +268,28 @@ ORCID: <a href="https://orcid.org/0009-0002-4860-5095">0009-0002-4860-5095</a> &
 __GENERATED_DATE__ &middot; CC-BY-4.0
 </p>
 
-<div style="background:#f0f4fa; border-left:4px solid #4a6da7; padding:10px 16px; margin:1.2rem 0; font-size:0.92rem; color:#2a3a52;">
+<div data-statement-id="efc.h2.001" style="background:#f0f4fa; border-left:4px solid #4a6da7; padding:10px 16px; margin:1.2rem 0; font-size:0.92rem; color:#2a3a52;">
 <strong>RCMP framing.</strong> EFC is read <em>by regime</em> (L0&ndash;L3), not by the background: &Lambda;CDM is the <strong>special-case limit</strong> of EFC in L0/L1, derived from the variational action (K(&rho;)&rarr;&infin; &rArr; &mu;,&Sigma;,&eta;&rarr;1), so recovering &Lambda;CDM there is a designed <em>feature, not a contest</em>. EFC-distinctive physics lives in L2 (perturbation/growth) and L3 (galactic). <em>falsification_status &ne; model_preference.</em>
+</div>
+
+<div style="background:#fff8e8; border-left:4px solid #d4a017; padding:10px 16px; margin:1.2rem 0; font-size:0.92rem; color:#4a3a12;">
+<strong>Channel status after DESI DR2.</strong> The two channels are not equivalent, and the Atlas
+states which one carries the evidence:
+<ul style="margin:0.5rem 0 0.2rem;">
+  <li><span data-statement-id="efc.h1.002"></span><strong>Background channel &mdash; no significant evidence.</strong>
+  The background coupling collapsed from &alpha;&nbsp;=&nbsp;&minus;1.00&nbsp;&plusmn;&nbsp;0.46 (2.2&sigma;)
+  to &alpha;&nbsp;=&nbsp;&minus;0.14&nbsp;&plusmn;&nbsp;0.21 (0.68&sigma;) with DESI DR2, and the joint
+  background fit prefers &Lambda;CDM (&Delta;AIC&nbsp;=&nbsp;+1.59). The pre-DR2 background signal is gone.</li>
+  <li><span data-statement-id="efc.h1.003"></span><strong>Variant H &mdash; negative result.</strong>
+  The entropy-gradient growth extension is not preferred by current data:
+  S&#772;<sub>0</sub>&nbsp;=&nbsp;0.210&nbsp;&plusmn;&nbsp;0.141 (1.5&sigma;), &Delta;AIC&nbsp;=&nbsp;+4.05,
+  &Delta;BIC&nbsp;=&nbsp;+3.94 against BAO&nbsp;(DESI DR2)&nbsp;+&nbsp;f&sigma;<sub>8</sub>&nbsp;+&nbsp;H(z)&nbsp;+&nbsp;Pantheon.
+  Recorded as a sub-statistical null (signal may lie below current sensitivity), not as a falsification.</li>
+  <li><span data-statement-id="efc.core.status.001"></span><strong>Perturbation sector &mdash; the primary channel.</strong>
+  With the background signal eliminated, the perturbation-sector &mu;/&Sigma;/&eta; mechanism is EFC's
+  primary channel. It is <em>untested</em> at the required precision: the Stage-IV lensing arbiters
+  (Euclid DR1, Rubin LSST, SO&nbsp;&times;&nbsp;Euclid) have not reported.</li>
+</ul>
 </div>
 
 <p style="font-size:0.93rem; color:#1a3a6b; background:#f0f5fc; border:1px solid #c9d4e4; border-radius:5px; padding:10px 14px;">
@@ -533,6 +553,22 @@ _LAYER_LABEL = {
     "L3": "L3 &mdash; Strong regime",
 }
 
+# ------------------------------------------------------------------
+# Statement anchors (public/graph/statements.yaml)
+# ------------------------------------------------------------------
+# The Atlas renders its sealed predictions from atlas.json, so an anchor for a
+# statement this page carries must be emitted HERE: a hand edit of
+# docs/public/EFC_Atlas.html is overwritten by the next build, and
+# atlas-verify.yml enforces the identity HTML == f(atlas.json, ledger.json).
+# Keep this table in step with `appears_on` in public/graph/statements.yaml --
+# statement_graph_check.py fails if the two disagree.
+STATEMENT_ID_BY_PREDICTION = {
+    "P1": "efc.h5.002",   # non-monotonic Sigma_eff(z), crossover at z ~ 0.44
+    "P2": "efc.h1.001",   # mu(a) < 1 -> suppressed late-time growth (simplified)
+    "P5": "efc.h5.001",   # mu < 1 and Sigma >= 1 unavailable in QS Horndeski
+    "P6": "efc.h4.001",   # background sign lemma: Delta E^2(z) <= 0 (Lemma 1)
+}
+
 
 def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) -> str:
     """Render one sealed prediction as a hero card: metadata + rivals from
@@ -638,8 +674,11 @@ def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) ->
     phen_name = _esc(phen.get("name", phen_id))
     phen_code = _esc(phen_id)
 
+    statement_id = STATEMENT_ID_BY_PREDICTION.get(pid)
+    anchor_attr = f' data-statement-id="{statement_id}"' if statement_id else ""
+
     return f"""
-<div class="hero" style="border-left-color:{border};" id="pred-{_esc(pid)}">
+<div class="hero" style="border-left-color:{border};" id="pred-{_esc(pid)}"{anchor_attr}>
   <div style="margin-bottom:0.4rem;">
     <span class="{badge_cls}">{_esc(badge)}</span>
     <span class="regime-chip {_esc(layer)}">{_LAYER_LABEL.get(layer, _esc(layer))}</span>
