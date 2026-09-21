@@ -47,6 +47,32 @@ validation ledger, and AI-friendly metadata layer consistent.
 | C11 | Concept registry (`efc_concepts.py`): a judgement the model may not make — `efc:registryStatus` other than `candidate`, any `efc:entityType` finer than `concept`, `empiricalStatus`, `mappingStrength`, `falsifier`, `alternativeExplanation` — is accepted ONLY with an `efc:attested` entry naming one of the ORCIDs in the `authors:` block of `CITATION.cff` (all of them, so widening the author list widens who may attest, and a `references:` block cannot hijack the authority), a real calendar date in `YYYY-MM-DD` that is also a real day, a basis, and the same value. One attestation carries one field. `efc:reviewAt` is optional and, once set, enforced: an expired attestation is a problem, which makes this the first gate whose verdict can change with the clock and no commit. `candidate` is free, `canonical` is signed: registry membership is exactly what a model can grant itself, so it is the thing that needs a human. A retired entry names a `dcterms:isReplacedBy` that resolves in the registry. Note that the bookkeeping properties this adds (`efc:entityType`, `efc:registryStatus`, `efc:attested…`) are declared in the vocabulary like any other `efc:` term in use — C9 asserts identity, not meaning, so it carries plumbing too. Every entry carries an `efc:entityType` from a closed list, and the five kinds that are not concepts at all (publication, dataset, artifact, person, organization) are refused with that message and nothing else — no attestation makes a publication a concept. `definition_status` is computed into the generated view, never stored. `docs/concepts.jsonld` is the ONE source for the five core concepts (SKOS: prefLabel/altLabel/notation, broader, inScheme, definition, scopeNote; `dcterms:source` for provenance), against the `efc:` namespace so C9 declares each concept as a `skos:Concept`. `schema/concepts.json` (schema.org DefinedTermSet) and `api/concept-index.json` (ItemList) are generated views and must be byte-fresh (`efc_maintain.py` runs `--apply`); `api/v1/concepts.json` and `api/v1/terms.json` were dead copies and must stay absent. Every `skos:definition` is a verbatim sentence from a document in the tree, named by `efc:definitionQuotedFrom` as a GitHub line anchor (`…/README.md#L15`), so the identifier is the clickable evidence; the gate requires the fragment, resolves the file inside the tree and checks the quote is a non-empty verbatim substring of exactly those lines, plus the optional `efc:quoteSha256`; where the tree has no defining sentence the concept carries sources and a scopeNote saying so — the registry authors nothing (ADR-024). |
 | C12 | Schema identity and JSON-LD form (`efc_identity.py`): every JSON Schema file — declared dialect, or properties+type/required, or `$defs`, or *named* `*schema*.json` with properties/required/definitions — carries the 2020-12 dialect and `$id` = `https://supertedai.github.io/EFC/<served path>` (docs/ is the Pages root, measured: `…/EFC/index.jsonld` 200, `…/EFC/docs/index.jsonld` 404 — the same form the vocabulary and the concept registry use; percent-encoded); every JSON-LD document without `@graph` has a top-level `@id` (DOI URL for papers with a DOI, else the served identifier; pre-existing foreign `@id`s kept; `@graph` documents exempt because a top-level `@id` would make a named graph); every `"$schema"` pointer in an instance (an editor convention, not a validator binding — C10 is) resolves to a *schema* in the tree; codemeta is 3.0. Reported, not enforced: CITATION.cff `type` vs codemeta `@type` — a human word. Declared on every check: identifiers outside `docs/` are identifiers, not URLs (count printed); `_archived/` is not maintained; the EFC-R-SPARC case-colliding pair is skipped (t_e505c64c); files named `schema.json` that carry no schema keys are listed. Robots write `@id`/`$id` themselves (`efc_auto_metadata`, `efc_gen_ai_friendly`, `efc_ai_brain`), and the per-package `schema.json` template describes the `index.json` the robots write (114 of 162 legacy pairs failed their own template, measured pre-C12 at `6a170fb5^`; hand-written schemas untouched). |
 | C8 | Per-paper DOI consistency. Every source that declares a DOI inside a paper directory (`index.json`, `metadata.json`, `CITATION.cff`, `*.jsonld`) must declare the **same** canonical Figshare DOI. Hard error on conflict. |
+| C14 | `docs/public/external_research_watch.json` carries no forbidden phrases in the **EFC-authored** free-text fields (`efc_relevance`, `ledger_action`). Sibling of C3 for the watchlist. Claim-like-but-arguable phrasing (`supports EFC`, …) warns rather than fails — see below. |
+
+### C14: why the §4b carve-out does not transfer to JSON
+
+C3's carve-out is **positional** — §4b is where third-party results are
+quoted, so the forbidden phrases are tolerated inside that block and rejected
+in §1–§4.
+
+The watchlist has no sections, and every item in it is external by
+construction, so a positional carve-out would exempt the whole file. C14's
+equivalent split is **by field**, i.e. by who is speaking:
+
+| Field | Voice | Scanned |
+|---|---|---|
+| `title`, `url`, `source_type` | the external work's own words | no |
+| `efc_relevance`, `ledger_action` | EFC's editorial voice | **yes** |
+
+No §4b-equivalent exemption exists *inside* the scanned fields, and none is
+wanted: there is no legitimate reason for EFC's own annotation of an external
+result to assert that the result confirms EFC.
+
+`supports EFC` / `demonstrates EFC` / `verifies EFC` are listed separately in
+`SOFT_CLAIM_PHRASES` and reported as **warnings only**. They breach the same
+discipline, but the verbs have legitimate non-claim uses ("the DESI DR2
+release supports EFC WP4's reanalysis" = supplies data for). Promoting them
+to hard errors is a human judgement call about false positives.
 
 ## The epistemic rule the verifier enforces
 
@@ -148,7 +174,7 @@ stack automatically. Then manually add:
 
 ## When the checks run (measured 2026-09-06, t_0d65ccdf)
 
-`efc-verify.yml` (C1–C9, C11, C12) runs on `pull_request`, on `push` to
+`efc-verify.yml` (C1–C9, C11–C14) runs on `pull_request`, on `push` to
 `main` (same path list — `tests/test_workflows_parse.py` keeps the two lists
 identical), on a daily schedule, and on `workflow_dispatch`. Since
 2026-04-28 it had run on `pull_request` only, to avoid racing the auto-sync:

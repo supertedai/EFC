@@ -5,6 +5,24 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-08-19",
+      "sha": "810124d9e7ee",
+      "summary": "fix(verify): extend language discipline to the external research watchlist (C14)",
+      "categories": {
+        "public_pages": 1
+      },
+      "id": "810124d9e7ee"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "7078a6ca217e",
+      "summary": "chore(watch): rebuild the watchlist from its parts, and fix the phrase C14 forbids at the source",
+      "categories": {
+        "public_pages": 2
+      },
+      "id": "7078a6ca217e"
+    },
+    {
       "date": "2026-09-20",
       "sha": "a5593eca5f65",
       "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
@@ -269,7 +287,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
+    "last_processed_sha": "7078a6ca217e8dcb513be87059e8aefd9922f463",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }

@@ -77,7 +77,7 @@ jobs:
         run: python3 scripts/maintenance/efc_concepts.py
       - name: "Check schema identity and JSON-LD form (C12 — one $id authority, one dialect, @id on top, pointers resolve, codemeta 3.0)"
         run: python3 scripts/maintenance/efc_identity.py
-      - name: Run EFC verifier (C1–C8)
+      - name: Run EFC verifier (C1–C8, C14)
         id: verify
         run: python3 scripts/maintenance/efc_verify.py
       - name: Run drift detector
