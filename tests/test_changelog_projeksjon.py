@@ -97,10 +97,24 @@ def test_the_window_the_repair_would_skip_is_projected():
 
 # --- the language rule at the source (t_f610686f) ---------------------------
 
+def _norsk_emne(prefiks: str = "fix(x):") -> str:
+    """A commit subject the stopword list sees.
+
+    The sample comes FROM the list (cp.NORSKE_ORD's own pattern), not from a
+    literal in this file: the language gate guards tests/, and a hand-written
+    Norwegian sample would be exactly what the gate forbids — and would start
+    failing the day the list grows a word the sample happened to use.
+    """
+    ord_ = sorted({w for w in re.findall("[a-z\u00e6\u00f8\u00e5]{3,}",
+                                         cp.NORSKE_ORD.pattern)})
+    assert ord_, "the stopword list yielded no words — the samples moved"
+    return f"{prefiks} {' '.join(ord_[:3])}"
+
+
 def test_declared_english_form_is_used_and_flagged():
     kort = "dddddddddddd"
     tekst, deklarert = cp._summary(
-        {"sha": kort + "0" * 28, "melding": "feat(x): norsk emne"},
+        {"sha": kort + "0" * 28, "melding": _norsk_emne("feat(x):")},
         {kort: "feat(x): an English subject"})
     assert tekst == "feat(x): an English subject"
     assert deklarert is True
@@ -108,7 +122,7 @@ def test_declared_english_form_is_used_and_flagged():
 
 def test_undeclared_norwegian_subject_is_refused():
     with pytest.raises(SystemExit):
-        cp._summary({"sha": "a" * 40, "melding": "fix(x): noe som ble endret"}, {})
+        cp._summary({"sha": "a" * 40, "melding": _norsk_emne()}, {})
 
 
 def test_english_subject_needs_no_declaration():
