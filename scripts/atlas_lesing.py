@@ -45,6 +45,7 @@ was an error in the atlas — all were an error in the interface.
     naboer/hop/hop_stier/fragment   -> the coupling graph
     maaleformer/proxy_kjeder        -> what measures, via what
     sjekk_usikkerhet(atlas, repo)   -> list[str]  every post against its own source
+    sjekk_verifisering(atlas)       -> list[str]  the verification chain, per node
 
 THE RULE they all follow: an entrance that does not know, SAYS so. `finn`
 answers THE ATLAS DOES NOT KNOW rather than giving a loose hit; `plasser`
@@ -354,6 +355,166 @@ def sjekk_usikkerhet(atlas: dict, repo: str | Path | None = None) -> list[str]:
             continue
         for nr, post in enumerate(poster):
             ut.extend(_sjekk_usikkerhetspost(node_id, nr, post, repo))
+    return ut
+
+
+# --- the verification layer (card t_bf62ce48) -------------------------------
+#
+# A fit result and a verified posterior are two DIFFERENT epistemic states. The
+# atlas could say `proxy` and nothing more, so «posterior not verified» read
+# exactly like «the measurement failed». The chain is therefore NAMED, and every
+# arrow in it is a transformation:
+#
+#     fit ->[identifiability]-> inferable ->[sampling]-> posterior_verifisert
+#
+# `sjekk_verifisering` holds the rules the schema cannot express. The schema
+# carries the closed vocabulary and rejects an invented key; whether a VERDICT
+# carries its own numbers, and whether a FAILURE names its arrow and its cause,
+# are conditional requirements, and C10 reports any subschema with `properties`
+# as open — so they are held here and mutation-tested in
+# tests/test_epistemikk_v7.py until the gate can be changed by human word.
+#
+# The vocabulary is defined ONCE in the schema and mirrored here; the test
+# asserts the two are equal, so the two definitions cannot drift apart.
+VERIFISERING_KJEDE = ("fit", "identifiability", "sampling", "posterior_verifisert")
+VERIFISERING_TILSTANDER = ("fit_only", "posterior_forsokt", "posterior_verifisert",
+                           "inferens_feil", "ikke_identifiserbar", "uavklart")
+# A verdict is a claim: it carries the numbers it was reached with.
+VERIFISERING_DOMMER = ("posterior_verifisert", "inferens_feil",
+                       "ikke_identifiserbar", "uavklart")
+# A failure names WHERE the chain broke. `uavklart` is NOT here: the arrow can
+# legitimately be unknown, and a requirement to name it would force a guess.
+VERIFISERING_BRUDD = ("inferens_feil", "ikke_identifiserbar")
+VERIFISERING_TRANSFORMASJONER = ("identifiability", "sampling", "datakilde")
+VERIFISERING_AARSAKER = ("sampler_feil", "svak_identifikasjon", "multimodalitet",
+                         "trakt", "parameter_redundans", "diagnostikk_uavklart")
+# The five arbiter metrics a `posterior_verifisert` verdict must carry, in the
+# order the schema declares them. The schema holds the CLOSED SHAPE of the
+# `metrikker` object; the LINE is held here, because a threshold is a rule the
+# schema's closed dialect cannot express as a conditional (see the block above).
+VERIFISERING_METRIKKER = ("r_hat", "bulk_ess", "tail_ess", "divergenser",
+                          "energy_bfmi")
+# (field, line, operator): R-hat < 1.01 (declared on the card t_bf62ce48),
+# bulk/tail-ESS >= 400 (Vehtari et al. 2021), divergenser <= 0 (none), and
+# energy/BFMI >= 0.2 (Betancourt 2017). The ESS floor is a property of what is
+# estimated, which is why the line is held per field and not as one word.
+VERIFISERING_ARBITER = (
+    ("r_hat", 1.01, "<"),
+    ("bulk_ess", 400, ">="),
+    ("tail_ess", 400, ">="),
+    ("divergenser", 0, "<="),
+    ("energy_bfmi", 0.2, ">="),
+)
+
+
+def _innenfor_terskel(verdi: float, terskel: float, op: str) -> bool:
+    if op == "<":
+        return verdi < terskel
+    if op == ">=":
+        return verdi >= terskel
+    if op == "<=":
+        return verdi <= terskel
+    raise ValueError(f"unknown arbiter operator {op!r}")
+
+
+def sjekk_verifisering(atlas: dict) -> list[str]:
+    """One node's verification state against the rules of the chain. Empty = clean.
+
+    Returns problems, not a verdict: every problem names the node and what did
+    not hold, so the answer can be read as a correction.
+
+    What this CANNOT do, said plainly: it cannot confirm that a sampler really
+    failed. It holds the FORM — a verdict carries its diagnostics, a failure
+    names its arrow and its cause, an unbroken chain carries no break — and the
+    values are the node's own claim, sourced in `instrument`. A checker that
+    looked like it had verified the run would be the more expensive error.
+
+    Optional: a node without the layer is not a problem. The COVERAGE (how many
+    nodes have taken a position) is counted by tests/test_epistemikk_v7.py and
+    reported as a number, never as a problem with no owner.
+    """
+    noder = atlas.get("noder")
+    if noder is None:
+        noder = atlas.get("nodes")
+    if noder is None:
+        raise AtlasLesingFeil(
+            "the atlas has neither 'noder' nor 'nodes' — then there are no "
+            "nodes to check, and «no problems» would have been an empty answer")
+
+    ut: list[str] = []
+    for node in noder or []:
+        if not isinstance(node, dict):
+            continue
+        node_id = str(node.get("id") or "?")
+        epistemikk = node.get("epistemikk")
+        verifisering = (epistemikk or {}).get("verifisering") \
+            if isinstance(epistemikk, dict) else None
+        if verifisering is None:
+            continue  # OPTIONAL: a node without the layer is not a problem
+        hvor = f"{node_id}/epistemikk/verifisering"
+        if not isinstance(verifisering, dict):
+            ut.append(f"{hvor}: not an object")
+            continue
+
+        tilstand = verifisering.get("tilstand")
+        if tilstand not in VERIFISERING_TILSTANDER:
+            ut.append(f"{hvor}: tilstand {tilstand!r} is not one of "
+                      f"{VERIFISERING_TILSTANDER} — the chain has a closed "
+                      f"vocabulary, and a new value is a decision, not a word")
+            continue
+
+        instrument = verifisering.get("instrument")
+        if not isinstance(instrument, str) or not instrument.strip():
+            ut.append(f"{hvor}: {tilstand} without an instrument — a state "
+                      f"without a source cannot be checked by anyone")
+
+        if tilstand in VERIFISERING_DOMMER:
+            diagnostikk = verifisering.get("diagnostikk")
+            if not isinstance(diagnostikk, str) or not diagnostikk.strip():
+                ut.append(f"{hvor}: {tilstand} without diagnostikk — a verdict "
+                          f"without its numbers is an empty word")
+
+        if tilstand == "posterior_verifisert":
+            # The arbiter's five numbers, or the strongest word is a claim.
+            metrikker = verifisering.get("metrikker")
+            if not isinstance(metrikker, dict):
+                ut.append(f"{hvor}: posterior_verifisert without metrikker — "
+                          f"the arbiter's five numbers are what separates a "
+                          f"verdict from a claim")
+            else:
+                for felt, terskel, op in VERIFISERING_ARBITER:
+                    verdi = metrikker.get(felt)
+                    if not isinstance(verdi, (int, float)) or isinstance(verdi, bool):
+                        ut.append(f"{hvor}: posterior_verifisert without "
+                                  f"metrikker.{felt} — all five arbiter "
+                                  f"numbers are required")
+                        continue
+                    if not _innenfor_terskel(verdi, terskel, op):
+                        ut.append(f"{hvor}: posterior_verifisert with "
+                                  f"metrikker.{felt}={verdi} outside the "
+                                  f"arbiter's line ({op} {terskel})")
+
+        brudd = verifisering.get("brudd")
+        if tilstand in VERIFISERING_BRUDD:
+            if not isinstance(brudd, dict):
+                ut.append(f"{hvor}: {tilstand} without brudd — a break that "
+                          f"does not name its arrow and its cause is the "
+                          f"collapse this layer exists to prevent")
+                continue
+            t = brudd.get("transformasjon")
+            if t not in VERIFISERING_TRANSFORMASJONER:
+                ut.append(f"{hvor}: brudd.transformasjon {t!r} is not one of "
+                          f"{VERIFISERING_TRANSFORMASJONER} — the arrow that "
+                          f"broke must be named")
+            a = brudd.get("aarsak")
+            if a not in VERIFISERING_AARSAKER:
+                ut.append(f"{hvor}: brudd.aarsak {a!r} is not one of "
+                          f"{VERIFISERING_AARSAKER} — a candidate asserted "
+                          f"without a discriminating measurement is not a cause")
+        elif brudd is not None:
+            ut.append(f"{hvor}: {tilstand} carries a brudd — an unbroken "
+                      f"chain cannot break, and two answers to one question "
+                      f"is how a status stops meaning anything")
     return ut
 
 

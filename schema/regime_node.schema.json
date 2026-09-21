@@ -513,6 +513,105 @@
               "type": "boolean",
               "const": true,
               "description": "Morten's principle (e): consensus does not define the truth — humans are social animals that follow the strongest narrative."
+            },
+            "verifisering": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "tilstand",
+                "instrument"
+              ],
+              "properties": {
+                "tilstand": {
+                  "type": "string",
+                  "enum": [
+                    "fit_only",
+                    "posterior_forsokt",
+                    "posterior_verifisert",
+                    "inferens_feil",
+                    "ikke_identifiserbar",
+                    "uavklart"
+                  ],
+                  "description": "How far up the verification chain the node's result has come. `fit_only`: the result is a deterministic fit and no posterior has been attempted. `posterior_forsokt`: a sampler has run against it, with no verdict yet. `posterior_verifisert`: the arbiter's five metrics all passed. `inferens_feil`: the sampler ran and delivered no posterior — the state carries WHERE and WHY in `brudd`, so an engine that did not converge is never read as a result that failed. `ikke_identifiserbar`: the model cannot separate its parameters, independently of the sampler. `uavklart`: the cause is not resolved among the candidates, and the diagnostics measured so far stand in `diagnostikk`."
+                },
+                "instrument": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "What produced this state, named concretely — the fit, the sampler, the run. A state without its instrument is a claim without a source: the reader cannot tell a converged sampler from a fit, and cannot check either."
+                },
+                "diagnostikk": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The measured numbers behind a verdict (R-hat, ESS, divergences, energy/BFMI) and the SCOPE of the measurement. Required on every verdict (`posterior_verifisert`, `inferens_feil`, `ikke_identifiserbar`, `uavklart`), held by tests/test_epistemikk_v7.py. A sampler that converged and a sampler that targeted a DIFFERENT parametrisation than the node's own must not read alike — a verdict without its numbers is an empty word."
+                },
+                "metrikker": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "r_hat",
+                    "bulk_ess",
+                    "tail_ess",
+                    "divergenser",
+                    "energy_bfmi"
+                  ],
+                  "properties": {
+                    "r_hat": {
+                      "type": "number",
+                      "description": "The split-R-hat of the sampled chains. The arbiter's line is < 1.01 — declared on the card (t_bf62ce48) and held by sjekk_verifisering in scripts/atlas_lesing.py, not in this schema: the schema holds the closed shape, the checker holds the line."
+                    },
+                    "bulk_ess": {
+                      "type": "number",
+                      "description": "The bulk effective sample size. The floor is >= 400 (Vehtari et al. 2021), held by sjekk_verifisering."
+                    },
+                    "tail_ess": {
+                      "type": "number",
+                      "description": "The tail effective sample size. The floor is >= 400 (Vehtari et al. 2021), held by sjekk_verifisering."
+                    },
+                    "divergenser": {
+                      "type": "integer",
+                      "description": "The number of problematic divergences. The line is <= 0 (none), held by sjekk_verifisering."
+                    },
+                    "energy_bfmi": {
+                      "type": "number",
+                      "description": "The Bayesian Fraction of Missing Information from the sampler's energy diagnostic. The floor is >= 0.2 (Betancourt 2017), held by sjekk_verifisering."
+                    }
+                  },
+                  "description": "The five arbiter metrics behind `posterior_verifisert`, as NUMBERS the gate can read: r_hat, bulk_ess, tail_ess, divergenser, energy_bfmi. Required on `posterior_verifisert` and no other state (tests/test_epistemikk_v7.py) — the strongest word in the vocabulary must carry the numbers it was reached with, or it is a claim, not a verdict. The THRESHOLDS are held by sjekk_verifisering in scripts/atlas_lesing.py, not in the schema: the schema holds the closed shape, the checker holds the arbiter's line. Optional and closed — NEVER in the enclosing `required`: no existing node must change for the atlas to validate."
+                },
+                "brudd": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "transformasjon",
+                    "aarsak"
+                  ],
+                  "properties": {
+                    "transformasjon": {
+                      "type": "string",
+                      "enum": [
+                        "identifiability",
+                        "sampling",
+                        "datakilde"
+                      ],
+                      "description": "WHICH named arrow in the chain broke: `identifiability` (fit → inferable), `sampling` (inferable → posterior samples), `datakilde` (the data or the deposited artefact the fit stands on). The chain is fit →[identifiability]→ inferable →[sampling]→ posterior_verifisert."
+                    },
+                    "aarsak": {
+                      "type": "string",
+                      "enum": [
+                        "sampler_feil",
+                        "svak_identifikasjon",
+                        "multimodalitet",
+                        "trakt",
+                        "parameter_redundans",
+                        "diagnostikk_uavklart"
+                      ],
+                      "description": "WHY it broke. `diagnostikk_uavklart` is a real answer and the honest one when the candidates are not separated by the diagnostics at hand: `sampler_feil`, `svak_identifikasjon`, `multimodalitet`, `trakt` and `parameter_redundans` are candidates, not synonyms for the same thing, and asserting one without a discriminating measurement is a conclusion the data does not carry."
+                    }
+                  },
+                  "description": "Where the chain broke, and why. Required on `inferens_feil` and `ikke_identifiserbar` (tests/test_epistemikk_v7.py): a failure that does not name its arrow and its cause is the collapse this layer exists to prevent."
+                }
+              },
+              "description": "THE VERIFICATION LAYER (card t_bf62ce48). A fit result and a verified posterior are two DIFFERENT epistemic states, and the atlas had no field that could say so. The diagnosis is measured (K2, card t_3f919915): the SPARC numbers are fit-verified — `k = 0.415 ± 0.029` stands as a fit in docs/papers/efc/EFC_Phase_3__SPARC_Validation/index.json:5 — while the NUTS re-test of the same data delivered no posterior at all (max R-hat 3.47, min ESS 4, 4 divergences). Without this layer the atlas can only answer `proxy`, and «posterior not verified» collapses into «the measurement failed». The chain is NAMED and every arrow is a transformation: fit →[identifiability]→ inferable →[sampling]→ posterior_verifisert, so a break says WHERE (`brudd.transformasjon`) and WHY (`brudd.aarsak`) instead of only that the status is X. Optional, closed and additive — NEVER in `required`: no node must be changed for the atlas to validate, and a node that has not taken a position must read as exactly that (the coverage is COUNTED, never assumed). The two conditional rules the schema cannot hold — `diagnostikk` on every verdict, `brudd` on every failure — are held by tests/test_epistemikk_v7.py, whose checks are mutation-tested (each rule kills a mutant) so a green run means the rules can be broken, not that they were never asked. The arbiter criterion for `posterior_verifisert`, declared on the card and NOT in the schema: R-hat < 1.01, bulk-ESS, tail-ESS, no problematic divergences, energy/BFMI — five metrics, with ESS tied to what is estimated. A converged sampler is not physical truth."
             }
           },
           "description": "Epistemic accounting per node: truth, evidence and consensus status are ORTHOGONAL axes. Consensus is a social phenomenon; it does not carry truth in itself."

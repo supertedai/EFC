@@ -1508,7 +1508,12 @@
         "evidensstatus": "proxy",
         "konsensusstatus": "minoritet",
         "sosial_mekanisme": "Structure growth and the S8 tension are negotiated openly by the survey collaborations; that L2 is where EFC departs from LCDM is our placement — both camps in the debate would read it as support for themselves.",
-        "konsensus_er_ikke_sannhet": true
+        "konsensus_er_ikke_sannhet": true,
+        "verifisering": {
+          "tilstand": "fit_only",
+          "instrument": "the deposited EFC Screening Model (DOI 10.6084/m9.figshare.31940469) — deterministic fits to ln mu = k ln(1 + g†/g_bar).",
+          "diagnostikk": "No posterior has been attempted for THIS model: the NUTS run (job 1e0440e6feff) samples per-galaxy curve parameters and contains neither k nor g†, so it is another model and not a weak verification of this one (measured in K2, card t_3f919915). fit_only is the whole position here, not a gap in it."
+        }
       },
       "maale_paradigme": {
         "koordinater": [
@@ -4596,7 +4601,12 @@
         "evidensstatus": "proxy",
         "konsensusstatus": "minoritet",
         "sosial_mekanisme": "The rotation curves are the observers' measurement; the explanation «flat curve WITHOUT dark matter» is OURS — the dark-matter tradition's careers and funding rest on the opposite reading, so nobody carries ours.",
-        "konsensus_er_ikke_sannhet": true
+        "konsensus_er_ikke_sannhet": true,
+        "verifisering": {
+          "tilstand": "fit_only",
+          "instrument": "the engine's own deterministic curve v(r) (efc_core, parametric fallback) — the deterministic side of the comparison against the SPARC rotation curves.",
+          "diagnostikk": "No posterior has been attempted for this engine's parameter set: the NUTS run (job 1e0440e6feff) samples per-galaxy curve parameters (v_flat, r_turnon, sharpness), which are not this engine's parameters (measured in K2, card t_3f919915). A posterior for the engine's own parametrisation does not exist."
+        }
       },
       "maale_paradigme": {
         "koordinater": [
@@ -9646,7 +9656,16 @@
         "evidensstatus": "proxy",
         "konsensusstatus": "minoritet",
         "sosial_mekanisme": "our frame — replaces dark matter, which is a MINORITY position against LCDM",
-        "konsensus_er_ikke_sannhet": true
+        "konsensus_er_ikke_sannhet": true,
+        "verifisering": {
+          "tilstand": "inferens_feil",
+          "instrument": "NUTS re-test of the SPARC fit (the sparc_nuts run: 175 galaxies / 3391 points / 531 parameters, 4 chains x 4000+4000 steps — job 1e0440e6feff in the compute channel). The fit side is the deposited SPARC analysis the threshold is taken from.",
+          "diagnostikk": "No posterior was delivered: max R-hat 3.47, min ESS 4, ESS/s 4.68 and 4 divergences — none of the arbiter's five metrics passed. The run samples the per-galaxy curve (log v_flat, log r_turnon, log sharpness) over the SAME SPARC-175 data, but it is NOT shown to implement this node's K; the break therefore falls on the sampling of the curve model, and this node's K stands fit-verified and NOT posterior-verified.",
+          "brudd": {
+            "transformasjon": "sampling",
+            "aarsak": "diagnostikk_uavklart"
+          }
+        }
       },
       "maale_paradigme": {
         "koordinater": [
@@ -9868,7 +9887,16 @@
         "evidensstatus": "proxy",
         "konsensusstatus": "minoritet",
         "sosial_mekanisme": "our frame — the cosmology-to-cognition bridge is not established",
-        "konsensus_er_ikke_sannhet": true
+        "konsensus_er_ikke_sannhet": true,
+        "verifisering": {
+          "tilstand": "inferens_feil",
+          "instrument": "the same NUTS re-test of the SPARC fit as the structural sector (175 galaxies / 3391 points / 531 parameters, 4 chains — job 1e0440e6feff in the compute channel); this node's K is inherited from SPARC and therefore inherits the verification state with it.",
+          "diagnostikk": "max R-hat 3.47, min ESS 4, 4 divergences: no posterior for the inherited K was delivered, and none exists elsewhere. The number is fit-verified through its source and NOT posterior-verified.",
+          "brudd": {
+            "transformasjon": "sampling",
+            "aarsak": "diagnostikk_uavklart"
+          }
+        }
       },
       "maale_paradigme": {
         "koordinater": [
