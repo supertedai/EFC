@@ -80,6 +80,15 @@ INSTANCELESS: list[tuple[str, str]] = [
     ("docs/evaluation-ledger/schema.json", "docs/evaluation-ledger/data/evaluation.json"),
     ("docs/model-comparison/schema.json", "docs/model-comparison/data/comparisons.json"),
 ]
+# Schemas with NO single canonical instance (they validate many artifacts, e.g.
+# every finding inside every deleg_*/verdict.json). Checked for schema validity
+# and closure only — never paired with an instance.
+SCHEMA_ONLY: list[str] = [
+    "docs/validation-ledger/finding.schema.json",
+    "docs/validation-ledger/verdict.schema.json",
+    "docs/validation-ledger/human_gate.schema.json",
+    "docs/validation-ledger/claim_gate_matrix.schema.json",
+]
 
 
 def _load(root: Path, rel: str, problems: list[str]):
@@ -129,13 +138,14 @@ def open_schemas(schema, path: str = "") -> list[str]:
     return out
 
 
-def check(root: Path = ROOT, pairs=None, instanceless=None) -> list[str]:
+def check(root: Path = ROOT, pairs=None, instanceless=None, schema_only=None) -> list[str]:
     try:
         import jsonschema
     except ImportError:
         return ["jsonschema is not installed — pip install 'jsonschema>=4.18,<5' (requirements.txt)"]
     pairs = PAIRS if pairs is None else pairs
     instanceless = INSTANCELESS if instanceless is None else instanceless
+    schema_only = SCHEMA_ONLY if schema_only is None else schema_only
     problems: list[str] = []
 
     def valid_schema(rel: str):
@@ -169,6 +179,11 @@ def check(root: Path = ROOT, pairs=None, instanceless=None) -> list[str]:
         valid_schema(srel)
         if (root / promised).exists():
             problems.append(f"{promised} exists now — register ({srel}, {promised}) in PAIRS and close the schema")
+    for srel in schema_only:
+        vs = valid_schema(srel)
+        if vs is not None:
+            for p in open_schemas(vs[1]):
+                problems.append(f"{srel}: schema at {p}")
     return problems
 
 
@@ -178,6 +193,8 @@ def main(argv: list[str]) -> int:
             print(f"{s}  <-  {i}")
         for s, promised in INSTANCELESS:
             print(f"{s}  (no instance yet; promised at {promised})")
+        for s in SCHEMA_ONLY:
+            print(f"{s}  (schema-only; no single instance)")
         return 0
     problems = check()
     for p in problems:
@@ -185,7 +202,9 @@ def main(argv: list[str]) -> int:
     if problems:
         print(f"[efc-schema] FAIL — {len(problems)} problem(s) across {len(PAIRS)} pair(s)")
         return 1
-    print(f"[efc-schema] OK — {len(PAIRS)} schema/instance pair(s) valid and closed, {len(INSTANCELESS)} instanceless schema(s) valid")
+    print(f"[efc-schema] OK — {len(PAIRS)} schema/instance pair(s) valid and closed, "
+          f"{len(INSTANCELESS)} instanceless schema(s) valid, "
+          f"{len(SCHEMA_ONLY)} schema-only valid and closed")
     return 0
 
 
