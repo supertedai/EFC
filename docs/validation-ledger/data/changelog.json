@@ -5,6 +5,24 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-09-13",
+      "sha": "2a3e84fecd9e",
+      "summary": "fix(papers): resolve EFC-R-SPARC.jsonld case collision — keep the rich form, delete the lossy duplicate",
+      "categories": {
+        "papers": 2
+      },
+      "id": "2a3e84fecd9e"
+    },
+    {
+      "date": "2026-09-18",
+      "sha": "8fcffef295b4",
+      "summary": "chore(efc): regenerate AI-friendly artifacts after rebasing the case-collision fix",
+      "categories": {
+        "papers": 1
+      },
+      "id": "8fcffef295b4"
+    },
+    {
       "date": "2026-09-20",
       "sha": "a5593eca5f65",
       "summary": "build(efc): refresh AI manifest after KC1 metadata correction (31941465)",
@@ -269,7 +287,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "a5593eca5f65fda9a2c09e0db2956b363cfd5d7b",
+    "last_processed_sha": "8fcffef295b42fe9188231980352f0960f2bd92b",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
