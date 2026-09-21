@@ -196,6 +196,15 @@ EXEMPT = {
         "the rule's own vocabulary; every entry is a stopword by construction",
 }
 
+# Frozen adversarial review evidence is exempt BY PREFIX, never translated:
+# reviewer words are immutable evidence, and translating or editing them would
+# be the exact mutation this system exists to prevent. Reported on every scan
+# (never silent); locked by test_the_prefix_exemption_is_exactly_frozen_reviews.
+EXEMPT_PREFIXES = {
+    "docs/validation-ledger/reviews/deleg_7f3e9a1c/":
+        "frozen v1 pilot review evidence; reviewer words are immutable, never translated (future v2 reviews are English and NOT exempt)",
+}
+
 SKIP_DIRS = {".git", ".worktrees", "__pycache__", "node_modules", ".venv",
              ".mypy_cache", ".pytest_cache", ".ruff_cache"}
 
@@ -317,6 +326,10 @@ def scan_tree(root: Path, words: list[str], labels: set[str],
             continue
         if rel in EXEMPT:
             exempt.append({"file": rel, "count": found, "reason": EXEMPT[rel]})
+            continue
+        prefix = next((p for p in EXEMPT_PREFIXES if rel.startswith(p)), None)
+        if prefix is not None:
+            exempt.append({"file": rel, "count": found, "reason": EXEMPT_PREFIXES[prefix]})
             continue
         if is_guarded(rel):
             counts[rel] = found
