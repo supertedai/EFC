@@ -1,0 +1,11 @@
+{
+  "key": "arXiv:2606.18455",
+  "title": "CMBComp: A Simple and Accurate Compressed CMB Likelihood for Dark Energy, Curvature, and Massive Neutrinos (Srivastav, Bansal, Huterer)",
+  "source_type": "paper",
+  "url": "https://arxiv.org/abs/2606.18455",
+  "date_seen": "2026-06-22",
+  "date_published": "2026-06-16",
+  "efc_relevance": "Public compressed CMB likelihood capturing the dominant geometric information of SPT-3G D1 + ACT DR6 + Planck PR3 + Planck PR4 lensing, validated across ΛCDM, w0waCDM, νΛCDM, oΛCDM and νw0waCDM. Directly removes the gap theory-efclass-boltzmann-solver bottleneck for late-time-only EFC inference: EFC's L2→L3 fits can now use CMBComp as a drop-in CMB anchor without a full Boltzmann run.",
+  "ledger_action": "Add to Stage-IV Roadmap as inference-tool import; downgrade gap theory-efclass-boltzmann-solver from blocking to scoped-for-perturbation-sector-only (background+geometric CMB constraints now covered); cross-reference arXiv:2504.20038 (joint CMB-lensing) and arXiv:2503.14738 (DESI DR2); required follow-up: re-fit sealed EFC L2/L3 background predictions with CMBComp + DESI DR2 + Pantheon+ for the next Predictions-Ledger refresh.",
+  "status": "new"
+}
