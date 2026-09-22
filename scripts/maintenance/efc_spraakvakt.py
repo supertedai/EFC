@@ -499,8 +499,13 @@ def read_record(path: Path) -> dict:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return {}
+    if not isinstance(data, dict) or not isinstance(data.get("files"), dict):
+        # Valid JSON of the wrong shape is unreadable in the same way invalid
+        # JSON is: the scan treats it as an empty record (everything is then a
+        # finding), never as a crash. Same class as the write_baseline guard.
+        return {}
     return {f: int(v.get("count") or 0)
-            for f, v in (data.get("files") or {}).items()
+            for f, v in data["files"].items()
             if isinstance(v, dict)}
 
 
@@ -742,10 +747,33 @@ def write_baseline(root: Path, baseline_path: Path,
                             "is not an empty record -- repair it, do not "
                             "recreate it"),
             }
+        if not isinstance(previous, dict) or not isinstance(previous.get("files"), dict):
+            return 2, {
+                "mode": "update-baseline", "path": str(baseline_path),
+                "error": "the previous record is not readable: unexpected shape",
+                "message": ("the previous record is not readable (it is valid "
+                            "JSON, but not a baseline record); nothing was "
+                            "written. A record that cannot be read is not an "
+                            "empty record -- repair it, do not recreate it"),
+            }
         previous_state = "present"
-    keep = {f: v for f, v in (previous.get("files") or {}).items()}
-    record = {f: int(v.get("count") or 0) for f, v in keep.items()
-              if isinstance(v, dict)}
+    keep = previous.get("files") or {}
+    record = {}
+    for rel, entry in keep.items():
+        if not isinstance(entry, dict):
+            continue
+        count = entry.get("count")
+        if not isinstance(count, int) or isinstance(count, bool):
+            return 2, {
+                "mode": "update-baseline", "path": str(baseline_path),
+                "error": (f"the previous record is not readable: "
+                          f"the count for {rel!r} is not a number"),
+                "message": (f"the previous record is not readable (the count "
+                            f"for {rel!r} is not a number); nothing was "
+                            "written. A record that cannot be read is not an "
+                            "empty record -- repair it, do not recreate it"),
+            }
+        record[rel] = count
     readback = record_readback(scanned["counts"], record, set(tree_files(root)))
     growth = ([g["file"] for g in readback["grew"]]
               + [a["file"] for a in readback["added"]])

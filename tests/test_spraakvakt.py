@@ -560,6 +560,58 @@ def test_a_corrupt_record_is_not_an_empty_one(tmp_path, capsys):
     assert (root / "baseline.json").read_bytes() == before
 
 
+@pytest.mark.parametrize("record", [
+    '["not", "a", "dict"]',
+    '{"files": ["a", "b"]}',
+    '{"files": "oops"}',
+])
+def test_valid_json_of_the_wrong_shape_is_not_readable(tmp_path, capsys, record):
+    """Valid JSON that is not a baseline record must be refused as unreadable
+    (exit 2, nothing written), never crash and never read as an empty record.
+
+    This is the crash the review caught: `previous.get("files")` and
+    `(...).items()` ran on whatever ``json.loads`` returned, so a top-level
+    array or a non-dict ``files`` raised an unhandled AttributeError -- masked
+    as exit 1, the refused-growth code. It must be the controlled exit 2.
+    """
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n"}, None)
+    (root / "baseline.json").write_text(record, encoding="utf-8")
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc == 2, out
+    assert "not readable" in out, out
+    assert (root / "baseline.json").read_bytes() == before
+
+
+def test_a_non_numeric_count_is_a_not_readable_record(tmp_path, capsys):
+    """A count that is not a number is a corrupt record, named as such -- not
+    masked as refused growth (exit 1) and not coerced to zero."""
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n"}, None)
+    (root / "baseline.json").write_text(
+        json.dumps({"files": {GUARDED: {"count": "abc"}}}), encoding="utf-8")
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc == 2, out
+    assert "not readable" in out, out
+    assert "not a number" in out, out
+    assert (root / "baseline.json").read_bytes() == before
+
+
+def test_the_scan_reads_a_wrong_shaped_record_as_empty_not_as_a_crash(
+        tmp_path, capsys):
+    """The scan path shares the class: a wrong-shaped record is an empty
+    record (everything is then a finding), never an AttributeError traceback."""
+    root = _tree(tmp_path, {GUARDED: f"one {WORD} line\n"}, None)
+    (root / "baseline.json").write_text('["not", "a", "dict"]', encoding="utf-8")
+    rc, out = _scan(root, capsys)
+    assert rc == 1, out
+    assert out["new"][0]["file"] == GUARDED, "an unreadable record means every hit is new"
+
+
 def test_the_per_file_readback_is_in_the_default_report(tmp_path, capsys):
     """The readback t_c3004b63 had to measure by hand («0 grew, 0 new, 83
     dropped») comes from the tool now, in the default report and in --json. It
