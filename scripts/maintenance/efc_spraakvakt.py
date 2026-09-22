@@ -79,7 +79,25 @@ DECLARED LIMITS (what this gate does NOT see)
   the record deliberately does not ask to shrink may carry an ``owner`` (who
   owns it) and a ``reason`` (why it is left standing); both are preserved by
   ``--oppdater-baseline``, so a declared residual cannot become an anonymous
-  number again. Growth is never a baseline update.
+  number again.
+* **Growth is never a baseline update, and the writer enforces it.** Measured
+  2026-09-18: a blind regeneration of that day's tree would have written 337
+  hits in 18 files (11 files the record never saw, 7 that had grown, e.g.
+  ``test_atlas_avgjorelse.py`` 26 -> 73); measured again 2026-09-20: 2 files /
+  +6 hits. So ``--oppdater-baseline`` REFUSES -- exit 1, nothing written, every
+  file named -- when a per-file count would rise above the record, or when a
+  file the record never saw would be added. The only exception is named, one
+  file at a time: ``--aksepter-vekst <file>:<reason>`` accepts that growth and
+  writes the reason onto that file's line, so an accepted exception is a
+  declared owner decision and not an anonymous number.
+* Every report carries the per-file READBACK -- counts that grew, files added,
+  files dropped -- in ``--json`` and in the printed report, from the tool
+  itself. It is not decoration: the readback an operator had to measure by hand
+  (``0 grew, 0 new, 83 dropped``) is the number that says whether a write
+  translated anything, and the record's own self-check (``new`` empty, ``slack``
+  empty, ``debt`` == record) is satisfied BY DEFINITION after a write,
+  including one that just wrote growth in. A control that cannot fail is not a
+  control, so the refusal lives in the writer and the readback is printed.
 
 JSON keys are English: this gate is new, nothing consumes its --json yet, and
 the language rule is newer than the sibling checkers' Norwegian keys.
@@ -92,9 +110,12 @@ USAGE
     python3 scripts/maintenance/efc_spraakvakt.py --commits origin/main..HEAD
     python3 scripts/maintenance/efc_spraakvakt.py --changelog --vindu 30
     python3 scripts/maintenance/efc_spraakvakt.py --oppdater-baseline
+    python3 scripts/maintenance/efc_spraakvakt.py --oppdater-baseline \
+        --aksepter-vekst 'tests/foo_test.py:<why this growth is not a missing translation>'
 
-Exit: 0 = no findings; 1 = findings; 2 = could not measure (a measurement that
-could not be made is a finding, not an empty answer).
+Exit: 0 = no findings; 1 = findings, or a baseline write that was refused;
+2 = could not measure (a measurement that could not be made is a finding, not
+an empty answer).
 """
 from __future__ import annotations
 
@@ -207,6 +228,11 @@ EXEMPT_PREFIXES = {
 
 SKIP_DIRS = {".git", ".worktrees", "__pycache__", "node_modules", ".venv",
              ".mypy_cache", ".pytest_cache", ".ruff_cache"}
+
+# How many per-file lines the readback prints before it summarises the rest.
+# The counts themselves (grew / new / dropped) are never capped, and a refusal
+# always names every blocking file: the cap is on the narration, not the rule.
+READBACK_DETAIL = 10
 
 # A file that does not decode as UTF-8 is skipped and COUNTED. A skipped file
 # with one of these extensions is a finding instead: a text artefact the gate
@@ -417,6 +443,42 @@ def compare(counts: dict[str, int], expected: dict[str, int],
     return {"new": new, "slack": slack, "gone": gone}
 
 
+def record_readback(counts: dict[str, int], record: dict[str, int],
+                    present: set[str] | None = None) -> dict:
+    """Per file, what this tree does to the record: grew / added / dropped.
+
+    The readback an operator used to measure by hand (t_c3004b63: «0 grew, 0
+    new, 83 dropped»). The three classes are the whole decision:
+
+      * ``grew``    a recorded count is now higher. Never a baseline update:
+                    the file has more Norwegian than it was recorded with.
+      * ``added``   a guarded file with hits that the record never saw -- the
+                    same finding, with no previous number to compare against.
+      * ``dropped`` the translation working: a count fell, or the file is gone.
+
+    Only ``grew`` and ``added`` can block a regeneration, and only those two
+    are named in a refusal. ``dropped`` is reported because a write that drops
+    nothing has translated nothing, and that has to be visible.
+    """
+    grew, added, dropped = [], [], []
+    for rel in sorted(set(counts) | set(record)):
+        found = counts.get(rel, 0)
+        if rel not in record:
+            if found:
+                added.append({"file": rel, "count": found})
+            continue
+        want = record[rel]
+        if found > want:
+            grew.append({"file": rel, "from": want, "to": found,
+                         "excess": found - want})
+        elif found < want:
+            entry = {"file": rel, "from": want, "to": found}
+            if present is not None and rel not in present:
+                entry["gone"] = True
+            dropped.append(entry)
+    return {"grew": grew, "added": added, "dropped": dropped}
+
+
 def unlisted_areas(areas: dict[str, int]) -> list[dict]:
     """Areas outside the guard and outside the declared table, with hits.
 
@@ -466,6 +528,9 @@ def run_scan(root: Path, baseline_path: Path,
 
     verdict = compare(scanned["counts"], expected, set(files))
     unlisted = unlisted_areas(scanned["areas"])
+    # The per-file readback, always: what this tree does to the RECORD (grew /
+    # added / dropped), from the tool and not from the operator's eyes.
+    readback = record_readback(scanned["counts"], record, set(files))
     delta = [{"file": f,
               "count": scanned["counts"].get(f, 0),
               "recorded": record.get(f)}
@@ -490,6 +555,7 @@ def run_scan(root: Path, baseline_path: Path,
         "gone_from_expectation": verdict["gone"],
         "record_delta": delta,
         "undeclared_growth": [d for d in delta if (d["recorded"] or 0) < d["count"]],
+        "record_readback": readback,
         "unlisted_areas": unlisted,
         "unreadable_text": scanned["unreadable_text"],
         "skipped_binary": scanned["skipped_binary"],
@@ -606,14 +672,116 @@ def run_limits(root: Path) -> dict:
     }
 
 
-def write_baseline(root: Path, baseline_path: Path) -> dict:
+def parse_acceptance(values: list[str] | None,
+                     parser: argparse.ArgumentParser) -> dict[str, str]:
+    """``--aksepter-vekst <file>:<reason>`` -- the named exception, per file.
+
+    Both halves are required. Growth accepted without a reason is the anonymous
+    number this rule exists to prevent, and «the tool wrote it in» is not an
+    owner decision.
+    """
+    accept: dict[str, str] = {}
+    for value in values or []:
+        rel, sep, reason = value.partition(":")
+        rel, reason = rel.strip(), reason.strip()
+        if not sep or not rel or not reason:
+            parser.error("--aksepter-vekst takes '<file>:<reason>' -- growth "
+                         f"accepted by name needs both; got {value!r}")
+        accept[rel] = reason
+    return accept
+
+
+def write_baseline(root: Path, baseline_path: Path,
+                   accept: dict[str, str] | None = None) -> tuple[int, dict]:
+    """Regenerate the record -- and refuse to do it by growth.
+
+    «Growth is never a baseline update» was prose in README.md, and the readback
+    that was supposed to catch a blind write is satisfied BY DEFINITION once
+    that write lands (measured: 337 hits in 18 files on 2026-09-18, 2 files /
+    +6 hits on 2026-09-20 -- both would have gone in silently). So the refusal
+    lives here: the scan is compared to the previous record BEFORE anything is
+    written, every file that would grow or be added is named, and the write does
+    not happen unless each of them was accepted by name.
+
+    Returns ``(exit_code, report)``: 0 = written, read back and verified;
+    1 = refused, nothing written; 2 = the previous record could not be read, so
+    the comparison could not be made.
+
+    Two cases that look empty but are not. A record that cannot be READ
+    (invalid JSON, unreadable file) is exit 2: recreating it would be the same
+    whitewash one step earlier. A record that does not EXIST is compared against
+    as an empty one, so a tree that carries hits is still refused -- a first
+    record is a declaration of every file in it, and that declaration is made by
+    naming the files, never by one command. Otherwise `rm` plus one regeneration
+    would launder the whole record, which is the hole this function closes.
+    """
+    accept = accept or {}
     words, labels = read_vocabulary(vocabulary_path(root))
     scanned = scan_tree(root, words, labels)
     try:
-        previous = json.loads(baseline_path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
+        previous_text = baseline_path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        previous_text = None
+    except OSError as exc:
+        return 2, {"mode": "update-baseline", "path": str(baseline_path),
+                   "error": f"the previous record could not be read: {exc}",
+                   "message": f"could not read the previous record: {exc}"}
+    if previous_text is None:
         previous = {}
+        previous_state = ("absent -- this write creates the record, so there is "
+                          "no previous count to compare against")
+    else:
+        try:
+            previous = json.loads(previous_text)
+        except json.JSONDecodeError as exc:
+            return 2, {
+                "mode": "update-baseline", "path": str(baseline_path),
+                "error": f"the previous record is not readable: {exc}",
+                "message": (f"the previous record is not readable ({exc}); "
+                            "nothing was written. A record that cannot be read "
+                            "is not an empty record -- repair it, do not "
+                            "recreate it"),
+            }
+        previous_state = "present"
     keep = {f: v for f, v in (previous.get("files") or {}).items()}
+    record = {f: int(v.get("count") or 0) for f, v in keep.items()
+              if isinstance(v, dict)}
+    readback = record_readback(scanned["counts"], record, set(tree_files(root)))
+    growth = ([g["file"] for g in readback["grew"]]
+              + [a["file"] for a in readback["added"]])
+    blockers = [f for f in growth if f not in accept]
+    unused = sorted(set(accept) - set(growth))
+
+    if blockers or unused:
+        by_file = {g["file"]: g for g in readback["grew"] + readback["added"]}
+        lines = ["refused: a regeneration may not grow the record. Growth is a "
+                 "translation that was never done, not a new baseline."]
+        for rel in blockers:
+            found = by_file[rel]
+            if "from" in found:
+                lines.append(f"  {rel}: {found['from']} -> {found['to']} "
+                             f"(+{found['excess']})")
+            else:
+                lines.append(f"  {rel}: not in the record, "
+                             f"{found['count']} hit(s)")
+        for rel in unused:
+            lines.append(f"  {rel}: accepted by name, but the tree did not grow "
+                         f"it -- a stale acceptance is not a decision about "
+                         f"this tree")
+        lines.append("nothing was written. Translate the file, or accept that "
+                     "growth by name:")
+        for rel in blockers:
+            lines.append(f"  --aksepter-vekst '{rel}:<reason>'")
+        if previous_text is None:
+            lines.append("  (there is no record yet, so this write would CREATE "
+                         "one and every file in it is a new declaration; if the "
+                         "record was deleted, restore it from git instead of "
+                         "regenerating it)")
+        return 1, {"mode": "update-baseline", "path": str(baseline_path),
+                   "refused": True, "previous": previous_state,
+                   "blocking_files": blockers, "unused_acceptance": unused,
+                   "record_readback": readback, "message": "\n".join(lines)}
+
     rc, sha = _git(root, "rev-parse", "--short", "HEAD")
     files = {}
     for rel in sorted(scanned["counts"]):
@@ -625,6 +793,10 @@ def write_baseline(root: Path, baseline_path: Path) -> dict:
             for felt in ("owner", "reason"):
                 if keep[rel].get(felt):
                     entry[felt] = keep[rel][felt]
+        if rel in accept:
+            # An accepted growth carries its reason on the same line: the
+            # exception is declared, named and dated, not anonymous.
+            entry["reason"] = accept[rel]
         files[rel] = entry
     payload = {
         "schema": "efc-spraak-baseline/1",
@@ -649,23 +821,61 @@ def write_baseline(root: Path, baseline_path: Path) -> dict:
     }
     baseline_path.write_text(json.dumps(payload, ensure_ascii=False, indent=1)
                              + "\n", encoding="utf-8")
-    readback = json.loads(baseline_path.read_text(encoding="utf-8"))
-    if readback.get("files") != files:
-        raise SystemExit("baseline write did not read back; nothing to trust")
-    return {"mode": "update-baseline", "path": str(baseline_path),
-            "files": len(files), "hits": sum(scanned["counts"].values()),
-            "exempt": payload["exempt"]}
+    written = json.loads(baseline_path.read_text(encoding="utf-8"))
+    if written.get("files") != files:
+        return 2, {"mode": "update-baseline", "path": str(baseline_path),
+                   "error": "the baseline did not read back",
+                   "message": "the baseline write did not read back; nothing "
+                              "in it can be trusted -- re-run and inspect it"}
+    return 0, {"mode": "update-baseline", "path": str(baseline_path),
+               "previous": previous_state,
+               "accepted_growth": {f: accept[f] for f in growth if f in accept},
+               "record_readback": readback,
+               "files": len(files), "hits": sum(scanned["counts"].values()),
+               "exempt": payload["exempt"]}
 
 
 # --------------------------------------------------------------------------
 # reporting
 # --------------------------------------------------------------------------
 
+def print_readback(readback: dict | None, detail: int | None = READBACK_DETAIL) -> None:
+    """The per-file readback: grew / added / dropped, measured by the tool.
+
+    Printed in every mode, the default scan included. «0 grew, 0 new, N dropped»
+    is the whole claim a regeneration makes, and it used to be measured by hand
+    (t_c3004b63) because the record's own self-check cannot fail after a write.
+    ``detail`` caps the per-file lines; the counts are never capped, and a
+    refusal names every blocking file regardless.
+    """
+    if not readback:
+        return
+    grew, added, dropped = (readback["grew"], readback["added"],
+                            readback["dropped"])
+    print(f"  per file against the record: {len(grew)} grew, {len(added)} new, "
+          f"{len(dropped)} dropped")
+
+    def show(entries: list[dict], line) -> None:
+        shown = entries if detail is None else entries[:detail]
+        for entry in shown:
+            print(line(entry))
+        if len(shown) < len(entries):
+            print(f"    ... {len(entries) - len(shown)} more")
+
+    show(grew, lambda g: f"    GREW: {g['file']} {g['from']} -> {g['to']} "
+                         f"(+{g['excess']})")
+    show(added, lambda a: f"    NEW FILE: {a['file']} is not in the record, "
+                          f"{a['count']} hit(s)")
+    show(dropped, lambda d: f"    DROPPED: {d['file']} {d['from']} -> "
+                            f"{d['to']}" + (" (gone)" if d.get("gone") else ""))
+
+
 def print_scan(result: dict) -> None:
     print(f"language scan (spraakvakt): {len(result['new'])} new finding(s) "
           f"against {result['measured_against']}; {result['debt']['files']} "
           f"file(s) / {result['debt']['hits']} hit(s) of debt, record "
           f"{result['record']['files']} / {result['record']['hits']}")
+    print_readback(result.get("record_readback"), detail=READBACK_DETAIL)
     for f in result["new"]:
         print(f"  NEW: {f['file']}  {f['count']} hit(s), "
               f"expected {f['expected']}, excess {f['excess']}")
@@ -716,20 +926,33 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--grenser", action="store_true",
                    help="print the declared limits with measured counts")
     p.add_argument("--oppdater-baseline", action="store_true")
+    p.add_argument("--aksepter-vekst", action="append", metavar="FIL:GRUNN",
+                   help="accept one file's growth by name, with the reason it "
+                        "is not a missing translation (<file>:<reason>); "
+                        "without it a regeneration that would grow the record "
+                        "is refused and nothing is written")
     a = p.parse_args(argv)
     root = Path(a.root).resolve()
 
     if a.oppdater_baseline:
+        accept = parse_acceptance(a.aksepter_vekst, p)
         try:
-            result = write_baseline(root, Path(a.baseline))
+            rc, result = write_baseline(root, Path(a.baseline), accept)
         except (OSError, ValueError) as exc:
             print(f"could not write the baseline: {exc}", file=sys.stderr)
             return 2
-        print(f"baseline written: {result['files']} file(s), "
-              f"{result['hits']} hit(s), read back and verified")
         if a.json:
             print(json.dumps(result, ensure_ascii=False, indent=1))
-        return 0
+            return rc
+        if rc == 0:
+            print(f"baseline written: {result['files']} file(s), "
+                  f"{result['hits']} hit(s), read back and verified")
+        else:
+            print(result.get("message") or "the baseline write did not happen")
+        if result.get("previous") and result["previous"] != "present":
+            print(f"  note: the previous record is {result['previous']}")
+        print_readback(result.get("record_readback"))
+        return rc
 
     try:
         if a.commits:
