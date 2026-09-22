@@ -1,10 +1,1721 @@
 {
   "generated_by": "scripts/maintenance/efc_findings_index.py",
-  "source_runs": [],
-  "total_findings": 0,
-  "revisions": {},
+  "source_runs": [
+    "deleg_7f3e9a1c"
+  ],
+  "total_findings": 54,
+  "revisions": {
+    "(pre-revision pilot)": {
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "findings": 54,
+      "release_eligible": false
+    }
+  },
   "recurring": [],
-  "resolved": [],
-  "chronic": [],
-  "rows": []
+  "resolved": [
+    {
+      "signature": "01b11b5332b2ffe2916e7de989f142ed70ab9f850e1a7a84a01ea303ab993d0c",
+      "evidence_layer": "",
+      "type": "siren alternatives",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "03df868f940c43d66a3d8de0a1f7cc09aa3f1707cde4fea10ea74754ad3e0eea",
+      "evidence_layer": "",
+      "type": "KC1 provenance",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "14eb8632e8287f17f394823474ee42ccfbe582dfe5cdca97fdf34e7dff739c98",
+      "evidence_layer": "",
+      "type": "Gamma statuses support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "16451e65c45a745aec82c56404f004b83c9d79923d76afc08150fd8de58212c5",
+      "evidence_layer": "",
+      "type": "sqrt-g derivation support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "17352a2cfae2c3256e85efd71140f8a286293927dde304621759a5836aaaef74",
+      "evidence_layer": "",
+      "type": "KC1 operationalization",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "1c272aad6202a7faea7f5df1d8e559456096fe17dd952af546e91704112020c6",
+      "evidence_layer": "",
+      "type": "A/B divergence support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "21dd91d1901414f826f186f928cd750d256955ed3f8cc3143f2730b8ac6cfd03",
+      "evidence_layer": "",
+      "type": "Gamma role identification",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "228542c35060e2a332c07b5be06dfc4436683e720cec4a8beebb43c58c456297",
+      "evidence_layer": "",
+      "type": "wording ambiguity",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "28287e31aa58da7dfffc8a64c17b4381360642c70946b208d914c8c397a8c06a",
+      "evidence_layer": "",
+      "type": "chain-rule scope",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "28937dd34d8827b5f9b2e07bccf080967617e26cdcaa64ffe34cdb011d46871e",
+      "evidence_layer": "",
+      "type": "scope defense",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "446567feda5aab77328dea2beac384157b75269528c6f0ed1fede74659514509",
+      "evidence_layer": "",
+      "type": "build warnings",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "49fcb539c16a7d949c869d7ffb40f4d355b4490e6e77ddcf2a60fb86e7308f9a",
+      "evidence_layer": "",
+      "type": "table slug support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "4c7b6fbf4139aec039f6e7cb408510db2379ccefa08888d08193e76714065f20",
+      "evidence_layer": "",
+      "type": "buildability",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "5ce6b8481854f6c50fd31363727a78fa4821cafd1d7acd93a210b6838f150bd0",
+      "evidence_layer": "",
+      "type": "siren class observable",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "5fc8cbeeb3df453fa6c392f22ce8645675939ff77c6d2638584de5978a7481c2",
+      "evidence_layer": "",
+      "type": "siren formula support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "633a87326ee8f872f899e8ce6eb340154369d9362cdc85f64d6d31d5cda6f209",
+      "evidence_layer": "",
+      "type": "Gamma provenance",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "6a2e6aa537284846e7d6c638a8b5a23253fff295aa083c5f823166a5ddb640b0",
+      "evidence_layer": "",
+      "type": "orthogonal axes synthesis",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "6af2bad5dc668fbf26b0b11718a3a81390f64db7f4d9a19c1d9e47353bc41e9a",
+      "evidence_layer": "",
+      "type": "dimensional consistency",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted",
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "6cda8a967a9c90712f38ea882eb049e4305cdc5c33cec73a84a0d17bebc2a07f",
+      "evidence_layer": "",
+      "type": "axes/table",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "7fc7fd857e842942da5f0225df7b66a87fbff1b80dc53b513c1384bfd046e513",
+      "evidence_layer": "",
+      "type": "a0 imported calibration",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "abddebb797f1ed134ce8f968e737e71be3e81722a2605b1eb7a84bc6292d7412",
+      "evidence_layer": "",
+      "type": "B-to-B+ semantics",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "b31991a6b72c847f3d00626cdf62f38fcc948d9436ec621eecf19b7d73f93aa3",
+      "evidence_layer": "",
+      "type": "table DOI support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "b4a2bec640dc49289034f9955bad575e84a479665b1e5d05c2e31531f4259860",
+      "evidence_layer": "",
+      "type": "imported calibration",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "b4d0d99e4d3aa45bcd5fb312e8da99d3ea6997fe89e4ca18393a8f4a90deff98",
+      "evidence_layer": "",
+      "type": "siren specificity",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "b81eabc62ec1c276fbc46d363edb75f64605ff8a8e325b4fdcb63a0cb7681765",
+      "evidence_layer": "",
+      "type": "siren minor wording",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "bb0943e8b6c41406fe8081b61dc3614e018af1588167d0253a252fbe02aa5170",
+      "evidence_layer": "",
+      "type": "KC1 executed-fit alternative",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "ca57f4f9322e2edab43ac9a06963e0470bc9c64497d47fb7fd4e83fc7e3820e3",
+      "evidence_layer": "",
+      "type": "related_packages claim",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "cd2da5f72b8b5923aa044d2e10f0d2192d3e8dab1b5cd8dbff81215ae85707e0",
+      "evidence_layer": "",
+      "type": "siren prereg test",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "d3593e6847c4584b9d249c53a05a1f10956cb13be209ab4de873fc20bf20188d",
+      "evidence_layer": "",
+      "type": "siren provenance",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "d3cadf0fe9f1e0569a478640826be6063af4bb85d2a27068ad9f4c8d38d335a1",
+      "evidence_layer": "",
+      "type": "B-to-B+ test",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "ddb65b040a14e2c877264a4d23d7d476d59161799cabf92f745fd336a48fc986",
+      "evidence_layer": "",
+      "type": "SPARC prereg test",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "e51523bf18e566c249e8b1200026c95b4ada56a4197adca68bb102c14b64997a",
+      "evidence_layer": "",
+      "type": "S8 scope",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "eeb5074a00138c58260192d1e2b75e8f6c6916e92eca2ee7c10299d17d977285",
+      "evidence_layer": "",
+      "type": "KC1 null provenance support",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "ef64bfa877c3130295e5be8dd268d8f9aad23cd7192bb51f92a414d71daefe32",
+      "evidence_layer": "",
+      "type": "axis orthogonality test",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "f0dde0581ce5c23df95eda2d225dd20073310715c83495372367d541730b5bae",
+      "evidence_layer": "",
+      "type": "byte reproducibility",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "f12646997ce406b9321e7253167bb10d2319dfdfb63b266659fe9fd42282410d",
+      "evidence_layer": "",
+      "type": "paradigm-resistant wording",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "f163c7e7bdf76df9769b2d831a50e54761842f6ad32c1b91d42999cf1b39edc3",
+      "evidence_layer": "",
+      "type": "orthogonal axes",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    },
+    {
+      "signature": "fcca9eedb7735d3e119d5a6f618e85140dc1b1a65e8d5abec3e7f582b3a5221d",
+      "evidence_layer": "",
+      "type": "notation/identification",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "accepted"
+      ]
+    },
+    {
+      "signature": "feefa30da5a8aad46c8929ad89ee3a70d6ba6510c0d08ee3e89ee08260ad7ade",
+      "evidence_layer": "",
+      "type": "checksum record",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "already-covered"
+      ]
+    }
+  ],
+  "chronic": [
+    {
+      "signature": "1592fe2dbd5b3f59787e5650bd227dac6047a29b051313df0756f5da4a4f4dc3",
+      "evidence_layer": "",
+      "type": "field normalization",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "32bf6d0f04e5b32327e1768b55edf6b235e1e3b025e4e524c5ca5ea4932872b6",
+      "evidence_layer": "",
+      "type": "asymptotic regularity",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "3ed693ff4f2a5db72e21cd1f7cfeb60eb1185e2cb507e58e4daf0bd7aba6a771",
+      "evidence_layer": "",
+      "type": "RAR alternatives",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "401d7603d1193a30f3ba146c629aa7b46b9cae93b10f4690380f84e549e7860c",
+      "evidence_layer": "",
+      "type": "RAR mapping",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "6cacb42d69bdd9e0b61d0e89c42d788b5f29a84af736b3b419839a3b8b32f554",
+      "evidence_layer": "",
+      "type": "grid-EFT bridge",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "855f862b21cb6ba2d5c90f1bc72196e6852a8768cf86e0976dd43ff876a20720",
+      "evidence_layer": "",
+      "type": "SPARC degeneracy",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "ca48677ca04e3cb93e132be3716cfdc0030b758fa411d611740354c5252c6915",
+      "evidence_layer": "",
+      "type": "cosmology degeneracy",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "db617cc2e7559a0628e07e60f912840ed7cc389768f1186f02eeff7b26dfd4ee",
+      "evidence_layer": "",
+      "type": "missing GR/ΛCDM limit",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "f06fb5aa13fe0840427aef39333f68ea8cff4683522625a50aeca575822c41a7",
+      "evidence_layer": "",
+      "type": "siren degeneracy",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    },
+    {
+      "signature": "f527b7643291900dda1451a4d1ed9ebb349dcf20254256a0f4c123258520f577",
+      "evidence_layer": "",
+      "type": "Gamma bifurcation falsifiability",
+      "atlas_field": null,
+      "finding": "",
+      "runs": [
+        "deleg_7f3e9a1c"
+      ],
+      "revisions": [
+        ""
+      ],
+      "count": 1,
+      "dispositions": [
+        "author-gate"
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "ALT-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren alternatives",
+      "severity": "major",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "01b11b5332b2ffe2916e7de989f142ed70ab9f850e1a7a84a01ea303ab993d0c",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-006",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "KC1 provenance",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "03df868f940c43d66a3d8de0a1f7cc09aa3f1707cde4fea10ea74754ad3e0eea",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "Gamma statuses support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "14eb8632e8287f17f394823474ee42ccfbe582dfe5cdca97fdf34e7dff739c98",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-SIREN-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "field normalization",
+      "severity": "high",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "1592fe2dbd5b3f59787e5650bd227dac6047a29b051313df0756f5da4a4f4dc3",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-007",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "sqrt-g derivation support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "16451e65c45a745aec82c56404f004b83c9d79923d76afc08150fd8de58212c5",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FALS-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "KC1 operationalization",
+      "severity": "major",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "17352a2cfae2c3256e85efd71140f8a286293927dde304621759a5836aaaef74",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-004",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "A/B divergence support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "1c272aad6202a7faea7f5df1d8e559456096fe17dd952af546e91704112020c6",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ATT-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "Gamma role identification",
+      "severity": "critical",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "21dd91d1901414f826f186f928cd750d256955ed3f8cc3143f2730b8ac6cfd03",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FORM-004",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "wording ambiguity",
+      "severity": "medium",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "228542c35060e2a332c07b5be06dfc4436683e720cec4a8beebb43c58c456297",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ADV-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "KC1 threshold not result",
+      "severity": "info",
+      "disposition": "rejected",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "22e63068a05abbd293ce438165fdbe54b38f94b673be02bb770f74280c54d137",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FORM-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "chain-rule scope",
+      "severity": "high",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "28287e31aa58da7dfffc8a64c17b4381360642c70946b208d914c8c397a8c06a",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ADV-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "scope defense",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "28937dd34d8827b5f9b2e07bccf080967617e26cdcaa64ffe34cdb011d46871e",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-GAMMA-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "asymptotic regularity",
+      "severity": "high",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "32bf6d0f04e5b32327e1768b55edf6b235e1e3b025e4e524c5ca5ea4932872b6",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "ALT-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "RAR alternatives",
+      "severity": "major",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "3ed693ff4f2a5db72e21cd1f7cfeb60eb1185e2cb507e58e4daf0bd7aba6a771",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-A0-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "RAR mapping",
+      "severity": "high",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "401d7603d1193a30f3ba146c629aa7b46b9cae93b10f4690380f84e549e7860c",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "build warnings",
+      "severity": "low",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "446567feda5aab77328dea2beac384157b75269528c6f0ed1fede74659514509",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "table slug support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "49fcb539c16a7d949c869d7ffb40f4d355b4490e6e77ddcf2a60fb86e7308f9a",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "buildability",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "4c7b6fbf4139aec039f6e7cb408510db2379ccefa08888d08193e76714065f20",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ATT-005",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren class observable",
+      "severity": "critical",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "5ce6b8481854f6c50fd31363727a78fa4821cafd1d7acd93a210b6838f150bd0",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-008",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren formula support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "5fc8cbeeb3df453fa6c392f22ce8645675939ff77c6d2638584de5978a7481c2",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-005",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "Gamma provenance",
+      "severity": "medium",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "633a87326ee8f872f899e8ce6eb340154369d9362cdc85f64d6d31d5cda6f209",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-010",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "orthogonal axes synthesis",
+      "severity": "medium",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "6a2e6aa537284846e7d6c638a8b5a23253fff295aa083c5f823166a5ddb640b0",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FORM-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "dimensional consistency",
+      "severity": "high",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "6af2bad5dc668fbf26b0b11718a3a81390f64db7f4d9a19c1d9e47353bc41e9a",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-GAMMA-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "dimensional consistency",
+      "severity": "high",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "6af2bad5dc668fbf26b0b11718a3a81390f64db7f4d9a19c1d9e47353bc41e9a",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ATT-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "grid-EFT bridge",
+      "severity": "major",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "6cacb42d69bdd9e0b61d0e89c42d788b5f29a84af736b3b419839a3b8b32f554",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FORM-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "axes/table",
+      "severity": "medium-high",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "6cda8a967a9c90712f38ea882eb049e4305cdc5c33cec73a84a0d17bebc2a07f",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ATT-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "a0 imported calibration",
+      "severity": "major",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "7fc7fd857e842942da5f0225df7b66a87fbff1b80dc53b513c1384bfd046e513",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-DEG-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "SPARC degeneracy",
+      "severity": "high",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "855f862b21cb6ba2d5c90f1bc72196e6852a8768cf86e0976dd43ff876a20720",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ADV-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "prereg proposed",
+      "severity": "info",
+      "disposition": "rejected",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "9029bddae3ab31778395b647d8f58f6853a6da93975eab9ff31cf69edcb44c67",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FORM-006",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "B-to-B+ semantics",
+      "severity": "medium",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "abddebb797f1ed134ce8f968e737e71be3e81722a2605b1eb7a84bc6292d7412",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "table DOI support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "b31991a6b72c847f3d00626cdf62f38fcc948d9436ec621eecf19b7d73f93aa3",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-A0-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "imported calibration",
+      "severity": "high",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "b4a2bec640dc49289034f9955bad575e84a479665b1e5d05c2e31531f4259860",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-SIREN-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren specificity",
+      "severity": "critical",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "b4d0d99e4d3aa45bcd5fb312e8da99d3ea6997fe89e4ca18393a8f4a90deff98",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ADV-004",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren minor wording",
+      "severity": "medium",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "b81eabc62ec1c276fbc46d363edb75f64605ff8a8e325b4fdcb63a0cb7681765",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-006",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "KC1 executed-fit alternative",
+      "severity": "medium",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "bb0943e8b6c41406fe8081b61dc3614e018af1588167d0253a252fbe02aa5170",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-DEG-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "cosmology degeneracy",
+      "severity": "medium-high",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "ca48677ca04e3cb93e132be3716cfdc0030b758fa411d611740354c5252c6915",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ADV-005",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "related_packages claim",
+      "severity": "medium",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "ca57f4f9322e2edab43ac9a06963e0470bc9c64497d47fb7fd4e83fc7e3820e3",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FALS-006",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren prereg test",
+      "severity": "major",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "cd2da5f72b8b5923aa044d2e10f0d2192d3e8dab1b5cd8dbff81215ae85707e0",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-009",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "prereg conflict",
+      "severity": "high",
+      "disposition": "rejected",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "d1a4edb06125463a8b784bdc090695c88704d17b4e566240ec527f9a840d4ca8",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-007",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren provenance",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "d3593e6847c4584b9d249c53a05a1f10956cb13be209ab4de873fc20bf20188d",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FALS-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "B-to-B+ test",
+      "severity": "major",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "d3cadf0fe9f1e0569a478640826be6063af4bb85d2a27068ad9f4c8d38d335a1",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-GAMMA-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "missing GR/ΛCDM limit",
+      "severity": "critical",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "db617cc2e7559a0628e07e60f912840ed7cc389768f1186f02eeff7b26dfd4ee",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FALS-005",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "SPARC prereg test",
+      "severity": "major",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "ddb65b040a14e2c877264a4d23d7d476d59161799cabf92f745fd336a48fc986",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "ALT-002",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "S8 scope",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "e51523bf18e566c249e8b1200026c95b4ada56a4197adca68bb102c14b64997a",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-005",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "KC1 null provenance support",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "eeb5074a00138c58260192d1e2b75e8f6c6916e92eca2ee7c10299d17d977285",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FALS-004",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "axis orthogonality test",
+      "severity": "major",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "ef64bfa877c3130295e5be8dd268d8f9aad23cd7192bb51f92a414d71daefe32",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PHYS-DEG-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "siren degeneracy",
+      "severity": "high",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "f06fb5aa13fe0840427aef39333f68ea8cff4683522625a50aeca575822c41a7",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ADV-006",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "31940469 relation",
+      "severity": "info",
+      "disposition": "rejected",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "f07701ad2b2fa9dd8b880c32eeb065a733ce8eeeab7505c297fceb3ff087ef80",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-004",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "byte reproducibility",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "f0dde0581ce5c23df95eda2d225dd20073310715c83495372367d541730b5bae",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "PROV-011",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "paradigm-resistant wording",
+      "severity": "low",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "f12646997ce406b9321e7253167bb10d2319dfdfb63b266659fe9fd42282410d",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "R2-ATT-004",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "orthogonal axes",
+      "severity": "major",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "f163c7e7bdf76df9769b2d831a50e54761842f6ad32c1b91d42999cf1b39edc3",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FALS-001",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "Gamma bifurcation falsifiability",
+      "severity": "major",
+      "disposition": "author-gate",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "f527b7643291900dda1451a4d1ed9ebb349dcf20254256a0f4c123258520f577",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "FORM-005",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "notation/identification",
+      "severity": "medium",
+      "disposition": "accepted",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "fcca9eedb7735d3e119d5a6f618e85140dc1b1a65e8d5abec3e7f582b3a5221d",
+      "finding": ""
+    },
+    {
+      "run": "deleg_7f3e9a1c",
+      "method_revision": "",
+      "release_eligible": false,
+      "finding_id": "REPRO-003",
+      "claim_id": "",
+      "reviewer_role": "",
+      "evidence_layer": "",
+      "type": "checksum record",
+      "severity": "info",
+      "disposition": "already-covered",
+      "supports_or_attacks": "",
+      "atlas_field": null,
+      "signature": "feefa30da5a8aad46c8929ad89ee3a70d6ba6510c0d08ee3e89ee08260ad7ade",
+      "finding": ""
+    }
+  ]
 }

@@ -1,0 +1,254 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=28mm]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage[hidelinks,breaklinks=true]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{url}
+
+\definecolor{efcblue}{RGB}{25,60,120}
+\definecolor{efcgray}{RGB}{80,80,80}
+\definecolor{rulegray}{RGB}{180,180,180}
+
+\titleformat{\section}{\color{efcblue}\Large\bfseries}{\thesection.}{0.6em}{}
+\titleformat{\subsection}{\color{efcblue}\large\bfseries}{\thesubsection}{0.6em}{}
+
+\hypersetup{
+  pdftitle={Energy-Flow Cosmology: Model-Family Reconciliation, Claim Status, and Preregistered Discriminators},
+  pdfauthor={Morten Magnusson},
+  pdfsubject={Modified gravity, provenance, pre-registration},
+  pdfkeywords={EFC, modified gravity, entropy gradient, provenance, pre-registration, model family}
+}
+
+% DOI assigned after Figshare publication. Kept as an explicit placeholder so the
+% text phase precedes the mint, in that order, as required by the publication protocol.
+\newcommand{\paperdoi}{DOI-PENDING}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{\footnotesize\color{efcgray} M.\ Magnusson --- DOI: \paperdoi}
+\fancyfoot[C]{}
+\fancyfoot[R]{\footnotesize\color{efcgray} Page \thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\title{\color{efcblue}\bfseries Energy-Flow Cosmology: Model-Family Reconciliation, \\ Claim Status, and Preregistered Discriminators}
+\author{Morten Magnusson \\[2pt]
+        \small Symbiose Research, Sola, Norway \\
+        \small ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095} \\[2pt]
+        \small Energy-Flow Cosmology (EFC) Programme \\[1pt]
+        \small DOI: \paperdoi}
+\date{2026-09-21}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\vspace{-2em}
+
+\begin{quote}\small
+\textbf{Abstract.}
+Energy-Flow Cosmology (EFC) is presented across a corpus of analytical, phenomenological, and numerical packages containing several realizations of the effective response function $\Gamma(\rho)$ --- a saturating form, a non-saturating power-law form, and a companion square-root form --- together with both linear and square-root Bose--Einstein exponent forms. This work provides a provenance-controlled reconciliation of those representations. We separate model-family structure from established physical selection, and declared derivation from executed test, recording each claim's status in an explicit ledger vocabulary (\emph{proposed}, \emph{declared derived}, \emph{declared companion upgrade}), with further distinctions (\emph{tested}, \emph{superseded}, \emph{falsified}, \emph{conjectured}) carried as prose descriptors rather than ledger field values. The analysis identifies a shape bifurcation rather than a maturation chain, and treats the Scenario~B $\to$ B$^{+}$ relation as a declared companion upgrade rather than a demonstrated supersession. We reconcile the KC1 criterion of the gradient-coupled grid-action package as an explicit conditional falsification criterion, and record that the provenance of its stated SPARC comparison remains open (no new fit performed; null $\Delta\chi^{2}$ and significance). Two preregistered discriminators --- a SPARC/RAR retrodiction with an author-gated, to-be-frozen $a_{0}$, and a gravitational-wave/electromagnetic luminosity-distance comparison $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ --- are retained as separate tests and treated as not executed here. The result is a machine-readable validation and provenance atlas, not a claim of empirical confirmation.
+\end{quote}
+
+\vspace{0.5em}
+
+\noindent\textbf{Keywords:} modified gravity; entropy gradient; provenance; pre-registration; model family; screening relation.
+
+\vspace{0.5em}
+
+\noindent\textbf{Code \& data:} \url{https://github.com/supertedai/EFC} under \texttt{docs/papers/efc/} and \texttt{scripts/maintenance/}.
+
+\noindent\textbf{License:} CC-BY-4.0 (text, data) / MIT (code).
+
+\vspace{1em}
+\color{rulegray}\hrule\color{black}
+
+\section{Scope and purpose}
+
+This document is a reconciliation of the Energy-Flow Cosmology (EFC) corpus at a fixed point in its development. Its purpose is explicitly bounded, and equally importantly, it declares what it is \emph{not}.
+
+It \emph{is}: a provenance-controlled statement of (i) which realizations of the effective response function $\Gamma(\rho)$ exist in the corpus and how they relate, (ii) what status each claim carries in the validation ledger, and (iii) which preregistered discriminators are frozen and awaiting external data.
+
+It is \emph{not}: a new empirical test, a claim of physical confirmation, an assertion of supersession among the model-family members, or an independent peer review. No new fit is performed in this work. Where a result rests on an earlier package, that package is cited by its persistent identifier, and the dependency is recorded rather than re-derived.
+
+The motivation for writing this reconciliation at all is honesty about the corpus itself: the EFC package collection contains multiple representations of a single target quantity, and those representations are not ordered by a demonstrated maturation chain. Treating them as such would be claim inflation. The correct description is a model family with an internal bifurcation and a set of declared but unresolved relations, which this document makes explicit.
+
+\section{Source corpus and provenance}
+
+The corpus is version-controlled at \texttt{github.com/supertedai/EFC} and published as AI-friendly packages under \texttt{docs/papers/efc/}. The following layering is enforced by the repository's verification machinery and is restated here because the rest of the document depends on it.
+
+\begin{itemize}
+\item \textbf{Normative physics.} The PDF of each package is the authoritative statement of its physics. The \texttt{src/} Python modules are the authoritative implementation of that physics.
+\item \textbf{Metadata underlay.} The \texttt{index.json}, \texttt{metadata.json}, and JSON-LD files annotate the physics with status and machine-readable structure. They are underlay, not ground truth; their values may be corrected by author word, but they never silently override the PDF.
+\item \textbf{Evidence layer.} Reviewer archives (fan-out role files and synthesis documents) are frozen verbatim. They are internal reading consistency, \emph{not} independent validation. Any agent assessment is recorded additively beside them, never by mutating reviewer words.
+\item \textbf{References.} Citations and the canonical side register (\texttt{docs/validation-ledger/}) are the source of truth for claim status. The packages are not cross-linked directly; their \emph{related packages} fields are heterogeneous --- four of the six packages referenced here have empty fields, while 31941465 records \texttt{builds\_on} and \texttt{informs} relations and 31878760 records a companion relation --- so the linkage between them runs through the validation ledger, which remains the authoritative status graph.
+\end{itemize}
+
+The specific packages this reconciliation draws on, with their persistent identifiers, are listed in Table~\ref{tab:corpus}.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.7cm}p{3.6cm}>{\raggedright\arraybackslash}p{4.9cm}}
+\toprule
+Package (exact slug) & DOI & Role here \\
+\midrule
+\texttt{Derivation\_of\_the\_Entropy\_Production} & 10.6084/m9.figshare.31942821 & Source of $\Gamma(\rho)$; Scenarios A and B \\
+\texttt{Density\_of\_States\_of\_Gravitationally} & 10.6084/m9.figshare.31942800 & Source of the square-root response form; Scenario B$^{+}$ \\
+\texttt{EFC\_Gradient\_Coupled\_Grid\_Action} & 10.6084/m9.figshare.31941465 & Source of $E \propto \sqrt{g}$; KC1 \\
+\texttt{From\_Grid\_Microphysics\_to\_the\_Radial\_Acceleration} & 10.6084/m9.figshare.31878760 & Grid-to-RAR bridge \\
+\texttt{Covariant\_EFT\_for\_Entropy\_Driven\_Gravitational\_Modification\_Construction\_Constraints} & 10.6084/m9.figshare.31878334 & Covariant EFT of the coupling \\
+\texttt{EFC\_Relativistic\_Action\_Field\_Equations\_Perturbation\_Theory\_and\_Extraction} & 10.6084/m9.figshare.31876324 & Source of the $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ expression \\
+\bottomrule
+\end{tabular}
+\caption{Primary corpus packages referenced by this reconciliation. Exact repository directory names are given as the package identifiers.}
+\label{tab:corpus}
+\end{table}
+
+\section{Model-family structure}
+
+EFC is a thermodynamic framework in which energy flows along entropy gradients. The effective response function $\Gamma(\rho)$ is defined as the derivative of the entropy flux with respect to density,
+\begin{equation}
+\Gamma(\rho) \equiv \frac{\mathrm{d}S}{\mathrm{d}\rho},
+\end{equation}
+For any explicitly defined, differentiable model-specific entropy function $S_{i}(\rho)$, $\dot{S}_{i} = (\mathrm{d}S_{i}/\mathrm{d}\rho)\,\dot{\rho}$; a common $\sigma_{s}$ convention across the three forms is not assumed until units and normalizations are fixed.
+
+The corpus contains three distinct realized forms of $\Gamma(\rho)$:
+
+\begin{equation}
+\Gamma_{A}(\rho) = \frac{\rho}{\rho + \rho_{\mathrm{crit}}},
+\qquad
+\Gamma_{B}(\rho) = \frac{\rho^{3/2}}{\rho + \rho_{\mathrm{crit}}},
+\qquad
+\Gamma_{C}(\rho) = \frac{\sqrt{\rho/\rho_{\mathrm{crit}}}}{1 + \sqrt{\rho/\rho_{\mathrm{crit}}}}.
+\end{equation}
+
+Here $\rho$ and $\rho_{\mathrm{crit}}$ are treated as dimensional densities. $\Gamma_{A}$ and $\Gamma_{C}$ are dimensionless; the declared $\Gamma_{B}$ expression carries a residual dimension $\sqrt{[\rho]}$ and is not used as a common normalized response until a source-supplied prefactor or reference scale is specified. This dimensional inconsistency is present in the source package itself (31942821, \emph{key result}) and is reported here, not smoothed over. The reconciliation likewise does not establish that $\mathrm{d}S/\mathrm{d}\rho$ (the effective response defined above), the source term in $\Box\phi = \Gamma(\rho)$ (the relativistic action, 31876324), and the grid-action $\Gamma$ are the same normalized physical object; this identification is author-gated.
+
+Their statuses, as recorded in the validation ledger, are:
+
+\begin{itemize}
+\item $\Gamma_{A}$ --- \emph{proposed}. A saturating phenomenological form, recorded in the ledger as a phenomenological baseline rather than a derived result.
+\item $\Gamma_{B}$ --- \emph{declared derived}. The non-saturating power-law form, carrying a documented internal tension: the same package's own requirement targets saturation while its declared result is non-saturating. Its supersession status is recorded as \emph{not established}.
+\item $\Gamma_{C}$ --- \emph{declared companion upgrade}, \emph{untested}. The square-root saturation form declared in the companion package (31942800) as Scenario~B$^{+}$. Its relation to $\Gamma_{B}$ is recorded as a \emph{declared companion upgrade}, with supersession status \emph{not established}.
+\end{itemize}
+
+One package is itself not internally consistent on the form. The entropy-production package (31942821) records the saturating $\rho/(\rho+\rho_{\mathrm{crit}})$ form in its narrative \emph{main finding} field, while its summary \emph{key result} field names the non-saturating $\rho^{3/2}/(\rho+\rho_{\mathrm{crit}})$ form as Scenario~B. This divergence is the A/B bifurcation written into a single package's own fields, not a settled selection, and it is why the ledger treats the forms as a family rather than a chain.
+
+The crucial structural statement: these forms do \emph{not} form a linear maturation chain $\Gamma_{A} \to \Gamma_{B} \to \Gamma_{C}$ in which each step supersedes the last on empirical grounds. They form a \emph{shape bifurcation} with one declared-but-undemonstrated relation (B $\to$ B$^{+}$). The B $\to$ B$^{+}$ relation is a declared companion upgrade within the density-of-states package; ``upgrade'' here is ledger status vocabulary, not a claim of physical improvement. No implication B $\Rightarrow$ B$^{+}$ or B$^{+}$ $\Rightarrow$ $\neg$B, improved fit, or dimensional consistency is established, and supersession status remains \emph{not established}. Treating it as established physical selection would overstate the evidence.
+
+\section{Two model-family axes}
+\label{sec:axes}
+
+The bifurcation is cleanly described as two presently separate descriptive \emph{model-family} axes, each intended to admit a future discriminator; only the $E$-axis has a current preregistration proposal, while no $\Gamma$-shape discriminator is preregistered. This is a deliberate restatement of the structure to prevent conflation of the two choices. These model-family axes are distinct from the \emph{preregistered test} axes of Section~\ref{sec:discriminators}; the two taxonomies must not be merged.
+
+\textbf{The $E$-exponent axis.} The screening relation couples energy $E$ to the gravitational acceleration $g$ as $E \propto g^{\alpha_{E}}$. Two exponents appear in the corpus: the linear form $\alpha_{E} = 1$ and the square-root form $\alpha_{E} = \tfrac{1}{2}$. The square-root form derives from the gradient-coupled grid action (31941465), which yields $E \propto \sqrt{g}$ from a minimal three-term Lagrangian with a $|\nabla\Phi|(\nabla\xi)^{2}$ coupling.
+
+\textbf{The $\Gamma$-shape axis.} Independently of the exponent, the response function $\Gamma(\rho)$ is realized in the three forms introduced in Section~3 --- $\Gamma_{A}$ (saturating), $\Gamma_{B}$ (power-law), and $\Gamma_{C}$ (square-root saturation) --- whose mutual relations are declared but undemonstrated.
+
+These choices are organized separately here; physical independence is not demonstrated. In particular, the square root appears in two distinct roles that must not be conflated --- as the $E$-axis exponent ($E \propto \sqrt{g}$) and as the $\Gamma$-axis density dependence ($\Gamma \propto \sqrt{\rho/\rho_{\mathrm{crit}}}$). Selecting $\alpha_{E} = \tfrac{1}{2}$ on the $E$-axis does not select the square-root response form on the $\Gamma$-axis. The reconciliation therefore freezes the structure as \emph{two open selections}, not one. Table~\ref{tab:axes} summarizes.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Model-family axis & Quantity & Realizations & Status \\
+\midrule
+$E$-exponent axis & BE exponent $\alpha_{E}$ & $\alpha_{E}=1$ (linear), $\alpha_{E}=\tfrac{1}{2}$ ($\sqrt{\phantom{g}}$) & open \\
+$\Gamma$-shape axis & response $\Gamma(\rho)$ & $\Gamma_{A}$ (saturating), $\Gamma_{B}$ (power-law), $\Gamma_{C}$ (square-root saturation) & open \\
+\bottomrule
+\end{tabular}
+\caption{The two model-family axes. Neither is selected by an executed test.}
+\label{tab:axes}
+\end{table}
+
+\section{KC1 reconciliation}
+\label{sec:kc1}
+
+The gradient-coupled grid-action package (31941465) carries a kill criterion labeled KC1. During Phase-0 truth-verification, its wording was found to be ambiguous between two readings, and that ambiguity has now been resolved by author word. This section records the resolution at three levels, because conflating them was the original source of confusion.
+
+\textbf{Level 1 --- wording.} KC1 is now stated as an explicit \emph{conditional falsification criterion}: if robust, bias-controlled galaxy data demonstrate that the preferred screening form is $\mu(g) = 1/(\exp(g/a_{0}) - 1)$ (linear $g$ in the exponent) and significantly exclude the $\sqrt{g}$ form across diverse systems at $\ge 5\sigma$, then the $E \propto \sqrt{g}$ theorem is falsified. It is a pre-declared threshold, not a reported result.
+
+\textbf{Level 2 --- internal direction.} The package's own PDF (Section~2.4, ``Operator selection and uniqueness'', and Table~1) states the direction of its operator-selection argument: the linear (quadratic-gradient) operator is eliminated as ``too steep'', while the square-root ($|\nabla\Phi|$-coupling) operator is retained as ``the observed''. The PDF's internal selection therefore favors the square-root form; this is consistent with KC1 being a threshold that, if met, would falsify that same form.
+
+\textbf{Level 3 --- provenance gap.} The metadata fields $\Delta\chi^{2}$ and significance are \emph{null}, and the recorded status is ``no new fit performed.'' The source metadata supports no new fit performed; the claimed $\ge 5\sigma$ exclusion is therefore unexecuted or externally referenced and remains unsubstantiated until an author supplies provenance. This remains \emph{open and author-gated}. The reconciliation does not resolve it, and no downstream status rests on assuming either reading.
+
+\section{Claim-status vocabulary}
+
+To make the corpus machine-readable and to prevent status drift, this work records every claim in a fixed vocabulary. The vocabulary is a property of the validation ledger, not of any single package, and is restated here. Its concrete machine-readable values, as recorded in the register's \emph{claim maturity} field, are:
+
+\begin{itemize}
+\item \emph{proposed} --- stated, not yet derived or tested.
+\item \emph{declared derived} --- follows from the model's own assumptions, not yet tested against external data.
+\item \emph{declared companion upgrade} --- asserted to replace a prior form; the replacement is itself a claim with its own status.
+\end{itemize}
+
+The register additionally records a \emph{supersession status} field (whose observed value here is \texttt{not\_established}) and a prose note field. Descriptive terms used in this document --- \emph{tested}, \emph{superseded}, \emph{falsified}, \emph{conjectured}, \emph{falsification threshold} --- are prose descriptors for the reader, not ledger field values. A term is promoted to a ledger field only when the underlying ontology supports it; until then it is carried in prose notes and the side register.
+
+Two disciplines follow from this vocabulary. First, \emph{derived} and \emph{tested} are distinct: a derivation is not a test. Second, a supersession claim is itself subject to status: declaring that B$^{+}$ supersedes B is a \emph{declared} relation until a discriminating test selects between them.
+
+\section{Preregistered discriminators}
+\label{sec:discriminators}
+
+Two discriminators are registered as preregistration proposals (status: \emph{proposed}, awaiting author freeze), and are treated here as \emph{not executed}. They are the preregistered \emph{test} axes and are distinct from the model-family axes of Section~\ref{sec:axes}: preregistered Axis~1 is the $E$-exponent test (SPARC/RAR), and preregistered Axis~2 is the propagation-distance test ($d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$). The $\Gamma$-shape axis has no preregistered discriminator of its own as yet; the siren test probes the relativistic coupling, not the density-response form.
+
+\textbf{Discriminator 1 --- SPARC/RAR retrodiction (preregistered Axis~1).} The EFC papers record $a_{0} = 1.2 \times 10^{-10}\ \mathrm{m\,s^{-2}}$ as a provisional value recorded in source packages, not an EFC-derived prediction. The preregistration itself remains \emph{proposed} and awaits author freeze; its own record lists $1.2\times10^{-10}$, $6.5\times10^{-10}$, and $a_{0,\mathrm{eff}} = C^{2}a_{0}$ as circulating candidates and states that the test is INVALID until exactly one is author-frozen. The origin of the frozen value must be labelled MOND/SPARC input, EFC output, or nuisance calibration. A retrodiction of the SPARC/RAR relation under the EFC screening form, with $a_{0}$ held fixed, constitutes the discriminating test for the $E$-exponent axis. Locking $a_{0}$ before the fit is the anti-shopping discipline: the arbiter value is frozen, not fitted and then reported as a prediction.
+
+\textbf{Discriminator 2 --- gravitational-wave siren test (preregistered Axis~2).} The relativistic-action package (31876324) contains an expression for the ratio of gravitational-wave to electromagnetic luminosity distances, $d_{L}^{\mathrm{GW}}/d_{L}^{\mathrm{EM}} = \sqrt{F(\phi_{0})/F(\phi_{z})}$ with $F(\phi) = 1 + \alpha\phi$, where $[\alpha\phi] = 1$ and the field normalization remains to be fixed. A future multi-messenger standard-siren sample tests whether $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$. This is a candidate propagation-sector discriminator; $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ is not EFC-specific and does not by itself distinguish EFC from GR systematics or other modified-gravity friction models. It becomes uniquely EFC-discriminating only when the coupling parameters ($\alpha$, $\phi_{0}$, $\phi(z)$) are numerically frozen. Those parameters are \emph{not} frozen in this reconciliation; freezing them is a separate, author-gated step.
+
+\section{What is not tested}
+
+This section exists to be read first by anyone tempted to overstate the corpus. The following are \emph{not} performed in this work, and no status in this document rests on them:
+
+\begin{itemize}
+\item No new fit is executed. All numerical results cited are from the source packages, not recomputed here.
+\item No selection between Scenario B and B$^{+}$ is made.
+\item No selection on the $E$-exponent axis ($\alpha_{E} = 1$ vs.\ $\alpha_{E} = \tfrac{1}{2}$) is made.
+\item No selection on the $\Gamma$-shape axis (response-function form) is made.
+\item No independent validation of any package is claimed; the reviewer archives are internal reading consistency.
+\item No physical falsification of any EFC claim is asserted.
+\end{itemize}
+
+\section{Limitations and author-gated items}
+
+The following items remain open and are recorded as author-gated; resolving any of them requires an explicit author decision, not an inference by a downstream agent.
+
+\begin{enumerate}
+\item \textbf{KC1 provenance.} Whether the $\ge 5\sigma$ SPARC claim is an executed fit or an external citation (Section~\ref{sec:kc1}, Level~3).
+\item \textbf{Scenario B vs.\ B$^{+}$.} Whether the declared companion upgrade is real selection or remains a declared relation.
+\item \textbf{Siren-test parameter freeze.} Whether $\alpha$ and $\phi_{0}$ in the $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ test are frozen now or left to the data release.
+\item \textbf{Figshare version divergence.} The repository metadata for package 31941465 has been corrected (KC1 wording); the published Figshare record still carries the pre-correction wording. Propagating the correction requires a version bump, which is a separate publication action, not performed here.
+\item \textbf{Review status.} All reviewer material is AI-generated reading consistency. This is not independent peer review, and no external validation is claimed.
+\end{enumerate}
+
+\section{Reproducibility and machine readability}
+
+The reconciliation is reproducible and machine-readable by construction. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with Overfull hbox and float-placement warnings; warning-free layout is not claimed. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
+
+The single persistent identifier for this work is assigned at publication and referenced throughout this document by the placeholder \texttt{\paperdoi}. The text is written before the identifier exists, in that order, by design: the identifier binds the frozen text, not the reverse.
+
+\vspace{1em}
+\color{rulegray}\hrule\color{black}
+
+\vspace{0.5em}
+\noindent\textbf{Status of this document.} Draft, not published. No DOI has been minted, no Figshare record exists, and no repository merge is authorized at the time of writing. All of the above is reversible until the publication gate, which is an explicit human decision.
+
+\end{document}

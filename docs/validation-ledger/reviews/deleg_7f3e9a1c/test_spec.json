@@ -1,0 +1,132 @@
+{
+  "discriminators": [
+    {
+      "axis": "Axis 1: E-exponent, SPARC/RAR retrodiction",
+      "observable": {
+        "name": "Radial Acceleration Relation",
+        "definition": "mu(g_bar) = g_obs / g_bar, evaluated as a function of baryonic acceleration g_bar over the deep-MOND and transition regimes",
+        "target": "The BE-argument exponent alpha: linear g/a0 (alpha=1) versus square-root sqrt(g/a0) (alpha=1/2)",
+        "proxy_status": "RAR is a galactic proxy for the screening exponent; it does not directly measure a BE occupation number"
+      },
+      "measurement_chain": {
+        "raw_data": [
+          "line-of-sight rotation-curve velocities with radius",
+          "surface photometry and stellar-population information",
+          "resolved gas/H I and/or molecular-gas maps"
+        ],
+        "instrument": [
+          "spectroscopy/rotation-curve measurement for velocities",
+          "photometric and gas-kinematic instruments for the baryonic mass model"
+        ],
+        "measurer": [
+          "estimate g_obs from the rotation curve, with its full measurement covariance",
+          "construct g_bar from the baryonic mass model using Newtonian gravity, including distance, inclination, gas-mass and stellar M/L nuisance treatment"
+        ],
+        "target": "alpha in the BE screening argument",
+        "proxy": "velocities plus baryonic model -> (g_obs, g_bar) -> mu(g_bar) -> likelihood comparison of the two fixed exponent forms"
+      },
+      "dataset": {
+        "candidate": "SPARC rotation-curve sample with its matched photometry and gas data",
+        "required_freeze": [
+          "exact SPARC release/version and all included galaxies",
+          "quality cuts, radial range, treatment of covariance and upper limits",
+          "whether the full sample is fit or a pre-declared train/holdout split or cross-validation is used",
+          "independent source or prior for stellar M/L, plus fixed treatment of distance, inclination and gas mass"
+        ],
+        "current_status": "Dataset family is identified, but the exact analysis sample and split/cuts are not frozen in the proposal"
+      },
+      "statistic": {
+        "required": "A pre-specified hierarchical likelihood for the observed rotation-curve data (or an explicitly specified likelihood for mu at each radius), with the identical nuisance model for both exponents; report Delta ln L = ln L_sqrt - ln L_linear and a pre-declared goodness-of-fit/holdout score",
+        "null_hypothesis": "The linear exponent model alpha=1 describes the RAR at least as well as the square-root model alpha=1/2",
+        "decision_rule": "Reject the square-root form only if the linear form wins by a threshold fixed before fitting or the square-root form fails a pre-declared goodness-of-fit criterion; report two-sided model comparison rather than assuming an EFC winner",
+        "current_specification_gap": "The proposal names Delta ln L or an equivalent statistic but does not yet freeze the exact likelihood, threshold, covariance treatment, multiple-testing rule, or holdout score"
+      },
+      "null_hypothesis": "H0: the linear BE exponent alpha=1 describes the RAR at least as well as the square-root exponent alpha=1/2; equivalently, the test must compare the two fixed forms under the same data and nuisance treatment",
+      "frozen": {
+        "forms": "Both competing functional forms are stated",
+        "observable": "mu(g_bar)=g_obs/g_bar is stated",
+        "a0": "NOT FROZEN: 1.2e-10 m/s^2 appears in the papers/code, while 6.5e-10 m/s^2 and a0,eff=C^2*a0 are also in circulation",
+        "status": "Invalid as a preregistered retrodiction until exactly one canonical a0 is author-frozen before any fit; a0,eff must be separately labelled if retained"
+      },
+      "prereg_required": [
+        "author-freeze the canonical a0 and prohibit refitting it",
+        "freeze the exact SPARC release, galaxy/sample inclusion, quality cuts, radial range and train/holdout or cross-validation rule",
+        "freeze an independent M/L value or an explicit prior and the nuisance treatment for distance, inclination and gas mass",
+        "freeze the likelihood, covariance/error model, aggregation level, goodness-of-fit statistic, Delta ln L direction, threshold and any multiplicity correction",
+        "freeze the implementation and residual diagnostics before inspecting the data"
+      ],
+      "validity_blockers": [
+        "multiple incompatible a0 values remain in circulation; this converts the claimed retrodiction into an adjustable fit",
+        "stellar M/L is a dominant model-laden nuisance and is not yet frozen",
+        "exact sample, cuts, covariance model, likelihood, threshold and holdout rule are incomplete",
+        "the result would test a galactic proxy and cannot by itself select the Gamma(rho) axis or establish a paradigm-free result",
+        "the unresolved provenance of the earlier >=5-sigma SPARC claim cannot substitute for this preregistered test"
+      ]
+    },
+    {
+      "axis": "Axis 2: propagation distance, gravitational-wave standard sirens",
+      "observable": {
+        "name": "Standard-siren luminosity-distance ratio",
+        "definition": "r(z) = d_L^GW / d_L^EM for the same host-identified source, as a function of redshift",
+        "target": "A propagation-sector deviation from equality, with candidate EFC relation r(z)=sqrt(F(phi_0)/F(phi_z)) and F(phi)=1+alpha*phi",
+        "proxy_status": "The ratio is near-direct, but d_L^GW and d_L^EM are separate inferred quantities with instrument and astrophysical systematics"
+      },
+      "measurement_chain": {
+        "raw_data": [
+          "calibrated GW strain waveforms",
+          "host-galaxy identification and spectroscopic/photometric redshift",
+          "EM data and calibrators used for the electromagnetic distance estimate"
+        ],
+        "instrument": [
+          "GW detector network and amplitude calibration",
+          "optical/IR imaging and spectroscopy for host and redshift",
+          "the explicitly named EM distance-calibration data/instrument chain"
+        ],
+        "measurer": [
+          "infer d_L^GW from the waveform amplitude with the declared waveform, inclination, calibration, lensing and peculiar-velocity model",
+          "infer d_L^EM from redshift and the pre-declared distance-ladder or standard-candle/standard-siren EM calibration, retaining its covariance"
+        ],
+        "target": "r(z)=d_L^GW/d_L^EM and its redshift dependence",
+        "proxy": "two separately inferred luminosity distances -> event-level ratio -> hierarchical population statistic"
+      },
+      "dataset": {
+        "candidate": "A public, explicitly versioned multi-messenger standard-siren sample with GW strain/posterior products and host-identified EM counterparts; the proposal does not name a final release",
+        "required_freeze": [
+          "exact GW catalog/release, event list and posterior products",
+          "host-identification and redshift criteria, EM counterpart/distance estimator and calibration release",
+          "event-selection cuts, redshift range/binning, observing period and frequency band",
+          "treatment of lensing, peculiar velocities, waveform systematics, calibration uncertainty and selection effects",
+          "pre-declared holdout or split if the sample size permits"
+        ],
+        "current_status": "No exact dataset, event list or release is frozen; the test remains a proposal"
+      },
+      "statistic": {
+        "required": "A pre-specified event-level hierarchical likelihood for the joint GW and EM distance posteriors, including selection and declared nuisance priors; compare H0 r(z)=1 with the frozen EFC r_EFC(z) and report the likelihood ratio (or Delta chi-square/Bayes factor chosen in advance) plus a posterior/predictive goodness-of-fit check",
+        "null_hypothesis": "H0 (GR/LambdaCDM propagation null): r(z)=1 at every redshift",
+        "decision_rule": "Reject H0 only at a pre-declared combined-significance/evidence threshold after nuisance and selection treatment; test the EFC curve only if its parameters and phi normalization are numerically frozen before data analysis",
+        "current_specification_gap": "The proposal says a combined-significance threshold but does not freeze the exact likelihood, estimator, threshold, selection correction, or EFC parameter values"
+      },
+      "null_hypothesis": "H0: d_L^GW=d_L^EM, or r(z)=1 for all redshifts; a deviation can reject equality but does not identify the internal EFC motor-lag eta without a separately declared mapping",
+      "frozen": {
+        "observable": "r(z) and equality null are stated",
+        "formula": "The closed-form candidate r=sqrt((1+alpha*phi_0)/(1+alpha*phi_z)) is present in code/metadata",
+        "numeric_prediction": "NOT FROZEN: alpha, phi_0, phi normalization and their redshift evolution are not fixed; source defaults are illustrative",
+        "status": "Not a valid numeric EFC preregistration until the coupling parameters and field normalization/evolution are frozen; it can presently be registered only as a null-constraint test"
+      },
+      "prereg_required": [
+        "choose and freeze the exact GW/EM catalog release, event list, host/redshift criteria and EM distance estimator",
+        "freeze alpha, phi_0, phi normalization and phi(z) evolution, or explicitly register the test as null-only rather than claiming a numeric EFC prediction",
+        "freeze event selection, redshift bins/range, frequency range, waveform model, calibration treatment and selection function",
+        "freeze nuisance priors/treatment for lensing, peculiar velocities, host misidentification, waveform and EM calibration systematics",
+        "freeze the hierarchical likelihood, evidence/statistic, combined-significance threshold, holdout rule and missing-data handling"
+      ],
+      "validity_blockers": [
+        "the EFC formula has no numerically frozen parameterization, so a null result cannot yet be compared to a unique EFC curve",
+        "the exact dataset and event-selection protocol are unspecified",
+        "the EM distance ladder/calibration and GW waveform/instrument systematics must be specified without post hoc tuning",
+        "the proposed statistic and decision threshold are not fully defined",
+        "a detected mismatch would test propagation distance only; F5 (eta_grav versus motor lag) remains an undeclared causal mapping"
+      ]
+    }
+  ]
+}

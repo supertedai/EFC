@@ -6,6 +6,132 @@
   "changes": [
     {
       "date": "2026-09-21",
+      "sha": "750a2366f6f2",
+      "summary": "docs(papers): draft EFC model-family reconciliation manuscript (text phase, pre-publication)",
+      "categories": {
+        "papers": 2
+      },
+      "id": "750a2366f6f2"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "6529ac7f24dc",
+      "summary": "fix(efc): affiliation Sola, Norway in reconciliation manuscript (1A: new-only)",
+      "categories": {
+        "papers": 2
+      },
+      "id": "6529ac7f24dc"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "146482d49140",
+      "summary": "review(efc): freeze blind round 1 findings (8 agents) for reconciliation manuscript, run deleg_7f3e9a1c",
+      "categories": {
+        "ledger_data": 8
+      },
+      "id": "146482d49140"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "63577fe63267",
+      "summary": "review(efc): freeze adversarial round 2 (advocate + attacker) for reconciliation manuscript, run deleg_dfcae231",
+      "categories": {
+        "ledger_data": 2
+      },
+      "id": "63577fe63267"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "19315d5f326e",
+      "summary": "review(efc): freeze meta-review verdict (agent 9), run deleg_86a1241c",
+      "categories": {
+        "ledger_data": 2
+      },
+      "id": "19315d5f326e"
+    },
+    {
+      "date": "2026-09-21",
+      "sha": "d6fbc6109d9a",
+      "summary": "docs(papers): apply 9-agent meta-review accepted findings to reconciliation manuscript",
+      "categories": {
+        "papers": 2
+      },
+      "id": "d6fbc6109d9a"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "de2f423537a0",
+      "summary": "chore(review): sync findings_index for deleg_7f3e9a1c (54 findings on manuscript branch)",
+      "categories": {
+        "ledger_data": 1
+      },
+      "id": "de2f423537a0"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "90c206729c95",
+      "summary": "docs(papers): restore authored package files for reconciliation paper (CITATION, LICENSE, README, citations, jsonld, index, metadata, schema",
+      "categories": {
+        "papers": 8
+      },
+      "id": "90c206729c95"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "4fd3f203b7e1",
+      "summary": "chore(papers): generate ai_manifest and update catalogue for reconciliation paper",
+      "categories": {
+        "papers": 2
+      },
+      "id": "4fd3f203b7e1"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "43ee50d1bc34",
+      "summary": "chore(papers): ai_manifest fixpoint (n_files=11, manifest counts itself)",
+      "categories": {
+        "papers": 2
+      },
+      "id": "43ee50d1bc34"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "8e926bfe22e2",
+      "summary": "chore(docs): sync active paper counts 170→171 (drift detector)",
+      "categories": {
+        "public_pages": 1
+      },
+      "id": "8e926bfe22e2"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "f498a8c06369",
+      "summary": "fix(schema): declare paper_type fields in reconciliation schema; sync telleregel docstring (162 pairs, 49 validate, 80 distinct)",
+      "categories": {
+        "papers": 1
+      },
+      "id": "f498a8c06369"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "fe04d9f616c7",
+      "summary": "chore(papers): regen efc_index.json (171 papers)",
+      "categories": {
+        "papers": 1
+      },
+      "id": "fe04d9f616c7"
+    },
+    {
+      "date": "2026-09-22",
+      "sha": "059d7857add8",
+      "summary": "chore(papers): update ai_manifest byte size after reconciliation schema fix",
+      "categories": {
+        "papers": 1
+      },
+      "id": "059d7857add8"
+    },
+    {
+      "date": "2026-09-21",
       "sha": "8d9626875938",
       "summary": "feat(review): fail-closed adversarial review flow (9 roles / 10 gates) with Layer-3 gating",
       "categories": {
@@ -278,7 +404,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "8d9626875938878b11ce4681f72164b1e94a1193",
+    "last_processed_sha": "059d7857add8771ed7b24331abcd23e67efa47fe",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }

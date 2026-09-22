@@ -43,7 +43,10 @@ pair, and a glob would inherit that.
 
 On 20f81f71: 161 pairs, 48 validate, 113 instances fail, 0 schemas are
 invalid; 79 distinct once `$id` and `title` are ignored, of which 74 are
-unique and 77 share two older templates. Ignoring those two keys is not
+unique and 77 share two older templates. After registering the 162nd pair
+and closing its schema: 162 pairs, 49 validate, 113 instances fail,
+0 schemas are invalid; 80 distinct once `$id` and `title` are ignored,
+of which 75 are unique. Ignoring those two keys is not
 cosmetic: C12 gives every schema a unique `$id`, so the raw text count is
 160 and measures nothing. tests/test_efc_schema_check.py runs this rule and
 compares it to the numbers written here, so they cannot go stale silently —
