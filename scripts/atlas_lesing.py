@@ -2227,7 +2227,8 @@ if __name__ == "__main__":
                 if kh.get("begrunnelse"):
                     print(f"  reason: {kh['begrunnelse']}")
                 if ant is None:
-                    print("  (size not measured — comes from PR #475)")
+                    print("  (size unknown — UKJENT: no measured volume for "
+                          "this domain)")
             else:
                 print("  THE ATLAS DOES NOT KNOW — no node carries this "
                       "topic, and it is not a measured coverage hole.")
