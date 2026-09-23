@@ -4,58 +4,58 @@ artifact_type: orchestrator_navigation_metadata (NOT reviewer output)
 run_id: deleg_v3_rotated
 parent: deleg_d21ed669 (v2, frozen, hash-bound, UNTOUCHED)
 
-## Hva endret seg mellom rundene
+## What changed between the rounds
 
-| Akse | v2 | v3.1 |
+| Axis | v2 | v3.1 |
 |---|---|---|
-| Claims | 12 (C1–C12), alle sammensatte | 15 atomiserte, én predikat hver |
-| Gate-celler | 120 (12×10) | 150 (15×10) |
-| Fordeling | 31 satisfied / 35 open / 54 n/a | 45 satisfied / 63 open / 42 n/a |
-| Gate 1 (claim-identitet) | Feilet blanket (compound) | 7 satisfied, 8 open (atomisert) |
-| Modell | gpt-5.6-luna (9 roller) | gpt-5.6-luna (8 roterte + rolle 9 meta) |
-| Funn | 55 | 15 claims × status + 6 pakker + 5 artefaktruter |
-| Status | Verdict bygget av orkestrator (autoritetsbrudd, senere renset) | Rolle 9 = reviewer-disposisjon, mekanisk matrise |
+| Claims | 12 (C1–C12), all compound | 15 atomised, one predicate each |
+| Gate cells | 120 (12×10) | 150 (15×10) |
+| Distribution | 31 satisfied / 35 open / 54 n/a | 45 satisfied / 63 open / 42 n/a |
+| Gate 1 (claim identity) | Failed blanket (compound) | 7 satisfied, 8 open (atomised) |
+| Model | gpt-5.6-luna (9 roles) | gpt-5.6-luna (8 rotated + role 9 meta) |
+| Findings | 55 | 15 claims × status + 6 packages + 5 artifact routes |
+| Status | Verdict built by orchestrator (authority breach, later cleaned) | Role 9 = reviewer disposition, mechanical matrix |
 
-**Merk:** som *andel* er v3 mer åpen enn v2 (42 % vs 29 % open) — ikke mindre. Det er ærlig, ikke over-grønt; det er poenget.
+**Note:** as a *share*, v3 is more open than v2 (42 % vs 29 % open) — not less. That is honest, not over-green; that is the point.
 
-## Hva som ble atomisert / omskapt
+## What was atomised / reshaped
 
-v3.1 er en *re-skopering*, ikke en re-nummerering av v2s C1–C12. Mappingen:
+v3.1 is a *re-scoping*, not a renumbering of v2's C1–C12. The mapping:
 
-- v2 C1/C2/C3 (Γ-former + «ikke lineær modning» + √[ρ]-residual) → v3 G1a/G1b (eksakt algebra) + G2a/G2b (dimensjonsnormalisering, *refinert*: √[ρ]-residualen viste seg å være β/r_*-hullet) + G1c (domene).
-- v2 C9 (a₀-diskriminator foreslått) → v3 A1a/A1b/A2/A3 (a₀-stigen *ekspandert* til 6+ verdier med proveniens + C=2.32-prefaktor + ancestry-vurdering).
-- **Nytt i v3** (fra generativ runde, ikke i v2): B1–B4 (transportbroen grid→kovariant) + L1/L2 (paradigme-limits som deklarasjoner).
+- v2 C1/C2/C3 (Γ-forms + "non-linear saturation" + √[ρ]-residual) → v3 G1a/G1b (exact algebra) + G2a/G2b (dimensional normalization, *refined*: the √[ρ]-residual turned out to be the β/r_* hole) + G1c (domain).
+- v2 C9 (a₀-discriminator proposed) → v3 A1a/A1b/A2/A3 (the a₀-ladder *expanded* to 6+ values with provenance + C=2.32-prefactor + ancestry assessment).
+- **New in v3** (from the generative round, not in v2): B1–B4 (the transport bridge grid→covariant) + L1/L2 (paradigm limits as declarations).
 
-## Nøkkelstatusendringer (ikke bare bedre oppløsning)
+## Key status changes (not just better resolution)
 
-1. **C=2.32 er numerisk konvergert lattice-måling, ikke analytisk Watson/Green.** (v2 omtalte det som «fit»; v3 presiserer: verken statistisk fit eller avledet konstant.)
-2. **Den kovariante EFT → μ_BE-kanten er `contradicted`.** (v2 flagget den bare som «declared»; v3 etablerer trendbruddet: klassisk korreksjon *øker* med g, μ_BE *avtar*, og μ_BE er postulert.)
-3. **β/r_*-hullet er et dimensjonsdefekt, ikke bare en «residualdimensjon».** (x²/u = 4π/(3·l_g) = 2.59e35 m⁻¹; √u=x krever l_g = 4π/3 ≈ 4.19 m.)
-4. **To latente enhetsfeil verifisert** (cosmology.yaml:18 a0_kpc avvik ~974k; efc_integration_test.py:48 Lambda_cosmo faktor 1e6) — begge uten downstream-konsument, severity medium.
+1. **C=2.32 is a numerically converged lattice measurement, not analytic Watson/Green.** (v2 called it a "fit"; v3 specifies: neither a statistical fit nor a derived constant.)
+2. **The covariant EFT → μ_BE edge is `contradicted`.** (v2 flagged it only as "declared"; v3 establishes the trend break: the classical correction *increases* with g, μ_BE *decreases*, and μ_BE is postulated.)
+3. **The β/r_* hole is a dimensional defect, not just a "residual dimension".** (x²/u = 4π/(3·l_g) = 2.59e35 m⁻¹; √u=x requires l_g = 4π/3 ≈ 4.19 m.)
+4. **Two latent unit errors verified** (cosmology.yaml:18 a0_kpc deviation ~974k; efc_integration_test.py:48 Lambda_cosmo factor 1e6) — both without downstream consumers, severity medium.
 
-## Compound claims som krever v3.2 (rolle 9s anbefaling)
+## Compound claims requiring v3.2 (role 9's recommendation)
 
-G2a, G2b, A1a, B1, B2, B3, L1, L2 — totalt **8 compound**. De er `is_compound=true` og kan ikke lukkes som helhet. Rolle 9 anbefalte eksplisitte sub-claims (G2a.1–3, G2b.1–3, A1a-per-verdi, B1.1–3, B2.1–4, B3.1–4, L1.1–4, L2.1–4).
+G2a, G2b, A1a, B1, B2, B3, L1, L2 — 8 compound in total. They are `is_compound=true` and cannot be closed as wholes. Role 9 recommended explicit sub-claims (G2a.1–3, G2b.1–3, A1a-per-value, B1.1–3, B2.1–4, B3.1–4, L1.1–4, L2.1–4).
 
-## Dekningshull (rolle 9s vurdering)
+## Coverage holes (role 9's assessment)
 
-1. **F-prov-7 (`related_packages` heterogen)** — ikke blant de 15 v3.1-claimene. Rolle 9: *må* legges til som atomisk v3.2-claim, ikke absorberes i pakke-prosa.
-2. **Γ-aliasene er ikke bokstavelige fellesidentifikatorer** — v3.2-proveniens-claim må fryse kilde→alias-kart, normalisering, measurand, regime-navnerom.
-3. De to latente enhetsfeilene må repareres før noen numerisk a₀-bro brukes.
-4. De fem diskriminator-designene er ikke evidens-noder før målekjeder/likelihoods/holdouts er utført.
+1. **F-prov-7 (`related_packages` heterogeneous)** — not among the 15 v3.1 claims. Role 9: *must* be added as an atomic v3.2 claim, not absorbed into package prose.
+2. **The Γ-aliases are not literal common identifiers** — a v3.2 provenance claim must freeze the source→alias map, normalization, measurand, regime namespace.
+3. The two latent unit errors must be repaired before any numerical a₀ bridge is used.
+4. The five discriminator designs are not evidence nodes until measurement chains/likelihoods/holdouts are executed.
 
-## De fem rutede artefakt-oppgavene (ikke lukkbare ved lesing)
+## The five routed artifact tasks (not closable by reading)
 
-| Artefakt | Type |
+| Artifact | Type |
 |---|---|
-| β/r_* dimensjonsutledning | Forfatter/matematikk-arbeid |
-| C=2.32 Watson/Green-derivasjon | Forfatter/matematikk-arbeid |
-| Kanonisk a₀ author-freeze | Forfatter/human gate |
-| Kovariant reduksjon S_grid → relativistisk handling | Forfatter/matematikk-arbeid |
-| Equal-footing holdout likelihood | Eksekverings-artefakt |
+| β/r_* dimensional derivation | Author/math work |
+| C=2.32 Watson/Green derivation | Author/math work |
+| Canonical a₀ author-freeze | Author/human gate |
+| Covariant reduction S_grid → relativistic action | Author/math work |
+| Equal-footing holdout likelihood | Execution artifact |
 
-## Proveniens-advarsel (båret videre fra runde 2)
+## Provenance warning (carried forward from round 2)
 
-- Rolle 9 var *delvis seedet*: prompten bar 12 «etablerte fysiske vurderinger» som skulle bevares. Dens bekreftelse av *disse spesifikke punktene* er seedet korroborasjon, ikke frisk test. Dette er dokumentert i `role9_provenance_note.json` og må ikke senere presenteres som uavhengig validering.
-- Runde-2-attacker var seedet (5 mål med bevis). Adversarielt materiale, ikke uavhengig evidens.
-- Alle roller er gpt-5.6-luna. Enighet = lesningskonsistens, aldri uavhengig validering.
+- Role 9 was *partly seeded*: the prompt carried 12 "established physical judgements" to be preserved. Its confirmation of *these specific points* is seeded corroboration, not a fresh test. This is documented in `role9_provenance_note.json` and must not later be presented as independent validation.
+- The round-2 attacker was seeded (5 targets with evidence). Adversarial material, not independent evidence.
+- All roles are gpt-5.6-luna. Agreement = reading-consistency, never independent validation.

@@ -20,6 +20,6 @@
       "severity": "medium (latent; not consumed)"
     }
   ],
-  "attacker_severity_adjustment": "Attacker (seedet prompt) merket begge 'critical'. Etter kildeverifisering er begge LATENTE (ingen nedstrøms konsumenter). Alvorlighetsgrad nedjustert til medium. De er fortsatt ekte feil som maa fikses for a0-broen skal kunne brukes numerisk, men ingen live pipeline produserer feil output fra dem i dag.",
-  "disposition": "Inngår som rolle 9-input som verifiserte kodefunn (medium), IKKE som attackerens ukritiske 'critical'."
+  "attacker_severity_adjustment": "The attacker (seeded prompt) marked both 'critical'. After source verification both are LATENT (no downstream consumers). Severity downgraded to medium. They are still real defects that must be fixed before the a0 bridge can be used numerically, but no live pipeline produces wrong output from them today.",
+  "disposition": "Feeds role 9 as verified code findings (medium), NOT as the attacker's uncritical 'critical'."
 }
