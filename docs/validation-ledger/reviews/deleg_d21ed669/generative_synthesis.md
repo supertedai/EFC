@@ -1,126 +1,126 @@
-# Generative synthesis — five seams, four packages, one hub
+# Generativ syntese — fem sømmer, fire pakker, ett nav
 
 artifact_type: orchestrator_generative_synthesis
 not_reviewer_output: true
 run_id: deleg_d21ed669
 delegation_id: deleg_90025b05
-model: gpt-5.6-luna (all five; agreement = reading consistency, NOT independent validation)
-status: NOT findings, NOT verdict, NOT claim-status — candidate hypotheses for a new claim-map round
+model: gpt-5.6-luna (alle fem; enighet = reading consistency, IKKE uavhengig validering)
+status: IKKE funn, IKKE verdict, IKKE claim-status — kandidat-hypoteser til ny claim-map-runde
 
 ---
 
-## The hub (one question drives everything)
+## Navet (ett spørsmål driver alt)
 
-> **Which physical object — with which unit, normalization, density variable, and observable — is called Γ in each branch?**
+> **Hvilket fysisk objekt — med hvilken enhet, normalisering, tetthetsvariabel og observabel — kalles Γ i hver gren?**
 
-Three seams radiate from it:
+Tre sømmer stråler ut fra det:
 
-1. **The Γ seam** — form A/B/C + the BE normalization
-2. **The a₀ seam** — MOND input → lattice prefactor → cosmic scale
-3. **The transport seam** — static galactic response vs relativistic cosmological field
-
----
-
-## Package 1 · The Γ response kernel (the form, the dimension, phase-vs-artifact)
-
-**Belongs together:** Γ_A, Γ_B, Γ_C, the BE variable x, u=ρ/ρcrit, l_g, β, sign/unit/normalization.
-
-**Verified algebra:** f(q)=q/(1+q) → Γ_A=f(u), Γ_C=f(√u), Γ_B=√u·f(u).
-
-**The sharp finding (sa-0):** a real dimensional hole. β=4πG_N/3 lacks the reference length r_* (which stands in the docstring but not in the code), so x²/u = 4π/(3·l_g) = **2.59e35 m⁻¹** at l_g=Planck. √u=x requires l_g=4π/3 ≈ 4.19 m. The coordinate identity is therefore **dimensionally blocked**, not established.
-
-**Correction to my own scaffold (important):** that Γ_B diverges as √u while A/C saturate proves that B is a *different function* — but **not** that B is a separate phase. sa-2 found that the sources use A/B/C on **overlapping domains** and describe A as an effective approximation to B; no u→S mapping exists. Γ_B's √u growth is a **high-u extrapolation artifact**, not an S→1 phase boundary.
-
-**Status:** A/B/C = overlapping competing forms of the same Γ(ρ) target; model selection unexecuted (delta_chi2=null in all packages). Separate phase = hypothesis, not source-supported.
-
-**Falsifier:** freeze one Γ0, ρcrit, l_g, β, unit, observable; run A/B/C against the same data + nuisance + likelihood.
+1. **Γ-sømmen** — form A/B/C + BE-normaliseringen
+2. **a₀-sømmen** — MOND-input → lattice-prefaktor → kosmisk skala
+3. **Transport-sømmen** — statisk galaktisk respons vs relativistisk kosmologisk felt
 
 ---
 
-## Package 2 · The a₀ ladder (five values, C=2.32 fit-not-derived)
+## Pakke 1 · Γ-responskjernen (formen, dimensjonen, fase-vs-artefakt)
 
-**Belongs together:** all acceleration scales + the "5.4× MOND" claim.
+**Hører sammen:** Γ_A, Γ_B, Γ_C, BE-variabelen x, u=ρ/ρcrit, l_g, β, fortegn/enhet/normalisering.
 
-**Provenance table (sa-1):**
+**Verifisert algebra:** f(q)=q/(1+q) → Γ_A=f(u), Γ_C=f(√u), Γ_B=√u·f(u).
 
-| Value | Origin | Status |
+**Det skarpe funnet (sa-0):** et reelt dimensjonshull. β=4πG_N/3 mangler referanselengden r_* (som står i docstringen men ikke i koden), så x²/u = 4π/(3·l_g) = **2.59e35 m⁻¹** ved l_g=Planck. √u=x krever l_g=4π/3 ≈ 4.19 m. Koordinat-identiteten er derfor **dimensjonelt blokkert**, ikke etablert.
+
+**Korreksjon av mitt stillas (viktig):** at Γ_B divergerer som √u mens A/C metter, beviser at B er en *annen funksjon* — men **ikke** at B er en separat fase. sa-2 fant at kildene bruker A/B/C på **overlappende domener** og beskriver A som en effektiv approksimasjon til B; ingen u→S-mapping finnes. Γ_B's √u-vekst er en **høy-u-ekstrapolasjonsartefakt**, ikke en S→1-fasegrense.
+
+**Status:** A/B/C = overlappende konkurrerende former for samme Γ(ρ)-mål; modellseleksjon ueksekvert (delta_chi2=null i alle pakker). Separat fase = hypotese, ikke kildeunderstøttet.
+
+**Falsifikator:** frys én Γ0, ρcrit, l_g, β, enhet, observabel; kjør A/B/C mot samme data + nuisance + likelihood.
+
+---
+
+## Pakke 2 · a₀-stigen (fem verdier, C=2.32 fit-ikke-avledet)
+
+**Hører sammen:** alle akselerasjonsskalaene + «5.4× MOND»-påstanden.
+
+**Provenienstabell (sa-1):**
+
+| Verdi | Opphav | Status |
 |---|---|---|
-| 1.2e-10 | MOND/SPARC input (a0_base) | empirically imported |
-| 1.1e-10 | Verlinde 2016 scale | external frame |
-| 6.5e-10 | EFC atlas value, sealed=false/flag | not frozen |
-| 6.459e-10 | C²·a₀ = 2.32²·1.2e-10 | algebraic rescaling |
-| 9.469e-10 | c²√Λ (lambda_screening.py actual) | separate Λ route |
-| 5.097e-9 | C²·c²√Λ | yet another route |
-| 6.544e-10 | cH₀(67.36) | cosmic reference |
+| 1.2e-10 | MOND/SPARC-input (a0_base) | empirisk importert |
+| 1.1e-10 | Verlinde 2016-skala | ekstern ramme |
+| 6.5e-10 | EFC atlasverdi, sealed=false/flag | ikke frosset |
+| 6.459e-10 | C²·a₀ = 2.32²·1.2e-10 | algebraisk reskalering |
+| 9.469e-10 | c²√Λ (lambda_screening.py faktisk) | separat Λ-rute |
+| 5.097e-9 | C²·c²√Λ | enda en rute |
+| 6.544e-10 | cH₀(67.36) | kosmisk referanse |
 
-**The decisive point (sa-1):** C=2.32 is **numerically converged** (2.443→2.354→2.320) but **not analytically derived** — no Watson-integral/Green-function derivation exists in the repo. A separate ledger route gives C_vw=2.2895.
+**Det avgjørende (sa-1):** C=2.32 er **numerisk konvergert** (2.443→2.354→2.320) men **ikke analytisk avledet** — ingen Watson-integral/Green-funksjonsderivasjon finnes i repoet. En separat ledger-rute gir C_vw=2.2895.
 
-**Therefore:** `a₀,eff=C²a₀` is a **computed rescaling**, not a free prediction. "EFC predicts 5.4× MOND" is too strong. The numerical closeness (atlas 6.5e-10 = cH₀ to 0.7%, C²a₀ to 1.3%) is **not-independent**: a₀ is MOND/SPARC input, C is an internal lattice measurement, the atlas value is itself unresolved.
+**Derfor:** `a₀,eff=C²a₀` er en **beregnet reskalering**, ikke en fri prediksjon. «EFC predikerer 5.4× MOND» er for sterkt. Den numeriske nærheten (atlas 6.5e-10 = cH₀ til 0,7 %, C²a₀ til 1,3 %) er **ikke-uavhengig**: a₀ er MOND/SPARC-input, C er intern lattice-måling, atlasverdien er selv uavklart.
 
-**Falsifier:** derive C from the cubic Green function/Watson integral without H₀/Λ/SPARC in the input; vary H₀ and Λ independently and see whether C holds.
-
----
-
-## Package 3 · The broken bridge (grid → RAR → relativistic)
-
-**Belongs together:** S_grid, κeff=κ0+αg, E∝√g, μ_BE(g), G_eff(g), RAR, φ, □φ=Γrel(ρ), μ(k,z), Σ, η, dL^GW/dL^EM.
-
-**This is NOT one chain — it is two, with a break:**
-
-1. **grid→RAR** (most coherent micro-chain, but only to galactic response): grid-action→mode `verified`; mode→BE→RAR `declared` (the source itself says BE-occupation is input and a₀ is not derived).
-2. **relativistic→cosmology** (new branch): `declared`, not executed (datasets_used=[]).
-
-**Two sharp findings (sa-3):**
-
-- **Sign/trend contradiction:** the covariant EFT (31878334) gives a classical correction that **increases** with g; the galactic response μ_BE(g) must **decrease**. The source itself says μ_BE had to be postulated by hand because the classical action gave the wrong trend. Edge: `contradicted`.
-- **Object/unit break:** Γ in □φ=Γ(ρ) has unit [1/time], positive, saturating. dS/dρ is **negative** under decreasing density (dn/dρ<0). Same Greek letter, two different objects. Edge: `contradicted` (until a typed map exists).
-
-**The √g exponent does not survive** into the relativistic action as the same object (√(-g) there is a metric measure, unrelated to E∝√g). Edge: `open_mapping`.
-
-**The siren (dL^GW/dL^EM) must be held separately** — it is a declared relativistic prediction, not a consequence of RAR or the lattice-Γ.
-
-**Falsifier:** one covariant reduction S_grid→relativistic action + Newton limit that gives the same μ_BE(g); typed map ξ→φ and (m_eff,κ0,α,lg,a₀)→(F,K,V,λ,Γ).
+**Falsifikator:** utled C fra kubisk Green-funksjon/Watson-integral uten H₀/Λ/SPARC i input; varier H₀ og Λ uavhengig og se om C står fast.
 
 ---
 
-## Package 4 · The paradigm map (ΛCDM / MOND / EFC as measurement maps)
+## Pakke 3 · Den brutte broen (grid → RAR → relativistisk)
 
-**Belongs together:** coordinate chart, measurand, instrument, proxy, nuisance, regime/phase, likelihood, out-of-sample.
+**Hører sammen:** S_grid, κeff=κ0+αg, E∝√g, μ_BE(g), G_eff(g), RAR, φ, □φ=Γrel(ρ), μ(k,z), Σ, η, dL^GW/dL^EM.
 
-**Status of the recovery edges (sa-4):**
+**Dette er IKKE én kjede — det er to, med et brudd:**
 
-- **EFC→ΛCDM (L0/L1):** `declared_formal_limit`, partial sector support, **not** equal-footing empirical recovery. Overlap on the H₀ background; CMB pending (Boltzmann solver). fσ8 drift: 0.430 (EFC) vs 0.449/0.452 (ΛCDM).
-- **EFC→MOND (L3):** `declared_deep_MOND_limit`, phenomenological RAR overlap, **not** a mathematical limit; a₀ deviation ~5× unresolved (6.5e-10 vs 1.2e-10). Bullet: EFC 0.9993 vs MOND 0.
+1. **grid→RAR** (mest sammenhengende mikrokjede, men bare til galaktisk respons): grid-action→mode `verified`; mode→BE→RAR `declared` (kilden sier selv at BE-occupation er input og a₀ ikke er avledet).
+2. **relativistisk→kosmologi** (ny gren): `declared`, ikke eksekvert (datasets_used=[]).
 
-**This is the user's own requirement, made concrete:** MOND/ΛCDM/EFC are interpretation differences via different instruments/proxies on overlapping data — but it is **not proven** that they are the same truth until they are run in one shared measurement chain. RECOVERED_BY_LIMIT_OF is today an atlas declaration, not an executed likelihood.
+**To skarpe funn (sa-3):**
 
-**Calibration-free discriminators (holdout, not loose observables):**
+- **Fortegn/trend-kontradiksjon:** den kovariante EFT-en (31878334) gir en klassisk korreksjon som **øker** med g; den galaktiske responsen μ_BE(g) må **avta**. Kilden sier selv at μ_BE måtte postuleres for hånd fordi den klassiske virkningen ga feil trend. Edge: `contradicted`.
+- **Objekt-/enhetsbrudd:** Γ i □φ=Γ(ρ) har enhet [1/tid], positiv, mettende. dS/dρ er **negativ** under synkende tetthet (dn/dρ<0). Samme greske bokstav, to ulike objekter. Edge: `contradicted` (inntil typed map foreligger).
 
-1. **L0/L1:** E_G statistic (shared SO/Euclid data, covariance, nuisance, instrument).
-2. **L3/RAR:** SPARC/RAR with frozen a₀ + shared M/L priors.
-3. **Bullet:** Δκ as holdout.
-4. **Dynamics:** fσ8, BAO, k-dependent growth.
-5. **Relativistic:** lensing slip + siren ratio.
+**√g-eksponenten overlever ikke** inn i den relativistiske handlingen som samme objekt (√(-g) der er metrisk mål, urelatert til E∝√g). Edge: `open_mapping`.
+
+**Sirenen (dL^GW/dL^EM) må holdes separat** — den er en erklært relativistisk prediksjon, ikke en konsekvens av RAR eller lattice-Γ.
+
+**Falsifikator:** én kovariant reduksjon S_grid→relativistisk handling + Newton-grense som gir samme μ_BE(g); typed map ξ→φ og (m_eff,κ0,α,lg,a₀)→(F,K,V,λ,Γ).
 
 ---
 
-## Corrections to my own scaffold (made, visible)
+## Pakke 4 · Paradigmekartet (ΛCDM / MOND / EFC som målekart)
 
-1. **G4 was too strong:** "disjoint regimes" → "overlapping competing forms, model selection unexecuted". B's divergence is a functional difference, not phase evidence.
-2. **F1 relabeled** (code-structure, not a discovered physical unification).
-3. **F2 relabeled** (C=2.32 is a fit, not derived; a₀~cH₀ is inheritance, not an EFC finding).
+**Hører sammen:** koordinatkart, measurand, instrument, proxy, nuisance, regime/fase, likelihood, out-of-sample.
 
-## Candidate claims for a NEW claim-map version (atomized)
+**Status for recovery-kantene (sa-4):**
 
-- C-Γ1: Γ_A/B/C share the saturation kernel f but are overlapping forms (not disjoint phases).
-- C-Γ2: the BE normalization is dimensionally incomplete (β lacks r_*).
-- C-a₀1: a₀ is a ladder of at least 6 values with mixed provenance.
-- C-a₀2: C=2.32 is a numerically converged fit, not analytically derived.
-- C-bro1: grid→RAR is declared; covariant EFT→μ_BE is contradicted (wrong trend).
-- C-bro2: Γ in □φ=Γ(ρ) ≠ dS/dρ (unit + sign differ).
-- C-bro3: the √g exponent does not survive into the relativistic action as the same object.
-- C-lim1: EFC→ΛCDM is a formal limit, not an equal-footing recovery.
-- C-lim2: EFC→MOND is phenomenological overlap, not a mathematical limit; a₀ deviation unresolved.
-- C-disc: 5 calibration-free discriminators (E_G, RAR, bullet, fσ8, siren).
+- **EFC→ΛCDM (L0/L1):** `declared_formal_limit`, delvis sektorstøtte, **ikke** equal-footing empirisk recovery. Overlapp på H₀-bakgrunn; CMB pending (Boltzmann-solver). fσ8-drift: 0.430 (EFC) vs 0.449/0.452 (ΛCDM).
+- **EFC→MOND (L3):** `declared_deep_MOND_limit`, fenomenologisk RAR-overlapp, **ikke** matematisk limit; a₀-avvik ~5× uløst (6.5e-10 vs 1.2e-10). Bullet: EFC 0.9993 vs MOND 0.
 
-These do NOT go into verdict/claim_gate_matrix — they go to a NEW 9-role round with rotated mandates (dimensional analysis, asymptotics, regime, provenance, measurement theory, alternative paradigm, covariant bridge, reproduction, meta).
+**Dette er brukerens eget krav, gjort konkret:** MOND/ΛCDM/EFC er tolkningsforskjeller via ulike instrumenter/proxyer på overlappende data — men det er **ikke bevist** at de er samme sannhet før de kjøres i én felles målekjede. RECOVERED_BY_LIMIT_OF er i dag en atlas-deklarasjon, ikke en utført likelihood.
+
+**Kalibreringsfrie diskriminatorer (holdout, ikke løse observabler):**
+
+1. **L0/L1:** E_G-statistikk (felles SO/Euclid-data, covarians, nuisance, instrument).
+2. **L3/RAR:** SPARC/RAR med frosset a₀ + felles M/L-priorer.
+3. **Bullet:** Δκ som holdout.
+4. **Dynamikk:** fσ8, BAO, k-avhengig vekst.
+5. **Relativistisk:** lensing-slip + sireneforhold.
+
+---
+
+## Korreksjoner til mitt eget stillas (gjort, synlig)
+
+1. **G4 var for sterk:** «disjunkte regimer» → «overlappende konkurrerende former, modellseleksjon ueksekvert». Divergensen til B er funksjonsforskjell, ikke fasebevis.
+2. **F1 ommerket** (kode-struktur, ikke oppdaget fysisk forening).
+3. **F2 ommerket** (C=2.32 er fit, ikke avledet; a₀~cH₀ er arv, ikke EFC-funn).
+
+## Kandidat-claims til NY claim-map-versjon (atomisert)
+
+- C-Γ1: Γ_A/B/C deler metningskjerne f men er overlappende former (ikke disjunkte faser).
+- C-Γ2: BE-normaliseringen er dimensjonelt ufullstendig (β mangler r_*).
+- C-a₀1: a₀ er en stige av minst 6 verdier med blandet proveniens.
+- C-a₀2: C=2.32 er numerisk konvergert fit, ikke analytisk avledet.
+- C-bro1: grid→RAR er declared; kovariant EFT→μ_BE er contradicted (feil trend).
+- C-bro2: Γ i □φ=Γ(ρ) ≠ dS/dρ (enhet + fortegn ulikt).
+- C-bro3: √g-eksponenten overlever ikke inn i relativistisk handling som samme objekt.
+- C-lim1: EFC→ΛCDM er formal limit, ikke equal-footing recovery.
+- C-lim2: EFC→MOND er fenomenologisk overlapp, ikke matematisk limit; a₀-avvik uløst.
+- C-disc: 5 kalibreringsfrie diskriminatorer (E_G, RAR, bullet, fσ8, sirene).
+
+Disse skal IKKE inn i verdict/claim_gate_matrix — de går til en NY 9-rolle-runde med roterte mandater (dimensjonsanalyse, asymptotikk, regime, proveniens, måleteori, alternativt paradigme, kovariant bro, reproduksjon, meta).

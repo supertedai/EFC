@@ -7,80 +7,80 @@
   "packages": [
     {
       "id": "G1",
-      "name": "Gamma as a chart family",
+      "name": "Gamma som chartfamilie",
       "seams": ["sa-0", "sa-2"],
-      "hypothesis": "A saturation kernel f(x)=x/(1+x) applied to x (Gamma_C), x^2 (Gamma_A) and weighted x*f(x^2) (Gamma_B) — up to the scale k=beta*rho_crit/a0.",
-      "verified_fact": "In the code: Gamma_A=f(u), Gamma_C=f(sqrt u), Gamma_B=sqrt(u)*f(u), u=rho/rho_crit.",
-      "open_seam": "Is sqrt(u)=x? I.e. is k=1, or are they separated by the dimension-carrying scale 4*pi*G_N*rho_crit/(3*a0)?",
-      "structural_finding": "Gamma_A and Gamma_C saturate toward 1; Gamma_B diverges as sqrt(u). The divergence character is not preserved under coordinate change -> B is not a reparametrization of A/C.",
+      "hypothesis": "En metningskjerne f(x)=x/(1+x) anvendt paa x (Gamma_C), x^2 (Gamma_A) og vektet x*f(x^2) (Gamma_B) — opptil skalaen k=beta*rho_crit/a0.",
+      "verified_fact": "I koden: Gamma_A=f(u), Gamma_C=f(sqrt u), Gamma_B=sqrt(u)*f(u), u=rho/rho_crit.",
+      "open_seam": "Er sqrt(u)=x? Dvs er k=1, eller er de adskilt av dimensjonsbaerende skala 4*pi*G_N*rho_crit/(3*a0)?",
+      "structural_finding": "Gamma_A og Gamma_C maetter mot 1; Gamma_B divergerer som sqrt(u). Divergens-karakter bevares ikke under koordinatskifte -> B er ikke en reparametrisering av A/C.",
       "edge": "open_mapping",
-      "falsifier": "k != 1, sign/unit/normalization incompatible, or a different regime.",
-      "sign_check": "KC1 excludes the sqrt(g) form — a sqrt hit is NOT a victory signature.",
-      "next_artifact": "typed Gamma map (source, variable, unit, regime, observable) — not a decision."
+      "falsifier": "k != 1, fortegn/enhet/normalisering uforenlig, eller ulikt regime.",
+      "sign_check": "KC1 ekskluderer sqrt(g)-formen — et sqrt-treff er IKKE en seierssignatur.",
+      "next_artifact": "typet Gamma-kart (kilde, variabel, enhet, regime, observabel) — ikke en beslutning."
     },
     {
       "id": "G2",
-      "name": "a0 as chart convergence (inherited, not a finding)",
+      "name": "a0 som chart-konvergens (arvet, ikke funn)",
       "seams": ["sa-1"],
-      "hypothesis": "a0_eff ~ cH0 is a Verlinde/Milgrom coincidence that EFC INHERITS; the EFC-specific part is C^2 ~ 5.4 as a discrete renormalization.",
-      "verified_fact": "cH0(67.36)=6.545e-10; atlas 6.5e-10 (=cH0 to 0.7%); C^2*a0_mond=6.459e-10 (1.3%); atlas '5x divergence' (5.417) = C^2 (5.382) to 0.6%; C=2.32 vs sqrt(cH0/a0)=2.335 to 0.65%.",
-      "open_seam": "(a) C=2.32 is an INDEPENDENTLY derived topological constant (Watson integral / cubic lattice Green function), or (b) C^2=cH0/a0 BY CONSTRUCTION because L_Lambda ~ c/H0 is input to the lattice -> tautology.",
-      "edge": "open_mapping (possibly tautological)",
-      "falsifier": "common origin via declared a0 ~ c^2*sqrt(Lambda) input; a closed form for C is missing.",
-      "next_artifact": "closed derivation of C=2.32 from cubic topology, OR re-declaration of a0_eff as a fit."
+      "hypothesis": "a0_eff ~ cH0 er Verlinde/Milgrom-koinsidens EFC ARVER; det EFC-spesifikke er C^2 ~ 5.4 som diskret renormalisering.",
+      "verified_fact": "cH0(67.36)=6.545e-10; atlas 6.5e-10 (=cH0 til 0.7%); C^2*a0_mond=6.459e-10 (1.3%); atlas '5x divergens' (5.417) = C^2 (5.382) til 0.6%; C=2.32 vs sqrt(cH0/a0)=2.335 til 0.65%.",
+      "open_seam": "(a) C=2.32 er en SELVSTENDIG avledet topologisk konstant (Watson-integral / kubisk gitter Green-funksjon), eller (b) C^2=cH0/a0 VED KONSTRUKSJON fordi L_Lambda ~ c/H0 er input til gitteret -> tautologi.",
+      "edge": "open_mapping (mulig tautological)",
+      "falsifier": "felles opphav via deklarert a0 ~ c^2*sqrt(Lambda) input; lukket form for C mangler.",
+      "next_artifact": "lukket utledning av C=2.32 fra kubisk topologi, ELLER re-deklarasjon av a0_eff som fit."
     },
     {
       "id": "G3",
-      "name": "Lattice -> macro seams",
+      "name": "Gitter -> makro soemmer",
       "seams": ["sa-3"],
-      "hypothesis": "grid-action, effective response, relativistic field equation (box phi=Gamma(rho)), galactic RAR are projections of one operator.",
-      "open_seam": "Where does the chain change object? Is Gamma in box phi=Gamma(rho) the SAME object as dS/drho or the grid-action Gamma (sign/unit/normalization)? Does the grid-action sqrt(g) exponent survive as the same object?",
-      "edge": "several open_mapping, some declared",
-      "falsifier": "missing variational derivation, different Gamma, dimensional/sign breach.",
-      "next_artifact": "seam map with typed transitions per link."
+      "hypothesis": "grid-action, effektiv respons, relativistisk feltligning (box phi=Gamma(rho)), galaktisk RAR er projeksjoner av en operator.",
+      "open_seam": "Hvor endrer kjeden objekt? Er Gamma i box phi=Gamma(rho) SAMME objekt som dS/drho eller grid-action-Gamma (fortegn/enhet/normalisering)? Overlever grid-action sqrt(g)-eksponenten som samme objekt?",
+      "edge": "flere open_mapping, noen declared",
+      "falsifier": "manglende variasjonsderivasjon, ulik Gamma, dimensjons-/fortegnsbrudd.",
+      "next_artifact": "sømmekart med typede overganger per link."
     },
     {
       "id": "G4",
-      "name": "Regime/phase",
+      "name": "Regime/fase",
       "seams": ["sa-2"],
-      "hypothesis": "Gamma_A/B/C are OVERLAPPING competing forms of the same Gamma(rho) target (source-supported), NOT disjoint phases. Model selection is unexecuted (delta_chi2=null everywhere).",
-      "structural_support": "B unbounded (sqrt u), A/C saturate toward 1 -> B is a DIFFERENT FUNCTION, but that is NOT evidence of a separate phase; the sources assign no u->S mapping. Phase-reading downgraded to a lower-support hypothesis.",
+      "hypothesis": "Gamma_A/B/C er OVERLAPPENDE konkurrerende former for samme Gamma(rho)-maal (kildeunderstottet), IKKE disjunkte faser. Modellseleksjon er ueksekvert (delta_chi2=null overalt).",
+      "structural_support": "B ubegrenset (sqrt u), A/C maetter mot 1 -> B er en ANNEN FUNKSJON, men det er IKKE bevis paa separat fase; kildene tildeler ingen u->S-mapping. Fase-lesning nedgradert til hypotese med lavere stoette.",
       "edge": "open_mapping",
-      "falsifier": "all three claimed for the same regime + same observable without a selection rule.",
-      "next_artifact": "explicit domain information from the sources."
+      "falsifier": "alle tre hevdet for samme regime + samme observabel uten seleksjonsregel.",
+      "next_artifact": "eksplisitt domeneinformasjon fra kildene."
     },
     {
       "id": "G5",
-      "name": "Paradigm projection",
+      "name": "Paradigmeprojeksjon",
       "seams": ["sa-4"],
-      "hypothesis": "MOND/LCDM/EFC use partly different coordinates and proxies on overlapping data — interpretation difference, not mutually exclusive truths.",
-      "open_seam": "RECOVERED_BY_LIMIT_OF is an atlas declaration, not an empirically confirmed recovery; it requires the same observable + nuisance + likelihood.",
-      "edge": "declared (atlas), open_mapping (empirical)",
-      "falsifier": "out-of-sample observable with the same likelihood and locked nuisance parameters.",
-      "next_artifact": "measurement-space table (coordinate/measurand/instrument/proxy/regime/phase/nuisance/likelihood) per comparison point."
+      "hypothesis": "MOND/LCDM/EFC bruker delvis ulike koordinater og proxyer paa overlappende data — tolkningsforskjell, ikke gjensidig utelukkende sannheter.",
+      "open_seam": "RECOVERED_BY_LIMIT_OF er atlas-deklarasjon, ikke empirisk bekreftet recovery; krever samme observabel + nuisance + likelihood.",
+      "edge": "declared (atlas), open_mapping (empirisk)",
+      "falsifier": "out-of-sample observabel med samme likelihood og laaste nuisance-parametre.",
+      "next_artifact": "maalerom-tabell (koordinat/measurand/instrument/proxy/regime/fase/nuisance/likelihood) per sammenligningspunkt."
     }
   ],
   "cross_package_discriminators": [
-    "SPARC/RAR out-of-sample (not calibrated)",
-    "growth f_sigma8",
-    "siren dL^GW / dL^EM",
+    "SPARC/RAR out-of-sample (ikke kalibrert)",
+    "vekst f_sigma8",
+    "sirene dL^GW / dL^EM",
     "lensing slip (Phi/Psi)",
-    "BAO / k-dependent growth"
+    "BAO / k-avhengig vekst"
   ],
   "candidate_claims_next_claim_map": [
-    "H1: The Gamma forms are a saturation kernel in three coordinatizations (G1)",
-    "H2: The a0 values are one constant in different charts bridged by C^2 (G2)",
-    "H3: Gamma_A/B/C are regime/phase descriptions, not competitors (G4)",
-    "H4: MOND/LCDM/EFC are projections via different instruments/proxies (G5)",
-    "H5: grid/relativistic/galactic Gamma are projections of a response operator (G3)",
-    "related_packages: heterogeneous list (existing coverage hole, caught only by F-prov-7)"
+    "H1: Gamma-formene er en metningskjerne i tre koordinariseringer (G1)",
+    "H2: a0-verdiene er en konstant i ulike charts broet av C^2 (G2)",
+    "H3: Gamma_A/B/C er regime/fase-beskrivelser, ikke konkurrenter (G4)",
+    "H4: MOND/LCDM/EFC er projeksjoner via ulike instrument/proxy (G5)",
+    "H5: grid/relativistisk/galaktisk Gamma er projeksjoner av en responsoperator (G3)",
+    "related_packages: heterogen liste (eksisterende dekningshull, fanges kun av F-prov-7)"
   ],
   "independence_ranking": {
-    "note": "ranked by independent evidence, not by probability",
-    "lowest": "G1 (algebra/code-structure — tautological unless the sources are shown independent)",
-    "low": "G2 (inherited coincidence; C^2 is a fit until a closed form exists)",
-    "medium": "G4 (structural: B unbounded vs A/C saturating)",
-    "unestablished": "G3, G5 (require an independent discriminator)"
+    "note": "rangeres etter uavhengig evidens, ikke etter sannsynlighet",
+    "lowest": "G1 (algebra/kode-struktur — tautologisk med mindre kildene vises uavhengige)",
+    "low": "G2 (arvet koinsidens; C^2 er fit inntil lukket form foreligger)",
+    "medium": "G4 (strukturelt: B ubegrenset vs A/C maetter)",
+    "unestablished": "G3, G5 (krever uavhengig diskriminator)"
   },
-  "authority_boundary": "This is orchestrator-navigation metadata and candidate hypotheses. H1-H5 + related_packages go into a NEW claim_map version and through a NEW 9-role round before any disposition. They are NOT findings, NOT a verdict, and do not change claim_gate_matrix.json, verdict.json or the fail-closed human gate."
+  "authority_boundary": "Dette er orkestrator-navigasjonsmetadata og kandidat-hypoteser. H1-H5 + related_packages skal inn i en NY claim_map-versjon og gjennom en NY 9-rolle-runde foer noen disposition. De er IKKE findings, IKKE verdict, og endrer ikke claim_gate_matrix.json, verdict.json eller fail-closed human gate."
 }
