@@ -47,6 +47,11 @@
 \setlength{\parskip}{4pt}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+\brokenpenalty=10000
+\raggedbottom
 
 \title{\color{efcblue}\bfseries Energy-Flow Cosmology: Model-Family Reconciliation, \\ Claim Status, and Preregistered Discriminators}
 \author{Morten Magnusson \\[2pt]
@@ -54,7 +59,7 @@
         \small ORCID: \href{https://orcid.org/0009-0002-4860-5095}{0009-0002-4860-5095} \\[2pt]
         \small Energy-Flow Cosmology (EFC) Programme \\[1pt]
         \small DOI: \paperdoi}
-\date{2026-09-21}
+\date{2026-09-23}
 
 \begin{document}
 
@@ -211,7 +216,7 @@ Two disciplines follow from this vocabulary. First, \emph{derived} and \emph{tes
 
 Two discriminators are registered as preregistration proposals (status: \emph{proposed}, awaiting author freeze), and are treated here as \emph{not executed}. They are the preregistered \emph{test} axes and are distinct from the model-family axes of Section~\ref{sec:axes}: preregistered Axis~1 is the $E$-exponent test (SPARC/RAR), and preregistered Axis~2 is the propagation-distance test ($d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$). The $\Gamma$-shape axis has no preregistered discriminator of its own as yet; the siren test probes the relativistic coupling, not the density-response form.
 
-\textbf{Discriminator 1 --- SPARC/RAR retrodiction (preregistered Axis~1).} The EFC papers record $a_{0} = 1.2 \times 10^{-10}\ \mathrm{m\,s^{-2}}$ as a provisional value recorded in source packages, not an EFC-derived prediction. The preregistration itself remains \emph{proposed} and awaits author freeze; its own record lists $1.2\times10^{-10}$, $6.5\times10^{-10}$, and $a_{0,\mathrm{eff}} = C^{2}a_{0}$ as circulating candidates and states that the test is INVALID until exactly one is author-frozen. The origin of the frozen value must be labelled MOND/SPARC input, EFC output, or nuisance calibration. A retrodiction of the SPARC/RAR relation under the EFC screening form, with $a_{0}$ held fixed, constitutes the discriminating test for the $E$-exponent axis. Locking $a_{0}$ before the fit is the anti-shopping discipline: the arbiter value is frozen, not fitted and then reported as a prediction.
+\textbf{Discriminator 1 --- SPARC/RAR retrodiction (preregistered Axis~1).} The EFC papers record $a_{0} = 1.2 \times 10^{-10}\ \mathrm{m\,s^{-2}}$ as a provisional value recorded in source packages, not an EFC-derived prediction. The preregistration itself remains \emph{proposed} and awaits author freeze; its own record lists $1.2\times10^{-10}$, $6.5\times10^{-10}$, and $a_{0,\mathrm{eff}} = C^{2}a_{0}$ as circulating candidates and states that the test is INVALID until exactly one is author-frozen. The origin of the frozen value must be labelled MOND/SPARC input~\cite{milgrom1983}, EFC output, or nuisance calibration. A retrodiction of the SPARC/RAR relation~\cite{mcgaugh2016} under the EFC screening form, with $a_{0}$ held fixed, constitutes the discriminating test for the $E$-exponent axis. Locking $a_{0}$ before the fit is the anti-shopping discipline: the arbiter value is frozen, not fitted and then reported as a prediction.
 
 \textbf{Discriminator 2 --- gravitational-wave siren test (preregistered Axis~2).} The relativistic-action package (31876324) contains an expression for the ratio of gravitational-wave to electromagnetic luminosity distances, $d_{L}^{\mathrm{GW}}/d_{L}^{\mathrm{EM}} = \sqrt{F(\phi_{0})/F(\phi_{z})}$ with $F(\phi) = 1 + \alpha\phi$, where $[\alpha\phi] = 1$ and the field normalization remains to be fixed. A future multi-messenger standard-siren sample tests whether $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$. This is a candidate propagation-sector discriminator; $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ is not EFC-specific and does not by itself distinguish EFC from GR systematics or other modified-gravity friction models. It becomes uniquely EFC-discriminating only when the coupling parameters ($\alpha$, $\phi_{0}$, $\phi(z)$) are numerically frozen. Those parameters are \emph{not} frozen in this reconciliation; freezing them is a separate, author-gated step.
 
@@ -271,9 +276,9 @@ $r_*$ (present in the docstring), so $x^2/u = 4\pi/(3\,l_g) \approx
 2.59\times10^{35}\ \mathrm{m^{-1}}$. \\
 $C = 2.32$ &
 Numerically converged on the lattice ($2.443 \to 2.354 \to 2.320$); \emph{not}
-an analytic Watson/Green-function result. \\
+an analytic Watson/Green-function result~\cite{watson1939}. \\
 $a_0 = 1.2\times10^{-10}$ is an EFC prediction &
-Inherited from MOND/SPARC; $a_0 \approx cH_0$ is shared ancestry, not an
+Inherited from MOND/SPARC; $a_0 \approx cH_0$ is shared ancestry~\cite{planck2018}, not an
 independent EFC output. \\
 EFC $\to$ $\Lambda$CDM, EFC $\to$ MOND &
 Formal-limit declarations; \emph{not} equal-footing empirical recoveries. \\
@@ -329,6 +334,20 @@ claim in this document rests on those unresolved items.
 The reconciliation is reproducible and machine-readable by construction. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with no Overfull or Underfull hbox warnings and no float-placement warnings. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
 
 The single persistent identifier for this work is assigned at publication and referenced throughout this document by the placeholder \texttt{\paperdoi}. The text is written before the identifier exists, in that order, by design: the identifier binds the frozen text, not the reverse.
+
+\clearpage
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{milgrom1983} M.~Milgrom, \emph{A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis}, Astrophys.\ J.\ \textbf{270}, 365--370 (1983). \href{https://doi.org/10.1086/161130}{doi:10.1086/161130}.
+
+\bibitem{mcgaugh2016} S.~S.~McGaugh, F.~Lelli, and J.~M.~Schombert, \emph{Radial Acceleration Relation in Rotationally Supported Galaxies}, Phys.\ Rev.\ Lett.\ \textbf{117}, 201101 (2016). \href{https://doi.org/10.1103/PhysRevLett.117.201101}{doi:10.1103/PhysRevLett.117.201101}.
+
+\bibitem{planck2018} Planck Collaboration (N.~Aghanim et al.), \emph{Planck 2018 results. VI. Cosmological parameters}, Astron.\ Astrophys.\ \textbf{641}, A6 (2020). \href{https://doi.org/10.1051/0004-6361/201833910}{doi:10.1051/0004-6361/201833910}.
+
+\bibitem{watson1939} G.~N.~Watson, \emph{Three Triple Integrals}, Quart.\ J.\ Math.\ (Oxford) \textbf{10}, 266--276 (1939). \href{https://doi.org/10.1093/qmath/os-10.1.266}{doi:10.1093/qmath/os-10.1.266}.
+
+\end{thebibliography}
 
 \vspace{1em}
 \color{rulegray}\hrule\color{black}
