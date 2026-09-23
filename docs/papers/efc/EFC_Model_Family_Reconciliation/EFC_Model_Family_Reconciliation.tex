@@ -239,6 +239,90 @@ The following items remain open and are recorded as author-gated; resolving any 
 \item \textbf{Review status.} All reviewer material is AI-generated reading consistency. This is not independent peer review, and no external validation is claimed.
 \end{enumerate}
 
+\section{Review status: a constrained reconciliation}
+\label{sec:review}
+
+This section records the outcome of the adversarial review of this
+reconciliation, frozen as revision v3.3. It adds no new theory and no new
+selection; it states, per candidate claim, what the review established and what
+remains open, and it closes the remaining items as executable work packages
+rather than as settled physics.
+
+The review apparatus is nine role mandates run in a single model family.
+Agreement across roles is therefore reading consistency, never independent
+validation. The reviewer archives are frozen verbatim and are not translated or
+edited. Table~\ref{tab:review} is a reconciliation of that reviewer output for
+the author's revision; it is not itself a verdict.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{9.1cm}}
+\toprule
+Candidate claim & Established status \\
+\midrule
+$\Gamma_A$, $\Gamma_B$, $\Gamma_C$ are one physical core &
+Exact on the declared normalized forms; \emph{not} a physical unification
+(different units, normalizations, regimes). \\
+$x = \sqrt{\beta\rho/a_0}$ is dimensionless &
+\emph{No}: the implemented $\beta = 4\pi G_N/3$ omits the reference length
+$r_*$ (present in the docstring), so $x^2/u = 4\pi/(3\,l_g) \approx
+2.59\times10^{35}\ \mathrm{m^{-1}}$. \\
+$C = 2.32$ &
+Numerically converged on the lattice ($2.443 \to 2.354 \to 2.320$); \emph{not}
+an analytic Watson/Green-function result. \\
+$a_0 = 1.2\times10^{-10}$ is an EFC prediction &
+Inherited from MOND/SPARC; $a_0 \approx cH_0$ is shared ancestry, not an
+independent EFC output. \\
+EFC $\to$ $\Lambda$CDM, EFC $\to$ MOND &
+Formal-limit declarations; \emph{not} equal-footing empirical recoveries. \\
+Covariant EFT $\to$ $\mu_{\mathrm{BE}}$ &
+Postulated; trend break (the classical correction increases with $g$ while
+$\mu_{\mathrm{BE}}$ decreases). \\
+\bottomrule
+\end{tabular}
+\caption{Review status (v3.3) by candidate claim.}
+\label{tab:review}
+\end{table}
+
+Two further numerical points are recorded for honesty and are not resolved
+here. First, the prefactor carries two values in the repository: the
+lattice-converged $C = 2.32$ ($C^2 = 5.382$) of the discrete-gravity package,
+and a ledger value $C = 2.2895\ldots$ ($C^2 = 5.242$) with no reproducing
+configuration on disk; the discrepancy is open parameter provenance. Second,
+two latent unit defects were verified (the $a_0$ galactic-unit entry, and a
+$\Lambda$ conversion off by a factor of order $10^6$); both are presently
+unconsumed downstream but must be repaired before the $a_0$ bridge is used
+numerically.
+
+The remaining open items are closed as five executable work packages, not as
+new review rounds:
+
+\begin{enumerate}
+\item \textbf{Dimensional closure} ($\beta$, $r_*$, $l_g$). The algebraic
+  condition $r_* = 3 l_g/(4\pi)$ closes the dimension; the physical convention
+  remains to be fixed.
+\item \textbf{Analytic $C$ and $C_{\mathrm{ledger}}$ provenance}. Derive
+  $C = 2.32$ from the radial Green function, and reproduce or quarantine the
+  ledger value.
+\item \textbf{Canonical $a_0$ freeze} (including the unit leaks). Separate
+  $a_{0,\mathrm{base}}$ from $a_{0,\mathrm{eff}}$, $cH_0$, and $\Lambda$-derived
+  scales.
+\item \textbf{Covariant reduction $S_{\mathrm{grid}} \to$ relativistic action}
+  (including the typed map). Derive the decreasing $\mu_{\mathrm{BE}}(g)$ rather
+  than postulating it, and supply the typed map between $\Gamma$, $\Box\phi$,
+  $\mathrm{d}S/\mathrm{d}\rho$, and the rates.
+\item \textbf{Equal-footing holdout likelihood} (including a canonical
+  $f\sigma_8$ reference). Run EFC, MOND, and $\Lambda$CDM on the same data with
+  matched nuisance, covariance, and priors, and freeze one $f\sigma_8$ value.
+\end{enumerate}
+
+The conclusion the review supports is a \emph{constrained reconciliation}, not
+a final unification: several EFC components are internally coherent as code
+structures or formal declarations, while the strongest physical identifications
+(the covariant bridge, the $a_0$ ancestry, the formal limits) remain open. No
+claim in this document rests on those unresolved items.
+
 \section{Reproducibility and machine readability}
 
 The reconciliation is reproducible and machine-readable by construction. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with Overfull hbox and float-placement warnings; warning-free layout is not claimed. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
