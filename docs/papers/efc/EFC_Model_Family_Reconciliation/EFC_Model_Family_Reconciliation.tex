@@ -7,6 +7,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{colortbl}
@@ -103,21 +104,21 @@ The corpus is version-controlled at \texttt{github.com/supertedai/EFC} and publi
 
 The specific packages this reconciliation draws on, with their persistent identifiers, are listed in Table~\ref{tab:corpus}.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{4.7cm}p{3.6cm}>{\raggedright\arraybackslash}p{4.9cm}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{5.6cm} >{\raggedright\arraybackslash}p{3.9cm} >{\raggedright\arraybackslash}X@{}}
 \toprule
 Package (exact slug) & DOI & Role here \\
 \midrule
-\texttt{Derivation\_of\_the\_Entropy\_Production} & 10.6084/m9.figshare.31942821 & Source of $\Gamma(\rho)$; Scenarios A and B \\
-\texttt{Density\_of\_States\_of\_Gravitationally} & 10.6084/m9.figshare.31942800 & Source of the square-root response form; Scenario B$^{+}$ \\
-\texttt{EFC\_Gradient\_Coupled\_Grid\_Action} & 10.6084/m9.figshare.31941465 & Source of $E \propto \sqrt{g}$; KC1 \\
-\texttt{From\_Grid\_Microphysics\_to\_the\_Radial\_Acceleration} & 10.6084/m9.figshare.31878760 & Grid-to-RAR bridge \\
-\texttt{Covariant\_EFT\_for\_Entropy\_Driven\_Gravitational\_Modification\_Construction\_Constraints} & 10.6084/m9.figshare.31878334 & Covariant EFT of the coupling \\
-\texttt{EFC\_Relativistic\_Action\_Field\_Equations\_Perturbation\_Theory\_and\_Extraction} & 10.6084/m9.figshare.31876324 & Source of the $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ expression \\
+\texttt{Derivation\_\allowbreak of\_\allowbreak the\_\allowbreak Entropy\_\allowbreak Production} & \url{10.6084/m9.figshare.31942821} & Source of $\Gamma(\rho)$; Scenarios A and B \\
+\texttt{Density\_\allowbreak of\_\allowbreak States\_\allowbreak of\_\allowbreak Gravitationally} & \url{10.6084/m9.figshare.31942800} & Source of the square-root response form; Scenario B$^{+}$ \\
+\texttt{EFC\_\allowbreak Gradient\_\allowbreak Coupled\_\allowbreak Grid\_\allowbreak Action} & \url{10.6084/m9.figshare.31941465} & Source of $E \propto \sqrt{g}$; KC1 \\
+\texttt{From\_\allowbreak Grid\_\allowbreak Microphysics\_\allowbreak to\_\allowbreak the\_\allowbreak Radial\_\allowbreak Acceleration} & \url{10.6084/m9.figshare.31878760} & Grid-to-RAR bridge \\
+\texttt{Covariant\_\allowbreak EFT\_\allowbreak for\_\allowbreak Entropy\_\allowbreak Driven\_\allowbreak Gravitational\_\allowbreak Modification\_\allowbreak Construction\_\allowbreak Constraints} & \url{10.6084/m9.figshare.31878334} & Covariant EFT of the coupling \\
+\texttt{EFC\_\allowbreak Relativistic\_\allowbreak Action\_\allowbreak Field\_\allowbreak Equations\_\allowbreak Perturbation\_\allowbreak Theory\_\allowbreak and\_\allowbreak Extraction} & \url{10.6084/m9.figshare.31876324} & Source of the $d_{L}^{\mathrm{GW}} \neq d_{L}^{\mathrm{EM}}$ expression \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \caption{Primary corpus packages referenced by this reconciliation. Exact repository directory names are given as the package identifiers.}
 \label{tab:corpus}
 \end{table}
@@ -165,17 +166,17 @@ The bifurcation is cleanly described as two presently separate descriptive \emph
 
 These choices are organized separately here; physical independence is not demonstrated. In particular, the square root appears in two distinct roles that must not be conflated --- as the $E$-axis exponent ($E \propto \sqrt{g}$) and as the $\Gamma$-axis density dependence ($\Gamma \propto \sqrt{\rho/\rho_{\mathrm{crit}}}$). Selecting $\alpha_{E} = \tfrac{1}{2}$ on the $E$-axis does not select the square-root response form on the $\Gamma$-axis. The reconciliation therefore freezes the structure as \emph{two open selections}, not one. Table~\ref{tab:axes} summarizes.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \small
-\begin{tabular}{llll}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{1.6cm}@{}}
 \toprule
 Model-family axis & Quantity & Realizations & Status \\
 \midrule
 $E$-exponent axis & BE exponent $\alpha_{E}$ & $\alpha_{E}=1$ (linear), $\alpha_{E}=\tfrac{1}{2}$ ($\sqrt{\phantom{g}}$) & open \\
 $\Gamma$-shape axis & response $\Gamma(\rho)$ & $\Gamma_{A}$ (saturating), $\Gamma_{B}$ (power-law), $\Gamma_{C}$ (square-root saturation) & open \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \caption{The two model-family axes. Neither is selected by an executed test.}
 \label{tab:axes}
 \end{table}
@@ -254,10 +255,10 @@ validation. The reviewer archives are frozen verbatim and are not translated or
 edited. Table~\ref{tab:review} is a reconciliation of that reviewer output for
 the author's revision; it is not itself a verdict.
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{4.2cm}>{\raggedright\arraybackslash}p{9.1cm}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{4.0cm} >{\raggedright\arraybackslash}X@{}}
 \toprule
 Candidate claim & Established status \\
 \midrule
@@ -280,7 +281,7 @@ Covariant EFT $\to$ $\mu_{\mathrm{BE}}$ &
 Postulated; trend break (the classical correction increases with $g$ while
 $\mu_{\mathrm{BE}}$ decreases). \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \caption{Review status (v3.3) by candidate claim.}
 \label{tab:review}
 \end{table}
@@ -325,7 +326,7 @@ claim in this document rests on those unresolved items.
 
 \section{Reproducibility and machine readability}
 
-The reconciliation is reproducible and machine-readable by construction. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with Overfull hbox and float-placement warnings; warning-free layout is not claimed. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
+The reconciliation is reproducible and machine-readable by construction. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with no Overfull or Underfull hbox warnings and no float-placement warnings. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
 
 The single persistent identifier for this work is assigned at publication and referenced throughout this document by the placeholder \texttt{\paperdoi}. The text is written before the identifier exists, in that order, by design: the identifier binds the frozen text, not the reverse.
 
