@@ -137,6 +137,8 @@ The comparison is best represented as a map of coordinates, measures, proxies, r
 
 The formal statements that EFC approaches MOND-like or ΛCDM-like behavior should be retained as formal-limit declarations. They should not be described as equal-footing empirical recovery until the following are matched: same data; same nuisance parameters; same covariance; same priors; same calibration rules; frozen model definitions; out-of-sample holdout; preregistered likelihood and kill criteria.
 
+Two distinct readings are kept separate: the formal-limit status (an evidence claim — the EFC→MOND and EFC→ΛCDM limits are declared, not recovered) and the regime interpretation (an ontological hypothesis — MOND-like and ΛCDM-like behaviour are candidate effective regimes of one energy-flow framework, with ΛCDM the global linear/screened limit and MOND the local low-acceleration response). The regime reading is operationalized in corpus packages 31943361 (ΛCDM special case), 31348411 (emergent Newton/MOND regimes), and 31348417 (regime ontology), but remains a hypothesis, not an established result.
+
 The reported fσ₈ values are not interchangeable: EFC is reported near 0.430, while ΛCDM references appear near 0.449 and 0.452. This source inconsistency should be resolved before using the comparison as a decisive discriminator.
 
 ---

@@ -17,7 +17,8 @@
 | `x = √(βρ/a₀)` is dimensionless | **No** — β omits r_*; x²/u = 2.592e35 m⁻¹ | Fix the code **or** describe as an open convention |
 | C = 2.32 | Numerically converged (2.443→2.354→2.320); **not** analytic | Call it "lattice-measured", not "derived" |
 | a₀ = 1.2e-10 is EFC's prediction | **Inherited** from MOND/SPARC; a₀≈cH₀ not independent | Remove "predicts"; say "shared ancestry" |
-| EFC→ΛCDM / EFC→MOND | **Formal-limit declarations** | Never "equal-footing recovery" |
+| EFC→ΛCDM | **Global linear/screened limit**; L0/L1 special-case reduction derived (31943361). Not equal-footing recovery | Never "equal-footing recovery" |
+| EFC→MOND | **Local low-acceleration (IR) response**; emergent regime of the discrete operator (31348411, 31348417). Not equal-footing recovery | Never "equal-footing recovery" |
 | Covariant EFT → μ_BE | **Postulated**, trend break (classical ↑, μ_BE ↓) | Mark as open, not derived |
 
 ## Verified numbers (use only these — no others)
