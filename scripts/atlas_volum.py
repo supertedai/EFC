@@ -27,6 +27,42 @@ in the file must be derivable, and a test must derive it.
     A hardcoded volume table would rot at the first change in bus
     traffic — and would lie the same way "82 nodes" did.
 
+## The third state: UKJENT — and why 0 is never it
+
+A declared domain that does not stand in the measurement has NO measured
+volume. It must not be written as `0`: zero is a claim that the source
+ANSWERED with nothing, and the bus protocol cannot produce that number.
+`verden_domener` builds the domains from the subjects that carry messages,
+and a stream that carries nothing at all is NAMED in `tomme_stroemmer`
+("created, waiting for a producer — not destroyed"). Measured 2026-09-22
+(card t_7f8529cd, against the live bus): 38 domains, 117 subjects, the
+smallest subject count 1, no domain summing to 0 — while the declared
+domains `kosmos.exoplanet` and `kosmos.hoper` stood OUTSIDE the measurement
+and the old write line turned both into `"meldinger": 0`.
+
+The volume therefore has three states, and the file says which:
+
+    an int >= 1   measured: the sum of the domain's measured subjects
+    null          UKJENT: the domain is not in the measurement at all
+    (absent)      UKJENT in a ref older than the volume field itself
+
+`hull()` does not carry the previous number forward either. A stream that
+has stopped answering would then read as unchanged — the same lie, one step
+later — so the declaration's number is used only when no measurement was
+handed in at all. The table writes UKJENT where the number would stand, in
+the same column the subject counts already mark when they were not measured.
+
+The rule is the house's, and it is older than this module: a source that
+stops answering is shown as unknown, not as zero (ADR-043, the step-3 gate;
+ADR-021 decision 1: "UKJENT is not NULL"). The same failure has been paid
+for once already inside ADR-043: a dashboard drew "no deviations" on a tree
+where nothing had been measured, because the value was the empty list rather
+than `None` — and the test that stood guard asserted the empty list, and so
+CEMENTED the defect it was written to catch. The test
+`test_et_domene_ute_av_maalingen_skrives_som_ukjent` in
+`tests/test_atlas_volum.py` asserted `0` in exactly that way, and is
+rewritten here.
+
 ## One implementation of the bus protocol
 
 `--maal` talks to the bus through the house's own tool for it, and calls
@@ -155,6 +191,13 @@ def hull(coverage: dict, snapshot: dict | None = None, *,
 
     `statuser=None` gives every domain — then a `dekket` channel that
     carries a lot behind one node shows up too.
+
+    `meldinger` is the MEASURED volume, or `None` when it was not measured:
+    a domain that a supplied measurement does not carry is UKJENT, and the
+    declaration's own number is NOT used for it (a stream that has stopped
+    answering would otherwise read as unchanged). Without a measurement there
+    is only the declaration's number — and a missing field is still `None`,
+    never 0.
     """
     measured = meldinger_per_domene(snapshot) if snapshot else {}
     rows: list[dict] = []
@@ -166,14 +209,20 @@ def hull(coverage: dict, snapshot: dict | None = None, *,
         subjects = sorted(
             ((e, subject_counts.get(e)) for e in (row.get("emner") or [])),
             key=lambda pair: (-(pair[1] or 0), pair[0]))
+        meldinger = (row.get("meldinger") if snapshot is None
+                     else measured.get(name))
         rows.append({
             "domene": name,
             "status": row.get("status"),
-            "meldinger": measured.get(name, row.get("meldinger", 0)),
+            "meldinger": meldinger,
             "noder": list(row.get("noder") or []),
             "emner": subjects,
         })
-    rows.sort(key=lambda r: (-r["meldinger"], r["domene"]))
+    # Measured volumes first, largest first; the ones that were never
+    # measured last, by name. An unknown volume cannot take part in a ranking
+    # by size, and sorting it first would claim it is the largest gap there is.
+    rows.sort(key=lambda r: (r["meldinger"] is None,
+                             -(r["meldinger"] or 0), r["domene"]))
     return rows[:top] if top else rows
 
 
@@ -284,6 +333,13 @@ def oppdater_dekning(coverage: dict, domains: dict) -> tuple[dict, dict]:
     not write: new domains and new subjects must trip the invariant until
     someone has taken a position on them.
 
+    A declared domain that the measurement does not carry gets `None` —
+    UKJENT — never 0 and never the number from the previous measurement. 0
+    would be a claim that the source answered with nothing; the bus builds
+    its domains from the subjects that CARRY messages, so that number is not
+    producible here. The domain is named in `report["borte"]`, and the
+    invariant trips until a human has taken a position on it.
+
     Returns `(updated, report)`.
     """
     measured = {name: sum(subjects.values())
@@ -299,7 +355,7 @@ def oppdater_dekning(coverage: dict, domains: dict) -> tuple[dict, dict]:
             report["nye_emner"][name] = new_subjects
         updated[name] = {
             "status": row.get("status"),
-            "meldinger": measured.get(name, 0),
+            "meldinger": measured.get(name),
             "noder": list(row.get("noder") or []),
             "begrunnelse": row.get("begrunnelse", ""),
             "emner": list(row.get("emner") or []),
@@ -312,13 +368,18 @@ def oppdater_dekning(coverage: dict, domains: dict) -> tuple[dict, dict]:
 
 
 def format_table(rows: list[dict]) -> str:
-    """The table the human reads — largest first, with the subjects below."""
+    """The table the human reads — largest first, with the subjects below.
+
+    A volume that was not measured is written UKJENT, not as a number: the
+    reader who sees a size must be able to trust that somebody measured it.
+    """
     if not rows:
         return "  (no gaps in this slice)"
     width = max(len(r["domene"]) for r in rows)
     lines = []
     for r in rows:
-        lines.append(f"{r['meldinger']:>10}  {r['status']:<11}  "
+        meldinger = "UKJENT" if r["meldinger"] is None else f"{r['meldinger']}"
+        lines.append(f"{meldinger:>10}  {r['status']:<11}  "
                      f"{r['domene']:<{width}}  "
                      f"{len(r['noder'])} node(s), "
                      f"{len(r['emner'])} subject(s)")
@@ -396,7 +457,10 @@ def hoved(argv: list[str] | None = None) -> int:
                   f"{report['borte']} — "
                   f"the declaration promises a world that is no longer there. "
                   f"Bus subjects inside the retention window disappear on "
-                  f"their own; remove them from the file or explain why.")
+                  f"their own; remove them from the file or explain why. "
+                  f"Their `meldinger` is written as UKJENT (null) — 0 would "
+                  f"be a measurement claim the bus never made, and the old "
+                  f"number would hide that the source has stopped answering.")
         if args.torr:
             print("\n(--torr: nothing written)")
         return 0
