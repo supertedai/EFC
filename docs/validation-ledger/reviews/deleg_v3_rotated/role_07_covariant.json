@@ -1,0 +1,131 @@
+{
+  "role": "Covariant bridge analyst",
+  "claims": [
+    {
+      "claim_id": "B1",
+      "status": "partially_supported",
+      "evidence": "Endepunktene er typede slik: S_grid[ξ,Φ] er en effektiv funksjonell med gradientkobling, ikke en fundamental grid-teori (/home/morten/EFC-prov/docs/papers/efc/EFC_Gradient_Coupled_Grid_Action/EFC_Gradient_Coupled_Grid_Action.pdf:20-46,215-228). Mode-response er E-L-ligningen, κ_eff=κ₀+αg og dispersjonen ω(k,g), med E=ℏω∝√g i gravitasjonsregimet (:80-109). Transition-status: grid-action → mode-response = verified, formelt og betinget på den deklarerte handlingen/WKB-regimet. Mode-response → BE = declared, fordi bosonisk statistikk og termisk ensemble er forutsatt; den tidligere mikro-modellen sier eksplisitt at BE-occupation er input og at ingen full QFT er derivert (/home/morten/EFC-prov/docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:64-82,159-163). BE → RAR = verified som algebraisk identitet gitt x=√(g/a₀), men den fysiske identifikasjonen μ=RAR og a₀-verdien er deklarert/målt, ikke uavhengig verifisert (:84-95). RAR/μ_BE → covariant EFT = contradicted dersom pilen betyr klassisk avledning: den klassiske korreksjonen er lineær og økende med g, mens RAR-tilpasningen avtar; μ_BE postuleres deretter som effektiv relasjon (/home/morten/EFC-prov/docs/papers/efc/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:239-259). Den konkrete overgangen mellom denne S-handlingen og den separate φ,λ-handlingen er open_mapping. φ,λ covariant action → perturbations = verified bare i quasi-static sub-horizon-regimet (/home/morten/EFC-prov/docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:19-33,132-142,175-225). Perturbations → cosmological observables = open_mapping: CLASS/Boltzmann-kjøring og numerisk evaluering er angitt som neste steg, mens CMB og fσ₈ fortsatt står som ikke testet (/home/morten/EFC-prov/docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:247-281; /home/morten/EFC-prov/docs/papers/efc/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:261-277).",
+      "verified": "E-L/WKB-overgangen fra den deklarerte grid-handlingen til en lokal dispersjon er formelt verifisert. BE→RAR er verifisert som funksjonell substitusjon, ikke som uavhengig observasjonell validering.",
+      "missing_link": "Det mangler en typed variational reduksjon fra grid-handlingen til den relativistiske φ,λ-handlingen, en derivert termisk ensemblebeskrivelse og en faktisk perturbasjon-til-observabel Boltzmann/likelihood-kjede.",
+      "falsifier": "En eksplisitt variational reduksjon som gir en annen g-eksponent eller μ-form, eller en gjennomført uavhengig observasjonstest som avviser den frosne BE/RAR-formen, ville falsifisere den tilsvarende broen.",
+      "measurement_chain": "S_grid[ξ,Φ] (effektiv action) → E-L/WKB κ_eff,ω(k,g) (mode response) → ℏω og termisk bosonisk ensemble (excitation/BE) → μ_BE(g) (dimensjonsløs respons) → covariant action → δφ,δλ,Φ,Ψ og μ(k,z),Σ(k,z),η(k,z) (perturbasjoner) → vekst, lensing, CMB, fσ₈ og standard-siren-observabler.",
+      "confidence": 0.92,
+      "gate_applicability": {
+        "source": "docs/validation-ledger/gates.json:3,41-73",
+        "claim_identity": "applicable",
+        "provenance": "applicable",
+        "formal_validity": "applicable",
+        "model_relative_validity": "applicable",
+        "paradigm_declaration": "applicable",
+        "measurement_chain": "applicable",
+        "proxy_bias_audit": "applicable",
+        "regime_phase_domain": "applicable",
+        "discrimination_falsification": "applicable",
+        "reproduction_synthesis_human_gate": "applicable",
+        "not_yet_satisfied": [
+          "measurement_chain",
+          "proxy_bias_audit",
+          "discrimination_falsification",
+          "reproduction_synthesis_human_gate"
+        ],
+        "same_model_family_caveat": "applicable"
+      },
+      "is_compound": true,
+      "is_leading": false,
+      "uncertainty": "Statusene gjelder formell modellintern implikasjon. De to covariante handlingene bruker ulike felt og operatorer, og kildene dokumenterer ingen eksplisitt identitetsmap mellom dem."
+    },
+    {
+      "claim_id": "B2",
+      "status": "supported",
+      "evidence": "Endepunktene er ulike typer: den klassiske covariante korreksjonen er en Poisson-kildeterm α_EFC·g, mens μ_BE(g) er en dimensjonsløs galaktisk responsfunksjon. Covariant EFT-kilden sier eksplisitt at den klassiske korreksjonen er lineær og økende med g, mens RAR krever motsatt avhengighet med μ_BE→0 når g→∞ (/home/morten/EFC-prov/docs/papers/efc/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:239-247). Derfor er g-avhengigheten opposite: d(α_EFC g)/dg>0, mens dμ_BE/dg<0. Samme kilde sier deretter at μ_BE(g) adopteres som en effektiv relasjon og er postulated, not derived from the classical action (:253-259). BE-formen er separat identifisert matematisk i samme kilde (:206-226) og i mikro-modellen (/home/morten/EFC-prov/docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:84-95).",
+      "verified": "Klassifiseringen opposite og postulated er direkte tekstlig støttet av kildefilen. Dette etablerer ikke empirisk modellseier; det klassifiserer bare intern avledningsstatus og fortegn.",
+      "missing_link": "Det mangler en kvante/statistisk eller ikke-lokal covariant handling som faktisk avleder μ_BE(g) fra samme dynamiske variabler og normalisering som den klassiske EFT-en.",
+      "falsifier": "En fullstendig variasjon av den samme covariante handlingen som gir en avtakende korreksjon og eksakt μ_BE(g), uten postulat eller ekstern innsatt responsfunksjon, ville falsifisere klassifiseringen postulated/opposite.",
+      "measurement_chain": "Covariant classical action → modified Poisson source α_EFC·g → sign of classical correction; separate BE/statistical input → μ_BE(g) → RAR. Det foreligger ingen felles action-to-observable readout.",
+      "confidence": 0.98,
+      "gate_applicability": {
+        "source": "docs/validation-ledger/gates.json:3,41-73",
+        "claim_identity": "applicable",
+        "provenance": "applicable",
+        "formal_validity": "applicable",
+        "model_relative_validity": "applicable",
+        "paradigm_declaration": "applicable",
+        "measurement_chain": "applicable_but_not_executed",
+        "proxy_bias_audit": "not_reached",
+        "regime_phase_domain": "applicable",
+        "discrimination_falsification": "applicable_but_not_executed",
+        "reproduction_synthesis_human_gate": "applicable",
+        "same_model_family_caveat": "applicable"
+      },
+      "is_compound": true,
+      "is_leading": false,
+      "uncertainty": "Fortegnene er klare i Covariant EFT-kilden. Sammenligningen gjelder en klassisk Poisson-kor­reksjon mot en dimensjonsløs responsfunksjon, ikke to identiske matematiske objekter."
+    },
+    {
+      "claim_id": "B3",
+      "status": "partially_supported",
+      "evidence": "I den relativistiske handlingen er Γ(ρ) kilden i □φ=Γ(ρ), altså må [Γ]=[φ]·L⁻², eller [φ]·T⁻² med c=1 (/home/morten/EFC-prov/docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:19-33,104-108). Den eksplisitte EFT-ansatsen er Γ_EFT=γ₀(ρ/ρ_crit)/(1+ρ/ρ_crit), med γ₀ deklarert å ha enhet T⁻¹, Γ>0 og Γ'>0 for γ₀>0 (:386-398); dette er ikke en full enhetsidentitet med □φ uten en deklarert enhet for φ eller en ekstra tidsnormalisering. Koden definerer x=√(βρ/a₀), n=1/(eˣ−1) og dn/dρ=−n(n+1)x/(2ρ) (/home/morten/EFC-prov/docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:34-73). Sammen med ds/dn=x (:89-145) gir dette som eksplisitt reviewersyntese ds/dρ=−n(n+1)x²/(2ρ)=−(β/(2a₀))n(n+1) for ρ>0: negativt fortegn og enhet [s]/[ρ], altså ρ⁻¹ for kodens dimensjonsløse per-mode-entropi. Koden kaller derimot |Γ_per-mode|=(β/(2a₀))n(n+1), som er positiv størrelse (/home/morten/EFC-prov/docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:149-184). Den mangler eksplisitt dρ/dt og har derfor ikke etablert T⁻¹-rateenhet. Videre er Γ_total∝ρ^(3/2)/(ρ+ρ_crit), mens gamma_phenomenological=Γ₀ρ/(ρ+ρ_crit) (/home/morten/EFC-prov/docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:198-213), så den deriverte kodeformen er ikke identisk med EFT-ansatsen. Docstringen angir β=4πG_N r*/3 (:38-40), men implementasjonen setter β=4πG_N/3 uten r* (:167-177); med den tilsiktede r*-faktoren har β/a₀ enhet ρ⁻¹, mens den faktiske implementasjonen mangler lengden som gjør x dimensjonsløs i SI. μ_BE er dessuten eksplisitt statisk, mens Γ er ment dynamisk (/home/morten/EFC-prov/docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:246-286). Koden ble syntaktisk kompilert og alle 16 doctester passerte, men dette verifiserer ikke fysisk enhetskonsistens.",
+      "verified": "Det er verifisert at de tre størrelsene har ulike roller og fortegn: Γ_box er en feltligningskilde, ds/dρ er en entropiderivert med negativt fortegn, og kodens per-mode-uttrykk er den positive absoluttverdien av samme koeffisient. En full fysisk rate- og enhetsmappe er ikke verifisert.",
+      "missing_link": "Det mangler en eksplisitt identitetsmap φ↔S, fysisk entropy-normalisering, dρ/dt eller annen tidskonvertering, samt en konsekvent r*/l_g-definisjon som gjør kodeformen dimensjonsriktig og kobler ds/dρ til kilden i □φ=Γ(ρ).",
+      "falsifier": "En kildebasert avledning med eksplisitte felt-enheter, tidsnormalisering og normalisering som viser at Γ_box, ds/dρ og |Γ_per-mode| er samme typed object, ville falsifisere klassifiseringen som separate/ufullstendig mappede objekter.",
+      "measurement_chain": "BE occupation n(x) → von Neumann entropy s(n) → dn/dρ → ds/dρ → eventuell dS/dt via dρ/dt → per-mode entropy-production coefficient → field-source Γ_box after φ/S and unit normalization. The source stops before the last typed identity.",
+      "confidence": 0.94,
+      "gate_applicability": {
+        "source": "docs/validation-ledger/gates.json:3,41-73",
+        "claim_identity": "applicable",
+        "provenance": "applicable",
+        "formal_validity": "applicable",
+        "model_relative_validity": "applicable",
+        "paradigm_declaration": "applicable",
+        "measurement_chain": "not_applicable_for_this_non_empirical_type_claim",
+        "proxy_bias_audit": "not_applicable",
+        "regime_phase_domain": "applicable",
+        "discrimination_falsification": "not_applicable_for_this_non_empirical_type_claim",
+        "reproduction_synthesis_human_gate": "applicable",
+        "same_model_family_caveat": "applicable"
+      },
+      "is_compound": true,
+      "is_leading": false,
+      "uncertainty": "Den formelle negative derivertformen er entydig for kodens s(n), men fysisk S kan ha en ekstra k_B- eller volum-normalisering. Γ-enheten i □φ=Γ avhenger av en φ-enhet som ikke deklareres."
+    },
+    {
+      "claim_id": "B4",
+      "status": "supported",
+      "evidence": "I grid/mikro-modellen er g_acc=|∇Φ| en lokal gravitasjonsakselerasjon, og modeenergien skalerer som E=ℏω∝√g_acc i oscillatorregimet (/home/morten/EFC-prov/docs/papers/efc/EFC_Gradient_Coupled_Grid_Action/EFC_Gradient_Coupled_Grid_Action.pdf:20-37,80-109; /home/morten/EFC-prov/docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:121-135). I den relativistiske handlingen er √(-g_metric) derimot volum-målfaktoren, med g_metric=det(g_μν), i ∫d⁴x√(-g_metric)[...]; samme kilde definerer også □=g^μν∇_μ∇_ν (/home/morten/EFC-prov/docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:19-33). Covariant EFT-kilden bekrefter at √(-g) inngår gjennom metriske kontraksjoner og determinant, ikke som en akselerasjonsavhengig energifaktor (/home/morten/EFC-prov/docs/papers/efc/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:116-119,144-148). Objektene er derfor forskjellige: √g_acc er en energiskaleringsfaktor, mens √(-g_metric) er en geometrisk tetthet/volumfaktor.",
+      "verified": "Forskjellen i objekt og rolle er direkte verifisert av definisjonene og handlingene. Ingen av de relativistiske handlingene inneholder en identifikasjon √(-det g_μν)=√|∇Φ| eller en eksplisitt energiterm E(√|∇Φ|).",
+      "missing_link": "Det mangler en covariant operator som maps grid-energien √g_acc til F(φ), K(ρ), V(φ), λ eller Γ(ρ) i den relativistiske handlingen.",
+      "falsifier": "En eksplisitt action-term eller variational derivation som identifiserer metric-determinanten med |∇Φ|, eller som avleder E∝√|∇Φ| fra √(-g_metric), ville falsifisere denne typed-object-distinksjonen.",
+      "measurement_chain": "Grid gradient g_acc=|∇Φ| → oscillatorfrekvens ω → energy E=ℏω∝√g_acc; separat metric g_metric=det(g_μν) → √(-g_metric) → invariant spacetime volume measure.",
+      "confidence": 0.99,
+      "gate_applicability": {
+        "source": "docs/validation-ledger/gates.json:3,41-73",
+        "claim_identity": "applicable",
+        "provenance": "applicable",
+        "formal_validity": "applicable",
+        "model_relative_validity": "applicable",
+        "paradigm_declaration": "applicable",
+        "measurement_chain": "not_applicable_for_this_non_empirical_type_claim",
+        "proxy_bias_audit": "not_applicable",
+        "regime_phase_domain": "applicable",
+        "discrimination_falsification": "not_applicable_for_this_non_empirical_type_claim",
+        "reproduction_synthesis_human_gate": "applicable",
+        "same_model_family_caveat": "applicable"
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Notasjonen bruker g i begge sammenhenger, men rolleforskjellen er entydig. Den nøyaktige koordinatenheten til metric-determinanten endrer ikke at den ikke er gravitasjonsakselerasjonen."
+    }
+  ],
+  "human_gate_items": [
+    "Alle kildene tilhører samme modellfamilie og i hovedsak samme forfatter; enighet mellom dem er lesekonsistens, ikke uavhengig validering.",
+    "Ikke promotér den formelle BE/RAR-identiteten eller perturbasjonsformlene som empirisk observasjonell bekreftelse uten en separat, frosset målekjede og likelihood/holdout.",
+    "Avklar før eventuell syntese den manglende action-to-action-mappen mellom S-handlingen, grid-handlingen og φ,λ-handlingen.",
+    "Human gate remains fail-closed until units, typed source mapping and cosmological execution are independently reviewed."
+  ],
+  "open_questions": [
+    "Kan en eksplisitt covariant reduksjon fra S_grid[ξ,Φ] til φ,λ-handlingen avledes uten å postulerer μ_BE?",
+    "Hvilken fysisk enhet har φ, og hvordan konverteres ds/dρ eller per-mode-koeffisienten til kilden Γ i □φ=Γ(ρ)?",
+    "Skal β inneholde r* eller l_g i den kjørbare koden, og kan x=√(βρ/a₀) gjøres dimensjonsløs i SI?",
+    "Er μ(k,z), Σ(k,z), η(k,z) faktisk implementert i en Boltzmann- og observabel-likelihood-kjede, eller foreligger bare de deklarerte formene?"
+  ]
+}

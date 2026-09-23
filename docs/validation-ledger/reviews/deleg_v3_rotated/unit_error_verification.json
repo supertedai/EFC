@@ -1,0 +1,25 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "unit_error_verification",
+  "verification_method": "read source + downstream consumption grep",
+  "findings": [
+    {
+      "id": "unit_err_a0_kpc",
+      "claim": "shared/configs/cosmology.yaml:17-18 stores a0=1.2e-10 m/s^2 and a0_kpc=3.8e-3 (km/s)^2/kpc as the SAME quantity in different units.",
+      "verification": "CONFIRMED. Correct conversion: 1.2e-10 m/s^2 = 3702.8 (km/s)^2/kpc; stored 3.8e-3 is off by factor ~974,424. The comment '(km/s)^2/kpc' confirms it is meant as the same a0.",
+      "downstream_consumption": "a0_kpc referenced ONLY at cosmology.yaml:18 (zero consumers). LATENT config defect, not an active bug.",
+      "severity": "medium (latent; not consumed)"
+    },
+    {
+      "id": "unit_err_lambda_cosmo",
+      "claim": "efc_integration_test.py:48 computes Lambda_cosmo mixing SI H0 (s^-1) with c_light=2.998e5 (km/s), labeled 'm^-2'.",
+      "verification": "CONFIRMED. Result is 1.089e-46 in s^2/km^2 units, not 1.089e-52 m^-2; factor 1e6. Correct value requires c in m/s.",
+      "downstream_consumption": "Lambda_cosmo defined at line 48, referenced nowhere else in live code (only in review artifacts). LATENT code defect, not active.",
+      "severity": "medium (latent; not consumed)"
+    }
+  ],
+  "attacker_severity_adjustment": "Attacker (seedet prompt) merket begge 'critical'. Etter kildeverifisering er begge LATENTE (ingen nedstrøms konsumenter). Alvorlighetsgrad nedjustert til medium. De er fortsatt ekte feil som maa fikses for a0-broen skal kunne brukes numerisk, men ingen live pipeline produserer feil output fra dem i dag.",
+  "disposition": "Inngår som rolle 9-input som verifiserte kodefunn (medium), IKKE som attackerens ukritiske 'critical'."
+}

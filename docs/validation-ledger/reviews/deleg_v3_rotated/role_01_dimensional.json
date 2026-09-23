@@ -1,0 +1,60 @@
+{
+  "role": "dimensional_analyst",
+  "claims": [
+    {
+      "claim_id": "G2a",
+      "status": "partially_supported",
+      "evidence": "The exact neutral text is claim_map.json:26-28. entropy_production.py:40 documents x = sqrt(beta*rho/a0) and beta = 4*pi*G_N*r*/3, while BEOccupation.x_from_rho implements that x form at lines 59-61. The executable assignments omit r_*: GammaDerivation.beta is 4.0*pi*G_N/3 at lines 167-171, and Density_of_States_of_Gravitationally/src/density_of_states.py:169-175 assigns the same simplified beta and computes x_param. With rho_crit = a0/(G_N*l_g) (entropy_production.py:175-177; density_of_states.py:40-43,54-58), u = G_N*l_g*rho/a0 and x^2/u = beta/(G_N*l_g) = 4*pi/(3*l_g) for the implemented beta. For the default l_g = L_PLANCK = 1.616e-35 m (density_of_states.py:30,54), execution gives x^2/u = 2.592073146526232e35 m^-1, not 1. If the documented beta including r_* were used instead, the ratio would be 4*pi*r_*/(3*l_g).",
+      "verified": "Source readback and executable import were completed. The two beta assignments both evaluated to 2.795598582674437e-10 numerically; the default density-of-states object returned l_g = 1.616e-35 m and rho_crit = 1.1126374849052182e35, and the computed x^2/u was the same 2.592073146526232e35 for rho = 1e-4, 1, and 1e35. The source-level conclusion is verified; physical intent of the omission is not.",
+      "missing_link": "No r_* parameter or documented unit normalization is supplied in the executable beta implementation. The source calls x dimensionless but the implemented beta has the units of G_N, leaving beta*rho/a0 with inverse-length units under the stated SI comments.",
+      "falsifier": "A canonical versioned source that explicitly defines beta = 4*pi*G_N*r_*/3 in the executed path, or declares an equivalent unit convention that absorbs r_*, would falsify the conclusion that the implemented normalization omits that length.",
+      "measurement_chain": "Non-empirical formal chain: source constants and assignments -> rho_crit = a0/(G_N*l_g) -> u = rho/rho_crit -> x^2 = beta*rho/a0 -> algebraic ratio x^2/u. No raw signal, instrument, reduction, or empirical observable is involved.",
+      "uncertainty": "The missing r_* could be an undocumented unit normalization rather than an intended physical omission; neither specified source module states such a convention. The numerical ratio is therefore a code-level result, not an independent physical validation.",
+      "confidence": 0.99,
+      "gate_applicability": {
+        "gate_1_claim_identity": {"applicability": "applies", "not_applicable": false},
+        "gate_2_provenance": {"applicability": "applies", "not_applicable": false},
+        "gate_3_formal_validity": {"applicability": "applies", "not_applicable": false},
+        "gate_4_model_relative_validity": {"applicability": "applies", "not_applicable": false},
+        "gate_5_paradigm_declaration": {"applicability": "applies", "not_applicable": false},
+        "gate_6_measurement_chain": {"applicability": "not_applicable", "not_applicable": true},
+        "gate_7_proxy_bias_audit": {"applicability": "not_applicable", "not_applicable": true},
+        "gate_8_regime_phase_domain": {"applicability": "applies", "not_applicable": false},
+        "gate_9_discrimination_falsification": {"applicability": "not_applicable", "not_applicable": true},
+        "gate_10_reproduction_synthesis_human_gate": {"applicability": "applies", "not_applicable": false}
+      },
+      "is_compound": false,
+      "is_leading": false
+    },
+    {
+      "claim_id": "G2b",
+      "status": "open",
+      "evidence": "The exact neutral text is claim_map.json:31-33. From x^2/u = beta/(G_N*l_g), sqrt(u) = x requires beta = G_N*l_g, equivalently l_g = beta/G_N. With the documented beta = 4*pi*G_N*r_*/3, this becomes l_g = 4*pi*r_*/3. The specified source modules declare l_g independently as L_PLANCK: density_of_states.py:30,54-58,106-110,218-222; entropy_production.py:27-29 and 175-177 uses L_PLANCK for rho_crit. They do not declare l_g = 4*pi*r_*/3 or assign r_*. With the implemented beta lacking r_*, the formal numerical condition would be l_g = 4*pi/3, which is dimensionally incompatible with the declared length l_g unless an unstated reference unit is assumed.",
+      "verified": "The equality condition was derived directly from the source formulas and the default objects were executed. The repository source readback verifies a Planck-length default and no executable r_* or l_g-to-r_* equality in the two specified modules. The condition is therefore established algebraically, but the identification is not established by the repository declaration.",
+      "missing_link": "An authoritative value or definition for r_* and an explicit, dimensionally consistent declaration linking it to l_g (l_g = 4*pi*r_*/3 under the documented beta) are missing; the default l_g = L_PLANCK is not tied to r_*.",
+      "falsifier": "A canonical source or declared unit convention that sets r_* = 3*l_g/(4*pi), or directly enforces l_g = beta/G_N in the executed implementation, would falsify the conclusion that the sqrt(u) = x identification is undeclared.",
+      "measurement_chain": "Non-empirical formal chain: beta and l_g definitions -> rho_crit -> u -> equality test x^2 = u. No raw measurement or proxy chain is asserted.",
+      "uncertainty": "The code permits caller-supplied l_g in the density-of-states classes, so equality could be imposed externally; what is open is whether that choice is the intended canonical normalization. The source does not state an implicit unit convention.",
+      "confidence": 0.98,
+      "gate_applicability": {
+        "gate_1_claim_identity": {"applicability": "applies", "not_applicable": false},
+        "gate_2_provenance": {"applicability": "applies", "not_applicable": false},
+        "gate_3_formal_validity": {"applicability": "applies", "not_applicable": false},
+        "gate_4_model_relative_validity": {"applicability": "applies", "not_applicable": false},
+        "gate_5_paradigm_declaration": {"applicability": "applies", "not_applicable": false},
+        "gate_6_measurement_chain": {"applicability": "not_applicable", "not_applicable": true},
+        "gate_7_proxy_bias_audit": {"applicability": "not_applicable", "not_applicable": true},
+        "gate_8_regime_phase_domain": {"applicability": "applies", "not_applicable": false},
+        "gate_9_discrimination_falsification": {"applicability": "not_applicable", "not_applicable": true},
+        "gate_10_reproduction_synthesis_human_gate": {"applicability": "applies", "not_applicable": false}
+      },
+      "is_compound": false,
+      "is_leading": false
+    }
+  ],
+  "human_gate_items": [],
+  "open_questions": [
+    "What canonical physical quantity and unit convention does r_* represent in the BE coordinate?",
+    "Is l_g intended to equal 4*pi*r_*/3, and if so where is that relation authoritatively declared?"
+  ]
+}

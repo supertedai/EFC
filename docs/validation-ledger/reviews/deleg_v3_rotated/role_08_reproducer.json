@@ -1,0 +1,71 @@
+{
+  "role": "ROLE 8: Reproducer/falsifier",
+  "claims": [
+    {
+      "claim_id": "G1a",
+      "status": "supported",
+      "evidence": "Neutral text (exact): \"With f(q)=q/(1+q) and u=rho/rho_crit, the repository's Gamma_A and Gamma_C satisfy Gamma_C(u) = Gamma_A(sqrt(u)) = sqrt(u)/(1+sqrt(u)).\" EXACT: entropy_production.py importerte uten feil. GammaDerivation.gamma_phenomenological(u) gir f(u); companionens EntropyProductionFunction.gamma_derived(u) gir f(sqrt(u)). For positive u={1e-6,1e-4,1e-2,0.1,0.25,1,4,100,1e6} var maks |Gamma_A-f(u)|=0.0 og maks |Gamma_C-Gamma_A(sqrt(u))|=0.0. Gamma_C er ikke navngitt som Gamma_C i entropy_production.py; den ligger i Density_of_States_of_Gravitationally/src/density_of_states.py og er også reprodusert av gamma_flrw_consistency.py.",
+      "verified": "EXACT",
+      "missing_link": "Ingen algebraisk lenke mangler for denne funksjonsidentiteten. Proveniensen er likevel fordelt på to pakker, ikke ett felles literal-alias i entropy_production.py.",
+      "falsifier": "En kjørbar positiv u-verdi der Gamma_C(u) != Gamma_A(sqrt(u)), eller der Gamma_A(u) != u/(1+u), vil falsifisere den deklarerte identiteten.",
+      "measurement_chain": "Direkte import av entropy_production.py -> GammaDerivation.gamma_phenomenological; direkte import av companion-koden -> EntropyProductionFunction.gamma_derived; numerisk sammenligning med f(u), Gamma_A(sqrt(u)) og f(sqrt(u)) over ni positive u-verdier.",
+      "confidence": 0.99,
+      "gate_applicability": {"applicable": true, "gate": "G1 gamma-form identity", "reason": "Koden er kjørt direkte; dette er intern reproduksjon av deklarerte former, ikke uavhengig fysisk validering."},
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Samme repository/modelfamilie leverer alle formene; ingen uavhengig implementasjon eller empirisk diskriminering er utført."
+    },
+    {
+      "claim_id": "G1b",
+      "status": "supported",
+      "evidence": "Neutral text (exact): \"The repository's Gamma_B satisfies Gamma_B(u) = sqrt(u) * Gamma_A(u) = u^(3/2)/(1+u).\" EXACT: GammaDerivation.gamma_total(u) returnerer u**1.5/(1+u), og gamma_phenomenological(u) returnerer u/(1+u). Direkte kjøring på samme ni u-verdier ga maks absolutt avvik |Gamma_B-sqrt(u)*Gamma_A(u)|=1.1368683772161603e-13 og maks relativt avvik=2.0679535993341e-16 ved flyttallsavrunding; ved u=0.1 var begge 0.028747978728803452.",
+      "verified": "EXACT",
+      "missing_link": "Ingen algebraisk lenke mangler for u>0: u**1.5 = sqrt(u)*u. Bit-for-bit-identitet kan ikke kreves for alle IEEE-flyttall.",
+      "falsifier": "Et reproduserbart relativt avvik langt over flyttallsavrunding, eller en kildeendring som skiller gamma_total fra sqrt(u)*gamma_phenomenological(u), vil falsifisere formen.",
+      "measurement_chain": "Direkte import av entropy_production.py -> gamma_total og gamma_phenomenological -> beregning av sqrt(u)*Gamma_A(u) -> absolutt og relativ differanse over positive u.",
+      "confidence": 0.99,
+      "gate_applicability": {"applicable": true, "gate": "G1 gamma-form identity", "reason": "Implementasjonen og den algebraiske formen stemmer; resultatet er intern reproduksjon, ikke uavhengig validering."},
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "EXACT gjelder funksjonsformen med vanlig numerisk avrunding; Gamma_Bs fysiske normalisering eller observabelstatus er ikke vurdert av denne kjøringen."
+    },
+    {
+      "claim_id": "A1a",
+      "status": "supported",
+      "evidence": "Neutral text (exact): \"Enumerate the acceleration-scale values associated with a0 present in the repository, each with its file:line origin (input, measurement, fit, declaration, or inheritance).\" EXACT provenance-inventar av sentrale fysiske a0-spor: (1) 1.2e-10 m/s^2 — input i shared/configs/cosmology.yaml:17; merket measured SPARC value i docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py:16; SPARC-kilde i .../data/model.json:5; default/inheritance i Derivation_of_the_Entropy_Production/src/entropy_production.py:27, Density_of_States_of_Gravitationally/src/density_of_states.py:29 og regime_classifier.py:23; deklarert i .../Regime.../data/parameters.json:26-29. (2) 3.8e-3 (km/s)^2/kpc — shared/configs/cosmology.yaml:18; med kpc=3.0856775814913673e19 m blir dette 1.2314961299888588e-16 m/s^2, så enhetslinjen er ikke numerisk ekvivalent med 1.2e-10 (som tilsvarer 3702.813097789641 (km/s)^2/kpc). (3) 1.2108e-10 m/s^2 — rapportert som 1.009*a0_MOND i SPARC175_ELIMINATION_SUMMARY.md:55; dette er et sammendrags-/fit-claim, mens fit-koden bare definerer søkeintervall [0.5e-10,5.0e-10] i sparc175_multicomponent_killtest.py:177-201 og den faktiske best_a0-outputen er ikke persisted i den leste pakken. (4) 6.45888e-10 m/s^2 — kjørbar/algebraisk C^2*a0-base fra efc_integration_test.py:52-54 med C=2.32 og a0_base=1.2e-10; convergence_table.json:33-35 gir tilsvarende ratio C^2=5.38. (5) 6.5e-10 m/s^2 — avrundet kommentar i efc_integration_test.py:153; uforseglet EFC-flag/deklarasjon i schema/framework_atlas.jsonld:72,84; kandidat, men ikke kanonisk paper-a0, i axis_e_sparc_rar.md:51-53. (6) 6.543917044718082e-10 m/s^2 — beregnet cH0, ikke lagret a0-input, fra efc_integration_test.py:41,46-47 med H0=67.36 km/s/Mpc, c=2.998e5 km/s og H0_si. (7) 9.469449807325541e-10 m/s^2 — kjørbar deklarasjon a0=c^2*sqrt(Lambda) i lambda_screening.py:21-23,45-63 (Lambda=1.11e-52); samme form/output finnes i regime_classifier.py:21-23,115-155. (8) 5.096836664294899e-09 m/s^2 — kjørbar C^2*c^2*sqrt(Lambda) i lambda_screening.py:90-115. (9) 1.1e-10 m/s^2 — atlas comparator for Verlinde_2016 i schema/framework_atlas.jsonld:82, ikke EFC-input. (10) 0.001, 0.5, 2.0 — a0_values_tested i lattice units, ikke SI, i Discrete.../data/parameters.json:8-11. Duplicates in other paper indexes/code files are inheritance or restatements of these values, not additional independent determinations.",
+      "verified": "EXACT",
+      "missing_link": "Det finnes ikke én entydig fysisk a0-proveniens i dette inventaret: importert/målt 1.2e-10, rapportert fit, C^2-reskalering, atlas-flagget 6.5e-10 og Lambda-avledede verdier er blandet. Fit-sammendraget har ikke en tilbake-lesbar best_a0-output.",
+      "falsifier": "En autoritativ, versjonert provenance-manifest som fryser én verdi og eksplisitt klassifiserer alle øvrige som comparator, derived effective scale eller unit error, vil endre denne enumerasjonen; en persisted fit-output kan bekrefte eller avkrefte 1.009*a0_MOND.",
+      "measurement_chain": "Direkte lesing av kilde-/metadatafiler og file:line-opphav -> AST-lesing av efc_integration_test.py-konstanter -> kjørte beregninger for C^2*a0, cH0, c^2*sqrt(Lambda), C^2*c^2*sqrt(Lambda) og enhetskonvertering -> proveniensklassifisering.",
+      "confidence": 0.94,
+      "gate_applicability": {"applicable": true, "gate": "A1a acceleration-scale provenance", "reason": "Kildene og de relevante avledningene er tilbake-lest og kjørt; gate-spørsmålet er nettopp om verdiene skal fryses med separat provenance."},
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Listen grupperer mange duplikatlinjer til representative primary origins. Full import av efc_integration_test.py feilet på manglende matplotlib, så konstanter ble lest med AST og avledningene kjørt separat."
+    },
+    {
+      "claim_id": "A2",
+      "status": "partially_supported",
+      "evidence": "Neutral text (exact): \"Determine whether C=2.32 has an analytic derivation in the repository (cubic-lattice Green's function or Watson integral), or whether it appears only as a numerically converged fit.\" approximate: convergence_table.json ble lastet, og den medfølgende prefactor_convergence.py ble kjørt med readback: N=21 -> C_cubic=2.443, C_sphere=2.433, |delta|=0.010, C^2=5.97; N=31 -> 2.354, 2.349, 0.005, 5.54; N=41 -> 2.320, 2.321, 0.001, 5.38; extrapolated N->infinity C=2.32, a0_eff/a0=5.38. Rekalkulerte differanser samsvarte med tabellen innen 3.3e-16. Målpakken/PDF-en har ingen Watson-integral-, kubisk Green-funksjons-, analytic- eller closed-form-derivasjon; MANIFEST.md:99 markerer continuum limit for C som future work, og PDF:135 oppgir continuum limit som fremtidig arbeid. Resultatet er derfor en numerisk konvergens-/ekstrapolasjonsartefakt, ikke en påvist analytisk konstant eller en statistisk fit.",
+      "verified": "approximate",
+      "missing_link": "En eksplisitt analytisk kubisk-lattice Green/Watson-kjede eller en uavhengig uendelig-lattice-beregning som gir C=2.32 mangler. Tabellen har bare N=21,31,41 og ingen dokumentert feilmodell for N->infinity.",
+      "falsifier": "En lesbar, versjonert kilde i målpakken/repositoryet som faktisk utleder C=2.32 fra en kubisk Green-funksjon/Watson-integral, vil falsifisere klassifiseringen numerically-converged-only.",
+      "measurement_chain": "JSON-read av convergence_table.json -> kjøring/readback av examples/prefactor_convergence.py -> rekalkulering av |C_cubic-C_sphere| og C^2 -> targeted søk i målpakken og PDF etter Watson/Green/analytic/closed-form.",
+      "confidence": 0.97,
+      "gate_applicability": {"applicable": true, "gate": "A2 analytic provenance of C", "reason": "Den numeriske sekvensen er direkte reprodusert, men fravær av en analytisk kjede er en scoped repository-finding og ikke et generelt bevis om all mulig teori."},
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Ingen ny full lattice-solver ble kjørt; reproduksjonen gjelder den arkiverte tabellen og dens visningsscript. Samme modellfamilie/repository gir både data og konklusjonsordlyd."
+    }
+  ],
+  "human_gate_items": [
+    "Frys og navngi én fysisk a0 som MOND/SPARC-input, EFC-derived scale, fit eller nuisance calibration; hold a0_eff separat.",
+    "Avklar unit-konflikten mellom 1.2e-10 m/s^2 og 3.8e-3 (km/s)^2/kpc før sammenligning.",
+    "Ikke omtale C=2.32 som analytisk avledet før Green/Watson-kjeden eller en tilsvarende uavhengig continuum-limit-beregning er arkivert."
+  ],
+  "open_questions": [
+    "Full import av efc_integration_test.py er blokkert av ModuleNotFoundError: matplotlib; AST-konstantlesing og de etterspurte beregningene er likevel utført.",
+    "SPARC-sammendraget 1.009*a0_MOND har ingen tilbake-lesbar persisted best_a0-output i den leste pakken.",
+    "A2 mangler fortsatt en analytisk C-kjede; den utførte reproduksjonen er intern og ikke uavhengig validering."
+  ]
+}

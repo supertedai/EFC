@@ -1,0 +1,21 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "batch": "deleg_7a67e72e",
+  "event": "cross_layer_provenance_note",
+  "superseded_premise": {
+    "id": "different_solver_explanation",
+    "where": "cross_paradigm_map.json part_classifications.a0_prefactor.axes[2] and reconcilable_re_readings[2]",
+    "stale_claim": "C=2.32 (cubic/spherical lattice) vs C_vw≈2.2895 (a different volume-weighted solver/readout)",
+    "replacement": "Direct matched-parameter reproduction (solve_aqual vs solve_discrete_aqual, M=50, G_eff=1, a0=2.0, volume-weighted, r_out_min=5.0, r_out_max=N//2-3) returned IDENTICAL C to machine precision at N=21 (2.443115, delta=0.000000) and N=31 (2.354499, delta=0.000000), same 13 iterations. The solver-discrepancy hypothesis is FALSIFIED.",
+    "status": "open_parameter_provenance — ledger C_vw=2.2895486402403438 is unreproduced at canonical params and has no config on disk (parameter-provenance difference or stale ledger entry), NOT a solver defect."
+  },
+  "why_not_edited_in_place": "Subagent output is reviewer/analysis provenance and is preserved verbatim; the falsified premise is flagged here so role 9 reads both the original and this correction, with priority to the direct reproduction.",
+  "timing": "Task 2 (cross-paradigm) was dispatched and completed (367s) BEFORE the orchestrator's solver-reproduction result; the steering correction reached task 1 (sa-0-20795b95) but NOT task 2 (sa-1-df52d217).",
+  "higher_level_verdict_holding": "Task 2's a0_prefactor 'reconcilable: true' conclusion HOLDs and is STRENGTHENED by the correction — the C gap is now a parameter/convention matter, not a fundamental coupling split.",
+  "seeding_disclosure": {
+    "all_cross_cutting_and_rotation_agents_seeded": "Both cross-cutting agents AND the 6 rotation agents (deleg_2908ffc7) were seeded with established v3.1 values (including C=2.32). Their confirmations are seeded corroboration; only their CONTRADICTIONS/attacks are fresh signal.",
+    "same_model_family": "All agents gpt-5.6-luna; agreement = reading-consistency, never independent validation."
+  }
+}

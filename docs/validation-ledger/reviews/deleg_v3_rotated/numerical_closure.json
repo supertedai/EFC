@@ -1,0 +1,41 @@
+{
+  "artifact_type": "researcher_numerical_work",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "watson_and_rstar_numerical_closure",
+  "environment": ".venv/bin/python (numpy+scipy; mpmath absent, not needed)",
+  "results": [
+    {
+      "id": "watson_C_relation",
+      "question": "Is C=2.32 the cubic-lattice Watson integral / Green function at origin?",
+      "computation": "W = (1/pi^3) triple-integral_0^pi [3 - cos x - cos y - cos z]^-1 dx dy dz, via scipy.integrate.tplquad",
+      "W_numeric": 0.5054620197,
+      "literature": "0.505462... (Watson 1939)",
+      "match_literature": true,
+      "candidate_relations_to_2.32": {
+        "1/W": 1.978388,
+        "1/W^2": 3.914019,
+        "1/(pi*W)": 0.629740,
+        "2*pi/W": 12.430578,
+        "sqrt(1/W)": 1.406552,
+        "4/W": 7.913552,
+        "2/W": 3.956776,
+        "pi^2/(3*W)": 6.508636
+      },
+      "conclusion": "No simple function of W lands within 5% of C=2.32 (closest 1/W = 1.978, 14.7% off). C=2.32 is NOT the SC-lattice Green function at origin. 'Measured, not derived' now rests on an actual computation, not a missing search string.",
+      "remaining_open": "The correct derivation object is the AQUAL operator's RADIAL Green function on the cubic lattice under the specific estimator g_AQUAL/sqrt(a0*g_N), not the free-space W. That remains an open, now-sharper task.",
+      "severity_effect": "Strengthens 'numerically converged, not analytically derived' for C=2.32 (A2)."
+    },
+    {
+      "id": "beta_rstar_closure",
+      "question": "What repair makes x = sqrt(beta*rho/a0) dimensionless (x^2/u = 1)?",
+      "computation": "x^2/u = beta/(G_N*l_g). Setting =1 with beta = 4*pi*G_N*r*/3 gives r_* = 3*l_g/(4*pi).",
+      "rstar_for_unity": "3.858e-36 m",
+      "rstar_in_lplanck": "0.239 * l_Planck",
+      "current_implemented_ratio": "x^2/u = 2.592073e35 m^-1 (matches role_01 exactly, 1.0000)",
+      "hubble_scale_check": "If r_* ~ c/H0 (~1.37e26 m), x^2/u would be ~3.56e61 — NOT dimensionless. So r_* is NOT a Hubble/galactic scale; it must be 3*l_g/(4*pi) to close.",
+      "conclusion": "Exact closure: beta = G_N*l_g, equivalently r_* = 3*l_g/(4*pi). The G2b 'open' question is now a single named decision: is r_* = 3*l_g/(4*pi) the intended physical convention?",
+      "severity_effect": "G2b narrows from 'open canonical normalization' to 'one frozen convention choice'."
+    }
+  ]
+}

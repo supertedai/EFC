@@ -1,0 +1,56 @@
+{
+  "role": "alternative-paradigm comparator (role 6)",
+  "claims": [
+    {
+      "claim_id": "L1",
+      "status": "partially_supported",
+      "evidence": "Klassifisering: `formal limit` på det deklarerte L0/L1-nivået, men ikke en dokumentert equal-footing empirisk recovery. `schema/framework_atlas.jsonld:15` gir ΛCDM rollen `limit_case` og noten «L0/L1 limit of EFC», mens `:66` eksplisitt registrerer EFC `RECOVERED_BY_LIMIT_OF` ΛCDM med L0/L1-note. Felles L1-measurand er f_sigma8/fσ₈(z=0.7): `docs/validation-ledger/data/atlas.json:1459-1473` oppgir EFC 0.430, ΛCDM 0.449 og instrumentet DESI DR2 full-shape RSD; den øverste prediksjonstabellen i `schema/framework_atlas.jsonld:89-90` oppgir ΛCDM 0.452 og EFC 0.430. Overlappet er dermed observabel, regime og foreslått RSD-instrument; forskjellen er modellkoordinat/mekanisme og punktverdien. MOND er i atlaset en L3-ramme med a0 og μ(x)-interpolasjon (`docs/validation-ledger/data/atlas.json:255-264`) og har ingen L1 f_sigma8-verdi her. Likelihood-readback viser bare en redusert EFC-versus-GR-kjøring med samme data, priors og likelihood (`tools/cobaya_bridge/results/run_2026_04_08_K0m2_reduced.json:10-14,45-47`), mens full native joint likelihood fortsatt er oppført som ikke testet/pågående (`docs/validation-ledger/index.md:17-20`; `docs/validation-ledger/data/ledger.json:2069-2078`).",
+      "verified": "Direkte lest: claim_map.json:76-78 er nøytral og ber om klassifisering, likelihood-status og f_sigma8-verdier; limit-relasjonen og begge kildeverdiene er lest tilbake fra de angitte atlasfilene. Den reduserte kjøringen er eksplisitt ikke en erstatning for full MCMC/native EFC (`tools/cobaya_bridge/results/run_2026_04_08_K0m2_reduced.json:89`).",
+      "missing_link": "En eksplisitt EFC→ΛCDM-grense på lignings- og observabelnivå må kobles til samme f_sigma8/RSD-forward model, med samme datasett, kovarians, nuisance-parametre og priors. I tillegg må atlasets ΛCDM-verdi 0.449 versus 0.452 og fraværet av en MOND L1-proxy avklares.",
+      "falsifier": "En frosset L0/L1-derivasjon som ikke gir ΛCDM-ligningene og observablene i den deklarerte parametergrensen, eller en matched holdout-likelihood der ingen parametersekvens nærmer seg ΛCDM uten en ekstra ad hoc nuisance-ledd, ville falsifisere formal-limit-klassifiseringen.",
+      "measurement_chain": "EFC: coordinate=entropic_emergent med primitive-settet α,K,T,ξ,S_flow,S_latent; measurand=f_sigma8/fσ₈(z=0.7); proxy=RSD-vekstanisotropi → fσ₈; instrument=DESI DR2 full-shape RSD. ΛCDM: coordinate=particle_DM/FLRW med Ω_m,Ω_Λ,H_0,σ_8,n_s,τ; samme measurand, proxy og instrument. MOND: coordinate=modified_inertia med a0 og μ(x)-interpolasjon; atlaset plasserer den i L3 og leverer ingen L1 fσ₈-kjede. For en rettferdig sammenligning må EFC og ΛCDM (og eventuell MOND-utvidelse) bruke samme RSD-data, likelihood, nuisance-behandling og priors.",
+      "confidence": 0.95,
+      "gate_applicability": {
+        "claim_identity": "applies",
+        "measurement_chain": "applies",
+        "equal_footing_likelihood": "applies",
+        "current_gate_state": "open",
+        "reasoning": "Påstanden ber både om en recovery-klasse og om utførelsesstatus for en sammenlignbar målekjede; en ren atlas-relasjon kan derfor ikke lukke likelihood-gaten."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "f_sigma8-ΛCDM er 0.452 i framework_atlas-prediksjonene, men 0.449 i P2/KT-4-blokken; dette er en kildeintern uoverensstemmelse, ikke en beregnet korreksjon. Vurderingen er dessuten en same-model-family readback, ikke uavhengig validering."
+    },
+    {
+      "claim_id": "L2",
+      "status": "partially_supported",
+      "evidence": "Klassifisering: `formal limit` i den snevre, deklarerte deep-MOND/asymptotiske betydningen; den observerbare RAR-overlappen er samtidig bare en fenomenologisk sammenligning inntil felles fit og normalisering er utført. `schema/framework_atlas.jsonld:30,67` merker MOND som `recovered_in_limit` og registrerer EFC `RECOVERED_BY_LIMIT_OF` MOND i L3 med note «deep-MOND limit». De samme filene oppgir a0: MOND 1.2e-10, ΛCDM 1.2e-10 og EFC 6.5e-10 m/s² (`schema/framework_atlas.jsonld:72,81-84`); EFC-verdien er `sealed:false` og 5×-avviket er flagget. `docs/validation-ledger/data/atlas.json:31-35,610-623` plasserer RAR, a0_scale og bullet_dkappa i L3. For RAR angir `:844-865` EFC `grid_AQUAL_emergent_a0_eff`, ΛCDM `concentration_mass_relation` og MOND `a0_transition`; for a0 angir `:898-919` henholdsvis EFC-saturation, ΛCDM-halo-coincidens og MOND-empirisk interpolasjon. For Bullet angir `:982-997` EFC shadow-mode Φ/Ψ, ΛCDM collisionless-DM og MOND δκ=0/conflict; `schema/framework_atlas.jsonld:94-96` gir EFC 0.9993, ΛCDM «positive» og MOND 0. Overlappet er felles L3-regime og samme RAR-measurand/proxy når RAR sammenlignes; Bullet er en separat felles δκ-measurand. Forskjellen er koordinat, a0-normalisering og modellutfall i cluster-proxyen. SPARC/RAR-protokollen er foreslått, ikke utført (`docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:1-3`), og den krever samme likelihood og nuisance-behandling (`:70-75`) mens a0 og M/L fortsatt er author-gated (`:48-67`).",
+      "verified": "Direkte lest: claim_map.json:81-83 er nøytral; begge RECOVERED_BY_LIMIT_OF-/efc_relation-feltene, alle tre atlas-a0-verdiene, RAR/Bullet-adresseringene og de deklarerte L3-regimene er lest tilbake med linjenummer. Målekjede-kilden definerer RAR som μ(g)=g_obs/g_bar og beskriver instrument/proxy (`docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:29-42`).",
+      "missing_link": "Det mangler en frosset mapping mellom EFCs `a0_eff`/saturation-koordinat og MONDs a0, med entydig μ(x)-definisjon, samt en utført SPARC likelihood/holdout med samme M/L-, avstands-, inklinasjons-, gass- og kovariansbehandling. Bullet-deltaet må holdes som separat cluster-observable og må ikke brukes som RAR-fit.",
+      "falsifier": "En dimensjons- og normaliseringslåst asymptotisk test som viser at EFCs L3-ligning ikke reduseres til MONDs μ(x)-form, eller en forhåndsregistrert same-nuisance SPARC-holdout som forkaster EFC mens MOND består, ville falsifisere den deklarerte MOND-recovery-kanten. En eksakt reduksjon med samme a0 ville derimot oppgradere evidensen fra deklarasjon/overlapp til en sterkere formell recovery.",
+      "measurement_chain": "EFC: coordinate=entropic_emergent/grid-AQUAL; measurand=RAR μ(g_bar)=g_obs/g_bar og separat Bullet δκ/ΦΨ; proxy=grid-AQUAL emergent a0_eff for RAR, mass-versus-gas lensing offset for Bullet; instrument=rotation-curve spectroscopy + photometry/gas maps for SPARC, og HST/JWST lensing + Chandra X-ray for Bullet. MOND: coordinate=modified_inertia; samme RAR measurand og instrument, proxy=a0_transition/μ(x), Bullet-proxyens atlasverdi δκ=0. ΛCDM: coordinate=particle_DM/halo; samme measurand og instrument, proxy=concentration-mass-relation for RAR og collisionless-DM mass map for Bullet. Samme dataset, likelihood, nuisance og priors er nødvendig før overlap kan tolkes som fit.",
+      "confidence": 0.91,
+      "gate_applicability": {
+        "claim_identity": "applies",
+        "measurement_chain": "applies",
+        "equal_footing_likelihood": "applies",
+        "current_gate_state": "open",
+        "reasoning": "RAR er en modellavhengig proxy med eksplisitte M/L-, avstands-, inklinasjons- og gassnuisancer; Bullet er en separat cluster-proxy. Begge recovery-lesninger trenger derfor samme-kjede-gate.",
+        "a0_freeze": "applies"
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "ΛCDM-atlasverdien 1.2e-10 er merket som `coincidence`, ikke som en innfødt ΛCDM-parameter; EFC har samtidig 6.5e-10 i atlaset og 1.2e-10/a0_eff-kandidater i RAR-preregistreringen. Vurderingen er en same-model-family readback, ikke uavhengig validering."
+    }
+  ],
+  "human_gate_items": [
+    "Frys én canonical a0 og merk eksplisitt om den er MOND-input, EFC-output eller a0_eff; ikke bland 1.2e-10, 6.5e-10 og C²a0.",
+    "Kjør eller avgrens en felles forward likelihood med samme datasett, nuisance-parametre, priors, kovarians og holdout for EFC, ΛCDM og den relevante MOND-kartleggingen.",
+    "Avklar om f_sigma8-ΛCDM-referansen er 0.449 eller 0.452, og om EFC→MOND bare hevdes som deep-MOND-asymptotikk eller som full μ(x)-identitet."
+  ],
+  "open_questions": [
+    "Er EFC→ΛCDM-relasjonen kun en atlas-/modell-deklarasjon, eller finnes det en full equation-level reduction koblet til den deklarerte f_sigma8-forward-modellen?",
+    "Har EFC→MOND en eksplisitt, normaliseringskonsistent mapping fra a0_eff til MONDs a0, eller er a0-avviket fortsatt en åpen kalibreringsgren?",
+    "Kan Bullet δκ behandles som separat holdout uten å bli blandet med RAR-likelihooden?"
+  ]
+}

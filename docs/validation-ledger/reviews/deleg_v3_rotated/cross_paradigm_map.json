@@ -1,0 +1,95 @@
+{
+  "part_classifications": [
+    {
+      "part_id": "gamma_kernel",
+      "axes": [
+        "coordinate: EFC uses the dimensionless density coordinate u=ρ/ρ_crit, whereas MOND uses acceleration x=g/a₀ and ΛCDM uses FLRW/halo variables",
+        "measure: Γ is an entropy-production/mode-activation response, while MOND uses the dimensionless μ/RAR enhancement and ΛCDM uses a halo-induced gravitational response",
+        "proxy: EFC's Γ forms proxy grid/mode or entropy response; MOND proxies dynamics with μ(x) and a₀; ΛCDM proxies the same RAR through the concentration–mass relation",
+        "regime: the Γ sources overlap on positive u, but no u→S or u→L0–L3 map identifies that overlap with a common physical regime",
+        "phase: normalized algebraic form versus physical response/phase interpretation; Γ has no direct instrument and is compared to downstream RAR/RSD observables"
+      ],
+      "reconcilable": false,
+      "reasoning": "The normalized identities Γ_C(u)=Γ_A(√u) and Γ_B(u)=√u Γ_A(u) are coordinate/algebra re-readings only. They do not identify a common physical measurand: Γ_A and Γ_C saturate at high u, while Γ_B grows as √u, and the corpus supplies no u→S or u→L0–L3 mapping. The atlas separately assigns EFC grid-AQUAL, MOND a₀-transition, and ΛCDM concentration–mass mechanisms to the RAR. Thus the formula-level overlap is reconcilable, but the high-u response and missing typed physical identification are genuine non-re-reading differences. Sources: docs/validation-ledger/reviews/deleg_v3_rotated/role_02_asymptotic.json:7-11,24-30; role_03_regime.json:7-11; docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:198-213; docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:224-238; docs/validation-ledger/data/atlas.json:844-865; role_09_meta.json:406-414."
+    },
+    {
+      "part_id": "gamma_normalization",
+      "axes": [
+        "coordinate: the proposed identification compares u=ρ/ρ_crit with the Bose–Einstein coordinate x=√(βρ/a₀)",
+        "measure: β, r_*, l_g, ρ_crit, and SI dimensions determine whether x is dimensionless",
+        "proxy: x is a BE energy argument and u is a density ratio; neither is itself a direct MOND, ΛCDM, or EFC observable",
+        "regime/phase: ρ_crit as a grid activation scale is being compared with acceleration-transition and high-density/GR-recovery conventions"
+      ],
+      "reconcilable": true,
+      "reasoning": "This part contains a coordinate and unit-normalization seam, not an independently demonstrated change in force law. The documentation gives β=4πG_N r_*/3, while the executed assignments omit r_*; with the declared ρ_crit and l_g the source-level ratio x²/u is dimensionful rather than one. Algebraically, x=√u requires β=G_N l_g, or l_g=4πr_*/3 under the documented β, but no canonical relation is declared. An explicit r_*/l_g and unit convention could therefore reconcile the readings; until then the BE-coordinate identification is not a physical identity. Sources: docs/validation-ledger/reviews/deleg_v3_rotated/role_01_dimensional.json:7-12,30-37; docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:40,59-61,167-177; docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:54-58,169-175; role_09_meta.json:417-425."
+    },
+    {
+      "part_id": "a0_ladder",
+      "axes": [
+        "coordinate: the ladder mixes m/s², the separate (km/s)²/kpc label, and dimensionless lattice inputs",
+        "measure: MOND's empirical/RAR transition scale is compared with EFC saturation or a₀,eff and with a ΛCDM halo-coincidence reference",
+        "instrument: 1.2×10⁻¹⁰ m/s² is tied to SPARC/rotation-curve inputs, whereas 6.5×10⁻¹⁰ is an unsealed atlas/test value and cH₀ or c²√Λ are computed from cosmological inputs",
+        "proxy: MOND uses a₀ in μ(x), EFC uses an emergent grid-AQUAL/saturation scale, and ΛCDM has no native a₀ but a halo relation can produce a coincidence",
+        "regime: the values refer to different galactic RAR, lattice/transition, and cosmological Hubble/de-Sitter regimes",
+        "phase: input or imported measurement versus algebraic C² rescaling, derived reference, fit candidate, or declaration"
+      ],
+      "reconcilable": false,
+      "reasoning": "Some labels can be re-read as provenance—base a₀, a₀,eff, cH₀, and Λ-derived references are not the same phase of a measurement chain—but the numerical scale is a control parameter for the transition. The source lists 1.2×10⁻¹⁰, 6.5×10⁻¹⁰, and C²·1.2×10⁻¹⁰ as distinct candidates and requires one value before an RAR test; the density-of-states construction also makes a₀ set ρ_crit. Treating 1.2×10⁻¹⁰ and about 6.5×10⁻¹⁰ as the same physical a₀ would move the regime boundary, not merely rename it. The cH₀ near-match is derived from H₀ and c, while a₀,eff is algebraically built from C²a₀, so their closeness is shared ancestry rather than independent determination. Sources: docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:29-32,48-75; docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:40-58; efc_integration_test.py:41-59; shared/configs/cosmology.yaml:16-18; role_05_measurement.json:7-11; role_09_meta.json:159-161,186-188,240-242."
+    },
+    {
+      "part_id": "a0_prefactor",
+      "axes": [
+        "coordinate: C is defined in a finite discrete-lattice N and radial/binning coordinate, not as a continuum constant",
+        "measure: C=g_AQUAL/√(a₀g_N) and C²a₀ are solver-derived ratios, distinct from MOND's base a₀ and from any native ΛCDM parameter",
+        "instrument: C=2.32 comes from cubic/spherical lattice convergence, while C_vw≈2.2895 comes from a different volume-weighted solver/readout",
+        "proxy: C is a discrete-topology/renormalization proxy for an effective acceleration scale, not an analytic Green/Watson constant",
+        "regime/phase: discrete IR/deep-MOND-like solver output and finite-N extrapolation are being compared with continuum/halo interpretation and analytic derivation"
+      ],
+      "reconcilable": true,
+      "reasoning": "On the available evidence, the C discrepancy is primarily a measure/instrument/phase issue: the 2.32 sequence is 2.443→2.354→2.320 across N, while the ledger's other solver reports C_vw≈2.2895. The repository does not provide an independent Watson-integral or cubic-lattice Green-function derivation or a documented continuum-limit error model, so these numbers cannot be promoted to different fundamental couplings. A common solver definition, binning convention, and continuum calibration could reconcile them. If C² is later frozen as a physical coupling, it would propagate into a₀,eff and become a dynamical input; the present source record does not establish that as an independent cross-paradigm effect. Sources: docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json:2-36; docs/validation-ledger/index.md:390-394,28790-28794; role_04_provenance.json:41-56; role_09_meta.json:191-215,430-437; efc_integration_test.py:52-54."
+    },
+    {
+      "part_id": "transport_bridge",
+      "axes": [
+        "coordinate: grid acceleration g_acc=|∇Φ|, BE x, entropy S, covariant φ/λ, and metric g_μν are different variable spaces",
+        "measure: mode energy/occupation, μ_BE, Γ_box, dS/dρ, the per-mode coefficient, and √(-g_metric) are different measurands or density factors",
+        "instrument: grid/WKB and action calculations are theory-side instruments, while RAR spectroscopy/photometry, RSD/lensing, and sirens are downstream observational instruments",
+        "proxy: grid mode→BE→RAR, covariant action→μ/Σ/η, and MOND μ(x)/ΛCDM halo responses are distinct proxy chains",
+        "regime: local oscillator/WKB, galactic weak-field RAR, quasi-static sub-horizon perturbations, and high-density GR recovery are not one regime",
+        "phase: grid-action→mode is formal, mode→BE is assumed, BE→RAR is conditional, covariant-EFT→μ_BE has a sign/trend break, and perturbation→observable remains a separate reduction"
+      ],
+      "reconcilable": false,
+      "reasoning": "The bridge contains some phase and proxy relabelings that could be repaired by new typed derivations, but it also contains non-reconcilable dynamical/type breaks. The covariant classical correction increases with g whereas μ_BE(g) decreases and is explicitly adopted as a postulate rather than derived. Γ in □φ=Γ(ρ) has field-source units and a declared positive rate form, while the coded dS/dρ is negative and the per-mode expression is an absolute value without dρ/dt; no φ↔S, entropy, or time normalization map is supplied. Finally, √g_acc is an acceleration-dependent mode-energy factor whereas √(-g_metric) is the metric volume measure. These are not coordinate readings of one object. Sources: role_07_covariant.json:38-44,65-71,92-98; EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:19-33,104-108,386-398; Derivation_of_the_Entropy_Production/src/entropy_production.py:34-73,149-184,198-213; role_09_meta.json:292-320,344-350,440-452."
+    },
+    {
+      "part_id": "paradigm_limit",
+      "axes": [
+        "coordinate: EFC's entropic/emergent primitive set and L0–L3 coordinates differ from ΛCDM's FLRW/particle-DM coordinates and MOND's modified-inertia a₀/μ(x) coordinates",
+        "measure: fσ₈, RAR μ, Bullet δκ, E_G, μ/Σ/η, and GW/EM distance ratios are distinct observables or model projections",
+        "instrument: DESI full-shape RSD/BAO, rotation-curve spectroscopy plus photometry/gas maps, cluster lensing/X-ray, lensing×RSD, CMB/void maps, and standard sirens enter different tests",
+        "proxy: EFC uses entropy-flow/grid-AQUAL or μ/Σ/η projections, MOND uses μ(x)/a₀, and ΛCDM uses halo/concentration, collisionless-DM, or GR baselines",
+        "regime: EFC→ΛCDM is declared in L0/L1 and EFC→MOND in a deep-MOND/L3 reading, while the discriminators span L2/L3 and linear-growth regimes",
+        "phase: formal-limit declaration and phenomenological overlap are different from a matched forward likelihood/holdout; the five discriminators are test designs, not observations"
+      ],
+      "reconcilable": false,
+      "reasoning": "At the declaration layer, the EFC→ΛCDM and EFC→MOND statements are regime/coordinate/phase readings: they name limits and shared RSD/RAR observables, not equal-footing empirical recoveries. But the model-level outputs are not removable by relabeling: the ledger reports EFC fσ₈=0.430 against ΛCDM 0.449, while another source reports 0.452, and EFC's a₀/proxy mechanisms differ from MOND and ΛCDM. The five designs—E_G, frozen-a₀ RAR, Bullet δκ, fσ₈/BAO or k-dependent growth, and lensing-slip/sirens—compare different physical response channels and require their own instruments, nuisances, likelihoods, and holdouts. Their non-execution means they are not empirical outcomes, but their intended discriminators are genuine dynamical alternatives rather than coordinate restatements. Sources: docs/papers/efc/ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology/README.md:13-27; role_06_paradigm.json:7-11,27-38; docs/validation-ledger/data/atlas.json:1459-1473; axis_e_sparc_rar.md:29-42,63-75; role_09_meta.json:349-401,455-473."
+    }
+  ],
+  "genuine_dynamical_differences": [
+    "If Γ_A/B/C are intended as one typed physical response, Γ_B's high-u growth as √u versus the saturation Γ_A,Γ_C→Γ₀ is a functional/dynamical difference; normalized algebra alone does not remove it. Sources: role_02_asymptotic.json:7,24-30; role_09_meta.json:406-414.",
+    "Using MOND's 1.2×10⁻¹⁰ m/s² and EFC's 6.5×10⁻¹⁰ or C²a₀ scale as the same transition parameter changes the activation/transition regime; the near-match to cH₀ is inherited/derived, not an independent physical bridge. Sources: axis_e_sparc_rar.md:48-56; Density_of_States_of_Gravitationally/src/density_of_states.py:40-58; role_05_measurement.json:7-11; role_09_meta.json:159-161,240-242.",
+    "The covariant classical correction increases with acceleration while μ_BE(g) decreases toward the high-acceleration limit and is postulated rather than derived from that action; a coordinate relabeling cannot reverse this trend. Sources: role_07_covariant.json:38-44; role_09_meta.json:292-294; Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:239-259.",
+    "Γ_box, dS/dρ, and the positive per-mode absolute-value coefficient differ in type, sign, units, and time dependence until a φ↔S and time-normalization map is supplied. Sources: role_07_covariant.json:65-71; role_09_meta.json:318-320.",
+    "√g_acc is a mode-energy scaling with acceleration, whereas √(-g_metric) is a covariant volume-measure factor; the shared symbol g does not make them the same physical operator. Sources: role_07_covariant.json:92-98; role_09_meta.json:344-346.",
+    "The paradigm-limit package contains distinct model predictions, not only labels: fσ₈=0.430 versus ΛCDM 0.449 in one ledger block and 0.452 in another, plus different RAR, lensing, cluster, growth, and siren response channels. Sources: docs/validation-ledger/data/atlas.json:1459-1473; role_06_paradigm.json:7-11,27-31; role_09_meta.json:372-401,467-473."
+  ],
+  "reconcilable_re_readings": [
+    "Γ_A↔Γ_C via q=√u and the shared positive-u density domain are coordinate/formula overlaps; they do not by themselves identify a common physical phase or measurand. Sources: role_02_asymptotic.json:7-11; role_03_regime.json:7-11.",
+    "The β/r_*/l_g and x/u discrepancy is a units/normalization reading: declaring the missing scale relation or equivalent unit convention could reconcile x with √u without changing a force law. Sources: role_01_dimensional.json:7-12,30-37; role_09_meta.json:417-425.",
+    "C=2.32 versus C_vw≈2.2895 can presently be read as finite-grid, solver, binning, and measurement-convention differences; C=2.32 is numerically converged/lattice-measured, not an analytic constant. Sources: docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json:2-36; docs/validation-ledger/index.md:390-394; role_04_provenance.json:41-56.",
+    "Base a₀, a₀,eff, cH₀, and Λ-derived scales are different provenance/phase labels; the numerical near-match is shared declared ancestry, not independent validation. A typed conversion could reconcile labels, but not erase a genuine threshold difference. Sources: efc_integration_test.py:41-59; role_05_measurement.json:7-11; role_09_meta.json:240-242.",
+    "EFC→ΛCDM and EFC→MOND can be read as formal regime-limit declarations using shared RSD/RAR measurement chains; that is a coordinate/measure/proxy/phase interpretation and must not be confused with equal-footing empirical recovery. Sources: role_06_paradigm.json:7-11,27-31; role_09_meta.json:455-464; axis_e_sparc_rar.md:29-42.",
+    "The five discriminator designs differ in instruments and proxy chains—RSD/BAO, RAR, Bullet lensing, E_G, and lensing-slip/sirens—so those measurement-chain choices are reconcilable bookkeeping only until a common target and likelihood are specified; the designs themselves are not evidence. Sources: docs/validation-ledger/reviews/deleg_v3_rotated/README.md:24-25; role_09_meta.json:467-473."
+  ],
+  "paradigm_synthesis": "Across the six parts, treat a difference as reconcilable only when it changes a coordinate, unit/measure, solver or instrument convention, proxy label, regime label, or analysis phase while preserving a typed measurand and the same response function. That covers the normalized Γ_A↔Γ_C rewrite, the β/r_*/l_g normalization seam, and—provisionally—the C=2.32 versus C_vw≈2.2895 solver readings. Provenance labels for a₀ and the formal EFC limits are also re-readable at the bookkeeping/declaration layer, but numerical a₀ thresholds, response trends, object types, and observable predictions are not. The non-reconcilable set is therefore Γ_B's high-u divergence, the MOND/EFC a₀ transition-scale split, the covariant-g versus μ_BE trend reversal, the Γ_box/dS/dρ typed sign-and-time mismatch, √g_acc versus √(-g_metric), and the fσ₈/RAR/lensing/cluster/growth/siren discriminator differences. Formal-limit declarations and same-model algebraic agreement are consistency of a reading, not independent validation; the sources explicitly keep the equation-level mapping and equal-footing measurement chain separate. Sources: rotation_tensor_schema.json:39-63; role_09_meta.json:406-464; role_06_paradigm.json:7-11,27-31; role_07_covariant.json:38-98."
+}

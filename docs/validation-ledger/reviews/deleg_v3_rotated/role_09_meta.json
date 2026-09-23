@@ -1,0 +1,531 @@
+{
+  "role": "role_09_meta_synthesizer",
+  "claims": [
+    {
+      "claim_id": "G1a",
+      "status": "supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "open",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_02_asymptotic:G1a",
+        "role_08_reproducer:G1a",
+        "entropy_production.py:209-213",
+        "density_of_states.py:224-230"
+      ],
+      "closure": "Exact algebra for the declared normalized forms with common Gamma_0: Gamma_C(u)=Gamma_A(sqrt(u))=sqrt(u)/(1+sqrt(u)). This does not establish a physical identity across all Gamma sources or regimes; the source aliases and common physical normalization remain a provenance/model-mapping issue.",
+      "atomization": "Atomic at the normalized-form scope; keep physical identity and cross-package normalization as separate v3.2 claims.",
+      "overlap_contradiction": "No algebraic contradiction. The only boundary is between normalized function identity and physical unification."
+    },
+    {
+      "claim_id": "G1b",
+      "status": "supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "open",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_02_asymptotic:G1b",
+        "role_08_reproducer:G1b",
+        "entropy_production.py:198-213"
+      ],
+      "closure": "Exact algebra in the dimensionless declared representation: Gamma_B(u)=sqrt(u)Gamma_A(u)=u^(3/2)/(1+u). Gamma_B diverges as sqrt(u) at high u while A saturates; that functional difference is not by itself a phase identification or a physical cross-source identity.",
+      "atomization": "Atomic at the normalized-form scope; asymptotic interpretation and physical phase assignment remain separate questions.",
+      "overlap_contradiction": "No contradiction in the algebra. Any contradiction arises only if the asymptotic difference is promoted to a phase claim."
+    },
+    {
+      "claim_id": "G1c",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_03_regime:G1c",
+        "round2_advocate:G1c",
+        "entropy_production.py:198-213",
+        "density_of_states.py:36-58,224-230",
+        "regime_nodes.jsonld:L0-L3"
+      ],
+      "closure": "The declared Gamma sources use overlapping positive density domains in the shared coordinate u=rho/rho_crit, not disjoint u intervals. No source supplies u->S or u->L0-L3 mapping, so no physical phase identification or common measurand is established.",
+      "atomization": "Keep the source-level density-domain classification separate from the unresolved u-to-S regime mapping in v3.2.",
+      "overlap_contradiction": "Overlap is supported only in the declared u coordinate. The absence of u->S mapping blocks the stronger phase interpretation."
+    },
+    {
+      "claim_id": "G2a",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_01_dimensional:G2a",
+        "round2_advocate:G2a",
+        "round2_attacker:G2a_G2b_dimensional_normalization",
+        "entropy_production.py:38-40,167-177",
+        "density_of_states.py:54-58,169-175"
+      ],
+      "closure": "The executed beta omits r_* although the source documentation includes it. With the implemented beta and default Planck l_g, x^2/u=4*pi/(3*l_g)=2.592073146526232e35 m^-1 rather than 1; x is therefore not dimensionless in the stated SI convention. The code-level answer is established, but physical intent and canonical normalization remain unresolved.",
+      "atomization": "v3.2: G2a.1 whether executed beta contains r_*; G2a.2 computed x^2/u; G2a.3 dimensional validity and intended unit convention.",
+      "overlap_contradiction": "Advocate correctly notes that the source/code comparison is answerable. Attacker correctly identifies the dimensional defect. Neither establishes the intended physical normalization."
+    },
+    {
+      "claim_id": "G2b",
+      "status": "open",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_01_dimensional:G2b",
+        "round2_advocate:G2b",
+        "round2_attacker:G2a_G2b_dimensional_normalization",
+        "density_of_states.py:30,54-58,106-110,218-222"
+      ],
+      "closure": "The equality condition is beta=G_N*l_g. Under documented beta=4*pi*G_N*r_*/3 this requires l_g=4*pi*r_*/3; under the implemented beta it formally requires l_g=4*pi/3, incompatible with the declared length unless an unstated unit convention is introduced. The repository does not declare a canonical relation.",
+      "atomization": "v3.2: G2b.1 equality condition; G2b.2 repository declaration status; G2b.3 canonical r_*/l_g and unit convention.",
+      "overlap_contradiction": "The algebraic condition is determined, but the canonical normalization is open. Caller-supplied l_g does not establish intended physical identity."
+    },
+    {
+      "claim_id": "A1a",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "not_applicable",
+        "gate_4_model_relative_validity": "not_applicable",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_04_provenance:A1a",
+        "role_08_reproducer:A1a",
+        "shared/configs/cosmology.yaml:17-18",
+        "efc_integration_test.py:41-59",
+        "schema/framework_atlas.jsonld:72,81-84",
+        "unit_error_verification:unit_err_a0_kpc"
+      ],
+      "closure": "The inventory contains 1.2e-10 m/s^2 as imported/SPARC/MOND-scale input and local declaration; 1.1e-10 as an external Verlinde comparator; 6.5e-10 as an unsealed EFC flag; 6.45888e-10 as C^2*a0_base; 9.469e-10 as c^2*sqrt(Lambda); 5.09684e-9 as C^2*c^2*sqrt(Lambda); 6.54392e-10 as a derived cH0 reference; an unpersisted SPARC fit interval; and dimensionless lattice test inputs. The stored 3.8e-3 (km/s)^2/kpc is a confirmed latent unit error, not an equivalent representation of 1.2e-10 m/s^2.",
+      "atomization": "v3.2: split each physical value into its own provenance claim, split derived/rescaled values from inputs, and add a separate unit-consistency claim. Do not bundle enumeration with canonicality.",
+      "overlap_contradiction": "The inventory is supported, but the values are heterogeneous. The two verified unit defects are latent because source verification found no downstream consumers."
+    },
+    {
+      "claim_id": "A1b",
+      "status": "supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "not_applicable",
+        "gate_4_model_relative_validity": "not_applicable",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_04_provenance:A1b",
+        "shared/README.md:11-18,41,116-120",
+        "shared/configs/cosmology.yaml:17-18",
+        "axis_e_sparc_rar.md:48-56",
+        "schema/framework_atlas.jsonld:72,81-84"
+      ],
+      "closure": "1.2e-10 m/s^2 is locally declared or frozen in several packages and shared configuration, but no repository-wide canonical physical a0 is frozen. The repository carries mixed input, measurement, declaration, inheritance, rescaling, fit, Lambda, and cH0 provenance; a0_eff must remain separate.",
+      "atomization": "Keep local package freeze, repository-wide canonical freeze, and a0_eff separation as distinct v3.2 status claims if a release decision is required.",
+      "overlap_contradiction": "Local freeze declarations do not contradict the finding that repository-wide canonical freeze is absent."
+    },
+    {
+      "claim_id": "A2",
+      "status": "supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "satisfied",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_04_provenance:A2",
+        "role_08_reproducer:A2",
+        "convergence_table.json:2-36",
+        "kt2_C_convergence.py:28-30,47-89",
+        "generative_synthesis.md:56-60"
+      ],
+      "closure": "Repository-scoped classification is supported: C=2.32 is a numerically converged lattice measurement/extrapolation, with the sequence 2.443 -> 2.354 -> 2.320, not an analytic Watson-integral or cubic-lattice Green-function derivation. It is not shown as a statistical chi-square fit, and no documented continuum-limit error model or independent analytic chain is present.",
+      "atomization": "Atomic at the repository-status scope; keep numerical convergence, analytic provenance, and continuum-limit error control separate if promoted to v3.2.",
+      "overlap_contradiction": "The advocate's upgrade is accepted for the classification requested. Numerical convergence must not be relabeled as an analytic constant or independent physical derivation."
+    },
+    {
+      "claim_id": "A3",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_05_measurement:A3",
+        "round2_attacker:A3_a0_calibration_independence",
+        "efc_integration_test.py:41-59",
+        "schema/framework_atlas.jsonld:72,81-84",
+        "unit_error_verification:unit_err_lambda_cosmo"
+      ],
+      "closure": "The near-match is explained only as shared declared ancestry or algebraic construction: a0_eff=C^2*a0_base, cH0 is derived from H0 and c, and 6.5e-10 is an unsealed atlas flag. It is not an independent determination or independent bridge. The Lambda_cosmo unit defect is confirmed but latent because it has no live downstream consumer.",
+      "atomization": "Keep shared ancestry, independent determination, numerical equality, and calibration/units as separate predicates if this claim is expanded.",
+      "overlap_contradiction": "The attacker correctly rejects independent-bridge language, but its seeded provenance means it is adversarial material rather than independent reviewer evidence."
+    },
+    {
+      "claim_id": "B1",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_07_covariant:B1",
+        "round2_advocate:B1",
+        "EFC_Gradient_Coupled_Grid_Action.pdf:80-109",
+        "From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:64-95,159-163"
+      ],
+      "closure": "The chain must be split: grid-action -> mode-response is formally verified under the declared Euler-Lagrange/WKB regime; mode-response -> Bose-Einstein is declared because the bosonic ensemble is assumed; BE -> RAR is declared and conditional on x=sqrt(g/a0), not an independently derived physical or empirical bridge. The later covariant and observational links are not closed by this claim.",
+      "atomization": "v3.2: B1.1 grid-action -> mode-response; B1.2 mode-response -> BE; B1.3 BE -> RAR; keep covariant-action and likelihood transitions as separate claims.",
+      "overlap_contradiction": "The advocate correctly narrows the claim to the named three transitions. The bundle cannot receive a fully closed status because its edges have different types."
+    },
+    {
+      "claim_id": "B2",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_07_covariant:B2",
+        "round2_attacker:B2_covariant_EFT_sign_trend",
+        "Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:239-259",
+        "From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:84-95"
+      ],
+      "closure": "The covariant classical correction increases with g, while the proposed dimensionless mu_BE(g) decreases with g and tends toward zero at high acceleration. The source explicitly treats mu_BE as postulated rather than derived from the classical action. This is a verified trend/derivation break for that edge, not a whole-theory falsification; the compared objects are not identical typed functions.",
+      "atomization": "v3.2: B2.1 classical g trend; B2.2 mu_BE g trend; B2.3 derived versus postulated status; B2.4 typed-object comparability.",
+      "overlap_contradiction": "The edge from covariant EFT to mu_BE is contradicted as a classical derivation. The claim bundle is not itself a universal contradiction of EFC."
+    },
+    {
+      "claim_id": "B3",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_07_covariant:B3",
+        "round2_advocate:B3",
+        "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:19-33,104-108,386-398",
+        "entropy_production.py:34-184"
+      ],
+      "closure": "The quantities are not identified as one typed object. Gamma in box(phi)=Gamma(rho) requires units [phi]L^-2 and a declared phi normalization; dS/drho is negative for the coded entropy derivative; the per-mode code returns a positive absolute value and lacks d rho/dt needed for a T^-1 rate. No phi-to-S map, entropy normalization, time normalization, or consistent r_*/l_g map closes the identity.",
+      "atomization": "v3.2: B3.1 Gamma_box units/form; B3.2 dS/drho sign and units; B3.3 per-mode coefficient versus rate; B3.4 typed identity map and time normalization.",
+      "overlap_contradiction": "The sign/unit mismatch blocks the naive identification, but absence of a typed map is not a universal proof that no future mapping can exist."
+    },
+    {
+      "claim_id": "B4",
+      "status": "supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "satisfied",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      },
+      "is_compound": false,
+      "evidence_ids": [
+        "role_07_covariant:B4",
+        "EFC_Gradient_Coupled_Grid_Action.pdf:20-37,80-109",
+        "From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:121-135",
+        "EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:19-33"
+      ],
+      "closure": "sqrt(g_acc) is an acceleration-dependent mode-energy scaling factor, whereas sqrt(-g_metric) is the metric-determinant volume-measure factor. They are different objects; no source supplies an identification between them.",
+      "atomization": "Atomic typed-object distinction; any proposed operator mapping between them belongs to a separate covariant-reduction claim.",
+      "overlap_contradiction": "The shared symbol g is misleading, but the definitions and roles are not contradictory."
+    },
+    {
+      "claim_id": "L1",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_06_paradigm:L1",
+        "round2_advocate:L1",
+        "schema/framework_atlas.jsonld:15,66,89-90",
+        "docs/validation-ledger/data/atlas.json:1459-1473",
+        "docs/validation-ledger/index.md:17-20",
+        "docs/validation-ledger/data/ledger.json:2069-2078"
+      ],
+      "closure": "EFC -> LCDM is supported as an atlas/framework formal-limit declaration at L0/L1, not as an equation-level reduction or equal-footing empirical recovery. Reported f_sigma8 is EFC 0.430 versus LCDM 0.449 in one ledger block and 0.452 in another. A reduced same-data run exists, but the full native joint likelihood/MCMC and holdout are not executed.",
+      "atomization": "v3.2: L1.1 formal-limit classification; L1.2 exact f_sigma8 source/value; L1.3 equal-footing likelihood execution; L1.4 holdout recovery.",
+      "overlap_contradiction": "The advocate is right that the declaration and readback can be classified. The open likelihood gate prevents promotion to empirical recovery."
+    },
+    {
+      "claim_id": "L2",
+      "status": "partially_supported",
+      "gate_matrix": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      },
+      "is_compound": true,
+      "evidence_ids": [
+        "role_06_paradigm:L2",
+        "round2_advocate:L2",
+        "schema/framework_atlas.jsonld:30,67,72,81-84",
+        "docs/validation-ledger/data/atlas.json:844-865,898-919",
+        "docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:1-3,29-75"
+      ],
+      "closure": "EFC -> MOND is supported only as a declared deep-MOND/formal-limit relation and phenomenological RAR overlap. MOND uses 1.2e-10 m/s^2 while the EFC atlas value 6.5e-10 is unsealed; a0_eff and other candidates remain unresolved. No exact full mu(x) reduction or equal-footing SPARC/RAR likelihood/holdout has been executed.",
+      "atomization": "v3.2: L2.1 formal-limit declaration; L2.2 EFC/MOND a0 values and provenance; L2.3 mu(x) mathematical reduction; L2.4 common-nuisance likelihood and holdout.",
+      "overlap_contradiction": "The atlas declaration and L3 overlap are real, but they do not constitute mathematical identity or empirical recovery."
+    }
+  ],
+  "packages": [
+    {
+      "package_id": "gamma-kernel",
+      "derived_topology": "A normalized formula layer containing Gamma_A=f(u), Gamma_C=f(sqrt(u)), and Gamma_B=sqrt(u)f(u), with overlapping declared u domains but no established shared physical measurand or u-to-S mapping.",
+      "edges": [
+        "accept: Gamma_A(sqrt(u)) -> Gamma_C(u) [verified] — exact for the declared normalized forms, not a physical identity across all Gamma sources.",
+        "accept: sqrt(u)*Gamma_A(u) -> Gamma_B(u) [verified] — exact normalized algebra; high-u divergence is a functional difference.",
+        "revise: Gamma_A/B/C -> one physical Gamma or S regime [open_mapping] — common normalization, measurand, and u-to-S mapping are absent.",
+        "reject: Gamma_B high-u divergence -> separate S-to-1 phase [blocked] — asymptotic behavior alone is not phase evidence."
+      ],
+      "orchestrator_synthesis_verdict": "revise: retain this as an algebra/code-structure package, but remove any physical-unification or disjoint-phase interpretation."
+    },
+    {
+      "package_id": "gamma-normalization",
+      "derived_topology": "A normalization-audit package linking the documented beta, executed beta, rho_crit, u, x, r_*, and l_g. The executed path has a dimensionful x^2/u ratio and does not establish sqrt(u)=x.",
+      "edges": [
+        "accept: documented beta -> executed beta comparison [verified] — r_* is present in the documentation but absent from both executed beta assignments.",
+        "reject: sqrt(u)=x under repository defaults [blocked] — x^2/u=2.592073146526232e35 m^-1 for default Planck l_g, not 1.",
+        "revise: gamma-kernel <-> BE coordinate [open_mapping] — canonical r_*, l_g, units, sign, and normalization are not declared.",
+        "revise: equality condition -> physical identity [open_mapping] — beta=G_N*l_g is algebraically fixed but not authoritatively declared."
+      ],
+      "orchestrator_synthesis_verdict": "revise: accept the package as a real dimensional defect and open normalization seam; reject treating the coordinate identification as established."
+    },
+    {
+      "package_id": "a0-ladder",
+      "derived_topology": "A mixed-provenance acceleration-scale package containing imported/local a0, external comparator values, unsealed EFC values, C^2 rescaling, Lambda-derived scales, cH0 reference, fit candidates, and lattice-unit tests.",
+      "edges": [
+        "accept: a0_base -> C^2*a0_base [declared] — explicit algebraic rescaling, not an independent determination.",
+        "accept: convergence sequence -> C=2.32 [verified] — numerical lattice convergence/readback, not analytic Watson/Green derivation.",
+        "revise: C=2.32 -> a0 bridge [open_mapping] — no independent analytic chain or continuum-limit error model.",
+        "reject: a0_eff approximately cH0 approximately 6.5e-10 -> independent EFC determination [open_mapping with tautological-risk] — inputs are inherited or derived, 6.5e-10 is unsealed, and Lambda_cosmo has a confirmed latent unit defect.",
+        "revise: mixed values -> one canonical physical a0 [blocked] — author-gated freeze and explicit a0_eff separation are missing."
+      ],
+      "orchestrator_synthesis_verdict": "revise: accept the provenance ladder and numerical C result, but reject the candidate's independent a0 bridge and any claim that the near-match is an EFC prediction."
+    },
+    {
+      "package_id": "transport-bridge",
+      "derived_topology": "A split topology rather than one physical bridge: grid-action -> mode-response is internally formal; mode-response -> BE is declared; BE -> RAR is declared/conditional; covariant EFT -> mu_BE has a trend/derivation break; Gamma, action, and metric-determinant mappings remain blocked or open.",
+      "edges": [
+        "accept: S_grid -> mode response [verified] — formal Euler-Lagrange/WKB result within the declared regime.",
+        "revise: mode response -> Bose-Einstein [declared] — bosonic statistics and thermal ensemble are inputs, not derived QFT output.",
+        "revise: BE -> RAR [declared/conditional] — algebra depends on x=sqrt(g/a0), with physical a0 and response identification unresolved.",
+        "reject: covariant EFT -> mu_BE(g) [contradicted] — classical correction increases with g while mu_BE decreases and is explicitly postulated.",
+        "revise: Gamma_box -> dS/drho [open_mapping with sign/unit conflict] — no typed phi-to-S map, field normalization, or time normalization identifies them.",
+        "reject: sqrt(g_acc) -> sqrt(-g_metric) [contradicted] — acceleration energy scaling and metric volume measure are different objects.",
+        "reject: S_grid -> relativistic action [blocked/open_mapping] — no covariant variational reduction is present.",
+        "revise: perturbations -> cosmological observables [open_mapping] — Boltzmann, likelihood, and holdout execution remain absent."
+      ],
+      "orchestrator_synthesis_verdict": "revise: retain only as a typed edge graph with a verified local segment and explicit breaks; reject code/package adjacency as physical unification."
+    },
+    {
+      "package_id": "paradigm-limit",
+      "derived_topology": "A paradigm-declaration package: EFC -> LCDM is a declared L0/L1 formal limit and EFC -> MOND is a declared deep-MOND/L3 relation with phenomenological overlap. Neither is an equal-footing empirical recovery.",
+      "edges": [
+        "accept: EFC -> LCDM [declared] — formal-limit label is present; empirical recovery remains open.",
+        "accept: EFC -> MOND [declared] — deep-MOND/formal-limit label and L3 overlap are present; exact mu(x) identity remains open.",
+        "reject: recovery declaration -> equal-footing empirical support [blocked] — common datasets, nuisance parameters, likelihoods, and holdouts are not executed.",
+        "revise: EFC a0_eff -> MOND a0 [open_mapping] — 6.5e-10 is unsealed and differs from 1.2e-10; canonical normalization is not frozen.",
+        "revise: shared proxy/data overlap -> same physical truth [open_mapping] — overlapping observables do not remove model-dependent coordinates and proxy assumptions."
+      ],
+      "orchestrator_synthesis_verdict": "revise: accept formal-limit declarations as declarations only; reject any wording that calls them equal-footing empirical recoveries."
+    },
+    {
+      "package_id": "discriminators",
+      "derived_topology": "A downstream test-design package, not a claim package: E_G, frozen-a0 SPARC/RAR, Bullet Delta-kappa, f_sigma8/BAO or k-dependent growth, and lensing-slip/siren-ratio tests.",
+      "edges": [
+        "accept: five discriminator designs -> downstream test package [declared] — retain as operational test design, not evidence.",
+        "revise: discriminator design -> shared measurement chain [open_mapping] — each test needs explicit measurand, instrument, nuisance, covariance, and frozen definitions.",
+        "reject: unexecuted discriminator design -> model support or recovery closure [blocked] — no holdout likelihood result exists.",
+        "revise: SPARC/RAR discriminator -> a0 claim [open_mapping] — it is invalid until canonical a0 is author-frozen and calibration leakage is excluded."
+      ],
+      "orchestrator_synthesis_verdict": "accept: retain as a separate test-design artifact and do not insert it into the v3.1 claim-status matrix."
+    }
+  ],
+  "artifact_routing": [
+    {
+      "artifact_id": "G2a_G2b_beta_rstar_dimensional_derivation",
+      "kind": "artifact_task",
+      "task": "Author/math work, not a review closure: define r_* and l_g, repair beta in the executed path, provide a units-consistent derivation of x, x^2/u, and the condition sqrt(u)=x, then freeze the convention."
+    },
+    {
+      "artifact_id": "A2_C_2_32_Watson_Green_derivation",
+      "kind": "artifact_task",
+      "task": "Author/math work, not a review closure: supply a reproducible cubic-lattice Green-function or Watson-integral derivation of C=2.32 without importing a0, H0, Lambda, or the numerical convergence result; include continuum-limit/error control."
+    },
+    {
+      "artifact_id": "A1b_canonical_a0_author_freeze",
+      "kind": "artifact_task",
+      "task": "Author/human gate, not a review closure: freeze one canonical physical a0 repository-wide, separate a0_base from a0_eff, cH0, and Lambda-derived scales, mark alternatives non-canonical, and prevent refitting in consuming pipelines."
+    },
+    {
+      "artifact_id": "B1_B2_B3_Sgrid_to_relativistic_reduction",
+      "kind": "artifact_task",
+      "task": "Author/math work, not a review closure: derive the covariant reduction from S_grid to the relativistic action, with typed fields, units, signs, normalization, Newton limit, and the decreasing mu_BE(g) response rather than a postulate."
+    },
+    {
+      "artifact_id": "L1_L2_equal_footing_holdout_likelihood",
+      "kind": "artifact_task",
+      "task": "Execution artifact, not a review closure: run frozen EFC, LCDM, and relevant MOND forward models on common data with matched nuisance parameters, covariance, priors, likelihood, and out-of-sample holdout; report preregistered results."
+    }
+  ],
+  "coverage_holes": [
+    "F-prov-7, the heterogeneous related_packages finding, is absent from the 15 v3.1 claims. It must be added as an atomic v3.2 claim because package topology and related-package semantics are in scope; it is not out of scope.",
+    "The Gamma aliases are not literal common identifiers across all source packages. A v3.2 provenance claim should freeze the source-to-alias map, normalization, measurand, and regime namespace.",
+    "The two confirmed unit defects, a0_kpc and Lambda_cosmo, are latent because source verification found no live downstream consumers, but they must be repaired before any numerical a0 bridge is used.",
+    "The five discriminator designs are not evidence nodes until their measurement chains, frozen parameters, likelihoods, and holdouts are executed."
+  ],
+  "human_gate_items": [
+    "Release remains REFUSED and fail-closed. A satisfied claim-level gate 10 is not human approval.",
+    "Atomize B1, B2, B3, L1, L2, A1a, G2a, and G2b before any v3.2 disposition or claim-level promotion.",
+    "Do not treat same-model-family agreement as independent validation; the round2 attacker was orchestrator-seeded and is adversarial material, not independent evidence.",
+    "Keep G1a/G1b restricted to exact normalized algebra and do not promote them to physical identity across Gamma sources.",
+    "Require author freeze of canonical a0 and repair or quarantine of the latent unit defects before SPARC/RAR or a0 discrimination.",
+    "Require the five routed artifacts before closing the corresponding open mappings.",
+    "Do not call C=2.32 analytic, do not call a0 approximately cH0 independent, and do not call EFC-to-LCDM or EFC-to-MOND declarations equal-footing empirical recoveries.",
+    "Require a typed Gamma/phi/S map with units, sign, normalization, and time dependence before identifying Gamma in box(phi)=Gamma(rho) with dS/drho."
+  ],
+  "open_questions": [
+    "What authoritative physical quantity and unit convention does r_* represent, and is l_g intended to equal 4*pi*r_*/3?",
+    "Will C=2.32 receive an independent Watson/Green or continuum-limit derivation with an explicit error model?",
+    "Which a0 is canonical, and how are a0_base, a0_eff, cH0, Lambda-derived scales, and fit parameters separated in consuming pipelines?",
+    "Can a covariant action reduction produce the decreasing mu_BE(g) response without postulation?",
+    "What typed map, field normalization, sign convention, and time normalization could connect Gamma_box, dS/drho, and a per-mode coefficient, if any?",
+    "Will the f_sigma8 discrepancy 0.449 versus 0.452 be resolved at source level before a matched comparison?",
+    "Can the equal-footing likelihood and holdout be executed without calibration leakage or changing frozen definitions?",
+    "Will F-prov-7 be added as a separate v3.2 claim rather than being silently absorbed into package prose?"
+  ]
+}

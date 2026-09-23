@@ -1,0 +1,735 @@
+{
+  "verdict_id": "verdict_deleg_d21ed669",
+  "verdict_sha256": "0120b11bccbdb1f1598800c7cdcff44496e22b5c02085e25fc36616f5622b3bb",
+  "matrix": [
+    {
+      "claim_id": "C1",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "DOI/source/ledger traceable and matching: Table 1 slug-DOI mapping verified against package index/metadata (F-prov-1)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "three-form inventory consistent with corpus, A/B split preserved (F-form-1/2)",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "satisfied",
+          "evidence": "inventory holds within the model without smuggled foreign premise (F-form-1)",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "A/B coexistence in 31942821 main_finding vs key_result verified (F-prov-2); ledger status matches form_status_register (F-prov-5)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "Gamma_B carried by source package 31942821 (F-prov-2 context); object-identity gap is author-gated (F-meta-1), not a provenance mismatch",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "literal Gamma_B residual dimension sqrt([rho]) correct under density premise (F-form-3)",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "satisfied",
+          "evidence": "derivation holds under source premises; cross-object identification declared author-gated (F-form-3, F-meta-1)",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "cross-link topology overbreadth: related_packages count verified but manuscript's 'not cross-linked directly' overbroad (F-prov-7)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "two axes traceable to preregistrations axis_e_sparc_rar.md / axis_dl_gw_em.md (F-prov-5)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "axis separation presented as bookkeeping but paradigm alternatives (MOND/LCDM reproducing same mu) not fully declared (F-alt-2)",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "sqrt-role distinction traceable to grid-action and density-of-states packages (F-prov-1)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "satisfied",
+          "evidence": "sqrt-role conflation risk is explicitly declared as the claim's own content (F-alt-3 supports)",
+          "reviewer_role": "alternative_paradigm"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "satisfied",
+          "evidence": "sqrt-role proxy conflation decomposed at measure.proxy_chain (F-mp-5, atlas_field=measure)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "local KC1 wording corrected but Figshare record still pre-correction; global anchoring not closed (F-prov-6, author-gated)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "square-root regime-boundedness (alpha*g >> kappa_0) not carried into the claim; paradigm limit undeclared (F-para-5)",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "galaxy-data/mu(g) measurement chain not decomposed step-by-step (F-mp-6, F-fals-1)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "KC1 conditional but operational predicates/statistic/pooling unspecified (F-fals-1, F-meta-2)",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "null delta_chi2/significance_sigma and 'no new fit' verified in 31941465 index (F-prov-3)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "satisfied",
+          "evidence": "SPARC/KC1 language flagged as proxy-level, not raw signal (F-mp-6, atlas_field=measure)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is a provenance/status proposition (null fit fields, author-gated provenance), not a physical regime/phase/domain claim",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "a0 origin not labelled in-situ as MOND/SPARC input (F-para-1, author-gated)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "a0=1.2e-10 is imported MOND/SPARC calibration but not labelled in-situ (F-para-1)",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "SPARC/RAR raw-signal-to-proxy chain not specified (F-mp-1)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "satisfied",
+          "evidence": "a0/g_obs/g_bar calibration-dependence decomposed (F-mp-1/2, atlas_field=measure)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "SPARC/RAR discriminator not an executable pre-declared selection; a0/holdout unfrozen (F-fals-4)",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "siren formula and param provenance traceable to 31876324 (F-prov-1); freeze decision is gate 5/9, not provenance",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "dL^GW/dL^EM = sqrt(F(phi0)/F(phiz)) source-faithful, [alpha*phi]=1 (F-form-6)",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "satisfied",
+          "evidence": "derivation holds under source premises; normalization left open as declared (F-form-6)",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "uniqueness after freeze overclaimed; rival friction models not declared co-equal (F-para-4)",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "GW strain-to-dL^GW and EM-to-dL^EM chain not decomposed (F-mp-3)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "satisfied",
+          "evidence": "dL^GW/dL^EM model-derived proxy decomposed (F-mp-3/4, atlas_field=measure)",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "regime/phase/domain not explicitly named in the claim (cartographer F-cart-*: no L0-L3/S-regime stated)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "non-unit siren ratio not uniquely EFC-discriminating; invariant F(z)/F(0) + rival-model comparison required (F-alt-6, F-para-4, F-meta-4)",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "package scope statement traceable to ai_manifest/git history (F-rep-5/6)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic (a scope/status/reproducibility proposition, not a physical regime/phase claim)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "satisfied",
+          "evidence": "satisfied",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "compound claim (single asserted proposition unmet); atomize per F-cart-1..8 before gate 1 can close",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "satisfied",
+          "evidence": "build script and git chronology traceable (F-rep-1/6)",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "no formal/derivational content in this claim"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation asserted in this claim"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed by this claim"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content (C8 = provenance/status)"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds this (non-promoted) claim"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic (a scope/status/reproducibility proposition, not a physical regime/phase claim)",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status)"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reviewer_role": "reproducer",
+          "reason": "reproduction chain runs (F-rep-1 exit 0) but does NOT reproduce byte-identically (F-rep-3: two unchanged-source builds produced different SHA-256 and /CreationDate); C12's own claim is that byte-reproducibility is open, so the reproduction half of gate 10 is not closed"
+        }
+      ]
+    }
+  ]
+}

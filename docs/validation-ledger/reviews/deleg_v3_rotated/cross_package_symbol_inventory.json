@@ -1,0 +1,638 @@
+{
+  "symbol_inventory": [
+    {
+      "symbol": "Gamma",
+      "verdict": "inconsistent",
+      "occurrences": [
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/rotation_tensor_schema.json",
+          "line": 10,
+          "meaning": "Review alias namespace Gamma_A, Gamma_B, and Gamma_C for a response kernel; no executable source identifier or physical unit is declared.",
+          "units": "Undeclared"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/rotation_tensor_schema.json",
+          "line": 11,
+          "meaning": "Normalized algebraic relation using f(q)=q/(1+q): Gamma_C(u)=Gamma_A(sqrt(u)) and Gamma_B=sqrt(u)*Gamma_A; these are review-constructed normalized forms, not demonstrated common physical observables.",
+          "units": "Dimensionless normalized form; common Gamma_0 normalization is not physically frozen"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_09_meta.json",
+          "line": 26,
+          "meaning": "Gamma_C(u)=Gamma_A(sqrt(u))=sqrt(u)/(1+sqrt(u)) under the declared normalized representation.",
+          "units": "Dimensionless after Gamma_0 normalization"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_09_meta.json",
+          "line": 51,
+          "meaning": "Gamma_B(u)=sqrt(u)*Gamma_A(u)=u^(3/2)/(1+u), a functionally different normalized kernel from Gamma_A and Gamma_C.",
+          "units": "Dimensionless after Gamma_0 normalization"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 156,
+          "meaning": "Per-mode entropy-production magnitude |Gamma_per-mode|=(beta/(2a0)) n(n+1); the absolute-value notation makes this a positive magnitude rather than the signed entropy derivative.",
+          "units": "Inherited beta/a0 units; SI closure is incomplete because implemented beta omits r_*"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 159,
+          "meaning": "Derived total Gamma_total(rho) is proportional to rho^(3/2)/(rho+rho_crit), with density-dependent mode activation.",
+          "units": "Normalized by Gamma_0 in the executable return; Gamma_0 has no physical unit declaration"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 184,
+          "meaning": "Executable per-mode Gamma returns the positive quantity (beta/(2a0)) n(n+1).",
+          "units": "Inherited beta/a0 units; positive magnitude"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 207,
+          "meaning": "Executable Gamma_total(rho_ratio)=Gamma_0*rho_ratio^1.5/(1+rho_ratio), normalized to Gamma_0 at rho=rho_crit.",
+          "units": "Gamma_0 units; default Gamma_0=1.0 is unitless in code; positive for positive density ratio"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 213,
+          "meaning": "gamma_phenomenological uses Gamma_0*rho_ratio/(1+rho_ratio), a separate phenomenological function from the derived rho^(3/2) form.",
+          "units": "Gamma_0 units; default unitless"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 187,
+          "meaning": "PerModeEntropy returns the positive absolute-value per-mode expression |Gamma_per-mode|=(beta/(2a0)) n(n+1).",
+          "units": "Inherited beta/a0 units; positive magnitude"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 230,
+          "meaning": "EntropyProductionFunction uses Gamma=Gamma_0*sqrt(rho/rho_crit)/(1+sqrt(rho/rho_crit)), which differs from the entropy-production package's rho^(3/2)/(rho+rho_crit) implementation.",
+          "units": "Gamma_0 units; default output dimensionless and positive"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 238,
+          "meaning": "The same package also defines a separate phenomenological Gamma=Gamma_0*x/(1+x), with x=rho/rho_crit.",
+          "units": "Gamma_0 units; default output dimensionless and positive"
+        },
+        {
+          "file": "docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/src/efc_relativistic.py",
+          "line": 38,
+          "meaning": "Relativistic-action Gamma(rho)=gamma0*(rho/rho_crit)/(1+rho/rho_crit), described as an entropy-production rate that saturates.",
+          "units": "gamma0 is declared [1/time]"
+        },
+        {
+          "file": "docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/src/efc_relativistic.py",
+          "line": 44,
+          "meaning": "Executable EntropyProduction.Gamma returns gamma0*x/(1+x), positive for positive rho.",
+          "units": "[1/time] under the code's gamma0 declaration"
+        },
+        {
+          "file": "docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/src/efc_relativistic.py",
+          "line": 61,
+          "meaning": "Gamma(rho) appears as the source in the field constraint box(phi)=Gamma(rho); this is the Gamma_box object in the review vocabulary.",
+          "units": "Field equation requires [phi] L^-2 (or [phi] T^-2 with c=1); phi normalization is undeclared"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_07_covariant.json",
+          "line": 67,
+          "meaning": "Review identifies Gamma_box as the field-equation source, dS/drho as a negative entropy derivative, and the coded per-mode expression as a positive absolute value; no typed identity map connects them.",
+          "units": "Gamma_box requires [phi] L^-2; dS/drho has entropy-density units; per-mode coefficient has beta/a0 units"
+        }
+      ]
+    },
+    {
+      "symbol": "beta",
+      "verdict": "inconsistent",
+      "occurrences": [
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 40,
+          "meaning": "Documentation defines the Bose-Einstein coupling beta=4*pi*G_N*r_*/3.",
+          "units": "If r_* is a length: m^4 kg^-1 s^-2"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 170,
+          "meaning": "Executable GammaDerivation.beta=4*pi*G_N/3; the documented r_* factor is omitted.",
+          "units": "m^3 kg^-1 s^-2 in the stated SI constants; leaves beta*rho/a0 dimensionful"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 155,
+          "meaning": "Companion documentation repeats beta/(2a0) as the per-mode coupling and x=sqrt(beta*rho/a0).",
+          "units": "Documented beta would carry m^4 kg^-1 s^-2 if r_* is physical"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 171,
+          "meaning": "Executable PerModeEntropy.beta=4*pi*G_N/3, again omitting r_*.",
+          "units": "m^3 kg^-1 s^-2 in the stated SI convention"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_01_dimensional.json",
+          "line": 7,
+          "meaning": "Review readback confirms both executable beta assignments omit r_* and produce x^2/u=4*pi/(3*l_g).",
+          "units": "Implemented beta has G_N units; x^2/u has inverse-length units under the declared SI normalization"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py",
+          "line": 205,
+          "meaning": "beta denotes the predicted MOND transition-radius mass-scaling exponent, not the Bose-Einstein coupling.",
+          "units": "Dimensionless exponent"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py",
+          "line": 246,
+          "meaning": "Model metadata records beta_predicted=0.5 and beta_classical_KT3=0.29 for r_trans scaling.",
+          "units": "Dimensionless exponent"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 385,
+          "meaning": "KT3 locally binds beta to the fitted slope of log(r_transition) versus log(M).",
+          "units": "Dimensionless fitted exponent"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 393,
+          "meaning": "The fitted KT3 exponent is printed as beta, unrelated to the entropy-production coupling.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/data/tests.json",
+          "line": 415,
+          "meaning": "Ledger test description uses beta for the MOND mass-scaling exponent in r_t proportional to M^beta.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/data/tests.json",
+          "line": 423,
+          "meaning": "Recorded quantitative result beta=0.3047 is the KT3 fitted exponent, not the beta coupling.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "figshare/preregistration-eg-so-euclid-2026-04-15/paper.tex",
+          "line": 100,
+          "meaning": "In the E_G/RSD package, beta=f/b is the growth-rate to galaxy-bias ratio.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/parameters.json",
+          "line": 26,
+          "meaning": "The discrete-gravity parameter file uses beta=0.08 for a background-only cosmological channel.",
+          "units": "Dimensionless; separate from the BE coupling and KT3 exponent"
+        }
+      ]
+    },
+    {
+      "symbol": "r_*",
+      "verdict": "open",
+      "occurrences": [
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 40,
+          "meaning": "r_* appears only in the beta documentation as an unspecified reference length; no value or executable parameter is assigned.",
+          "units": "Intended length, presumably m; definition absent"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/rotation_tensor_schema.json",
+          "line": 15,
+          "meaning": "Review scope explicitly identifies beta/r_*/l_g dimensional closure as unresolved.",
+          "units": "Undeclared"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/rotation_tensor_schema.json",
+          "line": 16,
+          "meaning": "Review records that executable beta omits r_* while the docstring includes it.",
+          "units": "Reference length required for the documented SI closure"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/numerical_closure.json",
+          "line": 32,
+          "meaning": "A candidate closure derives r_*=3*l_g/(4*pi) from imposing x^2/u=1; this is a proposed normalization, not an authoritative source definition.",
+          "units": "Length"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/numerical_closure.json",
+          "line": 33,
+          "meaning": "Candidate numerical value r_*=3.858e-36 m is recorded for the proposed equality convention.",
+          "units": "m"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/numerical_closure.json",
+          "line": 37,
+          "meaning": "The candidate relation beta=G_N*l_g, equivalently r_*=3*l_g/(4*pi), is explicitly left as a convention decision.",
+          "units": "Length relation; not frozen"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_01_dimensional.json",
+          "line": 9,
+          "meaning": "Review states that no r_* parameter or unit normalization is supplied in either executable beta implementation.",
+          "units": "Absent"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/c_symbol_collision.json",
+          "line": 23,
+          "meaning": "C-gap review states that the ledger entry has no reproducing configuration and no r_* or equivalent window-normalization provenance.",
+          "units": "Not applicable"
+        },
+        {
+          "file": "pipelines/efc/native_v2_graph/kernel/observables.py",
+          "line": 148,
+          "meaning": "Executable solver uses r_MOND=sqrt(GM/a0), a transition/crossing radius distinct from the undefined r_*.",
+          "units": "Grid/code length units"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 301,
+          "meaning": "KT2 uses r_mond=sqrt(G_eff*M/a0) to define the measurement window; this is not r_*.",
+          "units": "Grid/code length units"
+        }
+      ]
+    },
+    {
+      "symbol": "l_g",
+      "verdict": "inconsistent",
+      "occurrences": [
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 28,
+          "meaning": "L_PLANCK=1.616e-35 is declared as the Planck length used as the grid/reference length.",
+          "units": "m"
+        },
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 177,
+          "meaning": "rho_crit is computed with G_N*L_PLANCK, effectively using l_g=L_PLANCK without exposing l_g as an object or parameter.",
+          "units": "L_PLANCK in m"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 30,
+          "meaning": "L_PLANCK is declared as the default grid spacing.",
+          "units": "m"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 54,
+          "meaning": "GridActivation accepts l_g as the lattice spacing, defaulting to L_PLANCK.",
+          "units": "m"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 58,
+          "meaning": "rho_crit=a0/(G_N*l_g), so l_g is used as a physical length in the density-of-states model.",
+          "units": "m"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 218,
+          "meaning": "EntropyProductionFunction accepts l_g independently and defaults it to L_PLANCK.",
+          "units": "m"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 222,
+          "meaning": "The entropy-production package again computes rho_crit using the caller-supplied l_g.",
+          "units": "m"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py",
+          "line": 160,
+          "meaning": "The microphysical lattice derivation uses l_g as the separation between adjacent grid nodes.",
+          "units": "m in the documentation"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py",
+          "line": 164,
+          "meaning": "Executable GridNode defaults l_g=1.0 and comments it as normalized lattice spacing.",
+          "units": "Dimensionless normalized code unit"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py",
+          "line": 330,
+          "meaning": "Standalone helper compute_spring_constant uses l_g=1.0 as a code-unit denominator.",
+          "units": "Dimensionless normalized code unit"
+        },
+        {
+          "file": "pipelines/efc/native_v2_graph/kernel/solver.py",
+          "line": 45,
+          "meaning": "Native graph solver uses the differently named parameter spacing=1.0 instead of l_g.",
+          "units": "Grid/code length units"
+        },
+        {
+          "file": "pipelines/efc/native_v2_graph/kernel/solver.py",
+          "line": 47,
+          "meaning": "The native solver's spacing is passed into the graph and conductivity calculations, but is not mapped to Planck l_g.",
+          "units": "Grid/code length units"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 65,
+          "meaning": "Standalone solver also uses spacing=1.0 rather than l_g.",
+          "units": "Grid/code length units"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 113,
+          "meaning": "AQUAL gradient normalization uses dPhi/(a0*spacing), making spacing the operative lattice length.",
+          "units": "Grid/code length units"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/numerical_closure.json",
+          "line": 32,
+          "meaning": "Candidate relation l_g=4*pi*r_*/3 is obtained only by imposing x^2/u=1.",
+          "units": "Length relation; not authoritatively declared"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/rotation_tensor_schema.json",
+          "line": 16,
+          "meaning": "Review records that implemented beta would require l_g=4*pi/3 for sqrt(u)=x, incompatible with declared SI Planck length unless an unstated unit convention is introduced.",
+          "units": "Declared l_g is m; required numerical value is treated as code/unit normalization"
+        }
+      ]
+    },
+    {
+      "symbol": "a0",
+      "verdict": "inconsistent",
+      "occurrences": [
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 27,
+          "meaning": "A_0=1.2e-10 is the local MOND acceleration scale used by the entropy-production package.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 29,
+          "meaning": "A_0=1.2e-10 is the local MOND acceleration scale used by the density-of-states package.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py",
+          "line": 16,
+          "meaning": "A0_SPARC=1.2e-10 is labeled the measured SPARC value.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/data/model.json",
+          "line": 5,
+          "meaning": "Model metadata records a0=1.2e-10 sourced to SPARC/McGaugh et al. as the observational input.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "shared/configs/cosmology.yaml",
+          "line": 17,
+          "meaning": "Shared configuration stores a0=1.2e-10 as the physical MOND-scale acceleration.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "schema/framework_atlas.jsonld",
+          "line": 81,
+          "meaning": "Atlas records MOND a0=1.2e-10.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "schema/framework_atlas.jsonld",
+          "line": 82,
+          "meaning": "Atlas records the external Verlinde comparator a0=1.1e-10.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "schema/framework_atlas.jsonld",
+          "line": 84,
+          "meaning": "Atlas records EFC a0=6.5e-10 as an unsealed flag, explicitly offset from the MOND/Verlinde values.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "efc_integration_test.py",
+          "line": 53,
+          "meaning": "Integration test defines a0_base=1.2e-10 as the standard MOND base scale.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "efc_integration_test.py",
+          "line": 54,
+          "meaning": "Integration test constructs a0_eff=C_prefactor^2*a0_base; this is an effective rescaling, not an independent a0.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_05_measurement.json",
+          "line": 7,
+          "meaning": "Review records the derived value 6.45888e-10 from C^2*1.2e-10 and separately records the cH0-derived value 6.543917e-10.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py",
+          "line": 15,
+          "meaning": "Lambda-locked route defines a0 proportional to c^2*sqrt(Lambda).",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py",
+          "line": 49,
+          "meaning": "Lambda-screening acceleration_scale implements a0=c^2*sqrt(Lambda).",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py",
+          "line": 98,
+          "meaning": "Lambda-screening helper defines a0_eff=C^2*c^2*sqrt(Lambda), a separate effective scale.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/role_09_meta.json",
+          "line": 159,
+          "meaning": "Review inventory records 9.469e-10 for the Lambda route, 5.09684e-9 for C^2 times the Lambda route, and approximately 6.54392e-10 for the derived cH0 reference.",
+          "units": "m/s^2"
+        },
+        {
+          "file": "shared/configs/cosmology.yaml",
+          "line": 18,
+          "meaning": "a0_kpc=3.8e-3 is intended as an alternate-unit representation of a0 but is numerically not equivalent to 1.2e-10 m/s^2.",
+          "units": "(km/s)^2/kpc; latent conversion error"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/unit_error_verification.json",
+          "line": 11,
+          "meaning": "Review confirms the stored a0_kpc value is off by approximately 974,424 from the correct conversion and is not a valid equivalent representation.",
+          "units": "(km/s)^2/kpc versus m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/parameters.json",
+          "line": 10,
+          "meaning": "Discrete AQUAL tests use a0 values [0.001, 0.5, 2.0] in lattice units.",
+          "units": "Dimensionless lattice units"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/c_symbol_collision.json",
+          "line": 9,
+          "meaning": "Canonical C reproduction parameters use a0=2.0, which is a dimensionless lattice input and not the physical 1.2e-10 m/s^2 value.",
+          "units": "Dimensionless lattice units"
+        }
+      ]
+    },
+    {
+      "symbol": "C",
+      "verdict": "inconsistent",
+      "occurrences": [
+        {
+          "file": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py",
+          "line": 24,
+          "meaning": "C=2.998e8 is used as the speed of light, not the AQUAL prefactor.",
+          "units": "m/s"
+        },
+        {
+          "file": "docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py",
+          "line": 26,
+          "meaning": "C=2.998e8 is again the speed of light, demonstrating a same-spelling collision with the graph prefactor.",
+          "units": "m/s"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json",
+          "line": 2,
+          "meaning": "Paper C is defined as g_AQUAL/sqrt(a0*g_N), the dimensionless deviation from the standard deep-MOND relation.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json",
+          "line": 5,
+          "meaning": "Paper convergence target is C=2.32.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json",
+          "line": 34,
+          "meaning": "Paper extrapolated limit is C_infinity=2.32.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/examples/prefactor_convergence.py",
+          "line": 49,
+          "meaning": "Example hard-codes C=2.32 as the discrete renormalization prefactor and uses C^2 to define a0_eff.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "pipelines/efc/native_v2_graph/kernel/observables.py",
+          "line": 57,
+          "meaning": "Modular observable measure_prefactor_C is intended to compute the dimensionless ratio C=g_AQUAL/sqrt(a0*g_N).",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "pipelines/efc/native_v2_graph/kernel/observables.py",
+          "line": 66,
+          "meaning": "The modular implementation computes g_MOND=sqrt(a0*g_newton) before forming C.",
+          "units": "g_MOND has acceleration units; resulting C is dimensionless"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 281,
+          "meaning": "Standalone KT2 describes C as g_AQUAL/g_MOND and measures it over a radial window.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 284,
+          "meaning": "Standalone KT2 fixes M=50, G_eff=1, and a0=2.0 for the lattice prefactor run.",
+          "units": "C dimensionless; a0 in lattice units"
+        },
+        {
+          "file": "src/efc/solver/grid_aqual_killtests.py",
+          "line": 305,
+          "meaning": "Standalone KT2 computes C_vw from the volume-weighted result in the selected radial window.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "efc_integration_test.py",
+          "line": 52,
+          "meaning": "Integration test sets C_prefactor=2.32 as the geometry-independent graph prefactor.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "efc_integration_test.py",
+          "line": 54,
+          "meaning": "The integration test uses C_prefactor^2 to construct a0_eff.",
+          "units": "Dimensionless prefactor; a0_eff is m/s^2"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py",
+          "line": 93,
+          "meaning": "Lambda-screening helper accepts C=2.32 as the discrete renormalization prefactor.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py",
+          "line": 98,
+          "meaning": "C^2 multiplies the Lambda-derived acceleration scale to form a0_eff.",
+          "units": "Dimensionless C; resulting a0_eff in m/s^2"
+        },
+        {
+          "file": "docs/validation-ledger/data/ledger.json",
+          "line": 4128,
+          "meaning": "Ledger KT2 records c_value=2.2895486402403438 for grav_kt2_2026-06-22_143541_aqual.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/data/tests.json",
+          "line": 431,
+          "meaning": "Mirrored ledger record reports C_vw=2.2895 as the converged volume-weighted prefactor.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/data/tests.json",
+          "line": 438,
+          "meaning": "Mirrored quantitative result stores C_vw=2.2895 and C_squared=5.242.",
+          "units": "Dimensionless C and C^2"
+        },
+        {
+          "file": "docs/validation-ledger/data/grav.json",
+          "line": 1429,
+          "meaning": "Downstream LCDM_baseline integration result consumes C=2.2895486402403438.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/data/grav.json",
+          "line": 1438,
+          "meaning": "Downstream k_Lambda=0.0014 integration result consumes the same ledger C.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/c_symbol_collision.json",
+          "line": 17,
+          "meaning": "Review separates C_paper=2.32 from C_ledger=2.2895486402403438.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/c_symbol_collision.json",
+          "line": 19,
+          "meaning": "Review identifies the exact ledger prefactor used downstream.",
+          "units": "Dimensionless"
+        },
+        {
+          "file": "docs/validation-ledger/reviews/deleg_v3_rotated/c_symbol_collision.json",
+          "line": 23,
+          "meaning": "Review records that the ledger value is not reproduced by either solver at canonical parameters and that no reproducing configuration is present on disk.",
+          "units": "Dimensionless; provenance incomplete"
+        }
+      ]
+    }
+  ],
+  "inconsistencies": [
+    "same symbol = different object: C denotes the speed of light in entropy_production.py:24 and density_of_states.py:26, but denotes the dimensionless AQUAL prefactor in convergence_table.json:2, observables.py:57, lambda_screening.py:93, and the KT2 records.",
+    "C-gap headline: the paper/source chain records C=2.32 as the extrapolated prefactor (convergence_table.json:5,34; efc_integration_test.py:52), while the ledger records C=2.2895486402403438 (ledger.json:4128; tests.json:431,438). The two values are the same intended observable by notation, but they are not reconciled by a documented parameter/configuration chain.",
+    "same symbol = different object: Gamma_A, Gamma_B, and Gamma_C are normalized review aliases with distinct functions, while Gamma_total in entropy_production.py:207, Gamma_derived in density_of_states.py:230, and Gamma in the relativistic action at efc_relativistic.py:44 have different functional forms, normalizations, and units.",
+    "same symbol = different object: Gamma_box in box(phi)=Gamma(rho) at efc_relativistic.py:61 is a field-equation source requiring [phi]L^-2, whereas the entropy-production code's per-mode Gamma is a positive absolute magnitude and its total Gamma is a normalized scalar; no phi-to-entropy or time-normalization map identifies them.",
+    "same symbol = different object: beta is the documented BE coupling 4*pi*G_N*r_*/3 in entropy_production.py:40, the implemented coupling 4*pi*G_N/3 in entropy_production.py:170 and density_of_states.py:171, the KT3 mass-scaling exponent in grid_aqual_killtests.py:385-393, the RSD ratio f/b in the E_G package, and a separate background parameter beta=0.08 in parameters.json:26.",
+    "same symbol = different object: r_* is an unspecified reference length in entropy_production.py:40, while r_MOND and r_trans are executable transition radii in observables.py:148-156 and grid_aqual_killtests.py:301-303. No source establishes that any of these are the same object.",
+    "same symbol = different object: l_g is a Planck-length physical spacing in density_of_states.py:30,54-58, a normalized unit spacing l_g=1.0 in grid_microphysics.py:164 and :330, and an unnamed code spacing parameter in both AQUAL solvers. No canonical mapping links these conventions.",
+    "same symbol = different object: a0 mixes the SPARC/MOND input 1.2e-10 m/s^2, the external Verlinde comparator 1.1e-10 m/s^2, the unsealed atlas flag 6.5e-10 m/s^2, the derived C^2*a0 value 6.45888e-10 m/s^2, the Lambda-route value 9.469e-10 m/s^2, the cH0-derived value approximately 6.544e-10 m/s^2, and dimensionless lattice inputs such as a0=2.0.",
+    "same symbol = different object or broken unit alias: shared configuration presents a0=1.2e-10 m/s^2 and a0_kpc=3.8e-3 (km/s)^2/kpc as equivalent fields, but the stored a0_kpc number is not the corresponding conversion.",
+    "different symbols = same intended object, mapping incomplete: A_0, A0_SPARC, shared-config a0, a0_base, and the SPARC model-data a0 all refer to the 1.2e-10 m/s^2 base scale, but the repository does not freeze one canonical provenance namespace.",
+    "different symbols = same intended object, mapping incomplete: C, C_prefactor, C_vw, C_infinity, and the prefactor argument in lambda_screening.py all denote the dimensionless AQUAL/graph prefactor by local definition, but the paper value and ledger value have different provenance and no source-level reconciliation.",
+    "different symbols = same candidate object, not authoritatively established: l_g and the solver parameter spacing both act as lattice spacing, but one is Planck-length SI input and the other is a normalized grid/code-unit parameter.",
+    "different symbols = same candidate amplitude, not authoritatively established: Gamma_0 in the galactic entropy packages and gamma0 in the relativistic package both scale a Gamma-like function, but their units, field normalization, and time interpretation are not mapped."
+  ],
+  "c_gap_reconciliation": "open — direct matched-parameter reproduction of solve_aqual in pipelines/efc/native_v2_graph/kernel/solver.py:45-117 and solve_discrete_aqual in src/efc/solver/grid_aqual_killtests.py:65-177 gives identical results at both tested resolutions: N=21, C=2.44311536814994 for both solvers, delta=0.0, 13 iterations each; N=31, C=2.3544985464922945 for both solvers, delta=0.0, 13 iterations each, verified 0.000%. Therefore the solver/algorithmic-discrepancy hypothesis is falsified. The ledger value 2.2895486402403438 is not reproduced by either solver at the canonical parameters M=50, G_eff=1, a0=2.0, volume_weighted=true, r_out_min=5.0, and r_out_max=N//2-3 (c_symbol_collision.json:9,23), and it lies below the paper's own extrapolated limit C_infinity=2.32 (convergence_table.json:34). ledger.json:4128 and tests.json:428-440 provide no params block containing a0, window, or solver configuration; no reproducing config exists on disk. Cause OPEN: parameter-provenance difference or stale ledger entry. This is not a solver bug and is not harmonized."
+}

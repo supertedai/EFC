@@ -1,0 +1,65 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "rotation_tensor_schema_v3.3",
+  "diagnosis": "v3.1 was block-diagonal, not holistic: each part was judged by its HOME lens only (role 9 evidence_ids confirm G1a/G1b->role2, G2a/G2b->role1, A1a/A1b/A2->role4, B1-B3->role7, L1/L2->role6). not_applicable clustered exactly where the paradigm lens should hit gamma_kernel. This schema forces a true rotation: every lens crosses every part.",
+  "parts": [
+    {
+      "part_id": "gamma_kernel",
+      "scope": "Response kernel Gamma_A/Gamma_B/Gamma_C and their functional relation",
+      "established_v3.1": "algebraically exact on normalized form f(q)=q/(1+q): Gamma_C(u)=Gamma_A(sqrt(u)), Gamma_B=sqrt(u)*Gamma_A. No physical identity across sources; no u->S map."
+    },
+    {
+      "part_id": "gamma_normalization",
+      "scope": "beta / r_* / l_g dimensional closure, x^2/u ratio",
+      "established_v3.1": "beta implemented as 4*pi*G_N/3, docstring says 4*pi*G_N*r_*/3; x^2/u=4*pi/(3*l_g)=2.59e35 m^-1; sqrt(u)=x requires l_g=4*pi/3; x not dimensionless in SI."
+    },
+    {
+      "part_id": "a0_ladder",
+      "scope": "The 6+ a0 values and their provenance",
+      "established_v3.1": "1.2e-10 MOND input, 1.1e-10 Verlinde, 6.5e-10 unsealed atlas, 6.459e-10 C^2*a0, 9.469e-10 Lambda-route, 6.544e-10 cH0. No canonical freeze. a0_kpc=3.8e-3 latent unit error."
+    },
+    {
+      "part_id": "a0_prefactor",
+      "scope": "Discrete prefactor C=2.32 and its derivation status",
+      "established_v3.1": "numerically converged lattice (2.443->2.354->2.320), NOT analytic Watson/Green; C_vw=2.2895 in ledger (different solver); C^2~5.38."
+    },
+    {
+      "part_id": "transport_bridge",
+      "scope": "grid->mode->Bose-Einstein->covariant EFT->RAR chain",
+      "established_v3.1": "grid->mode verified; mode->BE declared; BE->RAR conditional; covariant EFT->mu_BE contradicted (sign/trend); dS/drho<0 vs box(phi)=Gamma>0; mu_BE postulated not derived."
+    },
+    {
+      "part_id": "paradigm_limit",
+      "scope": "EFC<->MOND<->LCDM formal limits + 5 discriminators",
+      "established_v3.1": "formal-limit declarations, not equal-footing recovery; f_sigma8 0.430 vs 0.449/0.452; 5 discriminators unexecuted."
+    }
+  ],
+  "lenses": [
+    {"lens_id": "dimensional", "question": "Are the quantities in this part dimensionally closed (l_g, r_*, SI)? What unit does each symbol carry? Is the x/u identification valid without an explicit length scale?"},
+    {"lens_id": "asymptotic", "question": "What are the u->0 and u->infinity limits in this part — converge/diverge/saturate? Is the asymptotic form consistent across parts?"},
+    {"lens_id": "regime", "question": "Which u/rho domain does this part operate in — overlapping or disjoint? Physical phase or coordinate convention?"},
+    {"lens_id": "provenance", "question": "For each constant/relation in this part: input, measurement, declaration, inheritance, rescaling, or fit? Cite file:line."},
+    {"lens_id": "measurement", "question": "What is the measurement chain, instrument, proxy, nuisance, and calibration for this part? Measured or declared?"},
+    {"lens_id": "paradigm", "question": "Is the object in this part IDENTICAL in MOND/LCDM/EFC, or an interpretation difference via coordinate/measure/instrument/proxy/regime/phase? State the exact axis of difference."},
+    {"lens_id": "covariant", "question": "What is the covariant form of this part, and does it reduce to the discrete/non-relativistic form? Which signs, normalizations, time-scalings are carried?"},
+    {"lens_id": "reproducer", "question": "Can a blind user reproduce the number/relation in this part from source alone? What is the minimal runnable proof and its file:line?"}
+  ],
+  "gates": [
+    "gate_1_claim_identity", "gate_2_provenance", "gate_3_formal_validity",
+    "gate_4_model_relative_validity", "gate_5_paradigm_declaration",
+    "gate_6_measurement_chain", "gate_7_proxy_bias_audit",
+    "gate_8_regime_phase_domain", "gate_9_discrimination_falsification",
+    "gate_10_reproduction_synthesis_human_gate"
+  ],
+  "rules": [
+    "Every lens must produce a verdict for EVERY one of the 6 parts — even parts far from its home. A part it cannot judge is 'unknown' (with reason), never silently skipped.",
+    "'not_applicable' is FORBIDDEN without an explicit one-line reason in not_applicable_reason. In a rotation most lenses apply to most parts; default to 'open'/'unknown' when thin.",
+    "For EVERY part, additionally answer the paradigm/coordinate question (identical across MOND/LCDM/EFC, or a coordinate/measure/instrument/proxy/regime/phase difference?). This is the holistic test and must not be skipped even though it is 'the paradigm lens's' domain.",
+    "Every non-empty finding carries file:line evidence. No evidence -> 'open', never 'satisfied'.",
+    "Attack the established points: where the source actually contradicts the established v3.1 reading, say so. Same-model agreement is reading-consistency, not validation.",
+    "Do NOT write to repo files. Output returns as JSON.",
+    "Cell status vocabulary: satisfied / open / unknown / contradicted / not_applicable."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "round2_provenance_note",
+  "delegation_id": "deleg_dad967cf",
+  "note": "Runde 2 (advocate + attacker) er en STRUKTURERT FALSIFIKASJONSØVELSE, ikke en uavhengig oppdagelsesrunde. Attacker-prompten er orkestrator-seedet med fem forhaandsspesifiserte maal der svaret i stor grad er innebygd (dimensjonshull, a0-lekkasje, EFT-fortegn, compound-claims, enhetsfeil). Det er en legitim, kontrollert angrepsdisiplin — men angrepene maa ALDRI senere presenteres som uavhengige 'reviewer-funn'. De er seedet motangrep.",
+  "provenance": {
+    "advocate": "forsvarer struktur-kohaerens der runde 1 var lunken; leser kun role_*.json + claim_map.json fra disk. IKKE seedet med konklusjoner.",
+    "attacker": "seedet med 5 maal + bevis-strenger (beta r_*-hullet, a0-ancestry, EFT-fortegn, is_compound B1/B2/B3, enhetsfeil cosmology.yaml:18 + Lambda_cosmo). Angrepene er derfor DELVIS orkestrator-avledet.",
+    "same_model_family": "begge gpt-5.6-luna; enighet = reading consistency, ikke uavhengig validering."
+  },
+  "disposition": "Runde-2-output brukes KUN som adversarialt materiale inn i rolle 9s syntese. De endrer IKKE claim-status direkte, IKKE verdict, IKKE matrise. Rollevelses-grensen: kun rolle 9 setter status; orkestrator navigerer/normaliserer/ruter."
+}

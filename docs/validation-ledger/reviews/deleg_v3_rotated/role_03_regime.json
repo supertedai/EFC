@@ -1,0 +1,35 @@
+{
+  "role": "Regime/phase mapper (Role 3)",
+  "claims": [
+    {
+      "claim_id": "G1c",
+      "status": "partially_supported",
+      "evidence": "Tetthetsdomener klassifiseres som overlappende, ikke disjunkte, for Gamma-familien. 31942821 implementerer Gamma_B som rho_ratio^1.5/(1+rho_ratio) og Gamma_A som rho_ratio/(1+rho_ratio) på samme rho/rho_crit-koordinat (src/entropy_production.py:198-213); pakken beskriver både low-rho og high-rho grenser (data/entropy_production_data.json:67-79). 31942800 bruker samme rho/rho_crit-koordinat for Gamma_C = sqrt(u)/(1+sqrt(u)) og definerer rho_crit som aktiveringspivot, ikke som et disjunkt intervall (src/density_of_states.py:36-58,130-145,201-230). 31941465 beskriver derimot g-domener: bare_elastic, transition og gravitational, med g_cross = kappa_0/alpha; den definerer ikke en Gamma(rho)-form (src/grid_action.py:297-336; data/grid_action_data.json:111-129). Derfor finnes ingen kildebasert partisjon i disjunkte u-intervaller. Gamma_Bs sqrt(u)-vekst er eksplisitt high-rho-oppførsel, rho^(1/2), ikke en deklarert S->1-grense (31942821/data:74-79; src:198-207).",
+      "verified": "Eksakt nøytral tekst er lest tilbake fra claim_map.json:21-23: The sources of the three Gamma forms specify a density/regime domain for each; classify those domains as disjoint or overlapping. Regime-atlaset skiller L0 S->0, L1 S~0, L2 S>0 og L3 S->1, med observabler per lag, men ingen av feltene definerer S som funksjon av u (regime_nodes.jsonld:1210-1224,1299-1301; 1318-1333,1410-1412; 1429-1444,1522-1524; 1541-1555,1631-1633).",
+      "missing_link": "Det mangler en eksplisitt u->S eller u->L0-L3-funksjon, en deklarert kobling mellom 31941465s g-regimer og Gamma(rho), samt en felles normalisering/measurand som viser at Gamma_A, Gamma_B og Gamma_C er samme fysisk identifiserte respons. S i BE-/entropikjeden må også skilles fra S som kosmologisk regimekoordinat.",
+      "falsifier": "Lesningen falsifiseres av en versjonert kilde som gir Gamma_A, Gamma_B og Gamma_C gjensidig disjunkte u-intervaller, eller som deklarerer en eksplisitt S=f(u)-mapping og viser at Gamma_Bs high-u-gren oppstår ved en S->1-fasegrense. En kilde som gjør 31941465 til en eksplisitt Gamma_B-densitykilde med et separat domene ville også endre klassifikasjonen.",
+      "measurement_chain": "rho -> u=rho/rho_crit -> BE-occupation og/eller D_eff -> Gamma-form -> modellert scalar flow/kosmologisk respons -> H(z), P(k), f_sigma8, S8 og lensing. Separat går 31941465s kjede g -> kappa_eff -> E proportional to sqrt(g) -> mu(g)/RAR. L0 har ingen direkte observabel, L1 bruker CMB/BAO, L2 bruker vekst og lensing, og L3 er en extrapolert grense uten direkte instrument (regime_nodes.jsonld:1215-1224,1323-1333,1434-1444,1546-1555; atlas.json:15-35,553-718).",
+      "confidence": 0.9,
+      "gate_applicability": {
+        "claim_classification": "applicable",
+        "density_domain_overlap": "supported_with_scope",
+        "u_to_S_mapping": "open",
+        "Gamma_B_to_S_to_1_link": "open",
+        "empirical_measurement_gate": "not_applicable"
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Klassifikasjonen er robust for de deklarerte kildeformene, men 31941465 er en g/E-pakke snarere enn en eksplisitt Gamma(rho)-pakke. Samme modellfamilie som øvrige reviewer gir lesningskonsistens, ikke uavhengig validering."
+    }
+  ],
+  "human_gate_items": [
+    "Forfatteren må deklarere om 31941465 faktisk skal regnes som Gamma-kilde eller bare som separat g-/BE-eksponentkilde.",
+    "Forfatteren må enten levere en eksplisitt u->S-mapping med overgangskriterier eller bekrefte at u og S er uavhengige koordinater.",
+    "Forfatteren må fryse om rho_crit er aktiveringsgrense, metningspivot eller bare normaliseringsskala for hver Gamma-form."
+  ],
+  "open_questions": [
+    "Finnes det en deklarert funksjon S(u), eller finnes bare parallelle rho- og S-regimebeskrivelser?",
+    "Er Gamma_Bs sqrt(u)-gren ment som fysisk gyldig high-u-asymptote eller som en foreløpig extrapolasjon?",
+    "Hvilken operasjonell observabel kan inverteres til Gamma i hvert av L0-L3-regimene?"
+  ]
+}

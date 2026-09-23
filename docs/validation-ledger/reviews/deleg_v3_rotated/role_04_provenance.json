@@ -1,0 +1,69 @@
+{
+  "role": "Role 4 — Provenance accountant",
+  "claims": [
+    {
+      "claim_id": "A1a",
+      "status": "supported",
+      "evidence": "Nøytraltekst: \"Enumerate the acceleration-scale values associated with a0 present in the repository, each with its file:line origin (input, measurement, fit, declaration, or inheritance).\" Deduped provenance table: (1) 1.2e-10 m/s², also 3.8e-3 (km/s)^2/kpc: empirisk SPARC-input/målt skala i docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/data/model.json:4-8,61-66; deklarert som empirisk SPARC-skala i docs/papers/efc/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints/index.json:57-60; delt konfigurert input i shared/configs/cosmology.yaml:17-18 og efc_integration_test.py:52-54; samme verdi hardkodet som MOND-skala i docs/papers/efc/EFC_Gradient_Coupled_Grid_Action/src/grid_action.py:13-17; lokal pakkeerklæring om frosset verdi i docs/papers/efc/Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes/index.json:59-64; framework-registreringer i schema/framework_atlas.jsonld:81-83. (2) 1.1e-10 m/s²: ekstern Verlinde-deklarasjon, atlas-status derived med de Sitter-horizon-metode i schema/framework_atlas.jsonld:82 og docs/papers/efc/EFC-VAL-2026-006/atlas_seed.json:2103-2113. (3) 6.5e-10 m/s²: EFC-atlasverdi/flagget alternativ, ikke forseglet, i schema/framework_atlas.jsonld:72,84; atlas-seed deklarerer den som EFC_a0_eff med status derived, men preregistered=false, i docs/papers/efc/EFC-VAL-2026-006/atlas_seed.json:2116-2126; samme verdi forekommer bare som testkommentar i efc_integration_test.py:152-154, og preregistreringen sier uttrykkelig at den ikke er kanonisk paper-a0 i docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:48-56. (4) 6.45888e-10 m/s², avrundet 6.459e-10: algebraisk reskalering C^2*1.2e-10, ikke ny måling, fra efc_integration_test.py:52-54 og docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json:2-5,33-36; avrundet verdi er registrert sekundært i docs/validation-ledger/reviews/deleg_d21ed669/generative_synthesis.md:51. (5) 9.469449807e-10 m/s², avrundet 9.469e-10: separat Lambda-avledet skala c^2*sqrt(Lambda), med C_LIGHT=2.998e8 og Lambda=1.11e-52 i docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py:21-23,45-63 og data/parameters.json:17-23; QUICKSTART.md:32-33,65-66 beskriver samme rute. (6) 5.096836664e-9 m/s², avrundet 5.097e-9: C^2*c^2*sqrt(Lambda), beregnet av lambda_screening.py:90-115; dette er effektiv skala, ikke base-a0. (7) 6.543917045e-10 m/s², avrundet 6.544e-10, eventuelt 6.545e-10 med annen konstantavrunding: kosmisk cH0-referanse beregnet fra H0=67.36, c=2.998e5 km/s og Mpc-konverteringen i efc_integration_test.py:41,46-48; den er en referanse, ikke en eksplisitt kanonisk a0-deklarasjon. (8) Fit-kandidater: sparc175_multicomponent_killtest.py:177-201 søker global a0 over [0.5e-10,5.0e-10] ved chi-square-minimering og produserer variabelen best_a0; kall og utskrift står i samme fil:252-257 og metadatafeltet i :429-430. Ingen konkret best_a0-verdi er lagret i repositoryet. (9) Lattice-enheter, ikke SI-verdier: {0.001, 0.01, 0.1, 0.5, 2.0}, angitt som testinput i docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/parameters.json:8-11, src/kill_tests.py:33-41, pipelines/efc/native_v2_graph/tests/kt1_limits.py:21-39 og src/efc/solver/grid_aqual_killtests.py:225-234. a0=1e10 i src/efc/solver/grid_aqual_extra_tests.py:257-259 er en Newtonsk kontrollgrense, ikke en fysisk kandidat. C^2=5.3824 og a0_eff/a0=5.38 er dimensjonsløse forhold, ikke ytterligere akselerasjonsskalaer.",
+      "verified": "Proveniensene er blandede: empirisk/importert 1.2e-10, ekstern 1.1e-10, flagget/deklarert 6.5e-10, algebraisk effektiv skala, Lambda-avledede skalaer, cH0-referanse, fit-intervall og dimensjonsløse lattice-inputs. Kjøring av SPARC-fitfunksjonen kunne ikke verifiseres numerisk fordi numpy mangler i miljøet; derfor er ingen best_a0-resultat oppdiktet.",
+      "missing_link": "Det mangler ett autoritativt register som skiller base-a0, a0_eff, Lambda-ruten, cH0-referansen og fit-parametre, samt et innsjekket resultat for best_a0.",
+      "falsifier": "En autoritativ, innsjekket kilde som eksplisitt klassifiserer alle alternativer og fastsetter én fysisk verdi, eller et innsjekket fitresultat som erstatter det nåværende fit-intervallet, ville endre tabellen.",
+      "measurement_chain": "SPARC-rotasjonskurver og baryonmodell gir empirisk/importert 1.2e-10; lattice-solvers bruker dimensjonsløse a0-inputs og måler C; C reskalerer base-a0 til a0_eff; Lambda- og H0-rutene beregner separate referanseskalaer.",
+      "confidence": 0.96,
+      "gate_applicability": {
+        "applicable": true,
+        "gate": "provenance_accounting",
+        "reason": "Full provenienstabell må foreligge før noen av verdiene kan behandles som samme fysiske parameter."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Tabellen er deduplisert etter fysisk betydning; gjentatte forekomster av 1.2e-10 er gruppert etter opprinnelse."
+    },
+    {
+      "claim_id": "A1b",
+      "status": "supported",
+      "evidence": "Nøytraltekst: \"State whether a single canonical physical a0 is frozen in the repository, or whether the enumerated values carry mixed provenance.\" shared/README.md:11-18,41,116-120 og shared/configs/cosmology.yaml:17-18 erklærer 1.2e-10 som sentral delt verdi, og Energy_Flow_Cosmology-indexet deklarerer lokalt 1.2e-10 som frozen i docs/papers/efc/Energy_Flow_Cosmology__An_Effective_Phenomenological_Law_for_Gravitational_Response_in_Structure_Dominated_Regimes/index.json:59-64. Dette er ikke en repository-wide freeze: docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:48-56 sier at tre kandidater er i omløp, at beslutning kreves, og at preregistreringen er INVALID inntil én verdi fastfryses; schema/framework_atlas.jsonld:72,81-84 registrerer samtidig MOND/LCDM 1.2e-10, Verlinde 1.1e-10 og EFC 6.5e-10 med sealed=false; sparc175_multicomponent_killtest.py:177-201 åpner for aktiv global fitting av a0. a0_eff=C^2*a0 er separat deklarert i efc_integration_test.py:52-54 og target convergence_table.json:4-5.",
+      "verified": "Nei: én lokal 1.2e-10-deklarasjon finnes i flere pakker, men ingen én autoritativ fysisk a0 er frosset på tvers av repositoryet. Verdiene bærer blandet input-, måle-, deklarasjons-, arvings-, reskalerings- og fit-proveniens.",
+      "missing_link": "Det mangler et author-gated freeze som navngir én canonical physical a0, eksplisitt skiller den fra a0_eff og forbyr refitting eller alternativ arv i forbrukende pipelines.",
+      "falsifier": "Et eksplisitt autoritativt freeze-register, koblet til shared-konfigurasjonen og alle relevante testpakker, med alternativer merket non-canonical, ville falsifisere funnet om manglende repository-wide freeze.",
+      "measurement_chain": "Deklarert shared-konfigurasjon går til modell- og testforbrukere; SPARC/RAR-preregistreringen krever freeze før likelihood; separat atlas- og Lambda/C-rute introduserer alternative skalaer; fit-koden kan fortsatt optimere global a0.",
+      "confidence": 0.99,
+      "gate_applicability": {
+        "applicable": true,
+        "gate": "author_freeze",
+        "reason": "SPARC/RAR-testen er ikke gyldig før én fysisk a0 er author-frosset og a0_eff er separat merket."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "1.2e-10 er package-lokalt deklarert som frozen enkelte steder, men dette kan ikke løftes til repository-wide kanonisk status."
+    },
+    {
+      "claim_id": "A2",
+      "status": "partially_supported",
+      "evidence": "Nøytraltekst: \"Determine whether C=2.32 has an analytic derivation in the repository (cubic-lattice Green's function or Watson integral), or whether it appears only as a numerically converged fit.\" Primærkjeden er numerisk: docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json:2-5,8-36 definerer C=g_AQUAL/sqrt(a0*g_N), viser 2.443→2.354→2.320 ved N=21,31,41 og extrapolerer C_infinity=2.32; examples/prefactor_convergence.py:49,55-68 hardkoder den konvergerte visningsverdien; src/kill_tests.py:51-67 kaller C measured_value=2.32; QUICKSTART.md:53 og index.json:91-92 kaller den converged fra lattice refinement. Den faktiske målekoden i pipelines/efc/native_v2_graph/tests/kt2_C_convergence.py:28-30,47-60,72-89 løser AQUAL numerisk for N=21,31,41 og måler C i to geometriske vinduer, mens kernel/observables.py:57-68 beregner C som middelverdien av g/sqrt(a0*g_N). Et helt repository- og PDF-søk fant ingen selvstendig kubisk-lattice Green's-function- eller Watson-integral-utledning som gir 2.32. Treffene docs/validation-ledger/reviews/deleg_d21ed669/gap_filling_scaffold.json:27 og docs/validation-ledger/reviews/deleg_v3_rotated/README.md:17,56 omtaler nettopp en slik utledning som åpen/manglende; docs/validation-ledger/reviews/deleg_d21ed669/generative_synthesis.md:56,60 beskriver samme proveniensgap. Watson-treff i efc_inference/engine/water.py:18,31,34,66-75 gjelder vannkorrelasjonen, ikke gitterprefaktoren. Metadata i docs/papers/efc/ΛCDM_as_a_Special_Case_of_Energy-Flow_Cosmology/index.json:272, data/lcdm_special_case_data.json:92 og src/lcdm_special_case.py:624 kaller C structural; not fitted, men leverer ingen analytisk C-kjede og arver KT2-resultatet.",
+      "verified": "C=2.32 fremstår som en numerisk konvergert lattice-måling, ikke som en repository-levert analytisk Watson-/Green-funksjonsavledning. Ordet fit er derfor bare delvis presist: ingen statistisk chi-square-fit av C vises i primærkjeden; det er en simulert radial måling og konvergens-ekstrapolasjon.",
+      "missing_link": "Det mangler en uavhengig analytisk kjede fra kubisk gittertopologi, Green-funksjon eller Watson-integral til C=2.32, samt en eksplisitt avklaring av om C skal kalles målt konvergens eller statistisk fit.",
+      "falsifier": "En innsjekket, reproduserbar lukket utledning som beregner C=2.32 uten den numeriske konvergensserien eller empiriske a0/H0/Lambda-input, ville falsifisere numerical-only-vurderingen.",
+      "measurement_chain": "Valgt dimensjonsløs lattice-a0 og N-verdi går inn i AQUAL-solveren; radialprofil og Newton-akselerasjon beregnes; C måles som g_AQUAL/sqrt(a0*g_N); serien over N og cubic/spherical binning brukes til konvergensvurdering.",
+      "confidence": 0.97,
+      "gate_applicability": {
+        "applicable": true,
+        "gate": "analytic_provenance",
+        "reason": "C kan ikke oppgraderes fra numerisk konvergens til analytisk avledet konstant uten en selvstendig derivationskjede."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Konklusjonen gjelder repositoryets tilgjengelige tekst- og PDF-innhold; metadataetiketten structural; not fitted er en deklarasjon uten underliggende analytisk bevis."
+    }
+  ],
+  "human_gate_items": [
+    "Forfatteren må fryse én canonical physical a0 og merke a0_eff, cH0 og Lambda-avledede skalaer separat.",
+    "SPARC-fitresultatet må enten innsjekkes med provenance eller holdes eksplisitt som uprøvd fit-rute.",
+    "C=2.32 må omtales som numerisk konvergert måling inntil en selvstendig Watson-/Green-funksjonsutledning foreligger."
+  ],
+  "open_questions": [
+    "Hvilken fysisk størrelse skal være den autoritative a0 i RAR/SPARC-protokollen: 1.2e-10, 6.5e-10 eller base-a0 med separat a0_eff?",
+    "Vil det leveres en selvstendig analytisk utledning av C=2.32, eller skal metadataetiketten structural; not fitted endres til numerically converged measurement?",
+    "Skal det globale SPARC-fitsporet kjøres og lagres med reproduserbart miljø og konkret best_a0-resultat?"
+  ]
+}

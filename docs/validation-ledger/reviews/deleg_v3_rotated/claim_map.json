@@ -1,0 +1,86 @@
+{
+  "run_id": "deleg_v3_rotated",
+  "claim_map_version": "3.1-neutral",
+  "parent_run_id": "deleg_d21ed669",
+  "slug": "EFC_Model_Family_Reconciliation",
+  "round": "v3-rotated-gap-filling",
+  "neutrality_rule": "Each claim is a SINGLE-predicate proposition whose DIRECTION the reviewer must determine. Claims must NOT embed the orchestrator's conclusion ('not independent', 'contradicting', 'not a recovery', 'no derivation', 'disjoint vs overlapping'). If a claim still appears to embed a conclusion, the reviewer flags it (is_compound / leading) instead of confirming it.",
+  "note": "Claim map v3.1 — neutralized after the orchestrator detected that v3.0 carried its own synthesis conclusions into the blind round. D1 (five discriminators) is a TEST-DESIGN artifact, not an assessable claim; it lives in README.md, not here.",
+  "claims": [
+    {
+      "claim_id": "G1a",
+      "package": "gamma_kernel",
+      "asserted": "With f(q)=q/(1+q) and u=rho/rho_crit, the repository's Gamma_A and Gamma_C satisfy Gamma_C(u) = Gamma_A(sqrt(u)) = sqrt(u)/(1+sqrt(u))."
+    },
+    {
+      "claim_id": "G1b",
+      "package": "gamma_kernel",
+      "asserted": "The repository's Gamma_B satisfies Gamma_B(u) = sqrt(u) * Gamma_A(u) = u^(3/2)/(1+u)."
+    },
+    {
+      "claim_id": "G1c",
+      "package": "gamma_kernel",
+      "asserted": "The sources of the three Gamma forms specify a density/regime domain for each; classify those domains as disjoint or overlapping."
+    },
+    {
+      "claim_id": "G2a",
+      "package": "gamma_normalization",
+      "asserted": "The Bose-Einstein coordinate in the repository is x = sqrt(beta*rho/a0) with beta = 4*pi*G_N/3; state whether beta as implemented includes the reference length r_* mentioned in the source docstring, and compute the resulting x^2/u."
+    },
+    {
+      "claim_id": "G2b",
+      "package": "gamma_normalization",
+      "asserted": "For the identification sqrt(u) = x to hold, a specific condition on l_g must be satisfied; state that condition and whether the repository declares it."
+    },
+    {
+      "claim_id": "A1a",
+      "package": "a0_ladder",
+      "asserted": "Enumerate the acceleration-scale values associated with a0 present in the repository, each with its file:line origin (input, measurement, fit, declaration, or inheritance)."
+    },
+    {
+      "claim_id": "A1b",
+      "package": "a0_ladder",
+      "asserted": "State whether a single canonical physical a0 is frozen in the repository, or whether the enumerated values carry mixed provenance."
+    },
+    {
+      "claim_id": "A2",
+      "package": "a0_prefactor",
+      "asserted": "Determine whether C=2.32 has an analytic derivation in the repository (cubic-lattice Green's function or Watson integral), or whether it appears only as a numerically converged fit."
+    },
+    {
+      "claim_id": "A3",
+      "package": "a0_prefactor",
+      "asserted": "For the near-equal values 6.5e-10, C^2*1.2e-10, and cH0, assess whether their closeness reflects a shared ancestry (e.g., a declared a0 ~ c^2*sqrt(Lambda) relation) or independent determination."
+    },
+    {
+      "claim_id": "B1",
+      "package": "transport_bridge",
+      "asserted": "For the chain grid-action -> mode-response -> Bose-Einstein -> RAR, classify each transition as verified, declared, open_mapping, or contradicted."
+    },
+    {
+      "claim_id": "B2",
+      "package": "transport_bridge",
+      "asserted": "State whether the covariant EFT's classical correction and the galactic response mu_BE(g) have the same or opposite dependence on g, and whether mu_BE is derived from the action or postulated."
+    },
+    {
+      "claim_id": "B3",
+      "package": "transport_bridge",
+      "asserted": "State the units, sign, and functional form of (i) Gamma in box(phi)=Gamma(rho), (ii) dS/drho, and (iii) the per-mode rate; determine whether they are the same typed object."
+    },
+    {
+      "claim_id": "B4",
+      "package": "transport_bridge",
+      "asserted": "Determine whether the sqrt(g) exponent in E ~ sqrt(g) appears in the relativistic action as the same object, or whether the sqrt(-g) there is a metric determinant with a different role."
+    },
+    {
+      "claim_id": "L1",
+      "package": "paradigm_limit",
+      "asserted": "Classify the EFC->LCDM recovery claim as formal limit, phenomenological fit, or ontological interpretation; state whether an equal-footing likelihood has been executed, and report the f_sigma8 values."
+    },
+    {
+      "claim_id": "L2",
+      "package": "paradigm_limit",
+      "asserted": "Classify the EFC->MOND recovery claim as formal limit, phenomenological fit, or ontological interpretation; report the a0 values used by each paradigm."
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "role": "advocate",
+  "claims": [
+    {
+      "claim_id": "G1c",
+      "advocate_position": "The partially_supported status is too strict if 'domain' is read at the level stated by the claim: all three Gamma sources use the same positive density coordinate u = rho/rho_crit, and their low- and high-density descriptions are overlapping ranges, not disjoint intervals. The requested classification is therefore supportable as overlapping, even though the functions have different asymptotics. The reviewer imports a stronger, unasked requirement—an explicit u-to-cosmological-S/L0-L3 map and proof that the three forms are one physical measurand—before accepting the basic density-domain classification. The separate grid-action g-regimes are not one of the three Gamma(rho) sources.",
+      "strongest_evidence": "claim_map.json:21-23; docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:198-213 (Gamma_B and Gamma_A share rho_ratio); docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:224-238 (Gamma_C uses rho_over_rho_crit); docs/papers/efc/Derivation_of_the_Entropy_Production/data/entropy_production_data.json:67-79 (low/high-rho domains).",
+      "concession": "This establishes overlap only in the declared mathematical density coordinate. It does not supply u=f(S), a map to L0-L3, or a common physical normalization/measurand; Gamma_B's high-u growth and Gamma_C's saturation remain different, so no physical phase identification follows."
+    },
+    {
+      "claim_id": "G2a",
+      "advocate_position": "The status should be closer to supported for the source/code question. The documentation states beta = 4*pi*G_N*r*/3, while both executable paths set beta = 4*pi*G_N/3 without r*. With rho_crit = a0/(G_N*l_g), the implemented x^2/u ratio is determined exactly. Thus the claim's two requested outputs—whether the implementation includes r_* and what x^2/u becomes—are answered; the dimensional inconsistency is a qualification, not an unresolved result. The reviewer appropriately withholds a conclusion about physical intent, but that is beyond this neutral predicate.",
+      "strongest_evidence": "claim_map.json:26-28; docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:40,59-61,167-177; docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:54-58,169-175; role_01_dimensional.json:7-12 (executed x^2/u = 2.592073146526232e35 m^-1 for default l_g).",
+      "concession": "The sources do not establish the intended unit convention or physical validity: x is called dimensionless in the documentation, but the implemented SI beta omits the length and yields a dimensionful ratio. An undocumented normalization remains possible."
+    },
+    {
+      "claim_id": "G2b",
+      "advocate_position": "Calling this open overstates what the claim asks. The equality condition is algebraically fixed, and the code explicitly declares an independent default l_g; the direct answer is l_g = beta/G_N, or l_g = 4*pi*r*/3 under the documented beta, and the repository does not declare that relation. The unresolved issue is intended or canonical normalization, not the condition or the repository's declaration. The density-of-states classes also accept caller-supplied l_g, showing that the condition can be imposed externally even though it is not canonical.",
+      "strongest_evidence": "claim_map.json:31-33; docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:40,175-177; docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:54-58,106-110,218-222; role_01_dimensional.json:32-37 (condition derived and non-declaration read back).",
+      "concession": "No cited source assigns r_* or links it to l_g; the default Planck length is not tied to 4*pi*r*/3, and an externally supplied l_g is not evidence that sqrt(u)=x is the intended physical identity."
+    },
+    {
+      "claim_id": "A2",
+      "advocate_position": "The partially_supported label is too cautious for the provenance dichotomy. The repository contains a numerical convergence record and executable readback: C_cubic and C_sphere move to 2.320 and 2.321 at N=41, with a stored extrapolated C_infinity = 2.32. The KT2 code actually solves AQUAL, measures C in two geometries, and classifies the latest geometry difference as consistent. Therefore the determinate repository answer is numerically converged measurement/extrapolation, not an analytic Watson/Green derivation. Lack of a closed form or a rigorous N-to-infinity error model does not make that classification open; it only limits how strongly C can be described. The word fit must be qualified as numerical convergence, not a chi-square fit.",
+      "strongest_evidence": "claim_map.json:46-48; docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json:2-5,8-36; docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/examples/prefactor_convergence.py:3-6,34-44,47-68; pipelines/efc/native_v2_graph/tests/kt2_C_convergence.py:28-30,47-89,110-136; docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/MANIFEST.md:89-99.",
+      "concession": "No independent analytic Watson/Green chain or documented continuum-limit error model is present. The support is same-repository numerical convergence, not a closed-form fundamental constant or a statistical likelihood fit."
+    },
+    {
+      "claim_id": "A3",
+      "advocate_position": "The strongest permitted reading is shared ancestry rather than independent determination. The code explicitly constructs a0_eff = C^2*a0_base and, in the same parameter block, declares a0 proportional to c^2*sqrt(Lambda) with Lambda tied to H0; this directly explains the first near-equality and supplies a declared route toward the cH0 scale. The claim asks to assess ancestry, not to prove independent measurements or execute a likelihood, so treating missing independent provenance as blocking the ancestry assessment is mis-scoped. The defensible label is declared shared ancestry, not physical derivation.",
+      "strongest_evidence": "claim_map.json:51-53; efc_integration_test.py:41-57 (H0/cosmological definitions, C^2*a0_base, and the a0 proportionality declaration); schema/framework_atlas.jsonld:81-84 (6.5e-10 is explicitly flagged and unsealed); role_05_measurement.json:7-10 (readback of 6.45888e-10 and the separately derived cH0 comparison).",
+      "concession": "This supports declared/dependent ancestry only, not independent determination. The proportionality coefficient is unspecified, efc_integration_test.py:48 mixes SI H0 with c in km/s in Lambda_cosmo, cH0 is derived rather than observed, and the 6.5e-10 value is sealed:false; exact numerical equality and physical prediction remain open."
+    },
+    {
+      "claim_id": "B1",
+      "advocate_position": "The status is mis-scoped if it is applied beyond the chain named in claim_map. For the exact three transitions, the reviewer supplies a complete typed classification: grid-action to mode-response is verified under the stated Euler–Lagrange/WKB regime; mode-response to Bose–Einstein is declared because bosonic statistics and the thermal ensemble are assumptions; Bose–Einstein to RAR is verified as an algebraic substitution conditional on x = sqrt(g/a0). 'Declared' is one of the output classes requested by the claim, so a non-empirical assumption is not a failure to classify. The added RAR-to-covariant-EFT, action-to-action, Boltzmann, and likelihood gaps belong to a stronger bridge not asked for here.",
+      "strongest_evidence": "claim_map.json:56-58; role_07_covariant.json:7-11; docs/papers/efc/EFC_Gradient_Coupled_Grid_Action/EFC_Gradient_Coupled_Grid_Action.pdf:pp.80-109 (Euler–Lagrange/WKB dispersion and E proportional to sqrt(g)); docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/From_Grid_Microphysics_to_the_Radial_Acceleration.pdf:pp.64-95,159-163 (BE assumption, RAR substitution, and explicit no-full-QFT limitation).",
+      "concession": "BE is an input assumption, the RAR identity is conditional on the stated energy and a0 identification, and there is no empirical validation or covariant action-to-RAR derivation. If the intended chain includes the later covariant and observational nodes, the partial status is justified for that larger claim."
+    },
+    {
+      "claim_id": "B3",
+      "advocate_position": "The downgrade is too strict for the classification requested. The sources determine enough to say that the objects are not the same typed object: Gamma_box is a field-equation source in box(phi)=Gamma with an EFT form and a positive T^-1 scale; dS/drho is a negative entropy derivative; and |Gamma_per-mode| is a positive absolute-value coefficient with no d rho/dt, not a complete dynamical rate. The claim asks to state units, signs, forms, and typed identity—not to supply the missing phi-to-S or time normalization. Conditional units plus explicit underdetermination are a complete answer, and the missing identity map strengthens the 'not the same object' classification rather than leaving it open.",
+      "strongest_evidence": "claim_map.json:66-68; role_07_covariant.json:65-71; docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction.pdf:pp.19-33,104-108,386-398 (box(phi)=Gamma and Gamma_EFT units/sign/form); docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:68-73,121-145,149-184,198-213 (dn/drho, ds/dn, per-mode absolute value, and Gamma forms).",
+      "concession": "An exact SI unit for Gamma_box cannot be fixed without a declared phi unit; ds/drho is for the code's dimensionless per-mode entropy, the per-mode expression is an absolute value, and no d rho/dt is supplied. The beta/r_* inconsistency and absent phi-to-S map prevent a same-object proof."
+    },
+    {
+      "claim_id": "L1",
+      "advocate_position": "The requested classification and readback are effectively complete: the atlas labels LCDM as a limit_case, records EFC recovered by limit of LCDM at L0/L1, supplies the f_sigma8 values, and explicitly distinguishes a reduced same-data run from the unexecuted full native joint likelihood. The partial status conflates an open likelihood gate with inability to classify the recovery claim. The claim does not assert empirical recovery; it asks whether the relation is a formal limit, a fit, or an interpretation, whether the likelihood was executed, and what values are reported.",
+      "strongest_evidence": "claim_map.json:76-78; schema/framework_atlas.jsonld:15,66,89-90; docs/validation-ledger/data/atlas.json:1459-1473; tools/cobaya_bridge/results/run_2026_04_08_K0m2_reduced.json:10-13,45-47,89; docs/validation-ledger/index.md:17-20; docs/validation-ledger/data/ledger.json:2069-2078.",
+      "concession": "The formal-limit label is an atlas/framework declaration, not an equation-level reduction or equal-footing empirical recovery. The source reports 0.449 versus 0.452 in different places, the reduced minimize run is not a full native MCMC/likelihood, and no MOND L1 proxy is supplied."
+    },
+    {
+      "claim_id": "L2",
+      "advocate_position": "The classification is supported at the level the claim requests: the atlas labels MOND recovered_in_limit and records EFC recovered by limit of MOND in the deep-MOND L3 limit, while also reporting the a0 values. The preregistered RAR protocol explicitly says it is proposed and not executed, so the sources themselves distinguish a formal-limit classification from an empirical fit. The missing common fit and nuisance gate matter for promoting the relation to empirical recovery, not for answering the classification and value-reporting predicate.",
+      "strongest_evidence": "claim_map.json:81-83; schema/framework_atlas.jsonld:30,67,72,81-84; docs/validation-ledger/data/atlas.json:844-865,898-919; docs/validation-ledger/preregistrations/axis_e_sparc_rar.md:1-3,29-42,48-75.",
+      "concession": "No exact full mu(x) reduction or same-a0 mapping is established; EFC 6.5e-10 differs from MOND 1.2e-10 and is flagged unsealed, and the SPARC likelihood/holdout remains unexecuted with a0 and M/L author-gated. Bullet delta_kappa is a separate cluster observable, not a substitute for the RAR fit."
+    }
+  ],
+  "open_questions": [
+    "Does G1c's word 'regime' mean the shared positive-u density domain, or a cosmological S/L0-L3 phase mapping that the cited sources do not provide?",
+    "What canonical unit convention and r_* definition, if any, is intended for the G2a/G2b normalization?",
+    "Will C=2.32 receive an independent analytic or continuum-limit derivation with an explicit error model?",
+    "Can the declared a0 ancestry be made units-consistent and separated from independent determination and calibration?",
+    "Will the full native likelihood and action-to-observable bridges required for L1/L2/B1/B3 be executed without changing the frozen definitions?"
+  ]
+}

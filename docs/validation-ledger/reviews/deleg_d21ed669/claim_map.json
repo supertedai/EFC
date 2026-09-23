@@ -1,0 +1,20 @@
+{
+  "run_id": "deleg_d21ed669",
+  "slug": "EFC_Model_Family_Reconciliation",
+  "source": "snapshot.tex (frozen, sha256 d21ed6699cf0ed438ae3c687553889e676d7dc92e45acab43d459e9281575f15)",
+  "note": "Orchestrator-fixed claim set for the v2 adversarial review. The cartographer verifies completeness/topology; the meta-reviewer finalizes status. Each claim is a single asserted proposition.",
+  "claims": [
+    {"claim_id": "C1", "asserted": "The corpus contains three distinct realized forms of the effective response function: Gamma_A = rho/(rho+rho_crit), Gamma_B = rho^(3/2)/(rho+rho_crit), Gamma_C = sqrt(rho/rho_crit)/(1+sqrt(rho/rho_crit))."},
+    {"claim_id": "C2", "asserted": "The three Gamma forms do not form a linear maturation chain Gamma_A -> Gamma_B -> Gamma_C; they form a shape bifurcation with one declared-but-undemonstrated relation (B -> B+)."},
+    {"claim_id": "C3", "asserted": "Gamma_B carries a residual dimension sqrt([rho]) and is not used as a common normalized response until a source-supplied prefactor or reference scale is specified; this dimensional inconsistency is present in source package 31942821."},
+    {"claim_id": "C4", "asserted": "The B -> B+ relation is a declared companion upgrade with supersession status 'not established'."},
+    {"claim_id": "C5", "asserted": "The bifurcation is described by two separate model-family axes (E-exponent axis, Gamma-shape axis), both open selections."},
+    {"claim_id": "C6", "asserted": "The square root appears in two distinct roles (E-axis exponent E ~ sqrt(g) versus Gamma-axis density dependence sqrt(rho/rho_crit)) that must not be conflated."},
+    {"claim_id": "C7", "asserted": "KC1 is an explicit conditional falsification criterion: if robust bias-controlled galaxy data demonstrate the linear form mu(g)=1/(exp(g/a0)-1) and significantly exclude the sqrt(g) form at >=5 sigma, then E ~ sqrt(g) is falsified."},
+    {"claim_id": "C8", "asserted": "KC1 provenance gap: the >=5 sigma SPARC claim's Delta_chi2 and significance are null and 'no new fit performed'; the provenance of that exclusion remains open and author-gated."},
+    {"claim_id": "C9", "asserted": "Discriminator 1 (SPARC/RAR retrodiction) is proposed and not executed; a0 is not author-frozen (candidates 1.2e-10, 6.5e-10, a0_eff = C^2 a0)."},
+    {"claim_id": "C10", "asserted": "Discriminator 2 (GW/EM siren test dL^GW != dL^EM) is proposed and not executed; coupling parameters (alpha, phi0, phi(z)) are not frozen and the test is not EFC-specific until frozen."},
+    {"claim_id": "C11", "asserted": "No new fit is executed, no axis selection is made, and no independent validation of any package is claimed in this work."},
+    {"claim_id": "C12", "asserted": "Byte-for-byte reproducible PDF builds are an open workflow item, not an achieved property (pdfTeX embeds wall-clock timestamp and per-run trailer identifier); the current build has Overfull-hbox and float-placement warnings."}
+  ]
+}

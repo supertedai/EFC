@@ -1,0 +1,216 @@
+{
+  "run_id": "deleg_d21ed669",
+  "round": 3,
+  "role": "meta_reviewer",
+  "model": "gpt-5.6-luna",
+  "independence_caveat": "Same model family as the other reviewers; agreement is reading consistency, not independent validation.",
+  "dispositions": {
+    "F-alt-1": "accepted",
+    "F-alt-2": "accepted",
+    "F-alt-3": "accepted",
+    "F-alt-4": "accepted",
+    "F-alt-5": "accepted",
+    "F-alt-6": "accepted",
+    "F-cart-1": "accepted",
+    "F-cart-2": "accepted",
+    "F-cart-3": "accepted",
+    "F-cart-4": "accepted",
+    "F-cart-5": "accepted",
+    "F-cart-6": "accepted",
+    "F-cart-7": "accepted",
+    "F-cart-8": "accepted",
+    "F-fals-1": "author-gate",
+    "F-fals-2": "author-gate",
+    "F-fals-3": "accepted",
+    "F-fals-4": "accepted",
+    "F-fals-5": "accepted",
+    "F-form-1": "accepted",
+    "F-form-2": "accepted",
+    "F-form-3": "accepted",
+    "F-form-4": "accepted",
+    "F-form-5": "accepted",
+    "F-form-6": "accepted",
+    "F-form-7": "author-gate",
+    "F-mp-1": "accepted",
+    "F-mp-2": "accepted",
+    "F-mp-3": "accepted",
+    "F-mp-4": "accepted",
+    "F-mp-5": "accepted",
+    "F-mp-6": "accepted",
+    "F-para-1": "author-gate",
+    "F-para-2": "accepted",
+    "F-para-3": "accepted",
+    "F-para-4": "accepted",
+    "F-para-5": "accepted",
+    "F-para-6": "accepted",
+    "F-prov-1": "accepted",
+    "F-prov-2": "accepted",
+    "F-prov-3": "accepted",
+    "F-prov-4": "accepted",
+    "F-prov-5": "accepted",
+    "F-prov-6": "author-gate",
+    "F-prov-7": "accepted",
+    "F-rep-1": "accepted",
+    "F-rep-2": "accepted",
+    "F-rep-3": "accepted",
+    "F-rep-4": "accepted",
+    "F-rep-5": "accepted",
+    "F-rep-6": "accepted"
+  },
+  "claim_status": {
+    "C1": "proposed",
+    "C2": "proposed",
+    "C3": "proposed",
+    "C4": "proposed",
+    "C5": "proposed",
+    "C6": "proposed",
+    "C7": "proposed",
+    "C8": "proposed",
+    "C9": "proposed",
+    "C10": "proposed",
+    "C11": "proposed",
+    "C12": "proposed"
+  },
+  "findings": [
+    {
+      "finding_id": "F-meta-1",
+      "claim_id": "C3",
+      "reviewer_role": "meta_reviewer",
+      "evidence_layer": "DERIVED",
+      "finding": "Gamma is not demonstrated to be one common physical object across packages: the signed dS/drho derivative, the positive per-mode magnitude/rate, the relativistic Box-phi source term, and the undemonstrated grid-action Gamma are not linked by a shared normalization or sign convention, which is deeper than the Gamma_B residual-unit point.",
+      "severity": "critical",
+      "type": "formal",
+      "supports_or_attacks": "neutral",
+      "source": "snapshot.tex; entropy_production.py; entropy_production_data.json; relativistic index.json; grid-action index.json",
+      "source_location": "snapshot.tex:127-143; entropy_production.py:68-73,198-213,280-291; entropy_production_data.json:33-34,56-58; relativistic index.json:37-43,169-176,209-212; grid-action index.json:29-72",
+      "testable": true,
+      "test": "Provide one typed map from dS/drho to the Box-phi source and the grid-action Gamma, including sign, units, normalization, and the independent observable for each use.",
+      "confidence": 0.99,
+      "reasoning": "The snapshot explicitly leaves cross-object identification author-gated at line 143; the round-2 attacker correctly identifies this as a type/sign/normalization problem that cannot be repaired by the Gamma_B dimensional observation alone.",
+      "required_text_change": null,
+      "atlas_field": "coupling",
+      "proposed_status": null,
+      "method_revision": "v2",
+      "disposition": "author-gate"
+    },
+    {
+      "finding_id": "F-meta-2",
+      "claim_id": "C7",
+      "reviewer_role": "meta_reviewer",
+      "evidence_layer": "NORMATIVE",
+      "finding": "KC1 is a genuine conditional falsifier but not an operational or evidential gate: its predicates, likelihood/pooling/covariance rules, and exact sigma decision are unspecified, while the >=5-sigma SPARC provenance remains null, no-fit, and author-gated.",
+      "severity": "high",
+      "type": "empirical",
+      "supports_or_attacks": "neutral",
+      "source": "EFC_Gradient_Coupled_Grid_Action/index.json; snapshot.tex; form_status_register.json",
+      "source_location": "index.json:74-88,102-107; snapshot.tex:183-192; form_status_register.json:67-74",
+      "testable": true,
+      "test": "Before data access, freeze sample strata, a0, nuisance treatment, likelihood, statistic, one-sided >=5-sigma conversion, covariance/multiple-testing rule, and blinded holdout, then resolve whether the source PDF language is external or executed.",
+      "confidence": 0.98,
+      "reasoning": "F-fals-1/F-fals-2 and F-prov-3 agree on the distinction between genuine conditional logic and absent operational/provenance closure; the null fields control current status over the PDF's unverified prose.",
+      "required_text_change": null,
+      "atlas_field": "measure",
+      "proposed_status": null,
+      "method_revision": "v2",
+      "disposition": "author-gate"
+    },
+    {
+      "finding_id": "F-meta-3",
+      "claim_id": "C5",
+      "reviewer_role": "meta_reviewer",
+      "evidence_layer": "TARGET",
+      "finding": "The two model-family axes are a descriptive taxonomy rather than two empirically independent selections: only the E-axis has a proposed discriminator, while the Gamma-shape axis has no Gamma-to-observable forward map or discriminator.",
+      "severity": "high",
+      "type": "empirical",
+      "supports_or_attacks": "neutral",
+      "source": "snapshot.tex; axis_e_sparc_rar.md; axis_dl_gw_em.md",
+      "source_location": "snapshot.tex:157-180,208-211; axis_e_sparc_rar.md:29-42,98-102; axis_dl_gw_em.md:93-97",
+      "testable": true,
+      "test": "Register a matched-g, varied-rho raw-kinematics protocol with a declared Gamma-to-observable map, normalization, density strata, likelihood, holdout, and kill threshold.",
+      "confidence": 0.99,
+      "reasoning": "F-alt-2/F-alt-3, F-cart-3, F-fals-5, and F-mp-5 converge on the same scope boundary; the algebraic separation of square-root roles does not establish separable empirical identifiability.",
+      "required_text_change": null,
+      "atlas_field": "measure",
+      "proposed_status": null,
+      "method_revision": "v2",
+      "disposition": "accepted"
+    },
+    {
+      "finding_id": "F-meta-4",
+      "claim_id": "C10",
+      "reviewer_role": "meta_reviewer",
+      "evidence_layer": "PARADIGM",
+      "finding": "Freezing siren parameters would not make dL^GW/dL^EM uniquely EFC-discriminating: the invariant F(phi_0)/F(phi(z)) history must be fixed under a declared field normalization and compared with GR systematics and rival friction models.",
+      "severity": "high",
+      "type": "paradigm",
+      "supports_or_attacks": "attacks",
+      "source": "snapshot.tex; axis_dl_gw_em.md; relativistic index.json",
+      "source_location": "snapshot.tex:215; axis_dl_gw_em.md:14-33,85-97; relativistic index.json:152-156,288-301",
+      "testable": true,
+      "test": "Freeze the invariant F(z)/F(0) trajectory and compare the same siren likelihood against GR with systematics and at least one generic running-Planck-mass/scalar-tensor friction model.",
+      "confidence": 0.98,
+      "reasoning": "F-para-4, F-alt-5/F-alt-6, F-form-6/F-form-7, and F-mp-4 converge that a non-unit ratio is a class-level propagation observable and that separate alpha/phi coordinates are not themselves invariant without normalization.",
+      "required_text_change": null,
+      "atlas_field": "maale_paradigme",
+      "proposed_status": null,
+      "method_revision": "v2",
+      "disposition": "accepted"
+    }
+  ],
+  "gate_applicability": {
+    "source": "docs/validation-ledger/gates.json:41-66 (gates 6,9) and :5-11 (gate 1)",
+    "interpretation": "Adjudicated against the claim text as stated, not against whether a future test has already run; gates.json does not make a proposed or unexecuted test automatically not_applicable.",
+    "gate_6_measurement_chain": {
+      "C7": {
+        "applicability": "applies",
+        "not_applicable": false
+      },
+      "C8": {
+        "applicability": "not_applicable",
+        "not_applicable": true
+      },
+      "C9": {
+        "applicability": "applies",
+        "not_applicable": false
+      },
+      "C10": {
+        "applicability": "applies",
+        "not_applicable": false
+      }
+    },
+    "gate_9_discrimination_falsification": {
+      "C7": {
+        "applicability": "applies",
+        "not_applicable": false
+      },
+      "C8": {
+        "applicability": "not_applicable",
+        "not_applicable": true
+      },
+      "C9": {
+        "applicability": "applies",
+        "not_applicable": false
+      },
+      "C10": {
+        "applicability": "applies",
+        "not_applicable": false
+      }
+    },
+    "gate_1_claim_identity": {
+      "finding_ids": [
+        "F-cart-1",
+        "F-cart-2",
+        "F-cart-3",
+        "F-cart-4",
+        "F-cart-5",
+        "F-cart-6",
+        "F-cart-7",
+        "F-cart-8"
+      ],
+      "applicability": "applies",
+      "not_applicable": false,
+      "satisfied_as_is": false,
+      "adjudication": "claims are compound/incomplete across C1-C12, so gate 1 is not honestly satisfied as-is; required_action: atomize before satisfaction."
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "role": "Asymptotic/form analyst",
+  "claims": [
+    {
+      "claim_id": "G1a",
+      "status": "supported",
+      "evidence": "entropy_production.py:209-213 definerer Gamma_A som Gamma_0*u/(1+u), mens density_of_states.py:224-230 definerer Gamma_C som Gamma_0*sqrt(u)/(1+sqrt(u)). Dermed er Gamma_A(sqrt(u)) = Gamma_0*sqrt(u)/(1+sqrt(u)) = Gamma_C(u) identisk. Ved u->0 er Gamma_A ~ Gamma_0*u og Gamma_C ~ Gamma_0*sqrt(u); ved u->infinity går begge mot Gamma_0, altså mot 1 for normalisert Gamma_0=1.",
+      "verified": "Yes; algebraically exact for the normalized forms, with the same Gamma_0 prefactor.",
+      "missing_link": "Ingen for den normaliserte funksjonsidentiteten. En eksplisitt felles Gamma_0 må bare antas ved sammenligning av de unnormaliserte fysiske størrelsene.",
+      "falsifier": "Et positivt u der Gamma_C(u) != Gamma_A(sqrt(u)), eller kildekode som gir ulik prefaktor eller annen eksponent/nevner, ville falsifisere identiteten.",
+      "measurement_chain": "Les de deklarerte kodeformene, behold felles Gamma_0, sett q=sqrt(u), og verifiser algebraisk at q/(1+q) blir sqrt(u)/(1+sqrt(u)); kontroller grensene separat.",
+      "confidence": 0.99,
+      "gate_applicability": {
+        "form_identity_gate": "applicable",
+        "low_high_u_limit_gate": "applicable",
+        "empirical_gate": "not_applicable",
+        "reason": "Dette er en deterministisk form- og asymptotikkontroll uten observasjonsdata eller fit."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Lav for algebraen; eneste forbehold gjelder om Gamma_0 skal bindes identisk mellom pakkene."
+    },
+    {
+      "claim_id": "G1b",
+      "status": "supported",
+      "evidence": "entropy_production.py:198-207 definerer Gamma_B som Gamma_0*u**1.5/(1+u), og :209-213 definerer Gamma_A som Gamma_0*u/(1+u). Derfor er sqrt(u)*Gamma_A(u) = Gamma_0*u^(3/2)/(1+u) = Gamma_B(u) eksakt. Ved u->0 er Gamma_B ~ Gamma_0*u^(3/2). Ved u->infinity er Gamma_B/sqrt(u) = Gamma_0*u/(1+u) -> Gamma_0, slik at Gamma_B ~ Gamma_0*sqrt(u) og divergerer for Gamma_0>0; den metter ikke.",
+      "verified": "Yes; algebraically exact in the dimensionless u representation.",
+      "missing_link": "Ingen for identiteten i u. Kilden forsoner ikke eksplisitt den viste rho^(3/2)/(rho+rho_crit)-formen med dimensjonene til Gamma_0, men dette endrer ikke den eksakte dimensjonsløse algebraen.",
+      "falsifier": "Et positivt u der Gamma_B(u) != sqrt(u)*Gamma_A(u), eller en kildeimplementasjon med metning ved høy u, ville falsifisere påstanden.",
+      "measurement_chain": "Les gamma_total og gamma_phenomenological, faktoriser u^(3/2)/(1+u) som sqrt(u)*[u/(1+u)], og beregn lav- og høy-u-grensene; høy-u-ratioen Gamma_B/sqrt(u) konvergerer til Gamma_0.",
+      "confidence": 0.99,
+      "gate_applicability": {
+        "form_identity_gate": "applicable",
+        "low_high_u_limit_gate": "applicable",
+        "empirical_gate": "not_applicable",
+        "reason": "Påstanden avgjøres av deklarerte funksjonsformer og deres asymptotikk, ikke av måledata."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Lav for identiteten og divergensen; moderat bare for fysisk normalisering av Gamma_0 i den dimensjonale rho-notasjonen."
+    }
+  ],
+  "human_gate_items": [],
+  "open_questions": [
+    "Om Gamma_0 skal være eksplisitt bundet identisk mellom DOI-pakkene er ikke vist, men dette er et normaliseringsspørsmål og ikke et moteksempel mot de oppgitte normaliserte identitetene."
+  ]
+}

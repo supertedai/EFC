@@ -1,0 +1,19 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "round1_tainted_abort",
+  "tainted_delegation_id": "deleg_133ffff5",
+  "superseded_by": "deleg_d063f3c0",
+  "reason_for_abort": "v3.0 claim_map carried orchestrator's own conclusions into a 'blind' round (leading claims: 'overlapping not disjoint', 'not independent because', 'contradicting', 'not a recovery'). A blind reviewer confirming an embedded conclusion confirms the reasoning, not the fact — echo chamber, not a test. Re-dispatched as neutral v3.1 (deleg_d063f3c0) with is_leading flag.",
+  "outcome": {
+    "total_tasks": 8,
+    "interrupted": 7,
+    "completed_before_abort": 1,
+    "usable_outputs": 1,
+    "usable_detail": "Role 2 (Asymptotic/form analyst): G1a and G1b both 'supported', is_compound=false, gate_applicability compound_predicate_gate='not_compound'. Corroborates orchestrator's own independent algebra verification: Gamma_C(u)=Gamma_A(sqrt(u)) and Gamma_B(u)=sqrt(u)*Gamma_A(u) exactly; A/C saturate, B diverges as sqrt(u).",
+    "caveat": "Role 2 read the tainted v3.0 claim text, but G1a/G1b were near-neutral and equivalent across versions, so the algebraic result transfers; the clean round will re-affirm it independently.",
+    "provenance_gap_raised": "Source files never literally use the Gamma_A/Gamma_B/Gamma_C aliases (they are gamma_phenomenological, gamma_total/scenario_b, gamma_derived/scenario_b_plus); canonical naming/status should be frozen."
+  },
+  "disposition": "This batch is DISCARDED. Its interrupted transcripts (task-0, task-2..task-7) are dead and must NOT be re-authored into findings. The single usable datum (Role 2) is corroboration of the algebra layer only, NOT new evidence, and does NOT enter the verdict or claim-gate matrix. The matrix and verdict for v3 must be built EXCLUSIVELY from deleg_d063f3c0 (neutral round)."
+}

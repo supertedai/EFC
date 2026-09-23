@@ -1,0 +1,47 @@
+{
+  "role": "measurement-theory reviewer",
+  "claims": [
+    {
+      "claim_id": "A3",
+      "status": "partially_supported",
+      "evidence": "`/home/morten/EFC-prov/docs/validation-ledger/reviews/deleg_v3_rotated/claim_map.json:53` er lest som nøytral formulering uten innebygd konklusjon. `/home/morten/EFC-prov/efc_integration_test.py:52-59` setter `a0_base=1.2e-10`, beregner `a0_eff=C_prefactor**2*a0_base`, og erklærer `a0 ∝ c²√Λ` samt `Λ=3H₀²/c²`; med de deklarerte konstantene gir dette `C²·1.2e-10 = 6.45888e-10 m/s²`, mens en separat aritmetisk avledning fra `c_light` og `H0_planck` gir `cH0 = 6.543917e-10 m/s²`. `/home/morten/EFC-prov/schema/framework_atlas.jsonld:72,81-84` og `/home/morten/EFC-prov/docs/validation-ledger/data/atlas.json:844-847,898-901,916-919` viser henholdsvis EFC–MOND `a0`-divergens/flagging og ulike mekanismeetiketter. Evidensen støtter derfor deklarert felles arv for `6.5e-10` og `C²·1.2e-10`, samt en deklarert men ufullstendig kobling til `cH0`; uavhengig bestemmelse er ikke dokumentert.",
+      "verified": "Kildeinnholdet er lest tilbake med angitte fil:linje-referanser; de tre JSON-filene parserer, og `python3 -m py_compile efc_integration_test.py` passerer. Runtime-import av integrasjonstesten ble blokkert av `ModuleNotFoundError: No module named 'numpy'`, så beregningen over er statisk aritmetikk på kildekodens deklarasjoner, ikke en kjørt empirisk analyse.",
+      "missing_link": "Det mangler en eksplisitt, unitskonsistent likning med normaliseringskonstant som kobler `a0_eff`/`6.5e-10` til `cH0`; en uavhengig instrumentell/rådata-bestemmelse av `a0`; sporbar proveniens for `C=2.32`; og en a0-spesifikk likelihood/holdout som skiller prediksjon fra kalibrering. I tillegg bruker `/home/morten/EFC-prov/efc_integration_test.py:48` SI-konvertert `H0` sammen med `c_light` i km/s under etiketten `Λ in m⁻²`, en enhetslekkasje som må avklares før `c²√Λ` kan brukes numerisk.",
+      "falsifier": "En kanonisk provenance-/rådatarekord som viser at `6.5e-10`, `C` og `a0_base` ble bestemt i separate, blinde pipelines uten å bruke hverandre eller `H0/Λ`, eller en unitskonsistent source-level derivation som avviser den deklarerte `a0 ∝ c²√Λ`-koblingen, ville undergrave shared-ancestry-lesningen. Den avgjørende testen er en forhåndsdefinert, separat `a0`-bestemmelse med eksplisitt normalisering og kalibreringskontroll.",
+      "measurement_chain": "Koordinat `a0_scale` i L3 (`/home/morten/EFC-prov/docs/validation-ledger/data/atlas.json:620-622`) → measurand akselerasjonsterskelen `a0` [m/s²] → instrument ikke identifisert; `H0_planck` og `c_light` er kodeinput (`/home/morten/EFC-prov/efc_integration_test.py:41,46-48`) → proxy delvis deklarert: RAR-noden peker på `grid_AQUAL_emergent_a0_eff` (`atlas.json:844-847`), mens vekstkoden bruker `C_prefactor**2` som `boost_max` (`efc_integration_test.py:121-123,179-186`) og omtaler `a0_eff` som overgangsskala (`:152-159`) uten å bruke variabelen i `G_eff_ratio` → nuisance: arvet MOND-baseline, C-normalisering, H0/Λ/ΩΛ, overdensitet og interpolasjonsvalg → likelihood: ingen a0-spesifikk likelihood; bare fσ8-kompilasjon/modellsammenligning (`efc_integration_test.py:347-372`) → calibration leakage: materiell, fordi `a0_eff` eksplisitt bygges som `C²·a0_base` og `6.5e-10` står som `flag`/`sealed:false` (`framework_atlas.jsonld:84`).",
+      "confidence": 0.86,
+      "gate_applicability": {
+        "applicable": true,
+        "gate": "measurement_chain_and_calibration_leakage",
+        "coordinate": "a0_scale/L3",
+        "measurand": "a0 [m/s^2]",
+        "instrument": "not_identified",
+        "proxy": "partial",
+        "nuisance": [
+          "C_prefactor provenance",
+          "H0/Lambda normalization",
+          "overdensity and interpolation",
+          "MOND-baseline inheritance"
+        ],
+        "likelihood": "no_a0_specific_likelihood_in_supplied_files",
+        "calibration_leakage": "material",
+        "same_model_family": true,
+        "reason": "Porten gjelder proveniens og målekjede, ikke empirisk validering av EFC; alle tre sporene i dette materialet er interne EFC/Graph-AQUAL-deklarasjoner eller avledninger."
+      },
+      "is_compound": false,
+      "is_leading": false,
+      "uncertainty": "Same-model-family-forbeholdet er avgjørende: `cH0` er avledet fra en Planck-baseline og er ikke en uavhengig observasjon i disse filene. Koeffisienten i `a0 ∝ c²√Λ` er ikke oppgitt, `cH0` finnes ikke som eksplisitt lagret verdi, og enhetslekkasjen i `Lambda_cosmo` gjør eksakt numerisk identifikasjon usikker."
+    }
+  ],
+  "human_gate_items": [
+    "Frys om `a0 ∝ c²√Λ` er en derivert likning eller bare en kommentar; oppgi normaliseringskonstant og enhetskonvensjon.",
+    "Krev separat proveniens for `C=2.32`, `a0_base`, `6.5e-10` og `cH0`, med instrument/data, tidspunkt og eventuell forhåndsregistrering.",
+    "Avklar hvorfor `a0_eff` lagres og kommenteres, men ikke mates inn som numerisk parameter i `G_eff_ratio`; korriger også `Lambda_cosmo`-enheten før runtime-testen brukes som støtte."
+  ],
+  "open_questions": [
+    "Er `6.5e-10` en målt/fittet verdi, eller bare en ikke-forseglet flagg-/kommentarverdi?",
+    "Hva er den eksplisitte normaliseringskonstanten i `a0 = κ c²√Λ`, og reproduserer den tallet med enhetskonsistent `Λ`?",
+    "Er `C=2.32` bestemt uavhengig av MOND-baselinen `1.2e-10`, eller er `C²·a0_base` selve konstruksjonen av EFC-skalaen?",
+    "Finnes det en a0-spesifikk likelihood, holdout eller instrumentkalibrering utenfor de tre oppgitte evidensfilene?"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "role": "round_2_attacker",
+  "targets": [
+    {
+      "target_id": "G2a_G2b_dimensional_normalization",
+      "attack": "The executed Bose-Einstein coordinate is not dimensionless in the stated SI convention. The docstring specifies beta = 4*pi*G_N*r*/3, but the implementation sets beta = 4*pi*G_N/3 and independently uses l_g = L_PLANCK. With u = rho/rho_crit and rho_crit = a0/(G_N*l_g), the code therefore gives x^2/u = 4*pi/(3*l_g) = 2.592073146526232e35 m^-1, not 1. The identification sqrt(u) = x consequently fails unless an unstated normalization is introduced; imposing it numerically would require l_g = 4*pi/3 = 4.1887902047863905 m, while the code declares a Planck length. Any Gamma_A/Gamma_C reparameterization relying on this identity is ungrounded until r_* and the l_g normalization are explicitly mapped.",
+      "evidence": "docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:40,59-61,167-177; docs/papers/efc/Density_of_States_of_Gravitationally/src/density_of_states.py:30,54-58,169-175; docs/validation-ledger/reviews/deleg_v3_rotated/role_01_dimensional.json:7-12,30-37.",
+      "severity": "critical"
+    },
+    {
+      "target_id": "A3_a0_calibration_independence",
+      "attack": "The near-equality of 6.5e-10, C^2*1.2e-10, and cH0 is a provenance loop, not an independent determination. a0_eff is explicitly constructed as C_prefactor^2*a0_base; cH0 is derived from the declared Planck H0 and c inputs; and 6.5e-10 is an atlas flag with sealed=false, not a locked measurement. C=2.32 is supported only by the finite numerical sequence 2.443 -> 2.354 -> 2.320 and an extrapolated limit, with no Watson-integral or Green-function derivation and no documented continuum-limit error model. Thus any orchestrator synthesis presenting an independent a0 bridge or an EFC-derived closure is overstated; the defensible reading is shared declared ancestry plus an unresolved calibration problem. The orchestrator's own correction record acknowledges that a0~cH0 is inheritance rather than an EFC finding.",
+      "evidence": "efc_integration_test.py:41,46-59; docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/data/convergence_table.json:9-36; docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/MANIFEST.md:97-99; schema/framework_atlas.jsonld:72,81-84; docs/validation-ledger/reviews/deleg_v3_rotated/role_05_measurement.json:7-11,33-45; docs/validation-ledger/reviews/deleg_v3_rotated/role_08_reproducer.json:33-58; docs/validation-ledger/reviews/deleg_v3_rotated/README.md:107-111.",
+      "severity": "high"
+    },
+    {
+      "target_id": "B2_covariant_EFT_sign_trend",
+      "attack": "The purported covariant-to-galactic bridge fails at the response trend, not merely at a missing coefficient. The covariant classical correction is proportional to a positive term linear and increasing in g, whereas the proposed mu_BE(g) decreases with g and tends to zero at high acceleration. The source explicitly says that mu_BE is adopted as an effective relation and is not derived from the classical action. Therefore the action does not derive the galactic response; it postulates it after the classical limit gives the opposite trend. Treating the sequence of code packages as physical unification is overstated: the source supports, at most, a local grid calculation followed by a declared BE ansatz and an unmapped covariant branch. The orchestrator's self-correction that code structure is not discovered physical unification is the only defensible narrowing.",
+      "evidence": "docs/papers/efc/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints/Covariant_EFT_for_Entropy_Driven_Gravitational_Modification_Construction_Constraints_and_an_Identified_Microphysical_Gap.pdf:239-259; docs/papers/efc/From_Grid_Microphysics_to_the_Radial_Acceleration/src/grid_microphysics.py:50-52,94-119; docs/validation-ledger/reviews/deleg_v3_rotated/role_07_covariant.json:5-10,38-44; docs/validation-ledger/reviews/deleg_v3_rotated/README.md:107-111.",
+      "severity": "critical"
+    },
+    {
+      "target_id": "B1_B2_B3_gate1_compoundness",
+      "attack": "B1, B2, and B3 fail gate 1 as written because they are compound propositions, not atomic claims. B1 asks for classifications of several separate transitions; B2 combines the g-trend question with the derivation-versus-postulate question; B3 combines units, signs, functional forms, and typed-object identity for three different quantities. Role 7 marks all three is_compound=true. A single synthesis status for any of them cannot identify which subclaim was established or failed, so it cannot satisfy the gate-1 requirement for one claim_id, one asserted proposition, and one source location. Any orchestration that treats these bundles as one coherent bridge also risks converting code adjacency into physical unification. They must be atomized before any disposition can be meaningful.",
+      "evidence": "docs/validation-ledger/gates.json:6-10; docs/validation-ledger/reviews/deleg_v3_rotated/claim_map.json:56-68; docs/validation-ledger/reviews/deleg_v3_rotated/role_07_covariant.json:5-6,33-35,38-40,60-62,65-68,87-89.",
+      "severity": "high"
+    },
+    {
+      "target_id": "unit_errors_cosmology_lambda",
+      "attack": "The two unit defects are numerically material. In the mond block, 3.8e-3 (km/s)^2/kpc converts to 1.2314961299888588e-16 m/s^2, whereas the adjacent a0 value is 1.2e-10 m/s^2; the stored value is smaller by a factor of 974424.4994, and the equivalent value would be about 3702.8131 (km/s)^2/kpc. Separately, efc_integration_test.py converts H0 to s^-1 but divides by c_light declared in km/s while labeling Lambda_cosmo as m^-2. With the declared inputs this yields 1.08885647762436e-46 instead of 1.08885647762436e-52, a factor of 1,000,000. Even if Lambda_cosmo is currently unused downstream, it is invalid evidence for the a0 bridge; any consumer would inherit the wrong scale.",
+      "evidence": "shared/configs/cosmology.yaml:16-18; efc_integration_test.py:41,46-48; docs/papers/efc/Discrete_Entropic_Gravity_on_a_Cubic_Graph_Emergent_Newton_and_MOND_Regimes_with_Λ-Locked_Screening/src/lambda_screening.py:21-23,45-63; docs/validation-ledger/reviews/deleg_v3_rotated/role_05_measurement.json:7-11,33-39; docs/validation-ledger/reviews/deleg_v3_rotated/role_08_reproducer.json:33-44.",
+      "severity": "critical"
+    }
+  ],
+  "open_questions": [
+    "What authoritative SI definition of r_* and l_g makes x and u comparable in the executed path?",
+    "Can a blinded, independently calibrated a0 determination be produced without C, a0_base, H0, or Lambda as inputs?",
+    "What single covariant action and typed normalization derive the decreasing mu_BE(g) rather than postulating it?",
+    "Will B1, B2, and B3 be split into atomic claims before gate evaluation?",
+    "Are the erroneous cosmology.yaml and Lambda_cosmo values consumed by live pipelines, and if so which outputs must be recomputed?"
+  ]
+}

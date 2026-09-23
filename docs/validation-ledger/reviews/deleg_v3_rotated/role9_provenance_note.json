@@ -1,0 +1,10 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "role9_provenance_note",
+  "delegation_id": "deleg_6d9c560b",
+  "note": "Rolle 9 (meta-synthesizer) var DELVIS SEEDET. Prompten bar 12 'etablerte fysiske vurderinger' som rolle 9 skulle bevare (G1a/G1b algebra, C=2.32 numerisk, a0 blandet proveniens, kovariant EFT-trendbrudd, etc.). Disse var etablert pa tvers av v2 + generativ + v3 runde 1/2. Rolle 9s bekreftelse av DISSE spesifikke punktene er derfor seedet korroborasjon, ikke en frisk uavhengig test.",
+  "what_was_genuinely_independent": "Rolle 9s egne vurderinger som IKKE var seedet: (1) gate-matrisen per claim (45/63/42 normalisert over gates 1-10), (2) is_compound-bedommelsene utvidet til G2a/G2b/A1a/L1/L2 (ikke bare B1/B2/B3), (3) pakke-topologien med accept/reject/revise per kant — inkludert avvisning av orkestrator-syntesens 'uavhengig a0-bro' og 'kode-struktur som fysisk forening', (4) atomiserings-anbefalingene (v3.2 sub-claims), (5) F-prov-7 som v3.2-claim, (6) artefakt-rutingen (forfatter/math vs review closure).",
+  "disposition": "role_09_meta.json er reviewer-disposisjonen (ikke orkestrator-verdict). Den er persistert ved JSON-parsing av subagent-summary-filen (semantisk bevart, ikke byte-verbatim fra en ra-transkript som ikke eksisterer som ett filobjekt). claim_gate_matrix_v3.json er en MEKANISK projeksjon av rolle 9s per-claim gate_matrix — ikke orkestrator-forfattet. gate_10 'satisfied' pa et claim er IKKE release-godkjenning; human gate forblir fail-closed."
+}

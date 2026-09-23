@@ -1,0 +1,266 @@
+{
+  "run_id": "deleg_v3_rotated",
+  "source": "role_09_meta.json (role 9 gate_matrix per claim, verbatim)",
+  "note": "Built EXCLUSIVELY from role-9 reviewer output. NOT orchestrator synthesis.",
+  "gate_vocabulary": [
+    "gate_1_claim_identity",
+    "gate_2_provenance",
+    "gate_3_formal_validity",
+    "gate_4_model_relative_validity",
+    "gate_5_paradigm_declaration",
+    "gate_6_measurement_chain",
+    "gate_7_proxy_bias_audit",
+    "gate_8_regime_phase_domain",
+    "gate_9_discrimination_falsification",
+    "gate_10_reproduction_synthesis_human_gate"
+  ],
+  "cell_counts": {
+    "satisfied": 45,
+    "open": 63,
+    "not_applicable": 42,
+    "missing": 0
+  },
+  "total_cells": 150,
+  "claims": {
+    "G1a": {
+      "status": "supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "open",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      }
+    },
+    "G1b": {
+      "status": "supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "open",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      }
+    },
+    "G1c": {
+      "status": "partially_supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "G2a": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "G2b": {
+      "status": "open",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "A1a": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "not_applicable",
+        "gate_4_model_relative_validity": "not_applicable",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "A1b": {
+      "status": "supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "not_applicable",
+        "gate_4_model_relative_validity": "not_applicable",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "not_applicable",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "A2": {
+      "status": "supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "satisfied",
+        "gate_5_paradigm_declaration": "not_applicable",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      }
+    },
+    "A3": {
+      "status": "partially_supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "B1": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "B2": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "B3": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "open",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "B4": {
+      "status": "supported",
+      "is_compound": false,
+      "gates": {
+        "gate_1_claim_identity": "satisfied",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "satisfied",
+        "gate_4_model_relative_validity": "satisfied",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "not_applicable",
+        "gate_7_proxy_bias_audit": "not_applicable",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "not_applicable",
+        "gate_10_reproduction_synthesis_human_gate": "satisfied"
+      }
+    },
+    "L1": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    },
+    "L2": {
+      "status": "partially_supported",
+      "is_compound": true,
+      "gates": {
+        "gate_1_claim_identity": "open",
+        "gate_2_provenance": "satisfied",
+        "gate_3_formal_validity": "open",
+        "gate_4_model_relative_validity": "open",
+        "gate_5_paradigm_declaration": "satisfied",
+        "gate_6_measurement_chain": "open",
+        "gate_7_proxy_bias_audit": "open",
+        "gate_8_regime_phase_domain": "satisfied",
+        "gate_9_discrimination_falsification": "open",
+        "gate_10_reproduction_synthesis_human_gate": "open"
+      }
+    }
+  }
+}

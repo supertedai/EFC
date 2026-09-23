@@ -1,0 +1,28 @@
+{
+  "artifact_type": "orchestrator_navigation_metadata",
+  "not_reviewer_output": true,
+  "run_id": "deleg_v3_rotated",
+  "event": "c_symbol_collision",
+  "status": "OPEN — solver-discrepancy hypothesis FALSIFIED by direct reproduction; the two-value C collision remains unresolved, re-scoped to parameter-provenance / stale-entry",
+  "reproduction": {
+    "method": "ran solve_aqual (modular, pipelines/efc/native_v2_graph/kernel/solver.py) and solve_discrete_aqual (standalone, src/efc/solver/grid_aqual_killtests.py) side-by-side at matched parameters",
+    "params": {"M": 50.0, "G_eff": 1.0, "a0": 2.0, "volume_weighted": true, "r_mond": 5.0, "r_out_min": 5.0, "r_out_max": "N//2 - 3"},
+    "results": [
+      {"N": 21, "solve_aqual_C": 2.443115, "solve_discrete_aqual_C": 2.443115, "delta": 0.000000, "iterations": 13},
+      {"N": 31, "solve_aqual_C": 2.354499, "solve_discrete_aqual_C": 2.354499, "delta": 0.000000, "iterations": 13}
+    ],
+    "conclusion": "The two solvers are algorithmically IDENTICAL to machine precision (0.000% relative, identical iteration counts). The previous candidate_difference_axes hypothesis (conductivity/gradient/window/boundary/damping wiring differences) is FALSIFIED and removed."
+  },
+  "values": {
+    "C_paper": 2.32,
+    "C_paper_source": "docs/papers/efc/Discrete_Entropic_Gravity_.../data/convergence_table.json (C_infinity=2.32, a0_eff_ratio=5.38) + examples/prefactor_convergence.py + pipelines/efc/native_v2_graph/outputs/runs/20260216_*/kt2_C_convergence.json (N=41: C_cubic=2.3198, C_sphere=2.3209)",
+    "C_ledger": 2.2895486402403438,
+    "C_ledger_source": "docs/validation-ledger/data/ledger.json grav_kt2_2026-06-22_143541_aqual (result 'C_vw=2.2895 (converged)'); mirrored in tests.json, index.md, grav.json",
+    "C_ledger_downstream": "used as C in growth/f_sigma8 screening scenarios (ledger ~145994-146017, grav.json): LCDM_baseline SURVIVES, k_Lambda_0.0014 SURVIVES, k_Lambda_0.1 EXPLODED, k_Lambda_1.0 EXPLODED"
+  },
+  "surviving_fact": "ledger C_vw=2.2895486402403438 is NOT reproduced by EITHER solver at canonical parameters, and it sits BELOW the paper's own extrapolated limit 2.32. Cause OPEN: (a) produced with different parameters (e.g. physical a0=1.2e-10 m/s^2 instead of code a0=2.0, which would move r_mond off-grid and change the fitted window), or (b) stale/erroneous ledger entry. No reproducing config exists on disk: find for 2026-06-* returned nothing, and the ledger entry carries only 'N in {21,31,41}, M=50' with no a0/window/G_eff block.",
+  "downstream_impact": "2.2895 (C^2=5.242) feeds the growth/f_sigma8 screening scenarios; the paper's C~2.32 gives C^2=5.38, a ~2.7% offset in C^2. Flagged, not inflated.",
+  "candidate_claim_v3.3": "the repository uses C consistently (CONTRADICTED by the two-value collision regardless of which explanation wins)",
+  "severity": "medium-high (downstream growth/f_sigma8 sector); the cause is now parameter-provenance/stale entry, NOT a solver/code defect",
+  "note": "The false gamma closed form 0.357 was computed only to stdout, never persisted, and is discarded; only W=0.505462 and its candidate relations survive in numerical_closure.json."
+}
