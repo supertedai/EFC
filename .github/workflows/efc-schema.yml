@@ -30,6 +30,7 @@ on:
       - "tests/test_efc_provenance.py"
       - "tests/test_bro_konvensjon.py"
       - "tests/test_holding_release_motorer.py"
+      - "docs/efc-atlas/eksperiment/**"
       - ".github/workflows/*.yml"
       - "requirements.txt"
       - "Makefile"
@@ -58,6 +59,7 @@ on:
       - "tests/test_efc_provenance.py"
       - "tests/test_bro_konvensjon.py"
       - "tests/test_holding_release_motorer.py"
+      - "docs/efc-atlas/eksperiment/**"
       - ".github/workflows/*.yml"
       - "requirements.txt"
       - "Makefile"
@@ -72,6 +74,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          # The sealed atlas experiment (docs/efc-atlas/eksperiment) reads its
+          # OWN bank snapshot — a commit, not a ref (see that directory's
+          # bank.py). A shallow clone cannot see it, and the reproduction would
+          # fail for the wrong reason.
+          fetch-depth: 0
 
       - uses: actions/setup-python@v6
         with:
@@ -88,3 +96,10 @@ jobs:
 
       - name: Unit tests for the gate, and every workflow file parses
         run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_usikkerhetslag.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py tests/test_bro_konvensjon.py tests/test_holding_release_motorer.py tests/test_atlas_kilder.py -q
+
+      # The bank is this job's subject, so the sealed experiment belongs here:
+      # it goes red when the atlas moves away from the bank its key was written
+      # against. Measured 2026-09-19: 4 of 12 tests failed on main because the
+      # readers read `origin/main` at run time and nothing ran the path at all.
+      - name: The sealed atlas experiment reproduces, and its drift is named
+        run: python3 -m pytest docs/efc-atlas/eksperiment -q

@@ -30,6 +30,14 @@ check:
 # source for test and sync), and those modules import numpy/pytest (see
 # PYTHON above).
 	$(PYTHON) scripts/maintenance/efc_bro_synk.py --sjekk
+# The sealed atlas experiment (ADR-086 §4). It reads its OWN bank snapshot — a
+# commit, not a ref (docs/efc-atlas/eksperiment/bank.py) — so it needs full git
+# history, and it cannot be fooled by a moved main. Measured 2026-09-19: the
+# path was run by no workflow and no target, so 4 failing tests stood unseen.
+	$(MAKE) eksperiment
+
+eksperiment:
+	$(PYTHON) -m pytest docs/efc-atlas/eksperiment -q
 
 inntak-dry:
 	$(PYTHON) scripts/maintenance/efc_inntak.py --dry-run
