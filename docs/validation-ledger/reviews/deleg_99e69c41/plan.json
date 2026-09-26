@@ -1,0 +1,45 @@
+{
+  "run_id": "deleg_99e69c41",
+  "slug": "EFC_Model_Family_Reconciliation",
+  "manuscript": "docs/papers/efc/EFC_Model_Family_Reconciliation/EFC_Model_Family_Reconciliation.tex",
+  "method_revision": "v2",
+  "rounds": [
+    {
+      "name": "blind",
+      "description": "round 1, roles 1-8, run in parallel without each other's findings"
+    },
+    {
+      "name": "adversarial",
+      "description": "round 2, one fresh Advocate and one Attacker rebuttal each"
+    },
+    {
+      "name": "synthesis",
+      "description": "round 3, meta-reviewer (role 9) synthesises, never writes status"
+    }
+  ],
+  "roles": [
+    "alternative_paradigm",
+    "cartographer",
+    "falsifier",
+    "formalist",
+    "measurement_proxy",
+    "meta_reviewer",
+    "paradigm_critic",
+    "provenance",
+    "reproducer"
+  ],
+  "gates": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "note": "This runner plans and checks structure only. Reviewer findings, dispositions and claim_status are written by the nine roles and the human gate \u2014 never by this tool.",
+  "snapshot_sha256": "99e69c41944a71c738a3d3fa9f4366d41fb51a17060e7a5e0c5cafa246150ee1"
+}

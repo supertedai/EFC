@@ -1,0 +1,916 @@
+{
+  "verdict_id": "verdict_deleg_99e69c41",
+  "verdict_sha256": "da2f07a58c13fe7903b38a0ad0066fd93ebf0715945bd39407f0ccca0353743f",
+  "matrix": [
+    {
+      "claim_id": "C1",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "C1 explicitly groups three response-form propositions; the single-assertion boundary remains compound. (cartographer finding F-cart-1).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "Package versions, repository commit, and validation-ledger row are not independently read back. (F-prov-1).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "The algebraic forms are valid as model-specific inventory expressions, with their dimensional distinction stated (F-form-1).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "Pinned source versions and executable-form reproduction are absent; the typed identity map remains unresolved. (F-prov-1).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C2",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines the non-chain statement, bifurcation classification, and B-to-B+ relation. (cartographer finding F-cart-2).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "No versioned ledger row or package commit verifies the stated lineage/status. (F-prov-2).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "No versioned lineage or held-out B/B+ comparison closes the reproduction chain. (F-rep-1).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C3",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines dimensional diagnosis, normalization condition, and source-package provenance. (cartographer finding F-cart-3).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The exact package version, commit, and source-field readback remain absent. (F-prov-3).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "The residual [rho]^(1/2) dimension follows under the declared dimensional-density convention (F-form-3).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The normalization/source-object map remains unresolved, so the claim is not fully reproducible. (F-form-3).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C4",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The relation label and separate supersession status are not isolated as one proposition. (cartographer finding F-cart-4).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The ledger row and artifact version supporting the B-to-B+ relation are not identified. (F-prov-4).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The common-unit selection rule and authoritative relation metadata remain open. (F-rep-1).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C5",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The two-axis taxonomy and both open-selection statuses are combined. (cartographer finding F-cart-5).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The axes lack stable ledger identifiers and source-version anchoring. (F-prov-5).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "The Gamma-shape axis has no predeclared discriminator; post-hoc branch selection remains possible. (F-fals-5).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "No joint model grid or Gamma-shape discriminator has been reproduced. (F-fals-5).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C6",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines two square-root roles with a non-entailment rule. (cartographer finding F-cart-6).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The cross-package relation lacks independent versioned ledger anchoring. (F-prov-6).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "The two square-root operations are distinct typed expressions and do not imply a bridge (F-form-5).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The typed dependency/identifiability map is absent; distinct notation is not a reproduced physical separation. (F-form-5).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C7",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "satisfied",
+          "evidence": "The conditional falsification rule is mapped as one explicit, source-located proposition (F-cart-7).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The repository and persistent Figshare wording diverge without exact version-level reconciliation. (F-prov-7).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "open",
+          "reason": "The conditional is logically coherent but its competing sqrt(g) function and dimensional specification are incomplete. (F-form-6).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "open",
+          "reason": "The conditional criterion lacks frozen operational predicates and does not close the model-to-test derivation. (F-fals-7).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "The MOND/SPARC-style comparator and inferred acceleration are borrowed but not labelled in-situ in the claim. (F-para-6).",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "Raw galaxy signals, instrument/reduction steps, proxy construction, covariance, likelihood, and bias controls are not specified. (F-mp-1).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "open",
+          "reason": "The PROXY/INSTRUMENT evidence lacks a decomposed chain and bias-control specification. (F-mp-1).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "The future galaxy-test phase is named, but the operative regime/domain boundary is not specified. (F-cart-7).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "KC1 remains conditional and lacks frozen operational predicates, pooling rule, statistic, and domain. (F-fals-7).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The conditional test is not executable until its measurement and decision protocol is frozen. (F-rep-1).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C8",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines multiple metadata states with the unresolved provenance status. (cartographer finding F-cart-8).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The exact metadata version and ledger row for the nominal exclusion are not identified. (F-prov-8).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "The claimed SPARC significance has no auditable signal-to-significance chain. (F-mp-2).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "open",
+          "reason": "The PROXY evidence lacks source reductions, proxy construction, covariance, and alternative comparison. (F-mp-2).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "The SPARC provenance issue lacks a fully specified regime/phase/domain for the claimed exclusion. (F-cart-8).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The claimed significance has no data/code/configuration/output chain to reproduce. (F-rep-6).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C9",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines proposal status, non-execution, multiple a0 candidates, and an author-freeze requirement. (cartographer finding F-cart-9).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The candidate a0 values lack an identified internal package/ledger version and resolved provenance. (F-prov-9).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "open",
+          "reason": "The a0_eff unit condition requires dimensionless C, which is not explicitly typed. (F-form-7).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "open",
+          "reason": "The field-to-acceleration solution and map from the E-axis claim to the RAR are absent. (F-mp-5).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "The imported MOND/SPARC a0 scale is not identified in-situ as external input rather than EFC output. (F-para-8).",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "The SPARC velocity/photometry-to-acceleration proxy chain and error covariance are unspecified. (F-mp-3).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "open",
+          "reason": "The SPARC PROXY evidence lacks instrument/reduction links and a defined covariance path. (F-mp-3).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "The proposed SPARC/RAR test has no frozen acceleration regime or complete domain. (F-cart-9).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "The SPARC/RAR test lacks a frozen raw-signal nuisance, covariance, and decision pipeline. (F-fals-9).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The a0 choice, SPARC dataset, pipeline, and output hashes are not frozen for replay. (F-rep-7).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C10",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines proposed status, non-execution, a distance-ratio expression, and unfrozen couplings. (cartographer finding F-cart-10).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The package version and ledger row for the siren expression/status are not supplied. (F-prov-10).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "satisfied",
+          "evidence": "The luminosity-distance ratio is dimensionally consistent under the stated field types (F-form-8).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "open",
+          "reason": "The invariant propagation history and matched alternatives are not fixed to make the prediction model-specific. (F-mp-7).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "open",
+          "reason": "The inherited FRW/background and limit assumptions are not declared in-situ for this discriminator. (F-para-9).",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "The detector/EM signal-to-distance ratio chain and its corrections are unspecified. (F-mp-6).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "open",
+          "reason": "The distance-ratio PROXY lacks calibration, inference, selection, and systematic controls. (F-mp-6).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "The future propagation sector lacks a frozen redshift/domain and validity regime. (F-cart-10).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "The siren inequality is not an executable EFC discriminator without frozen parameters and measurement/systematics. (F-fals-10).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The invariant siren history, dataset, likelihood, and output hashes are not frozen for replay. (F-rep-8).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C11",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines no-fit, no-selection, and no-independent-validation propositions. (cartographer finding F-cart-11).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "not_applicable",
+          "reason": "no external source or DOI is referenced.",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The synthesis is scope-bounded, but the execution manifest and artifact audit required to close this claim are absent. (F-meta-1).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C12",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines byte-identity status with a separate warning-status observation. (cartographer finding F-cart-12).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The build claim lacks a pinned repository commit, build log, checksum, and exact configuration. (F-prov-12).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "open",
+          "reason": "Build-tool INSTRUMENT findings do not provide an atlas_field grounded in a measurement chain. (F-rep-3).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "Byte identity and warning status remain unverified with pinned tools and retained build logs. (F-rep-3).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C13",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "open",
+          "reason": "The claim combines the parent-framework hypothesis with separate LCDM-like and MOND-like regime declarations. (cartographer finding F-cart-13).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The broader package identifiers are bare suffixes without full DOI, title, version, or ledger rows. (F-prov-13).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "open",
+          "reason": "No typed limit map or unit-matched equality establishes the claimed cross-regime formal relation. (F-form-10).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "open",
+          "reason": "A typed parent-to-regime map, fixed parameters, and matched holdouts remain missing. (F-meta-2).",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "satisfied",
+          "evidence": "The claim explicitly names the LCDM-like and MOND-like regime labels as candidates, which the paradigm review identifies as borrowed vocabulary (F-para-12).",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "open",
+          "reason": "The candidate regimes lack pre-data observable definitions and a grounded measurement path. (F-mp-8).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "open",
+          "reason": "The PROXY/target coordinates lack typed provenance and could embed the regime assumptions. (F-para-13).",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "open",
+          "reason": "Global/local, screened, and low-acceleration regimes have no pre-data thresholds or observable boundaries. (F-mp-8).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "open",
+          "reason": "The regime claim has no pre-defined boundaries, transition rule, or held-out prediction. (F-fals-13).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "The parent-to-regime map and blind joint holdout remain unresolved in the synthesis. (F-meta-2).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    },
+    {
+      "claim_id": "C14",
+      "gates": [
+        {
+          "gate_id": 1,
+          "status": "satisfied",
+          "evidence": "The non-exclusive corpus boundary is mapped as one source-located scope proposition (F-cart-14).",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 2,
+          "status": "open",
+          "reason": "The broader identifiers lack full persistent DOI strings, titles, versions, and ledger links. (F-prov-14).",
+          "reviewer_role": "provenance"
+        },
+        {
+          "gate_id": 3,
+          "status": "not_applicable",
+          "reason": "claim carries no formal or derivational content.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 4,
+          "status": "not_applicable",
+          "reason": "no model-relative derivation is asserted.",
+          "reviewer_role": "formalist"
+        },
+        {
+          "gate_id": 5,
+          "status": "not_applicable",
+          "reason": "no paradigm is borrowed.",
+          "reviewer_role": "paradigm_critic"
+        },
+        {
+          "gate_id": 6,
+          "status": "not_applicable",
+          "reason": "claim has no measurement or observable content.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 7,
+          "status": "not_applicable",
+          "reason": "no INSTRUMENT/PROXY evidence layer grounds the claim.",
+          "reviewer_role": "measurement_proxy"
+        },
+        {
+          "gate_id": 8,
+          "status": "not_applicable",
+          "reason": "claim is domain-agnostic.",
+          "reviewer_role": "cartographer"
+        },
+        {
+          "gate_id": 9,
+          "status": "not_applicable",
+          "reason": "claim is explicitly non-empirical (scope, provenance or status).",
+          "reviewer_role": "falsifier"
+        },
+        {
+          "gate_id": 10,
+          "status": "open",
+          "reason": "An inclusive versioned corpus manifest and reproducible inclusion rule remain absent. (F-rep-9).",
+          "reviewer_role": "reproducer"
+        }
+      ]
+    }
+  ]
+}
