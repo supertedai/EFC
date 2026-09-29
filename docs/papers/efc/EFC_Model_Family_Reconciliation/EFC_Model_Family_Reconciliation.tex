@@ -205,7 +205,7 @@ To make the corpus machine-readable and to prevent status drift, this work recor
 \begin{itemize}
 \item \emph{proposed} --- stated, not yet derived or tested.
 \item \emph{declared derived} --- follows from the model's own assumptions, not yet tested against external data.
-\item \emph{declared companion upgrade} --- asserted to replace a prior form; the replacement is itself a claim with its own status.
+\item \emph{declared companion upgrade} --- asserted as an upgrade to a prior form; the replacement is itself a claim with its own status.
 \end{itemize}
 
 The register additionally records a \emph{supersession status} field (whose observed value here is \texttt{not\_established}) and a prose note field. Descriptive terms used in this document --- \emph{tested}, \emph{superseded}, \emph{falsified}, \emph{conjectured}, \emph{falsification threshold} --- are prose descriptors for the reader, not ledger field values. A term is promoted to a ledger field only when the underlying ontology supports it; until then it is carried in prose notes and the side register.
@@ -268,8 +268,7 @@ the author's revision; it is not itself a verdict.
 Candidate claim & Established status \\
 \midrule
 $\Gamma_A$, $\Gamma_B$, $\Gamma_C$ are one physical core &
-Exact on the declared normalized forms; \emph{not} a physical unification
-(different units, normalizations, regimes). \\
+Related as declared model-family response forms; common physical normalization not established. \\
 $x = \sqrt{\beta\rho/a_0}$ is dimensionless &
 \emph{No}: the implemented $\beta = 4\pi G_N/3$ omits the reference length
 $r_*$ (present in the docstring), so $x^2/u = 4\pi/(3\,l_g) \approx
@@ -344,9 +343,9 @@ claim in this document rests on those unresolved items.
 
 \section{Reproducibility and machine readability}
 
-The reconciliation is designed for reproducible and machine-readable inspection. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with no Overfull or Underfull hbox warnings and no float-placement warnings. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
+The reconciliation is designed for reproducible and machine-readable inspection. The package directory containing this manuscript carries the machine-readable metadata stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{README.md}, \texttt{CITATION.cff}, and \texttt{ai\_manifest.json} --- generated after the text is frozen, in that order. Executable-code directories (\texttt{src/}, \texttt{data/}, \texttt{examples/}) accompany empirical packages that carry code; this provenance-and-proposal document carries none. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with no Overfull or Underfull hbox warnings and no float-placement warnings. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
 
-The single persistent identifier for this work is the Figshare article identifier shown above (\texttt{\paperdoi}). It is deterministically assigned to the private draft and becomes resolvable at publication; the text is written and frozen before that moment, so the identifier binds the frozen text, not the reverse.
+The single persistent identifier for this work is the Figshare article identifier shown above (\texttt{\paperdoi}), the article number of the private draft in which the work is staged. It becomes a resolvable DOI at publication and not before; the text is written and frozen first, so the identifier binds the frozen text, not the reverse.
 
 \clearpage
 \noindent\textbf{Note on corpus provenance.} The repository packages cited in this work by their persistent Figshare identifiers --- the six primary $\Gamma$-response packages of Table~\ref{tab:corpus} and the broader corpus packages named in the review-status section --- are this work's own source corpus, cited throughout the text by identifier. They are provenance sources, not independent external validations, and are therefore not repeated as bibliographic entries here.
@@ -370,6 +369,6 @@ The single persistent identifier for this work is the Figshare article identifie
 \color{rulegray}\hrule\color{black}
 
 \vspace{0.5em}
-\noindent\textbf{Status of this document.} Draft, not published. No DOI has been minted, no Figshare record exists, and no repository merge is authorized at the time of writing. All of the above is reversible until the publication gate, which is an explicit human decision.
+\noindent\textbf{Status of this document.} Draft; not published. A private Figshare draft exists (article number shown above); no DOI has yet been minted, no public record exists, and no repository merge to \texttt{main} is authorized at the time of writing. All of the above is reversible until the publication gate, which is an explicit human decision.
 
 \end{document}
