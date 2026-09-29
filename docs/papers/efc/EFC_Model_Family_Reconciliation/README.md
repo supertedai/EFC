@@ -2,7 +2,7 @@
 
 ## AI-Friendly Package
 
-- **DOI:** (pending)
+- **DOI:** [10.6084/m9.figshare.34003998](https://doi.org/10.6084/m9.figshare.34003998)
 - **Version:** 1.0
 - **Author:** Morten Magnusson (ORCID: [0009-0002-4860-5095](https://orcid.org/0009-0002-4860-5095))
 - **Affiliation:** Symbiose Research, Sola, Norway

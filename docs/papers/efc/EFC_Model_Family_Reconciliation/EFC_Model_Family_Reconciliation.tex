@@ -32,9 +32,10 @@
   pdfkeywords={EFC, modified gravity, entropy gradient, provenance, pre-registration, model family}
 }
 
-% DOI assigned after Figshare publication. Kept as an explicit placeholder so the
-% text phase precedes the mint, in that order, as required by the publication protocol.
-\newcommand{\paperdoi}{DOI-PENDING}
+% DOI: deterministic Figshare identifier for this article (10.6084/m9.figshare.<id>).
+% Goes live when the private draft 34003998 is published. Kept as a macro so the
+% footer, title block, and body all cite the same identifier.
+\newcommand{\paperdoi}{10.6084/m9.figshare.34003998}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -345,7 +346,7 @@ claim in this document rests on those unresolved items.
 
 The reconciliation is designed for reproducible and machine-readable inspection. The package directory containing this manuscript is designed to carry a full AI-friendly stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{src/} (importable Python), \texttt{data/}, and \texttt{examples/} --- generated after the text is frozen, in that order. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with no Overfull or Underfull hbox warnings and no float-placement warnings. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
 
-The single persistent identifier for this work is assigned at publication and referenced throughout this document by the placeholder \texttt{\paperdoi}. The text is written before the identifier exists, in that order, by design: the identifier binds the frozen text, not the reverse.
+The single persistent identifier for this work is the Figshare article identifier shown above (\texttt{\paperdoi}). It is deterministically assigned to the private draft and becomes resolvable at publication; the text is written and frozen before that moment, so the identifier binds the frozen text, not the reverse.
 
 \clearpage
 \noindent\textbf{Note on corpus provenance.} The repository packages cited in this work by their persistent Figshare identifiers --- the six primary $\Gamma$-response packages of Table~\ref{tab:corpus} and the broader corpus packages named in the review-status section --- are this work's own source corpus, cited throughout the text by identifier. They are provenance sources, not independent external validations, and are therefore not repeated as bibliographic entries here.
