@@ -79,4 +79,4 @@ Both refusals are the healthy terminal outputs, not bugs to route around.
 
 Committed to the `docs/efc-v3-review-closure` feature branch (never `main`) on 2026-09-25, per Morten's instruction to deliver the full git folder. The archive is frozen and internally consistent. The publication decision is open: `human_gate.json` (human signature, `confirmed_by: morten`, bound to `da2f07a5…`) does not exist and is not agent-authored; merge to `main`, DOI reservation, and publication remain human actions.
 
-**Figshare status (measured 2026-09-26, via .12-vakt):** a private draft exists — `article_id 34003932`, `status: draft`, `is_public: false`, `doi: ""` (not reserved). No DOI reserved; no publish; no merge to `main`.
+**Figshare status (measured 2026-09-26, via .12-vakt):** a private draft exists — `article_id 34003998`, `status: draft`, `is_public: false`, `doi: ""` (not reserved), no file attached. A first test draft `34003932` (which carried a `DOI-PENDING` PDF) was deleted and recreated as `34003998` so the published record carries a single correct attachment. No DOI reserved; no publish; no merge to `main`.
