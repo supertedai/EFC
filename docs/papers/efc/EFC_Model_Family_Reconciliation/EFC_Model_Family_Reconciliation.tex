@@ -303,6 +303,8 @@ limit (evidence) while its regime reading remains an unproven hypothesis
 31348417 (regime ontology), but it remains a hypothesis, not an established
 result.
 
+\emph{Regime non-circularity.} A regime assignment must be fixed from state variables that are independently measurable for the system in question and not derived from the observable used to test the regime, and must be frozen --- both functional form and boundary values --- before that observable is evaluated. An unexplained residual may not be reclassified post hoc as a new or mixed regime unless that regime, its boundary, and the assignment rule were specified independently beforehand. This is a precondition on any future regime-based claim; it is not asserted to hold for the regime reading proposed in this work, which remains an unproven hypothesis.
+
 Two further numerical points are recorded for honesty and are not resolved
 here. First, the prefactor carries two values in the repository: the
 lattice-converged $C = 2.32$ ($C^2 = 5.382$) of the discrete-gravity package,
@@ -345,7 +347,7 @@ claim in this document rests on those unresolved items.
 
 The reconciliation is designed for reproducible and machine-readable inspection. The package directory containing this manuscript carries the machine-readable metadata stack --- \texttt{index.json} (machine index), \texttt{schema.json} (JSON Schema validation), \texttt{metadata.json}, JSON-LD linked data, \texttt{citations.bib}, \texttt{README.md}, \texttt{CITATION.cff}, and \texttt{ai\_manifest.json} --- generated after the text is frozen, in that order. Executable-code directories (\texttt{src/}, \texttt{data/}, \texttt{examples/}) accompany empirical packages that carry code; this provenance-and-proposal document carries none. The PDF is built from the \LaTeX{} source by the versioned build script \texttt{efc\_pdf\_bygg.sh} in the \texttt{efc-tex:2026} container, which records a \texttt{.build.sha256} checksum. Byte-for-byte reproducible builds are an open workflow item, not an achieved property: pdfTeX embeds a wall-clock timestamp and a per-run trailer identifier unless explicitly suppressed, so two builds of an unchanged source currently differ in those trailer bytes. The build currently completes with no Overfull or Underfull hbox warnings and no float-placement warnings. Claim status is synchronized with the validation ledger and the public changelog through the canonical maintenance generators, whose determinism is enforced in CI.
 
-The single persistent identifier for this work is the Figshare article identifier shown above (\texttt{\paperdoi}), the article number of the private draft in which the work is staged. It becomes a resolvable DOI at publication and not before; the text is written and frozen first, so the identifier binds the frozen text, not the reverse.
+The single persistent identifier for this work is the Figshare article identifier printed in the title block and page footer. The text is written and frozen first, so the identifier binds the frozen text, not the reverse.
 
 \clearpage
 \noindent\textbf{Note on corpus provenance.} The repository packages cited in this work by their persistent Figshare identifiers --- the six primary $\Gamma$-response packages of Table~\ref{tab:corpus} and the broader corpus packages named in the review-status section --- are this work's own source corpus, cited throughout the text by identifier. They are provenance sources, not independent external validations, and are therefore not repeated as bibliographic entries here.
@@ -364,11 +366,5 @@ The single persistent identifier for this work is the Figshare article identifie
 \bibitem{watson1939} G.~N.~Watson, \emph{Three Triple Integrals}, Quart.\ J.\ Math.\ (Oxford) \textbf{10}, 266--276 (1939). \href{https://doi.org/10.1093/qmath/os-10.1.266}{doi:10.1093/qmath/os-10.1.266}.
 
 \end{thebibliography}
-
-\vspace{1em}
-\color{rulegray}\hrule\color{black}
-
-\vspace{0.5em}
-\noindent\textbf{Status of this document.} Draft; not published. A private Figshare draft exists (article number shown above); no DOI has yet been minted, no public record exists, and no repository merge to \texttt{main} is authorized at the time of writing. All of the above is reversible until the publication gate, which is an explicit human decision.
 
 \end{document}
