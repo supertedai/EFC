@@ -162,10 +162,24 @@ class TestDekningsinvarianten(unittest.TestCase):
         """Same requirement as for the `noder` lists, repeated for the volume: I
         could have written a number that LOOKS right. The derivation shall therefore
         be the TEST'S — the sum of the measured per-topic numbers — not
-        the author's. A hardcoded volume does not survive a new measurement."""
+        the author's. A hardcoded volume does not survive a new measurement.
+
+        And the other way: a domain the measurement does not carry has no
+        measured volume, so `meldinger` shall be `null` (UKJENT) — never 0.
+        The bus builds its domains from the subjects that CARRY messages
+        (`tomme_stroemmer` names the streams that carry nothing), so 0 is not
+        a number this measurement can produce."""
         snap = _les(SNAPSHOT)["domener"]
         for domene, rad in _les(DEKNING)["domener"].items():
-            maalt = sum((snap.get(domene, {}).get("emner") or {}).values())
+            if domene not in snap:
+                self.assertIsNone(
+                    rad.get("meldinger"),
+                    f"{domene}: the measurement does not carry the domain, so "
+                    f"there is no measured volume — the declaration says "
+                    f"{rad.get('meldinger')!r}, and 0 would be a claim that the "
+                    f"source answered with nothing")
+                continue
+            maalt = sum((snap[domene].get("emner") or {}).values())
             self.assertIn("meldinger", rad,
                           f"{domene} is missing 'meldinger' — a gap without "
                           f"size reads the same as any "
@@ -189,13 +203,24 @@ class TestDekningsinvarianten(unittest.TestCase):
                 f"{domene}: declared for topics that carry no messages: "
                 f"{sorted(deklarert - maalt)}")
 
-    def test_hvert_domene_i_deklarasjonen_har_volum(self):
+    def test_hvert_domene_i_deklarasjonen_har_volum_eller_navngitt_fravaer(self):
         """Also a `dekket` channel shall carry the number. Without it a covered
         channel with 23 477 messages behind one node looks as finished as one with one
-        message behind twenty."""
+        message behind twenty.
+
+        The number is either MEASURED (an int > 0, the sum of the domain's
+        measured subjects) or UKJENT (`null`) for a domain the measurement
+        does not carry. There is no third form, and 0 is never one of them:
+        a domain in the measurement carries at least one subject with at least
+        one message, and a stream that carries nothing is named in the bus
+        tool's own `tomme_stroemmer`."""
+        snap = _les(SNAPSHOT)["domener"]
         for domene, rad in _les(DEKNING)["domener"].items():
+            if domene not in snap:
+                self.assertIsNone(rad.get("meldinger"), domene)
+                continue
             self.assertIsInstance(rad.get("meldinger"), int, domene)
-            self.assertGreaterEqual(rad["meldinger"], 0, domene)
+            self.assertGreater(rad["meldinger"], 0, domene)
 
     def test_hvert_domene_med_noder_er_deklarert_dekket(self):
         """The opposite way of the one above: if a node has said that it describes a

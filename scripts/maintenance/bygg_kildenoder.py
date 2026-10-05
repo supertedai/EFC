@@ -220,9 +220,24 @@ def kilde_for(emner: list[str]) -> str:
 
 
 def node_for(domene: str, v: dict) -> dict:
-    """Build ONE node from the MEASURED numbers -- not from prose about them."""
+    """Build ONE node from the MEASURED numbers -- not from prose about them.
+
+    A node built for a domain whose volume was never measured would write a
+    volume the bus never answered with -- the old write line put `0` there,
+    and the node text would read "Measured volume: 0 messages". UKJENT
+    (`null`) is the declaration's own form for that state, and the honest
+    answer here is to REFUSE: measure the bus (`atlas_volum.py --maal`) or
+    take the domain out of the declaration first.
+    """
     emner = v.get("emner") or []
-    meldinger = v.get("meldinger", 0)
+    meldinger = v.get("meldinger")
+    if not isinstance(meldinger, int):
+        raise KildeFeil(
+            f"{domene}: the measured volume is UKJENT ({meldinger!r}) -- the "
+            f"domain is not in the measurement, and a node built from it would "
+            f"claim a volume the bus never answered with. Measure the bus "
+            f"(`scripts/atlas_volum.py --maal`), or take the domain out of "
+            f"schema/atlas_dekning.json first.")
     # the source: the last segment of the subjects -- or a fault, never a guess
     kilde = kilde_for(emner)
     k = KILDE[kilde]

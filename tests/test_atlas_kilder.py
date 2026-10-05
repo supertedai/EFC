@@ -262,6 +262,28 @@ class TestKildeaksen(unittest.TestCase):
         self.assertEqual(kodelinjer, "", "the generator has a source lookup "
                                          f"with a fallback again: {kodelinjer!r}")
 
+    def test_generatoren_bygger_ingen_node_paa_et_ukjent_volum(self):
+        """The same fault class, one step further in: a node text that says
+        "Measured volume: 0 messages" about a domain the measurement does not
+        carry. 0 was the old write line's answer for a domain that had left
+        the measurement; `atlas_volum.py` now writes UKJENT (`null`) for it,
+        and a node must not be built from it at all — the generator REFUSES.
+        """
+        sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
+        sys.modules.pop("bygg_kildenoder", None)
+        import bygg_kildenoder as bk  # noqa: E402
+        rad = {"status": "ikke_dekket", "meldinger": None,
+               "begrunnelse": "x", "noder": [],
+               "emner": ["observasjon.mast-caom"]}
+        with self.assertRaises(bk.KildeFeil) as ctx:
+            bk.node_for("kosmos.utenfor", rad)
+        self.assertIn("UKJENT", str(ctx.exception))
+        # and the old default must not be able to come back: a row without the
+        # field is the same state, not a row with zero messages in it
+        with self.assertRaises(bk.KildeFeil):
+            bk.node_for("kosmos.utenfor", {k: v for k, v in rad.items()
+                                           if k != "meldinger"})
+
 
 if __name__ == "__main__":
     unittest.main()
