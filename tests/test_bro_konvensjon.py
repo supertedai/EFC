@@ -102,6 +102,118 @@ def test_ingen_engine_node_i_atlaset_uten_bro(atlas: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Coverage: counted, not assumed
+# ---------------------------------------------------------------------------
+
+def test_the_coverage_line_is_true_and_stands_in_the_docstring() -> None:
+    """The register's docstring and the counts must AGREE — machine-checked.
+
+    Measured 2026-09-19 (t_1f95225a): the register declared that every
+    EFCEngine with ``regime_node()`` shall stand in it, while 12 engines with
+    ``regime_node()`` did not stand there. The sentence was true of the 20
+    bridges and silently false about the class, and ``--sjekk`` printed its
+    "no deviations" line either way — green by absence.
+
+    ``S.dekningslinje()`` renders the line FROM the live tables, and the
+    module docstring must carry it verbatim: change a table and the line
+    changes, so the prose follows or this test goes red. A count in prose that
+    nothing reads is how the register came to disagree with its own class.
+    """
+    linje = S.dekningslinje()
+    assert linje in (S.__doc__ or ""), (
+        "the register's docstring does not carry its own coverage line: "
+        f"{linje!r}")
+
+    dek = S.dekning()
+    assert dek["uerklarte"] == [], (
+        f"engines with regime_node() that NO table names: {dek['uerklarte']}")
+    assert dek["frafalte"] == [], (
+        f"declarations without an engine: {dek['frafalte']}")
+    assert dek["broer"] == len(S.BROER), (
+        f"the register lists {len(S.BROER)} bridges, {dek['broer']} measured")
+    assert dek["ikke_broer"] == sorted(K.IKKE_BRO_MOTORER), (
+        "the declared non-bridges and the measured ones are not the same set: "
+        f"{dek['ikke_broer']} against {sorted(K.IKKE_BRO_MOTORER)}")
+    assert dek["motorer"] == (dek["broer"] + dek["varianter"]
+                              + len(dek["ikke_broer"])), (
+        f"the coverage line does not account for every measured engine: {dek}")
+
+
+def test_the_coverage_line_is_rendered_not_typed() -> None:
+    """A line that reads the same whatever the tables say is DECORATION.
+
+    The mutant is built in memory, so the proof costs nothing and touches no
+    file: an engine that no table names must be reported as the hole, and the
+    rendered line must differ from the real one — otherwise the docstring
+    binding above proves nothing about the numbers.
+    """
+    ekte = S.dekningslinje()
+    mutant = S.dekning({"NyeMotorEngine": object})
+    assert mutant["uerklarte"] == ["NyeMotorEngine"], (
+        "an engine with regime_node() that no table names must be a HOLE — "
+        f"got {mutant}")
+    assert S.dekningslinje({"NyeMotorEngine": object}) != ekte, (
+        "the coverage line did not move when the measured class did")
+
+    borte = S.dekning({})
+    assert borte["frafalte"], (
+        "a declaration for an engine that no longer exists must be named — "
+        "otherwise the tables can keep a class that is gone")
+
+
+def test_sjekk_fails_when_an_engine_stands_in_no_table(monkeypatch, capsys) -> None:
+    """The TOOL's contract: the report is green only when the class is accounted for.
+
+    The register promises that an engine in no table is a HOLE. Until this card
+    the promise lived in prose only — ``--sjekk`` never looked at the class, so
+    it reported no deviations for 32 engines having compared 20. Here the
+    measured set is replaced IN MEMORY (one engine that no table names) and the
+    command must fail and NAME it.
+    """
+    ekte = S.motorklasser()
+    monkeypatch.setattr(
+        S, "motorklasser", lambda: {**ekte, "NyeMotorEngine": object})
+    monkeypatch.setattr(sys, "argv", ["efc_bro_synk.py", "--sjekk"])
+    kode = S.main()
+    ut = capsys.readouterr().out
+    assert kode == 1, (
+        f"--sjekk returned {kode} with an engine that no table names:\n{ut}")
+    assert "NyeMotorEngine" in ut, f"the hole was not named:\n{ut}"
+
+
+def test_every_declared_non_bridge_has_a_declared_reason(atlas: dict) -> None:
+    """An exemption states WHY — measured, not named, and not a tower of silence.
+
+    Measured 2026-09-19 (t_1f95225a): each of the 12 points at exactly ONE bank
+    node (the engine file's stem is that node's ``stipulasjoner.motor``), and
+    that node carries one of two declared reasons — no canonical parameter
+    source, or a declared text deviation. A class in ``K.IKKE_BRO_MOTORER``
+    whose node carries neither is an exemption with no measurement behind it,
+    and a list that only grows is the silent tolerance this convention exists
+    to prevent.
+    """
+    klasser = S.motorklasser()
+    for klasse in sorted(K.IKKE_BRO_MOTORER):
+        assert klasse in klasser, (
+            f"{klasse}: declared a non-bridge, but no engine file defines it")
+        stamme = klasser[klasse].__module__.rsplit(".", 1)[-1]
+        noder = sorted(nid for nid, n in atlas.items()
+                       if (n.get("stipulasjoner") or {}).get("motor") == stamme)
+        assert len(noder) == 1, (
+            f"{klasse}: {len(noder)} bank nodes name the engine {stamme!r} — "
+            f"the exemption must point at exactly one ({noder})")
+        nid = noder[0]
+        grunn = [navn for navn, sett in
+                 (("MOTOR_UTEN_PARAMKILDE", K.MOTOR_UTEN_PARAMKILDE),
+                  ("MOTOR_TEKSTAVVIK", K.MOTOR_TEKSTAVVIK))
+                 if nid in sett]
+        assert grunn, (
+            f"{klasse} ({nid}): declared a non-bridge without a reason. It "
+            "must sit in MOTOR_UTEN_PARAMKILDE (no canonical parameter source) "
+            "or in MOTOR_TEKSTAVVIK (a measured text deviation)")
+
+
+# ---------------------------------------------------------------------------
 # Feltvis: motorens node mot atlas-noden
 # ---------------------------------------------------------------------------
 

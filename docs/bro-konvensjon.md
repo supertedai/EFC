@@ -113,9 +113,9 @@ cannot be curated without becoming wrong the day the parameters change.
 
 | Tool | Does |
 |---|---|
-| `efc_bro_synk.py --sjekk` | measures the whole class, split by owner; exit 1 on deviation |
+| `efc_bro_synk.py --sjekk` | measures the whole class, split by owner; exit 1 on deviation. It also writes the coverage line: how many engines with `regime_node()` exist, how many are measured, and the names of the declared non-bridges. Exit 1 too when an engine stands in none of the tables |
 | `efc_bro_synk.py --skriv` | writes the engine-owned fields back (idempotent, format guard) |
-| `efc_bro_synk.py --json` | machine-readable report (for the maintenance round) |
+| `efc_bro_synk.py --json` | machine-readable report (for the maintenance round): `dekning` + `avvik` |
 | `tests/test_bro_konvensjon.py` | binds the whole class: coverage, field-by-field equality, no holes, schema coverage, and that the omissions are justified without contradicting the ownership |
 | `tests/test_epistemikk_v3.py` | binds the TEXT: `sosial_mekanisme` is present on every node and individualized (no text shared by two nodes) |
 
@@ -124,6 +124,64 @@ and the sync. Engines where the parameters are constructed (victron: series ->
 `params_for`; the background: `EFC = {**LCDM, ...}`) declare them in a
 `bro_kanoniske()` in their own test module, so that neither the sync nor the test
 guesses which module-level dict is «the canonical one».
+
+## The declared non-bridge class — the twelve biology engines
+
+The `BROER` register covers 20 bridges. Twelve engines define `regime_node()`
+without standing there; they stand in `IKKE_BRO_MOTORER` because they have their
+own atlas contracts and are not EFC bridges (#527): `ActionPotentialEngine`
+(action potential), `CardiacCycleEngine` (heart cycle), `CellCycleEngine` (cell
+cycle), `EvolusjonEngine` (evolution), `FeberRegimeEngine` (fever regime),
+`FluxusEngine`, `GenreguleringEngine` (gene regulation), `HomeostaseBufferEngine`
+(homeostasis buffer), `ImmunologiEngine` (immunology), `MetabolismEngine`,
+`OkologiEngine` (ecology) and `SovnVaakenEngine` (sleep/wake).
+
+Until 2026-09-19 (t_1f95225a) this was in practice a **silent** omission:
+`--sjekk` compared the 20 and wrote «no deviation between engine and atlas». It
+did not see that the class it did not measure was also the class it did not
+name — the bridge was green by absence. `--sjekk` now writes the coverage line
+and names the twelve, and the number stands in the docstring of
+`efc_bro_synk.py`, bound mechanically by `tests/test_bro_konvensjon.py` (the
+docstring and the number cannot drift apart). An engine that none of the three
+tables names is a HOLE: `--sjekk` fails and names it.
+
+Why they are not registered — measured, not a matter of taste:
+
+* The sync has no canonical parameter SOURCE for them: the parameters are read
+  FROM the test module a bridge points at, and no bridge points at their engine
+  file (11 of 12 therefore stand in `MOTOR_UTEN_PARAMKILDE`). The values do
+  exist, though — all 12 are run by `tests/test_biologi{_motorer,_engines}.py`
+  and `test_biology_engines.py`, four engines each — so registering them is not
+  about inventing data, but about naming one source per engine (the house's own
+  form: `bro_kanoniske()` in the test module) and taking the ownership question
+  first.
+* Measured 2026-09-19: 8 of the 12 answer `regime_node({})` with their node
+  (Evolusjon, Feber, Fluxus, Genregulering, Homeostase, Immunologi, Okologi,
+  SovnVaaken); 4 raise KeyError without their parameters (ActionPotential,
+  CardiacCycle, CellCycle, Metabolism). The omission is about the missing
+  source, not about the engines being unable to run.
+* And `--skriv` would write the engine's terse strings over the atlas's curated
+  text. Measured on `homo.hjerte_syklus`: `/regime/validity` is a paragraph in
+  the bank and `t in [0, 0.8] s; NaN outside` in the engine. That is a content
+  regression dressed as a sync, and that decision belongs to the owner.
+
+Each of the twelve points at exactly one node in the bank (the engine file's
+stem name is the node's `stipulasjoner.motor`), and that node carries the reason
+— it is the test `test_every_declared_non_bridge_has_a_declared_reason` that
+holds: an omission must be named, not silent, and a list that only grows is the
+silent tolerance the convention exists to stop.
+
+That omission had a measurable CONTENT consequence, not only a bookkeeping one:
+measured with the gate's own word list and its word-boundary rule (R1), the
+twelve carried 25 Norwegian values in engine-owned fields on main — the 8 that
+answer `{}`, plus the four that require parameters, measured with the parameters
+taken from their OWN test module (not guessed). It is the same class the bridge
+did not see: the class the bridge did not measure was also the class that
+carried the untranslated text. On the language branch (PR #575) the number is 0,
+measured with the same rule — so that hole is closed there, and closing it is
+not this card's job. The point here is that the hole is now COUNTED: the next
+time someone weighs registering the twelve, both the number and the reason stand
+there.
 
 ## The old reconnaissance did not become a separate script
 
