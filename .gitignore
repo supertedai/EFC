@@ -25,6 +25,12 @@ docs/audit_report.md
 # kandidater som skal bevares går til efc-banken.
 data/inntak/
 
+# The arbiter connector's run log. Append-only runtime record, one line per run:
+# what was routed where, why, and what was sent. It is the trace of the runs
+# that publish nothing — which is every run until the arbiter exists — so it is
+# local, like the rest of the runtime state.
+logs/atlas-arbiter-konnektor.jsonl
+
 # TeX-byggeartefakter fra efc_pdf_bygg.sh (docker efc-tex) — deterministisk
 # bygg, artefaktene hører ikke hjemme i historikken.
 docs/papers/**/*.log

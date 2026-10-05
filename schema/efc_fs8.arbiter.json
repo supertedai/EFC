@@ -16,6 +16,8 @@
     "analysis": "full-shape",
     "z_window": [0.6, 0.8],
     "z_target": 0.7,
+    "tracers": ["LRG", "ELG"],
+    "_tracers": "galakse-RSD. Arbiterens eget instrument er 'DESI DR2 full-shape RSD (galakse-RSD, z~0.7)' (efc_inference/arbiter/sealed_fs8.py:ARBITER_INSTRUMENT), og TILLATTE_TRACERE der er LRG/ELG — Lya er en annen tracer og kan ikke felle dommen (samme grunn som VENTER-meldingen fra trinn 12). Feltet staar HER fordi det er en del av hva som maa lande, og fordi konnektoren skal lese det ett sted: tests/test_atlas_arbiter_konnektor.py binder det til arbiterens egen liste, saa de to ikke kan gaa i utakt.",
     "required_fields": ["fsigma8", "fsigma8_sigma", "z_eff", "survey", "tracer", "referanse"],
     "why": "kriteriet paa bussen: DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430"
   },
