@@ -102,7 +102,16 @@ def test_grafen_er_asyklisk():
 
 def test_atlas_og_motor_nivaa_stemmer():
     """The society engines' nivaa in the atlas must agree with the engines'
-    regime_node() (review requirement: they disagreed)."""
+    regime_node() (review requirement: they disagreed).
+
+    The comparison is the WHOLE nivaa block, not just ``forelder``. Measured
+    2026-09-18 in t_dd5efeec: the old variant compared only ``forelder``, and a
+    mutation of ``indeks`` (1 -> 2) on one of the three engines left the test
+    GREEN — while the ``forelder`` mutation was caught. The whole class (all 20
+    engines, all fields) is owned by ``tests/test_bro_konvensjon.py``; this test
+    covers the three society engines and is deliberately a DOUBLE check, not the
+    only one.
+    """
     import importlib
     for motor, nid in (("samfunn", "efc.samfunn_engine"),
                        ("oekonomi", "efc.oekonomi_engine"),
@@ -117,5 +126,4 @@ def test_atlas_og_motor_nivaa_stemmer():
             "samfunn" else {"gjeld": 1.0, "inntekt": 1.0, "rente": 0.05,
                             "tillit": 0.06})
         atlas_node = {n["id"]: n for n in _atlas()["nodes"]}[nid]
-        assert atlas_node["nivaa"]["forelder"] == \
-            motor_node["nivaa"]["forelder"], motor
+        assert atlas_node["nivaa"] == motor_node["nivaa"], motor

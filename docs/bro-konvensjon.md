@@ -119,6 +119,24 @@ cannot be curated without becoming wrong the day the parameters change.
 | `tests/test_bro_konvensjon.py` | binds the whole class: coverage, field-by-field equality, no holes, schema coverage, and that the omissions are justified without contradicting the ownership |
 | `tests/test_epistemikk_v3.py` | binds the TEXT: `sosial_mekanisme` is present on every node and individualized (no text shared by two nodes) |
 
+## Where the gate runs
+
+Two places, and both must be named because they cover a path each:
+
+| Place | What it catches |
+|---|---|
+| `make check` -> `efc_bro_synk.py --sjekk` | measures the whole class locally, exit 1 on deviation (run with the test venv) |
+| The C10 job in `.github/workflows/efc-schema.yml` | `tests/test_bro_konvensjon.py` — the whole class, field by field |
+
+Measured 2026-09-18 (t_dd5efeec): the gate EXISTED, but no CI job ran it — it
+was claimed registered in #504 and in `requirements.txt`, while the pytest line
+in the workflow named six other files. On top of that, `efc_inference/engine/**`
+was missing from the trigger lists, so a change that touched only an engine ran
+no verification at all. Both are fixed: the workflow names the gate and guards
+the engine paths, and
+`tests/test_repo_konfigurasjon.py::TestBroGatenKjoererISelv` fails if the gate
+or the paths disappear out of CI again.
+
 Canonical parameters are read from the test module that owns them — one source for the test
 and the sync. Engines where the parameters are constructed (victron: series ->
 `params_for`; the background: `EFC = {**LCDM, ...}`) declare them in a
