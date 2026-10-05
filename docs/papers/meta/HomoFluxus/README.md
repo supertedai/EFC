@@ -16,7 +16,7 @@
   — thermodynamic substrate for consciousness, systemic empathy, AI alignment.
 - `Homo_Fluxus/Homo_Fluxus_v2.0.pdf` (v2.0, 2026-04-01, DOI
   [10.6084/m9.figshare.31940604](https://doi.org/10.6084/m9.figshare.31940604))
-  — civilisation map: Grid → EF → S → D → C; empirical anchor κ ≈ −0.97.
+  — civilisation map: Grid → EF → S → D → C; empirical anchor r ≈ −0.97 (degree ratio predicts κ).
 
 This meta-layer reference places that EFC-internal framework inside the
 wider scientific lineage of **non-equilibrium thermodynamics of life** —
@@ -151,7 +151,7 @@ of these and adds the EFC-specific bridge to cosmological structure.
 ## EFC bridge — where to read next
 
 - `docs/papers/efc/Homo Fluxus A Thermodynamic Framework/` — v1 paper
-- `docs/papers/efc/Homo_Fluxus/` — v2 paper (with κ ≈ −0.97 empirical anchor)
+- `docs/papers/efc/Homo_Fluxus/` — v2 paper (with r ≈ −0.97 empirical anchor)
 - `docs/papers/efc/CEM-Consciousness-Ego-Mirror/` — `R`-threshold formalism
 - `docs/papers/efc/Closing_the_EFC_Consciousness_Bridge/` — formal cross-layer bridge
 - `docs/papers/efc/Reinforcement_Learning_from_Human_Feedback_as_Thermodynamic_Entropy_Minimisation_A_Formal_Isomorphism_Track_3/` — AI alignment as field-aware policy
