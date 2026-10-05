@@ -7,8 +7,10 @@ derfor vertens hermes-tilgang. Idempotens: stabil kort-tittel per funnklasse
 (uten antall), flock-lås mot samtidige runder, og hardt tak på kort per kjøring.
 
 Bruk: python3 scripts/maintenance/vedlikeholdsrunde.py [--dry-run]
-Exit: 0 = runde ferdig, 1 = sjekkfeil, 2 = write gate,
-3 = kanban list unreadable (no cards created).
+Exit: 0 = round finished, 1 = a check could not be MEASURED (crash, timeout or
+an answer that is not readable JSON -- the unit must fail, never pass as
+"0 findings"), 2 = write gate, 3 = kanban list unreadable (no cards created).
+3 wins over 1: it also means no cards were created this round.
 """
 from __future__ import annotations
 
@@ -43,14 +45,118 @@ SJEKKER = [
     ("dataset-report-age", "efc_dataset_scanner.py", ["--check-stale"]),
 ]
 
+# Which JSON keys carry the findings of each class. A class whose findings come
+# from the exit code alone is not listed here (see _funn_fra).
+FUNN_NOKLER: dict[str, tuple[str, ...]] = {
+    "statement-graf": ("harde", "dangling_reference"),
+    "eierskap": ("feil",),
+    "repo-contract": ("feil",),
+    "aktivitetslogg": ("feil",),
+    "risikoregister": ("feil",),
+    # Findings from the blast-radius scorer are the classes above «liten»
+    # (material -> blokkerende) plus its tool errors: a measurement that could
+    # not be made is a finding, not an empty answer. The scorer exits 2 on a
+    # tool error.
+    "blast-radius": ("funn", "feil"),
+    "lenker": ("harde", "funn"),
+    "dataset-report-age": ("problems", "expired"),
+}
 
-def _kjor(navn: str, skript: str, ekstra: list[str]) -> tuple[int, dict]:
-    r = subprocess.run([sys.executable, str(MAINT / skript), "--json"] + ekstra,
-                       capture_output=True, text=True, timeout=300, cwd=str(ROT))
+# The type EVERY class gets when it could not measure at all: an unreadable
+# answer, a timeout, a crash, or a non-zero exit without a single recognised
+# finding. One name for one failure mode, inherited by every class -- because a
+# check that could not measure must never be filed as "0 findings".
+MANGLENDE_MALING = "measurement_failed"
+MAKS_RAATT = 400
+
+
+def _kjor(navn: str, skript: str, ekstra: list[str]) -> tuple[int, dict, bool]:
+    """Run one check. Answers (rc, the answer, readable).
+
+    A crash, a timeout or an answer that is not JSON is an ANSWER too: the
+    round must be able to say "could not measure" instead of dying with a
+    traceback, or reading the failure as "0 findings".
+
+    Measured 2026-09-21 (t_470cf3c0): one hanging check killed the whole round
+    -- subprocess.TimeoutExpired was not caught, so the weekly unit failed with
+    a traceback and no class was checked after the hanging one.
+
+    Measured 2026-10-05 (t_c2c0ded1): statement_graph_check.py crashed with
+    ModuleNotFoundError (no PyYAML in the interpreter on PATH), this function
+    fell back to {"raa": "<traceback>"}, the class found no JSON key, and the
+    round printed "rc=1, 0 funn" and exited 0. A crashed check was
+    indistinguishable from a clean one.
+    """
+    argv = [sys.executable, str(MAINT / skript), "--json"] + ekstra
     try:
-        return r.returncode, json.loads(r.stdout or "{}")
+        r = subprocess.run(argv, capture_output=True, text=True, timeout=300,
+                           cwd=str(ROT))
+    except subprocess.TimeoutExpired as ex:
+        return 124, {"raa": _raatt(ex.stdout), "stderr": _raatt(ex.stderr)}, False
+    except OSError as ex:
+        return 126, {"raa": f"{type(ex).__name__}: {ex}"}, False
+    try:
+        ut = json.loads(r.stdout or "")
     except json.JSONDecodeError:
-        return r.returncode, {"raa": (r.stdout or "")[:200]}
+        return r.returncode, {"raa": _raatt(r.stdout),
+                              "stderr": _raatt(r.stderr)}, False
+    if not isinstance(ut, dict):
+        # Valid JSON of the wrong shape is not an answer we can read.
+        return r.returncode, {"raa": _raatt(r.stdout)}, False
+    return r.returncode, ut, True
+
+
+def _raatt(tekst: str | bytes | None, maks: int = MAKS_RAATT) -> str:
+    """The tail of a raw answer -- enough to name the failure in the card.
+
+    Accepts bytes because subprocess.TimeoutExpired carries whatever the
+    partial read produced, and this is exactly the path that must not raise:
+    the round has to be able to name a check that never answered.
+    """
+    if tekst is None:
+        return ""
+    if isinstance(tekst, bytes):
+        tekst = tekst.decode("utf-8", "replace")
+    return tekst[-maks:]
+
+
+def _malingsfeil(navn: str, rc: int, ut: dict, grunn: str) -> dict:
+    """A finding that names the failed MEASUREMENT, with its raw evidence."""
+    funn = {"type": MANGLENDE_MALING, "check": navn, "rc": rc, "grunn": grunn}
+    for nokkel in ("raa", "stderr"):
+        if ut.get(nokkel):
+            funn[nokkel] = ut[nokkel]
+    return funn
+
+
+def _funn_fra(navn: str, rc: int, ut: dict, leste: bool) -> tuple[list, bool]:
+    """Findings for one check, and whether the check could measure at all.
+
+    THE RULE, inherited by every class: rc != 0, or an answer that cannot be
+    read as a JSON object, WITHOUT a single recognised finding, is itself a
+    finding -- with a type that names the failed measurement. Otherwise a check
+    that could not measure would be filed as "0 findings", which is exactly
+    what a clean run looks like, and a crashed check would age in silence.
+    """
+    if not leste:
+        return [_malingsfeil(navn, rc, ut, "the answer is not readable JSON")], False
+    funn: list = []
+    for nokkel in FUNN_NOKLER.get(navn, ()):
+        verdi = ut.get(nokkel)
+        if isinstance(verdi, list):
+            funn += verdi
+    if navn == "verifier-bench" and rc != 0:
+        # A readable non-zero exit IS this bench's finding channel: it exits 1
+        # when it detects fewer known bugs than it carries. That is a gap, not
+        # a failed measurement -- and a crash now arrives as an unreadable
+        # answer above, so a crash can no longer be read as a gap.
+        funn = [{"type": "bench_gap"}]
+    if funn:
+        return funn, True
+    if rc != 0:
+        return [_malingsfeil(navn, rc, ut,
+                             "non-zero exit without a recognised finding")], False
+    return [], True
 
 
 def _open_titles_from_list(raw: str) -> set[str] | None:
@@ -140,36 +246,14 @@ def hoved() -> int:
     print("vedlikeholdsrunde:")
     totalt_funn = 0
     opprettet = 0
+    umaalt = 0
     for navn, skript, ekstra in SJEKKER:
-        rc, ut = _kjor(navn, skript, ekstra)
-        funn = []
-        if navn == "statement-graf":
-            funn = (ut.get("harde") or []) + (ut.get("dangling_reference") or [])
-        elif navn == "eierskap":
-            funn = ut.get("feil") or []
-        elif navn == "repo-contract":
-            funn = ut.get("feil") or []
-        elif navn == "aktivitetslogg":
-            funn = ut.get("feil") or []
-        elif navn == "risikoregister":
-            funn = ut.get("feil") or []
-        elif navn == "blast-radius":
-            # funn = klasser over «liten» (material → blokkerende) pluss
-            # verktøyfeil: en måling som ikke kunne gjøres er et funn, ikke
-            # et tomt svar. Blast-scoreren returnerer exit 2 på verktøyfeil.
-            funn = (ut.get("funn") or []) + (ut.get("feil") or [])
-        elif navn == "lenker":
-            funn = (ut.get("harde") or []) + (ut.get("funn") or [])
-        elif navn == "verifier-bench":
-            funn = [] if rc == 0 else [{"type": "bench_gap"}]
-        elif navn == "dataset-report-age":
-            # The scanner answers read-only: whatever the report does not say
-            # (no expiry, no reader, an unreadable date) plus every finding past
-            # its expiry is a finding class of its own.
-            funn = (ut.get("problems") or []) + (ut.get("expired") or [])
-            if rc != 0 and not funn:
-                funn = [{"type": "scan_report_unreadable"}]
-        print(f"  {navn}: rc={rc}, {len(funn)} funn")
+        rc, ut, leste = _kjor(navn, skript, ekstra)
+        funn, maalt = _funn_fra(navn, rc, ut, leste)
+        if not maalt:
+            umaalt += 1
+        merke = "" if maalt else "  [COULD NOT MEASURE]"
+        print(f"  {navn}: rc={rc}, {len(funn)} funn{merke}")
         totalt_funn += len(funn)
         if funn and not kanban_unreadable and opprettet < MAKS_KORT_PER_KJOERING:
             # STABIL nøkkel: tittel uten antall, slik at ett åpent kort per
@@ -181,14 +265,28 @@ def hoved() -> int:
             kropp = (f"Automatisk funn fra vedlikeholdsrunden "
                      f"({datetime.now():%Y-%m-%d}).\n\n"
                      f"Sjekk: scripts/maintenance/{skript}\n\n"
-                     f"Funn:\n```json\n{json.dumps(funn[:40], ensure_ascii=False, indent=1)}\n```\n\n"
+                     + ("NOTE: this class could not be MEASURED -- the finding "
+                        "is the failed measurement, so \"0 findings\" here would "
+                        "mean \"not looked at\". The raw answer is in the JSON "
+                        "below.\n\n" if not maalt else "")
+                     + f"Funn:\n```json\n{json.dumps(funn[:40], ensure_ascii=False, indent=1)}\n```\n\n"
                      f"Fiks i branch → PR → CI → merge. Lukk kortet etter readback.")
             if _lag_kort(tittel, kropp, a.dry_run):
                 opprettet += 1
             else:
                 print(f"  → kortopprettelse feilet for {navn}; funnene står i loggen")
-    print(f"  totalt: {totalt_funn} funn, {opprettet} kort opprettet")
-    return 3 if kanban_unreadable else 0
+    print(f"  totalt: {totalt_funn} funn, {opprettet} kort opprettet"
+          + (f", {umaalt} check(s) could not be measured" if umaalt else ""))
+    if kanban_unreadable:
+        return 3
+    if umaalt:
+        # A check that could not measure must fail the unit, not just open a
+        # card: the weekly round ran for weeks with a crashed check and exit 0
+        # (t_470cf3c0), and the card alone leaves the unit green.
+        print(f"{umaalt} check(s) could not be measured -- failing the round",
+              file=sys.stderr)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
