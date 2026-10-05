@@ -261,7 +261,12 @@ def _call_local_openai(state: dict) -> dict:
     try:
         with urllib.request.urlopen(req, timeout=300) as resp:
             data = json.loads(resp.read())
-            body = data["choices"][0]["message"]["content"].strip()
+            _m = data["choices"][0]["message"]
+            # Reasoning models (gpt-oss-120b via LM Studio) may put the answer in
+            # `reasoning` with empty `content`; prefer content, fall back. (BL-1212)
+            body = (_m.get("content") or "").strip() or (_m.get("reasoning") or "").strip()
+            if not body:
+                raise ValueError("local LLM returned empty content and reasoning")
     except Exception as e:
         return {
             "overall_health": "yellow",
