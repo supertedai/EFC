@@ -81,8 +81,38 @@ write access the owners have not yet granted.
 
 | Subject | Engine | Status |
 |---|---|---|
-| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Connected via vaer-nats-bro** (outside this repo, read-only). The METAR channel: temperature + dew point → spread, RH proxy (P_sat(Td)/P_sat(T) via the engine's vapour curve), regime classification and 0 °C crossings. First run (2026-09-16): 459 points, 149 near-condensation, one complete saturation (spread 0,0 °C). |
-| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Connected via vaer-nats-bro** — the ecowitt channel has only temperature (no humidity); there the 0 °C crossings are the only temperature-based indicators/proxies for possible freezing or melting — the phase transition itself is not observed. |
+| `verden.vaer.tilstand.metar` | `water` (WaterPhaseEngine) | **Connected via vaer-nats-bro** (outside this repo, read-only). Measured 2026-09-16, 14-day window: **42 stations, 23 688 points**, 6 094 near-condensation, 1 815 with 0,0 °C spread (full saturation) and **12 0 °C crossings** — 3 of the 42 stations went below zero (ENRO, ENDU, ENNA). The series are kept **per station**: joining the airports into one series would turn a jump between two cities into a phase transition that never happened. Below 0 °C the curve is over ice, not over supercooled water (the engine is calibrated 0–100 °C and does not extrapolate). |
+| `verden.vaer.tilstand.ecowitt` | `water` (WaterPhaseEngine) | **Connected via vaer-nats-bro** — 3 836 messages, **14 series**, hourly resolution (`opploesning: H`), anonymised site code: `duggpunkt_ute`, `foelt_temperatur_ute`, `luftfuktighet_inne`, `luftfuktighet_ute`, `lufttrykk`, `lynavstand`, `lynnedslag_doegn`, `nedboer_doegn`, `solinnstraaling`, `temperatur_inne`, `temperatur_ute`, `uv_indeks`, `vindkast`, `vindstyrke`. 274 measurements of `temperatur_ute.sola` in the window 2026-09-05T12:00Z → 2026-09-16T21:00Z, all in the liquid regime. **0 crossings** — the minimum in the window is 8,5 °C; that is an answer about the window, not about the year. |
+
+**Correction 2026-09-16: the ecowitt series DO have humidity.** An earlier
+edition of this map said the ecowitt channel «has only temperature (no
+humidity)», and that the saturation distance therefore could not be computed.
+That was measured wrong, and the error was the reader: it fetched five messages
+from the subject instead of the subject's series, and came away with one
+temperature measurement. `luftfuktighet_ute.sola` (percent) and
+`duggpunkt_ute.sola` (°C) stand on the subject at hourly resolution, and the
+saturation distance is therefore **computed**: median 113,48 Pa over 274
+measurements (11,33–706,21 Pa), with the dew point as an independent control
+channel for the same quantity — largest relative deviation between the channels
+0,63 %, median 0,17 %. (Saturation distance is P_sat(T) − e, where e is the
+water-vapour pressure; it is not the same as relative humidity, and it is not a
+phase transition.) The bridge nonetheless carries the `found: false` path with
+its reason and with the requirement that would activate the analysis, and a
+selftest feeds a synthetic series through EXACTLY the same code and finds the
+signal — so a `found: false` is a property of the data, not of the code.
+
+**0 °C crossings: zero is a STATE of its own, not a sign.** A measurement that
+lands on exactly 0,0 °C is neither positive nor negative. The rule looks at the
+side before and after each zero sequence: + → 0 → − is one crossing down,
+− → 0 → + is one up, + → 0 → + is a touch without a crossing. It is not
+cosmetics: METAR reports temperature in whole degrees, and a rule that required
+NEIGHBOURING MEASUREMENTS to change sign gave **zero** crossings for the three
+stations that actually went below zero — until it was corrected. The crossing
+time is interpolated between the measurements and tagged `estimert: true`: a
+crossing is a between-sampling at hourly resolution, not an observed transition.
+Latent heat, phase fraction and latent-heat energy cannot be measured from air
+temperature alone — the crossing says that the water would have been
+below/above freezing there and then, not that water froze.
 
 Note: near-condensation is a phase-transition PROXY, not the transition itself —
 analogy, not identity (the same discipline as the rest of the map).
