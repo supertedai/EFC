@@ -24,6 +24,7 @@ docs/notes/
 ├── EFC_native_v2_graph_spec.md   # v2 graph kernel specification
 ├── growth_bug_2026.md            # Growth ODE friction correction + reproducer audit (2026-04-19)
 ├── bro-speilretning_klima-noden_t_6ec0b913.md  # Which side owns which field in an engine↔atlas bridge (2026-09-18)
+├── five-reds_t_249c4799.md       # Five reds on main: cause and repair per test (2026-09-22)
 └── README.md                     # This file
 ```
 
@@ -124,6 +125,24 @@ killed mutations, red-before/green-after) is kept as a historical record; the
 residual risks from that round are closed, and the note ends on what actually
 remains — a canonical-format drift (`--sjekk` exits 1) in
 `schema/regime_nodes.jsonld`.
+
+### five-reds_t_249c4799.md
+
+**Full title**: Five reds on main — what each one was, and where the answer lives
+**Status**: Measurement note (2026-09-22) — the repairs have landed in `main` (#571, #575, #580, #600), not here
+
+Re-measures the five reds card `t_249c4799` reported on 2026-09-18 and settles
+each one against its own cause: two were stale size pins (the atlas had grown
+113 → 126 nodes while the guards still pinned the old population), one was the
+inverted engine↔observation edge the K6 rename left behind in an expectation
+list, one was a demand (a unique reason per node) that the data broke, and one
+— the language ratchet measured against its parent — was a true finding about
+the tree, repaired by translating the files and rewriting the record per file
+rather than by moving the gate. Records the reproduction at `fe865b95` (5
+failed, 45 passed) and the suite on `main` (`1266 passed` for `tests/`, `1391
+passed` for root collection), and names what the card did **not** fix: no CI
+job runs the whole suite, and the job that would (PR #563, `efc-testsuite.yml`)
+is open, mergeable and not landed.
 
 ## How Notes Relate to the Broader EFC Programme
 
