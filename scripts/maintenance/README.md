@@ -257,7 +257,8 @@ while it sat inside that 30-entry window.
 | `--changelog` | changelog entries, newest first | nothing | declared, default 30 |
 
 House interfaces: `--json`, a `make check` line, and the workflow
-`.github/workflows/efc-spraak.yml`. Exit codes: 0 clean, 1 findings, 2 could
+`.github/workflows/efc-spraak.yml`. Exit codes: 0 clean, 1 findings or a
+refused baseline write, 2 could
 not measure (a measurement that could not be made is a finding, not an empty
 answer).
 
@@ -297,8 +298,44 @@ python3 scripts/maintenance/efc_spraakvakt.py --oppdater-baseline
 ```
 
 Growth is never a baseline update: a new Norwegian string fails the PR that
-adds it, which is the point of the ratchet. A recorded entry may carry `owner`
-(who owns the residual) and `reason` (why it is left standing) — the generator
+adds it, which is the point of the ratchet.
+
+**And the writer refuses it** (t_aa1e2437). `--oppdater-baseline` compares the
+scan to the record BEFORE it writes, and exits 1 without touching the file when
+a per-file count would rise above it or a file the record never saw would be
+added — every such file named, with the two honest repairs: translate it, or
+accept that one file's growth by name:
+
+```
+python3 scripts/maintenance/efc_spraakvakt.py --oppdater-baseline \
+    --aksepter-vekst 'tests/foo_test.py:<why this is not a missing translation>'
+```
+
+The acceptance writes `reason` onto that file's own line, so a later reader
+sees a named decision instead of an anonymous number, and it is refused again
+when the tree did not in fact grow that file. A tree at or below its record —
+a translation that landed — is written exactly as before. Nothing is written
+when the previous record cannot be READ (exit 2): a record that cannot be read
+is not an empty record, and recreating it from the tree would be the same
+whitewash one step earlier. For the same reason a record that does not exist
+at all is compared against as empty, so a tree that still carries hits is
+refused there too — otherwise `rm spraak-baseline.json` plus one regeneration
+would launder the whole record.
+
+Why the refusal has to live in the writer: the readback this record's own card
+asked for (`new` empty, `undeclared_growth` empty, `slack` empty, `debt` ==
+`record`) is satisfied BY DEFINITION after a write, including after one that
+just hid growth. Measured 2026-09-18: a blind regeneration of that day's tree
+would have written 337 hits in 18 files (11 the record had never seen, 7 that
+had grown, e.g. `tests/test_atlas_avgjorelse.py` 26 -> 73); measured again
+2026-09-20: 2 files / +6 hits. So every report — the default scan included —
+now carries the per-file readback itself: counts that **grew**, files **new**
+to the record, and files **dropped** (`grew` / `new` / `dropped`, from the
+tool and not from the operator's eyes; t_c3004b63 measured that number by
+hand).
+
+A recorded entry may carry `owner` (who owns the residual) and `reason` (why it
+is left standing) — the generator
 preserves both, so a declared residual does not become an anonymous number
 again. One file is recorded that way today: `tests/test_atlas_dekning_aerlighet.py`,
 whose pattern pins `schema/atlas_dekning.json`, outside the guard (U2).
