@@ -19,6 +19,12 @@ import re
 import sys
 from pathlib import Path
 
+# The sibling module sits next to this file, and the tool is loaded both as a
+# script and via importlib from the tests — then the directory is not on
+# sys.path.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _repo_tre import filer as _tre_filer  # noqa: E402
+
 ROT = Path(__file__).resolve().parents[2]
 
 PAALAGTE_MAPPER = ["docs", "evidence", "efc_inference", "scripts", "tests",
@@ -30,14 +36,14 @@ INSID = re.compile(r"^INS-[0-9a-f]{8,}\.(yaml|yml)$")
 MAKS_BINÆR = 5 * 1024 * 1024
 
 
-def sjekk() -> list[dict]:
+def sjekk(root: Path = ROT) -> list[dict]:
     feil: list[dict] = []
     for m in PAALAGTE_MAPPER:
-        if not (ROT / m).is_dir():
+        if not (root / m).is_dir():
             feil.append({"type": "missing_dir", "msg": f"{m} is missing"})
-    for rot, prefix in ((ROT / "public" / "graph", "public/graph/"),
-                        (ROT / "public" / "page-meta", "public/page-meta/"),
-                        (ROT / "public" / "candidates", "public/candidates/")):
+    for rot, prefix in ((root / "public" / "graph", "public/graph/"),
+                        (root / "public" / "page-meta", "public/page-meta/"),
+                        (root / "public" / "candidates", "public/candidates/")):
         if not rot.is_dir():
             continue
         for p in rot.rglob("*"):
@@ -59,13 +65,20 @@ def sjekk() -> list[dict]:
                     p.read_text(encoding="utf-8")
                 except UnicodeDecodeError:
                     feil.append({"type": "non_utf8", "msg": rel})
-    # forbidden files in the whole repo (outside .git/.worktrees; symlinks
-    # are not followed)
-    for p in ROT.rglob("*"):
-        if not p.is_file() or p.is_symlink() or ".git" in p.parts or ".worktrees" in p.parts:
-            continue
+    # forbidden files in the whole repo — read the GIT TREE, not the disk.
+    #
+    # Measured 2026-10-05 (vedlikeholdsrunde): a disk walk answered with
+    # `.venv/lib/python3.12/site-packages/packaging/_tokenizer.py` — gitignored
+    # local state, present on disk, flagged as if it were committed. The rule
+    # is the one `_repo_tre.py` establishes (kanban t_12494ba1): in a git tree
+    # the answer is `git ls-files`, i.e. what is actually published, and it is
+    # the same in all clones. A NEW file must be `git add`-ed before the tool
+    # sees it; an untracked forbidden file is caught by the pre-commit gate,
+    # not by this checker.
+    for p in _tre_filer(root):
         if FORBUDTE_NAVN.search(p.name):
-            feil.append({"type": "forbidden_file", "msg": str(p.relative_to(ROT))})
+            feil.append({"type": "forbidden_file",
+                         "msg": p.relative_to(root).as_posix()})
     return feil
 
 
