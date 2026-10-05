@@ -100,6 +100,18 @@ def test_regime_node_selvbeskrivelse():
 
 
 import json  # noqa: E402
+import re  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+from efc_inference.engine.klima import TILSTANDER  # noqa: E402
+
+try:  # pragma: no cover
+    import jsonschema
+except ImportError:  # pragma: no cover
+    jsonschema = None
+
+_SKJEMA = (Path(__file__).resolve().parents[1]
+           / "schema" / "regime_node.schema.json")
 
 
 # ----------------------------------------------------------------------
@@ -160,3 +172,103 @@ def test_amoc_er_faktisk_ikke_kodet():
         assert treff == [], f"AMOC parameter in REQUIRED_PARAMS: {treff}"
     assert len(KlimaEngine.REQUIRED_PARAMS) == 5, \
         "REQUIRED_PARAMS has been extended — update the AMOC boundary"
+
+
+# ----------------------------------------------------------------------
+# The switch's state contract (t_l040-klima-kontrakt)
+#
+# The switch is the part of the engine an outside call hits. Before this
+# guard, an unknown member — a transliteration («snoball»), a trailing
+# space, uppercase, or a type outside the contract — gave the «varm»
+# answer inside the hysteresis band, where the canonical «snøball» state
+# says False: the opposite regime, without a word.
+# ----------------------------------------------------------------------
+
+
+@pytest.mark.parametrize("ugyldig", [
+    "snoball",     # ASCII transliteration of «snøball»
+    "snowball",
+    "kald",
+    "varm ",       # trailing space
+    "SNØBALL",     # uppercase
+    "",
+    None,          # a type outside the contract
+    1,
+])
+def test_ukjent_tilstand_feiler_lukket(ugyldig):
+    """A state outside the canonical two must FAIL — not be read as «varm».
+
+    Measured before the fix: every one of these gave the «varm» answer (True)
+    in the middle of the hysteresis band, where the canonical «snøball»
+    state says False — the opposite regime, without a word. The error is not
+    academic: the house's own rule about canonical spelling exists precisely
+    because transliterations occur in practice, and the switch is the part
+    of the engine an outside call hits.
+    """
+    e = KlimaEngine()
+    p = {**PARAMS, "albedo": 0.392}   # in the middle of the hysteresis band
+    with pytest.raises(ValueError):
+        e.har_varm_likevekt(p, tilstand=ugyldig)
+
+
+def test_tersklene_har_kjent_side():
+    """The boundaries must have a KNOWN side: «varm» falls at alpha_fall
+    (<=), «snøball» returns only BELOW alpha_retur (<). The values are set
+    exactly from the computed thresholds — not as alpha +/- a rounding (the
+    house's own experience: «exactly 2 sigma» lands on 1.999999999).
+    """
+    e = KlimaEngine()
+    alpha_fall = e._alpha_ved_frysepunkt(PARAMS)
+    alpha_retur = PARAMS.get("alpha_retur", 0.35)
+    assert alpha_retur < alpha_fall, "the hysteresis band must have width"
+
+    # at alpha_fall: a warm equilibrium exists (<=), the snowball state says no
+    p_fall = {**PARAMS, "albedo": alpha_fall}
+    assert e.har_varm_likevekt(p_fall, "varm") is True
+    assert e.har_varm_likevekt(p_fall, "snøball") is False
+
+    # at alpha_retur: the snowball state still says no (strict <)
+    assert e.har_varm_likevekt({**PARAMS, "albedo": alpha_retur},
+                               "snøball") is False
+    # just below: the snowball melts back
+    assert e.har_varm_likevekt({**PARAMS, "albedo": alpha_retur - 1e-9},
+                               "snøball") is True
+
+
+def test_kanoniske_tilstander_er_de_eneste_godtatte():
+    """The contract must be explicitly named in the code, not only in prose."""
+    assert set(TILSTANDER) == {"varm", "snøball"}
+    e = KlimaEngine()
+    p = {**PARAMS, "albedo": 0.392}
+    for tilstand in TILSTANDER:
+        assert isinstance(e.har_varm_likevekt(p, tilstand=tilstand), bool)
+
+
+@pytest.mark.parametrize("varmekapasitet", [1.0e8, 4.0e8, 6.3e9])
+def test_selvbeskrivelsen_baerer_effektive_parametre(varmekapasitet):
+    """The number in the self-description must be EXPRESSED from the
+    parameters, not written in. The test reads the number out of the text and
+    compares it with the hand-computed time constant for three different heat
+    capacities — a hardcoded «tau ~ 1 year» falls on the other two.
+    """
+    e = KlimaEngine()
+    p = {**PARAMS, "hav_varmekapasitet": varmekapasitet}
+    tau_aar = e.tidskonstant(p) / (365.25 * 86400)
+    tekst = e.regime_node(p)["regime"]["validity"]
+    treff = re.search(r"tau ~ (\d+) year", tekst)
+    assert treff, f"the self-description lacks the time constant: {tekst}"
+    assert int(treff.group(1)) == round(tau_aar)
+
+
+def test_regime_node_er_skjemavalid():
+    """The self-description must be a valid RegimeNode after the schema —
+    the same machine check as the bridge tests for the cosmological engines.
+    """
+    if jsonschema is None:
+        pytest.skip("jsonschema is not installed")
+    skjema = json.loads(_SKJEMA.read_text(encoding="utf-8"))
+    validator = jsonschema.Draft202012Validator(skjema["$defs"]["RegimeNode"])
+    node = KlimaEngine().regime_node(PARAMS)
+    feil = sorted(validator.iter_errors(node), key=lambda e: list(e.path))
+    meldinger = "; ".join(f"{list(e.path)}: {e.message}" for e in feil[:3])
+    assert not feil, f"efc.klima_engine fails the schema: {meldinger}"

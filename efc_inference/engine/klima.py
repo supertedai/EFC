@@ -37,6 +37,12 @@ import numpy as np
 
 from .base_engine import EFCEngine
 
+#: De to kanoniske tilstandene bryteren kjenner. Navngitt i koden fordi
+#: et kall utenfra treffer nettopp denne flaten: en translitterasjon
+#: («snoball») eller en type utenfor kontrakten skal ikke kunne leses
+#: som en av dem.
+TILSTANDER = ("varm", "snøball")
+
 
 class KlimaEngine(EFCEngine):
     """0D energy-balance engine with buffer and regime switch (idealized)."""
@@ -94,7 +100,18 @@ class KlimaEngine(EFCEngine):
         only when the albedo crosses alpha_fall (where T_eq = 273.15 K);
         from «snowball» it returns only when the albedo crosses
         alpha_retur (< alpha_fall — the snowball Earth's reflectance
-        stabilizes it, idealized hysteresis width)."""
+        stabilizes it, idealized hysteresis width).
+
+        The state must be one of TILSTANDER. An unknown member fails
+        CLOSED: a transliteration («snoball») or a type outside the contract
+        used to give the «warm» answer inside the hysteresis band — that is,
+        the opposite regime, without a word. A switch that cannot tell apart
+        the states it exists for is not a switch.
+        """
+        if tilstand not in TILSTANDER:
+            raise ValueError(
+                f"unknown tilstand {tilstand!r}: the switch only knows "
+                f"{TILSTANDER} — the canonical spelling is «snøball»")
         alpha_fall = self._alpha_ved_frysepunkt(params)
         alpha_retur = params.get("alpha_retur", 0.35)
         if tilstand == "snøball":
