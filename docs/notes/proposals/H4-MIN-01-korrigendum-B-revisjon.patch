@@ -1,0 +1,16 @@
+diff --git a/schema/regime_nodes.jsonld b/schema/regime_nodes.jsonld
+index 80def5b5..37b023c2 100644
+--- a/schema/regime_nodes.jsonld
++++ b/schema/regime_nodes.jsonld
+@@ -3781,7 +3781,10 @@
+     "ebe_s_regime": "high_s"
+    },
+    "synlighet": "offentlig",
+-   "ville_falsifisere": "DESI DR2 full-shape fσ8(z~0.7) utenfor ~1σ av 0.430 — den forseglede prediksjonen."
++   "ville_falsifisere": "DESI DR2 full-shape fσ8(z~0.7) utenfor ~1σ av 0.430 — den forseglede prediksjonen.",
++   "revisjon": [
++    "2026-04-28 — VAL-006-korrigendum (DOI 10.6084/m9.figshare.32114530): de forseglede veksttallene fra VAL-005 er flagget som betingede av tilbaketrukne stub/DR1-innsatser, og vekstsignalet loeses opp under DESI DR2 + reell fsigma8; noden er derfor betinget, ikke uforbeholden. Kilde: docs/papers/efc/EFC-VAL-2026-006/index.json P1."
++   ]
+   },
+   {
+    "id": "efc.lensing_engine",
