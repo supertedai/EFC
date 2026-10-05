@@ -202,6 +202,41 @@ class Instrumentene(Rigg):
         self.assertEqual(antall, 1, [str(p) for p in per_fil])
         self.assertEqual([p for p in per_fil if ".worktrees" in str(p)], [])
 
+    def test_repo_kontrakten_ser_ikke_ignorert_venv(self):
+        """validate_repo reads the git tree too: a gitignored `.venv` file whose
+        NAME matches the forbidden pattern (e.g. `_tokenizer.py`) must not be
+        flagged — it is local state, not a committed file.
+
+        Measured 2026-10-05 (vedlikeholdsrunde): `validate_repo.sjekk()` walked
+        the disk and answered `.venv/lib/python3.12/site-packages/packaging/
+        _tokenizer.py` — gitignored, present on disk, flagged as if committed.
+        """
+        vf = importlib.import_module("validate_repo")
+        self.git_init()
+        self.skriv(".gitignore", ".venv/\n")
+        self.skriv("docs/a.json", "{}\n")
+        # "token" matches the forbidden pattern, but the file is gitignored.
+        self.skriv(".venv/lib/python3.12/site-packages/packaging/_tokenizer.py",
+                   "x\n", spor=False)
+        self.git("add", ".gitignore", "docs/a.json")
+        feil = vf.sjekk(self.tmp)
+        forbudte = [f for f in feil if f.get("type") == "forbidden_file"]
+        self.assertEqual([f for f in forbudte if ".venv" in f["msg"]], [],
+                         "gitignored .venv content must not be flagged: %r" % (feil,))
+
+    def test_repo_kontrakten_feller_sporet_forbudt_fil(self):
+        """The other half: a TRACKED file whose name matches the forbidden
+        pattern must still be flagged — the fix narrows the scan to the git
+        tree, it does not disable the check."""
+        vf = importlib.import_module("validate_repo")
+        self.git_init()
+        self.skriv("docs/my_secret.json", "{}\n")
+        self.git("add", "docs/my_secret.json")
+        feil = vf.sjekk(self.tmp)
+        forbudte = [f for f in feil if f.get("type") == "forbidden_file"]
+        self.assertEqual([f["msg"] for f in forbudte], ["docs/my_secret.json"],
+                         "a tracked forbidden file must be flagged: %r" % (feil,))
+
 
 if __name__ == "__main__":
     unittest.main()
