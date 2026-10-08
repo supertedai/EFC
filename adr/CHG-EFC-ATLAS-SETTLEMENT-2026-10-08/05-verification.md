@@ -41,4 +41,4 @@ The latest broker prediction record read is sequence 31058, timestamp 2026-09-07
 
 ## Remote readback
 
-PR [#634](https://github.com/supertedai/EFC/pull/634) is **OPEN**, base `main`, head `85ec85aaa1c8cf5051708d82573d92dc9df9eecc`; `git ls-remote` matched that exact branch head. GitHub reported `mergeStateStatus=CLEAN`; required check runs `schema`, `verify`, and `spraakvakt` all concluded `SUCCESS` on that head. Independent PR review and the owner’s landing decision remain pending; nothing was merged.
+Historical readback at implementation commit `85ec85aaa1c8cf5051708d82573d92dc9df9eecc`: PR [#634](https://github.com/supertedai/EFC/pull/634) was **OPEN**, base `main`, `mergeStateStatus=CLEAN`, and checks `schema`, `verify`, and `spraakvakt` all concluded `SUCCESS`; `git ls-remote` matched that SHA. Subsequent commits only update the ADR closeout/readback record and trigger checks on the new head. The latest exact head/check result is posted on Kanban task `t_d7c63861`; do not treat this historical SHA as the current head. Independent PR review and the owner’s landing decision remain pending; nothing was merged.

@@ -4,7 +4,7 @@
 - **Kanban:** `t_d7c63861` on `energy-flow-cosmology`
 - **Owner:** Morten (requested correction)
 - **Implementer:** `default`
-- **Status:** Review-driven changes, final local gates, and PR readback are complete in run 799; independent PR review and the owner’s landing decision remain pending.
+- **Status:** Review-driven changes, final local gates, and PR #634 are in place from run 799; independent PR review and the owner’s landing decision remain pending.
 
 ## Request
 Correct the EFC atlas lookup so a node with a pending settlement contract is not presented as if an outcome has already been settled.
