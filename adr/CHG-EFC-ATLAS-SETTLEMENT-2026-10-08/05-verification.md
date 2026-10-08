@@ -37,4 +37,8 @@ The corresponding `--emne ... --alle --ref HEAD` commands exited 0. A result-onl
 /opt/venvs/t_123ed6d9/bin/python scripts/atlas_lesing.py . --emne efc.mu_kz_engine --alle --ref HEAD
 ```
 
-The latest broker prediction record read is sequence 31058, timestamp 2026-09-07T15:00:05Z; it names DESI DR2 full-shape as the awaited arbiter. The exact EFC-fσ8 settlement-subject query returned no message. This is a dated bus snapshot, not a claim about whether DESI DR2 data exist elsewhere. This change does not write to or alter the bus. Luna review findings and DeepSeek escalation status are recorded in `06-review.md`; commit/PR readback and independent PR review remain pending.
+The latest broker prediction record read is sequence 31058, timestamp 2026-09-07T15:00:05Z; it names DESI DR2 full-shape as the awaited arbiter. The exact EFC-fσ8 settlement-subject query returned no message. This is a dated bus snapshot, not a claim about whether DESI DR2 data exist elsewhere. This change does not write to or alter the bus.
+
+## Remote readback
+
+PR [#634](https://github.com/supertedai/EFC/pull/634) is **OPEN**, base `main`, head `85ec85aaa1c8cf5051708d82573d92dc9df9eecc`; `git ls-remote` matched that exact branch head. GitHub reported `mergeStateStatus=CLEAN`; required check runs `schema`, `verify`, and `spraakvakt` all concluded `SUCCESS` on that head. Independent PR review and the owner’s landing decision remain pending; nothing was merged.
