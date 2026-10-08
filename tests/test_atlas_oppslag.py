@@ -138,6 +138,259 @@ class TestEpistemiskStatus:
                 "from a claim")
             assert "har_prediksjon" in t
             assert "har_oppgjoer" in t
+            assert t["oppgjoer_status"] in {"none", "pending", "settled", "record_only"}
+
+    def test_pending_settlement_is_not_presented_as_settled(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "efc.growth_engine", ref="HEAD")
+        growth = next(t for t in svar["treff"] if t["id"] == "efc.growth_engine")
+        assert growth["har_oppgjoer"] is True
+        assert growth["oppgjoer_status"] == "pending"
+
+        proc = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(ekte_repo), "--emne", "efc.growth_engine", "--alle", "--ref", "HEAD"],
+            cwd=ekte_repo, capture_output=True, text=True,
+        )
+        assert proc.returncode == 0, proc.stderr
+        line = next(line for line in proc.stdout.splitlines()
+                    if line.strip().startswith("efc.growth_engine"))
+        assert "has settlement contract" in line, proc.stdout
+        assert "settlement pending" in line, proc.stdout
+        assert "is settled" not in line, proc.stdout
+
+    def test_no_settlement_contract_is_explicit(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "efc.mu_kz_engine", ref="HEAD")
+        node = next(t for t in svar["treff"] if t["id"] == "efc.mu_kz_engine")
+        assert node["har_oppgjoer"] is False
+        assert node["oppgjoer_status"] == "none"
+
+        proc = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(ekte_repo), "--emne", "efc.mu_kz_engine", "--alle", "--ref", "HEAD"],
+            cwd=ekte_repo, capture_output=True, text=True,
+        )
+        assert proc.returncode == 0, proc.stderr
+        line = next(line for line in proc.stdout.splitlines()
+                    if line.strip().startswith("efc.mu_kz_engine"))
+        assert "no settlement contract" in line, proc.stdout
+
+    def test_completed_settlement_remains_a_settled_outcome(self, ekte_repo: Path) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "verden.vaer", ref="HEAD")
+        vaer = next(t for t in svar["treff"] if t["id"] == "verden.vaer")
+        assert vaer["oppgjoer_status"] == "settled"
+        assert vaer["har_oppgjoer"] is True
+
+        proc = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(ekte_repo), "--emne", "verden.vaer", "--alle", "--ref", "HEAD"],
+            cwd=ekte_repo, capture_output=True, text=True,
+        )
+        assert proc.returncode == 0, proc.stderr
+        line = next(line for line in proc.stdout.splitlines()
+                    if line.strip().startswith("verden.vaer"))
+        assert "has settlement contract" in line, proc.stdout
+        assert "settled outcome" in line, proc.stdout
+
+    @pytest.mark.parametrize("outcome", [
+        "unknown",
+        "inconclusive",
+        "pending review",
+        '{"status": "unknown"}',
+        '{"status": "pending review"}',
+    ])
+    def test_nonterminal_static_outcome_is_not_settled(self, outcome: str) -> None:
+        node = {
+            "id": "test.node",
+            "prediction": {"correlation": "test-correlation"},
+            "settlement": {
+                "correlation": "test-correlation",
+                "outcome": outcome,
+                "outcome_source": "test source",
+                "outcome_time": "2026-10-08T12:00:00Z",
+                "settlement_version": "1",
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "record_only"
+
+    def test_static_settlement_with_wrong_correlation_is_not_settled(
+        self, ekte_repo: Path,
+    ) -> None:
+        svar = atlas_lesing.finn(ekte_repo, "kosmos.asteroider", ref="HEAD")
+        asteroider = next(t for t in svar["treff"] if t["id"] == "kosmos.asteroider")
+        assert asteroider["har_oppgjoer"] is True
+        assert asteroider["oppgjoer_status"] == "record_only"
+
+        proc = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(ekte_repo), "--emne", "kosmos.asteroider", "--alle", "--ref", "HEAD"],
+            cwd=ekte_repo, capture_output=True, text=True,
+        )
+        assert proc.returncode == 0, proc.stderr
+        line = next(line for line in proc.stdout.splitlines()
+                    if line.strip().startswith("kosmos.asteroider"))
+        assert "settled outcome" not in line, proc.stdout
+        assert "completion unverified" in line, proc.stdout
+
+    def test_settlement_result_needs_an_outcome_and_provenance(self) -> None:
+        complete = {
+            "id": "efc.growth_engine",
+            "prediction": {"correlation": "efc-fs8.fsigma8.z0.7"},
+            "settlement": {
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "outcome": "waiting for arbiter: DESI DR2 full-shape",
+            },
+            "settlement_result": {
+                "node": "efc.growth_engine",
+                "outcome": "confirmed",
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "gap_sigma": 0.4,
+                "provenance": {"seq": 31058},
+            },
+        }
+        incomplete = {"settlement_result": {"outcome": "confirmed"}}
+        invalid_gap = {
+            **complete,
+            "settlement": None,
+            "settlement_result": {
+                **complete["settlement_result"],
+                "gap_sigma": float("nan"),
+            },
+        }
+        incomplete_static = {"settlement": {"outcome": "confirmed"}}
+        static_missing_source = {
+            "settlement": {
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "outcome": "confirmed",
+                "outcome_time": "2026-10-08T12:00:00Z",
+                "settlement_version": "1",
+            }
+        }
+        assert atlas_lesing._oppgjoer_status(complete) == "settled"
+        assert atlas_lesing._oppgjoer_status(incomplete) == "record_only"
+        assert atlas_lesing._oppgjoer_status(invalid_gap) == "record_only"
+        assert atlas_lesing._oppgjoer_status(incomplete_static) == "record_only"
+        assert atlas_lesing._oppgjoer_status(static_missing_source) == "record_only"
+
+    def test_settlement_result_must_match_this_prediction(self) -> None:
+        node = {
+            "id": "efc.growth_engine",
+            "prediction": {"correlation": "efc-fs8.fsigma8.z0.7"},
+            "settlement_result": {
+                "node": "efc.growth_engine",
+                "correlation": "unrelated-prediction",
+                "outcome": "confirmed",
+                "gap_sigma": 0.4,
+                "provenance": {"seq": 31058},
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "record_only"
+
+    def test_settlement_result_must_name_this_node(self) -> None:
+        node = {
+            "id": "efc.growth_engine",
+            "prediction": {"correlation": "efc-fs8.fsigma8.z0.7"},
+            "settlement_result": {
+                "node": "obs.bao",
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "outcome": "confirmed",
+                "gap_sigma": 0.4,
+                "provenance": {"seq": 31058},
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "record_only"
+
+    def test_incomplete_result_does_not_hide_pending_contract(self) -> None:
+        node = {
+            "id": "efc.growth_engine",
+            "prediction": {"correlation": "efc-fs8.fsigma8.z0.7"},
+            "settlement": {
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "outcome": "waiting for arbiter: DESI DR2 full-shape",
+            },
+            "settlement_result": {"outcome": "confirmed"},
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "pending"
+
+    def test_pending_result_prevents_static_completion_claim(self) -> None:
+        node = {
+            "id": "test.node",
+            "prediction": {"correlation": "test-correlation"},
+            "settlement": {
+                "correlation": "test-correlation",
+                "outcome": '{"result": "completed-looking"}',
+                "outcome_source": "test source",
+                "outcome_time": "2026-10-08T12:00:00Z",
+                "settlement_version": "1",
+            },
+            "settlement_result": {
+                "node": "test.node",
+                "correlation": "test-correlation",
+                "outcome": "waiting for arbiter: named source",
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "pending"
+
+    def test_oppgjoer_cli_result_is_settled_without_changing_legacy_presence(
+        self, tmp_path: Path,
+    ) -> None:
+        candidate = {
+            "observable": "fsigma8",
+            "survey": "DESI",
+            "release": "DR2",
+            "analysis": "full-shape",
+            "fsigma8": 0.43,
+            "fsigma8_sigma": 0.05,
+            "z_eff": 0.7,
+            "tracer": "LRG+ELG",
+            "referanse": "DESI 2025 VI",
+            "seq": 999,
+            "Nats_Msg_Id": "efc-fs8.v1.DESI_DR2.LRG+ELG.0.7000.test",
+        }
+        candidate_path = tmp_path / "measurement.json"
+        candidate_path.write_text(json.dumps(candidate), encoding="utf-8")
+        proc = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_oppgjoer.py"),
+             "--kandidat", str(candidate_path)],
+            cwd=REPO, capture_output=True, text=True,
+        )
+        assert proc.returncode == 0, proc.stdout + proc.stderr
+        marker = "The block that WOULD be written:"
+        assert marker in proc.stdout, proc.stdout
+        result = json.loads(proc.stdout.split(marker, 1)[1].lstrip())
+
+        repo = tmp_path / "repo"
+        repo.mkdir()
+        _git(repo, "init", "-q")
+        _git(repo, "config", "user.email", "t@t")
+        _git(repo, "config", "user.name", "t")
+        (repo / "schema").mkdir()
+        (repo / "schema" / "regime_nodes.jsonld").write_text(
+            json.dumps({"nodes": [{
+                "id": result["node"],
+                "synlighet": "offentlig",
+                "prediction": {"correlation": result["correlation"]},
+                "settlement_result": result,
+            }]}),
+            encoding="utf-8",
+        )
+        _git(repo, "add", "-A")
+        _git(repo, "commit", "-q", "-m", "producer result")
+
+        svar = atlas_lesing.finn(repo, result["node"], ref="HEAD")
+        node = next(t for t in svar["treff"] if t["id"] == result["node"])
+        assert node["har_oppgjoer"] is False
+        assert node["oppgjoer_status"] == "settled"
+
+        cli = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(repo), "--emne", result["node"], "--alle", "--ref", "HEAD"],
+            cwd=repo, capture_output=True, text=True,
+        )
+        assert cli.returncode == 0, cli.stderr
+        line = next(line for line in cli.stdout.splitlines()
+                    if line.strip().startswith(result["node"]))
+        assert "no settlement contract" in line, cli.stdout
+        assert "settled outcome" in line, cli.stdout
 
     def test_falsifikator_telles_riktig(self, ekte_repo: Path) -> None:
         """The nodes with `ville_falsifisere` must be flagged — the others not."""

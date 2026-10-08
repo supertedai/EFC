@@ -64,6 +64,7 @@ from __future__ import annotations
 import json
 import collections
 import datetime
+import math
 import re
 import subprocess
 from pathlib import Path
@@ -177,6 +178,181 @@ def _har_falsifikator(node: dict) -> bool:
     to see the difference without reading the whole node.
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
+
+
+def _oppgjoer_values(value):
+    """Yield scalar values from a structured outcome string or object."""
+    if isinstance(value, dict):
+        for item in value.values():
+            yield from _oppgjoer_values(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _oppgjoer_values(item)
+    elif isinstance(value, str):
+        text = value.strip()
+        try:
+            parsed = json.loads(text)
+        except (json.JSONDecodeError, TypeError):
+            yield text
+        else:
+            if isinstance(parsed, (dict, list)):
+                yield from _oppgjoer_values(parsed)
+            elif isinstance(parsed, str):
+                yield parsed.strip()
+            else:
+                yield parsed
+    else:
+        yield value
+
+
+def _oppgjoer_venter(outcome) -> bool:
+    return any(
+        isinstance(value, str)
+        and value.casefold().startswith(("waiting for arbiter", "awaiting arbiter"))
+        for value in _oppgjoer_values(outcome)
+    )
+
+
+def _oppgjoer_utfall_er_fullfort(outcome) -> bool:
+    """A static outcome must be a terminal label or a populated result object."""
+    if not isinstance(outcome, str) or not outcome.strip():
+        return False
+    text = outcome.strip()
+    if text.casefold() in {"confirmed", "contradicted"}:
+        return True
+    try:
+        payload = json.loads(text)
+    except (json.JSONDecodeError, TypeError):
+        return False
+    if not isinstance(payload, (dict, list)) or not payload:
+        return False
+
+    values = list(_oppgjoer_values(payload))
+    if any(
+        isinstance(value, str)
+        and (
+            value.casefold() in {
+                "unknown", "inconclusive", "pending", "unresolved", "unsettled",
+            }
+            or value.casefold().startswith(("pending ", "waiting", "awaiting", "not settled"))
+        )
+        for value in values
+    ):
+        return False
+    return any(
+        value is not None and (not isinstance(value, str) or bool(value.strip()))
+        for value in values
+    )
+
+
+def _oppgjoer_korrelasjon_matcher(node: dict, record: dict) -> bool:
+    correlation = record.get("correlation")
+    if not isinstance(correlation, str) or not correlation.strip():
+        return False
+    prediction = node.get("prediction")
+    expected = prediction.get("correlation") if isinstance(prediction, dict) else None
+    if expected in (None, ""):
+        return True
+    return isinstance(expected, str) and correlation.strip() == expected.strip()
+
+
+def _oppgjoer_status(node: dict) -> str:
+    """Classify a settlement record without treating its presence as an outcome.
+
+    EFC result blocks must identify this node and match its prediction. Static
+    records need a correlated, populated outcome plus completion metadata;
+    unknown result forms remain non-settled.
+    """
+    result = node.get("settlement_result")
+    settlement = node.get("settlement")
+    has_result = bool(result)
+    has_settlement = bool(settlement)
+    if not has_result and not has_settlement:
+        return "none"
+
+    if isinstance(result, dict) and result:
+        prediction = node.get("prediction")
+        prediction_correlation = (
+            prediction.get("correlation") if isinstance(prediction, dict) else None
+        )
+        settlement_correlation = (
+            settlement.get("correlation") if isinstance(settlement, dict) else None
+        )
+        expected_correlations = [
+            value.strip()
+            for value in (prediction_correlation, settlement_correlation)
+            if isinstance(value, str) and value.strip()
+        ]
+        correlation = result.get("correlation")
+        correlation_matches = (
+            isinstance(correlation, str)
+            and bool(correlation.strip())
+            and bool(expected_correlations)
+            and all(correlation.strip() == value for value in expected_correlations)
+        )
+
+        provenance = result.get("provenance")
+        sequence = provenance.get("seq") if isinstance(provenance, dict) else None
+        if isinstance(sequence, bool):
+            has_sequence = False
+        elif isinstance(sequence, int):
+            has_sequence = sequence > 0
+        elif isinstance(sequence, str):
+            digits = sequence.strip()
+            has_sequence = digits.isdigit() and bool(digits.lstrip("0"))
+        else:
+            has_sequence = False
+        message_id = provenance.get("Nats_Msg_Id") if isinstance(provenance, dict) else None
+        has_message_id = isinstance(message_id, str) and bool(message_id.strip())
+        gap = result.get("gap_sigma")
+        try:
+            has_finite_gap = (
+                isinstance(gap, (int, float))
+                and not isinstance(gap, bool)
+                and math.isfinite(gap)
+            )
+        except OverflowError:
+            has_finite_gap = False
+        outcome = result.get("outcome")
+        node_id = node.get("id")
+        if (
+            isinstance(node_id, str)
+            and node_id.strip()
+            and result.get("node") == node_id
+            and correlation_matches
+            and isinstance(outcome, str)
+            and outcome.strip().casefold() in {"confirmed", "contradicted"}
+            and has_finite_gap
+            and (has_sequence or has_message_id)
+        ):
+            return "settled"
+
+    if isinstance(result, dict):
+        node_id = node.get("id")
+        if (
+            isinstance(node_id, str)
+            and result.get("node") == node_id
+            and _oppgjoer_korrelasjon_matcher(node, result)
+            and _oppgjoer_venter(result.get("outcome"))
+        ):
+            return "pending"
+
+    if isinstance(settlement, dict):
+        settlement_matches = _oppgjoer_korrelasjon_matcher(node, settlement)
+        if settlement_matches and _oppgjoer_venter(settlement.get("outcome")):
+            return "pending"
+        if (
+            settlement_matches
+            and _oppgjoer_utfall_er_fullfort(settlement.get("outcome"))
+            and isinstance(settlement.get("outcome_time"), str)
+            and settlement["outcome_time"].strip()
+            and isinstance(settlement.get("settlement_version"), str)
+            and settlement["settlement_version"].strip()
+            and isinstance(settlement.get("outcome_source"), str)
+            and settlement["outcome_source"].strip()
+        ):
+            return "settled"
+    return "record_only"
 
 
 # ---------------------------------------------------------------------------
@@ -499,6 +675,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "buss_domene": n.get("buss_domene"),
                 "har_prediksjon": bool(n.get("prediction")),
                 "har_oppgjoer": bool(n.get("settlement")),
+                "oppgjoer_status": _oppgjoer_status(n),
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
@@ -548,6 +725,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": n.get("buss_domene"),
             "har_prediksjon": bool(n.get("prediction")),
             "har_oppgjoer": bool(n.get("settlement")),
+            "oppgjoer_status": _oppgjoer_status(n),
             "har_falsifikator": _har_falsifikator(n),
         })
     # Registered concepts ALWAYS answer with the namespace hit — also when a
@@ -572,6 +750,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": None,
             "har_prediksjon": False,
             "har_oppgjoer": False,
+            "oppgjoer_status": "none",
             "har_falsifikator": False,
             # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace hit
             # gave a non-empty hit list, and a reader (or a downstream call)
@@ -2247,7 +2426,15 @@ if __name__ == "__main__":
             if t["har_prediksjon"]:
                 merker.append("has prediction")
             if t["har_oppgjoer"]:
-                merker.append("is settled")
+                merker.append("has settlement contract")
+            else:
+                merker.append("no settlement contract")
+            if t["oppgjoer_status"] == "settled":
+                merker.append("settled outcome")
+            elif t["oppgjoer_status"] == "pending":
+                merker.append("settlement pending")
+            elif t["oppgjoer_status"] == "record_only":
+                merker.append("settlement record (completion unverified)")
             if t["buss_domene"]:
                 merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
