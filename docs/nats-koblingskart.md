@@ -55,6 +55,7 @@ give `found=False` — just with a different reason.
 | Subject | Content | Engine |
 |---|---|---|
 | `kosmos.kosmologi.tilstand.efc-fs8` | Sealed fσ8-**baseline**: OBSERVED measurements (DESI DR1, eBOSS) with L/S classification — reference values, not EFC outcomes | none — the baseline is the arbiter's basis, not engine output |
+| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC **prediction** (modelled fσ8): one sealed message, `seq 31058` (2026-09-07T15:00Z), `arbiter: nei` — read live 2026-10-11, 1 msg | `growth` produces it; `SealedFs8Arbiter` (step 12) judges it against the baseline |
 | `kosmos.kosmologi.diskusjon.arxiv` | arXiv papers | (source basis, not measurement) |
 
 ### Contracts defined — publication awaits write access
@@ -65,8 +66,7 @@ write access the owners have not yet granted.
 
 | Subject | Content | Producer |
 |---|---|---|
-| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC **prediction** (modelled fσ8) | `growth` produces the prediction (fσ8(z=0.7), parameter-derived); `SealedFs8Arbiter` (step 12) judges it against the baseline |
-| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | The arbiter's **outcome** (PASS/FAIL/VENTER with rule and source) | the arbiter itself — payload format defined in step 12 |
+| `kosmos.kosmologi.oppgjoer.efc-fs8` | The arbiter's **outcome** (PASS/FAIL/VENTER with rule and source). Expected topic per `schema/efc_fs8.arbiter.json`; measured **0 messages** live 2026-10-11 — the loop is open | the arbiter itself — payload format defined in step 12 |
 
 ### Candidates (subjects that exist, connection not built)
 
