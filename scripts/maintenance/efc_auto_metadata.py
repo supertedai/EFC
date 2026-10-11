@@ -47,7 +47,7 @@ SKIP_TOP = {
 
 AUTHOR = "Morten Magnusson"
 ORCID = "0009-0002-4860-5095"
-AFFILIATION = "Symbiose Research, Sandnes, Norway"
+AFFILIATION = "Symbiose Research, Sola, Norway"
 
 
 def find_bare_pdfs():

@@ -1,0 +1,58 @@
+{
+  "buildable": true,
+  "build_errors": [],
+  "sha256_consistent": true,
+  "deterministic": false,
+  "determinism_evidence": {
+    "command": "scripts/maintenance/efc_pdf_bygg.sh docs/papers/efc/EFC_Model_Family_Reconciliation",
+    "build_1_sha256": "9669ada1b7eab2b5a33019817667e14b4640717f831bf41de2537b8a5b70ecbc",
+    "build_2_sha256": "5daae71d590b6c9f8aa00c8c63e8f3d9cf6b03901d0d921945fe76d464b9d28b",
+    "sha256_equal": false,
+    "build_2_sha256_file_match": true,
+    "notes": "Two consecutive builds of unchanged source completed successfully but produced different PDF hashes. This confirms the manuscript's non-byte-determinism claim. The build log contained Overfull hbox warnings and an h-float warning, but no LaTeX errors."
+  },
+  "findings": [
+    {
+      "claim_id": "buildability",
+      "finding": "The manuscript compiles successfully through the repository build script and produces a PDF; no fatal LaTeX error occurred.",
+      "severity": "info",
+      "source_location": "scripts/maintenance/efc_pdf_bygg.sh:47-53; docs/papers/efc/EFC_Model_Family_Reconciliation/EFC_Model_Family_Reconciliation.log"
+    },
+    {
+      "claim_id": "build_warnings",
+      "finding": "The build is successful but not warning-free: the log reports multiple Overfull hbox warnings for the long DOI table entries and one float-placement warning.",
+      "severity": "low",
+      "source_location": "docs/papers/efc/EFC_Model_Family_Reconciliation/EFC_Model_Family_Reconciliation.log:620-682"
+    },
+    {
+      "claim_id": "sha256_record",
+      "finding": "The build script writes the SHA-256 of the produced PDF to .build.sha256, and on the second observed build the recorded hash matched the PDF hash exactly.",
+      "severity": "info",
+      "source_location": "scripts/maintenance/efc_pdf_bygg.sh:53-57; docs/papers/efc/EFC_Model_Family_Reconciliation/.build.sha256"
+    },
+    {
+      "claim_id": "byte_reproducibility",
+      "finding": "The manuscript's claim that byte-for-byte reproducibility is not achieved is confirmed: consecutive unchanged-source builds yielded different hashes.",
+      "severity": "info",
+      "source_location": "EFC_Model_Family_Reconciliation.tex:240-243; determinism_evidence.build_1_sha256 and build_2_sha256"
+    },
+    {
+      "claim_id": "gamma_provenance",
+      "finding": "The Gamma-family provenance is traceable to the cited packages, but the source corpus itself is internally inconsistent: DOI 31942821 metadata describes the saturating rho/(rho+rho_crit) form while its key_result and source code implement the rho^(3/2)/(rho+rho_crit) Scenario B form; DOI 31942800 provides the square-root Scenario B+ form. The manuscript correctly presents this as a bifurcation and does not claim demonstrated supersession.",
+      "severity": "medium",
+      "source_location": "EFC_Model_Family_Reconciliation.tex:106-153; docs/papers/efc/Derivation_of_the_Entropy_Production/index.json:49-55,108; docs/papers/efc/Derivation_of_the_Entropy_Production/src/entropy_production.py:8-15,198-213; docs/papers/efc/Density_of_States_of_Gravitationally/index.json:41-51"
+    },
+    {
+      "claim_id": "kc1_provenance",
+      "finding": "The KC1 status claim is traceable and supported as an open provenance issue, not an executed result: the cited package records null delta_chi2/significance and no new fit, while retaining the conditional >=5 sigma criterion.",
+      "severity": "info",
+      "source_location": "EFC_Model_Family_Reconciliation.tex:181-190; docs/papers/efc/EFC_Gradient_Coupled_Grid_Action/index.json:74-88,102-107"
+    },
+    {
+      "claim_id": "siren_provenance",
+      "finding": "The gravitational-wave/electromagnetic luminosity-distance discriminator is traceable to the relativistic-action package and its preregistration, but remains proposed and unexecuted; the source package reports no dataset and null fit/significance fields.",
+      "severity": "info",
+      "source_location": "EFC_Model_Family_Reconciliation.tex:206-213; docs/papers/efc/EFC_Relativistic_Action_Field_Equations_Perturbation_Theory_and_Extraction/index.json:58-70,83-86; docs/validation-ledger/preregistrations/axis_dl_gw_em.md:1-25"
+    }
+  ]
+}

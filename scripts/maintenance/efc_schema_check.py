@@ -43,7 +43,10 @@ pair, and a glob would inherit that.
 
 On 20f81f71: 161 pairs, 48 validate, 113 instances fail, 0 schemas are
 invalid; 79 distinct once `$id` and `title` are ignored, of which 74 are
-unique and 77 share two older templates. Ignoring those two keys is not
+unique and 77 share two older templates. After registering the 162nd pair
+and closing its schema: 162 pairs, 49 validate, 113 instances fail,
+0 schemas are invalid; 80 distinct once `$id` and `title` are ignored,
+of which 75 are unique. Ignoring those two keys is not
 cosmetic: C12 gives every schema a unique `$id`, so the raw text count is
 160 and measures nothing. tests/test_efc_schema_check.py runs this rule and
 compares it to the numbers written here, so they cannot go stale silently —
@@ -79,6 +82,15 @@ PAIRS: list[tuple[str, str]] = [
 INSTANCELESS: list[tuple[str, str]] = [
     ("docs/evaluation-ledger/schema.json", "docs/evaluation-ledger/data/evaluation.json"),
     ("docs/model-comparison/schema.json", "docs/model-comparison/data/comparisons.json"),
+]
+# Schemas with NO single canonical instance (they validate many artifacts, e.g.
+# every finding inside every deleg_*/verdict.json). Checked for schema validity
+# and closure only — never paired with an instance.
+SCHEMA_ONLY: list[str] = [
+    "docs/validation-ledger/finding.schema.json",
+    "docs/validation-ledger/verdict.schema.json",
+    "docs/validation-ledger/human_gate.schema.json",
+    "docs/validation-ledger/claim_gate_matrix.schema.json",
 ]
 
 
@@ -129,13 +141,14 @@ def open_schemas(schema, path: str = "") -> list[str]:
     return out
 
 
-def check(root: Path = ROOT, pairs=None, instanceless=None) -> list[str]:
+def check(root: Path = ROOT, pairs=None, instanceless=None, schema_only=None) -> list[str]:
     try:
         import jsonschema
     except ImportError:
         return ["jsonschema is not installed — pip install 'jsonschema>=4.18,<5' (requirements.txt)"]
     pairs = PAIRS if pairs is None else pairs
     instanceless = INSTANCELESS if instanceless is None else instanceless
+    schema_only = SCHEMA_ONLY if schema_only is None else schema_only
     problems: list[str] = []
 
     def valid_schema(rel: str):
@@ -169,6 +182,11 @@ def check(root: Path = ROOT, pairs=None, instanceless=None) -> list[str]:
         valid_schema(srel)
         if (root / promised).exists():
             problems.append(f"{promised} exists now — register ({srel}, {promised}) in PAIRS and close the schema")
+    for srel in schema_only:
+        vs = valid_schema(srel)
+        if vs is not None:
+            for p in open_schemas(vs[1]):
+                problems.append(f"{srel}: schema at {p}")
     return problems
 
 
@@ -178,6 +196,8 @@ def main(argv: list[str]) -> int:
             print(f"{s}  <-  {i}")
         for s, promised in INSTANCELESS:
             print(f"{s}  (no instance yet; promised at {promised})")
+        for s in SCHEMA_ONLY:
+            print(f"{s}  (schema-only; no single instance)")
         return 0
     problems = check()
     for p in problems:
@@ -185,7 +205,9 @@ def main(argv: list[str]) -> int:
     if problems:
         print(f"[efc-schema] FAIL — {len(problems)} problem(s) across {len(PAIRS)} pair(s)")
         return 1
-    print(f"[efc-schema] OK — {len(PAIRS)} schema/instance pair(s) valid and closed, {len(INSTANCELESS)} instanceless schema(s) valid")
+    print(f"[efc-schema] OK — {len(PAIRS)} schema/instance pair(s) valid and closed, "
+          f"{len(INSTANCELESS)} instanceless schema(s) valid, "
+          f"{len(SCHEMA_ONLY)} schema-only valid and closed")
     return 0
 
 

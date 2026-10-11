@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/validation-ledger/verdict.schema.json",
+  "title": "EFC adversarial review verdict",
+  "description": "The meta-reviewer's consolidated verdict for one claim. CLOSED (C10). Self-contained: the finding shape is inlined in $defs.finding (kept in sync with finding.schema.json by tests/test_review_gate.py). The verdict is the FROZEN reviewer output — it never carries the human disposition. The human's binding decision lives in a SEPARATE artifact, human_gate.json, beside the verdict; efc_review_gate.py reads both, so disposing a claim never mutates frozen reviewer words. method_revision must be >= v2 for this verdict to serve as a release gate.",
+  "type": "object",
+  "required": ["verdict_id", "manuscript", "method_revision", "snapshot_sha256", "claim_verdicts", "findings"],
+  "properties": {
+    "verdict_id": { "type": "string" },
+    "manuscript": { "type": "string" },
+    "method_revision": {
+      "type": "string",
+      "pattern": "^v[0-9]+$",
+      "description": "Minimum v2 for release; the gate compares numerically, not by equality."
+    },
+    "snapshot_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "sha256 of the review directory's snapshot.tex — the frozen source the reviewers actually read. The gate recomputes this and refuses on mismatch."
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "claim_verdicts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim_verdict" }
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    }
+  },
+  "$defs": {
+    "claim_verdict": {
+      "type": "object",
+      "required": ["claim_id", "claim_status"],
+      "properties": {
+        "claim_id": { "type": "string" },
+        "asserted": { "type": "string" },
+        "premises": { "type": "array", "items": { "type": "string" } },
+        "derivation_valid": { "type": ["boolean", "string"] },
+        "empirically_tested": { "type": ["boolean", "string"] },
+        "supporting_evidence": { "type": "array", "items": { "type": "string" } },
+        "conflicting_evidence": { "type": "array", "items": { "type": "string" } },
+        "simpler_explanation": { "type": "string" },
+        "falsifier": { "type": "string" },
+        "unresolved": { "type": "array", "items": { "type": "string" } },
+        "claim_status": {
+          "enum": ["proposed", "declared_derived", "declared_companion_upgrade"],
+          "description": "Ledger vocabulary only. Never free text like 'looks convincing'. This is the meta-reviewer's PROPOSAL; the binding disposition is in the separate human_gate.json (approved_claims). A promoted value here (declared_derived / declared_companion_upgrade) is what the release gate's grounding check applies to."
+        }
+      },
+      "additionalProperties": false
+    },
+    "finding": {
+      "type": "object",
+      "required": [
+        "finding_id", "claim_id", "reviewer_role", "evidence_layer",
+        "finding", "severity", "type", "supports_or_attacks",
+        "source", "confidence", "method_revision", "disposition"
+      ],
+      "properties": {
+        "finding_id": { "type": "string", "pattern": "^F-[a-z0-9]+-\\d+$" },
+        "claim_id": { "type": "string", "minLength": 1 },
+        "reviewer_role": {
+          "enum": ["cartographer", "provenance", "formalist", "paradigm_critic",
+                   "falsifier", "alternative_paradigm", "measurement_proxy",
+                   "reproducer", "meta_reviewer"]
+        },
+        "method_revision": { "type": "string", "pattern": "^v[0-9]+$" },
+        "evidence_layer": {
+          "enum": ["RAW_SIGNAL", "INSTRUMENT", "PROXY", "TARGET", "NORMATIVE",
+                   "DERIVED", "PARADIGM", "PREVIOUS_AGENT", "HINDSIGHT",
+                   "AUTHOR", "EXTERNAL", "HYPOTHESIS"]
+        },
+        "atlas_node_ref": { "type": ["string", "null"] },
+        "atlas_field": { "type": ["string", "null"] },
+        "finding": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["critical", "high", "medium", "low", "note"] },
+        "type": { "enum": ["empirical", "formal", "provenance", "paradigm", "proxy", "domain"] },
+        "supports_or_attacks": { "enum": ["supports", "attacks", "neutral"] },
+        "source": { "type": "string" },
+        "source_location": { "type": "string" },
+        "testable": { "type": "boolean" },
+        "test": { "type": ["string", "null"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "reasoning": { "type": "string" },
+        "required_text_change": { "type": ["string", "null"] },
+        "disposition": {
+          "type": ["string", "null"],
+          "enum": ["accepted", "rejected", "author-gate", "already-covered", null],
+          "description": "REQUIRED in a final verdict (the inline finding shape differs from the raw finding schema here): a frozen verdict must close every finding, so disposition is not null."
+        },
+        "proposed_status": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

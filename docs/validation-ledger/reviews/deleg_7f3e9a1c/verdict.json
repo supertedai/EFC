@@ -1,0 +1,754 @@
+{
+  "verdict_id": "deleg_7f3e9a1c-meta-verdict",
+  "manuscript": "docs/papers/efc/EFC_Model_Family_Reconciliation/EFC_Model_Family_Reconciliation.tex",
+  "claim_verdicts": [
+    {
+      "claim_id": "C01",
+      "asserted": "Reconciliationen er ikke en ny empirisk test, fysisk bekreftelse, supersession-påstand eller uavhengig fagfellevurdering; ingen ny fit utføres.",
+      "premises": "Manuskriptets uttrykkelige scope må leses som avgrensning, og kildepakker/ledger må ikke forveksles med nye resultater.",
+      "derivation_valid": "Ja som dokument-scope; dette er ikke en fysisk derivasjon.",
+      "empirically_tested": "Nei; scopepåstanden er verifisert dokument-/metadata-messig, ikke empirisk.",
+      "supporting_evidence": "EFC_Model_Family_Reconciliation.tex:83-91,215-225; reproduction.json:46-55; alle seks index.json med null fit-felt der relevant.",
+      "conflicting_evidence": "Ingen kilde viser at manuskriptet faktisk utfører en fit; reviewerinnvendinger om manglende fysisk lukking gjelder ikke denne smale scopepåstanden.",
+      "simpler_explanation": "En ren provenance-/statusinventering forklarer observasjonen uten å kreve en lukket samlet teori.",
+      "falsifier": "Motbevis hvis manuskriptet eller build-artefaktet inneholdt en ny, reproduserbar fit eller hevdet fysisk bekreftelse.",
+      "unresolved": "Om alle workflow- og AI-review-påstander skal omfattes av samme scope; dette endrer ikke status.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C02",
+      "asserted": "De seks Table-1-slugene og DOI-parene er de tilsiktede kildemappingene.",
+      "premises": "Repo-stier må finnes og hver index.json må ha samme DOI/figshare_url som manuskriptet.",
+      "derivation_valid": "Ja, identitetsmappingen er direkte kontrollert.",
+      "empirically_tested": "Ikke empirisk; kilde-/repo-testet.",
+      "supporting_evidence": "claim_map.json:12-18; provenance_review.json:4-29; seks index.json; manuskript:104-123.",
+      "conflicting_evidence": "Ingen feil i de seks primære mappingene. DOI 31940469 er en separat, kildeverifisert informs-relasjon og ikke en dangling Table-1-mapping.",
+      "simpler_explanation": "En enkel fil-/DOI-identitetskontroll forklarer funnet.",
+      "falsifier": "Falsifiseres av manglende sti eller mismatchende DOI i en autoritativ index.json.",
+      "unresolved": "Figshare-versjonshistorikk er ikke vurdert for denne identitetsclaimen.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C03",
+      "asserted": "Gamma er dS/drho, og sigma_s=Gamma(rho) dot-rho følger ved kjerneregelen.",
+      "premises": "Felles definisjon av S, rho-enheter, differensierbar S(rho), og en felles normalisering for alle former.",
+      "derivation_valid": "Kjerneregelen er gyldig per eksplisitt definert modell; felles bruk for A/B/C er ikke etablert fordi Gamma_B mangler prefaktor/dimensjonskonvensjon, og kildene viser også Gamma i Box phi=Gamma(ρ).",
+      "empirically_tested": "Nei. Ingen fit eller måling av denne identifikasjonen.",
+      "supporting_evidence": "Manuskript:127-131; Derivation.../index.json:24-27,49-55; relativistic-action.../index.json:147-182,205-217.",
+      "conflicting_evidence": "FORM-001/002 og attacker_review:15-31 viser manglende identifikasjon mellom dS/drho, Box phi-kilde og relativistisk Gamma.",
+      "simpler_explanation": "Separate package-roller eller separate entropikonvensjoner kan forklare samme symbol uten én felles fysisk respons.",
+      "falsifier": "Falsifiseres/avklares av en eksplisitt dimensjonskonsistent mapping eller ved at autoritativ kilde viser at objektene faktisk er identiske med samme enheter.",
+      "unresolved": "Felles S, enheter, normalisering og mapping Gamma→feltligning→observabel mangler.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C04",
+      "asserted": "Korpuset inneholder tre distinkte deklarerte former Gamma_A, Gamma_B og Gamma_C.",
+      "premises": "Formene må gjengis kildefidel og skilles fra påstanden om at de allerede er dimensjonelt forenlige eller empirisk selektert.",
+      "derivation_valid": "Ja som transkripsjon av deklarerte uttrykk; nei som påstand om samme normaliserte fysiske observable.",
+      "empirically_tested": "Nei. Korpusformen er dokumentert, ikke testet.",
+      "supporting_evidence": "Manuskript:133-141; 31942821/index.json:49-55,108; 31942800/index.json:41-47; form_status_register.json:10-45.",
+      "conflicting_evidence": "31942821 er internt inkonsistent (A i main_finding/core equation, B i key_result); Gamma_B har dimensjon sqrt([rho]) uten prefaktor.",
+      "simpler_explanation": "Dokument-/metadata-bifurkasjon, eller separate modellroller, forklarer tre uttrykk uten felles responsfunksjon.",
+      "falsifier": "En autoritativ kilde som kollapser formene til samme reparameterisering, eller dimensjonsanalyse som ikke krever normalisering.",
+      "unresolved": "Normering av B og felles felt-/observabelmapping er uløst.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C05",
+      "asserted": "A er proposed; B er declared_derived, non-saturating og ikke superseded; C er declared_companion_upgrade/untested og ikke superseded.",
+      "premises": "Form_status_register.json er autoritativt statusregister; statusord skal ikke leses som empirisk bevis.",
+      "derivation_valid": "Ja som statusmapping; ingen fysisk derivasjon følger av etikettene.",
+      "empirically_tested": "Nei. Registeret sier tested=false/åpne forhold.",
+      "supporting_evidence": "Manuskript:143-149; form_status_register.json:10-45; claim_map:C05.",
+      "conflicting_evidence": "Ingen kilde støtter at statusetikettene innebærer empirisk seleksjon, ekvivalens eller forbedring.",
+      "simpler_explanation": "Dette er metadata-livssyklus, ikke en fysisk modenhetskjede.",
+      "falsifier": "Falsifiseres av register-/manuskriptmismatch; fysisk supersession krever separat test.",
+      "unresolved": "Hvorvidt B+ faktisk bør kalles upgrade eller bare proposed companion form må author-gates.",
+      "claim_status": "declared_companion_upgrade"
+    },
+    {
+      "claim_id": "C06",
+      "asserted": "A/B/C utgjør en shape bifurcation, ikke en empirisk A→B→C-modenhetskjede; B→B+ er bare deklarert relasjon.",
+      "premises": "Bifurcation må uttrykkelig være en reconciliation-label, ikke et teorem; supersession er not_established.",
+      "derivation_valid": "Gyldig som forsiktig provenance-syntese; ikke som fysisk modellteorem uten felles dynamikk.",
+      "empirically_tested": "Nei. Ingen felles likelihood eller seleksjon.",
+      "supporting_evidence": "Manuskript:151-153; form_status_register.json:28-45; falsification.md:11-24,26-34.",
+      "conflicting_evidence": "Kildekonflikten og manglende normalisering/feltmapping gjør fysisk bifurkasjon uavklart; B→B+ kan ikke innebære forbedring.",
+      "simpler_explanation": "Metadata-/provenance-bifurkasjon forklarer alt som faktisk er etablert.",
+      "falsifier": "Falsifiseres som corpusclaim av autoritativ kilde; fysisk påstand falsifiseres/seleksjoneres av låst A/B/C-sammenligning.",
+      "unresolved": "Regime, felles observabel, normalisering og beslutningsregel mangler.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C07",
+      "asserted": "Det finnes to ortogonale modellfamilieakser: E-eksponent alpha=1 vs 1/2 og Gamma-density-shape.",
+      "premises": "Det kreves felles modellrom, viste kombinasjoner/faktorisering og identifiserbarhet for fysisk ortogonalitet.",
+      "derivation_valid": "Kun som organisatorisk taksonomi; formell ortogonalitet/uavhengighet er ikke vist, og B mangler i tabellen.",
+      "empirically_tested": "Nei. Ingen joint derivation, metric eller joint fit.",
+      "supporting_evidence": "Manuskript:155-179; 31941465/index.json:53-71; 31942800/index.json:41-51; claim_map:C07.",
+      "conflicting_evidence": "FORM-003/004; attacker_review:73-85; provenance_review:123-133.",
+      "simpler_explanation": "To dokumentkategorier med ulik kilde-/observabelrolle kan organiseres som descriptive axes uten fysisk uavhengighet.",
+      "falsifier": "En felles modellmatrise eller joint likelihood som viser kobling/ikke-identifiserbarhet falsifiserer ortogonalitetslesningen.",
+      "unresolved": "Alle kombinasjoner, Alpha-symbol, B/B+ plassering og identifikasjon er uløst.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C08",
+      "asserted": "E proportional sqrt(g) følger fra den minimale tre-term gradient-coupled grid action.",
+      "premises": "Grid-actionens egne antakelser og regimet alpha*g >> kappa_0 må gjelde; dette må ikke utvides automatisk til relativistisk EFT eller makroskopisk gravitasjonsrespons.",
+      "derivation_valid": "Ja som deklarert intern grid-regimeskalering; nei som full mikro-til-makro/EFC-feltderivasjon.",
+      "empirically_tested": "Nei; index har null delta_chi2/significance og no new fit.",
+      "supporting_evidence": "Manuskript:160; 31941465/index.json:28-75,74-88; reproduction.json:46-49.",
+      "conflicting_evidence": "Attacker_review:35-52; 31878760/index.json:114-121,187-192 beskriver kinematisk/ufullstendig bro; EFT-index:235-249 sier BE-formen er postulated as effective relation og feil fortegn i klassisk handling.",
+      "simpler_explanation": "En lokal dispersjons-/grid-teorem kan eksistere uten at den definerer samme felt som EFT-responsen.",
+      "falsifier": "Falsifiseres for den konkrete implementationen av en låst robust KC1-test; bred E-teorem krever eksplisitt mapping.",
+      "unresolved": "Felles handling, variabelmapping, macro response og prefactor/normalisering.",
+      "claim_status": "declared_derived"
+    },
+    {
+      "claim_id": "C09",
+      "asserted": "KC1: hvis lineær mu foretrekkes og sqrt-formen ekskluderes ved >=5 sigma under robust bias-kontroll, falsifiseres E proportional sqrt(g).",
+      "premises": "Frosset a0, sample, likelihood, nuisance/systematics, threshold og eksplisitt E→mu-implikasjon.",
+      "derivation_valid": "Kriteriet er logisk betinget; implikasjonen fra mu-preferanse til hele E-teoremet er ikke demonstrert.",
+      "empirically_tested": "Nei; bare proposed/no fit.",
+      "supporting_evidence": "Manuskript:181-190; 31941465/index.json:102-107; form_status_register.json:67-73; falsification.md:36-46.",
+      "conflicting_evidence": "Kilden sier delta_chi2/significance null og no new fit; claim om mulig executed-but-unrecorded er for sterk.",
+      "simpler_explanation": "En framtidig fenomenologisk modelltest kan falsifisere mu-implementasjonen uten å falsifisere alle E proportional sqrt(g)-modeller.",
+      "falsifier": "Forhåndsdefinert robust >=5 sigma eksklusjon av sqrt-formen etter alle låser; uten mapping gjelder den kun konkret mu-implementasjon.",
+      "unresolved": "Hva “robust/bias-controlled/diverse” betyr og om E→mu er entydig.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C10",
+      "asserted": "Grid-actionens interne PDF favoriserer square-root operator og kaller linear operator too steep.",
+      "premises": "PDF-en må verifiseres direkte; index alene støtter ikke ordrett PDF-sitat.",
+      "derivation_valid": "Ikke avgjort i requested index-scope; kan være korrekt intern retning, men ikke etablert her som kildeclaim.",
+      "empirically_tested": "Nei som empirisk påstand.",
+      "supporting_evidence": "Manuskript:188; claim_map:C10; advocate_review:93-103.",
+      "conflicting_evidence": "Kun index-støtte for generell operator uniqueness, ikke sitatet; ingen ekstern fit.",
+      "simpler_explanation": "En intern kildeargumentasjon uten data forklarer retningen.",
+      "falsifier": "Direkte PDF-kontroll eller motsatt PDF-tekst.",
+      "unresolved": "Full PDF/proveniens av sitatet.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C11",
+      "asserted": "KC1s >=5 sigma SPARC comparison har åpen provenance; ingen executed result promoteres.",
+      "premises": "Index null-felt/no-fit må leses bokstavelig; manuscript skal ikke holde executed fit som like plausibelt.",
+      "derivation_valid": "Ja for åpen provenance-status; Level-3-alternativet i manuskriptet bør snevres.",
+      "empirically_tested": "Nei.",
+      "supporting_evidence": "Manuskript:190; 31941465/index.json:74-88; form_status_register.json:67-73.",
+      "conflicting_evidence": "provenance_review.json:71-81 sier executed-but-unrecorded ikke støttes og kolliderer med no new fit.",
+      "simpler_explanation": "Ekstern, unreproduced claim eller metadatafeil forklarer manglende tall; ingen evidence for executed fit.",
+      "falsifier": "Kilde som leverer identifiserbar fit/proveniens, eller som avviser at noen fit eksisterte.",
+      "unresolved": "Author må velge “unexecuted/unsubstantiated or external reference” og fjerne executed alternative.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C12",
+      "asserted": "Ledger-vokabularet skiller proposed, declared derived og declared companion upgrade fra prose descriptors.",
+      "premises": "Registerets claim maturity er autoritativt; tekstlige ord skal ikke endre feltstatus.",
+      "derivation_valid": "Ja, dette er schema-/statusdefinisjon.",
+      "empirically_tested": "Nei; ikke empirisk.",
+      "supporting_evidence": "Manuskript:192-204; form_status_register.json:6-9.",
+      "conflicting_evidence": "Ingen substansiell konflikt.",
+      "simpler_explanation": "Et eksplisitt statusregister forklarer dette uten fysisk evidens.",
+      "falsifier": "Register og manuskript måtte ha ulik vokabulardefinisjon.",
+      "unresolved": "Ingen vesentlig uløst claim.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C13",
+      "asserted": "To preregisterte discriminator-proposals er foreslått og ikke utført: SPARC/RAR for E og GW/EM for propagation; Gamma har ingen egen prereg.",
+      "premises": "De separate prereg-filer og pinned fakta gjelder; teststatus må ikke blandes med source index.",
+      "derivation_valid": "Ja som statusbeskrivelse; testene er ikke valid/frozen.",
+      "empirically_tested": "Nei.",
+      "supporting_evidence": "Manuskript:206-213; axis_e_sparc_rar.md:1-5,44-67; axis_dl_gw_em.md:1-5,19-34,85-91; test_spec.json:45-64,110-129.",
+      "conflicting_evidence": "Ingen konflikt med pinned facts; round-1 objection that tests are executed/valid is rejected.",
+      "simpler_explanation": "Dette er testprotokoll-intensjon med eksplisitte blockers, ikke resultat.",
+      "falsifier": "Falsifiseres av en valid, executed prereg med frozen fields eller utført fit.",
+      "unresolved": "Final sample, likelihood, nuisance og exact decision rules remain open.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C14",
+      "asserted": "Foreløpig normative a0=1.2e-10 m s^-2; canonical value is author-gated, several candidates circulate, SPARC test invalid until one is fixed.",
+      "premises": "Pinned prereg facts; distinguish MOND/SPARC empirical input from EFC output and a0,eff.",
+      "derivation_valid": "Statusclaim is valid; calling the number an EFC prediction is not.",
+      "empirically_tested": "Nei. Prereg invalid; no fit.",
+      "supporting_evidence": "Manuskript:211; axis_e_sparc_rar.md:44-67; 31878760/index.json:41-43,143-146; 31878334/index.json:57-60,162-166.",
+      "conflicting_evidence": "attacker_review:56-69 and physics_review:38-44 show imported calibration and rescaling issue.",
+      "simpler_explanation": "MOND-calibrated a0 or fitted nuisance can reproduce RAR without EFC-specific derivation.",
+      "falsifier": "Author-frozen protocol plus same-normalization comparison against MOND and explicit EFC derivation; absence of independent derivation falsifies “predicted” wording, not the test idea.",
+      "unresolved": "Origin of a0, C, exponent scale, M/L and cross-model fair comparison.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C15",
+      "asserted": "Relativistic-action package supplies dL^GW/dL^EM=sqrt(F(phi0)/F(phiz)), F=1+alpha phi, as future standard-siren discriminator.",
+      "premises": "Action-level derivation, F>0, field normalization/background and frozen parameters are required.",
+      "derivation_valid": "Formula is source-traceable candidate; not a closed numeric EFC prediction.",
+      "empirically_tested": "Nei; no dataset/fit.",
+      "supporting_evidence": "Manuskript:213; 31876324/index.json:28-35,58-70,281-301; axis_dl_gw_em.md:19-34.",
+      "conflicting_evidence": "Formula tests propagation sector/class, not uniquely EFC; alternatives and degeneracies remain.",
+      "simpler_explanation": "Generic running-Planck-mass modified gravity or systematics can yield same ratio.",
+      "falsifier": "Frozen EFC curve rejected by hierarchical siren likelihood with GR and generic modified-gravity alternatives.",
+      "unresolved": "Field solution, normalization, positivity, waveform/lensing/host systematics and parameters.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C16",
+      "asserted": "GW/EM siren discriminator is paradigm-resistant because it does not depend on Lambda-CDM prior; alpha and phi0 not frozen.",
+      "premises": "Only narrow null-comparison sense can be meant; no uniqueness against modified-gravity alternatives.",
+      "derivation_valid": "Mechanism is plausible; “single paradigm-resistant” is unsupported overclaim.",
+      "empirically_tested": "Nei.",
+      "supporting_evidence": "Manuskript:213; 31876324/index.json:281-301; axis_dl_gw_em.md:85-91.",
+      "conflicting_evidence": "PHYS-SIREN-001/002, alternatives:58-82, attacker:89-99.",
+      "simpler_explanation": "A generic tensor-friction observable plus systematics explains any nonzero mismatch.",
+      "falsifier": "Unique EFC attribution would require pre-frozen curve, common likelihood and alternatives; otherwise only concrete curve can be falsified.",
+      "unresolved": "Alpha/phi normalization/evolution, GR limit, nuisance and model class.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C17",
+      "asserted": "Ingen nye fits, selections, independent validations eller physical falsifications utføres/hevdes.",
+      "premises": "Scope lines and null metadata are accurate.",
+      "derivation_valid": "Ja som scope/status claim.",
+      "empirically_tested": "Nei; it is a negative procedural claim, not an empirical result.",
+      "supporting_evidence": "Manuskript:215-225; six index metadata; reproduction.json:46-55.",
+      "conflicting_evidence": "No evidence of a new fit; review requirements for future validation do not conflict.",
+      "simpler_explanation": "A provenance reconciliation with explicit non-testing section.",
+      "falsifier": "Build or manuscript showing an executed selection/fit/validation.",
+      "unresolved": "None material beyond workflow audit scope.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C18",
+      "asserted": "Repo metadata for 31941465 corrected while published Figshare record retains old wording; version bump required.",
+      "premises": "Requires direct Figshare/version-history evidence beyond six indexes.",
+      "derivation_valid": "Ikke verifisert in requested evidence; no derivation.",
+      "empirically_tested": "Nei.",
+      "supporting_evidence": "Manuskript:228-237 only; claim_map:C18.",
+      "conflicting_evidence": "Six-index review cannot establish prior public record.",
+      "simpler_explanation": "A draft limitation note can be true, but may also be unverified repository state.",
+      "falsifier": "Direct Figshare/version-history readback.",
+      "unresolved": "External publication state and whether bump has occurred.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C19",
+      "asserted": "Package is machine-readable/reproducible by construction with generators/build/checksum, but byte-for-byte reproducibility not achieved.",
+      "premises": "Named scripts/files must exist and execution must support each component.",
+      "derivation_valid": "Partly: buildability and non-determinism verified; “by construction/full stack/CI determinism” needs broader inspection.",
+      "empirically_tested": "No physical test; workflow executed.",
+      "supporting_evidence": "reproduction.json:2-37; manuscript:240-243; build log.",
+      "conflicting_evidence": "Overfull hbox/float warnings; determinism false; broad CI/generator claim not fully established by reproduction artifact.",
+      "simpler_explanation": "A successful build plus differing hashes explains non-byte reproducibility, not complete reproducibility.",
+      "falsifier": "Missing named artifact or deterministic CI failure would falsify corresponding subclaim.",
+      "unresolved": "Full stack/CI and exact workflow claim.",
+      "claim_status": "proposed"
+    },
+    {
+      "claim_id": "C20",
+      "asserted": "Manuscript is draft, DOI-PENDING, no Figshare record, no authorized repository merge.",
+      "premises": "Internal manuscript status is current and not contradicted by an external publication.",
+      "derivation_valid": "Ja as internal document-state claim.",
+      "empirically_tested": "Nei.",
+      "supporting_evidence": "Manuskript:34-36,244,249-250.",
+      "conflicting_evidence": "No requested source contradicts it.",
+      "simpler_explanation": "A draft status line is sufficient for this internal claim.",
+      "falsifier": "External DOI/Figshare/merge readback contradicting the text.",
+      "unresolved": "Current external publication state not independently queried.",
+      "claim_status": "proposed"
+    }
+  ],
+  "findings": [
+    {
+      "finding_id": "FORM-001",
+      "source_reviewer": "formal_review.md",
+      "severity": "high",
+      "type": "dimensional consistency",
+      "disposition": "accepted",
+      "required_text_change": "Etter ligningene: \"Here \\rho and \\rho_{\\mathrm{crit}} are treated as dimensional densities. \\Gamma_A and \\Gamma_C are dimensionless; the declared \\Gamma_B expression has residual dimension \\sqrt{[\\rho]} and is not used as a common normalized response until a source-supplied prefactor/reference scale is specified.\"",
+      "reasoning": "Matematisk korrekt under stated density dimensions; pinned source inconsistency must remain visible, not silently repaired."
+    },
+    {
+      "finding_id": "FORM-002",
+      "source_reviewer": "formal_review.md",
+      "severity": "high",
+      "type": "chain-rule scope",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt \"with the associated entropy production rate $\\sigma_s = \\Gamma(\\rho)\\,\\dot{\\rho}$ (chain rule).\" med \"For any explicitly defined, differentiable model-specific entropy function $S_i(\\rho)$, $\\dot S_i=(\\mathrm dS_i/\\mathrm d\\rho)\\dot\\rho$; a common $\\sigma_s$ convention across A/B/C is not assumed until units and normalizations are fixed.\"",
+      "reasoning": "Kjerneregelen er gyldig per modell, men felles S/units er ikke etablert."
+    },
+    {
+      "finding_id": "FORM-003",
+      "source_reviewer": "formal_review.md",
+      "severity": "medium-high",
+      "type": "axes/table",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt i linje 158 \"two orthogonal model-family axes\" med \"two presently separate descriptive model-family axes\"; erstatt linje 164 \"These two axes are independent\" med \"These choices are organized separately here; physical independence is not demonstrated\"; oppdater tabellen til å liste $\\Gamma_A$, $\\Gamma_B$, og $\\Gamma_C$ og marker realiserte versus hypotetiske kombinasjoner.",
+      "reasoning": "Orthogonalitet er ikke matematisk etablert, og B er utelatt."
+    },
+    {
+      "finding_id": "FORM-004",
+      "source_reviewer": "formal_review.md",
+      "severity": "medium",
+      "type": "wording ambiguity",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt \"each with a discriminant that a future test must select between\" med \"each is intended to admit a future discriminator; only the E-axis has a current preregistration proposal, while no $\\Gamma$-shape discriminator is preregistered.\"",
+      "reasoning": "Fjerner logisk spenning mellom future discriminator og no preregistered Gamma test."
+    },
+    {
+      "finding_id": "FORM-005",
+      "source_reviewer": "formal_review.md",
+      "severity": "medium",
+      "type": "notation/identification",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt $\\alpha$ i $E\\propto g^{\\alpha}$ med $\\alpha_E$, og skriv $F(\\phi)=1+\\beta_F\\phi$; angi eksplisitt $[\\beta_F\\phi]=1$ og felt-normalisering.",
+      "reasoning": "Samme symbol skaper falsk kobling mellom E-aksen og siren-sektoren."
+    },
+    {
+      "finding_id": "FORM-006",
+      "source_reviewer": "formal_review.md",
+      "severity": "medium",
+      "type": "B-to-B+ semantics",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt \"declared companion upgrade\" i den forklarende prose med \"declared companion form/replacement claim\" og legg til: \"No implication $B\\Rightarrow B^+$ or $B^+\\Rightarrow\\neg B$, improved fit, or dimensional consistency is established; supersession_status remains not_established.\"",
+      "reasoning": "Upgrade er statusvokabular, ikke fysisk forbedring."
+    },
+    {
+      "finding_id": "PHYS-GAMMA-001",
+      "source_reviewer": "physics_review.md",
+      "severity": "critical",
+      "type": "missing GR/ΛCDM limit",
+      "disposition": "author-gate",
+      "required_text_change": "Behold claim som status/provenance og legg til: \"No GR/\\Lambda CDM limit, $G_{\\rm eff}$, slip, $c_T$, background, growth, or perturbation mapping is established here; these are author-gated requirements for a physical model reconciliation.\"",
+      "reasoning": "Reell blokkering for fysisk lukking, men utenfor manuskriptets eksplisitte reconciliation-scope."
+    },
+    {
+      "finding_id": "PHYS-GAMMA-002",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "dimensional consistency",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "FORM-001/002 aksepterer og presiserer samme funn; ikke dupliser."
+    },
+    {
+      "finding_id": "PHYS-GAMMA-003",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "asymptotic regularity",
+      "disposition": "author-gate",
+      "required_text_change": "Legg i limitations: \"The high-density growth of the declared $\\Gamma_B$ form is not assigned a physical cutoff or stability/regularity domain here; no form is physically selected.\"",
+      "reasoning": "B non-saturation/divergence trenger cutoff og stabilitetsanalyse før fysisk bruk."
+    },
+    {
+      "finding_id": "PHYS-A0-001",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "imported calibration",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt \"normative screening scale\" med \"a provisional value recorded in source packages, not an EFC-derived prediction\"; legg til: \"The preregistration lists $1.2\\times10^{-10}$, $6.5\\times10^{-10}$, and $a_{0,\\mathrm{eff}}=C^2a_0$; it is INVALID until exactly one is author-frozen. The origin of the frozen value must be labelled MOND/SPARC input, EFC output, or nuisance calibration.\"",
+      "reasoning": "Pinned prereg says invalid until fixed; attacker correctly identifies imported calibration risk."
+    },
+    {
+      "finding_id": "PHYS-A0-002",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "RAR mapping",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til i test-gate: \"The SPARC/RAR proposal is a proxy for the E exponent, not a direct test of $\\Gamma(\\rho)$; the manuscript does not derive $g_{\\rm obs}(g_{\\rm bar})$, the exponent argument, or both Newtonian/deep-MOND limits.\"",
+      "reasoning": "Needed for valid future test, not an executed result."
+    },
+    {
+      "finding_id": "PHYS-SIREN-001",
+      "source_reviewer": "physics_review.md",
+      "severity": "critical",
+      "type": "siren specificity",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt \"This is the single paradigm-resistant discriminator in the set\" med \"This is a candidate propagation-sector discriminator; $d_L^{\\rm GW}\\ne d_L^{\\rm EM}$ is not EFC-specific and does not by itself distinguish EFC from GR systematics or other modified-gravity friction models.\"",
+      "reasoning": "Pinned attacker point: class observable, not unique EFC discriminator."
+    },
+    {
+      "finding_id": "PHYS-SIREN-002",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "field normalization",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til: \"The expression requires a declared field normalization and dimensionless, positive $F(\\phi)=1+\\beta_F\\phi$ domain; $\\beta_F$, $\\phi_0$, and $\\phi(z)$ are not frozen here.\"",
+      "reasoning": "Necessary before numeric prediction."
+    },
+    {
+      "finding_id": "PHYS-DEG-001",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "siren degeneracy",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til i future-test gate: \"The siren ratio identifies endpoint combinations and is degenerate with field normalization and waveform/lensing/host/EM-distance systematics; a joint hierarchical likelihood is required.\"",
+      "reasoning": "Valid future-analysis requirement."
+    },
+    {
+      "finding_id": "PHYS-DEG-002",
+      "source_reviewer": "physics_review.md",
+      "severity": "high",
+      "type": "SPARC degeneracy",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til i Axis-1 gate: \"Lock or predeclare M/L, distance, inclination, gas model, covariance, and holdout treatment for both exponent forms; locking $a_0$ alone is insufficient.\"",
+      "reasoning": "Directly supported by prereg/test_spec."
+    },
+    {
+      "finding_id": "PHYS-DEG-003",
+      "source_reviewer": "physics_review.md",
+      "severity": "medium-high",
+      "type": "cosmology degeneracy",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til i future validation scope: \"A physical background claim requires explicit mapping and comparison against $\\Lambda$CDM with shared nuisance/prior structure; no such fit is performed here.\"",
+      "reasoning": "Future model-comparison gate."
+    },
+    {
+      "finding_id": "FALS-001",
+      "source_reviewer": "falsification.md",
+      "severity": "major",
+      "type": "Gamma bifurcation falsifiability",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til: \"The term shape bifurcation is a corpus/reconciliation label; a physical bifurcation requires a locked common likelihood, regime, normalization, and decision rule.\"",
+      "reasoning": "Makes physical interpretation testable without upgrading it."
+    },
+    {
+      "finding_id": "FALS-002",
+      "source_reviewer": "falsification.md",
+      "severity": "major",
+      "type": "B-to-B+ test",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supersession not established is already explicit at manuscript:148,153,204 and register:35-45."
+    },
+    {
+      "finding_id": "FALS-003",
+      "source_reviewer": "falsification.md",
+      "severity": "major",
+      "type": "KC1 operationalization",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt Level-3 \"either (a) an executed fit... or (b)...\" med \"The source metadata supports no new fit performed; the claimed $\\ge5\\sigma$ exclusion is therefore unexecuted or externally referenced and remains unsubstantiated until an author supplies provenance.\"",
+      "reasoning": "No-fit is pinned source fact; executed-but-unrecorded cannot remain equally live."
+    },
+    {
+      "finding_id": "FALS-004",
+      "source_reviewer": "falsification.md",
+      "severity": "major",
+      "type": "axis orthogonality test",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "FORM-003 and C07 status cover unproved physical independence."
+    },
+    {
+      "finding_id": "FALS-005",
+      "source_reviewer": "falsification.md",
+      "severity": "major",
+      "type": "SPARC prereg test",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "PHYS-A0-001/002 and C13/C14 retain test as proposed/invalid until freeze."
+    },
+    {
+      "finding_id": "FALS-006",
+      "source_reviewer": "falsification.md",
+      "severity": "major",
+      "type": "siren prereg test",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "PHYS-SIREN-001/002 and C15/C16 retain candidate status and alternatives."
+    },
+    {
+      "finding_id": "ALT-001",
+      "source_reviewer": "alternatives.md",
+      "severity": "major",
+      "type": "RAR alternatives",
+      "disposition": "author-gate",
+      "required_text_change": "Legg til: \"RAR is not EFC-specific: future validation must compare EFC with MOND and a baryonic $\\Lambda$CDM baseline under identical locked nuisance/holdout protocol; no such comparison is performed here.\"",
+      "reasoning": "MOND and ΛCDM can reproduce observable; future comparison needed."
+    },
+    {
+      "finding_id": "ALT-002",
+      "source_reviewer": "alternatives.md",
+      "severity": "info",
+      "type": "S8 scope",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Alternatives review confirms manuscript contains no S8 result; no change to this reconciliation."
+    },
+    {
+      "finding_id": "ALT-003",
+      "source_reviewer": "alternatives.md",
+      "severity": "major",
+      "type": "siren alternatives",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "PHYS-SIREN-001 plus required common likelihood covers class-observable objection."
+    },
+    {
+      "finding_id": "PROV-001",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "table slug support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C02; no text change."
+    },
+    {
+      "finding_id": "PROV-002",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "table DOI support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C02; no text change."
+    },
+    {
+      "finding_id": "PROV-003",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "Gamma statuses support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C05; no text change."
+    },
+    {
+      "finding_id": "PROV-004",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "A/B divergence support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C04/C06; no text change."
+    },
+    {
+      "finding_id": "PROV-005",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "KC1 null provenance support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C09/C11; no text change."
+    },
+    {
+      "finding_id": "PROV-006",
+      "source_reviewer": "provenance_review.json",
+      "severity": "medium",
+      "type": "KC1 executed-fit alternative",
+      "disposition": "accepted",
+      "required_text_change": "Samme eksakte endring som FALS-003: \"The source metadata supports no new fit performed; the claimed $\\ge5\\sigma$ exclusion is therefore unexecuted or externally referenced and remains unsubstantiated until an author supplies provenance.\"",
+      "reasoning": "Confirms attacker/provenance finding."
+    },
+    {
+      "finding_id": "PROV-007",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "sqrt-g derivation support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C08 only as declared derivation, not empirical result."
+    },
+    {
+      "finding_id": "PROV-008",
+      "source_reviewer": "provenance_review.json",
+      "severity": "info",
+      "type": "siren formula support",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C15 formula provenance."
+    },
+    {
+      "finding_id": "PROV-009",
+      "source_reviewer": "provenance_review.json",
+      "severity": "high",
+      "type": "prereg conflict",
+      "disposition": "rejected",
+      "required_text_change": null,
+      "reasoning": "Pinned facts explicitly establish the named prereg axis_e_sparc_rar.md as INVALID until a0 is fixed and proposed; the conflicting sealed-package finding is outside the locked adjudication basis and does not overturn the actual referenced file."
+    },
+    {
+      "finding_id": "PROV-010",
+      "source_reviewer": "provenance_review.json",
+      "severity": "medium",
+      "type": "orthogonal axes synthesis",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "FORM-003/C07 accepts only descriptive synthesis and rejects formal independence."
+    },
+    {
+      "finding_id": "PROV-011",
+      "source_reviewer": "provenance_review.json",
+      "severity": "low",
+      "type": "paradigm-resistant wording",
+      "disposition": "accepted",
+      "required_text_change": "Samme tekstendring som PHYS-SIREN-001: \"This is a candidate propagation-sector discriminator; $d_L^{\\rm GW}\\ne d_L^{\\rm EM}$ is not EFC-specific...\"",
+      "reasoning": "Source supports formula, not comparative adjective."
+    },
+    {
+      "finding_id": "REPRO-001",
+      "source_reviewer": "reproduction.json",
+      "severity": "info",
+      "type": "buildability",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C19; no text change."
+    },
+    {
+      "finding_id": "REPRO-002",
+      "source_reviewer": "reproduction.json",
+      "severity": "low",
+      "type": "build warnings",
+      "disposition": "accepted",
+      "required_text_change": "Legg til i reproducibility section: \"The build currently completes with Overfull hbox and float-placement warnings; warning-free layout is not claimed.\"",
+      "reasoning": "Concrete verified artifact issue."
+    },
+    {
+      "finding_id": "REPRO-003",
+      "source_reviewer": "reproduction.json",
+      "severity": "info",
+      "type": "checksum record",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Supports C19."
+    },
+    {
+      "finding_id": "REPRO-004",
+      "source_reviewer": "reproduction.json",
+      "severity": "info",
+      "type": "byte reproducibility",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Manuskriptet already states non-byte-determinism; reproduction confirms it."
+    },
+    {
+      "finding_id": "REPRO-005",
+      "source_reviewer": "reproduction.json",
+      "severity": "medium",
+      "type": "Gamma provenance",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "C04-C06 and pinned source conflict cover it."
+    },
+    {
+      "finding_id": "REPRO-006",
+      "source_reviewer": "reproduction.json",
+      "severity": "info",
+      "type": "KC1 provenance",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "C09/C11 and FALS-003 cover it."
+    },
+    {
+      "finding_id": "REPRO-007",
+      "source_reviewer": "reproduction.json",
+      "severity": "info",
+      "type": "siren provenance",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "C15/C16 cover it."
+    },
+    {
+      "finding_id": "R2-ATT-001",
+      "source_reviewer": "attacker_review.md",
+      "severity": "critical",
+      "type": "Gamma role identification",
+      "disposition": "accepted",
+      "required_text_change": "Legg til: \"The reconciliation does not establish that $\\mathrm dS/\\mathrm d\\rho$, the source in $\\Box\\phi=\\Gamma(\\rho)$, and the relativistic-action $\\Gamma$ are the same normalized physical object; this mapping is author-gated.\"",
+      "reasoning": "Central attacker finding is valid and stronger than merely A/B inconsistency."
+    },
+    {
+      "finding_id": "R2-ATT-002",
+      "source_reviewer": "attacker_review.md",
+      "severity": "major",
+      "type": "grid-EFT bridge",
+      "disposition": "author-gate",
+      "required_text_change": "Erstatt \"The square-root form derives from the gradient-coupled grid action\" med \"The grid-action package declares a square-root scaling in its stated regime; a bridge to the relativistic EFT and its macroscopic response is not established here.\"",
+      "reasoning": "Source conflict and missing bridge are real; do not erase declared_derived status, narrow wording."
+    },
+    {
+      "finding_id": "R2-ATT-003",
+      "source_reviewer": "attacker_review.md",
+      "severity": "major",
+      "type": "a0 imported calibration",
+      "disposition": "accepted",
+      "required_text_change": "Samme PHYS-A0-001 text: label $a_0$ as input/output/calibration and state prereg invalid until one value is frozen; do not call it parameter-free EFC prediction.",
+      "reasoning": "Pinned prereg and source indexes support this."
+    },
+    {
+      "finding_id": "R2-ATT-004",
+      "source_reviewer": "attacker_review.md",
+      "severity": "major",
+      "type": "orthogonal axes",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "FORM-003/004 provide exact wording and table fix."
+    },
+    {
+      "finding_id": "R2-ATT-005",
+      "source_reviewer": "attacker_review.md",
+      "severity": "critical",
+      "type": "siren class observable",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "PHYS-SIREN-001/PROV-011 provide exact narrowing; alternatives requirement is author-gate."
+    },
+    {
+      "finding_id": "R2-ADV-001",
+      "source_reviewer": "advocate_review.md",
+      "severity": "info",
+      "type": "scope defense",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "C01/C17 and manuscript:215-225 explicitly cover no confirmation."
+    },
+    {
+      "finding_id": "R2-ADV-002",
+      "source_reviewer": "advocate_review.md",
+      "severity": "info",
+      "type": "KC1 threshold not result",
+      "disposition": "rejected",
+      "required_text_change": null,
+      "reasoning": "Correctly rejects straw-man reading; manuscript already says conditional/not reported result and metadata says no fit."
+    },
+    {
+      "finding_id": "R2-ADV-003",
+      "source_reviewer": "advocate_review.md",
+      "severity": "info",
+      "type": "prereg proposed",
+      "disposition": "rejected",
+      "required_text_change": null,
+      "reasoning": "Pinned prereg facts confirm advocate conclusion; no change required."
+    },
+    {
+      "finding_id": "R2-ADV-004",
+      "source_reviewer": "advocate_review.md",
+      "severity": "medium",
+      "type": "siren minor wording",
+      "disposition": "already-covered",
+      "required_text_change": null,
+      "reasoning": "Exact narrowing accepted under PHYS-SIREN-001."
+    },
+    {
+      "finding_id": "R2-ADV-005",
+      "source_reviewer": "advocate_review.md",
+      "severity": "medium",
+      "type": "related_packages claim",
+      "disposition": "accepted",
+      "required_text_change": "Erstatt \"their related packages fields are empty\" med \"related_packages fields are heterogeneous: four of six are empty, while 31941465 records builds_on/informs relations and 31878760 records a companion relation; the ledger remains the authoritative status graph.\"",
+      "reasoning": "Pinned fact says literal manuscript claim is false; 31940469 is not dangling."
+    },
+    {
+      "finding_id": "R2-ADV-006",
+      "source_reviewer": "advocate_review.md",
+      "severity": "info",
+      "type": "31940469 relation",
+      "disposition": "rejected",
+      "required_text_change": null,
+      "reasoning": "Pinned fact says 31940469 is the informing package; reject dangling-DOI criticism, while retain related_packages wording correction."
+    }
+  ]
+}

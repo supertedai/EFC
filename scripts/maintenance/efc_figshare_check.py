@@ -333,7 +333,7 @@ def scaffold_one(missing: dict, with_pdf: bool, out_root: Path) -> dict:
         "author": {
             "name": EXPECTED_AUTHOR_NAME,
             "orcid": "0009-0002-4860-5095",
-            "affiliation": "Symbiose Research, Sandnes, Norway",
+            "affiliation": "Symbiose Research, Sola, Norway",
         },
         "license": "CC-BY-4.0",
         "scaffolded": True,

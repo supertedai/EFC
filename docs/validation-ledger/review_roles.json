@@ -1,0 +1,56 @@
+{
+  "method_revision": "v2",
+  "description": "Machine-readable mandates for the nine reviewers. question = the single question each role answers; bias_shield = what the role must not do; atlas_field = the regime_nodes.jsonld fields the role maps to (values, not invented keys). This is a data registry, NOT a JSON Schema.",
+  "roles": {
+    "cartographer": {
+      "question": "What is claimed, on which premises, in which regime/phase, and which atlas nodes does it touch?",
+      "bias_shield": "No truth judgement — topology only.",
+      "atlas_field": ["regime", "phase", "emergence", "coupling"]
+    },
+    "provenance": {
+      "question": "Do source, version, DOI, ledger status and local/global anchoring match?",
+      "bias_shield": "No status lift — traceability only.",
+      "atlas_field": ["epistemikk"]
+    },
+    "formalist": {
+      "question": "Is the mathematics valid under the model's OWN premises?",
+      "bias_shield": "No smuggled foreign premise.",
+      "atlas_field": []
+    },
+    "paradigm_critic": {
+      "question": "Where do borrowed measures, instruments, coordinate choices and limit-assumptions enter?",
+      "bias_shield": "Established physics is not an unlabelled answer key.",
+      "atlas_field": ["maale_paradigme", "stipulasjoner"]
+    },
+    "falsifier": {
+      "question": "What is the simplest test against the RAW SIGNAL, independent of intervening cosmological model assumptions?",
+      "bias_shield": "Never the standard model's interpretation as ground truth.",
+      "atlas_field": ["measure"]
+    },
+    "alternative_paradigm": {
+      "question": "Which paradigms (LCDM, MOND, EFT, EFC) can generate the same observable, under which premises, with which measurement chains?",
+      "bias_shield": "Symmetric — no model is the default truth.",
+      "atlas_field": ["maale_paradigme"]
+    },
+    "measurement_proxy": {
+      "question": "Where is every step of raw-signal to instrument to reduction to proxy to observable to interpretation?",
+      "bias_shield": "Decomposes; flags hidden theory-dependence.",
+      "atlas_field": ["measure", "observer"]
+    },
+    "reproducer": {
+      "question": "Can the code/data/measurement chain be regenerated; checksums; determinism?",
+      "bias_shield": "None — this is the empirical gate.",
+      "atlas_field": ["measure"]
+    },
+    "meta_reviewer": {
+      "question": "Synthesise without voting; empirical test outranks consensus; propose status.",
+      "bias_shield": "Never writes status.",
+      "atlas_field": ["epistemikk"]
+    }
+  },
+  "human_gate": {
+    "role": "The human. Not an agent.",
+    "writes": "status",
+    "description": "The only party that disposes. Agents propose; the human disposes."
+  }
+}

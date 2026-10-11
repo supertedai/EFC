@@ -1,0 +1,76 @@
+{
+  "description": "Machine-readable registry of the ten gates in the EFC adversarial review protocol (v2). One entry per gate; each names what must be proven, the primary reviewer role that supplies its evidence, and what counts as not_applicable. This is a data registry, NOT a JSON Schema — it is the single source of gate identities that claim_gate_matrix.json and efc_review_gate.py key on.",
+  "source": "docs/validation-ledger/review-protocol.md § 'The ten gates' — the ten gate identities below mirror that enumeration verbatim (1 claim identity, 2 provenance, 3 formal validity, 4 model-relative validity, 5 paradigm declaration, 6 measurement chain, 7 proxy & bias audit, 8 regime/phase/domain, 9 discrimination & falsification, 10 reproduction + synthesis + human gate).",
+  "gates": [
+    {
+      "id": 1,
+      "name": "claim_identity",
+      "what_must_be_proven": "the claim is stated with a claim_id, a single asserted proposition, and its source location",
+      "primary_role": "cartographer",
+      "not_applicable_criterion": "no claim to identify"
+    },
+    {
+      "id": 2,
+      "name": "provenance",
+      "what_must_be_proven": "source, version, DOI and ledger status are traceable and match the manuscript",
+      "primary_role": "provenance",
+      "not_applicable_criterion": "no external source or DOI is referenced"
+    },
+    {
+      "id": 3,
+      "name": "formal_validity",
+      "what_must_be_proven": "mathematics is valid under the model's own premises",
+      "primary_role": "formalist",
+      "not_applicable_criterion": "claim carries no formal or derivational content"
+    },
+    {
+      "id": 4,
+      "name": "model_relative_validity",
+      "what_must_be_proven": "the derivation holds within the model, without smuggled foreign premises",
+      "primary_role": "formalist",
+      "not_applicable_criterion": "no model-relative derivation is asserted"
+    },
+    {
+      "id": 5,
+      "name": "paradigm_declaration",
+      "what_must_be_proven": "borrowed paradigms (LCDM, MOND, GR, EFC) are explicitly labelled",
+      "primary_role": "paradigm_critic",
+      "not_applicable_criterion": "no paradigm is borrowed"
+    },
+    {
+      "id": 6,
+      "name": "measurement_chain",
+      "what_must_be_proven": "raw-signal to instrument to reduction to proxy to observable is decomposed step by step",
+      "primary_role": "measurement_proxy",
+      "not_applicable_criterion": "claim has no measurement or observable content"
+    },
+    {
+      "id": 7,
+      "name": "proxy_bias_audit",
+      "what_must_be_proven": "INSTRUMENT/PROXY grounding carries an atlas_field pointing at the measurement chain",
+      "primary_role": "measurement_proxy",
+      "not_applicable_criterion": "no INSTRUMENT/PROXY evidence layer grounds the claim"
+    },
+    {
+      "id": 8,
+      "name": "regime_phase_domain",
+      "what_must_be_proven": "the claim names its regime, phase and domain",
+      "primary_role": "cartographer",
+      "not_applicable_criterion": "claim is domain-agnostic"
+    },
+    {
+      "id": 9,
+      "name": "discrimination_falsification",
+      "what_must_be_proven": "a test against the raw signal, independent of the model's own assumptions, is specified",
+      "primary_role": "falsifier",
+      "not_applicable_criterion": "claim is explicitly non-empirical (scope, provenance or status)"
+    },
+    {
+      "id": 10,
+      "name": "reproduction_synthesis_human_gate",
+      "what_must_be_proven": "code/data chain reproduces and the meta-reviewer synthesis is closed (reproducer + meta_reviewer evidence); the human approval half is enforced SEPARATELY by human_gate.json beside the verdict, never by this matrix — a 'satisfied' here never counts as human approval",
+      "primary_role": "reproducer",
+      "not_applicable_criterion": "none — this gate is always applicable for a release"
+    }
+  ]
+}

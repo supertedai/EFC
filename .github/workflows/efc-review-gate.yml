@@ -1,0 +1,112 @@
+name: efc-review-gate
+
+# Paradigm-neutral adversarial review gate (v2). This is the load-bearing
+# "a Hermes update can never break this" layer: it runs on GitHub's own
+# infrastructure from pure git content. Hermes skills, MCP, cron and memory
+# are THIN CALLERS — if a Hermes update removes them, this gate still runs and
+# still refuses an unreviewed release marker on any PR touching the guarded
+# paths.
+#
+# What it enforces:
+#   1. the fail-closed gate's own negative test suite (tests/test_review_gate.py);
+#   2. the registered schemas are valid and CLOSED (C10, efc_schema_check.py);
+#   3. findings_index.json is byte-deterministic against regeneration;
+#   4. every v2-or-later verdict.json + human_gate.json validates against its
+#      schema. v1 / legacy verdicts (pre-paradigm-neutrality pilot) are SKIPPED:
+#      they are frozen history, never a release gate, and their key shape
+#      predates the schema. Validating them would force mutation of frozen
+#      reviewer words — the exact cascade this system exists to prevent.
+#   5. a change may not introduce a release/DOI-reservation marker without a
+#      matching human_gate.json beside a v2+ verdict (consistency, checked as
+#      part of step 4 by virtue of the gate refusing any promotion without it).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/validation-ledger/**'
+      - 'scripts/maintenance/efc_review_gate.py'
+      - 'scripts/maintenance/efc_review_runner.py'
+      - 'scripts/maintenance/efc_findings_index.py'
+      - 'scripts/maintenance/efc_schema_check.py'
+      - 'tests/test_review_gate.py'
+      - '.github/workflows/efc-review-gate.yml'
+  pull_request:
+    paths:
+      - 'docs/validation-ledger/**'
+      - 'scripts/maintenance/efc_review_gate.py'
+      - 'scripts/maintenance/efc_review_runner.py'
+      - 'scripts/maintenance/efc_findings_index.py'
+      - 'scripts/maintenance/efc_schema_check.py'
+      - 'tests/test_review_gate.py'
+      - '.github/workflows/efc-review-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      - name: Install validator and test runner (pinned, same as requirements.txt)
+        run: python3 -m pip install --quiet "jsonschema>=4.18,<5" "rfc3339-validator>=0.1,<1" "pytest>=8,<9"
+
+      - name: Fail-closed gate — negative test suite
+        run: python3 -m pytest tests/test_review_gate.py -q
+
+      - name: Schemas valid and closed (C10)
+        run: python3 scripts/maintenance/efc_schema_check.py
+
+      - name: findings_index.json deterministic against regeneration
+        run: python3 scripts/maintenance/efc_findings_index.py --check
+
+      - name: Validate v2+ verdicts against schema (v1 frozen history is skipped)
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, sys, re
+          from pathlib import Path
+          import jsonschema
+
+          ROOT = Path(".")
+          verdict_schema = json.loads((ROOT / "docs/validation-ledger/verdict.schema.json").read_text())
+          hg_schema = json.loads((ROOT / "docs/validation-ledger/human_gate.schema.json").read_text())
+
+          def rev_number(r):
+              m = re.match(r"^v(\d+)$", str(r or ""))
+              return int(m.group(1)) if m else -1
+
+          failures = []
+          checked = 0
+          for vp in sorted((ROOT / "docs/validation-ledger/reviews").glob("deleg_*/verdict.json")):
+              v = json.loads(vp.read_text())
+              rv = rev_number(v.get("method_revision", ""))
+              if rv < 2:
+                  print(f"skip (frozen v1/legacy, not a release gate): {vp}")
+                  continue
+              checked += 1
+              cls = jsonschema.validators.validator_for(verdict_schema, default=None)
+              for err in sorted(cls(verdict_schema).iter_errors(v), key=lambda e: str(e.path)):
+                  failures.append(f"{vp}: {'/'.join(map(str, err.path)) or '<root>'}: {err.message}")
+              hg = vp.parent / "human_gate.json"
+              if not hg.exists():
+                  failures.append(f"{vp}: human_gate.json missing for a v2 verdict (a human must dispose)")
+                  continue
+              hgd = json.loads(hg.read_text())
+              cls2 = jsonschema.validators.validator_for(hg_schema, default=None)
+              for err in sorted(cls2(hg_schema).iter_errors(hgd), key=lambda e: str(e.path)):
+                  failures.append(f"{hg}: {'/'.join(map(str, err.path)) or '<root>'}: {err.message}")
+
+          if failures:
+              print("\n".join(failures), file=sys.stderr)
+              print(f"FAIL — {len(failures)} schema violation(s) across {checked} v2+ verdict(s)", file=sys.stderr)
+              sys.exit(1)
+          print(f"OK — {checked} v2+ verdict(s) validate against schema; v1/legacy skipped as frozen history")
+          PY

@@ -154,8 +154,14 @@ wp_create_post(
 
 ### Upload to Figshare
 
+All Figshare write tools (`figshare_create_article`, `figshare_upload_file`,
+`figshare_publish`) are fail-closed: each requires a `slug` and refuses before
+any API call unless the manuscript passes
+`scripts/maintenance/efc_review_gate.py release <slug> --confirmed-by morten`.
+
 ```python
 figshare_create_article(
+    slug="EFC_Model_Family_Reconciliation",
     title="EFC Technical Note",
     description="Description...",
     categories=[{"id": 123}],  # Physics category

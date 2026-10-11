@@ -98,8 +98,8 @@ def test_de_interne_forklarer_seg_selv(nodes: list[dict]) -> None:
 GRUNN = "ikke_falsifiserbar_grunn"
 
 #: Texts that look like an answer without being one.
-PLASSHOLDERE = ("vet ikke", "ukjent", "ikke relevant", "n/a", "todo",
-                "fylles ut", "kommer", "tbd", "-")
+PLASSHOLDERE = ("don't know", "unknown", "not relevant", "n/a", "todo",
+                "to be filled", "coming", "tbd", "-")
 
 
 def _grunn(n: dict) -> str | None:

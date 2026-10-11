@@ -104,6 +104,10 @@ def test_the_exemption_is_exactly_the_rule_itself():
     assert set(gate.EXEMPT) == {"scripts/maintenance/spraak-ord.json"}
 
 
+def test_the_prefix_exemption_is_exactly_frozen_reviews():
+    assert set(gate.EXEMPT_PREFIXES) == {"docs/validation-ledger/reviews/deleg_7f3e9a1c/"}
+
+
 # --------------------------------------------------------------------------
 # a synthetic tree: the ratchet, and the mutation proof
 # --------------------------------------------------------------------------

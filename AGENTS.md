@@ -10,14 +10,14 @@ This document provides comprehensive instructions for AI agents working with the
 
 ```yaml
 author: Morten Magnusson
-affiliation: Symbiose Research, Sandnes, Norway
+affiliation: Symbiose Research, Sola, Norway
 orcid: 0009-0002-4860-5095
 repository: github.com/supertedai/EFC
 license: CC-BY-4.0
 core_principle: "Energy flows along entropy gradients"
 validation_ledger_public: v3.18
 validation_ledger_internal: v4.6
-ai_packages: 170 (100% coverage)
+ai_packages: 171 (100% coverage)
 stage: non_rejectable_model (global verdict OPEN)
 maintenance: scripts/maintenance/ (auto-run by SessionStart hook + CI)
 pipelines: pipelines/efc/native_v2_graph/ (AQUAL) + pipelines/efc/euclid_dr1/ (Euclid DR1)
@@ -50,6 +50,21 @@ Three evidence layers are kept **strictly separate** — violating this is claim
 **Pre-registration discipline:** predictions must cite the **prior** EFC DOI where the prediction was first stated, in the same sentence, to prevent post-diction.
 
 **Run maintenance manually:** `python3 scripts/maintenance/efc_maintain.py`. See [`scripts/maintenance/README.md`](./scripts/maintenance/README.md) for the full algorithm.
+
+---
+
+## Claim promotion and adversarial review (v2, fail-closed)
+
+A claim may only be promoted (`declared_derived`, `declared_companion_upgrade`)
+through the adversarial review protocol in
+`docs/validation-ledger/review-protocol.md` — nine reviewer roles, ten gates.
+The binding gate is
+`python3 scripts/maintenance/efc_review_gate.py release <slug> --confirmed-by morten`:
+a non-zero exit is a hard refusal. No agent may create a Figshare draft or
+reserve/publish a DOI for a manuscript that fails this gate. The human's
+approval is a separate artifact (`human_gate.json`, `status: approved`,
+`confirmed_by: morten`) that agents never write. Plan, freeze and check a run
+with `scripts/maintenance/efc_review_runner.py`.
 
 ---
 
@@ -339,7 +354,7 @@ EFC/
 ├── theory/
 │   └── formal/         # LaTeX: S, D, R, H, C0 models
 ├── docs/
-│   ├── papers/efc/     # 170 papers (170 with AI-friendly packages, 100%) + _archived/
+│   ├── papers/efc/     # 171 papers (171 with AI-friendly packages, 100%) + _archived/
 │   └── public/         # Validation Ledger (v3.18), White Paper, Roadmap, Elevator Pitch, Changelog
 ├── src/efc/            # Core Python library
 ├── pipelines/          # Graph-AQUAL + Euclid DR1 pipelines
@@ -358,7 +373,7 @@ EFC/
 
 ## AI-Friendly Paper Packages (140)
 
-All 170 active papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`); two superseded packages live under `docs/papers/efc/_archived/` for provenance:
+All 171 active papers have full AI-friendly packages (10/10 standard: `src/`, `data/`, `examples/`, `CITATION.cff`, `LICENSE`, `citations.bib`, `schema.json`); two superseded packages live under `docs/papers/efc/_archived/` for provenance:
 
 ### Consolidation
 | Paper | Module | DOI |

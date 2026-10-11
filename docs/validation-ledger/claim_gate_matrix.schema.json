@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/validation-ledger/claim_gate_matrix.schema.json",
+  "title": "EFC claim-gate matrix",
+  "description": "Per-claim coverage of the ten review gates (gates.json). CLOSED (C10). Binds to the verdict by verdict_id and verdict_sha256 so a matrix cannot be silently re-pointed at a different verdict. A promoted claim must show every gate as satisfied or not_applicable (never open); the release gate refuses otherwise. The evidence/reason obligations (satisfied -> evidence, not_applicable -> reason, open forbidden on a promoted claim) are enforced by efc_review_gate.py, not by conditional schema branches — a phrase can never be mistaken for a binding check.",
+  "type": "object",
+  "required": ["verdict_id", "verdict_sha256", "matrix"],
+  "properties": {
+    "verdict_id": { "type": "string" },
+    "verdict_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "sha256 of the exact verdict.json this matrix binds to. efc_review_gate.py refuses on mismatch."
+    },
+    "matrix": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/claim_row" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "claim_row": {
+      "type": "object",
+      "required": ["claim_id", "gates"],
+      "properties": {
+        "claim_id": { "type": "string", "minLength": 1 },
+        "gates": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/gate_entry" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "gate_entry": {
+      "type": "object",
+      "required": ["gate_id", "status"],
+      "properties": {
+        "gate_id": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "status": {
+          "enum": ["satisfied", "open", "not_applicable"],
+          "description": "satisfied = gate proven (evidence required by the gate); open = gate not yet disposed (forbidden on a promoted claim); not_applicable = gate does not apply to this claim (reason required by the gate)."
+        },
+        "evidence": { "type": "string", "description": "required by the gate when status is satisfied." },
+        "reviewer_role": {
+          "enum": [
+            "cartographer",
+            "provenance",
+            "formalist",
+            "paradigm_critic",
+            "falsifier",
+            "alternative_paradigm",
+            "measurement_proxy",
+            "reproducer",
+            "meta_reviewer"
+          ],
+          "description": "the role that supplied this gate's evidence."
+        },
+        "source_ref": { "type": "string" },
+        "reason": { "type": "string", "description": "required by the gate when status is not_applicable." }
+      },
+      "additionalProperties": false
+    }
+  }
+}

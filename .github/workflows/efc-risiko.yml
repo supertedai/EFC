@@ -24,6 +24,7 @@ on:
       - "tests/test_blast_radius.py"
       - "tests/test_risiko_register.py"
       - "tests/test_aktivitet_statusord.py"
+      - "tests/test_vedlikeholdsrunde_kanbanform.py"
       - "Makefile"
       - ".github/workflows/efc-risiko.yml"
   push:
@@ -39,6 +40,7 @@ on:
       - "tests/test_blast_radius.py"
       - "tests/test_risiko_register.py"
       - "tests/test_aktivitet_statusord.py"
+      - "tests/test_vedlikeholdsrunde_kanbanform.py"
       - "Makefile"
       - ".github/workflows/efc-risiko.yml"
   workflow_dispatch:
@@ -74,7 +76,7 @@ jobs:
       - name: Regresjonstester (faktorene hver for seg, registeret, statusordene)
         run: |
           python3 -m pytest tests/test_blast_radius.py tests/test_risiko_register.py \
-            tests/test_aktivitet_statusord.py -q
+            tests/test_aktivitet_statusord.py tests/test_vedlikeholdsrunde_kanbanform.py -q
       - name: Risikoregisteret (fail-closed, append-only mot diff-basen)
         run: |
           python3 scripts/maintenance/validate_risk_register.py --json \

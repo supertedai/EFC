@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/validation-ledger/human_gate.schema.json",
+  "title": "EFC human gate disposition",
+  "description": "The human's binding disposition for a reviewed claim. A SEPARATE artifact from verdict.json by design: the verdict is frozen reviewer output and must never be mutated, so disposing a claim here leaves the reviewer words untouched. verdict_sha256 binds this gate to the exact verdict it disposes, so a gate cannot be silently re-pointed at a different verdict later. CLOSED (C10).",
+  "type": "object",
+  "required": [
+    "verdict_id",
+    "verdict_sha256",
+    "method_revision",
+    "status",
+    "confirmed_by",
+    "at",
+    "approved_claims"
+  ],
+  "properties": {
+    "verdict_id": { "type": "string", "description": "The verdict_id of the verdict this gate disposes." },
+    "verdict_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "sha256 of the exact verdict.json file this gate binds to. efc_review_gate.py refuses on mismatch."
+    },
+    "method_revision": { "type": "string", "pattern": "^v[0-9]+$" },
+    "status": {
+      "type": "string",
+      "enum": ["approved", "rejected"],
+      "description": "The binding disposition. Written by a human, never by an agent."
+    },
+    "confirmed_by": { "type": "string", "description": "Identity that disposed, e.g. morten." },
+    "at": { "type": "string", "format": "date-time" },
+    "approved_claims": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "The claim_ids the human approves. A promoted claim (declared_derived / declared_companion_upgrade) must appear here AND be grounded, or the release gate refuses."
+    },
+    "rejected_claims": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string", "description": "Optional human reasoning, never machine-interpreted." }
+  },
+  "additionalProperties": false
+}
