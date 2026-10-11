@@ -52,24 +52,24 @@ give `found=False` — just with a different reason.
 
 ### Live on the bus (measured)
 
-Measured 2026-10-11T19:27Z through the read-only consumer role
+Measured 2026-10-11T19:27Z with the read-only consumer role via verden-MCP
 (`verden_stroemmer` / `verden_siste`).
 
 | Subject | Content | Engine |
 |---|---|---|
 | `kosmos.kosmologi.tilstand.efc-fs8` | Sealed fσ8-**baseline**: OBSERVED measurements (DESI DR1, eBOSS) with L/S classification — reference values, not EFC outcomes | none — the baseline is the arbiter's basis, not engine output |
 | `kosmos.kosmologi.diskusjon.arxiv` | arXiv papers | (source basis, not measurement) |
-| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC **prediction** (modelled fσ8(z=0.7), parameter-derived) — **1 message**: seq 31058, 2026-09-07T15:00:05Z, `Nats-Msg-Id: efc-fs8.v1.fsigma8.z0.7.0f14b7a56f59d1ba`, `kilde: efc-sealed-prediction`, sealed under DOI 10.6084/m9.figshare.32013156 | none — `growth` produced it; `SealedFs8Arbiter` (step 12) judges it against the baseline. The stream is VERDEN_PROGNOSE (retention 8760 h), so the message is still on the bus, not only in the cold archive |
+| `kosmos.kosmologi.prediksjon.efc-fs8` | EFC **prediction** (sealed fσ8(z=0.7)) — **1 message**: seq 31058, 2026-09-07T15:00:05Z, `Nats-Msg-Id: efc-fs8.v1.fsigma8.z0.7.0f14b7a56f59d1ba`, `kilde: efc-sealed-prediction`, sealed under DOI 10.6084/m9.figshare.32013156 | none — published by the sealed-prediction pipeline (`kilde: efc-sealed-prediction`); atlas claim node `efc.growth_engine`; `SealedFs8Arbiter` (step 12) judges it against the baseline. The stream is VERDEN_PROGNOSE (retention 8760 h), so the message is still on the bus, not only in the cold archive |
 
 ### Contracts defined — publication awaits write access
 
-This subject has a defined schema and an implemented producer side,
-but is **not live on the bus** (0 messages, measured 2026-10-11T19:27Z) — publishing back requires
+These subjects have a defined schema and an implemented producer side,
+but are **not verified live on the bus** — publishing back requires
 write access the owners have not yet granted.
 
 | Subject | Content | Producer |
 |---|---|---|
-| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | The arbiter's **outcome** (PASS/FAIL/VENTER with rule and source) | the arbiter itself — payload format defined in step 12 |
+| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | The arbiter's **outcome** (PASS/FAIL/VENTER with rule and source) | the arbiter itself — payload format defined in step 12. 0 messages, measured 2026-10-11T19:27Z |
 
 ### Candidates (subjects that exist, connection not built)
 
