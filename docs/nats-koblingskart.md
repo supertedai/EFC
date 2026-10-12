@@ -45,8 +45,31 @@ The bridge's schema is the bus's own series; what the bridge does is translate t
 into the contract. **Auto-detection of the CC→CV knee requires all three
 parts of the contract** — both the v-series and the i-series are on the bus, the thresholds are the engine's. In addition the knee requires a
 time resolution fine enough to see the current plateau: the knee is measured to be invisible in
-15-min averages (step 8), so an I-series at hourly resolution will still
-give `found=False` — just with a different reason.
+15-min averages (step 8).
+
+**Measured with the i-series (2026-10-12).** The engine from `origin/main`
+was run on the bus's own V and I wherever both have a point: 403 hourly
+samples, 2026-09-25T21Z → 2026-10-12T15Z, no gaps. Per day, over 64
+threshold combinations (`v_knee_tol` 0.1–1.0 V, `di_threshold` and
+`cc_flat_threshold` 1e-4–5e-3 A/s), 1 088 runs:
+
+- **No real knee.** A CC→CV knee needs a flat *charging* current before
+  the decay. The longest flat charging run in the whole series
+  (I > 0, |ΔI| < 2 A per hour) is **2 hours**; the engine's plateau is 5
+  bins.
+- **The engine can still say `found=True`.** 78 runs did — 17 distinct
+  candidates on 12 days, most of them at the loosest thresholds, almost
+  all around solar noon. None had charging current in front: the
+  «plateau» was a resting battery (I ≈ 0 overnight) or a current that
+  swung between charge and discharge. The engine's plateau test checks
+  that the current is flat, not that it is a charge — and the source
+  contract above already declares the engine invalid for solar-driven
+  charging.
+
+So the step 8 expectation holds for real knees, not for the engine's
+answer: at hourly resolution a `found=True` is a threshold artefact
+unless the plateau in front of it is charging. Whether the plateau test
+should require I > 0 is an engine decision, not a map edit.
 
 ### Live on the bus (measured)
 
