@@ -28,7 +28,7 @@ it).
 
 | Subject | Engine | Status |
 |---|---|---|
-| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Connected via victron-nats-bro** (outside this repo, read-only). Live on the bus: `batteri_spenning` (V) and `batteri_ladning` (SOC). `batteri_stroem` (A, VRM code `CI`, measured) is **built, not deployed** — the producer code is merged in step 10, but deployment to the bus is the owners' step. Hourly resolution, anonymised site code. The knee detection reports `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` — NaN when not found — plus the counters `n_samples`, `n_cc`, `n_cv`; no reason field; the explanation of the reason stands in the bridge's run artefact). |
+| `verden.energi.tilstand.victron` | `VictronChargeEngine` | **Connected via victron-nats-bro** (outside this repo, read-only). Live on the bus (measured 2026-10-12T15:45Z, every series present hourly at least since 2026-10-11T06:02Z): `batteri_spenning` (V), `batteri_ladning` (SOC), `batteri_stroem` (A, VRM code `CI`), `batteri_effekt`, `forbruk_effekt`, `netteffekt` and `solproduksjon` (W). Hourly resolution, site code in the `sted` header (not named here — the repo is site-anonymous, step 8), `proveniens: eget_instrument`. The knee detection reports `found=False` (payload: `found`, `t_knee`, `v_knee`, `i_knee` — NaN when not found — plus the counters `n_samples`, `n_cc`, `n_cv`; no reason field; the explanation of the reason stands in the bridge's run artefact). |
 
 **The engine's contract vs the bridge's schema — two different things.** The engine
 is injectable and requires per run:
@@ -36,16 +36,14 @@ is injectable and requires per run:
 1. `v_series` — voltage over time (V). The bus carries it today
    (`batteri_spenning`).
 2. `i_series` — current over time (A). Built in step 10
-   (`batteri_stroem`); the producer code is merged (PR #969, in the
-   operations repo) and **deployment to the bus is the owners' step** — until then
-   the series is absent from the bus.
+   (`batteri_stroem`; producer code PR #969, in the operations repo) and
+   **live on the bus** (measured 2026-10-12).
 3. The thresholds `v_knee_tol`, `di_threshold`, `cc_flat_threshold` —
    the engine's own, never the bus's responsibility.
 
 The bridge's schema is the bus's own series; what the bridge does is translate them
 into the contract. **Auto-detection of the CC→CV knee requires all three
-parts of the contract** — the v-series exists, the i-series is built but
-deployment-dependent, the thresholds are the engine's. In addition the knee requires a
+parts of the contract** — both the v-series and the i-series are on the bus, the thresholds are the engine's. In addition the knee requires a
 time resolution fine enough to see the current plateau: the knee is measured to be invisible in
 15-min averages (step 8), so an I-series at hourly resolution will still
 give `found=False` — just with a different reason.
@@ -83,7 +81,7 @@ catches (measured 2026-09-17, `tests/test_arbiter_emne_kontrakt.py`).
 
 | Subject | Content | Engine candidate |
 |---|---|---|
-| `kosmos.hoper.observasjon.mast-caom` | Clusters (MAST/CAOM) | `cluster` |
+| `kosmos.hoper.observasjon.mast-caom` | Clusters (MAST/CAOM) — **0 messages in the window** at 2026-10-12T15:45Z (VERDEN_OBS keeps 24 h, so this says nothing about the producer); 67 in the snapshot of 2026-09-19 | `cluster` |
 | `kosmos.galakser.observasjon.mast-caom` | Galaxies | `lensing` (weak lensing) |
 | `kosmos.stjerner.observasjon.mast-caom` | Stars | `rotation` (galaxy rotation is the L2 domain; stellar rotation is an analogy candidate) |
 | `verden.energi.prediksjon.entsoe-dayahead` | Power price forecasts | (energy economics — no engine yet) |
