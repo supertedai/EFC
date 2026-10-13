@@ -77,3 +77,11 @@ Historical readback at implementation commit `85ec85aaa1c8cf5051708d82573d92dc9d
 - PR #634 remains **OPEN**, base `main`, `mergeStateStatus=CLEAN`, `mergeable=MERGEABLE`.
 - Exact-head CI: `schema`, `verify`, and `spraakvakt` all `SUCCESS` (run 38396856148, 38396856268, and 38396856193 respectively).
 - The `main` branch still requires one formal approving GitHub review; none is present. The PR is not merged and no live bus/public write was performed.
+
+### Result-lifecycle correction remote readback
+
+- Code/test correction commit: `38646f9181c7654b6d08ceca1ee38a480b3f0916`; local HEAD, `git ls-remote origin refs/heads/wt/t_d7c63861`, and PR #634 `headRefOid` matched exactly.
+- PR #634 was **OPEN**, base `main`, `mergeStateStatus=CLEAN`, `mergeable=MERGEABLE`; `reviewDecision` was empty.
+- Exact-head GitHub checks all succeeded: `schema` run `38401973555`, `verify` run `38401973320`, `spraakvakt` run `38401973560`.
+- Branch protection requires one formal approving review. The collaborator listing contained only `supertedai` (PR author); no non-author approval was recorded. Morten explicitly requested merge, but formal review and a fresh exact-head independent review remain gates.
+- Any subsequent documentation-only commit changes the PR head and requires a fresh check/review readback.
