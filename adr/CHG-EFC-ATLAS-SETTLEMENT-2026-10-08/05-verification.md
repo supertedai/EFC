@@ -50,8 +50,15 @@ The new repros were added before changing the classifier on the active task run 
 - The first focused run without `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1` printed 56 passed but did not exit before the 180-second tool timeout; the successful reruns above disable external pytest plugin autoload and return exit 0.
 - Exact local-code CLI readbacks against atlas data `HEAD @ 1a0a4479`: `efc.growth_engine` → `has settlement contract · settlement pending`; `verden.vaer` → `settled outcome`; `kosmos.asteroider` → `settlement record (completion unverified)` due to correlation mismatch; `efc.mu_kz_engine` → `no settlement contract`.
 - Schema gate: `efc_schema_check.py` → OK (4 schema/instance pairs, 2 instanceless schemas, 4 schema-only schemas valid and closed). Repository verification: `efc_verify.py` → 171 paper dirs, 0 errors, 0 warnings. Reference-relative `efc_spraakvakt.py --referanse origin/main` → 0 new findings.
-- `git diff --check` after the final documentation edit → clean. The correction remains unpushed and unmerged here.
+- `git diff --check` after the final documentation edit → clean. The correction was pushed and remains unmerged; see the exact readback below.
 
 ## Remote readback
 
 Historical readback at implementation commit `85ec85aaa1c8cf5051708d82573d92dc9df9eecc`: PR [#634](https://github.com/supertedai/EFC/pull/634) was **OPEN**, base `main`, `mergeStateStatus=CLEAN`, and checks `schema`, `verify`, and `spraakvakt` all concluded `SUCCESS`; `git ls-remote` matched that SHA. Subsequent commits only update the ADR closeout/readback record and trigger checks on the new head. The latest exact head/check result is posted on Kanban task `t_d7c63861`; do not treat this historical SHA as the current head. Independent PR review and the owner’s landing decision remain pending; nothing was merged.
+
+### Follow-up exact-head readback
+
+- Correction commit: `09e4c94669391beb429af67c64e540fc0ed8d7ce`; remote `wt/t_d7c63861` and PR #634 head both read back that exact SHA.
+- PR #634 remains **OPEN**, base `main`, `mergeStateStatus=CLEAN`, `mergeable=MERGEABLE`.
+- Exact-head CI: `schema`, `verify`, and `spraakvakt` all `SUCCESS` (run 38396856148, 38396856268, and 38396856193 respectively).
+- The `main` branch still requires one formal approving GitHub review; none is present. The PR is not merged and no live bus/public write was performed.
