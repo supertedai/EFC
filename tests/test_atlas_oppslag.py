@@ -333,6 +333,48 @@ class TestEpistemiskStatus:
         assert atlas_lesing._oppgjoer_status(incomplete_static) == "record_only"
         assert atlas_lesing._oppgjoer_status(static_missing_source) == "record_only"
 
+    @pytest.mark.parametrize(
+        "conflicting_signal",
+        [
+            {"status": "pending"},
+            {"status": "awaiting arbiter"},
+            {"settled": False},
+            {"pending": True},
+            {"details": {"status": "unknown"}},
+        ],
+    )
+    def test_terminal_result_with_conflicting_lifecycle_is_not_settled(
+        self, conflicting_signal: dict,
+    ) -> None:
+        node = {
+            "id": "efc.growth_engine",
+            "prediction": {"correlation": "efc-fs8.fsigma8.z0.7"},
+            "settlement_result": {
+                "node": "efc.growth_engine",
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "outcome": "confirmed",
+                "gap_sigma": 0.4,
+                "provenance": {"seq": 31058},
+                **conflicting_signal,
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "record_only"
+
+    @pytest.mark.parametrize("outcome", ["confirmed", "contradicted"])
+    def test_valid_terminal_result_still_settles(self, outcome: str) -> None:
+        node = {
+            "id": "efc.growth_engine",
+            "prediction": {"correlation": "efc-fs8.fsigma8.z0.7"},
+            "settlement_result": {
+                "node": "efc.growth_engine",
+                "correlation": "efc-fs8.fsigma8.z0.7",
+                "outcome": outcome,
+                "gap_sigma": 0.4,
+                "provenance": {"seq": 31058},
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "settled"
+
     def test_settlement_result_must_match_this_prediction(self) -> None:
         node = {
             "id": "efc.growth_engine",

@@ -52,6 +52,21 @@ The new repros were added before changing the classifier on the active task run 
 - Schema gate: `efc_schema_check.py` → OK (4 schema/instance pairs, 2 instanceless schemas, 4 schema-only schemas valid and closed). Repository verification: `efc_verify.py` → 171 paper dirs, 0 errors, 0 warnings. Reference-relative `efc_spraakvakt.py --referanse origin/main` → 0 new findings.
 - `git diff --check` after the final documentation edit → clean. The correction was pushed and remains unmerged; see the exact readback below.
 
+## Follow-up verification of conflicting result lifecycle (2026-10-13)
+
+The Faber second-opinion arbitration found an additional asymmetry: a result block could have a terminal top-level `outcome` while another lifecycle field or nested payload remained pending/unknown. The fix now checks recursive lifecycle validity and unresolved text before accepting a terminal result. Tests were added before implementation on claimed Kanban run 805, worktree `wt/t_d7c63861`, starting from PR head `1a8cf51eee7c221e85c352c66167ae5ebdc6622d`.
+
+- RED: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /opt/venvs/t_123ed6d9/bin/python -m pytest -q tests/test_atlas_oppslag.py -k 'terminal_result_with_conflicting_lifecycle_is_not_settled or valid_terminal_result_still_settles'` → **5 failed, 2 passed**. Every contradictory-signal case reproduced as `settled`; both positive terminal controls passed.
+- GREEN, same targeted selection → **7 passed, 65 deselected**.
+- Producer integration plus regressions: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /opt/venvs/t_123ed6d9/bin/python -m pytest -q tests/test_atlas_oppslag.py -k 'oppgjoer_cli_result_is_settled_without_changing_legacy_presence or terminal_result_with_conflicting_lifecycle_is_not_settled or valid_terminal_result_still_settles'` → **8 passed, 64 deselected**. This exercises the actual no-write producer path and confirms valid `confirmed`/`contradicted` outcomes still settle.
+- Focused atlas suite: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /opt/venvs/t_123ed6d9/bin/python -m pytest -q tests/test_atlas_oppslag.py` → **72 passed**.
+- Full suite: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /opt/venvs/t_123ed6d9/bin/python -m pytest -q tests/` → **1309 passed**, one pre-existing `SyntaxWarning` in unchanged `tests/test_maintenance_chain_fixpoint.py` (`invalid escape sequence '\\d'`).
+- Schema: `/opt/venvs/t_123ed6d9/bin/python scripts/maintenance/efc_schema_check.py` → **OK**, 4 schema/instance pairs valid and closed, 2 instanceless schemas valid, 4 schema-only schemas valid and closed. An initial invocation through the default Python failed because that interpreter lacks `jsonschema`; rerunning with the canonical EFC venv passed.
+- Repository verification: `python scripts/maintenance/efc_verify.py` → **171 paper dirs, 0 errors, 0 warnings**.
+- Reference-relative language gate: `python scripts/maintenance/efc_spraakvakt.py --referanse origin/main` → **0 new findings**.
+- `git diff --check` → clean after code, tests, and ADR follow-up edits.
+- Exact CLI readback with the changed classifier and data at `HEAD @ 1a8cf51e`: `efc.growth_engine` → settlement pending; `verden.vaer` → settled outcome; `kosmos.asteroider` → completion unverified due to correlation mismatch; `efc.mu_kz_engine` → no settlement contract.
+
 ## Remote readback
 
 Historical readback at implementation commit `85ec85aaa1c8cf5051708d82573d92dc9df9eecc`: PR [#634](https://github.com/supertedai/EFC/pull/634) was **OPEN**, base `main`, `mergeStateStatus=CLEAN`, and checks `schema`, `verify`, and `spraakvakt` all concluded `SUCCESS`; `git ls-remote` matched that SHA. Subsequent commits only update the ADR closeout/readback record and trigger checks on the new head. The latest exact head/check result is posted on Kanban task `t_d7c63861`; do not treat this historical SHA as the current head. Independent PR review and the owner’s landing decision remain pending; nothing was merged.

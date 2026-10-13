@@ -396,6 +396,14 @@ def _oppgjoer_status(node: dict) -> str:
     correlation_matches = False
     if isinstance(result, dict) and result:
         correlation_matches = _oppgjoer_korrelasjon_matcher(node, result)
+        _, result_lifecycle_invalid = _oppgjoer_livssyklus(result)
+        result_has_unresolved_text = any(
+            isinstance(value, str) and _oppgjoer_uavklart(value)
+            for value in _oppgjoer_values(result)
+        )
+        result_has_conflicting_lifecycle = (
+            result_lifecycle_invalid or result_has_unresolved_text
+        )
 
         provenance = result.get("provenance")
         sequence = provenance.get("seq") if isinstance(provenance, dict) else None
@@ -428,6 +436,7 @@ def _oppgjoer_status(node: dict) -> str:
             and correlation_matches
             and isinstance(outcome, str)
             and outcome.strip().casefold() in {"confirmed", "contradicted"}
+            and not result_has_conflicting_lifecycle
             and has_finite_gap
             and (has_sequence or has_message_id)
         ):
