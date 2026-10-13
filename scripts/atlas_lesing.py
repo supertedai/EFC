@@ -205,20 +205,146 @@ def _oppgjoer_values(value):
         yield value
 
 
+def _oppgjoer_normaliser_tilstand(value: str) -> str:
+    """Normalize punctuation/spacing before comparing lifecycle values."""
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", value.casefold()).split())
+
+
 def _oppgjoer_venter(outcome) -> bool:
     return any(
         isinstance(value, str)
-        and value.casefold().startswith(("waiting for arbiter", "awaiting arbiter"))
+        and _oppgjoer_normaliser_tilstand(value).startswith(
+            ("waiting for arbiter", "awaiting arbiter"))
         for value in _oppgjoer_values(outcome)
     )
 
 
+def _oppgjoer_uavklart(value: str) -> bool:
+    normalized = _oppgjoer_normaliser_tilstand(value)
+    first = normalized.split(" ", 1)[0] if normalized else ""
+    return (
+        normalized in {"unknown", "inconclusive", "pending", "unresolved",
+                       "unsettled", "open", "incomplete", "running"}
+        or first in {"unknown", "inconclusive", "pending", "unresolved",
+                     "unsettled", "open", "incomplete", "running", "waiting",
+                     "awaiting"}
+        or normalized.startswith(("not settled", "not completed"))
+    )
+
+
+_OPPGJOER_TERMINALE_TILSTANDER = {
+    "confirmed", "contradicted", "settled", "complete", "completed", "resolved",
+    "revised", "revidert", "excluded", "unchanged", "uendret", "motsagt",
+    "bekreftet", "utdypet", "ubesvart", "succeeded", "success", "failed", "failure",
+}
+_OPPGJOER_TILSTANDSFELT = {"status", "state", "outcome", "utfall", "result"}
+_OPPGJOER_BOOL_TERMINALE_FELT = {"settled", "complete", "completed"}
+_OPPGJOER_GENERISKE_FELT = {
+    "value", "values", "data", "result", "payload", "status", "state", "outcome",
+    "utfall", "settled", "pending", "complete", "completed", "timestamp", "time",
+    "source", "outcome_source", "outcome_time", "settlement_version", "unit", "units",
+    "correlation", "node", "id", "provenance", "schema_version", "version", "message",
+    "note", "description",
+}
+
+
+def _oppgjoer_dekode(value):
+    if isinstance(value, str):
+        text = value.strip()
+        try:
+            return json.loads(text)
+        except (json.JSONDecodeError, TypeError):
+            return text
+    return value
+
+
+def _oppgjoer_livssyklus(payload) -> tuple[bool, bool]:
+    """Return (has_explicit_terminal_state, has_unknown_or_open_state)."""
+    terminal = False
+    invalid = False
+
+    def walk(value) -> None:
+        nonlocal terminal, invalid
+        value = _oppgjoer_dekode(value)
+        if isinstance(value, dict):
+            for raw_key, raw_item in value.items():
+                key = str(raw_key).strip().casefold()
+                item = _oppgjoer_dekode(raw_item)
+                if key in _OPPGJOER_BOOL_TERMINALE_FELT:
+                    if item is True:
+                        terminal = True
+                    else:
+                        invalid = True
+                elif key == "pending":
+                    if item is True:
+                        invalid = True
+                    elif item is False:
+                        continue
+                    elif isinstance(item, str) and _oppgjoer_normaliser_tilstand(item) in {
+                        "false", "no",
+                    }:
+                        continue
+                    else:
+                        invalid = True
+                elif key in _OPPGJOER_TILSTANDSFELT:
+                    if isinstance(item, str):
+                        normalized = _oppgjoer_normaliser_tilstand(item)
+                        if _oppgjoer_uavklart(item):
+                            invalid = True
+                        elif normalized in _OPPGJOER_TERMINALE_TILSTANDER:
+                            terminal = True
+                        else:
+                            # A lifecycle field with an unfamiliar value is not
+                            # evidence of completion; fail closed.
+                            invalid = True
+                    elif isinstance(item, (dict, list)):
+                        walk(item)
+                    else:
+                        invalid = True
+                elif isinstance(item, (dict, list)):
+                    walk(item)
+        elif isinstance(value, list):
+            for item in value:
+                walk(item)
+
+    walk(payload)
+    return terminal, invalid
+
+
+def _oppgjoer_har_navnede_data(payload) -> bool:
+    """A static measurement needs named data, not a generic value wrapper."""
+    payload = _oppgjoer_dekode(payload)
+    if isinstance(payload, dict):
+        for raw_key, item in payload.items():
+            key = str(raw_key).strip().casefold()
+            item = _oppgjoer_dekode(item)
+            if key in _OPPGJOER_GENERISKE_FELT:
+                if isinstance(item, (dict, list)) and _oppgjoer_har_navnede_data(item):
+                    return True
+                continue
+            if isinstance(item, (dict, list)):
+                if _oppgjoer_har_navnede_data(item):
+                    return True
+            elif item is not None and (not isinstance(item, str) or bool(item.strip())):
+                return True
+    elif isinstance(payload, list):
+        return any(_oppgjoer_har_navnede_data(item) for item in payload)
+    return False
+
+
 def _oppgjoer_utfall_er_fullfort(outcome) -> bool:
-    """A static outcome must be a terminal label or a populated result object."""
+    """A static result needs a terminal state or named measurement data.
+
+    Generic wrappers (for example ``{"value": 0}``) and unfamiliar explicit
+    lifecycle values are not outcome evidence. Named measurement fields remain
+    valid for sources such as METAR, whose static settlement stores observations
+    rather than a pass/fail label.
+    """
     if not isinstance(outcome, str) or not outcome.strip():
         return False
     text = outcome.strip()
-    if text.casefold() in {"confirmed", "contradicted"}:
+    normalized = _oppgjoer_normaliser_tilstand(text)
+    if normalized in _OPPGJOER_TERMINALE_TILSTANDER:
         return True
     try:
         payload = json.loads(text)
@@ -228,21 +354,12 @@ def _oppgjoer_utfall_er_fullfort(outcome) -> bool:
         return False
 
     values = list(_oppgjoer_values(payload))
-    if any(
-        isinstance(value, str)
-        and (
-            value.casefold() in {
-                "unknown", "inconclusive", "pending", "unresolved", "unsettled",
-            }
-            or value.casefold().startswith(("pending ", "waiting", "awaiting", "not settled"))
-        )
-        for value in values
-    ):
+    if any(isinstance(value, str) and _oppgjoer_uavklart(value) for value in values):
         return False
-    return any(
-        value is not None and (not isinstance(value, str) or bool(value.strip()))
-        for value in values
-    )
+    terminal, invalid = _oppgjoer_livssyklus(payload)
+    if invalid:
+        return False
+    return terminal or _oppgjoer_har_navnede_data(payload)
 
 
 def _oppgjoer_korrelasjon_matcher(node: dict, record: dict) -> bool:
@@ -250,10 +367,16 @@ def _oppgjoer_korrelasjon_matcher(node: dict, record: dict) -> bool:
     if not isinstance(correlation, str) or not correlation.strip():
         return False
     prediction = node.get("prediction")
-    expected = prediction.get("correlation") if isinstance(prediction, dict) else None
-    if expected in (None, ""):
-        return True
-    return isinstance(expected, str) and correlation.strip() == expected.strip()
+    settlement = node.get("settlement")
+    expected = [
+        value.strip()
+        for value in (
+            prediction.get("correlation") if isinstance(prediction, dict) else None,
+            settlement.get("correlation") if isinstance(settlement, dict) else None,
+        )
+        if isinstance(value, str) and value.strip()
+    ]
+    return bool(expected) and all(correlation.strip() == value for value in expected)
 
 
 def _oppgjoer_status(node: dict) -> str:
@@ -270,26 +393,9 @@ def _oppgjoer_status(node: dict) -> str:
     if not has_result and not has_settlement:
         return "none"
 
+    correlation_matches = False
     if isinstance(result, dict) and result:
-        prediction = node.get("prediction")
-        prediction_correlation = (
-            prediction.get("correlation") if isinstance(prediction, dict) else None
-        )
-        settlement_correlation = (
-            settlement.get("correlation") if isinstance(settlement, dict) else None
-        )
-        expected_correlations = [
-            value.strip()
-            for value in (prediction_correlation, settlement_correlation)
-            if isinstance(value, str) and value.strip()
-        ]
-        correlation = result.get("correlation")
-        correlation_matches = (
-            isinstance(correlation, str)
-            and bool(correlation.strip())
-            and bool(expected_correlations)
-            and all(correlation.strip() == value for value in expected_correlations)
-        )
+        correlation_matches = _oppgjoer_korrelasjon_matcher(node, result)
 
         provenance = result.get("provenance")
         sequence = provenance.get("seq") if isinstance(provenance, dict) else None
@@ -327,7 +433,7 @@ def _oppgjoer_status(node: dict) -> str:
         ):
             return "settled"
 
-    if isinstance(result, dict):
+    if isinstance(result, dict) and result:
         node_id = node.get("id")
         if (
             isinstance(node_id, str)

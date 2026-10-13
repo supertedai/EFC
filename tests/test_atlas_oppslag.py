@@ -197,6 +197,12 @@ class TestEpistemiskStatus:
         "pending review",
         '{"status": "unknown"}',
         '{"status": "pending review"}',
+        '{"settled": false}',
+        '{"value": 0}',
+        '{"status": "open"}',
+        '{"pending": true}',
+        '{"status": "pending: review"}',
+        '{"data": {"value": 0}}',
     ])
     def test_nonterminal_static_outcome_is_not_settled(self, outcome: str) -> None:
         node = {
@@ -211,6 +217,62 @@ class TestEpistemiskStatus:
             },
         }
         assert atlas_lesing._oppgjoer_status(node) == "record_only"
+
+    def test_pending_result_with_other_correlation_does_not_override_static_settlement(
+        self,
+    ) -> None:
+        # No prediction is deliberate: the result must still be checked against
+        # the static settlement's correlation before it can override that record.
+        node = {
+            "id": "test.node",
+            "settlement": {
+                "correlation": "completed-correlation",
+                "outcome": '{"air_temperature": 4.0}',
+                "outcome_source": "test measurement",
+                "outcome_time": "2026-10-08T12:00:00Z",
+                "settlement_version": "1",
+            },
+            "settlement_result": {
+                "node": "test.node",
+                "correlation": "different-prediction",
+                "outcome": "waiting for arbiter: another prediction",
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "settled"
+
+    def test_pending_result_matching_static_correlation_still_takes_precedence(
+        self,
+    ) -> None:
+        node = {
+            "id": "test.node",
+            "settlement": {
+                "correlation": "completed-correlation",
+                "outcome": '{"air_temperature": 4.0}',
+                "outcome_source": "test measurement",
+                "outcome_time": "2026-10-08T12:00:00Z",
+                "settlement_version": "1",
+            },
+            "settlement_result": {
+                "node": "test.node",
+                "correlation": "completed-correlation",
+                "outcome": "waiting for arbiter: same prediction",
+            },
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "pending"
+
+    def test_empty_result_does_not_hide_completed_static_settlement(self) -> None:
+        node = {
+            "id": "test.node",
+            "settlement": {
+                "correlation": "completed-correlation",
+                "outcome": '{"air_temperature": 4.0}',
+                "outcome_source": "test measurement",
+                "outcome_time": "2026-10-08T12:00:00Z",
+                "settlement_version": "1",
+            },
+            "settlement_result": {},
+        }
+        assert atlas_lesing._oppgjoer_status(node) == "settled"
 
     def test_static_settlement_with_wrong_correlation_is_not_settled(
         self, ekte_repo: Path,

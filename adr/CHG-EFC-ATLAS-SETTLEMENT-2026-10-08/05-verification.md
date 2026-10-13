@@ -39,6 +39,19 @@ The corresponding `--emne ... --alle --ref HEAD` commands exited 0. A result-onl
 
 The latest broker prediction record read is sequence 31058, timestamp 2026-09-07T15:00:05Z; it names DESI DR2 full-shape as the awaited arbiter. The exact EFC-fσ8 settlement-subject query returned no message. This is a dated bus snapshot, not a claim about whether DESI DR2 data exist elsewhere. This change does not write to or alter the bus.
 
+## Follow-up verification of review findings (2026-10-13)
+
+The new repros were added before changing the classifier on the active task run (803), worktree `wt/t_d7c63861`, based on PR head `1a0a44798f206d9dd049d2cd5eab51e0549eeef3`.
+
+- RED: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/morten/.hermes/cache/scratch/efc-test-t_d7c63861/bin/python -m pytest -q tests/test_atlas_oppslag.py -k 'nonterminal_static_outcome_is_not_settled or pending_result_with_other_correlation or pending_result_matching_static_correlation or empty_result_does_not_hide'` → **7 failed, 7 passed**. The failures were the five unrecognized lifecycle/generic payload cases plus nested `data/value` and a pending result with a mismatched static correlation.
+- GREEN, same targeted command → **14 passed, 51 deselected**.
+- Focused: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/morten/.hermes/cache/scratch/efc-test-t_d7c63861/bin/python -m pytest -q tests/test_atlas_oppslag.py` → **65 passed**.
+- Full EFC suite: `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 /home/morten/.hermes/cache/scratch/efc-test-t_d7c63861/bin/python -m pytest -q tests/` → **1302 passed**, one existing `DeprecationWarning` from `tests/test_maintenance_chain_fixpoint.py` (`invalid escape sequence '\\d'`).
+- The first focused run without `PYTEST_DISABLE_PLUGIN_AUTOLOAD=1` printed 56 passed but did not exit before the 180-second tool timeout; the successful reruns above disable external pytest plugin autoload and return exit 0.
+- Exact local-code CLI readbacks against atlas data `HEAD @ 1a0a4479`: `efc.growth_engine` → `has settlement contract · settlement pending`; `verden.vaer` → `settled outcome`; `kosmos.asteroider` → `settlement record (completion unverified)` due to correlation mismatch; `efc.mu_kz_engine` → `no settlement contract`.
+- Schema gate: `efc_schema_check.py` → OK (4 schema/instance pairs, 2 instanceless schemas, 4 schema-only schemas valid and closed). Repository verification: `efc_verify.py` → 171 paper dirs, 0 errors, 0 warnings. Reference-relative `efc_spraakvakt.py --referanse origin/main` → 0 new findings.
+- `git diff --check` after the final documentation edit → clean. The correction remains unpushed and unmerged here.
+
 ## Remote readback
 
 Historical readback at implementation commit `85ec85aaa1c8cf5051708d82573d92dc9df9eecc`: PR [#634](https://github.com/supertedai/EFC/pull/634) was **OPEN**, base `main`, `mergeStateStatus=CLEAN`, and checks `schema`, `verify`, and `spraakvakt` all concluded `SUCCESS`; `git ls-remote` matched that SHA. Subsequent commits only update the ADR closeout/readback record and trigger checks on the new head. The latest exact head/check result is posted on Kanban task `t_d7c63861`; do not treat this historical SHA as the current head. Independent PR review and the owner’s landing decision remain pending; nothing was merged.
