@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Apply canonical 12-entry navbar to every public EFC page.
 
-Single source of truth for the cross-page navigation. All 13 pages
+Single source of truth for the cross-page navigation. All 14 pages
 under ``docs/public/EFC_*.html`` get the same navbar in the same order.
 The link to the *current* page is rendered in red (``color:#c22;``) so
 readers always know where they are.
@@ -43,8 +43,13 @@ NAV_ENTRIES = (
     ("EFC_Changelog.html", "Changelog"),
 )
 
-# Pages that should get the navbar (all 13 — including Master v1.1).
-ALL_PAGES = list(href for href, _ in NAV_ENTRIES) + ["EFC_Master_v1.1.html"]
+# Pages that should get the navbar (all 14 — the 12 NAV_ENTRIES links,
+# plus Master v1.1 and System Health, which carry the navbar but are not
+# themselves navigation entries).
+ALL_PAGES = (
+    list(href for href, _ in NAV_ENTRIES)
+    + ["EFC_Master_v1.1.html", "EFC_System_Health.html"]
+)
 
 NAV_OPEN = (
     '<div style="background:#f8f9fa; border:1px solid #d0d7e3; '
