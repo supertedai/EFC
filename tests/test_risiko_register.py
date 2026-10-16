@@ -296,8 +296,18 @@ def test_det_ekte_registeret_validerer():
     feil = vr.valider_innhold(register, eierregister, ROT)
     assert feil == [], feil
     linjer = [json.loads(x) for x in register.read_text(encoding="utf-8").splitlines() if x.strip()]
-    assert len(linjer) == 2
-    assert {p["type"] for p in linjer} == {"HAZID", "BLAST_RADIUS"}
+    # The register is APPEND-ONLY and grows by design (one post per red
+    # change), so the seed is pinned by id, never by count: a magic count
+    # fails the first legitimate append, and the seed is what this readback
+    # claims to check (measured 2026-10-05, when t_fe1fe518 appended
+    # RISK-BLAST_RADIUS-0002).
+    ider = {p["risk_id"] for p in linjer}
+    assert {"RISK-HAZID-0001", "RISK-BLAST_RADIUS-0001"} <= ider, sorted(ider)
+    assert {p["type"] for p in linjer} >= {"HAZID", "BLAST_RADIUS"}
     for p in linjer:
-        assert p["gate_required"] is True and p["gate_decision"] == "venter", \
-            "an open red post shall wait for the human, not for the automation"
+        # An OPEN red post shall wait for the human, not for the automation.
+        # Scoped to the open status: the human's decision flips status and
+        # gate_decision together, so a pin on "venter" alone would fail the
+        # gate action the register's own README prescribes.
+        if p["klasse"] == "rød" and p["status"] == "oppdaget":
+            assert p["gate_required"] is True and p["gate_decision"] == "venter"
