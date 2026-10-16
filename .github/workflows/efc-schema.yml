@@ -8,6 +8,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "efc_inference/engine/**"
       - "docs/likelihood-ledger/**"
       - "docs/evaluation-ledger/schema.json"
       - "docs/model-comparison/schema.json"
@@ -36,6 +37,7 @@ on:
       - ".github/workflows/efc-schema.yml"
   pull_request:
     paths:
+      - "efc_inference/engine/**"
       - "docs/likelihood-ledger/**"
       - "docs/evaluation-ledger/schema.json"
       - "docs/model-comparison/schema.json"
