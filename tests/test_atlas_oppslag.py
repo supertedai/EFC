@@ -275,7 +275,7 @@ class TestKommandolinjen:
     def test_hull_paa_kommandolinjen_er_tydelig(self) -> None:
         p = self._kjoer("--emne", "kvantegravitasjon_xyzzy", "--ref", "HEAD")
         assert p.returncode == 0, (
-            "et hull er et gyldig svar — kommandolinjen skal ikke feile paa det")
+            "a hole is a valid answer — the command line must not fail on it")
         assert "THE ATLAS DOES NOT KNOW" in p.stdout
 
     def test_uten_emne_listes_hele_atlaset(self) -> None:
@@ -303,7 +303,7 @@ class TestKommandolinjen:
         p = self._kjoer("--ref", "HEAD")
         assert p.returncode == 0, p.stderr
         assert f"{len(noder)} nodes" in p.stdout, (
-            f"CLI-en og filen er uenige om antallet: {p.stdout[:200]}")
+            f"the CLI and the file disagree on the count: {p.stdout[:200]}")
 
 
 class TestKjenteHull:
@@ -539,7 +539,7 @@ class TestVisningsgrensen:
         assert len(linjer) <= atlas_lesing._VIS_MAKS, (
             f"CLI viste {len(linjer)} treff, grensen er {atlas_lesing._VIS_MAKS}")
         assert "more — use --alle" in p.stdout, (
-            "naar treffene kuttes, skal CLI si hvor mange som ligger under")
+            "when the hits are cut, the CLI must say how many lie below")
 
 
 class TestStorrelsenPaaHullet:
