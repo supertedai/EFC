@@ -1,0 +1,70 @@
+diff --git a/schema/regime_node.schema.json b/schema/regime_node.schema.json
+index 0140498d..4176da2f 100644
+--- a/schema/regime_node.schema.json
++++ b/schema/regime_node.schema.json
+@@ -351,6 +351,43 @@
+           },
+           "description": "Logg over endrede terskler/antakelser (dato + hva)."
+         },
++        "korrigendum": {
++          "type": "array",
++          "description": "Eksterne korrigenda som svekker nodens tall uten aa endre dem. Skilt fra `revisjon`: revisjon er VAARE egne endringer av terskler og antakelser, et korrigendum er en kilde UTENFOR noden som sier at noden ikke lenger er uforbeholden — med egen DOI og eget sitat.",
++          "items": {
++            "type": "object",
++            "required": [
++              "doi",
++              "dato",
++              "sitat",
++              "virkning",
++              "kildefil"
++            ],
++            "additionalProperties": false,
++            "properties": {
++              "doi": {
++                "type": "string",
++                "description": "DOI-en til korrigendet."
++              },
++              "dato": {
++                "type": "string",
++                "description": "Utgivelsesdato for korrigendet."
++              },
++              "sitat": {
++                "type": "string",
++                "description": "Det som svekker noden, ordrett."
++              },
++              "virkning": {
++                "type": "string",
++                "description": "Hva det betyr for nodens status — ikke hva det betyr for tallene."
++              },
++              "kildefil": {
++                "type": "string",
++                "description": "Stien i dette repoet der sitatet staar."
++              }
++            }
++          }
++        },
+         "epistemikk": {
+           "type": "object",
+           "required": [
+diff --git a/schema/regime_nodes.jsonld b/schema/regime_nodes.jsonld
+index 80def5b5..a091a6f9 100644
+--- a/schema/regime_nodes.jsonld
++++ b/schema/regime_nodes.jsonld
+@@ -3781,7 +3781,16 @@
+     "ebe_s_regime": "high_s"
+    },
+    "synlighet": "offentlig",
+-   "ville_falsifisere": "DESI DR2 full-shape fσ8(z~0.7) utenfor ~1σ av 0.430 — den forseglede prediksjonen."
++   "ville_falsifisere": "DESI DR2 full-shape fσ8(z~0.7) utenfor ~1σ av 0.430 — den forseglede prediksjonen.",
++   "korrigendum": [
++    {
++     "doi": "10.6084/m9.figshare.32114530",
++     "dato": "2026-04-28",
++     "sitat": "Re-runs show the earlier DESI DR1 non-MCMC Δχ² signal dissolves under DESI DR2 + real fσ8, and the EFC VariantH entropy-gradient growth model yields a genuine null under a symmetric prior and patched pipeline.",
++     "virkning": "Vekstgrenen denne noden forseglet er BETINGET, ikke uforbeholden: husets eget korrigendum flagger de forseglede veksttallene som hvilende paa tilbaketrukne stub/DR1-innsatser og sier at signalet loeses opp under DESI DR2 + reell fsigma8. Det endrer ikke tallene og ikke frysene; det sier hva de er verdt i dag.",
++     "kildefil": "docs/papers/efc/EFC-VAL-2026-006/index.json (sealed_predictions P1)"
++    }
++   ]
+   },
+   {
+    "id": "efc.lensing_engine",
