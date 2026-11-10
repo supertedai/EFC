@@ -13,6 +13,12 @@
 | `verified` (readback) | yes | head read back `cf758572d76f2c60b808da675e7f811a969072e6` = local `HEAD`; 7/7 CI checks `SUCCESS` |
 | `merged` | **no — and must not be claimed** | landing is Morten's word |
 
+This file is itself a docs-only commit on the same branch, so it re-runs CI and moves the PR
+head. The readback above was taken at `cf758572` (7/7 `SUCCESS`); the same seven checks passed
+again at `784e2935`, the commit that first carried this closeout. The **definitive** final
+head and check readback live on kanban card `t_1610348d`, which is the durable handoff — not
+here, where the figure would be one commit stale by construction.
+
 ## What changed
 
 | Path | Commit | Change |
