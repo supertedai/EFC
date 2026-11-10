@@ -52,6 +52,13 @@ Required content, all traceable to `01-context.md`:
 Language: English (the two existing entries are English; the repo's language gate does not
 scan `schema/`, but consistency is the reason, not the gate).
 
+**Two clauses were added after independent review** (findings 6 and 7, `06-review.md`):
+(a) the bridge "does not close the cosmology-RLHF loop directly" (P2's own limitation), and
+(b) "EFC-C had not yet been fitted to a neural dataset" (P1's limitation). Both are now
+pinned by the regression test, because each is a clause that prevents a reader from
+inferring a complete, closed bridge. "Two proposals exist" also became "**at least** two"
+(finding 3), removing an exhaustiveness implication.
+
 ### 3. Regression test — `tests/test_atlas_bro_status.py`
 
 Pins, and must fail before the change:

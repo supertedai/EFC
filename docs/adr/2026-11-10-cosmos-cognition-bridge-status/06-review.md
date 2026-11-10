@@ -1,7 +1,8 @@
 # 06 — Independent review
 
-**Status: REVIEWED. One external panel round on the patch, findings dispositioned; one
-confirmation round on the delta.**
+**Status: REVIEWED. Two external panel rounds (review + delta confirmation) with the same
+verified route; every finding dispositioned. The final external verdict is BLOCK on one
+point, and that point is measurably absent from the artifact — see Round 2.**
 
 ## Reviewer route and provenance (measured)
 
@@ -52,7 +53,33 @@ _Round 2 result:_ filled in §"Round 2" below.
 
 ## Round 2
 
-_Pending at the time this file was first written; appended after the call._
+Route and model identical to round 1 (route `openai`, model echoed `gpt-5.6-luna`,
+`model_verified: true`). The dossier contained **only the file delta** between the reviewed
+version (`37babbbb`) and the final one (`b67759b5`), plus the five questions above.
+
+**Verdict: BLOCK, confidence 0.98.** Findings:
+
+| # | Sev. | Point | Verdict | Why |
+|---|---|---|---|---|
+| R2-1 | note | (2) satisfied by "Earlier qualifications against the bridge being derived or empirically confirmed" | accept (agreement) | — |
+| R2-2 | note | (6) and (7) satisfied and faithful to the sources | accept (agreement) | — |
+| R2-3 | should-fix | **(8) not satisfied** — the malformed DOI `10.32091700` is said to remain in the commit message; no correction was shown in the delta | **reject on measurement** | the dossier for round 2 showed only file diffs, so the commit message — which is where finding (8) lived — was not in front of the reviewer. Measured on the artifact: `git log -1 --format=%B b67759b5 \| grep -o "10\.[0-9]\{4,5\}/[^ ,;)]*"` → `10.6084/m9.figshare.31940547`, `10.6084/m9.figshare.31969983`, `10.6084/m9.figshare.32091700's`; `grep -c "10\.32091700"` → **0**. The malformed token does not exist in the committed history. This was a **defect in my round-2 dossier**, not in the patch |
+| R2-4 | note | (3) "At least two" adequately avoids the exhaustive implication | accept (agreement) | — |
+| R2-5 | note | no new defect introduced by the delta | accept (agreement) | — |
+
+### How the BLOCK is handled
+
+The BLOCK rests on an artifact I failed to supply (the commit message), not on the patch.
+The disposition is therefore **reject on L0 measurement**, not "argue with the reviewer",
+and not a third panel call — the second-opinion protocol forbids iterating toward agreement,
+and the point is settled by a command anyone can rerun. Recorded here so the disagreement is
+visible rather than tidied away: an external reviewer's last word on this change is **BLOCK**,
+its stated ground is measurably absent, and the ground's absence is my presentation error.
+
+If Morten wants an external sign-off on finding (8) specifically, the artifact to put in
+front of a reviewer is `git log -1 --format=%B b67759b5` (or the PR description), not a file
+diff.
+
 
 ## What this review does NOT establish
 
