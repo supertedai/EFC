@@ -5,6 +5,16 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-10-11",
+      "sha": "b2da0e4a334e",
+      "summary": "fix(ledger): the Chennu propofol dataset DOI is CAM.68959, not CAM.690 (the latter is a vaccinia-virus paper)",
+      "categories": {
+        "public_pages": 1,
+        "ledger_data": 3
+      },
+      "id": "b2da0e4a334e"
+    },
+    {
       "date": "2026-09-21",
       "sha": "750a2366f6f2",
       "summary": "docs(papers): draft EFC model-family reconciliation manuscript (text phase, pre-publication)",
@@ -404,7 +414,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "059d7857add8771ed7b24331abcd23e67efa47fe",
+    "last_processed_sha": "b2da0e4a334ef1384d369c68ad4f1ed56fbb321b",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
