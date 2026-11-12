@@ -1,12 +1,42 @@
 #!/usr/bin/env python3
-"""validate_links.py — dead internal and external links in the public pages.
+"""validate_links.py — dead internal and external links in the public surfaces.
 
-Internal (relative) links must point at files that exist in the repo — HARD error.
-External ones are checked with HEAD (GET fallback) with a ceiling; 4xx/5xx count
-as findings (not hard — external sites have rate limits and false 403s). The number
-of external ones per run is capped to keep CI friendly.
+THE RULE (declared here, not only in the card that built it)
+------------------------------------------------------------
+The surfaces that are read:
+
+  * HTML: ``docs/public/*.html`` and ``docs/index.html``.
+  * Markdown: every ``wiki/**/*.md`` page. The wiki is a reader-facing
+    explanation surface of this repository (it is what a visitor is sent to
+    first), so a dead internal link there is the same reader-facing defect as
+    a dead link on a public page.
+
+An INTERNAL (relative) link is a HARD error (exit 1) when its target does not
+exist in the tree. What counts as existing differs by surface, and the
+difference is deliberate:
+
+  * HTML: the target must be a FILE. A page that links to a directory without
+    an index is a dead link for the reader.
+  * Markdown: the target may be a FILE **or a DIRECTORY** — wiki pages link to
+    directories on purpose (``../theory/formal/``, ``../methodology/``), and a
+    directory that exists is a usable target on a code host.
+
+Fragment-only links (``#section``), ``mailto:``, ``tel:``, ``javascript:`` and
+``data:`` do not name a path in the tree and are skipped. Query strings and
+fragments on an otherwise internal link are stripped before the check.
+
+Supported Markdown syntax: inline links and images ``[text](path)`` and
+reference definitions ``[id]: path``. Both forms are read, so a page that uses
+reference-style links is not silently unmeasured. Fenced code blocks and inline
+code spans are NOT read: a page may document link syntax without the
+documentation becoming a link.
+
+An EXTERNAL link (http/https) is a FINDING, never hard: remote sites rate-limit
+and answer 403 to HEAD. The number of external ones per run is capped to keep
+CI friendly.
 
 Usage: python3 scripts/maintenance/validate_links.py [--json] [--maks-eksterne N]
+Exit: 0 = no hard findings, 1 = at least one dead internal link.
 """
 from __future__ import annotations
 
@@ -23,7 +53,17 @@ from pathlib import Path
 
 ROT = Path(__file__).resolve().parents[2]
 SIDER = list((ROT / "docs" / "public").glob("*.html")) + [ROT / "docs" / "index.html"]
+# The Markdown surface. Sorted so the report is stable between runs; a missing
+# wiki/ yields an empty list (Path.glob does not raise on a missing directory).
+WIKI_SIDER = sorted((ROT / "wiki").glob("**/*.md"))
 HREF = re.compile(r'(?:href|src)=["\']([^"\'#]+)["\']')
+MD_LENKE = re.compile(r"!?\[[^\]]*\]\(\s*<?([^)\s>]+)>?(?:\s+\"[^\"]*\")?\s*\)")
+MD_DEF = re.compile(r"^ {0,3}\[[^\]]+\]:\s*(\S+)", re.MULTILINE)
+# A fence (``` or ~~~) and an inline code span. What is shown as code is not a
+# link, so a page may document link syntax without being failed by it.
+MD_GJERDE = re.compile(r"^ {0,3}(`{3,}|~{3,})[^\n]*\n.*?^ {0,3}\1[^\n]*$",
+                       re.MULTILINE | re.DOTALL)
+MD_KODE = re.compile(r"`[^`\n]*`")
 UA = "hermes-efc-links/1.0 (+supertedai/EFC)"
 
 
@@ -105,6 +145,61 @@ def _sjekk_ekstern(url: str, tidsfrist: int = 8) -> tuple[str, int | None]:
         return url, None
 
 
+def _uten_kode(tekst: str) -> str:
+    """The page with fenced blocks and inline code spans removed.
+
+    What is shown as code is not a link. Removing it before the scan keeps a
+    page that documents link syntax from failing on its own example.
+    """
+    tekst = MD_GJERDE.sub("", tekst)
+    return MD_KODE.sub("", tekst)
+
+
+def _hrefs(tekst: str, markdown: bool) -> list[str]:
+    """The raw link targets in one page. Both Markdown forms are read, so a
+    reference-style link is measured like an inline one."""
+    if not markdown:
+        return [m.group(1) for m in HREF.finditer(tekst)]
+    tekst = _uten_kode(tekst)
+    return [m.group(1) for m in MD_LENKE.finditer(tekst)] + \
+           [m.group(1) for m in MD_DEF.finditer(tekst)]
+
+
+def _rel(side: Path) -> str:
+    """Path as it is reported. A page outside the repo root (a fixture tree in
+    the tests) is reported by its own path instead of raising: the finding is
+    the dead link, not where the tree happens to sit."""
+    try:
+        return side.relative_to(ROT).as_posix()
+    except ValueError:
+        return side.as_posix()
+
+
+def sjekk_side(side: Path, tekst: str, markdown: bool = False) -> tuple[list[dict], list[str]]:
+    """Split one page's links into HARD findings and external targets.
+
+    The surface decides what "exists" (see the module docstring): a FILE for
+    HTML, a FILE or a DIRECTORY for Markdown. Kept as a function so the rule is
+    measured by tests instead of only used by the CLI.
+    """
+    harde: list[dict] = []
+    eksterne: list[str] = []
+    for href in _hrefs(tekst, markdown):
+        href = href.strip()
+        if href.startswith(("http://", "https://")):
+            eksterne.append(href)
+            continue
+        if href.startswith(("mailto:", "javascript:", "tel:", "#", "data:")):
+            continue
+        sti = (side.parent / urllib.parse.unquote(
+            href.split("?")[0].split("#")[0])).resolve()
+        finnes = (sti.is_file() or sti.is_dir()) if markdown else sti.is_file()
+        if not finnes:
+            harde.append({"type": "broken_internal",
+                          "side": _rel(side), "href": href})
+    return harde, eksterne
+
+
 def hoved() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--json", action="store_true")
@@ -113,22 +208,15 @@ def hoved() -> int:
     harde: list[dict] = []
     funn: list[dict] = []
     eksterne: list[str] = []
-    for side in SIDER:
+    sider = [(side, False) for side in SIDER] + [(side, True) for side in WIKI_SIDER]
+    for side, markdown in sider:
         if not side.is_file():
             harde.append({"type": "missing_page", "msg": str(side)})
             continue
         tekst = side.read_text(encoding="utf-8", errors="replace")
-        for m in HREF.finditer(tekst):
-            href = m.group(1).strip()
-            if href.startswith(("http://", "https://")):
-                eksterne.append(href)
-                continue
-            if href.startswith(("mailto:", "javascript:", "#", "data:")):
-                continue
-            sti = (side.parent / urllib.parse.unquote(href.split("?")[0])).resolve()
-            if not sti.is_file():
-                harde.append({"type": "broken_internal",
-                              "side": str(side.relative_to(ROT)), "href": href})
+        side_harde, side_eksterne = sjekk_side(side, tekst, markdown)
+        harde.extend(side_harde)
+        eksterne.extend(side_eksterne)
     sett = sorted(set(eksterne))
     for url in sett[:a.maks_eksterne]:
         _u, status = _sjekk_ekstern(url)
@@ -138,11 +226,13 @@ def hoved() -> int:
             funn.append({"type": "external_broken", "url": url, "status": status})
     if a.json:
         print(json.dumps({"harde": harde, "funn": funn,
+                          "sider_sjekket": len(SIDER), "markdown_sjekket": len(WIKI_SIDER),
                           "eksterne_sjekket": min(len(sett), a.maks_eksterne),
                           "eksterne_totalt": len(sett)}, ensure_ascii=False, indent=1))
     else:
         print(f"links: {len(harde)} hard (internal dead), {len(funn)} external findings "
-              f"({min(len(sett), a.maks_eksterne)} of {len(sett)} checked)")
+              f"({min(len(sett), a.maks_eksterne)} of {len(sett)} checked; "
+              f"{len(SIDER)} HTML + {len(WIKI_SIDER)} Markdown pages)")
         for f in harde[:15]:
             print("  HARD:", f)
         for f in funn[:10]:

@@ -289,15 +289,31 @@ def test_gaten_kan_ikke_blindes_av_lokal_git_konfigurasjon(tmp_path, monkeypatch
 
 
 def test_det_ekte_registeret_validerer():
-    """Readback of the register in the tree — not only of a fixture."""
+    """Readback of the register in the tree — not only of a fixture.
+
+    The seed is asserted by IDENTITY, not by cardinality. The register is
+    append-only (README, «The gate»), so a fixed line count or a fixed set of
+    types would turn this test red on the FIRST new entry — and the loop below
+    would turn it red again on the human's first decision on that entry, which
+    is the document's own decision path. Measured 2026-11-12 (t_56beaebd):
+    appending RISK-HAZOP-0001 (a gate change, «venter») failed both
+    `len(linjer) == 2` and the type-set assertion, i.e. the test forbade the
+    register's documented use. The properties that must hold as the register
+    grows are kept: the seed stays, identity is unique, and an open post with a
+    gate requirement waits for the human.
+    """
     register = ROT / "governance" / "risiko" / "risiko-register.jsonl"
     eierregister = json.loads((ROT / "governance" / "ownership-register.json").read_text(
         encoding="utf-8"))
     feil = vr.valider_innhold(register, eierregister, ROT)
     assert feil == [], feil
     linjer = [json.loads(x) for x in register.read_text(encoding="utf-8").splitlines() if x.strip()]
-    assert len(linjer) == 2
-    assert {p["type"] for p in linjer} == {"HAZID", "BLAST_RADIUS"}
+    ids = [p["risk_id"] for p in linjer]
+    assert {"RISK-HAZID-0001", "RISK-BLAST_RADIUS-0001"} <= set(ids), \
+        f"the seed must stay in the register: {sorted(set(ids))}"
+    assert len(ids) == len(set(ids)), "risk_id is the register's identity and must be unique"
     for p in linjer:
-        assert p["gate_required"] is True and p["gate_decision"] == "venter", \
-            "an open red post shall wait for the human, not for the automation"
+        if p["status"] == "oppdaget" and p["gate_required"]:
+            assert p["gate_decision"] == "venter", \
+                ("an open post with a gate requirement waits for the human, "
+                 "not for the automation")
