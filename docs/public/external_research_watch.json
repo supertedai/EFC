@@ -119,6 +119,50 @@
   "consolidation_note": "Consolidated union of research-watch scans from PRs #307/#309/#311/#314 + prior main — no item dropped (BL-450).",
   "items": [
     {
+      "key": "arXiv:2511.19736",
+      "title": "General relativity, early galaxy formation and the JWST observations",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2511.19736",
+      "date_seen": "2026-11-12",
+      "date_published": "2025-11-24",
+      "efc_relevance": "A purely relativistic, GR-only mechanism (peculiar-velocity flux in the energy-momentum tensor) that raises the linear growth rate from delta proportional to t^(2/3) to delta proportional to t, argued to accommodate massive early galaxies without new physics or fine-tuning. It is a competing THEORY for the same observable EFC addresses with a regime-gated early boost (atlas addressing EFC -> early_structure_JWST, S_flow_boost_at_high_z). The two are separable in principle: this mechanism is not regime-gated and would raise growth broadly, while EFC's is damped (mu<1) and late.",
+      "ledger_action": "Recorded in the Atlas external-evidence register (FRAG-TSAGAS-PECULIAR-FLUX) as an alternative explanation, linked to early_structure_JWST and sigma8_growth. No Validation Ledger row: the essay contains no data comparison, so it cannot carry an empirical status.",
+      "status": "logged"
+    },
+    {
+      "key": "arXiv:2506.08832",
+      "title": "Evidence for a sign change of the ISW effect in the very recent universe? Hot voids and cold overdensities at z<0.03",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2506.08832",
+      "date_seen": "2026-11-12",
+      "date_published": "2025-06",
+      "efc_relevance": "Candidate local (z<0.03) ISW sign reversal: CMB temperature excess in the direction of nearby voids, and earlier cooling in filaments. The reported sign is the sign EFC's planned void-ISW sign-flip prediction requires for deep voids (DOI 10.6084/m9.figshare.31942677), whose pipeline (DOI 10.6084/m9.figshare.31990212) predicts a depth turnover near delta ~ -0.8 and amplification at R_v > 100 h^-1 Mpc. This paper bins by void size and radius, not by that depth coordinate, and its amplitude is an order of magnitude above the predicted Rees-Sciama and ISW terms. The authors' own interpretation is an unknown process, possibly non-standard dark energy - not EFC.",
+      "ledger_action": "Recorded in the Atlas external-evidence register (docs/validation-ledger/data/atlas_external_evidence.json, FRAG-ISW-SIGNFLIP) as candidate compatibility only. No new Validation Ledger row: the EFC void-ISW P1-P3 remain planned predictions with no data confrontation, and this paper is not a test of them.",
+      "status": "logged"
+    },
+    {
+      "key": "arXiv:2503.19441",
+      "title": "KiDS-Legacy: Cosmological constraints from cosmic shear with the complete Kilo-Degree Survey",
+      "source_type": "paper",
+      "url": "https://arxiv.org/abs/2503.19441",
+      "date_seen": "2026-11-12",
+      "date_published": "2025-03-25",
+      "efc_relevance": "The high-side arm of the current S8 picture: S8 = 0.815 (+0.016/-0.021), in agreement with Planck at 0.73 sigma (Sigma8 = 0.821 (+0.014/-0.016) with alpha = 0.58). Against EFC's robust point value S8 ~ 0.82 the central value is 0.005 low and the 1-sigma upper edge (0.831) reaches it - a 1-sigma tail overlap, not a bracket. Accepted for publication in A&A.",
+      "ledger_action": "Standalone source row added to the Atlas external-evidence register (FRAG-KIDS-LEGACY-S8) with the paper's own numbers and 1-sigma interval, closing the watchlist backlog item that asked for a KiDS-Legacy row. The existing tests.json entry conv_efc_p1_p2_cross_probe_test_against_des_y6_vs_kids_legacy_s8_ already cites this dataset and was NOT re-promoted: its recorded result stays NO_SIGNAL / status unknown, which is an internal status and not empirical support.",
+      "status": "logged"
+    },
+    {
+      "key": "DOI:10.1038/s41550-026-02932-4",
+      "title": "Hidden mass in early galaxies revealed by bottom-heavy initial mass functions",
+      "source_type": "paper",
+      "url": "https://www.nature.com/articles/s41550-026-02932-4",
+      "date_seen": "2026-11-12",
+      "date_published": "2026-08-18",
+      "efc_relevance": "From nine massive quiescent galaxies at z ~ 0.7 (JWST IMFERNO NIRSpec + VLT LEGA-C), the oldest (z_form > 5) has the most bottom-heavy IMF; the authors state its possible high-z progenitors 'may' have had similar IMFs, raising their masses by a factor ~4 +/- 1. This is a CONDITIONAL mass correction for possible progenitors, not a z>10 mass measurement. If it holds it weakens the premise that the JWST early-galaxy sample requires new cosmological growth physics - the premise on which EFC's early-structure (S_flow) addressing rests.",
+      "ledger_action": "Recorded in the Atlas external-evidence register (FRAG-CHENG-IMF) as a conditional premise-defeater linked to early_structure_JWST. No Validation Ledger row: it is an IMF inference at z ~ 0.7 that bears on the anomaly budget, not a test of an EFC prediction.",
+      "status": "logged"
+    },
+    {
       "key": "arXiv:2607.18234",
       "title": "Cosmological consequences of a dynamical dark matter in the light of DESI DR2 measurements",
       "source_type": "paper",

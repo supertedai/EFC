@@ -1,0 +1,398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://supertedai.github.io/EFC/schema/atlas_external_evidence.schema.json",
+  "title": "EFC Atlas external evidence subgraph",
+  "description": "Closed schema for docs/validation-ledger/data/atlas_external_evidence.json: the provenance-preserving evidence subgraph that joins independent external results to existing Atlas phenomena and existing regime-node ids, at the LOWEST justified epistemic strength. The schema exists because a link without a declared type, strength and limit is read as the strongest claim the reader wants it to be. Registration: scripts/maintenance/efc_schema_check.py PAIRS; readback: tests/test_atlas_external_evidence.py.",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "description",
+    "generated_at",
+    "generator",
+    "readback_at",
+    "policy",
+    "link_types",
+    "sources",
+    "fragments",
+    "status_conflicts",
+    "pending_contracts",
+    "guards",
+    "provenance",
+    "change_log"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "generator": { "type": "string", "minLength": 1 },
+    "readback_at": { "type": "string", "format": "date" },
+    "policy": { "$ref": "#/$defs/Policy" },
+    "link_types": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/LinkType" }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Source" }
+    },
+    "fragments": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Fragment" }
+    },
+    "status_conflicts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/StatusConflict" }
+    },
+    "pending_contracts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/PendingContract" }
+    },
+    "guards": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Guard" }
+    },
+    "provenance": { "$ref": "#/$defs/Provenance" },
+    "change_log": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/ChangeEntry" }
+    }
+  },
+  "$defs": {
+    "Policy": {
+      "type": "object",
+      "required": [
+        "strength_ceiling",
+        "ceiling_definition",
+        "forbidden_upgrades",
+        "attribution_rule",
+        "settlement_rule"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "strength_ceiling": {
+          "type": "string",
+          "enum": ["candidate_compatibility"]
+        },
+        "ceiling_definition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forbidden_upgrades": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "attribution_rule": { "type": "string", "minLength": 1 },
+        "settlement_rule": { "type": "string", "minLength": 1 }
+      }
+    },
+    "LinkType": {
+      "type": "object",
+      "required": ["id", "definition", "max_strength", "may_not_be_read_as"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "candidate_compatibility",
+            "alternative_explanation",
+            "independent_constraint",
+            "conditional_reinterpretation",
+            "premise_defeater"
+          ]
+        },
+        "definition": { "type": "string", "minLength": 1 },
+        "max_strength": {
+          "type": "string",
+          "enum": ["candidate_compatibility"]
+        },
+        "may_not_be_read_as": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "Source": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "authors",
+        "published",
+        "url",
+        "read_level",
+        "read_notes"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "external_peer_reviewed",
+            "external_preprint",
+            "external_survey_release",
+            "efc_own_page",
+            "efc_own_preprint"
+          ]
+        },
+        "title": { "type": "string", "minLength": 1 },
+        "authors": { "type": "string", "minLength": 1 },
+        "published": { "type": "string", "minLength": 1 },
+        "arxiv": { "type": "string", "minLength": 1 },
+        "doi": { "type": "string", "minLength": 1 },
+        "journal_ref": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "minLength": 1 },
+        "read_level": {
+          "type": "string",
+          "enum": ["full_text", "abstract_and_metadata", "metadata_only"]
+        },
+        "read_notes": { "type": "string", "minLength": 1 }
+      }
+    },
+    "Fragment": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "source_id",
+        "claim_type",
+        "observed",
+        "observer_instrument",
+        "redshift_or_scale",
+        "model_assumptions",
+        "limitations",
+        "efc_attribution",
+        "links",
+        "discriminator",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "source_id": { "type": "string", "minLength": 1 },
+        "claim_type": {
+          "type": "string",
+          "enum": [
+            "direct_observation_candidate",
+            "survey_measurement",
+            "measurement_inference",
+            "model_derived_theory",
+            "internal_null_result"
+          ]
+        },
+        "observed": { "type": "string", "minLength": 1 },
+        "observer_instrument": { "type": "string", "minLength": 1 },
+        "redshift_or_scale": { "type": "string", "minLength": 1 },
+        "model_assumptions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "efc_attribution": {
+          "type": "string",
+          "enum": ["none", "not_efc_specific", "efc_own_null_result"]
+        },
+        "links": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Link" }
+        },
+        "discriminator": { "type": "string", "minLength": 1 },
+        "status": {
+          "type": "string",
+          "enum": ["unresolved", "observed_pending_discriminator", "bounded"]
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "required": [
+        "target_kind",
+        "target",
+        "type",
+        "strength",
+        "rationale",
+        "does_not_imply"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target_kind": {
+          "type": "string",
+          "enum": ["phenomenon", "regime_node", "prediction"]
+        },
+        "target": { "type": "string", "minLength": 1 },
+        "node_ref": { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": [
+            "candidate_compatibility",
+            "alternative_explanation",
+            "independent_constraint",
+            "conditional_reinterpretation",
+            "premise_defeater"
+          ]
+        },
+        "strength": {
+          "type": "string",
+          "enum": ["candidate_compatibility"]
+        },
+        "rationale": { "type": "string", "minLength": 1 },
+        "does_not_imply": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "StatusConflict": {
+      "type": "object",
+      "required": [
+        "id",
+        "artifact",
+        "locator",
+        "prediction_id",
+        "previous_text",
+        "observed_problem",
+        "evidence_check",
+        "resolution_label",
+        "action_taken",
+        "remaining",
+        "resolution_requires"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "artifact": {
+          "type": "string",
+          "enum": [
+            "atlas_json",
+            "public_atlas_html",
+            "validation_ledger_page",
+            "external_research_watch"
+          ]
+        },
+        "locator": { "type": "string", "minLength": 1 },
+        "prediction_id": { "type": ["string", "null"] },
+        "previous_text": { "type": "string", "minLength": 1 },
+        "observed_problem": { "type": "string", "minLength": 1 },
+        "evidence_check": { "type": "string", "minLength": 1 },
+        "resolution_label": {
+          "type": "string",
+          "enum": [
+            "wording_corrected",
+            "citation_corrected",
+            "unresolved_status_preserved",
+            "superseded_by_newer_record"
+          ]
+        },
+        "action_taken": { "type": "string", "minLength": 1 },
+        "remaining": { "type": "string", "minLength": 1 },
+        "resolution_requires": { "type": "string", "minLength": 1 }
+      }
+    },
+    "PendingContract": {
+      "type": "object",
+      "required": [
+        "id",
+        "subject",
+        "stream",
+        "seq",
+        "readback_at",
+        "expected",
+        "counterpart",
+        "sealed_doi",
+        "sealing_sha256",
+        "arbiter",
+        "arbiter_waiting_for",
+        "criterion",
+        "tolerance_rule",
+        "state",
+        "settlement_subject",
+        "settlement_found",
+        "settlement_note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "subject": { "type": "string", "minLength": 1 },
+        "stream": { "type": "string", "minLength": 1 },
+        "seq": { "type": "integer", "minimum": 1 },
+        "readback_at": { "type": "string", "format": "date-time" },
+        "expected": { "type": "string", "minLength": 1 },
+        "counterpart": { "type": "string", "minLength": 1 },
+        "sealed_doi": { "type": "string", "minLength": 1 },
+        "sealing_sha256": { "type": "string", "minLength": 1 },
+        "arbiter": { "type": "string", "minLength": 1 },
+        "arbiter_waiting_for": { "type": "string", "minLength": 1 },
+        "criterion": { "type": "string", "minLength": 1 },
+        "tolerance_rule": { "type": "string", "minLength": 1 },
+        "state": { "type": "string", "enum": ["pending"] },
+        "settlement_subject": { "type": "string", "minLength": 1 },
+        "settlement_found": { "type": "boolean" },
+        "settlement_note": { "type": "string", "minLength": 1 }
+      }
+    },
+    "Guard": {
+      "type": "object",
+      "required": ["id", "artifact", "quote", "why_it_is_not_evidence", "rule"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "artifact": { "type": "string", "minLength": 1 },
+        "quote": { "type": "string", "minLength": 1 },
+        "why_it_is_not_evidence": { "type": "string", "minLength": 1 },
+        "rule": { "type": "string", "minLength": 1 }
+      }
+    },
+    "Provenance": {
+      "type": "object",
+      "required": ["method", "readback_surfaces", "limitations", "complete"],
+      "additionalProperties": false,
+      "properties": {
+        "method": { "type": "string", "minLength": 1 },
+        "readback_surfaces": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "limitations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "complete": { "type": "boolean" }
+      }
+    },
+    "ChangeEntry": {
+      "type": "object",
+      "required": ["date", "editor", "changes"],
+      "additionalProperties": false,
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "editor": { "type": "string", "minLength": 1 },
+        "changes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "note": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
