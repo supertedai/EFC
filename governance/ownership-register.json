@@ -67,6 +67,16 @@
       "cadence": "per_change+weekly"
     },
     {
+      "id": "wiki",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "faber",
+      "coverage_glob": [
+        "wiki/**"
+      ],
+      "cadence": "per_change+weekly"
+    },
+    {
       "id": "evidens",
       "kind": "dir",
       "owner": "researcher",
@@ -287,5 +297,16 @@
     ".worktrees/ (kanban work areas)",
     ".git/**"
   ],
-  "changes": []
+  "changes": [
+    {
+      "date": "2026-11-12",
+      "card": "t_4c5527ff",
+      "change": "added component «wiki» with coverage_glob [\"wiki/**\"]",
+      "decision": "owner=researcher, implementer=faber, kind=dir, cadence=per_change+weekly",
+      "rationale": "wiki/Home.md states claims, not only prose: it applies the four claim labels, a source-of-truth order and the language discipline (consistent with, never confirms), so the role that owns scholarly truth owns the wiki. Maintaining the text is implementation: the same split as docs/** (component «dokumentasjon», owner researcher, implementer faber). Rejected: owner orchestrator (owns flow, not content truth), owner faber (implementer of documentation today, not owner), and folding wiki/** into the docs/** glob (would require moving an already published path).",
+      "measured_before": "origin/main 2690d749: validate_ownership.py exit 1 — 1 files without an owner, WITHOUT OWNER: wiki/Home.md",
+      "measured_after": "validate_ownership.py exit 0 — 0 files without an owner",
+      "follow_up": "efc-statement-graph.yml triggers on public/graph/** and public/page-meta/** but not on governance/ownership-register.json or wiki/**, and has no push trigger on main: the gate that reads this register does not run when the register or its content changes. Gate mechanics — separate card."
+    }
+  ]
 }
