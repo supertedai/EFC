@@ -1,0 +1,63 @@
+name: EFC links
+
+# What this measures: the link rule, `scripts/maintenance/validate_links.py`,
+# over every page it reads — `docs/public/*.html` and `docs/index.html`
+# (15 pages today). A dead internal link on a public page is a reader-facing
+# defect, and internal links are HARD: the script exits 1 when a target is
+# missing.
+#
+# Why this surface gets its own workflow (card t_c2bb8c06, decision alternative
+# 2 on t_10c68d20, second opinion VERDICT B): the only other job that runs the
+# rule is `efc-statement-graph.yml`, and it runs seven checks. An HTML-only PR
+# would therefore go red on ownership, the activity log or the bench without
+# any link being dead — and a gate whose red does not point at what it measures
+# gets ignored. Measured cost of the rule alone: 0.114 s. The rule imports only
+# the standard library (argparse, json, re, socket, sys, urllib, ipaddress,
+# pathlib), so there is deliberately NO dependency step: installing nothing is
+# cheaper than installing something and measures the same thing.
+#
+# External links are deliberately out of scope. They are FINDINGS, never hard
+# (the script exits 1 on `harde` only), and checking them needs the network and
+# is rate-limited. `--maks-eksterne 0` makes this gate deterministic and
+# network-free; the periodic round owns the external probe
+# (`vedlikeholdsrunda.py --maks-eksterne 15`).
+#
+# The paths below are the rule's own inputs, not a wider promise: the script
+# globs `docs/public/*.html` NON-recursively, so `*` (which does not cross `/`
+# in GitHub's path filter) is the honest pattern here — `**` would claim to
+# cover nested pages that neither the trigger nor the rule reads.
+#
+# `pull_request` and `push` watch the same list on purpose: a verdict read only
+# on the PR side leaves main unmeasured, and the two lists drift the moment one
+# is edited alone. A test keeps them identical and keeps every page matched.
+
+on:
+  pull_request:
+    paths:
+      - "docs/public/*.html"
+      - "docs/index.html"
+      - "scripts/maintenance/validate_links.py"
+      - ".github/workflows/efc-links.yml"
+      - "tests/test_links_workflow_triggers.py"
+  push:
+    branches: [main]
+    paths:
+      - "docs/public/*.html"
+      - "docs/index.html"
+      - "scripts/maintenance/validate_links.py"
+      - ".github/workflows/efc-links.yml"
+      - "tests/test_links_workflow_triggers.py"
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Internal links on the public pages (hard, network-free)
+        run: python3 scripts/maintenance/validate_links.py --json --maks-eksterne 0
