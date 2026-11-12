@@ -25,10 +25,10 @@ name: EFC statement-graph
 #     run this job twice on every risk-register change without measuring
 #     anything new. A missed measurement is a gate hole; duplicate CI is a cost.
 #   * docs/public/**.html is NOT listed, although the link step reads those
-#     pages. Four other workflows already gate that surface on every change,
-#     and adding this one would run the whole job (tests, bench, network link
-#     check) on nearly every content PR. That gap is therefore NOT closed here:
-#     it is measured and carried by its own card (t_10c68d20).
+#     pages: this job would then run on nearly every content PR. That surface
+#     gets its own narrow workflow instead — decided in t_10c68d20 (alternative
+#     2: a dedicated efc-links.yml running only validate_links.py, no pytest or
+#     bench), built by t_c2bb8c06.
 #
 # push branches [main] exists because a fail-closed gate whose verdict is never
 # read on main is not fail-closed. The pull_request verdict answers "may this
