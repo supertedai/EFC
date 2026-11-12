@@ -23,18 +23,6 @@ A shared vocabulary does not by itself prove that the same physical mechanism op
 
 ## Start here
 
-- [EFC as a meta-framework](EFC-as-a-Meta-Framework.md) — the overall architecture and its boundaries.
-- [First principles](First-Principles.md) — energy, entropy, information, gradients and flow.
-- [Formal architecture](Formal-Architecture.md) — the repository's S, D, R, H and C₀ model families.
-- [Cosmology and regimes](Cosmology-and-Regimes.md) — the physical research programme.
-- [Proxies and observables](Proxies-and-Observables.md) — how abstract constructs become measurable.
-- [Cross-domain bridges](Cross-Domain-Bridges.md) — cosmology, neural entropy and AI optimisation.
-- [ASI and Symbiose](ASI-and-Symbiose.md) — the AI-system extension and its open research questions.
-- [Consciousness and cognition](Consciousness-and-Cognition.md) — cognitive-field and consciousness-related models.
-- [Homo Fluxus and civilisation](Homo-Fluxus-and-Civilization.md) — human and civilizational synthesis.
-- [Evidence and falsification](Evidence-and-Falsification.md) — what is tested, what remains open, and what would count against EFC.
-- [Research map](Research-Map.md) — how the repository is organised.
-- [Glossary](Glossary.md) — shared terminology.
 
 ## The organising map
 
