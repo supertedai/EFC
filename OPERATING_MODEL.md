@@ -91,3 +91,4 @@ Before starting work in this repo:
 **Locked**: 2026-05-19, RFC-0001 (in supertedai/AGI).
 **Branch**: `claude/backend-daemon-structure-ilT2W`.
 **Canonical companion**: [`OPERATING_MODEL.md` in supertedai/AGI](https://github.com/supertedai/AGI/blob/main/OPERATING_MODEL.md).
+
