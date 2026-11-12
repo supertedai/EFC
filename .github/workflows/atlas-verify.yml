@@ -12,6 +12,7 @@ on:
     paths:
       - "docs/validation-ledger/data/atlas.json"
       - "docs/validation-ledger/data/ledger.json"
+      - "docs/validation-ledger/data/atlas_external_evidence.json"
       - "docs/public/EFC_Atlas.html"
       - "scripts/build_atlas.py"
       - ".github/workflows/atlas-verify.yml"
@@ -21,6 +22,7 @@ on:
     paths:
       - "docs/validation-ledger/data/atlas.json"
       - "docs/validation-ledger/data/ledger.json"
+      - "docs/validation-ledger/data/atlas_external_evidence.json"
       - "docs/public/EFC_Atlas.html"
       - "scripts/build_atlas.py"
 

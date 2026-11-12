@@ -76,6 +76,8 @@ PAIRS: list[tuple[str, str]] = [
     ("schema/framework_atlas.schema.json", "schema/framework_atlas.jsonld"),
     ("schema/doi-map.schema.json", "figshare/doi-map.json"),
     ("schema/regime_node.schema.json", "schema/regime_nodes.jsonld"),
+    ("schema/atlas_external_evidence.schema.json",
+     "docs/validation-ledger/data/atlas_external_evidence.json"),
 ]
 # (schema, instance path its README promises) — checked as schemas only until
 # the instance exists; then the gate says so and the pair moves to PAIRS.

@@ -169,3 +169,25 @@ statements:
     role: cited
   - page_id: validation-ledger
     role: cited
+- statement_id: efc.ext.001
+  text: 'Independent external results are linked to the Atlas at candidate compatibility
+    only: a local ISW sign-reversal candidate, a competing GR growth mechanism, a
+    conditional IMF mass correction, and two heterogeneous S8 survey values. None of
+    them confirms, tests or settles an EFC prediction, and the sealed fsigma8 contract
+    (P2) remains pending on its named arbiter, DESI DR2 full-shape RSD.'
+  kind: status
+  epistemic_level: documented
+  owner_role: researcher
+  status: active
+  supported_by:
+  - ev.ext.isw.001
+  - ev.ext.tsagas.001
+  - ev.ext.cheng.001
+  - ev.ext.kids.001
+  - ev.ext.desy6.001
+  - ev.ext.fs8contract.001
+  contradicts: []
+  supersedes: null
+  appears_on:
+  - page_id: atlas
+    role: primary

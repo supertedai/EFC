@@ -1,0 +1,654 @@
+{
+  "name": "EFC Atlas - external evidence subgraph",
+  "version": "1.0",
+  "description": "Typed, provenance-preserving links from independent external results to existing Atlas phenomena and existing regime-node ids, at the lowest justified epistemic strength. Nothing in this file may raise an external result above candidate compatibility, and nothing in it settles an EFC prediction. The sealed prediction cards (atlas.json tier1_demo_predictions) are the only place a prediction status lives.",
+  "generated_at": "2026-11-12T11:15:42Z",
+  "generator": "maintained in-repo (docs/validation-ledger/data/atlas_external_evidence.json); rendered by scripts/build_atlas.py",
+  "readback_at": "2026-11-12",
+  "policy": {
+    "strength_ceiling": "candidate_compatibility",
+    "ceiling_definition": "The strongest link this register may carry is candidate compatibility: the external result does not contradict the EFC regime expectation, and does not test it. No link in this file is evidence FOR EFC, and no link is a settlement.",
+    "forbidden_upgrades": [
+      "confirms EFC",
+      "proves EFC",
+      "validates EFC",
+      "supports EFC causally",
+      "settles P2",
+      "settles P4",
+      "observed EFC signal",
+      "within EFC prediction band"
+    ],
+    "attribution_rule": "An external author's interpretation is recorded as the author's interpretation. Where the author names an unknown process, this file records an unknown process - never an EFC mechanism. EFC attribution is only written where an EFC-sealed document states the expectation, and then with its DOI.",
+    "settlement_rule": "A prediction is settled only by an identity-matched settlement message on the prediction bus, or by the named arbiter publishing the measurement. A paper that is adjacent to the arbiter is not the arbiter. A pending contract stays pending here."
+  },
+  "link_types": [
+    {
+      "id": "candidate_compatibility",
+      "definition": "The external result does not contradict the EFC regime expectation for the same observable, at the stated scale.",
+      "max_strength": "candidate_compatibility",
+      "may_not_be_read_as": [
+        "confirmation",
+        "a discriminating measurement",
+        "evidence that the EFC mechanism is the cause"
+      ]
+    },
+    {
+      "id": "alternative_explanation",
+      "definition": "A competing mechanism - theoretical or astrophysical - that could produce the same observable without EFC.",
+      "max_strength": "candidate_compatibility",
+      "may_not_be_read_as": [
+        "refutation of EFC",
+        "a measurement of EFC"
+      ]
+    },
+    {
+      "id": "premise_defeater",
+      "definition": "A result that, if it holds, weakens the premise that the observable is anomalous and therefore the reason EFC was invoked there.",
+      "max_strength": "candidate_compatibility",
+      "may_not_be_read_as": [
+        "refutation of EFC",
+        "an established result (this one is conditional in its own source)"
+      ]
+    },
+    {
+      "id": "independent_constraint",
+      "definition": "An independent measurement of the same parameter, carrying its own uncertainty and its own systematic budget, which bounds an EFC point value without testing the mechanism.",
+      "max_strength": "candidate_compatibility",
+      "may_not_be_read_as": [
+        "a pass",
+        "a settle",
+        "a bracket of the EFC value where the arithmetic does not bracket it"
+      ]
+    },
+    {
+      "id": "conditional_reinterpretation",
+      "definition": "An inference whose effect on an EFC-relevant quantity depends on a stated condition that the source itself marks as conditional.",
+      "max_strength": "candidate_compatibility",
+      "may_not_be_read_as": [
+        "a measurement at the redshift the EFC claim is about",
+        "an established correction"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-HANSEN-ISW",
+      "kind": "external_preprint",
+      "title": "Evidence for a sign change of the ISW effect in the very recent universe? Hot voids and cold overdensities at z<0.03",
+      "authors": "Frode K. Hansen, Diego Garcia Lambas, Andres N. Ruiz, Facundo Toscano, Luis A. Pereyra",
+      "published": "2025 (arXiv v1); HTML v3 read",
+      "arxiv": "2506.08832",
+      "journal_ref": "A&A 711, A222 (2026) per the task card; the arXiv abstract page returned no journal-reference field at read time, so the journal line is recorded as asserted-not-verified",
+      "url": "https://arxiv.org/html/2506.08832v3",
+      "read_level": "full_text",
+      "read_notes": "Abstract, data/method, results, look-elsewhere section and discussion read. Numbers quoted from the paper's own text."
+    },
+    {
+      "id": "SRC-TSAGAS",
+      "kind": "external_preprint",
+      "title": "General relativity, early galaxy formation and the JWST observations",
+      "authors": "Christos G. Tsagas",
+      "published": "2025-11-24 (arXiv v1)",
+      "arxiv": "2511.19736",
+      "journal_ref": "Essay, Honorable Mention, 2025 Gravity Research Foundation competition",
+      "url": "https://arxiv.org/html/2511.19736",
+      "read_level": "full_text",
+      "read_notes": "Full essay read. The growth result is quoted from its equations (2)-(3) discussion: delta proportional to t instead of t^(2/3)."
+    },
+    {
+      "id": "SRC-CHENG-IMF",
+      "kind": "external_peer_reviewed",
+      "title": "Hidden mass in early galaxies revealed by bottom-heavy initial mass functions",
+      "authors": "Cheng et al.",
+      "published": "2026-08-18 (Nature Astronomy)",
+      "doi": "10.1038/s41550-026-02932-4",
+      "journal_ref": "Nature Astronomy (2026); received 2026-01-15, accepted 2026-06-24, published 2026-08-18",
+      "url": "https://www.nature.com/articles/s41550-026-02932-4",
+      "read_level": "abstract_and_metadata",
+      "read_notes": "Abstract, publication metadata and surrounding sections read; the body was available but the claims used here are all stated in the abstract."
+    },
+    {
+      "id": "SRC-KIDS-LEGACY",
+      "kind": "external_peer_reviewed",
+      "title": "KiDS-Legacy: Cosmological constraints from cosmic shear with the complete Kilo-Degree Survey",
+      "authors": "Angus H. Wright et al. (KiDS collaboration)",
+      "published": "2025-03-25 (v1), 2025-10-21 (v2); accepted for publication in A&A",
+      "arxiv": "2503.19441",
+      "journal_ref": "accepted for publication in A&A (per arXiv comments)",
+      "url": "https://arxiv.org/abs/2503.19441",
+      "read_level": "abstract_and_metadata",
+      "read_notes": "Abstract read in full; S8 and Sigma8 values and the 0.73-sigma Planck agreement are the paper's own stated numbers."
+    },
+    {
+      "id": "SRC-DES-Y6",
+      "kind": "external_survey_release",
+      "title": "Dark Energy Survey Year 6 Results: Cosmological Constraints from Galaxy Clustering and Weak Lensing",
+      "authors": "DES Collaboration (Abbott et al.)",
+      "published": "2026-01-21 (v1), 2026-01-29 (v2)",
+      "arxiv": "2601.14559",
+      "url": "https://arxiv.org/abs/2601.14559",
+      "read_level": "abstract_and_metadata",
+      "read_notes": "Abstract read in full; S8 = 0.789 +/- 0.012 (LambdaCDM), wCDM S8 = 0.782 +0.021/-0.020, 1.8-sigma full-space and 2.6-sigma projected difference from the Planck 2018 + ACT-DR6 + SPT-3G DR1 combination."
+    },
+    {
+      "id": "SRC-DESI-DR2-BAO",
+      "kind": "external_survey_release",
+      "title": "DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints",
+      "authors": "DESI Collaboration",
+      "published": "2025-03-19 (v1); HTML v3 read (2025-10-09)",
+      "arxiv": "2503.14738",
+      "url": "https://arxiv.org/html/2503.14738",
+      "read_level": "full_text",
+      "read_notes": "Abstract, contents and the full-shape discussion read. This paper is a BAO measurement plus cosmological constraints; it refers full-shape power-spectrum analyses to separate DESI papers."
+    },
+    {
+      "id": "SRC-EFC-VOID-ISW",
+      "kind": "efc_own_preprint",
+      "title": "Density-Dependent Gravitational Coupling Predicts ISW Sign-Flip in Deep Voids (v2.1) + ISW Void Sign-Flip Observational Pipeline v1.5",
+      "authors": "Morten Magnusson",
+      "published": "2026-04-12 (pipeline package)",
+      "doi": "10.6084/m9.figshare.31942677",
+      "journal_ref": "theory DOI 10.6084/m9.figshare.31942677; pipeline DOI 10.6084/m9.figshare.31990212",
+      "url": "https://doi.org/10.6084/m9.figshare.31942677",
+      "read_level": "metadata_only",
+      "read_notes": "Read from the in-repo AI package (index.json / README.md), not from the PDF. The sealed predictions P1-P3 and the kill criteria are the package's own statements; the package verdict is PLANNED and the results field is null."
+    },
+    {
+      "id": "SRC-EFC-CMB-PAGE",
+      "kind": "efc_own_page",
+      "title": "What the CMB Tests Taught Us About Energy-Flow Cosmology",
+      "authors": "Morten Magnusson",
+      "published": "2026-01-23",
+      "url": "https://energyflow-cosmology.com/what-the-cmb-tests-taught-us-about-energy-flow-cosmology",
+      "read_level": "full_text",
+      "read_notes": "Page read in full. Result stated by the author: no preference for any EFC-type modification; LambdaCDM remains the best description of the microwave background."
+    }
+  ],
+  "fragments": [
+    {
+      "id": "FRAG-ISW-SIGNFLIP",
+      "title": "Candidate sign reversal of the ISW effect in local voids (z<0.03)",
+      "source_id": "SRC-HANSEN-ISW",
+      "claim_type": "direct_observation_candidate",
+      "observed": "A significant CMB temperature excess in the direction of local underdensities within z<0.03, growing with void size and reaching about 3.5 sigma for the largest voids; fewer than 0.2 percent of simulated CMB maps show a similarly significant excess. Combined with earlier cooling of CMB photons in nearby filaments (>5 sigma at z<0.02), the authors read this as possible evidence for a negative ISW effect locally. Removing the quadrupole, the mean void-versus-galaxy temperature difference is almost 6.5 sigma larger than in simulations. The observed amplitude is an order of magnitude larger than the predicted Rees-Sciama and ISW effects.",
+      "observer_instrument": "Planck SMICA CMB maps crossed with void catalogues built by the Sparkling and Revolver finders; 10 000 SMICA simulations for the null distribution (1000 for the standard deviations); quadrupole estimated outside the Planck common mask and removed from data and simulations alike.",
+      "redshift_or_scale": "z<0.03; median void radius about 10 degrees (typically R_void > 13 Mpc; largest quartile R_void > 17 Mpc); 69 +/- 4 open voids, 110 +/- 3 in the volume-limited sample.",
+      "model_assumptions": [
+        "Voids are identified by two finder algorithms; the authors correct explicitly for the choice of sample, wavelet scale (3, 4, 5 degrees) and the fraction of the void radius used.",
+        "The RS/ISW expectation is computed in LambdaCDM; the anomaly is defined as a deviation from that expectation.",
+        "The quadrupole (about 5 percent of the anticorrelation) is removed to break the void-galaxy anticorrelation; the authors state the residual anticorrelation is 2-5 percent depending on the void sample."
+      ],
+      "limitations": [
+        "The authors' own interpretation is an unknown physical process, possibly a non-standard model of dark energy - not EFC and not any named mechanism.",
+        "The look-elsewhere effect is corrected for, but the detection is a local (z<0.03) sample with modest void statistics.",
+        "The amplitude is an order of magnitude larger than the predicted RS/ISW terms. EFC's void sign-flip is a Rees-Sciama-type term, so the amplitude is a live problem for that mechanism too unless dmu/drho yields a much larger term - which the EFC package summary read here does not show.",
+        "Independent confirmation is claimed from Davies et al. (2025) using cosmic tunnels; that paper was not read in this pass and is recorded as the authors' reference, not as verified."
+      ],
+      "efc_attribution": "none",
+      "links": [
+        {
+          "target_kind": "phenomenon",
+          "target": "ISW_cross_correlation",
+          "node_ref": "obs.isw",
+          "type": "candidate_compatibility",
+          "strength": "candidate_compatibility",
+          "rationale": "The sign reported here (hot voids, cold overdensities) is the same sign EFC's sealed void-ISW prediction requires for deep voids (theory DOI 10.6084/m9.figshare.31942677; pipeline DOI 10.6084/m9.figshare.31990212). The match is a sign match in a local void sample, not a test: the EFC prediction is depth-binned with a turnover near delta ~ -0.8 and an amplification requirement at R_v > 100 h^-1 Mpc, and this paper bins by void size and radius, not by the EFC depth coordinate.",
+          "does_not_imply": [
+            "that EFC causes the observed excess",
+            "that the EFC void sign-flip prediction has been observed",
+            "that the amplitude agrees - the observed amplitude is an order of magnitude above the standard RS/ISW terms"
+          ]
+        },
+        {
+          "target_kind": "regime_node",
+          "target": "obs.isw",
+          "type": "candidate_compatibility",
+          "strength": "candidate_compatibility",
+          "rationale": "The observation node obs.isw is the regime-node registry's reading of the ISW cross-correlation; this fragment is one measurement feeding that node's band, not a new node and not a new predicate.",
+          "does_not_imply": [
+            "that this changes obs.isw's evidence status",
+            "that this promotes the node beyond proxy evidence"
+          ]
+        }
+      ],
+      "discriminator": "Depth-binned void-CMB stacking with the EFC coordinate (A_ISW versus delta, expecting a turnover near delta ~ -0.8) and a radius trend at R_v > 100 h^-1 Mpc. If the hot-void signal persists at shallow depths and shows no depth turnover, EFC's P1 mechanism is not what is being seen; if it appears only in deep voids with the predicted sign, the candidate compatibility becomes a real test.",
+      "status": "observed_pending_discriminator"
+    },
+    {
+      "id": "FRAG-TSAGAS-PECULIAR-FLUX",
+      "title": "GR peculiar-velocity flux as an alternative growth mechanism (delta proportional to t)",
+      "source_id": "SRC-TSAGAS",
+      "claim_type": "model_derived_theory",
+      "observed": "A theoretical result within general relativity: the purely relativistic contribution of peculiar-velocity flux to the gravitational field adds a mode to the linear density evolution, raising the growth rate from delta proportional to t^(2/3) to delta proportional to t, and the present density contrast from about 1e-2 to about 1e-0.5. The stated aim is to accommodate massive early galaxies without new physics or fine-tuning.",
+      "observer_instrument": "No instrument: this is an analytic derivation in a Friedmann model, presented as a Gravity Research Foundation essay.",
+      "redshift_or_scale": "Post-recombination dust era; the enhancement is a background-relativistic effect, not gated to a particular z window by construction.",
+      "model_assumptions": [
+        "Standard general relativity and standard Friedmann cosmology, with no new fields or species.",
+        "The relativistic growth rate for linear peculiar velocities (v proportional to t^(4/3)) is taken from prior work and inserted into the density evolution equation.",
+        "The peculiar-flux term is retained in the energy-momentum tensor and in the relativistic conservation laws."
+      ],
+      "limitations": [
+        "Model-derived theory. No data comparison, no fitted amplitude, no error budget in the essay read.",
+        "The essay does not state at what scale or redshift the enhancement saturates, nor how it avoids overproducing low-redshift growth - the natural counter-check against sigma8.",
+        "It is presented as an alternative to new-physics solutions; it is a rival explanation, not a measurement."
+      ],
+      "efc_attribution": "none",
+      "links": [
+        {
+          "target_kind": "phenomenon",
+          "target": "early_structure_JWST",
+          "node_ref": "obs.jwst_ems",
+          "type": "alternative_explanation",
+          "strength": "candidate_compatibility",
+          "rationale": "EFC addresses the same phenomenon with a regime-gated early boost (atlas addressing EFC -> early_structure_JWST, mechanism S_flow_boost_at_high_z). Tsagas offers a GR-only route to the same observable. Recording both is the point of the Atlas: two mechanisms, one observable, no arbitration yet.",
+          "does_not_imply": [
+            "that Tsagas refutes EFC",
+            "that EFC and Tsagas are the same mechanism",
+            "that either explains the JWST sample"
+          ]
+        },
+        {
+          "target_kind": "phenomenon",
+          "target": "sigma8_growth",
+          "node_ref": "obs.fsigma8",
+          "type": "alternative_explanation",
+          "strength": "candidate_compatibility",
+          "rationale": "A growth rate of delta proportional to t after recombination is an enhancement of the linear growth amplitude at all z, which is the same quantity the fsigma8 node measures at z ~ 0.7. If the mechanism were real and unsuppressed, it would push the growth amplitude ABOVE LambdaCDM - the opposite direction from EFC's mu<1 damping - so the two mechanisms are separable in principle, not merely rival labels.",
+          "does_not_imply": [
+            "that the enhancement is observed",
+            "a change to the fsigma8 measurement band"
+          ]
+        }
+      ],
+      "discriminator": "The sign of the growth offset relative to LambdaCDM and its redshift dependence. Tsagas's term is not regime-gated: it should raise the growth amplitude broadly, including at the CMB-era amplitude normalisation. EFC's is gated to the L1->L2 transition and damped (mu<1). A measured fsigma8 offset that is high at all z favours the peculiar-flux class; one that appears only late and downward favours the EFC direction. DESI DR2 full-shape RSD is the named arbiter for the EFC side; nothing here settles the Tsagas side.",
+      "status": "unresolved"
+    },
+    {
+      "id": "FRAG-CHENG-IMF",
+      "title": "Bottom-heavy IMF as a conditional mass correction for possible early progenitors",
+      "source_id": "SRC-CHENG-IMF",
+      "claim_type": "measurement_inference",
+      "observed": "From ultra-deep spectra of nine massive quiescent galaxies at z ~ 0.7 (JWST IMFERNO NIRSpec extended with VLT LEGA-C), the most massive galaxies show an excess of low-mass stars, and the oldest galaxy (formation redshift z_form > 5) has the most bottom-heavy IMF. The authors state this galaxy may be a descendant of JWST's 'impossibly early' galaxies, implying those progenitors may have had similarly bottom-heavy IMFs, increasing their masses by a factor of approximately 4 +/- 1.",
+      "observer_instrument": "JWST NIRSpec (IMFERNO programme) plus VLT LEGA-C spectra, fitted with full-spectrum stellar-population models (ALF).",
+      "redshift_or_scale": "The measurement is at z ~ 0.7 (nine galaxies; oldest with z_form > 5). The factor ~4 +/- 1 is an inference about possible progenitors at higher z, not a measurement at z > 10.",
+      "model_assumptions": [
+        "The low-mass IMF is inferred from an extrapolation of the Milky Way IMF shape in the full-spectrum fit; the authors state that the low-mass contribution is not directly observed.",
+        "IMF mismatch is translated into a mass correction via the fitted stellar-population model.",
+        "The progenitor link is by descent: the z ~ 0.7 remnant is assumed to be a descendant of an early massive galaxy."
+      ],
+      "limitations": [
+        "Nine galaxies at z ~ 0.7. Not a z > 10 sample and not a direct high-redshift mass measurement.",
+        "The ~4 +/- 1 factor is conditional in the source ('may', 'implying'), and it applies to possible progenitors, not to the observed galaxies.",
+        "It does not measure the IMF at z > 10; it removes a systematic in the mass estimate for a subset if the progenitor assumption holds.",
+        "The source's own framing is that the finding may amplify the tension with galaxy-formation models, not that it resolves it."
+      ],
+      "efc_attribution": "none",
+      "links": [
+        {
+          "target_kind": "phenomenon",
+          "target": "early_structure_JWST",
+          "node_ref": "obs.jwst_ems",
+          "type": "premise_defeater",
+          "strength": "candidate_compatibility",
+          "rationale": "If early-galaxy stellar masses are systematically underestimated by a factor of a few because of IMF variation, then the premise that the JWST sample requires new cosmological growth physics is weakened - and EFC's S_flow boost at high z is one of the mechanisms invoked on that premise. This is recorded as a conditional defeater of the premise, not as a refutation of EFC.",
+          "does_not_imply": [
+            "that EFC's early-structure addressing is refuted",
+            "that the factor 4 applies to z > 10 objects",
+            "that the IMF correction is established"
+          ]
+        }
+      ],
+      "discriminator": "A z > 10 IMF measurement (spectroscopic, not extrapolated) or a progenitor test that does not assume descent: dynamical versus stellar masses at high z, and whether the required mass correction scales with the same IMF mismatch parameter measured at z ~ 0.7. If the correction is confirmed at z > 10, the anomaly budget shrinks and EFC's early-boost addressing loses its motivation; if the mismatch does not extend, the anomaly stands.",
+      "status": "unresolved"
+    },
+    {
+      "id": "FRAG-KIDS-LEGACY-S8",
+      "title": "KiDS-Legacy cosmic shear: S8 = 0.815 (+0.016/-0.021), 0.73 sigma from Planck",
+      "source_id": "SRC-KIDS-LEGACY",
+      "claim_type": "survey_measurement",
+      "observed": "S8 = sigma8 sqrt(Omega_m/0.3) = 0.815 (+0.016/-0.021), in agreement at 0.73 sigma with the Planck Legacy CMB result. Sigma8 = 0.821 (+0.014/-0.016) with alpha = 0.58. 1347 square degrees, lensed sample to z_B <= 2.0, about 32 percent improvement in constraining power over previous KiDS.",
+      "observer_instrument": "Kilo-Degree Survey nine-band imaging (1347 sq deg) plus 23 sq deg of KiDS-like calibration spectroscopy; cosmic shear two-point functions with a halo-mass and spectral-type dependent intrinsic-alignment model and marginalisation over baryon feedback.",
+      "redshift_or_scale": "Photometric redshift z_B <= 2.0; angular scales of the shear two-point analysis; S8 defined at z = 0.",
+      "model_assumptions": [
+        "Flat LambdaCDM for the headline S8 (the paper also reports Sigma8 with an optimised alpha).",
+        "The intrinsic-alignment model is physically motivated but is itself a model choice.",
+        "Baryon feedback on the non-linear power spectrum is marginalised, not measured."
+      ],
+      "limitations": [
+        "A single survey's 3x2pt-equivalent shear analysis; the paper reports internal and external consistency tests in a companion paper (Stolzner et al.), which was not read here.",
+        "The increase in S8 relative to previous KiDS is attributed by the authors to improved redshift distribution estimation and calibration - that is, to a change in the analysis chain, which is exactly the kind of shift that makes cross-survey comparison fragile.",
+        "It measures S8; it does not test a growth mechanism, so it cannot distinguish EFC's Sigma<1 from other low-or-central S8 models."
+      ],
+      "efc_attribution": "none",
+      "links": [
+        {
+          "target_kind": "phenomenon",
+          "target": "S8_tension",
+          "node_ref": "obs.s8",
+          "type": "independent_constraint",
+          "strength": "candidate_compatibility",
+          "rationale": "An independent shear measurement of the same parameter EFC's P4 addresses. Its central value (0.815) sits 0.005 below the EFC point value 0.82, and its 1-sigma upper edge (0.831) reaches 0.82. That is a looser relation than 'brackets from above' and does not test the mechanism.",
+          "does_not_imply": [
+            "a pass of P4",
+            "that the EFC value is confirmed",
+            "that S8 is resolved"
+          ]
+        },
+        {
+          "target_kind": "prediction",
+          "target": "P4",
+          "type": "independent_constraint",
+          "strength": "candidate_compatibility",
+          "rationale": "P4's falsifier F4 is a Rubin LSST DP2 + Euclid DR1 combined measurement consistent with Planck at <1 sigma; KiDS-Legacy is neither of those datasets and its 0.73-sigma Planck agreement is a different statement. It constrains the same number without discharging the falsifier.",
+          "does_not_imply": [
+            "that F4 has fired",
+            "that the P4 badge should change"
+          ]
+        }
+      ],
+      "discriminator": "The named arbiter (Rubin LSST DP2 + Euclid DR1 combined). Between now and then, the discriminating question is whether the DES Y6 / KiDS-Legacy split survives a common analysis chain: if the two surveys converge under a shared pipeline, the 'heterogeneous newest results' reading loses force; if they do not, the split itself is the observable and no single S8 value should be used as the comparison point.",
+      "status": "bounded"
+    },
+    {
+      "id": "FRAG-DES-Y6-S8",
+      "title": "DES Y6 3x2pt: S8 = 0.789 +/- 0.012, 2.6 sigma projected difference from CMB",
+      "source_id": "SRC-DES-Y6",
+      "claim_type": "survey_measurement",
+      "observed": "S8 = sigma8 (Omega_m/0.3)^0.5 = 0.789 +/- 0.012 and Omega_m = 0.333 (+0.023/-0.028) in flat LambdaCDM. The full-space parameter difference from Planck 2018 + ACT-DR6 + SPT-3G DR1 is 1.8 sigma; projected into S8 alone it is 2.6 sigma. In wCDM, S8 = 0.782 (+0.021/-0.020) and w = -1.12 (+0.26/-0.20).",
+      "observer_instrument": "Dark Energy Survey six-year 3x2pt: cosmic shear from 140 million source galaxy shapes, clustering of 9 million lens galaxies, and galaxy-galaxy lensing over about 5000 square degrees.",
+      "redshift_or_scale": "DES Y6 footprint, lens and source redshift distributions as calibrated by the collaboration; S8 defined at z = 0.",
+      "model_assumptions": [
+        "Flat LambdaCDM for the headline value, with wCDM reported separately.",
+        "The 2.6-sigma figure is a projection of a multi-parameter difference onto S8 alone; the full-space difference is 1.8 sigma. The two numbers answer different questions.",
+        "Intrinsic alignment and baryonic feedback are modelled and marginalised within the collaboration's pipeline."
+      ],
+      "limitations": [
+        "A single collaboration's pipeline. The paper's own framing is that the tension is with a COMBINED CMB baseline (Planck + ACT-DR6 + SPT-3G), not with Planck alone.",
+        "The 2.6-sigma projection is not a measurement of EFC or against it; it is a statement about LambdaCDM parameter consistency across probes.",
+        "Using this value as one endpoint of a 'bracket' around 0.82 is arithmetically wrong: 0.789 is 2.58 sigma below 0.82 and its 1-sigma interval [0.777, 0.801] does not contain 0.82."
+      ],
+      "efc_attribution": "none",
+      "links": [
+        {
+          "target_kind": "phenomenon",
+          "target": "S8_tension",
+          "node_ref": "obs.s8",
+          "type": "independent_constraint",
+          "strength": "candidate_compatibility",
+          "rationale": "The lowest of the current survey central values and the one that makes 'S8 ~ 0.82 is bracketed' numerically false. Recorded as a constraint with its own baseline (combined CMB), not as a low-S8 confirmation of EFC.",
+          "does_not_imply": [
+            "that EFC's predicted suppression is measured",
+            "that the EFC value 0.82 is excluded",
+            "that DES Y6 and KiDS-Legacy can be averaged into one number"
+          ]
+        },
+        {
+          "target_kind": "prediction",
+          "target": "P4",
+          "type": "independent_constraint",
+          "strength": "candidate_compatibility",
+          "rationale": "P4's point value 0.82 is 2.58 sigma above this central value using the paper's own uncertainty. That is a real, quantified relation between an EFC point value and the newest survey - and it belongs to the record whether or not it flatters the prediction.",
+          "does_not_imply": [
+            "that this kills P4",
+            "that this passes P4"
+          ]
+        }
+      ],
+      "discriminator": "A common-pipeline reanalysis of DES Y6 and KiDS-Legacy, and the P4 arbiter (Rubin LSST DP2 + Euclid DR1). Until then the honest statement is that the two newest shear surveys differ from each other by more than either differs from the EFC point value.",
+      "status": "bounded"
+    },
+    {
+      "id": "FRAG-EFC-CMB-NULL",
+      "title": "EFC's own Planck test: no preference for EFC-type modifications; LambdaCDM best in the CMB regime",
+      "source_id": "SRC-EFC-CMB-PAGE",
+      "claim_type": "internal_null_result",
+      "observed": "Two channels were tested against Planck 2018 with CLASS and chi-squared statistics: a microphysical photon-baryon coupling modification and a background H(z) modification. The author's stated result is that, done correctly, the CMB data show no preference for any EFC-type modification and that standard LambdaCDM remains the best description of the microwave background.",
+      "observer_instrument": "Planck 2018 likelihoods (plik_lite TTTEEE + lowl + lensing), modified CLASS, parameter sweeps and two-dimensional fits.",
+      "redshift_or_scale": "The CMB epoch (recombination and the acoustic peaks); the L0/L1 regime in EFC's own labelling.",
+      "model_assumptions": [
+        "The EFC-type modifications tested are the two named channels (photon-baryon coupling; background gate).",
+        "The null is interpreted against EFC-R's expectation that the CMB epoch is the regime where EFC effects should be weakest."
+      ],
+      "limitations": [
+        "This is a null result. It is not evidence for EFC in any direction, and the author's reframing ('in reality, it is the opposite') is an expectation-based reading, not a measurement.",
+        "It constrains the two tested channels; it does not constrain the perturbation-sector channels (mu, Sigma, eta) that EFC's later claims rely on.",
+        "Same author as the framework: recorded as an internal result, not independent validation."
+      ],
+      "efc_attribution": "efc_own_null_result",
+      "links": [
+        {
+          "target_kind": "phenomenon",
+          "target": "CMB_acoustic_peaks",
+          "type": "independent_constraint",
+          "strength": "candidate_compatibility",
+          "rationale": "The null bounds the background and photon-baryon channels at the acoustic-peak epoch. It is placed here so the Atlas cannot later cite the CMB regime as positive support.",
+          "does_not_imply": [
+            "positive evidence for EFC",
+            "that the perturbation sector is constrained",
+            "that the L0 recovery is a success rather than a design property"
+          ]
+        }
+      ],
+      "discriminator": "A perturbation-sector (mu, Sigma) fit to the same Planck likelihoods with a reported delta-chi-squared, which does not yet exist as a public EFC result at the precision needed. Until then the L0 recovery is a consistency property, and the null stays a null.",
+      "status": "bounded"
+    }
+  ],
+  "status_conflicts": [
+    {
+      "id": "CONFLICT-P2-BADGE-VS-PROSE",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P2].badge and .narrative_intro",
+      "prediction_id": "P2",
+      "previous_text": "badge: DAMAGE ... \"so the point-value prediction is not damaged\"",
+      "observed_problem": "The card carries the badge DAMAGE while its prose states the point-value prediction is not damaged. A reader cannot tell which object each statement is about: the badge may describe the evidential status of the L1 channel while the prose describes the numeric value 0.430.",
+      "evidence_check": "Both strings are present verbatim in atlas.json at read time 2026-11-12. Neither is derived by the generator; both are hand-maintained fields. No arbiter measurement exists to adjudicate (see CONFLICT-P2-ARBITER-OPEN).",
+      "resolution_label": "unresolved_status_preserved",
+      "action_taken": "No change to the badge. The contradiction is recorded, and a provenance note is rendered inside the P2 card so the two statements are visible together.",
+      "remaining": "The badge and the prose describe different objects (channel evidential status versus point value). Naming that difference in the card text is an author decision, not a provenance one.",
+      "resolution_requires": "Author word (Morten), or the arbiter measurement that makes the two statements coincide."
+    },
+    {
+      "id": "CONFLICT-P2-CITATION",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P2].narrative_intro, clause 'DESI DR2 at z ~ 0.7 has now returned (arXiv:2503.14738)'",
+      "prediction_id": "P2",
+      "previous_text": "DESI DR2 at z \u2248 0.7 has now returned (arXiv:2503.14738)",
+      "observed_problem": "The sentence attributes a z ~ 0.7 fsigma8 measurement to arXiv:2503.14738, and the same card names DESI DR2 full-shape RSD as the arbiter. If the cited paper already returned the measurement, the arbiter is satisfied; if the arbiter is open, the paper is not that measurement. Both cannot be true.",
+      "evidence_check": "arXiv:2503.14738 was read (HTML v3). Its title is 'DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints'. Its abstract reports BAO measurements from more than 14 million galaxies and quasars and the resulting cosmological constraints (2.3 sigma LambdaCDM tension with CMB, 3.1 sigma preference for w0wa). It reports no full-shape fsigma8(z ~ 0.7) measurement; it refers full-shape power-spectrum analyses to separate DESI papers. The citation is therefore to a BAO paper, not to the named arbiter.",
+      "resolution_label": "citation_corrected",
+      "action_taken": "The narrative was rewritten to state that the sealed contract is still open with DESI DR2 full-shape RSD as its named arbiter, and that the previously cited paper reports BAO, not full-shape fsigma8. The previous wording is quoted verbatim in this record. Badge, seal DOI, efc_value, falsifier and arbiter fields are unchanged.",
+      "remaining": "P2 remains DAMAGE and pending. The arbiter (DESI DR2 full-shape RSD fsigma8 at z ~ 0.7) has not been read back as a measurement.",
+      "resolution_requires": "The arbiter measurement, or an identity-matched settlement message on the prediction bus."
+    },
+    {
+      "id": "CONFLICT-P2-ALPHA-PROVENANCE",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P2].narrative_intro, clause 'alpha went from -1.00 +/- 0.46 to -0.14 +/- 0.21 (2.2 sigma -> 0.68 sigma)'",
+      "prediction_id": "P2",
+      "previous_text": "\u03b1 went from \u22121.00 \u00b1 0.46 to \u22120.14 \u00b1 0.21 (2.2\u03c3 \u2192 0.68\u03c3)",
+      "observed_problem": "The alpha numbers are placed inside the sentence that cites arXiv:2503.14738, which invites reading them as that paper's result. They are not: the paper reports no such alpha.",
+      "evidence_check": "The numbers are reproduced in docs/validation-ledger/data/tests.json under the entry 'EFC Baseline alpha-signal' (category physics_test, index 16): quantitative_result {alpha_mean: -0.1412, alpha_std: 0.2084, significance_sigma: 0.68, daic: 1.59, dbic: 3.83, verdict: NO_SIGNAL}, data_source 'emcee MCMC, 69 data points'. That entry has test_id null, result null and status pending - it is EFC's own baseline fit, and its verdict is NO_SIGNAL, not a returned external measurement.",
+      "resolution_label": "wording_corrected",
+      "action_taken": "The narrative now attributes the alpha values to EFC's own baseline alpha-signal fit and names the validation-ledger entry and verdict. No number was changed.",
+      "remaining": "The ledger entry 'EFC Baseline α-signal' itself carries result=null and status=pending, while the Atlas prose drew a conclusion from it. That mismatch is recorded as CONFLICT-LEDGER-ALPHA-PENDING and left unresolved.",
+      "resolution_requires": "The author either promotes the ledger row with a stated result, or the prose stops drawing a conclusion from a pending row."
+    },
+    {
+      "id": "CONFLICT-LEDGER-ALPHA-PENDING",
+      "artifact": "validation_ledger_page",
+      "locator": "docs/validation-ledger/data/tests.json: categories.physics_test[16] 'EFC Baseline α-signal'",
+      "prediction_id": "P2",
+      "previous_text": "test_id: null, result: null, status: pending, quantitative_result: {\"alpha_mean\": -0.1412, ..., \"verdict\": \"NO_SIGNAL\"}",
+      "observed_problem": "The Atlas P2 card drew a conclusion from a validation-ledger row that itself carries no result and a pending status. A pending row cannot settle a sentence, and a NO_SIGNAL verdict cannot be quoted as a returned measurement.",
+      "evidence_check": "The row was read in full at 2026-11-12: test_id null, result null, status pending, and a quantitative_result whose verdict is NO_SIGNAL with significance_sigma 0.68. The Atlas prose on origin/main said the deviation 'collapsed' and that the point-value prediction was 'not damaged'.",
+      "resolution_label": "unresolved_status_preserved",
+      "action_taken": "No change to tests.json. The Atlas prose was rewritten to name the row, its verdict and its pending status instead of drawing a conclusion from it.",
+      "remaining": "The row has no stated result. Whether it should be promoted, left pending, or withdrawn is a ledger-owner decision, and promoting it would be a status change this card may not make.",
+      "resolution_requires": "The ledger owner (author) deciding the row's status, or the arbiter measurement that would give it a result."
+    },
+    {
+      "id": "CONFLICT-P2-ARBITER-OPEN",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P2].arbiter_instrument vs .narrative_intro",
+      "prediction_id": "P2",
+      "previous_text": "arbiter_instrument: \"DESI DR2 full-shape RSD\"",
+      "observed_problem": "An arbiter named as still pending, next to prose saying the dataset 'has now returned', reads as a settled test. The bus agrees with the arbiter field and not with the prose.",
+      "evidence_check": "Prediction-bus readback 2026-11-12: subject kosmos.kosmologi.prediksjon.efc-fs8, stream VERDEN_PROGNOSE, seq 31058, headers arbiter='nei' and arbiter_venter_paa='DESI DR2 full-shape'. No settlement message exists for this prediction (see pending_contracts[0]).",
+      "resolution_label": "unresolved_status_preserved",
+      "action_taken": "No status change. The pending contract is recorded verbatim in pending_contracts and rendered on the Atlas.",
+      "remaining": "Where the alpha/DR2 sentence came from is now documented; whether the sealed prediction should be re-badged is not this card's call.",
+      "resolution_requires": "The arbiter measurement, or author word on re-badging."
+    },
+    {
+      "id": "CONFLICT-P4-BRACKET-CLAIM",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P4].claim (final sentence) and .narrative_intro (third sentence)",
+      "prediction_id": "P4",
+      "previous_text": "Canonical robust S\u2088 \u2248 0.82 sits between DES Y6 (0.789) and KiDS-Legacy (0.815) \u2192 PASS/mild, not DAMAGE.  |  The robust \u2248 0.82 prediction is bracketed by DES Y6 (0.789) and KiDS-Legacy (0.815) \u2192 PASS/mild rather than DAMAGE.",
+      "observed_problem": "The interval [0.789, 0.815] does not contain 0.82, so 'sits between' is false as stated. Both named central values lie BELOW the EFC point value.",
+      "evidence_check": "Arithmetic on the survey values as reported in their own abstracts: DES Y6 S8 = 0.789 +/- 0.012 gives the 1-sigma interval [0.777, 0.801]; KiDS-Legacy S8 = 0.815 (+0.016/-0.021) gives [0.794, 0.831]. The interval spanned by the two central values is [0.789, 0.815], which excludes 0.82. 0.82 is 2.58 sigma above the DES Y6 central value and 1.00 sigma above the KiDS-Legacy central value (inside its upper 1-sigma tail: 0.831). Against Planck (0.811 +/- 0.006) the EFC point value is 1.50 sigma HIGHER. 'Bracketed' is only defensible under an uncertainty-based definition in which KiDS-Legacy's upper 1-sigma edge is the bracket — which is not what the sentence says.",
+      "resolution_label": "wording_corrected",
+      "action_taken": "The claim sentence now states the arithmetic: both central values are below 0.82, KiDS-Legacy's 1-sigma upper edge (0.831) reaches it, DES Y6's 1-sigma interval does not, and the comparison is weaker than the previous wording implied. The badge PASS, the seal DOI, the falsifier F4 and the arbiter are unchanged; the previous wording is quoted verbatim here.",
+      "remaining": "Whether P4's PASS badge survives this arithmetic is an arbiter question (F4 = Rubin LSST DP2 + Euclid DR1), not a wording question.",
+      "resolution_requires": "Author word, or the F4 arbiter."
+    },
+    {
+      "id": "CONFLICT-P4-SANDWICH-BRACKET",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P4].stage_iii_sandwich[KiDS-Legacy].result and [DES Y6].result",
+      "prediction_id": "P4",
+      "previous_text": "S\u2088 = 0.815 \u2014 brackets robust-EFC \u2248 0.82 from above; PASS/mild  |  S\u2088 = 0.789 \u2014 below robust-EFC \u2248 0.82, consistent with downward suppression",
+      "observed_problem": "'Brackets ... from above' is false for 0.815 < 0.82. 'Consistent with downward suppression' is directionally defensible but statistically loose: 0.789 is 2.58 sigma below 0.82, and 'consistent' invites a pass reading that the number does not support.",
+      "evidence_check": "Same arithmetic as CONFLICT-P4-BRACKET-CLAIM. Both survey values and their uncertainties are quoted from the primary abstracts read 2026-11-12.",
+      "resolution_label": "wording_corrected",
+      "action_taken": "Both sandwich rows were rewritten to state the central value, the 1-sigma interval, and the distance to the EFC point value, without a pass verdict. No survey value was altered and no row was removed.",
+      "remaining": "The Stage-III sandwich is a bracket in the loose sense of 'the values nearest the prediction'. The Atlas now says that instead of implying an interval.",
+      "resolution_requires": "None for the wording; the status question remains with the P4 arbiter."
+    },
+    {
+      "id": "CONFLICT-P4-DOWNWARD-SUPPRESSION",
+      "artifact": "atlas_json",
+      "locator": "docs/validation-ledger/data/atlas.json: tier1_demo_predictions[id=P4].claim and .narrative_intro, phrase 'suppressing growth DOWNWARD'",
+      "prediction_id": "P4",
+      "previous_text": "Robust EFC gives \u03a3 \u2248 0.99 < 1, suppressing growth DOWNWARD to S\u2088 \u2248 0.82",
+      "observed_problem": "S8 = 0.82 is HIGHER than the Planck/LambdaCDM anchor carried in the same card (0.811 +/- 0.006) by 1.50 sigma. 'Downward' is true relative to the superseded 0.847, but placed next to the LambdaCDM 0.811 cell it reads as downward relative to LambdaCDM, which it is not.",
+      "evidence_check": "The card's own lcdm_value field is '0.811 +/- 0.006 (Planck)'; 0.82 - 0.811 = 0.009 = 1.50 sigma at that uncertainty. Arithmetic performed 2026-11-12.",
+      "resolution_label": "unresolved_status_preserved",
+      "action_taken": "No change. The phrase is a physics statement about a compressed parameter (Sigma < 1 suppresses the lensing amplitude, while the S8 coordinate is also moved by Omega_m), and compressing it into one sentence is an author decision.",
+      "remaining": "A reader comparing the EFC cell (0.82) with the LambdaCDM cell (0.811) sees an upward difference under a 'downward suppression' heading. This is a live misreading risk on a public page.",
+      "resolution_requires": "Author word (Morten) on how the two statements are reconciled in the card text."
+    },
+    {
+      "id": "CONFLICT-LEDGER-S8-NO-SIGNAL",
+      "artifact": "validation_ledger_page",
+      "locator": "docs/validation-ledger/data/tests.json: categories.physics_test[17] conv_efc_p1_p2_cross_probe_test_against_des_y6_vs_kids_legacy_s8_",
+      "prediction_id": "P4",
+      "previous_text": "result: NO_SIGNAL, status: unknown, status_detail: PENDING",
+      "observed_problem": "The validation ledger's S8 cross-probe entry records NO_SIGNAL with status unknown, while the Atlas carries P4 at badge PASS. Two public surfaces state different things about the same comparison.",
+      "evidence_check": "The entry was read in full at 2026-11-12. Its prediction text states a quantitative expectation (EFC K0=2.0 reproduces the KiDS-Legacy-like S8 within +/-0.015 and is at least 1.5 sigma offset from DES Y6) and its result is NO_SIGNAL. NO_SIGNAL is an internal recorded status, not empirical support and not a kill.",
+      "resolution_label": "unresolved_status_preserved",
+      "action_taken": "No status change on either surface. Both are preserved; the Atlas now renders the ledger entry's recorded result next to the P4 comparison so the divergence is visible rather than silent.",
+      "remaining": "Which surface is authoritative for P4 has not been decided. This card does not decide it.",
+      "resolution_requires": "Author word, or the P4 arbiter. Do not copy NO_SIGNAL into the Atlas as a verdict, and do not upgrade it to support."
+    },
+    {
+      "id": "CONFLICT-BUS-LAYER-LABEL",
+      "artifact": "public_atlas_html",
+      "locator": "NATS subject kosmos.kosmologi.prediksjon.efc-fs8 header ebe_l_layer vs atlas.json tier1_demo_predictions[id=P2].rcmp_layer",
+      "prediction_id": "P2",
+      "previous_text": "bus header ebe_l_layer: \"L3\" | atlas rcmp_layer: \"L1\"",
+      "observed_problem": "The same sealed fsigma8(z~0.7) prediction is labelled L3 on the prediction bus and L1 in the Atlas card. A reader reconciling the two surfaces sees two different regime placements for one contract.",
+      "evidence_check": "Bus readback 2026-11-12, seq 31058: ebe_l_layer = 'L3', and ebe_l_grunnlag states that the layer label is model-dependent and not directly observable (the bus field is authored in Norwegian; this is a translation, the field name and value are re-readable at the subject). atlas.json P2: rcmp_layer = 'L1', phenomenon sigma8_growth (phenomenon regime 'L1'). The regime-node bank also places obs.fsigma8 with the note that the atlas's L1 is the layer axis while the phase chain is a different axis.",
+      "resolution_label": "unresolved_status_preserved",
+      "action_taken": "No change to either surface. Recorded because a mismatch between the bus contract and the published card is exactly the kind of drift that later reads as a physics change.",
+      "remaining": "One of the two labels is wrong, or they use different axes without saying so. Deciding which is a house/author call.",
+      "resolution_requires": "Author word, or the owning card for the bus contract."
+    }
+  ],
+  "pending_contracts": [
+    {
+      "id": "CONTRACT-EFC-FS8-Z07",
+      "subject": "kosmos.kosmologi.prediksjon.efc-fs8",
+      "stream": "VERDEN_PROGNOSE",
+      "seq": 31058,
+      "readback_at": "2026-11-12T11:15:42Z",
+      "expected": "{\"fsigma8_efc\": 0.43, \"fsigma8_lcdm\": 0.449, \"separasjon_sigma\": 2.0, \"z_eff\": 0.7}",
+      "counterpart": "LambdaCDM fsigma8(z=0.7) = 0.449; the EFC point value is 0.019 below it, and the bus states a model separation of 2.0 in the package's own unit, not a measurement error",
+      "sealed_doi": "10.6084/m9.figshare.32013156",
+      "sealing_sha256": "fbb53d618f5e8843710739c192f8eb8e4bd2fd6458bf8ad8aedd2390f3e575dd",
+      "arbiter": "no (bus value: \"nei\")",
+      "arbiter_waiting_for": "DESI DR2 full-shape",
+      "criterion": "DESI DR2 full-shape fsigma8(z~0.7) must fall within ~1sigma of 0.430",
+      "tolerance_rule": "within 1 sigma of the DR2 measurement's OWN uncertainty, not a fixed band",
+      "state": "pending",
+      "settlement_subject": "kosmos.kosmologi.oppgjor.efc-fs8",
+      "settlement_found": false,
+      "settlement_note": "Read back 2026-11-12: the prediction subject carries exactly 1 message (seq 31058, 2026-09-07T15:00:05Z) and the stream inventory shows no oppgjor subject for efc-fs8 at all - VERDEN_PROGNOSE lists kosmos.kosmologi.prediksjon.efc-fs8: 1 and no settlement counterpart. The neighbouring state stream kosmos.kosmologi.tilstand.efc-fs8 holds 12 baseline records (latest: DESI DR1 QSO at z_eff = 1.491, fsigma8 = 0.318 +/- 0.076, arbiter 'nei'). Baseline observations are not settlements. The contract stays pending."
+    }
+  ],
+  "guards": [
+    {
+      "id": "GUARD-CMB-NULL-IS-NOT-SUPPORT",
+      "artifact": "https://energyflow-cosmology.com/what-the-cmb-tests-taught-us-about-energy-flow-cosmology",
+      "quote": "The final result was clear: when the analysis is done correctly, the CMB data show no preference for any EFC-type modification. Standard \u039bCDM remains the best description of the microwave background.",
+      "why_it_is_not_evidence": "The page continues 'At first glance this might appear to be a negative result for EFC. In reality, it is the opposite.' That move converts a null into support by appealing to a pre-registered expectation about which regime EFC should be weakest in. An expectation met by a null is a consistency property; it is not a measurement of the mechanism, and it cannot be counted as positive evidence.",
+      "rule": "No page, card or ledger entry may cite the CMB null as support for EFC. It may be cited as (a) a bound on the two tested channels and (b) a consistency check of the regime story. Wording: 'no preference / LambdaCDM best in that regime', never 'confirmed the regime structure'."
+    },
+    {
+      "id": "GUARD-ADJACENT-PAPER-IS-NOT-ARBITER",
+      "artifact": "https://arxiv.org/abs/2503.14738",
+      "quote": "DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints",
+      "why_it_is_not_evidence": "The P2 arbiter is DESI DR2 FULL-SHAPE RSD fsigma8 at z ~ 0.7. This paper is the BAO companion. Citing a same-release companion paper as the arbiter makes a pending contract look settled.",
+      "rule": "Before any statement that a prediction's arbiter has returned, name the paper that reports the arbiter quantity itself, and quote its number. Release-name adjacency (same survey, same data release) is not identity."
+    },
+    {
+      "id": "GUARD-HETEROGENEOUS-SURVEYS-NOT-A-BRACKET",
+      "artifact": "docs/validation-ledger/data/atlas.json",
+      "quote": "DES Y6 S8 = 0.789 +/- 0.012; KiDS-Legacy S8 = 0.815 (+0.016/-0.021)",
+      "why_it_is_not_evidence": "Two surveys whose central values multiply rather than bracket a third number, and which disagree with each other by more than either disagrees with the EFC point value, cannot be used as the two ends of an interval around that point value. The 'bracket' language did that arithmetic implicitly and got it wrong.",
+      "rule": "When comparing a prediction to two surveys, state each central value with its uncertainty and the distance to the prediction in sigma. Never write 'bracketed by' unless the prediction lies inside the interval named."
+    }
+  ],
+  "provenance": {
+    "method": "Primary sources were fetched directly and read at the level declared per source (full_text / abstract_and_metadata / metadata_only). Survey numbers and uncertainties were quoted from the sources' own abstracts, and every comparison was recomputed arithmetically rather than carried over from the Atlas. The prediction bus was read live on 2026-11-12 (prediction subject, state subject, and stream inventory) to establish that no settlement exists. Pre-existing EFC records (tests.json, external_research_watch, the public Atlas and the CMB page) were read before editing so that older statements are superseded or contradicted explicitly rather than silently overwritten.",
+    "readback_surfaces": [
+      "https://arxiv.org/html/2506.08832v3",
+      "https://arxiv.org/html/2511.19736",
+      "https://www.nature.com/articles/s41550-026-02932-4",
+      "https://arxiv.org/abs/2503.19441",
+      "https://arxiv.org/abs/2601.14559",
+      "https://arxiv.org/html/2503.14738",
+      "https://energyflow-cosmology.com/what-the-cmb-tests-taught-us-about-energy-flow-cosmology",
+      "NATS VERDEN_PROGNOSE kosmos.kosmologi.prediksjon.efc-fs8 (seq 31058)",
+      "NATS VERDEN_TILSTAND kosmos.kosmologi.tilstand.efc-fs8 (12 baseline records)",
+      "docs/validation-ledger/data/tests.json (physics_test[16], physics_test[17])",
+      "docs/public/external_research_watch/_hode.json",
+      "docs/papers/efc/void_isw_signflip_v2.1_final/index.json",
+      "docs/papers/efc/ISW_Void_SignFlip_Pipeline/index.json"
+    ],
+    "limitations": [
+      "Hansen et al.: the journal line (A&A 711, A222, 2026) is asserted by the task card but was not present in the arXiv metadata at read time - recorded as asserted-not-verified.",
+      "Hansen et al.: the independent confirmation by Davies et al. (2025) was not read; it is recorded as the authors' reference only.",
+      "Tsagas: an essay-level derivation. No data comparison exists in the source, so its status here cannot rise above model-derived theory.",
+      "Cheng et al.: read at abstract level. The ~4 +/- 1 factor is conditional in the source and refers to possible progenitors, not to measured z > 10 objects.",
+      "KiDS-Legacy and DES Y6: read at abstract level; the internal consistency papers and common-pipeline reanalyses were not read.",
+      "EFC void-ISW package: read from the in-repo index.json/README, not the PDF; its P1-P3 are planned predictions with the results field null.",
+      "No external reviewer has checked these links in this pass."
+    ],
+    "complete": false
+  },
+  "change_log": [
+    {
+      "date": "2026-11-12",
+      "editor": "researcher (kanban t_87ffe720)",
+      "changes": [
+        "Created the external evidence subgraph: 8 source records, 6 fragments, 10 status conflicts, 1 pending contract, 3 guards.",
+        "Typed every link at candidate_compatibility or below; no link asserts confirmation, causation or settlement.",
+        "Recorded the live prediction-bus readback (seq 31058, arbiter=no) as a pending contract, and recorded that no settlement subject exists.",
+        "Recorded the public-Atlas wording corrections (P2 citation and alpha provenance; P4 bracket arithmetic) with the previous wording quoted verbatim.",
+        "Recorded the unresolved cross-surface divergences (P2 badge vs prose, P2 arbiter vs prose, P4 downward-suppression phrasing, ledger NO_SIGNAL vs Atlas PASS, bus L3 vs Atlas L1) without changing any status."
+      ],
+      "note": "This file is the canonical source for the Atlas's external-evidence tab. The sealed prediction cards in atlas.json remain the only place a prediction status lives; nothing here may be read as a settlement."
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "name": "EFC Framework Atlas",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Cross-framework atlas dumped deterministically from the Symbiose knowledge graph. 42 cosmology/gravity frameworks with RCMP regime participation, ontological lens, key primitives, and addressing relations (framework -> phenomenon with mechanism + role). Joins with the EFC Validation Ledger (ledger.json) to produce the unified Atlas view.",
-  "generated_at": "2026-04-29T11:34:51Z",
+  "generated_at": "2026-11-12T11:15:42Z",
   "generator": "maintained in-repo (docs/validation-ledger/data/atlas.json)",
   "stats": {
     "framework_count": 42,
@@ -1493,7 +1493,7 @@
           "result": "fσ₈(0.32) ≈ 0.427 — EFC trajectory passes"
         }
       ],
-      "narrative_intro": "EFC predicts fσ₈ systematically lower than ΛCDM in the z=0.3–1.0 window because regime-transition dynamics damp linear growth in L1. The cross-survey pattern (BOSS + eBOSS + DESI DR1) already traces the lower trajectory. DESI DR2 at z ≈ 0.7 has now returned (arXiv:2503.14738): the EFC-preferred deviation collapsed — α went from −1.00 ± 0.46 to −0.14 ± 0.21 (2.2σ → 0.68σ) — so the point-value prediction is not damaged. The background channel is eliminated; the perturbation sector (~2σ) is now the primary channel, awaiting Stage-IV data.",
+      "narrative_intro": "EFC predicts fσ₈ systematically lower than ΛCDM in the z=0.3–1.0 window because regime-transition dynamics damp linear growth in L1. The cross-survey pattern (BOSS + eBOSS + DESI DR1) already traces the lower trajectory. The sealed contract is still OPEN: its named arbiter is DESI DR2 full-shape RSD, and no identity-matched settlement has been read back (prediction-bus readback 2026-11-12, seq 31058: arbiter = no, waiting for DESI DR2 full-shape). The α values quoted earlier in this card (−1.00 ± 0.46 → −0.14 ± 0.21) come from EFC's own baseline α-signal fit (validation-ledger entry “EFC Baseline α-signal”: α = −0.14 ± 0.21, emcee MCMC, 69 data points, 0.68σ, verdict NO_SIGNAL, status pending), not from arXiv:2503.14738, which reports DESI DR2 BAO measurements and cosmological constraints and contains no full-shape fσ₈(z ≈ 0.7) measurement. The frozen DAMAGE label is kept until the arbiter returns; the provenance record is on the Atlas external-evidence tab.",
       "statement_id": "efc.h1.002"
     },
     {
@@ -1585,7 +1585,7 @@
       "observable": "Cosmic shear S₈ at 20′–300′",
       "efc_value": "≈ 0.82 (robust); 0.847 ± 0.015 only under fragile η-boost",
       "lcdm_value": "0.811 ± 0.006 (Planck)",
-      "claim": "Robust EFC gives Σ ≈ 0.99 < 1, suppressing growth DOWNWARD to S₈ ≈ 0.82 (DOI 10.6084/m9.figshare.31188193). The earlier upward value S₈ = 0.847 ± 0.015 (Σ ∈ [1.03, 1.07]) required the 0%-robust η-boost and is now superseded. Canonical robust S₈ ≈ 0.82 sits between DES Y6 (0.789) and KiDS-Legacy (0.815) → PASS/mild, not DAMAGE.",
+      "claim": "Robust EFC gives Σ ≈ 0.99 < 1, suppressing growth DOWNWARD to S₈ ≈ 0.82 (DOI 10.6084/m9.figshare.31188193). The earlier upward value S₈ = 0.847 ± 0.015 (Σ ∈ [1.03, 1.07]) required the 0%-robust η-boost and is now superseded. Both newest survey central values lie BELOW the point value ≈ 0.82: KiDS-Legacy 0.815 (+0.016/−0.021) is 0.005 below it with a 1σ upper edge of 0.831, and DES Y6 0.789 ± 0.012 is 2.58σ below it. So ≈ 0.82 sits inside KiDS-Legacy's upper 1σ tail and outside DES Y6's 1σ interval — a looser and more heterogeneous comparison than the earlier 'bracketed' wording implied. No badge change is made here.",
       "mechanism": "mu_lt_1_in_L2",
       "seal_doi": "10.6084/m9.figshare.32013738",
       "falsifier_id": "F4",
@@ -1611,15 +1611,15 @@
         {
           "survey": "DES Y6",
           "role": "Stage-III / Stage-IV low side",
-          "result": "S₈ = 0.789 — below robust-EFC ≈ 0.82, consistent with downward suppression"
+          "result": "S₈ = 0.789 ± 0.012 — 2.58σ below the robust-EFC point value ≈ 0.82; same direction as a predicted suppression, not a measurement of it"
         },
         {
           "survey": "KiDS-Legacy",
           "role": "Stage-IV high side",
-          "result": "S₈ = 0.815 — brackets robust-EFC ≈ 0.82 from above; PASS/mild"
+          "result": "S₈ = 0.815 (+0.016/−0.021), 0.73σ from Planck — central value 0.005 below robust-EFC ≈ 0.82; 1σ upper edge 0.831 reaches it"
         }
       ],
-      "narrative_intro": "Robust EFC predicts a DOWNWARD S₈ suppression to ≈ 0.82 (Σ ≈ 0.99 < 1, DOI 31188193), not the earlier upward 0.847. The upward 0.847 value needed the 0%-robust η-boost (Σ ∈ [1.03, 1.07]) and is superseded. The robust ≈ 0.82 prediction is bracketed by DES Y6 (0.789) and KiDS-Legacy (0.815) → PASS/mild rather than DAMAGE. Discriminates EFC from f(R) (which predicts μ > 1, S₈ upward)."
+      "narrative_intro": "Robust EFC predicts a DOWNWARD S₈ suppression to ≈ 0.82 (Σ ≈ 0.99 < 1, DOI 31188193), not the earlier upward 0.847. The upward 0.847 value needed the 0%-robust η-boost (Σ ∈ [1.03, 1.07]) and is superseded. Both newest shear surveys place their central values below ≈ 0.82 — DES Y6 at 0.789 ± 0.012 (2.58σ below) and KiDS-Legacy at 0.815 (+0.016/−0.021), whose 1σ upper edge 0.831 does reach it — so this is a 1σ-tail overlap with one survey, not an interval containing the prediction. Discriminates EFC from f(R) (which predicts μ > 1, S₈ upward)."
     },
     {
       "id": "P5",
@@ -1810,6 +1810,17 @@
         "Upgraded EFC -> H0_tension role from addresses_open to proposes_resolution per DOI 10.6084/m9.figshare.32113399"
       ],
       "note": "Manual file-write edits in absence of Symbiose MCP write tools. Will be overwritten on next regeneration unless persisted to source database."
+    },
+    {
+      "date": "2026-11-12",
+      "editor": "researcher (kanban t_87ffe720)",
+      "changes": [
+        "P2 narrative_intro: removed the claim that DESI DR2 'has now returned (arXiv:2503.14738)'. arXiv:2503.14738 was read and is the DESI DR2 BAO + cosmological-constraints paper, not a full-shape fσ₈(z≈0.7) measurement; the named arbiter (DESI DR2 full-shape RSD) is still open on the prediction bus (seq 31058, arbiter=no). Previous wording quoted in docs/validation-ledger/data/atlas_external_evidence.json status_conflicts[CONFLICT-P2-CITATION].",
+        "P2 narrative_intro: attributed the α = −0.14 ± 0.21 values to EFC's own baseline α-signal fit (validation-ledger entry 'EFC Baseline α-signal', verdict NO_SIGNAL, status pending) instead of to the cited DESI paper. No number changed.",
+        "P4 claim, narrative_intro and stage_iii_sandwich: replaced 'bracketed by DES Y6 (0.789) and KiDS-Legacy (0.815)' with the arithmetic — both central values lie below 0.82, KiDS-Legacy's 1σ upper edge (0.831) reaches it, DES Y6's 1σ interval [0.777, 0.801] does not. No badge, seal value, falsifier or arbiter changed.",
+        "Added external evidence subgraph (docs/validation-ledger/data/atlas_external_evidence.json) rendered as a new Atlas tab; it links independent ISW, JWST-mass-inference, growth-theory and S8 results at candidate compatibility only."
+      ],
+      "note": "Provenance-preserving corrections only. No prediction badge, seal DOI, frozen value, falsifier or arbiter was changed; the divergences that need an author decision are recorded as unresolved in the external-evidence file, not edited away."
     }
   ],
   "generator_note": "was: 'Symbiose AGI framework_atlas dump' — stale. Measured 2026-08-23: last written 2026-06-07 by a human, not by that pipeline."

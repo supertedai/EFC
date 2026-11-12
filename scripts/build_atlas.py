@@ -64,6 +64,7 @@ PUBLIC_DIR = REPO_ROOT / "docs" / "public"
 
 ATLAS_JSON = DATA_DIR / "atlas.json"
 LEDGER_JSON = DATA_DIR / "ledger.json"
+EXTERNAL_EVIDENCE_JSON = DATA_DIR / "atlas_external_evidence.json"
 OUTPUT_HTML = PUBLIC_DIR / "EFC_Atlas.html"
 
 
@@ -247,6 +248,31 @@ HTML_TEMPLATE = r"""<!doctype html>
       font-family: 'Courier New', monospace;
     }
 
+    /* ---- external evidence subgraph ---- */
+    .badge-candidate { display:inline-block; background:#4a6da7; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; letter-spacing:0.3px; }
+    .badge-unres  { display:inline-block; background:#8a6d1f; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+    .badge-corr   { display:inline-block; background:#1a7a1a; color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+    .badge-pend   { display:inline-block; background:#555;    color:#fff; font-size:0.72em; padding:2px 7px; border-radius:3px; font-weight:600; }
+    .ext-card {
+      background:#fafbfd; border:1px solid #d0d7e3; border-left:4px solid #4a6da7;
+      border-radius:6px; padding:14px 18px; margin:1rem 0 1.6rem;
+    }
+    .ext-card h3 { margin-top:0.2rem; }
+    .ext-meta { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap:8px; margin:0.7rem 0 1rem; }
+    .ext-meta .cell { background:#fff; border:1px solid #d0d7e3; border-radius:5px; padding:7px 11px; font-size:0.84rem; }
+    .ext-meta .cell .lbl { display:block; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.5px; color:#5b6a7a; font-weight:600; }
+    .ext-meta .cell .val { display:block; color:#0d1b3e; }
+    .prov-box {
+      background:#fffdf5; border:1px solid #e2d9b8; border-left:4px solid #d4a017;
+      border-radius:5px; padding:10px 14px; margin:0.8rem 0 0.4rem; font-size:0.88rem;
+    }
+    .prov-box h4 { margin:0 0 0.4rem; color:#6b5410; font-size:0.95rem; }
+    .prov-box ul { margin:0.3rem 0 0; }
+    .policy-box {
+      background:#f0f4fa; border-left:4px solid #4a6da7; padding:10px 16px;
+      margin:1rem 0 1.4rem; font-size:0.92rem; color:#2a3a52;
+    }
+
     @media (max-width: 768px) {
       body { padding: 1rem; }
       h1 { font-size: 1.4rem; }
@@ -288,6 +314,7 @@ frameworks address it, with what mechanism, and with what role.
   <button class="nav-tab" data-tab="predictions">All predictions</button>
   <button class="nav-tab" data-tab="phenomena">Phenomena</button>
   <button class="nav-tab" data-tab="frameworks">Frameworks</button>
+  <button class="nav-tab" data-tab="external">External evidence</button>
 </div>
 
 <!-- =========================================================
@@ -396,6 +423,13 @@ Atlas for discrimination.
 <div class="framework-grid">
 __FRAMEWORK_CARDS__
 </div>
+</section>
+
+<!-- =========================================================
+     TAB 5: EXTERNAL EVIDENCE (provenance-preserving subgraph)
+     ========================================================= -->
+<section class="tab-panel" id="tab-external">
+__EXTERNAL_CONTENT__
 </section>
 
 <script>
@@ -533,10 +567,33 @@ _LAYER_LABEL = {
     "L3": "L3 &mdash; Strong regime",
 }
 
+#: Resolution labels of the external-evidence status conflicts. The wording is
+#: the point: "corrected" and "status preserved" are different outcomes, and a
+#: reader must be able to tell them apart without opening the JSON.
+_RESOLUTION_LABEL = {
+    "wording_corrected": "WORDING CORRECTED",
+    "citation_corrected": "CITATION CORRECTED",
+    "unresolved_status_preserved": "UNRESOLVED — STATUS PRESERVED",
+    "superseded_by_newer_record": "SUPERSEDED",
+}
+_RESOLUTION_CLASS = {
+    "wording_corrected": "badge-corr",
+    "citation_corrected": "badge-corr",
+    "unresolved_status_preserved": "badge-unres",
+    "superseded_by_newer_record": "badge-unres",
+}
 
-def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) -> str:
+
+def _render_single_prediction(pred: dict, addressings: list, phenomena: dict,
+                             conflicts: list | None = None) -> str:
     """Render one sealed prediction as a hero card: metadata + rivals from
-    atlas.addressings + Stage-III sandwich + narrative + exclusion lemma."""
+    atlas.addressings + Stage-III sandwich + narrative + exclusion lemma.
+
+    `conflicts` carries the provenance records from the external-evidence
+    subgraph whose prediction_id matches this card. They are rendered INSIDE
+    the card so a reader cannot see the claim without the recorded
+    contradiction next to it."""
+    conflicts = conflicts or []
     pid = pred.get("id", "")
     badge = (pred.get("badge") or "SEALED").upper()
     badge_cls = _BADGE_CLASS.get(badge, "badge-sealed")
@@ -638,6 +695,31 @@ def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) ->
     phen_name = _esc(phen.get("name", phen_id))
     phen_code = _esc(phen_id)
 
+    prov_block = ""
+    if conflicts:
+        items = []
+        for c in conflicts:
+            lab = _RESOLUTION_LABEL.get(c.get("resolution_label"), c.get("resolution_label", ""))
+            cls = _RESOLUTION_CLASS.get(c.get("resolution_label"), "badge-unres")
+            items.append(
+                f'<li><span class="{cls}">{_esc(lab)}</span> '
+                f'<strong>{_esc(c.get("id", ""))}</strong> &mdash; '
+                f'{_esc(c.get("observed_problem", ""))}'
+                f'<br><span style="color:#5b6a7a;">Previously said: '
+                f'&ldquo;{_esc(c.get("previous_text", ""))}&rdquo;</span>'
+                f'<br><span style="color:#5b6a7a;">Still open: {_esc(c.get("remaining", ""))}</span>'
+                f'</li>'
+            )
+        prov_block = (
+            '<div class="prov-box">'
+            '<h4>Provenance record &mdash; 2026-11-12 readback</h4>'
+            f'<ul>{"".join(items)}</ul>'
+            '<p style="margin:0.5rem 0 0; color:#5b6a7a;">Full record with the '
+            'evidence check and the verbatim previous wording: '
+            '<a href="#tab-external">External evidence</a> tab.</p>'
+            '</div>'
+        )
+
     return f"""
 <div class="hero" style="border-left-color:{border};" id="pred-{_esc(pid)}">
   <div style="margin-bottom:0.4rem;">
@@ -653,6 +735,7 @@ def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) ->
   <div class="hero-meta">{cell_html}</div>
 
   {claim_block}
+  {prov_block}
   {falsifier_block}
 
   <h4 style="color:#0d1b3e; margin-top:1rem;">Rival frameworks &mdash; {rival_count_label}</h4>
@@ -673,8 +756,10 @@ def _render_single_prediction(pred: dict, addressings: list, phenomena: dict) ->
 """
 
 
-def render_demo(demos: list, addressings: list, phenomena: dict) -> str:
+def render_demo(demos: list, addressings: list, phenomena: dict,
+                conflicts_by_pred: dict | None = None) -> str:
     """Render all sealed predictions, grouped by RCMP layer (L0..L3)."""
+    conflicts_by_pred = conflicts_by_pred or {}
     if not demos:
         return "<p><em>No sealed predictions registered.</em></p>"
 
@@ -718,7 +803,9 @@ data, and the arbiter instrument scheduled to resolve it.
             f'({len(items)} prediction{"s" if len(items) != 1 else ""})</span></h3>'
         )
         for pred in items:
-            parts.append(_render_single_prediction(pred, addressings, phenomena))
+            parts.append(_render_single_prediction(
+                pred, addressings, phenomena,
+                conflicts=conflicts_by_pred.get(pred.get("id"), [])))
 
     return "\n".join(parts)
 
@@ -802,6 +889,209 @@ def render_phenomena_blocks(phenomena, addressings):
     return "\n".join(parts)
 
 
+def _link_rows_html(links: list) -> str:
+    rows = []
+    for l in links:
+        ref = l.get("node_ref") or ""
+        target = _esc(l.get("target", ""))
+        if ref:
+            target += f' <code style="color:#5b6a7a;">{_esc(ref)}</code>'
+        rows.append(
+            f'<tr><td>{_esc(l.get("target_kind", ""))}</td>'
+            f'<td>{target}</td>'
+            f'<td><span class="mechanism-pill">{_esc(l.get("type", ""))}</span></td>'
+            f'<td><span class="badge-candidate">{_esc(l.get("strength", ""))}</span></td>'
+            f'<td>{_esc(l.get("rationale", ""))}'
+            f'<br><span style="color:#5b6a7a; font-size:0.92em;">Does not imply: '
+            f'{_esc("; ".join(l.get("does_not_imply", [])))}</span></td></tr>'
+        )
+    return "\n".join(rows)
+
+
+def render_external_evidence(ext: dict, phenomena: dict) -> str:
+    """Render the provenance-preserving external-evidence subgraph.
+
+    Everything rendered here comes from docs/validation-ledger/data/
+    atlas_external_evidence.json. There is no text in this function that
+    states a result of its own: a claim lives in the data file and is shown
+    with its limits, or it is not shown at all.
+    """
+    sources = {s["id"]: s for s in ext.get("sources", [])}
+    parts: list[str] = []
+
+    pol = ext.get("policy", {})
+    parts.append(
+        '<h2>External evidence &mdash; independent results at the lowest justified strength</h2>'
+        '<div class="policy-box">'
+        f'<strong>Strength ceiling: {_esc(pol.get("strength_ceiling", ""))}.</strong> '
+        f'{_esc(pol.get("ceiling_definition", ""))}'
+        f'<br><span style="color:#5b6a7a;">Never written: '
+        f'{_esc(", ".join(pol.get("forbidden_upgrades", [])))}.</span>'
+        f'<br><span style="color:#5b6a7a;">Attribution: {_esc(pol.get("attribution_rule", ""))}</span>'
+        f'<br><span style="color:#5b6a7a;">Settlement: {_esc(pol.get("settlement_rule", ""))}</span>'
+        '</div>'
+    )
+    parts.append(
+        f'<p style="font-size:0.93rem; color:#1a3a6b;">'
+        f'{len(ext.get("fragments", []))} independent fragments, '
+        f'{len(ext.get("sources", []))} source records, '
+        f'{len(ext.get("status_conflicts", []))} status conflicts and '
+        f'{len(ext.get("pending_contracts", []))} pending contract. '
+        f'Read back {_esc(ext.get("readback_at", ""))}. '
+        'Each fragment keeps its observer, scale, assumptions and limits; the '
+        'ISW observation, the peculiar-flow theory, the stellar-IMF inference '
+        'and the S8 survey results are separate fragments on purpose.'
+        '</p>'
+    )
+
+    # link-type legend
+    legend = "".join(
+        f'<tr><td><span class="mechanism-pill">{_esc(lt["id"])}</span></td>'
+        f'<td>{_esc(lt["definition"])}</td>'
+        f'<td><span class="badge-candidate">{_esc(lt["max_strength"])}</span></td>'
+        f'<td>{_esc("; ".join(lt["may_not_be_read_as"]))}</td></tr>'
+        for lt in ext.get("link_types", [])
+    )
+    parts.append(
+        '<h3>How a link is typed</h3>'
+        '<table><thead><tr><th style="width:20%;">Type</th><th style="width:32%;">Definition</th>'
+        '<th style="width:14%;">Max strength</th><th>May not be read as</th></tr></thead>'
+        f'<tbody>{legend}</tbody></table>'
+    )
+
+    # fragments
+    parts.append('<h3>Fragments &mdash; one card per independent result</h3>')
+    for f in ext.get("fragments", []):
+        src = sources.get(f.get("source_id", ""), {})
+        link = src.get("url", "")
+        ident = src.get("doi") or src.get("arxiv") or ""
+        src_cell = (
+            f'<a href="{_esc(link)}">{_esc(ident or link)}</a>'
+            if link else _esc(ident)
+        )
+        meta_cells = [
+            ("Source", f'{_esc(src.get("id", f.get("source_id", "")))} &#183; {src_cell}'),
+            ("Source type", _esc(src.get("kind", ""))),
+            ("Read level", _esc(src.get("read_level", ""))),
+            ("Claim type", _esc(f.get("claim_type", ""))),
+            ("Observer / instrument", _esc(f.get("observer_instrument", ""))),
+            ("Redshift / scale", _esc(f.get("redshift_or_scale", ""))),
+            ("EFC attribution", _esc(f.get("efc_attribution", ""))),
+        ]
+        cells_html = "".join(
+            f'<div class="cell"><span class="lbl">{_esc(lbl)}</span>'
+            f'<span class="val">{val}</span></div>'
+            for lbl, val in meta_cells
+        )
+        assumptions = "".join(f'<li>{_esc(a)}</li>' for a in f.get("model_assumptions", []))
+        limits = "".join(f'<li>{_esc(a)}</li>' for a in f.get("limitations", []))
+        status = f.get("status", "")
+        status_cls = "badge-unres" if status == "unresolved" else "badge-candidate"
+        parts.append(
+            f'<div class="ext-card" id="{_esc(f.get("id", ""))}">'
+            f'<h3>{_esc(f.get("title", ""))} '
+            f'<span class="{status_cls}">{_esc(status.replace("_", " ").upper())}</span></h3>'
+            f'<div class="ext-meta">{cells_html}</div>'
+            f'<p><strong>What was observed.</strong> {_esc(f.get("observed", ""))}</p>'
+            f'<p style="margin-bottom:0.2rem;"><strong>Model assumptions.</strong></p>'
+            f'<ul style="margin-top:0; font-size:0.9rem;">{assumptions}</ul>'
+            f'<p style="margin-bottom:0.2rem;"><strong>Limits.</strong></p>'
+            f'<ul style="margin-top:0; font-size:0.9rem;">{limits}</ul>'
+            '<p style="margin-bottom:0.2rem;"><strong>Links (typed, lowest strength).</strong></p>'
+            '<table><thead><tr><th style="width:11%;">Target kind</th>'
+            '<th style="width:17%;">Target</th><th style="width:15%;">Type</th>'
+            '<th style="width:13%;">Strength</th><th>Rationale &amp; what it does not imply</th>'
+            f'</tr></thead><tbody>{_link_rows_html(f.get("links", []))}</tbody></table>'
+            f'<p><strong>Falsifier / next discriminator.</strong> {_esc(f.get("discriminator", ""))}</p>'
+            '</div>'
+        )
+
+    # status conflicts
+    conflicts = ext.get("status_conflicts", [])
+    if conflicts:
+        rows = []
+        for c in conflicts:
+            lab = _RESOLUTION_LABEL.get(c.get("resolution_label"), "")
+            cls = _RESOLUTION_CLASS.get(c.get("resolution_label"), "badge-unres")
+            pred = c.get("prediction_id") or "&ndash;"
+            rows.append(
+                f'<tr><td><span class="{cls}">{_esc(lab)}</span>'
+                f'<br><code style="font-size:0.78em;">{_esc(c.get("id", ""))}</code></td>'
+                f'<td>{_esc(pred)}</td>'
+                f'<td>&ldquo;{_esc(c.get("previous_text", ""))}&rdquo;</td>'
+                f'<td>{_esc(c.get("observed_problem", ""))}</td>'
+                f'<td>{_esc(c.get("evidence_check", ""))}</td>'
+                f'<td>{_esc(c.get("action_taken", ""))}'
+                f'<br><span style="color:#5b6a7a;">Needs: {_esc(c.get("resolution_requires", ""))}</span></td></tr>'
+            )
+        parts.append(
+            '<h3>Status conflicts &mdash; preserved, not overwritten</h3>'
+            '<p style="font-size:0.93rem; color:#1a3a6b;">Where two public surfaces, or one '
+            'surface and its own source, disagree, the old wording is quoted here verbatim. '
+            'A corrected line is marked corrected; a status that could not be decided without '
+            'an arbiter or the author is marked unresolved and left as it was.</p>'
+            '<table><thead><tr><th style="width:11%;">Resolution</th><th style="width:5%;">Card</th>'
+            '<th style="width:20%;">Previously said</th><th style="width:18%;">Problem</th>'
+            '<th style="width:23%;">Evidence check</th><th>Action &amp; what it needs</th>'
+            f'</tr></thead><tbody>{"".join(rows)}</tbody></table>'
+        )
+
+    # pending contracts
+    for c in ext.get("pending_contracts", []):
+        parts.append(
+            f'<h3>Pending contract &mdash; {_esc(c.get("subject", ""))}</h3>'
+            '<div class="ext-card" style="border-left-color:#555;">'
+            f'<p><span class="badge-pend">STATE: {_esc(c.get("state", "").upper())}</span> '
+            f'<span class="badge-candidate">{_esc(c.get("arbiter", ""))} &rarr; {_esc(c.get("arbiter_waiting_for", ""))}</span></p>'
+            f'<p><strong>Bus position.</strong> stream {_esc(c.get("stream", ""))}, '
+            f'seq {_esc(c.get("seq", ""))}, read back {_esc(c.get("readback_at", ""))}.</p>'
+            f'<p><strong>Expected.</strong> <code>{_esc(c.get("expected", ""))}</code></p>'
+            f'<p><strong>Counterpart.</strong> {_esc(c.get("counterpart", ""))}</p>'
+            f'<p><strong>Criterion.</strong> {_esc(c.get("criterion", ""))} '
+            f'<br><span style="color:#5b6a7a;">Tolerance: {_esc(c.get("tolerance_rule", ""))}</span></p>'
+            f'<p><strong>Seal.</strong> DOI '
+            f'<a href="https://doi.org/{_esc(c.get("sealed_doi", ""))}">{_esc(c.get("sealed_doi", ""))}</a> '
+            f'&middot; sha256 <code>{_esc(c.get("sealing_sha256", ""))}</code></p>'
+            f'<p><strong>Settlement check.</strong> {_esc(c.get("settlement_note", ""))}</p>'
+            '</div>'
+        )
+
+    # guards
+    guards = ext.get("guards", [])
+    if guards:
+        parts.append(
+            '<h3>Guards &mdash; what must not be read as evidence</h3>'
+            '<table><thead><tr><th style="width:22%;">Guard</th><th style="width:30%;">Source line</th>'
+            '<th>Why it is not evidence / the rule</th></tr></thead><tbody>'
+            + "".join(
+                f'<tr><td><code>{_esc(g.get("id", ""))}</code></td>'
+                f'<td>&ldquo;{_esc(g.get("quote", ""))}&rdquo;</td>'
+                f'<td>{_esc(g.get("why_it_is_not_evidence", ""))}'
+                f'<br><strong>Rule:</strong> {_esc(g.get("rule", ""))}</td></tr>'
+                for g in guards
+            )
+            + '</tbody></table>'
+        )
+
+    # provenance
+    prov = ext.get("provenance", {})
+    parts.append(
+        '<h3>Provenance and limits of this subgraph</h3>'
+        f'<p style="font-size:0.93rem;">{_esc(prov.get("method", ""))}</p>'
+        '<p style="font-size:0.9rem; color:#5b6a7a;"><strong>Read back:</strong> '
+        + _esc("; ".join(prov.get("readback_surfaces", [])))
+        + '</p>'
+        '<p style="margin-bottom:0.2rem;"><strong>Declared limits.</strong></p>'
+        '<ul style="font-size:0.9rem;">'
+        + "".join(f'<li>{_esc(x)}</li>' for x in prov.get("limitations", []))
+        + '</ul>'
+        f'<p style="font-size:0.9rem; color:#5b6a7a;">Complete: '
+        f'<strong>{_esc(prov.get("complete"))}</strong> &mdash; this register is not a '
+        'literature review, and no independent reviewer has checked these links in this pass.</p>'
+    )
+    return "\n".join(parts)
+
+
 def render_framework_cards(frameworks):
     parts = []
     lenses = set()
@@ -842,18 +1132,29 @@ def render_framework_cards(frameworks):
 def main():
     atlas = load_json(ATLAS_JSON)
     ledger = load_json(LEDGER_JSON)
+    external = load_json(EXTERNAL_EVIDENCE_JSON)
 
     frameworks = atlas["frameworks"]
     phenomena_list = atlas["phenomena"]
     phenomena = {p["id"]: p for p in phenomena_list}
     addressings = atlas["addressings"]
 
+    # Provenance records from the external-evidence subgraph, grouped by the
+    # sealed card they belong to. They are rendered inside the hero cards so a
+    # claim can never be read without its recorded contradiction.
+    conflicts_by_pred: dict[str, list] = {}
+    for c in external.get("status_conflicts", []):
+        pid = c.get("prediction_id")
+        if pid:
+            conflicts_by_pred.setdefault(pid, []).append(c)
+
     # Demo content — render ALL sealed predictions, grouped by RCMP layer
     demo_list = atlas.get("tier1_demo_predictions", [])
     if not demo_list:
         sys.stderr.write("ERROR: atlas.json missing tier1_demo_predictions\n")
         sys.exit(1)
-    demo_content = render_demo(demo_list, addressings, phenomena)
+    demo_content = render_demo(demo_list, addressings, phenomena, conflicts_by_pred)
+    external_content = render_external_evidence(external, phenomena)
 
     ledger_rows, total, cats, cat_options = render_ledger_rows(ledger)
     phenomena_blocks = render_phenomena_blocks(phenomena, addressings)
@@ -877,6 +1178,7 @@ def main():
         "__PHENOMENA_BLOCKS__": phenomena_blocks,
         "__FRAMEWORK_CARDS__": framework_cards,
         "__LENS_OPTIONS__": lens_options,
+        "__EXTERNAL_CONTENT__": external_content,
     }
     for k, v in replacements.items():
         html = html.replace(k, v)
@@ -886,6 +1188,9 @@ def main():
     print(f"Wrote {OUTPUT_HTML}")
     print(f"  frameworks: {len(frameworks)}  phenomena: {len(phenomena_list)}  addressings: {len(addressings)}")
     print(f"  ledger tests: {total} across {len(cats)} categories")
+    print(f"  external evidence: {len(external.get('fragments', []))} fragments, "
+          f"{len(external.get('status_conflicts', []))} status conflicts, "
+          f"{len(external.get('pending_contracts', []))} pending contracts")
 
 
 if __name__ == "__main__":

@@ -68,3 +68,63 @@ evidence:
     status: available
     supports_scope: [efc.sparc.001]
     limitations: ["One measurement, one methodology; requires independent reproduction before a higher status."]
+
+  # --- external evidence register (2026-11-12, kanban t_87ffe720) -------------
+  # One entry per independent source placed in the Atlas external-evidence
+  # subgraph (docs/validation-ledger/data/atlas_external_evidence.json).
+  # source_class is external_publication for all five: none of them is EFC's
+  # own analysis, and none of them tests an EFC prediction.
+
+  - evidence_id: ev.ext.isw.001
+    type: external_source
+    title: "Hansen et al. 2025/2026: candidate ISW sign reversal in local voids (z<0.03)"
+    locator: {repository: external, url: "https://arxiv.org/abs/2506.08832", arxiv: "2506.08832"}
+    source_class: external_publication
+    status: available
+    supports_scope: [efc.ext.001]
+    limitations: ["Candidate local detection, author interpretation 'unknown physical process'; the amplitude is an order of magnitude above the predicted RS/ISW terms, and the sample is not binned by the depth coordinate EFC's planned void sign-flip prediction requires. Candidate compatibility only."]
+
+  - evidence_id: ev.ext.tsagas.001
+    type: external_source
+    title: "Tsagas 2025: GR peculiar-velocity flux raises linear growth to delta proportional to t"
+    locator: {repository: external, url: "https://arxiv.org/abs/2511.19736", arxiv: "2511.19736"}
+    source_class: external_publication
+    status: available
+    supports_scope: [efc.ext.001]
+    limitations: ["Model-derived theory in an essay, with no data comparison and no error budget. It is a competing mechanism for early massive galaxies, not a measurement and not a refutation of EFC."]
+
+  - evidence_id: ev.ext.cheng.001
+    type: external_source
+    title: "Cheng et al. 2026: bottom-heavy IMF, conditional ~4 +/- 1 mass factor for possible early progenitors"
+    locator: {repository: external, url: "https://www.nature.com/articles/s41550-026-02932-4", doi: "10.1038/s41550-026-02932-4"}
+    source_class: external_publication
+    status: available
+    supports_scope: [efc.ext.001]
+    limitations: ["Nine galaxies at z ~ 0.7; the mass factor is conditional ('may', 'implying') and refers to possible progenitors, not to a measured z > 10 mass. It can weaken the anomaly premise, not test EFC."]
+
+  - evidence_id: ev.ext.kids.001
+    type: external_source
+    title: "KiDS-Legacy 2025: S8 = 0.815 (+0.016/-0.021), 0.73 sigma from Planck"
+    locator: {repository: external, url: "https://arxiv.org/abs/2503.19441", arxiv: "2503.19441"}
+    source_class: external_publication
+    status: available
+    supports_scope: [efc.ext.001]
+    limitations: ["A shear measurement of S8 with its own pipeline and calibration history; it constrains a parameter, not a mechanism, and the paper attributes its shift in S8 to changes in its own analysis chain."]
+
+  - evidence_id: ev.ext.desy6.001
+    type: external_source
+    title: "DES Y6 2026: S8 = 0.789 +/- 0.012, 2.6 sigma projected difference from a combined CMB baseline"
+    locator: {repository: external, url: "https://arxiv.org/abs/2601.14559", arxiv: "2601.14559"}
+    source_class: external_publication
+    status: available
+    supports_scope: [efc.ext.001]
+    limitations: ["The 2.6 sigma figure is a projection of a 1.8-sigma full-space difference onto S8, and the comparison baseline is Planck + ACT-DR6 + SPT-3G, not Planck alone."]
+
+  - evidence_id: ev.ext.fs8contract.001
+    type: derived_result
+    title: "Sealed fsigma8 contract read back from the prediction bus: pending, arbiter = no"
+    locator: {repository: supertedai/EFC, path: docs/validation-ledger/data/atlas_external_evidence.json, section: pending_contracts}
+    source_class: internal_analysis
+    status: available
+    supports_scope: [efc.ext.001]
+    limitations: ["A bus readback at one moment (2026-11-12, seq 31058). It establishes that the contract was open then; it cannot establish that it is open later. Re-read before citing."]
