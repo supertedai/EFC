@@ -1,19 +1,81 @@
 name: EFC statement-graph
 
-# Fase 1: statement-grafen og side-eierskapet valideres på hver PR som
-# rører dem. Leser bare; skriver aldri noe.
+# What this workflow measures, and when.
+#
+# It runs the repository's fail-closed checks: the repo contract, ownership
+# ("every tracked file has an owner"), the statement graph, the activity log,
+# the verifier benchmark, the regression tests, and the link rule — including
+# internal dead links in the Markdown surface (wiki/**).
+#
+# The trigger surface is the set of inputs those checks READ, not just the
+# outputs they inspect. Measured 2026-11-12 (t_56beaebd): the paths list named
+# public/graph/**, public/page-meta/** and a handful of scripts, and therefore
+# missed
+#   * governance/ownership-register.json — the file validate_ownership.py reads,
+#   * wiki/** — content the register covers, and
+#   * three of the scripts the job itself runs (validate_repo.py,
+#     validate_ownership.py, validate_links.py) plus the test it runs.
+# Consequence in the same measurement: 2690d749 ("Add EFC wiki: Home.md")
+# landed on main with validate_ownership.py exiting 1, and no run measured it.
+#
+# Two deliberate choices in the list below:
+#   * governance/ownership-register.json is named as a FILE, not governance/**.
+#     governance/risiko/** is already gated by efc-risiko.yml (register
+#     validator + blast-radius scorer); listing all of governance/ here would
+#     run this job twice on every risk-register change without measuring
+#     anything new. A missed measurement is a gate hole; duplicate CI is a cost.
+#   * docs/public/**.html is NOT listed, although the link step reads those
+#     pages. Four other workflows already gate that surface on every change,
+#     and adding this one would run the whole job (tests, bench, network link
+#     check) on nearly every content PR. That gap is therefore NOT closed here:
+#     it is measured and carried by its own card (t_10c68d20).
+#
+# push branches [main] exists because a fail-closed gate whose verdict is never
+# read on main is not fail-closed. The pull_request verdict answers "may this
+# land"; the push verdict answers "is main actually clean" — and only the
+# second one can catch a robot commit or a merge that bypassed the PR window.
+# The two path lists MUST stay identical (a test keeps them so).
 on:
   pull_request:
     paths:
       - "public/graph/**"
       - "public/page-meta/**"
+      - "wiki/**"
+      - "governance/ownership-register.json"
       - "scripts/maintenance/statement_graph_check.py"
+      - "scripts/maintenance/validate_ownership.py"
+      - "scripts/maintenance/validate_repo.py"
+      - "scripts/maintenance/validate_links.py"
       - "logs/activity.jsonl"
       - "scripts/maintenance/validate_activity_log.py"
       - "schemas/insight-candidate.schema.json"
       - "scripts/maintenance/triage_insikt.py"
       - "scripts/maintenance/verifier_bench.py"
+      - "tests/test_kunnskapslivssyklus.py"
+      - "tests/test_validate_links_wiki.py"
+      - "tests/test_statement_graph_triggers.py"
       - ".github/workflows/efc-statement-graph.yml"
+  push:
+    branches: [main]
+    paths:
+      - "public/graph/**"
+      - "public/page-meta/**"
+      - "wiki/**"
+      - "governance/ownership-register.json"
+      - "scripts/maintenance/statement_graph_check.py"
+      - "scripts/maintenance/validate_ownership.py"
+      - "scripts/maintenance/validate_repo.py"
+      - "scripts/maintenance/validate_links.py"
+      - "logs/activity.jsonl"
+      - "scripts/maintenance/validate_activity_log.py"
+      - "schemas/insight-candidate.schema.json"
+      - "scripts/maintenance/triage_insikt.py"
+      - "scripts/maintenance/verifier_bench.py"
+      - "tests/test_kunnskapslivssyklus.py"
+      - "tests/test_validate_links_wiki.py"
+      - "tests/test_statement_graph_triggers.py"
+      - ".github/workflows/efc-statement-graph.yml"
+  workflow_dispatch:
 
 jobs:
   statement-graph:
@@ -35,7 +97,7 @@ jobs:
         run: python3 scripts/maintenance/validate_activity_log.py --json
       - name: Verifier-benchmark
         run: python3 scripts/maintenance/verifier_bench.py --json
-      - name: Regresjonstester (kanon hash, triage-roundtrip, arxiv-parser)
-        run: python3 -m pytest tests/test_kunnskapslivssyklus.py -q
-      - name: Lenker (interne harde, eksterne utvalg)
+      - name: Regresjonstester (kanon hash, triage-roundtrip, arxiv-parser, lenkeregelen)
+        run: python3 -m pytest tests/test_kunnskapslivssyklus.py tests/test_validate_links_wiki.py tests/test_statement_graph_triggers.py -q
+      - name: Lenker (interne harde — HTML og wiki Markdown, eksterne utvalg)
         run: python3 scripts/maintenance/validate_links.py --json --maks-eksterne 10
