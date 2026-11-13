@@ -1,0 +1,177 @@
+{
+  "_comment": "Desired per-bank overrides for the Hindsight bank `efc` (Hindsight >= 1.2.1). Applied by apply_efc_bank.py. Keys starting with _ are ignored.",
+  "_principle": "Inside this bank the stored, evidence-backed record is the working truth: low skepticism when reading. Rigour lives at the door (retain_mission + entity_labels + directives), not in doubting what is already stored.",
+
+  "config": {
+    "retain_extraction_mode": "concise",
+
+    "retain_mission": "This bank holds the Energy-Flow Cosmology (EFC) research record. Retain as established fact what is backed by a primary source: an EFC Figshare DOI, a named dataset, a pipeline output, a measured number, or the Validation Ledger. Always keep exact numbers, units, uncertainties, DOIs, dataset names and dates. Claims from other AI systems (GPT, Gemini, earlier agents) and from external papers without an EFC working note are not evidence: retain them only as attributed claims (\"X claims ...\"), never as fact. Entities are short proper names (a framework, dataset, observable, paper, person, survey) — never a whole sentence or claim. Ignore greetings, logistics and meta-talk about the conversation.",
+
+    "entity_labels": [
+      {
+        "key": "evidence_layer",
+        "description": "Evidence layer of the fact, closed vocabulary from docs/validation-ledger/review-protocol.md. RAW_SIGNAL/TARGET/NORMATIVE/DERIVED/EXTERNAL ground directly; INSTRUMENT/PROXY are paradigm-laden; PARADIGM/PREVIOUS_AGENT/HINDSIGHT/AUTHOR/HYPOTHESIS are opinion layers. A recalled memory with no primary source is HINDSIGHT.",
+        "type": "value",
+        "optional": true,
+        "tag": true,
+        "values": [
+          {"value": "RAW_SIGNAL", "description": "Direct measurement or raw data"},
+          {"value": "INSTRUMENT", "description": "Instrument-mediated measurement (paradigm-laden)"},
+          {"value": "PROXY", "description": "Proxy quantity standing in for the target (paradigm-laden)"},
+          {"value": "TARGET", "description": "The target observable itself"},
+          {"value": "NORMATIVE", "description": "Canonical EFC source: Figshare DOI, Validation Ledger, formal spec"},
+          {"value": "DERIVED", "description": "Mathematically derived from grounded inputs"},
+          {"value": "PARADIGM", "description": "Assumption borrowed from a paradigm (e.g. LCDM)"},
+          {"value": "PREVIOUS_AGENT", "description": "Statement by an earlier AI agent"},
+          {"value": "HINDSIGHT", "description": "Recalled from memory without a primary source"},
+          {"value": "AUTHOR", "description": "Morten's own judgement or intent"},
+          {"value": "EXTERNAL", "description": "Third-party published result"},
+          {"value": "HYPOTHESIS", "description": "Untested proposal"}
+        ]
+      },
+      {
+        "key": "rcmp_regime",
+        "description": "RCMP cosmological regime (NOT epistemic tagging): L0 pre-inflation, L1 CMB/GR, L1-L2 transition (S8 tension), L2 late universe, L3 saturation.",
+        "type": "multi-values",
+        "tag": true,
+        "values": [
+          {"value": "L0", "description": "S -> 0, quantum / pre-inflation"},
+          {"value": "L1", "description": "S ~ 0, CMB epoch, GR valid"},
+          {"value": "L1-L2", "description": "Transition regime"},
+          {"value": "L2", "description": "S > 0, late universe, enhanced gravity"},
+          {"value": "L3", "description": "S -> 1, far future, saturation"}
+        ]
+      },
+      {
+        "key": "physical_regime",
+        "description": "EBE physical regime of the system the fact is about.",
+        "type": "multi-values",
+        "tag": true,
+        "values": [
+          {"value": "S_flow", "description": "Flowing / low-entropy regime"},
+          {"value": "S_trans", "description": "Transition regime"},
+          {"value": "S_latent", "description": "Latent / high-entropy regime"}
+        ]
+      },
+      {
+        "key": "kill_criterion",
+        "description": "EFC kill criterion the fact bears on, if any.",
+        "type": "multi-values",
+        "tag": true,
+        "values": [
+          {"value": "KC1", "description": "P(k) full-shape"},
+          {"value": "KC2", "description": "f sigma8 growth rate"},
+          {"value": "KC3", "description": "S8 weak lensing"},
+          {"value": "KC4", "description": "eta gravitational slip / E_G"},
+          {"value": "KC5", "description": "w(z) dark-energy equation of state"}
+        ]
+      },
+      {
+        "key": "ledger_status",
+        "description": "Validation Ledger status, only when the fact states one.",
+        "type": "value",
+        "optional": true,
+        "tag": true,
+        "values": [
+          {"value": "PASS", "description": "Passes test with specific numerical agreement"},
+          {"value": "Planned", "description": "Planned test"},
+          {"value": "Completed", "description": "Completed, no pass/fail verdict"},
+          {"value": "SEALED", "description": "Sealed prediction"},
+          {"value": "Awaiting", "description": "Awaiting data"},
+          {"value": "FAILED", "description": "Failed / falsified"}
+        ]
+      },
+      {
+        "key": "framework",
+        "description": "Every name of a cosmological or theoretical framework the fact is about, canonical name plus abbreviations (EFC, LCDM, MOND, AQUAL, Verlinde emergent gravity, ...). Short names only.",
+        "type": "multi-text",
+        "tag": true
+      },
+      {
+        "key": "dataset",
+        "description": "Named datasets or surveys (SPARC, DESI DR2, KiDS-1000, Euclid DR1, Planck 2018, ...). Short names only.",
+        "type": "multi-text",
+        "tag": true
+      },
+      {
+        "key": "observable",
+        "description": "Physical observables or parameters (f sigma8, S8, H0, BAO, ISW, mu, beta, g-dagger, ...). Short names only.",
+        "type": "multi-text",
+        "tag": true
+      },
+      {
+        "key": "doi",
+        "description": "DOIs cited by the fact, written as the 8-digit Figshare number when it is an EFC Figshare DOI (e.g. 31940469), otherwise the full DOI.",
+        "type": "multi-text",
+        "tag": true
+      }
+    ],
+    "entities_allow_free_form": true,
+
+    "observations_mission": "Observations are the reconciled, current state of the EFC research record: what each framework, test, dataset and prediction currently says, with its numbers, DOI and Ledger status. A newer dated fact supersedes an older one on the same quantity; keep the superseded value only as history (\"was X until <date>\"). Never promote an attributed or opinion-layer claim (PREVIOUS_AGENT, PARADIGM, HYPOTHESIS) into an established observation. Ignore one-off conversational state.",
+
+    "reflect_mission": "I am the memory of Morten's Energy-Flow Cosmology research. What this bank holds with a primary source is the established record, and I answer from it directly and with confidence. I state numbers, DOIs and statuses exactly as stored. When facts conflict I prefer the newer dated fact and sources with metadata source=figshare or source=ledger over chat. I mark anything without a primary source as HINDSIGHT. I never say an external result confirms, proves or validates EFC; I say consistent with, overlaps with, or within the EFC prediction band.",
+
+    "disposition_skepticism": 2,
+    "disposition_literalism": 4,
+    "disposition_empathy": 2,
+
+    "recall_prefer_observations": true,
+
+    "recall_budget_function": "adaptive",
+    "recall_budget_adaptive_low": 0.025,
+    "recall_budget_adaptive_mid": 0.1,
+    "recall_budget_adaptive_high": 0.3,
+    "recall_budget_min": 30,
+    "recall_budget_max": 2000
+  },
+
+  "directives": [
+    {
+      "name": "Temporal truth",
+      "content": "When two facts disagree about the same quantity, status or decision, the newer dated fact holds. State the older value only as history, with its date."
+    },
+    {
+      "name": "External AI is not evidence",
+      "content": "Statements from other AI systems (GPT, Gemini, council audits, earlier agents) are never evidence for an EFC claim. Report them only as attributed claims."
+    },
+    {
+      "name": "Primary source or HINDSIGHT",
+      "content": "A fact recalled without a primary source (EFC Figshare DOI, dataset, pipeline output, Validation Ledger) is evidence layer HINDSIGHT, not NORMATIVE, and must be marked as such and verified against the source before it supports a claim."
+    },
+    {
+      "name": "Language discipline",
+      "content": "Never write that something confirms, proves or validates EFC. Use consistent with, overlaps with, within the EFC prediction band, or passes test. When citing a prediction, cite the prior EFC DOI where it was first stated."
+    }
+  ],
+
+  "pages": [
+    {
+      "folder": "EFC core",
+      "pages": [
+        {"name": "Core principle and equations", "source_query": "What is the core principle of Energy-Flow Cosmology and what are its key equations and current parameter values (mu, beta, k, g-dagger)?"},
+        {"name": "Regime architecture", "source_query": "What are the RCMP regimes L0-L3 and the EBE physical regimes, and what does EFC predict in each?"}
+      ]
+    },
+    {
+      "folder": "Validation",
+      "pages": [
+        {"name": "Validation Ledger status", "source_query": "Which empirical tests of EFC exist, with DOI, tier (T1/T2/T3) and status, and which passed, failed or are awaiting data?"},
+        {"name": "Kill criteria KC1-KC5", "source_query": "What is the current status of each EFC kill criterion KC1-KC5 and which data or pipeline addresses it?"},
+        {"name": "Sealed predictions", "source_query": "Which EFC predictions are sealed, with prior DOI, and what data will test them?"}
+      ]
+    },
+    {
+      "folder": "Frameworks",
+      "pages": [
+        {"name": "Framework atlas", "source_query": "How does EFC compare with LCDM, MOND, Verlinde and the other frameworks in the atlas, phenomenon by phenomenon?"}
+      ]
+    },
+    {
+      "folder": "Open work",
+      "pages": [
+        {"name": "Open gaps and next steps", "source_query": "What are the open knowledge gaps, pending pipelines and next planned steps in the EFC programme?"}
+      ]
+    }
+  ]
+}
