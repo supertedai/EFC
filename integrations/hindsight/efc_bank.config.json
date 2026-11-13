@@ -1,6 +1,11 @@
 {
-  "_comment": "Desired per-bank overrides for the Hindsight bank `efc` (Hindsight >= 1.2.1). Applied by apply_efc_bank.py. Keys starting with _ are ignored.",
+  "_comment": "Desired per-bank overrides for the Hindsight bank `efc`. The apply script supports both legacy Knowledge Pages and renamed Pages SDK methods. Keys starting with _ are ignored by config updates.",
   "_principle": "Inside this bank the stored, evidence-backed record is the working truth: low skepticism when reading. Rigour lives at the door (retain_mission + entity_labels + directives), not in doubting what is already stored.",
+
+  "_mission_additions": {
+    "retain_mission": "Entity names must be concise canonical proper names or stable identifiers (frameworks, datasets, observables, papers, people, surveys), never a sentence or claim. Statements made by another AI system must name that system as the source and remain explicitly attributed claims, never established EFC facts.",
+    "reflect_mission": "When source metadata is available, prefer source=figshare or source=ledger over source=chat for the established EFC record. Preserve conflicts and distinguish what is shown from what is assumed."
+  },
 
   "config": {
     "retain_extraction_mode": "concise",
