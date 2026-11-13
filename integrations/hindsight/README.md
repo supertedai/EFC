@@ -58,11 +58,11 @@ The script never removes entity-label groups, directives or pages:
 
 The installed `hindsight-client` can lag the server: a key can be a valid
 override (and be served back by `GET /v1/default/banks/<bank>/config`) while
-`update_bank_config` has no keyword for it. The script sends the keys the
-client exposes through the client and PATCHes the rest to
-`/v1/default/banks/<bank>/config` with `{"updates": {...}}`, then reads the
-whole config back. A rejected key fails the run before directives and pages
-are touched.
+`update_bank_config` has no keyword for it. If any requested key is not
+exposed by the client, the script sends the complete change set through
+`/v1/default/banks/<bank>/config` with `{"updates": {...}}` rather than mixing
+SDK and REST writes, then reads the whole config back. A rejected key
+fails the run before directives and pages are touched.
 
 Hindsight 1.2.1 renamed Knowledge Pages to Pages. The script resolves and
 preflights these aliases **before any write**:
