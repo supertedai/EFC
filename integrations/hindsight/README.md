@@ -33,6 +33,35 @@ time it is read:
 | Memory depth | `recall_budget_function: adaptive`, where search breadth scales with `max_tokens`, and `high` = 0.3 × `max_tokens` (30–2000) |
 | Chat outranking canonical sources | `reflect_mission` prefers `source=figshare` / `source=ledger` metadata (reflect has seen document metadata since 0.10.2) |
 
+## Safety
+
+The script never removes anything:
+
+- `entity_labels` are merged additively. Existing label groups (e.g. `lesson`,
+  set by `hermes-opus/metrikk/lesson-label.py`) are kept. A spec group whose
+  key already exists is left as the bank has it.
+- `retain_mission`, `observations_mission` and `reflect_mission` that the bank
+  already overrides are kept and printed, unless you pass `--replace-missions`.
+- The full config is backed up to `~/.hermes/bankconfig-backup/` before any
+  write, and read back after it.
+- Directives and pages are only created, never changed or deleted.
+
+Read the dry run's list of existing label keys. If the bank already has
+something like `regime` or `epistemic_layer`, remove the overlapping group
+from `efc_bank.config.json` before applying, so the bank does not end up with
+two vocabularies for the same dimension.
+
+## Running it on the Hetzner host
+
+The Hindsight API is private (`10.9.0.2:8006` over WireGuard to byopus12), so
+run the script from the Hetzner host or from the Opus session there. The
+defaults read the URL and `MCP_HINDSIGHT_<BANK>_API_KEY` from
+`~/.hermes/.env`:
+
+```bash
+python3 integrations/hindsight/apply_efc_bank.py --bank efc
+```
+
 ## Order of operations
 
 1. Clone the bank for testing (no LLM cost; leave webhooks behind):
