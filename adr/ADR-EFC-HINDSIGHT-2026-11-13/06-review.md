@@ -1,7 +1,10 @@
 # Independent review record
 
-**Reviewer:** pending. **Route/model:** pending. **Model verified:** pending.
+**Reviewer:** delegated fresh-context reviewer `sa-0-7a2b2a83`. **Route/model:** delegated GPT-6 Luna review. **Model verified:** delegated route completed; treat as independent review evidence, not a GitHub approval.
 
-Review scope: this ADR, source diff, tests, Hindsight OpenAPI response semantics, and exact live-bank baseline. Challenge method fallback ordering and preflight-before-write; 204 plus GET; idempotent mission append; preservation of bank wording; label-axis distinctions; claim-shaped historic entities; reprocess/PATCH side effects; rollback and live-write gate.
+## Initial findings
+- **REQUEST_CHANGES:** mixed SDK/REST config writes could partially apply if the direct client update succeeded before a failed REST PATCH.
+- Documentation incorrectly said `physical_regime` and `rcmp_regime` both use L0–L3, conflicting with the measured live `physical_regime` definition (`S_flow`/`S_trans`/`S_latent`).
 
-**Findings and disposition:** pending. No review approval is asserted in this pre-implementation package.
+## Disposition
+Both findings were fixed before the follow-up review round: when any field needs REST, the complete change set now uses one REST request, and the README distinguishes the repository target from the measured live definition. Added regression test `test_mixed_client_and_rest_fields_do_not_partially_write`. Focused suite after the fixes: 11 passed. A fresh review round is required before merge.

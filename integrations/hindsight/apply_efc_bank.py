@@ -296,17 +296,20 @@ def apply_bank_spec(client, args, spec, url, token) -> int:
         supported = set(inspect.signature(client.update_bank_config).parameters)
         direct = {k: v for k, v in changes.items() if k in supported}
         deferred = {k: v for k, v in changes.items() if k not in supported}
-        if direct:
+        # Do not mix two independent writes: if any field needs the REST
+        # fallback, send the complete change set through REST so a failed
+        # request cannot leave the client-supported subset applied.
+        rest_changes = changes if deferred else {}
+        if not deferred and direct:
             client.update_bank_config(bank, **direct)
-        if deferred:
-            status, body = patch_config_rest(url, bank, token, deferred)
+        if rest_changes:
+            status, body = patch_config_rest(url, bank, token, rest_changes)
             if not 200 <= status < 300:
-                print(f"  REST patch failed (HTTP {status}) for {sorted(deferred)}: {body[:200]}")
+                print(f"  REST patch failed (HTTP {status}) for {sorted(rest_changes)}: {body[:200]}")
                 return 1
-            print(f"  applied over REST (not exposed by this client): {sorted(deferred)}")
+            print(f"  applied over REST (client fallback present): {sorted(rest_changes)}")
         after = as_dict(client.get_bank_config(bank)).get("config", {}) or {}
-        bad = [k for k in direct if k != "entity_labels" and after.get(k) != direct[k]]
-        bad += [k for k, v in deferred.items() if after.get(k) != v]
+        bad = [k for k, v in changes.items() if k != "entity_labels" and after.get(k) != v]
         got = {x.get("key"): x for x in (after.get("entity_labels") or []) if isinstance(x, dict)}
         # Every group we sent (existing ones included) must come back with every
         # field we sent unchanged; the server may add defaults, so compare a subset.

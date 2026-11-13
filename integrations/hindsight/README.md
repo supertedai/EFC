@@ -87,8 +87,10 @@ reported as a successful config update.
 Review label meanings, not only names. In the EFC bank, `evidence_layer` is
 provenance while `epistemic_layer` is document level; `rcmp_regime` is the
 cosmological/entropy chronology while `physical_regime` is scale/structure.
-Those are separate axes even though both use L0–L3 vocabulary. Preserve
-existing bank definitions when the key already exists.
+Those are separate axes. The repository target uses L0–L3 for `rcmp_regime`,
+while the measured live bank definition for `physical_regime` uses
+`S_flow`/`S_trans`/`S_latent`; preserve the live definition when the key
+already exists.
 
 ## Running it on the Hetzner host
 

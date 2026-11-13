@@ -89,6 +89,7 @@ class FakeConfigClient:
         self.list_directives_called = False
         self.create_directive_called = False
         self.close_calls = 0
+        self.update_calls = 0
 
     def __enter__(self):
         return self
@@ -106,7 +107,7 @@ class FakeConfigClient:
         return {"config": self.after, "overrides": self.after}
 
     def update_bank_config(self, bank_id, supported=None):
-        raise AssertionError("unknown config key must use the REST fallback")
+        self.update_calls += 1
 
     def list_directives(self, *, bank_id):
         self.list_directives_called = True
@@ -116,9 +117,14 @@ class FakeConfigClient:
         self.create_directive_called = True
 
 
+class MixedConfigClient(FakeConfigClient):
+    def update_bank_config(self, bank_id, recall_prefer_observations=None, supported=None):  # type: ignore[override]
+        self.update_calls += 1
+
+
 class ConfigWriteGateTests(unittest.TestCase):
-    def _run_main(self, status, after, spec_config=None, skip_pages=True):
-        client = FakeConfigClient(after)
+    def _run_main(self, status, after, spec_config=None, skip_pages=True, mixed=False):
+        client = MixedConfigClient(after) if mixed else FakeConfigClient(after)
         spec = {
             "config": spec_config or {"recall_prefer_observations": True},
             "directives": [{"name": "must-not-run-on-bad-readback", "content": "x"}],
@@ -161,6 +167,21 @@ class ConfigWriteGateTests(unittest.TestCase):
         self.assertEqual(client.close_calls, 1)
         self.assertFalse(client.list_directives_called)
         self.assertFalse(client.create_directive_called)
+
+    def test_mixed_client_and_rest_fields_do_not_partially_write(self):
+        result, client, _ = self._run_main(
+            409,
+            {"recall_prefer_observations": True},
+            spec_config={
+                "recall_prefer_observations": True,
+                "field_unknown_to_client": "value",
+            },
+            mixed=True,
+        )
+        self.assertEqual(result, 1)
+        self.assertEqual(client.update_calls, 0)
+        self.assertEqual(client.get_calls, 1)
+        self.assertFalse(client.list_directives_called)
 
     def test_mismatched_readback_stops_before_directives(self):
         result, client, _ = self._run_main(204, {"recall_prefer_observations": False})
