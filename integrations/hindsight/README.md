@@ -141,3 +141,13 @@ These are environment variables. They cannot be set through the bank config API.
 - `entities_allow_free_form: false`: this would drop people and other named
   entities that the labels do not cover.
 - The `morten` bank: it is left at its current settings.
+
+## Possible duplicate label groups
+
+Label groups merge additively by key, so a spec group and a bank group that
+use different keys for the same dimension (for example `evidence_layer` and
+`epistemic_layer`) both survive. `_label_aliases` in the spec lists such
+names, and the dry run prints `! possible twin` when both are present.
+Nothing is removed automatically: retire the twin by hand if it really is
+the same dimension, and reprocess documents if existing memories should lose
+its labels.

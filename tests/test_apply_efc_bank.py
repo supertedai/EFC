@@ -201,5 +201,22 @@ class ConfigWriteGateTests(unittest.TestCase):
         self.assertFalse(client.create_directive_called)
 
 
+class LabelTwinTests(unittest.TestCase):
+    SPEC = {"_label_aliases": {"_comment": "ignored",
+                               "evidence_layer": ["epistemic_layer", "evidens"],
+                               "rcmp_regime": ["regime"]}}
+
+    def test_reports_spec_key_and_bank_alias_both_present(self):
+        twins = apply_efc_bank.label_twins(self.SPEC, {"evidence_layer", "epistemic_layer", "lesson"})
+        self.assertEqual(twins, [("evidence_layer", "epistemic_layer")])
+
+    def test_silent_when_only_one_side_exists(self):
+        self.assertEqual(apply_efc_bank.label_twins(self.SPEC, {"epistemic_layer", "regime"}), [])
+        self.assertEqual(apply_efc_bank.label_twins(self.SPEC, {"evidence_layer", "rcmp_regime"}), [])
+
+    def test_missing_alias_table_is_harmless(self):
+        self.assertEqual(apply_efc_bank.label_twins({}, {"evidence_layer", "epistemic_layer"}), [])
+
+
 if __name__ == "__main__":
     unittest.main()

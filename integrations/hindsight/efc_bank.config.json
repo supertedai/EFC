@@ -171,5 +171,65 @@
         {"name": "Open gaps and next steps", "source_query": "What are the open knowledge gaps, pending pipelines and next planned steps in the EFC programme?"}
       ]
     }
-  ]
+  ],
+
+  "_label_aliases": {
+    "_comment": "Spec label keys and names the bank may already use for the same dimension. The dry run warns when both exist; nothing is removed automatically.",
+    "evidence_layer": [
+      "epistemic_layer",
+      "epistemisk_lag",
+      "evidens",
+      "evidence",
+      "evidence_strength",
+      "evidensstyrke",
+      "evidence_level"
+    ],
+    "rcmp_regime": [
+      "regime",
+      "rcmp",
+      "regime_rcmp",
+      "kosmologisk_regime"
+    ],
+    "physical_regime": [
+      "regime",
+      "ebe_regime",
+      "fysisk_regime",
+      "s_regime"
+    ],
+    "kill_criterion": [
+      "kc",
+      "kill_criteria",
+      "drepekriterium",
+      "falsifisering",
+      "falsification"
+    ],
+    "ledger_status": [
+      "status",
+      "validation_status",
+      "valideringsstatus",
+      "verdict"
+    ],
+    "framework": [
+      "rammeverk",
+      "theory",
+      "model",
+      "teori"
+    ],
+    "dataset": [
+      "datasett",
+      "data_source",
+      "survey"
+    ],
+    "observable": [
+      "observabel",
+      "parameter",
+      "quantity"
+    ],
+    "doi": [
+      "publication",
+      "publikasjon",
+      "paper",
+      "kilde_doi"
+    ]
+  }
 }

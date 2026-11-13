@@ -101,6 +101,18 @@ def as_dict(obj):
     return dict(obj)
 
 
+def label_twins(spec: dict, bank_keys: set) -> list[tuple[str, str]]:
+    """(spec key, bank key) pairs that may name the same dimension.
+
+    Labels merge additively by key, so a spec group and a bank group with
+    different keys for the same thing (evidence_layer / epistemic_layer) both
+    survive. This only reports such pairs; retiring one is a human call.
+    """
+    aliases = {k: v for k, v in (spec.get("_label_aliases") or {}).items() if not k.startswith("_")}
+    return [(key, n) for key, names in aliases.items() if key in bank_keys
+            for n in names if n in bank_keys and n != key]
+
+
 def walk_tree(nodes, path=""):
     for n in nodes or []:
         n = as_dict(n)
@@ -261,6 +273,8 @@ def apply_bank_spec(client, args, spec, url, token) -> int:
             print(f"\n[entity_labels] existing: {sorted(have_keys - {None})}")
             if clash:
                 print(f"  same key already present, left untouched: {clash}")
+            for w, twin in label_twins(spec, have_keys | {x["key"] for x in new}):
+                print(f"  ! possible twin: '{w}' (spec) and '{twin}' (bank) may describe the same dimension")
             if new:
                 print(f"  + adding: {[x['key'] for x in new]}")
                 changes[k] = have + new          # additive: never drop existing labels
