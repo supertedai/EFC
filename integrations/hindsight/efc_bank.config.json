@@ -128,14 +128,6 @@
 
   "directives": [
     {
-      "name": "Temporal truth",
-      "content": "When two facts disagree about the same quantity, status or decision, the newer dated fact holds. State the older value only as history, with its date."
-    },
-    {
-      "name": "External AI is not evidence",
-      "content": "Statements from other AI systems (GPT, Gemini, council audits, earlier agents) are never evidence for an EFC claim. Report them only as attributed claims."
-    },
-    {
       "name": "Primary source or HINDSIGHT",
       "content": "A fact recalled without a primary source (EFC Figshare DOI, dataset, pipeline output, Validation Ledger) is evidence layer HINDSIGHT, not NORMATIVE, and must be marked as such and verified against the source before it supports a claim."
     },
@@ -144,6 +136,7 @@
       "content": "Never write that something confirms, proves or validates EFC. Use consistent with, overlaps with, within the EFC prediction band, or passes test. When citing a prediction, cite the prior EFC DOI where it was first stated."
     }
   ],
+  "_directives_note": "Two rules from the first draft were dropped on purpose: 'Temporal truth' and 'External AI is not evidence' are already active in this bank as `temporal-sannhet-kjerne` and `ekstern-ai-er-ikke-evidens`. Directives are matched by name only, so adding the English twins would leave two active rules for the same thing.",
 
   "pages": [
     {

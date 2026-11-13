@@ -46,6 +46,21 @@ The script never removes anything:
   write, and read back after it.
 - Directives and pages are only created, never changed or deleted.
 
+### Client/server schema drift
+
+The installed `hindsight-client` can lag the server: a key can be a valid
+override (and be served back by `GET /v1/default/banks/<bank>/config`) while
+`update_bank_config` has no keyword for it. The script sends the keys the
+client exposes through the client and PATCHes the rest to
+`/v1/default/banks/<bank>/config` with `{"updates": {...}}`, then reads the
+whole config back. A rejected key fails the run before directives and pages
+are touched.
+
+The knowledge-tree methods are `get_knowledge_base_tree`,
+`create_knowledge_folder` and `create_knowledge_page`. Older names
+(`get_page_tree`, `create_page_folder`, `create_page`) do not exist in the
+client and raise `AttributeError` — after the config write.
+
 Read the dry run's list of existing label keys. If the bank already has
 something like `regime` or `epistemic_layer`, remove the overlapping group
 from `efc_bank.config.json` before applying, so the bank does not end up with

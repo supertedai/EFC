@@ -29,10 +29,13 @@ untouched and listed so you can retire duplicates by hand.
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 import os
 import sys
 import time
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -53,6 +56,31 @@ def hermes_env_token(name: str) -> str:
     except OSError:
         pass
     return ""
+
+
+def patch_config_rest(url: str, bank: str, token: str, updates: dict) -> tuple[int, str]:
+    """PATCH bank config fields the installed client does not expose yet.
+
+    The pinned hindsight-client lags the server schema: a key can be a valid
+    override (and be served back by GET) while `update_bank_config` has no
+    keyword for it. Sending it through the client raises TypeError before any
+    write, so those keys go over the REST endpoint instead — same payload
+    shape the server documents for a config update.
+    """
+    body = json.dumps({"updates": updates}).encode("utf-8")
+    headers = {"Content-Type": "application/json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(
+        f"{url.rstrip('/')}/v1/default/banks/{bank}/config",
+        data=body, method="PATCH", headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.status, r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "replace")
+    except Exception as e:                                  # noqa: BLE001
+        return 0, f"{type(e).__name__}: {e}"
 
 
 def load_spec() -> dict:
@@ -149,9 +177,22 @@ def main() -> int:
         print(f"  = {k}: bank already has its own override, kept. Current:\n      {short(overrides[k])}\n"
               f"    (pass --replace-missions to replace it with the spec text)")
     if args.apply and changes:
-        client.update_bank_config(bank, **changes)
+        # The installed client can lag the server schema; split the payload so a
+        # key it has no keyword for cannot raise TypeError before any write.
+        supported = set(inspect.signature(client.update_bank_config).parameters)
+        direct = {k: v for k, v in changes.items() if k in supported}
+        deferred = {k: v for k, v in changes.items() if k not in supported}
+        if direct:
+            client.update_bank_config(bank, **direct)
+        if deferred:
+            status, body = patch_config_rest(url, bank, token, deferred)
+            if status != 200:
+                print(f"  REST patch failed (HTTP {status}) for {sorted(deferred)}: {body[:200]}")
+                return 1
+            print(f"  applied over REST (not exposed by this client): {sorted(deferred)}")
         after = as_dict(client.get_bank_config(bank)).get("config", {}) or {}
-        bad = [k for k in changes if k != "entity_labels" and after.get(k) != changes[k]]
+        bad = [k for k in direct if k != "entity_labels" and after.get(k) != direct[k]]
+        bad += [k for k, v in deferred.items() if after.get(k) != v]
         got = {x.get("key"): x for x in (after.get("entity_labels") or []) if isinstance(x, dict)}
         # Every group we sent (existing ones included) must come back with every
         # field we sent unchanged; the server may add defaults, so compare a subset.
@@ -179,7 +220,7 @@ def main() -> int:
 
     # --- 3. pages (knowledge tree roots) -------------------------------------
     if not args.skip_pages:
-        tree = as_dict(client.get_page_tree(bank))
+        tree = as_dict(client.get_knowledge_base_tree(bank_id=bank))
         have = {p: n for p, n in walk_tree(tree.get("roots"))}
         print(f"\n[pages] {len(have)} existing nodes")
         for group in spec["pages"]:
@@ -188,14 +229,14 @@ def main() -> int:
             if folder is None:
                 print(f"  + folder {fpath}")
                 if args.apply:
-                    folder = as_dict(client.create_page_folder(bank, name=group["folder"]))
+                    folder = as_dict(client.create_knowledge_folder(bank_id=bank, name=group["folder"]))
             for p in group["pages"]:
                 if f"{fpath}/{p['name']}" in have:
                     continue
                 print(f"  + page {fpath}/{p['name']}")
-                if args.apply:
-                    client.create_page(bank, name=p["name"], source_query=p["source_query"],
-                                       parent_id=folder["id"], tags=["efc"])
+                if args.apply and folder is not None:
+                    client.create_knowledge_page(bank_id=bank, name=p["name"], source_query=p["source_query"],
+                                                 parent_id=folder["id"], tags=["efc"])
 
     print("\nDone." if args.apply else "\nNothing written. Re-run with --apply.")
     return 0
