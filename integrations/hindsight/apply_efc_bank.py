@@ -113,8 +113,10 @@ def main() -> int:
 
     if args.apply:
         BACKUP_DIR.mkdir(parents=True, exist_ok=True)
-        backup = BACKUP_DIR / f"{bank}-config-{time.strftime('%Y%m%d_%H%M%S')}.json"
-        backup.write_text(json.dumps(current, ensure_ascii=False, indent=1), encoding="utf-8")
+        backup = BACKUP_DIR / f"{bank}-config-{time.strftime('%Y%m%d_%H%M%S')}-{time.time_ns()}.json"
+        # "x": never overwrite an earlier snapshot; fails before any API write.
+        with backup.open("x", encoding="utf-8") as fh:
+            fh.write(json.dumps(current, ensure_ascii=False, indent=1))
         print(f"\n[backup] {backup}")
 
     changes, kept = {}, []
@@ -133,7 +135,7 @@ def main() -> int:
             continue
         if resolved.get(k) == v:
             continue
-        if k in PROTECTED_TEXT and overrides.get(k) and not args.replace_missions:
+        if k in PROTECTED_TEXT and overrides.get(k) is not None and not args.replace_missions:
             kept.append(k)                        # a hand-written mission is never overwritten silently
             continue
         changes[k] = v
@@ -150,10 +152,16 @@ def main() -> int:
         client.update_bank_config(bank, **changes)
         after = as_dict(client.get_bank_config(bank)).get("config", {}) or {}
         bad = [k for k in changes if k != "entity_labels" and after.get(k) != changes[k]]
-        lab_after = {x.get("key") for x in (after.get("entity_labels") or []) if isinstance(x, dict)}
-        lab_want = {x.get("key") for x in changes.get("entity_labels", [])}
-        missing = sorted(lab_want - lab_after)
-        print("  read back:", "OK" if not bad and not missing else f"NOT CONFIRMED fields={bad} labels={missing}")
+        got = {x.get("key"): x for x in (after.get("entity_labels") or []) if isinstance(x, dict)}
+        # Every group we sent (existing ones included) must come back with every
+        # field we sent unchanged; the server may add defaults, so compare a subset.
+        missing = sorted(w["key"] for w in changes.get("entity_labels", [])
+                         if any(got.get(w["key"], {}).get(f) != val for f, val in w.items()))
+        if bad or missing:
+            print(f"  read back: NOT CONFIRMED fields={bad} labels={missing}. "
+                  f"Stopping before directives/pages. Restore from {backup} if needed.")
+            return 1
+        print("  read back: OK")
 
     # --- 2. directives ------------------------------------------------------
     existing = [as_dict(d) for d in as_dict(client.list_directives(bank_id=bank)).get("items", [])]
