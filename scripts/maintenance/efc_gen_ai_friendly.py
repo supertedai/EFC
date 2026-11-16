@@ -199,7 +199,18 @@ def build_for_dir(name: str):
     pdfs = find_pdfs(initial_files)
     excerpts = find_text_excerpts(d, initial_files)
     excerpt_blob = " ".join(excerpts.values())
-    title = humanize(name)
+    # Respect the package's curated index.json title when present. The
+    # directory name is only a fallback; otherwise regeneration can undo
+    # deliberate title reconciliation in package metadata.
+    canonical_index = {}
+    try:
+        with open(os.path.join(d, "index.json"), encoding="utf-8") as fh:
+            loaded_index = json.load(fh)
+        if isinstance(loaded_index, dict):
+            canonical_index = loaded_index
+    except (OSError, json.JSONDecodeError):
+        pass
+    title = canonical_index.get("title") or humanize(name)
     slug = slugify(name)
     regs = regime_guess(excerpt_blob + " " + name)
     track = track_guess(name, excerpt_blob)
