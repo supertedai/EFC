@@ -1,4 +1,4 @@
-# Energy-Flow Cosmology: Model-Family Reconciliation, Claim Status, and Preregistered Discriminators
+# Energy-Flow Cosmology (EFC): Model-Family Reconciliation, Claim Status and Preregistration Proposals
 
 ## AI-Friendly Package
 
@@ -13,4 +13,4 @@
 
 ## Overview
 
-Auto-generated metadata package for Energy-Flow Cosmology: Model-Family Reconciliation, Claim Status, and Preregistered Discriminators.
+Auto-generated metadata package for Energy-Flow Cosmology (EFC): Model-Family Reconciliation, Claim Status and Preregistration Proposals.
