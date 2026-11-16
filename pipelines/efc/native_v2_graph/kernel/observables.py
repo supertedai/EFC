@@ -196,12 +196,11 @@ def find_transition_gN_crossing(r, g, G_eff, M, a0, slope_threshold=-1.5,
 
 
 def radial_g_profile_vector(pos, g_vec, r_arr, boundary, r_max_frac=0.85):
-    """
-    Radial profile of g_radial = g_vec dot r_hat.
+    """Radial profile of positive inward acceleration ``-g_vec · r_hat``.
 
-    This measures the radial component of acceleration, not |g|.
-    Correct for EFE measurement where external field must be subtracted
-    vectorially before projecting onto radial direction.
+    ``g_vec`` is the physical gravitational-acceleration vector. This measures
+    its radial component, not ``|g|``; it remains useful for EFE work where an
+    external field must be subtracted vectorially before projection.
     """
     r_limit = r_max_frac * np.max(r_arr)
     r_bins = np.arange(2.5, r_limit, 1.0)
@@ -214,10 +213,10 @@ def radial_g_profile_vector(pos, g_vec, r_arr, boundary, r_max_frac=0.85):
     nonzero = r_arr > 1e-10
     r_hat[nonzero] = pos[nonzero] / r_arr[nonzero, np.newaxis]
 
-    # g_vec from discrete_gradient = grad(Phi), points OUTWARD (toward
-    # increasing Phi). The radial gravitational acceleration magnitude is
-    # |g_radial| = g_vec . r_hat (both point outward, so dot product > 0).
-    g_dot_rhat = np.sum(g_vec * r_hat, axis=1)
+    # The solver returns physical acceleration g = -grad(Phi). For an
+    # attractive central field it points inward, so the positive inward radial
+    # magnitude is -g dot r_hat.
+    g_dot_rhat = -np.sum(g_vec * r_hat, axis=1)
 
     for k, rb in enumerate(r_bins):
         mask = ((r_arr > rb - 0.5) & (r_arr < rb + 0.5) & (~boundary))

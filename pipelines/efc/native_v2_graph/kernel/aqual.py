@@ -38,17 +38,22 @@ def mu_simple(x):
     return x / (1.0 + x)
 
 
-def make_conductivity(a0, spacing, mu_func=None, floor=1e-6):
-    """
-    Create conductivity function for the weighted Laplacian.
+def make_conductivity(a0, spacing=1.0, mu_func=None, floor=1e-6):
+    """Create an AQUAL face conductivity from a full physical gradient norm.
 
-    Returns callable: dPhi -> w = mu(|dPhi| / (a0 * h))
+    The returned callable accepts ``|grad Phi|`` in acceleration units and
+    evaluates ``mu(|grad Phi| / a0)``. ``spacing`` remains an accepted argument
+    for call-site compatibility and is validated, but is not multiplied into a
+    gradient that has already been reconstructed with physical units.
     """
+    if a0 <= 0 or spacing <= 0:
+        raise ValueError("a0 and spacing must be positive")
     if mu_func is None:
         mu_func = mu_standard
 
-    def conductivity(dPhi):
-        x = dPhi / (a0 * spacing) if a0 > 0 else 1e10
-        return max(mu_func(x), floor)
+    def conductivity(gradient_magnitude):
+        gradient_magnitude = float(gradient_magnitude)
+        x = gradient_magnitude / a0
+        return max(float(mu_func(x)), floor)
 
     return conductivity

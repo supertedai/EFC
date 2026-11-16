@@ -35,12 +35,14 @@ pipelines/
     │   │   ├── observables.py      # Observable extraction (profiles, slopes)
     │   │   ├── operators.py        # Discrete differential operators
     │   │   └── solver.py           # Iterative AQUAL solver
-    │   ├── tests/                  # Key-test suite (KT1-KT5)
+    │   ├── tests/                  # Key-test suite (KT1-KT6) + numerical regressions
     │   │   ├── kt1_limits.py       # Newton/MOND limit recovery
     │   │   ├── kt2_C_convergence.py # C-parameter convergence
     │   │   ├── kt3_mass_scaling.py  # Mass scaling relations
     │   │   ├── kt4_superposition.py # Field superposition tests
-    │   │   └── kt5_EFE.py          # External Field Effect
+    │   │   ├── kt5_EFE.py          # External Field Effect
+    │   │   ├── kt6_physical_normalization.py # Source/flux/observable calibration
+    │   │   └── test_physical_normalization.py # Analytic operator and mass tests
     │   └── outputs/
     │       └── runs/               # Timestamped run results (JSON)
     │
@@ -65,11 +67,11 @@ pipelines/
 
 ## Pipeline 1: Native v2 Graph Solver
 
-The graph-based AQUAL solver discretizes the modified Poisson equation on a 3D lattice and tests whether EFC-predicted gravitational dynamics recover known Newtonian and MOND limits.
+The Native v2 graph-AQUAL pipeline is a numerical solver for a modified Poisson equation on a 3D lattice. It currently implements generic standard AQUAL with an explicit continuum-calibration convention; its results alone do not demonstrate the separate Lambda-locked EFC law, a LambdaCDM limit, or a physical universal `C`.
 
 **Kernel primitives:** Graph (V, E), entropy field S_i, density rho_i, potential Phi_i, bulk entropy S_V.
 
-**Emergent predictions:** Poisson limit recovery, area-law entropy scaling, a0 proportional to sqrt(Lambda), MOND-limit behavior.
+**Separate theory targets:** Poisson/MOND limits, area-law entropy scaling, and `a0 ∝ sqrt(Lambda)`. The latter targets are not established merely by running this Native v2 solver.
 
 ### Running the Graph Solver
 
@@ -85,17 +87,20 @@ Configuration is read from `configs/base.yaml`. Key parameters include:
 - `physics.mu_func` -- Interpolating function (`standard` or `simple`)
 - `solver.tol` -- Convergence tolerance (default: 1e-4)
 
-### Running Tests (KT1-KT5)
+### Running Tests (KT1-KT6)
 
-The five key tests validate distinct physical predictions:
+The six key tests exercise distinct solver behaviors. They do not, by themselves, validate the full Lambda-locked EFC mechanism or establish a physical `C`:
 
 | Test | What It Validates | Pass Criteria |
 |------|-------------------|---------------|
 | KT1 | Newton/MOND limit recovery | Slope approaches -2 (Newton) and -1 (MOND) |
-| KT2 | C-parameter convergence | Convergence with increasing resolution |
+| KT2 | Numerical `C` trend under its configured lattice/window | A recorded numerical trend only; fixed-`h` growth of `N` is not a continuum-limit test |
 | KT3 | Mass scaling relations | Correct M-dependence of rotation curves |
 | KT4 | Field superposition | Linearity in the Newtonian regime |
 | KT5 | External Field Effect (EFE) | MOND-regime sensitivity to external fields |
+| KT6 | Physical normalization | Source mass, `h` scaling, Newton amplitude, AQUAL face flux, and matched-box `C(r)`; report results without a physical verdict until independent calibration gates pass |
+
+KT6 runs a generic continuum-calibrated standard-AQUAL discretization. Its `C` values are numerical measurements for the stated source measure, boundary condition, physical box, and radial bins; they are not the Lambda-locked DGS `C`, a LambdaCDM-limit demonstration, or an astrophysical prediction. The Native v2 face-flux rule is kept distinct from the historical edge-weight rule in the DGS paper package.
 
 ```bash
 cd pipelines/efc/native_v2_graph
@@ -104,9 +109,11 @@ python -m tests.kt2_C_convergence
 python -m tests.kt3_mass_scaling
 python -m tests.kt4_superposition
 python -m tests.kt5_EFE
+python -m tests.kt6_physical_normalization
+python -m pytest -q tests/test_physical_normalization.py
 ```
 
-Each test produces a JSON output file in `outputs/runs/<timestamp>/` containing numerical results, pass/fail status, and diagnostic data.
+Each key-test script writes JSON under `outputs/runs/`. KT6 creates a unique UTC-stamped `kt6_<run_id>/` directory and records dimensionless code units, the Dirichlet boundary/margin, source mask, gradient/flux convention, and calibration-only status. Radial-bin spread is not an uncertainty on `C_infinity`.
 
 ## Pipeline 2: HCP Bridge B1*
 
