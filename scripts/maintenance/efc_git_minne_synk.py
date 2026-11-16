@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""efc_git_minne_synk.py — git → Opus-minne synk (komponent 3, del 1: detektor).
+"""efc_git_minne_synk.py — git → Opus-memory sync (component 3, part 1: detector).
 
-Leser nye EFC-relevante git-commits siden siste synk (markør i
-.claude/efc_git_minne_synk.json), trekker ut strukturerte oppsummeringer
-(ny DOI-pakke: doi + tittel + paper_type; ellers endringskategori), og
-skriver dem som append-only JSONL til data/inntak/git_minne_synk.jsonl +
-avanserer markøren. Idempotent: re-kjøring gir ingen nye linjer.
+Reads new EFC-relevant git commits since the last sync (marker in
+.claude/efc_git_minne_synk.json), extracts structured summaries (new DOI
+package: doi + title + paper_type; otherwise change category), and writes them
+as append-only JSONL to data/inntak/git_minne_synk.jsonl + advances the marker.
+Idempotent: re-running yields no new lines.
 
-Retain til hindsight-banken (mcp__hindsight_efc__retain) skjer i et SEPARAT
-steg — en Opus-sesjon via cron — fordi MCP-en ikke er kallbar fra et
-frittstående skript.
+Retaining to the hindsight bank (mcp__hindsight_efc__retain) happens in a
+SEPARATE step — an Opus session via cron — because the MCP is not callable from
+a standalone script.
 
-Bruk:
-  efc_git_minne_synk.py --dry-run            # vis hva som ville synkes, skriv ingenting
-  efc_git_minne_synk.py                      # skriv kø + avanser markør
-  efc_git_minne_synk.py --since <sha>        # eksplisitt start (testing)
+Usage:
+  efc_git_minne_synk.py --dry-run            # show what would sync, write nothing
+  efc_git_minne_synk.py                      # write queue + advance marker
+  efc_git_minne_synk.py --since <sha>        # explicit start (testing)
 """
 
 import json
@@ -26,7 +26,7 @@ REPO = Path(__file__).resolve().parents[2]
 MARKER = REPO / ".claude" / "efc_git_minne_synk.json"
 QUEUE = REPO / "data" / "inntak" / "git_minne_synk.jsonl"
 
-# Stier som bærer EFC-innsikt verdt å speile til minnet
+# Paths that carry EFC insight worth mirroring to memory
 RELEVANT_PREFIXES = (
     "docs/papers/efc/",
     "docs/validation-ledger/",
@@ -66,7 +66,7 @@ def _fetch_commits(since: str) -> list[dict]:
         sha, date, subject = parts[0], parts[1], parts[2]
         files = _git("show", "--name-only", "--format=", sha).split()
         commits.append({"sha": sha, "date": date[:10], "subject": subject, "files": files})
-    commits.reverse()  # eldste først
+    commits.reverse()  # oldest first
     return commits
 
 
@@ -126,16 +126,16 @@ def main() -> int:
 
     commits = _fetch_commits(since)
     if not commits:
-        print(f"git-minne-synk: ingen nye EFC-relevante commits siden {since[:12]}")
+        print(f"git-minne-synk: no new EFC-relevant commits since {since[:12]}")
         return 0
 
     entries = _build_entries(commits)
     if dry:
-        print(f"[dry-run] {len(entries)} oppføring(er) siden {since[:12]}:")
+        print(f"[dry-run] {len(entries)} entry/entries since {since[:12]}:")
         for e in entries:
             print(f"  - {e['sha']}  {e['subject'][:70]}  [{','.join(e['categories'])}]")
             for p in e.get("papers", []):
-                print(f"      DOI: {p.get('doi') or '(ingen)'}  |  {(p.get('title') or '')[:60]}")
+                print(f"      DOI: {p.get('doi') or '(none)'}  |  {(p.get('title') or '')[:60]}")
         return 0
 
     QUEUE.parent.mkdir(parents=True, exist_ok=True)
@@ -145,8 +145,8 @@ def main() -> int:
     MARKER.parent.mkdir(parents=True, exist_ok=True)
     MARKER.write_text(json.dumps({"last_sha": commits[-1]["sha"]}, indent=2) + "\n")
     print(
-        f"git-minne-synk: {len(entries)} oppføring(er) skrevet til "
-        f"{QUEUE.relative_to(REPO)}; markør -> {commits[-1]['sha'][:12]}"
+        f"git-minne-synk: {len(entries)} entry/entries written to "
+        f"{QUEUE.relative_to(REPO)}; marker -> {commits[-1]['sha'][:12]}"
     )
     return 0
 
