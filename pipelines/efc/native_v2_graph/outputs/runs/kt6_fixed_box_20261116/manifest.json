@@ -7,7 +7,7 @@
     "branch": "wt/t_bfded048",
     "git_head_at_run": "e2e5a6c7fa244b6ec6182a3a4da7e46e45305c12",
     "working_tree_was_dirty": true,
-    "note": "Runs were generated before the source API was split into rho and solver RHS, and before KT6 output-metadata additions. The numerical RHS is algebraically the same -4*pi*G*rho*h^2; the post-refactor focused suite passes. Boundary margin was the solver default 1.5 and is stated here from the invocation/source, not from the raw JSON."
+    "note": "Runs were generated before the source API was split into rho and solver RHS, and before KT6 output-metadata additions. The numerical RHS is algebraically the same -4*pi*G*rho*h^2; the post-refactor focused suite passes. Boundary margin was the solver default 1.5 and is stated here from the invocation/source, not from the raw JSON. Boundary treatment: the Dirichlet pin is the spherical margin shell only; outer cube faces are graph-truncated (fewer neighbours) and not pinned (pre-existing solver behaviour)."
   },
   "parameters": {
     "unit_system": "dimensionless code units; no SI mapping asserted",
@@ -22,7 +22,7 @@
       0.0
     ],
     "source_mask_rule": "distance < r_source",
-    "boundary_condition": "Dirichlet Phi=0 on boundary_mask",
+    "boundary_condition": "Dirichlet Phi=0 pinned on the spherical margin shell (boundary_mask: r > r_max - boundary_margin*h); outer cube faces are graph-truncated (fewer neighbours) and are not Dirichlet-pinned; pre-existing solver behaviour",
     "boundary_margin": 1.5,
     "radial_window": [
       5.0,

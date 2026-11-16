@@ -8,7 +8,7 @@ Make the Native v2 Graph-AQUAL numerical chain consistent before interpreting th
 
 ## Scope
 
-Modify only `pipelines/efc/native_v2_graph` and this ADR package. Treat it as a generic continuum-calibrated AQUAL discretization on a cubic mesh, not as a demonstration of the separate Lambda-locked DGS mechanism, GR, cosmological limits, EBE/RCMP integration, or astrophysical fits. Preserve the historical DGS package/operator unless a separate decision is approved; document any remaining semantic difference rather than silently treating the two as identical.
+Modify only `pipelines/efc/native_v2_graph`, the `pipelines/README.md` documentation of the Native v2 solver/tests, and this ADR package. Treat it as a generic continuum-calibrated AQUAL discretization on a cubic mesh, not as a demonstration of the separate Lambda-locked DGS mechanism, GR, cosmological limits, EBE/RCMP integration, or astrophysical fits. Preserve the historical DGS package/operator unless a separate decision is approved; document any remaining semantic difference rather than silently treating the two as identical.
 
 No merge, landing, or production action is authorized by this task. Deliver a reviewed branch/PR for Morten's decision.
 

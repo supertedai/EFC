@@ -52,7 +52,15 @@ def experiment_metadata(N, M, G_eff, a0, box_side, r_source,
         "r_source": float(r_source),
         "source_center": [0.0, 0.0, 0.0],
         "source_mask_rule": "distance < r_source",
-        "boundary_condition": "Dirichlet Phi=0 on boundary_mask",
+        "boundary_condition": (
+            "Dirichlet Phi=0 pinned on the spherical margin shell "
+            "(boundary_mask: r > r_max - boundary_margin*h)"
+        ),
+        "boundary_treatment": (
+            "Dirichlet pin applies to the spherical margin shell only; outer "
+            "cube faces are graph-truncated (fewer neighbours) and are not "
+            "Dirichlet-pinned; pre-existing solver behaviour"
+        ),
         "boundary_margin": float(boundary_margin),
         "field_equation": "div(mu(|grad Phi|/a0) grad Phi)=4*pi*G_eff*rho",
         "gradient_flux_convention": (
@@ -187,7 +195,7 @@ def run_kt6(N_values=None, M=50.0, G_eff=1.0, a0=2.0, box_side=20.0,
             labels = ("A_legacy_source_legacy_observable", "C_legacy_source_corrected_observable") if is_under_sampled else ("B_normalized_source_legacy_observable", "D_normalized_source_corrected_observable")
             run["sources"][source_name] = {
                 "input_mass": float(M_field),
-                "represented_mass": float(M_field),
+                "represented_mass": float(field["active_source_mass"]),
                 "converged": bool(field["converged"]),
                 "iterations": int(field["iterations"]),
                 "final_change": float(field["final_change"]),
@@ -298,7 +306,11 @@ def run_kt6(N_values=None, M=50.0, G_eff=1.0, a0=2.0, box_side=20.0,
             "M": float(M), "G_eff": float(G_eff), "a0": float(a0),
             "box_side": float(box_side), "r_source": float(r_source),
             "unit_system": "dimensionless code units; no SI mapping asserted",
-            "boundary_condition": "Dirichlet Phi=0 on boundary_mask",
+            "boundary_condition": (
+                "Dirichlet Phi=0 pinned on the spherical margin shell "
+                "(boundary_mask: r > r_max - boundary_margin*h); outer cube "
+                "faces are graph-truncated and not Dirichlet-pinned"
+            ),
             "boundary_margin": float(boundary_margin),
             "max_iter": int(max_iter), "tol": float(tol),
         },

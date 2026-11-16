@@ -47,6 +47,13 @@ For each run: solver/model; commit; N/h/physical box; source support and discret
 - `py_compile` over all changed Python source/test files and `git diff --check`: exit 0.
 - Repository gates: `efc_schema_check.py` → 4 schema/instance pairs, 2 instanceless schemas, 4 schema-only schemas valid/closed; `efc_verify.py` → 171 paper dirs, 0 errors, 0 warnings; `efc_spraakvakt.py --referanse origin/main` → 0 new findings; `git diff --check` → 0.
 
+## Review round 2 (fixing researcher findings 1–3)
+
+- **Boundary documentation (finding 1).** `experiment_metadata()` now emits a `boundary_condition` stating the pin is the spherical margin shell `r > r_max - boundary_margin*h` and a `boundary_treatment` stating outer cube faces are graph-truncated (fewer neighbours) and not Dirichlet-pinned, marked pre-existing solver behaviour. Mirrored in `03-decision.md` item 7 and the KT6 output `params`.
+- **Source-mass guard (finding 2).** `kernel/fields.py` gains `active_source_mass(rho, boundary, spacing)` and `reject_source_on_boundary(rho, boundary)`; both solvers call the guard and return `active_source_mass`. KT6 records `represented_mass` from the measured `active_source_mass`. RED→GREEN: `test_aqual_rejects_source_support_overlapping_boundary_mask`, `test_aqual_accepts_central_source_and_reports_full_active_mass`, `test_linear_solver_reports_active_source_mass_equal_to_total`, and the updated `test_kt6_metadata_records_code_units_and_dirichlet_boundary` (asserts the new boundary strings).
+- **Charter scope (finding 3).** `00-charter.md` scope now includes `pipelines/README.md`.
+- Focused suite after round-2 fixes: `env -u PYTHONPATH -u PYTHONHOME -u PYTHONUSERBASE /opt/venvs/t_123ed6d9/bin/python -m pytest -q pipelines/efc/native_v2_graph/tests/test_physical_normalization.py` → **19 passed**, 6 existing SciPy sparse-CSR assignment warnings, ~75 s.
+
 ## Remaining gates
 
 KT1/KT3/KT4/KT5 compatibility smoke checks have not been run. Remaining delivery gates: branch push/PR creation, exact-head independent review and disposition, PR head/check readback, and final Kanban/ADR readback. `C_physical`, Lambda coupling, LambdaCDM limit, GR limit, EBE/RCMP operation and astrophysical validation remain outside what these results establish.

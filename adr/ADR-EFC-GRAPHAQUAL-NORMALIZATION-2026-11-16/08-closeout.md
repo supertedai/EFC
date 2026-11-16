@@ -11,7 +11,9 @@
 
 ## Implementation, tests, review, PR
 
-The Native v2 source/field/observable chain has been changed and tested. The focused normalization suite passes 16/16; the full repository suite passes 1327 tests with one SyntaxWarning; the schema, paper-integrity, language-delta, compile and diff gates pass. Matched-window `D` results are 1.161688, 1.152630, 1.158414 for N=21,31,41, respectively. This is a numerical trend in generic standard AQUAL under the declared code-unit/node-volume convention, not a physical EFC `C` or a demonstrated continuum limit. Commit created on `wt/t_bfded048`; branch push, PR, independent exact-head review and remote readback are pending. No merge/landing or production effect occurred.
+The Native v2 source/field/observable chain has been changed and tested. The focused normalization suite passes 19/19 (after the round-2 review fixes); the full repository suite passes 1327 tests with one SyntaxWarning; the schema, paper-integrity, language-delta, compile and diff gates pass. Matched-window `D` results are 1.161688, 1.152630, 1.158414 for N=21,31,41, respectively. This is a numerical trend in generic standard AQUAL under the declared code-unit/node-volume convention, not a physical EFC `C` or a demonstrated continuum limit.
+
+Independent review (round 1, `researcher`) returned **request changes** with three robustness/documentation findings (boundary treatment under-documented; silent source-mass shortfall at the boundary; ADR charter scope omission). All three were fixed in a round-2 pass: KT6 metadata and the ADR now state the spherical-margin-shell Dirichlet pin versus the graph-truncated outer cube faces; `reject_source_on_boundary` + `active_source_mass` guard the discrete mass measure in both solvers with RED→GREEN regression tests; the charter scope now includes `pipelines/README.md`. Re-review on the new exact head is pending. No merge/landing or production effect occurred.
 
 ## Residual questions
 

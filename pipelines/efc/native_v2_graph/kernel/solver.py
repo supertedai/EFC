@@ -8,7 +8,13 @@ import numpy as np
 from scipy.sparse.linalg import spsolve
 
 from .graph import build_cubic_lattice, radial_distances, boundary_mask
-from .fields import point_source_density, multi_source_density, boundary_potential
+from .fields import (
+    active_source_mass,
+    boundary_potential,
+    multi_source_density,
+    point_source_density,
+    reject_source_on_boundary,
+)
 from .operators import graph_laplacian, weighted_laplacian, discrete_gradient
 from .aqual import make_conductivity
 
@@ -25,6 +31,8 @@ def solve_linear_poisson(N, M, G_eff, spacing=1.0, r_source=2.0,
     r_arr = radial_distances(pos)
     bnd = boundary_mask(pos, r_arr, boundary_margin, spacing)
     rho = point_source_density(pos, r_arr, M, r_source, spacing=spacing)
+    reject_source_on_boundary(rho, bnd)
+    active_mass = active_source_mass(rho, bnd, spacing)
     rhs = -4.0 * np.pi * G_eff * rho * spacing ** 2
 
     L = graph_laplacian(adj, deg, n)
@@ -45,7 +53,8 @@ def solve_linear_poisson(N, M, G_eff, spacing=1.0, r_source=2.0,
         'pos': pos, 'adj': adj, 'deg': deg,
         'r_arr': r_arr, 'boundary': bnd,
         'Phi': Phi, 'g_vec': g_vec, 'g_mag': g_mag,
-        'rho': rho, 'rhs': rhs, 'N': N, 'converged': True, 'iterations': 1
+        'rho': rho, 'rhs': rhs, 'N': N, 'converged': True, 'iterations': 1,
+        'active_source_mass': active_mass,
     }
 
 
@@ -77,6 +86,8 @@ def solve_aqual(N, sources, G_eff, a0, r_source=2.0,
         sources = [sources]
 
     rho = multi_source_density(pos, sources, r_source, spacing=spacing)
+    reject_source_on_boundary(rho, bnd)
+    active_mass = active_source_mass(rho, bnd, spacing)
     rhs = -4.0 * np.pi * G_eff * rho * spacing ** 2
     phi_bc = boundary_potential(pos, bnd, boundary_phi)
     conductivity = make_conductivity(a0, spacing, mu_func)
@@ -130,5 +141,6 @@ def solve_aqual(N, sources, G_eff, a0, r_source=2.0,
         'Phi': Phi, 'g_vec': g_vec, 'g_mag': g_mag,
         'rho': rho, 'rhs': rhs, 'N': N, 'a0': a0,
         'converged': converged, 'iterations': iteration + 1,
-        'final_change': float(change)
+        'final_change': float(change),
+        'active_source_mass': active_mass,
     }

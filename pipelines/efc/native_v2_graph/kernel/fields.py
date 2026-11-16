@@ -60,6 +60,44 @@ def multi_source_density(positions, sources, r_source=2.0, spacing=1.0):
     return rho
 
 
+def active_source_mass(rho, boundary, spacing=1.0):
+    """Return the source mass on non-boundary (active) rows.
+
+    The solvers pin boundary rows to the Dirichlet value, so source support
+    that lies on the boundary mask never enters the solved equation. Under the
+    equal node-cell measure this is ``sum(rho[~boundary] * spacing**3)``.
+    """
+    rho = np.asarray(rho, dtype=float)
+    boundary = np.asarray(boundary, dtype=bool)
+    if rho.shape != boundary.shape:
+        raise ValueError("rho and boundary must have the same shape")
+    if spacing <= 0:
+        raise ValueError("spacing must be positive")
+    return float(np.sum(rho[~boundary]) * spacing ** 3)
+
+
+def reject_source_on_boundary(rho, boundary):
+    """Raise if any source node lies on the Dirichlet boundary mask.
+
+    A source node on the boundary mask is pinned to the boundary value, so its
+    mass is dropped from the solved equation and the declared ``sum rho h**3``
+    would silently overstate the solved mass. Rejecting the configuration keeps
+    the discrete mass measure honest; move the source centre inward or shrink
+    its support.
+    """
+    rho = np.asarray(rho, dtype=float)
+    boundary = np.asarray(boundary, dtype=bool)
+    if rho.shape != boundary.shape:
+        raise ValueError("rho and boundary must have the same shape")
+    overlap = int(np.count_nonzero((rho > 0) & boundary))
+    if overlap:
+        raise ValueError(
+            f"{overlap} source node(s) overlap the Dirichlet boundary mask; "
+            "the solver pins those rows to the boundary value and would drop "
+            "their mass from the solved equation. Move the source centre "
+            "inward or shrink r_source."
+        )
+
 
 def boundary_potential(positions, boundary, phi_func=None):
     """

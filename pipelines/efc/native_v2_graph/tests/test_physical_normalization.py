@@ -32,7 +32,12 @@ def test_kt6_metadata_records_code_units_and_dirichlet_boundary():
         r_source=2.0, boundary_margin=1.5,
     )
     assert metadata["unit_system"] == "dimensionless code units; no SI mapping asserted"
-    assert metadata["boundary_condition"] == "Dirichlet Phi=0 on boundary_mask"
+    assert metadata["boundary_condition"].startswith("Dirichlet Phi=0")
+    assert "boundary_mask" in metadata["boundary_condition"]
+    assert "spherical margin shell" in metadata["boundary_condition"]
+    assert "graph-truncated" in metadata["boundary_treatment"]
+    assert "not Dirichlet-pinned" in metadata["boundary_treatment"]
+    assert "pre-existing solver behaviour" in metadata["boundary_treatment"]
     assert metadata["boundary_margin"] == 1.5
     assert metadata["spacing"] == 1.0
     assert metadata["box_side"] == 20.0
@@ -281,3 +286,54 @@ def test_newton_point_source_has_correct_amplitude_and_slope_at_fixed_box():
         slope, n_points = measure_slope(radii, g_profile, 4.0, 9.0)
         assert n_points == len(expected_bins)
         assert abs(slope + 2.0) < 0.15
+
+
+def test_aqual_rejects_source_support_overlapping_boundary_mask():
+    # N=9, h=1: the Dirichlet pin is the spherical shell r > r_max - 1.5h
+    # (r_max = 6.928, so the shell is r > 5.428). A source centred at the
+    # corner [4,4,4] (r = 6.928) has support overlapping the pinned shell;
+    # its mass would be dropped from the solved equation, so the solver must
+    # reject it rather than silently under-report the solved mass.
+    with pytest.raises(ValueError, match="boundary mask"):
+        solve_aqual(
+            N=9,
+            sources=[([4.0, 4.0, 4.0], 1.0)],
+            G_eff=1.0,
+            a0=2.0,
+            r_source=2.0,
+            spacing=1.0,
+            max_iter=2,
+            tol=1e-3,
+            quiet=True,
+        )
+
+
+def test_aqual_accepts_central_source_and_reports_full_active_mass():
+    spacing = 1.0
+    mass = 1.0
+    result = solve_aqual(
+        N=9,
+        sources=[([0.0, 0.0, 0.0], mass)],
+        G_eff=1.0,
+        a0=2.0,
+        r_source=1.0,
+        spacing=spacing,
+        max_iter=2,
+        tol=1e-3,
+        quiet=True,
+    )
+    # The central source does not touch the boundary shell, so the mass that
+    # enters the solved equation equals the declared discrete mass.
+    assert np.isclose(result["active_source_mass"], mass, rtol=1e-12, atol=1e-12)
+    assert np.isclose(
+        np.sum(result["rho"]) * spacing ** 3, mass, rtol=1e-12, atol=1e-12
+    )
+
+
+def test_linear_solver_reports_active_source_mass_equal_to_total():
+    spacing = 1.0
+    mass = 1.0
+    result = solve_linear_poisson(
+        N=9, M=mass, G_eff=1.0, spacing=spacing, r_source=1.0
+    )
+    assert np.isclose(result["active_source_mass"], mass, rtol=1e-12, atol=1e-12)
