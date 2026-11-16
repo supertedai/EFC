@@ -38,7 +38,8 @@ def escalated(claims: list[dict]) -> list[dict]:
 def main() -> int:
     claims = escalated(load_claims())
     if not claims:
-        print("no escalated claims")
+        # stdout stays empty so a no_agent cron stays silent; stderr is for manual runs.
+        print("no escalated claims", file=sys.stderr)
         return 0
     print(f"{len(claims)} escalated claim(s):")
     for c in claims:
