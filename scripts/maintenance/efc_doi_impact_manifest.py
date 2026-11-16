@@ -54,12 +54,19 @@ def load_known_dois() -> dict[str, dict]:
 
 
 def scan_references() -> dict[str, set[str]]:
-    """Single rg pass over the repo: DOI -> set of files (relative paths) that mention it."""
+    """Single pass over the repo: DOI -> set of files (relative paths) that mention it.
+
+    Prefers ripgrep (fast); falls back to a stdlib os.walk scan when rg is not
+    installed (e.g. GitHub Actions ubuntu-latest has no ripgrep by default).
+    """
     args = ["rg", "-H", "-o", "-N", r"10\.6084/m9\.figshare\.\d+"]
     for g in SKIP_GLOBS:
         args += ["-g", g]
     args += ["."]
-    proc = subprocess.run(args, cwd=REPO, capture_output=True, text=True)
+    try:
+        proc = subprocess.run(args, cwd=REPO, capture_output=True, text=True)
+    except FileNotFoundError:
+        return _scan_with_python()
     if proc.returncode not in (0, 1):
         # rc=1 = no matches (rg); other values = error
         if proc.returncode != 1:
@@ -77,6 +84,28 @@ def scan_references() -> dict[str, set[str]]:
         if rel.startswith("./"):
             rel = rel[2:]
         refs.setdefault(doi, set()).add(rel)
+    return refs
+
+
+def _scan_with_python() -> dict[str, set[str]]:
+    """Stdlib fallback scanner (no ripgrep dependency)."""
+    import os
+    SKIP_DIRS = {".git", "node_modules", "venv", ".venv", "__pycache__", ".worktrees"}
+    refs: dict[str, set[str]] = {}
+    for root, dirs, files in os.walk(REPO):
+        dirs[:] = [d for d in dirs if not d.startswith(".") and d not in SKIP_DIRS]
+        for f in files:
+            if f.endswith((".pdf", ".png", ".jpg", ".jpeg", ".gif",
+                           ".bin", ".gz", ".zip", ".woff", ".woff2", ".ttf")):
+                continue
+            path = Path(root) / f
+            try:
+                text = path.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            for m in DOI_RE.finditer(text):
+                rel = path.relative_to(REPO).as_posix()
+                refs.setdefault(m.group(0), set()).add(rel)
     return refs
 
 
