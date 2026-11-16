@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/doi-map.schema.json",
   "version": "1.0",
-  "generated_at": "2026-09-18T07:25:29+00:00",
+  "generated_at": "2026-11-16T10:43:35+00:00",
   "generator": "scripts/maintenance/generate_doi_map.py",
   "author": {
     "name": "Morten Magnusson",
@@ -11,8 +11,8 @@
   "totals": {
     "orcid_works": 165,
     "orcid_dois": 165,
-    "repo_paper_dirs": 174,
-    "repo_unique_dois": 165,
+    "repo_paper_dirs": 175,
+    "repo_unique_dois": 166,
     "matched_count": 165,
     "missing_paper_dirs": 0,
     "duplicate_doi_dirs": 7,
@@ -779,6 +779,16 @@
       "repo_dir": "docs/papers/efc/EFC_L043_L044_PreRegistration",
       "package_complete": false,
       "has_pdf": false
+    },
+    {
+      "doi": "10.6084/m9.figshare.34003998",
+      "figshare_id": "34003998",
+      "title": "Energy-Flow Cosmology (EFC): Model-Family Reconciliation, Claim Status and Preregistration Proposals",
+      "date": "2026-09-21",
+      "version": "1.0",
+      "repo_dir": "docs/papers/efc/EFC_Model_Family_Reconciliation",
+      "package_complete": false,
+      "has_pdf": true
     },
     {
       "doi": "10.6084/m9.figshare.31223668",
