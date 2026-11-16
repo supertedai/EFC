@@ -1,0 +1,29 @@
+name: EFC impact-manifest (no-orphan invariant)
+
+# Wires efc_doi_impact_manifest.py --check into CI, so an orphan DOI — one
+# added to figshare/doi-map.json but never projected into any package or page
+# file — fails the gate instead of slipping through as an uncovered gap.
+#
+# --check recomputes the invariant on the fly (single rg pass); it needs no
+# committed manifest. Read-only: reports, never rewrites.
+
+on:
+  pull_request:
+    paths:
+      - "figshare/doi-map.json"
+      - "scripts/maintenance/efc_doi_impact_manifest.py"
+      - "tests/test_efc_doi_impact_manifest.py"
+      - ".github/workflows/efc-impact-manifest.yml"
+  push:
+    branches: [main]
+
+jobs:
+  impact-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - name: Run no-orphan invariant
+        run: python3 scripts/maintenance/efc_doi_impact_manifest.py --check
