@@ -199,7 +199,20 @@ def build_for_dir(name: str):
     pdfs = find_pdfs(initial_files)
     excerpts = find_text_excerpts(d, initial_files)
     excerpt_blob = " ".join(excerpts.values())
-    title = humanize(name)
+    # A package opts into its curated index.json title explicitly. The
+    # directory name remains the default for all other packages, avoiding
+    # an unintended repo-wide title rewrite during manifest regeneration.
+    canonical_index = {}
+    try:
+        with open(os.path.join(d, "index.json"), encoding="utf-8") as fh:
+            loaded_index = json.load(fh)
+        if isinstance(loaded_index, dict):
+            canonical_index = loaded_index
+    except (OSError, json.JSONDecodeError):
+        pass
+    title = (canonical_index.get("title")
+             if canonical_index.get("title_is_canonical") is True
+             else None) or humanize(name)
     slug = slugify(name)
     regs = regime_guess(excerpt_blob + " " + name)
     track = track_guess(name, excerpt_blob)
