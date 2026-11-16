@@ -1,6 +1,6 @@
 name: EFC figshare DOI presence-check + auto-scaffold
 
-# Two-pass workflow that closes the §6 C4 loop end-to-end:
+# Three-pass workflow that closes the §6 C4 loop end-to-end:
 #
 #  Pass 1 — presence check (`--check`)
 #      Verifies every DOI in figshare/doi-map.json against api.figshare.com.
@@ -15,6 +15,13 @@ name: EFC figshare DOI presence-check + auto-scaffold
 #      created, the workflow opens a *draft* pull request — never
 #      auto-merges to main, because new paper directories require
 #      maintainer review of content + Ledger integration.
+#
+#  Pass 3 — content enrichment (`efc_ai_brain.py --max 5`)
+#      After scaffolding (i.e. only when new PDFs were downloaded), runs the
+#      autonomous analysis pipeline: PDF → LLM → 10/10 metadata + src/examples/data
+#      + public-page updates. Gated on ANTHROPIC_API_KEY and the scaffold
+#      `changed=true` output, so the expensive LLM call never fires on an empty
+#      run. Results land in the SAME draft PR — never auto-merged.
 #
 # Triggers: weekly Mondays 05:00 UTC, on-demand via workflow_dispatch,
 # and on PRs that touch doi-map.json or the script itself.
@@ -105,6 +112,23 @@ jobs:
             git --no-pager diff --stat | head -40
             git ls-files --others --exclude-standard | head -40
           fi
+
+      - name: Pass 3 — enrich scaffolded papers (content analysis)
+        if: |
+          always() &&
+          steps.scaffold.outputs.changed == 'true' &&
+          github.event_name != 'pull_request'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -e
+          if [ -z "${ANTHROPIC_API_KEY}" ]; then
+            echo "::warning::ANTHROPIC_API_KEY not configured — skipping content enrichment"
+            exit 0
+          fi
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq poppler-utils
+          python3 scripts/maintenance/efc_ai_brain.py --max 5
 
       - name: Commit + push scaffold branch
         if: |

@@ -13,7 +13,7 @@
 PYTHON ?= python3
 
 install:
-	uv sync --frozen
+	uv sync --frozen --extra verify
 
 check:
 	$(PYTHON) scripts/maintenance/statement_graph_check.py
