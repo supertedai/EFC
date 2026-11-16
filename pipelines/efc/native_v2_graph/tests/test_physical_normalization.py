@@ -308,6 +308,58 @@ def test_aqual_rejects_source_support_overlapping_boundary_mask():
         )
 
 
+@pytest.mark.parametrize(
+    ("source_center", "should_reject"),
+    [
+        ([0.0, 0.0, 0.0], False),
+        ([1.0, 0.0, 0.0], False),
+        ([4.0, 4.0, 0.0], True),
+    ],
+)
+def test_aqual_source_position_contract_is_reported_by_actual_solver(
+    source_center, should_reject
+):
+    """Centered and interior-offset sources conserve M; near-shell sources reject."""
+    call = dict(
+        N=9,
+        sources=[(source_center, 1.0)],
+        G_eff=1.0,
+        a0=2.0,
+        r_source=2.0,
+        spacing=1.0,
+        max_iter=2,
+        tol=1e-3,
+        quiet=True,
+    )
+    if should_reject:
+        with pytest.raises(ValueError, match="boundary mask"):
+            solve_aqual(**call)
+        return
+    result = solve_aqual(**call)
+    assert np.allclose(result["source_centers"], [source_center])
+    assert np.isclose(result["active_source_mass"], 1.0, rtol=1e-12, atol=1e-12)
+    assert np.isclose(np.sum(result["rho"]), 1.0, rtol=1e-12, atol=1e-12)
+
+
+def test_boundary_mask_is_symmetric_under_equivalent_cube_face_rotations():
+    positions, _, _ = build_cubic_lattice(9, spacing=1.0)
+    radii = radial_distances(positions)
+    from kernel.graph import boundary_mask
+
+    mask = boundary_mask(positions, radii, margin_factor=1.5, spacing=1.0)
+    for transform in (
+        lambda p: p[:, [1, 0, 2]],
+        lambda p: p[:, [2, 1, 0]],
+        lambda p: p * np.array([-1.0, 1.0, 1.0]),
+        lambda p: p * np.array([1.0, -1.0, 1.0]),
+    ):
+        transformed = transform(positions)
+        transformed_mask = boundary_mask(
+            transformed, radial_distances(transformed), margin_factor=1.5, spacing=1.0
+        )
+        assert np.array_equal(mask, transformed_mask)
+
+
 def test_aqual_accepts_central_source_and_reports_full_active_mass():
     spacing = 1.0
     mass = 1.0

@@ -1,0 +1,111 @@
+{
+  "test": "KT6 acceptance probes",
+  "scope": "generic standard AQUAL numerical calibration only",
+  "params": {
+    "N": 21,
+    "box_side": 20.0,
+    "spacing": 1.0,
+    "M": 50.0,
+    "G_eff": 1.0,
+    "a0": 2.0,
+    "r_source": 2.0,
+    "max_iter": 100,
+    "tol": 0.001
+  },
+  "boundary_margin_sensitivity": [
+    {
+      "boundary_margin": 1.0,
+      "converged": true,
+      "iterations": 8,
+      "wall_time_s": 19.08016300201416,
+      "C_r": [
+        1.233499460614089,
+        1.1640401270982645,
+        1.1315670945954903,
+        1.1109745320626878
+      ],
+      "r_bins": [
+        5.5,
+        6.5,
+        7.5,
+        8.5
+      ],
+      "radial_slope": -1.2391194350970993,
+      "mean_C": 1.1600203035926329,
+      "C_bin_spread_not_uncertainty": 0.046450022348764476
+    },
+    {
+      "boundary_margin": 1.5,
+      "converged": true,
+      "iterations": 9,
+      "wall_time_s": 21.37442708015442,
+      "C_r": [
+        1.2347286914494702,
+        1.1649183591957906,
+        1.1321766350337688,
+        1.111402646445246
+      ],
+      "r_bins": [
+        5.5,
+        6.5,
+        7.5,
+        8.5
+      ],
+      "radial_slope": -1.2405355368575077,
+      "mean_C": 1.1608065830310688,
+      "C_bin_spread_not_uncertainty": 0.046748817334652346
+    },
+    {
+      "boundary_margin": 2.0,
+      "converged": true,
+      "iterations": 9,
+      "wall_time_s": 23.100353956222534,
+      "C_r": [
+        1.2347607971349117,
+        1.164896977732431,
+        1.132096394789122,
+        1.110964915849167
+      ],
+      "r_bins": [
+        5.5,
+        6.5,
+        7.5,
+        8.5
+      ],
+      "radial_slope": -1.2414104560297061,
+      "mean_C": 1.1606797713764079,
+      "C_bin_spread_not_uncertainty": 0.0468891231633372
+    }
+  ],
+  "boundary_symmetry": {
+    "status": "Pass",
+    "method": "boundary_mask invariance under axis permutations and sign flips",
+    "scope": "N=9, h=1, margin=1.5; regression test"
+  },
+  "far_radius_probe": {
+    "window": [
+      9.0,
+      13.0
+    ],
+    "C_r": [
+      1.0923690015033527,
+      1.1096294102521322,
+      1.3982650945517063,
+      1.6172443969063734
+    ],
+    "r_bins": [
+      9.5,
+      10.5,
+      11.5,
+      12.5
+    ],
+    "acceleration_log_slope": 0.5243032621954743,
+    "slope_bin_count": 4,
+    "mean_C": 1.3043769758033912,
+    "C_bin_spread_not_uncertainty": 0.21770105505295342,
+    "converged": true,
+    "iterations": 9,
+    "wall_time_s": 20.920173406600952,
+    "deep_mond_asymptotic_status": "Unresolved: finite box and bounded radial window do not establish asymptotic behavior"
+  }
+}

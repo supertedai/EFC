@@ -54,6 +54,23 @@ For each run: solver/model; commit; N/h/physical box; source support and discret
 - **Charter scope (finding 3).** `00-charter.md` scope now includes `pipelines/README.md`.
 - Focused suite after round-2 fixes: `env -u PYTHONPATH -u PYTHONHOME -u PYTHONUSERBASE /opt/venvs/t_123ed6d9/bin/python -m pytest -q pipelines/efc/native_v2_graph/tests/test_physical_normalization.py` → **19 passed**, 6 existing SciPy sparse-CSR assignment warnings, ~75 s.
 
+## Run 862 verification (current worktree, before push)
+
+- Canonical environment: `/opt/venvs/t_123ed6d9/bin/python`, Python 3.12.13, pytest 8.4.2; `PYTHONPATH`, `PYTHONHOME` and `PYTHONUSERBASE` unset.
+- Focused suite: `.../python -m pytest -q pipelines/efc/native_v2_graph/tests/test_physical_normalization.py` → **23 passed**, 8 SciPy `SparseEfficiencyWarning` instances, exit 0, 75.73 s.
+- Full suite: `.../python -m pytest tests/ -q` → **1327 passed**, exit 0, 112.26 s; one non-failing `SyntaxWarning` for `\\d` in `tests/test_maintenance_chain_fixpoint.py`.
+- `py_compile` on the changed solver and both relevant test/probe files, schema check, paper verification, `spraakvakt --referanse origin/main`, and `git diff --check` all exited 0. Schema: 4 paired, 2 instanceless and 4 schema-only schemas valid; paper verifier: 171 dirs, 0 errors/warnings; language delta: 0 new findings.
+- Re-ran the bounded acceptance probe from this worktree in run 862. It reproduced the archived C(r), mean-C and slope values; only wall times differed. The three boundary-margin runs (1.0/1.5/2.0) converged with mean C 1.160020/1.160807/1.160680 and radial slopes −1.239119/−1.240536/−1.241410. The farther window [9,13] gives C(r)=[1.092369,1.109629,1.398265,1.617244] and acceleration slope +0.524303; Deep-MOND status remains **Unresolved**.
+- Pre-push remote readback: PR #657 is OPEN/DRAFT and branch/PR head are `76a0c4e6299b633f5bc65362c12913388675ec1d`; the run-862 acceptance diff is not yet included in that remote head. `mergeState=CLEAN`, `mergedAt=null` at that readback. No merge.
+
 ## Remaining gates
 
-KT1/KT3/KT4/KT5 compatibility smoke checks have not been run. Remaining delivery gates: branch push/PR creation, exact-head independent review and disposition, PR head/check readback, and final Kanban/ADR readback. `C_physical`, Lambda coupling, LambdaCDM limit, GR limit, EBE/RCMP operation and astrophysical validation remain outside what these results establish.
+- KT1/KT3/KT4/KT5 compatibility smoke checks have not been run. Delivery gates: commit and push the verified run-862 diff to the existing branch/PR, read back exact PR head and checks, obtain independent exact-head review and disposition, then final Kanban/ADR readback. `C_physical`, Lambda coupling, LambdaCDM limit, GR limit, EBE/RCMP operation and astrophysical validation remain outside what these results establish.
+
+## Acceptance clarification measurements (round 3)
+
+- **Source positions — Pass.** The actual `solve_aqual` path now has behavior-level coverage for a centered source, an interior offset source, and a near-shell source. Centered and offset cases report `active_source_mass=M`; the near-shell case is rejected before solving because its strict-radius support intersects the pinned shell. The solver result carries `source_centers` as provenance.
+- **Boundary semantics and symmetry — Pass.** The boundary mask remains a spherical margin shell; outer cube faces are graph-truncated and not Dirichlet-pinned. A regression test checks invariance under axis permutations and sign flips for N=9, h=1, margin=1.5.
+- **Fixed-box margin sensitivity — Pass (numerical calibration only).** The preserved probe `pipelines/efc/native_v2_graph/outputs/runs/kt6_acceptance_probes_20261116/kt6_acceptance_probes.json` uses N=21, box side 20, h=1, M=50, a0=2 and common bins [5.5, 6.5, 7.5, 8.5]. For margins 1.0/1.5/2.0, mean C is 1.160020/1.160807/1.160680 and radial slopes are -1.239119/-1.240536/-1.241410. Each run converged; C(r) and bin spread are recorded separately, and spread is not treated as uncertainty on C_infinity.
+- **Farther-radius probe — Unresolved.** The same preserved probe records C(r) on [9.5, 10.5, 11.5, 12.5] and acceleration slope +0.524303 over [9,13]. The finite box, bounded iteration and non-asymptotic/unstable profile do not establish the Deep-MOND asymptote; no parameter was tuned.
+- **Current PR state — pre-push measurement.** The remote PR/branch remain at `76a0c4e6299b633f5bc65362c12913388675ec1d`; the acceptance changes verified in run 862 are still local and uncommitted. Re-read PR head/checks after pushing. `mergedAt` was null; no merge or landing is authorized by this ADR.

@@ -1,6 +1,6 @@
 # Closeout
 
-**Status:** Implementation and validation in progress; not closed. Task `t_bfded048` is running on `energy-flow-cosmology`. Source changes are present only in the isolated worktree; no commit/PR or production effect yet.
+**Status:** Acceptance implementation and local verification are complete for run 862; the verified changes are still uncommitted in the isolated worktree. PR #657 remains open/draft at the prior remote head `76a0c4e6299b633f5bc65362c12913388675ec1d`; commit/push and exact-head independent re-review remain. No merge/landing or production effect.
 
 ## Baseline findings
 
@@ -11,9 +11,17 @@
 
 ## Implementation, tests, review, PR
 
-The Native v2 source/field/observable chain has been changed and tested. The focused normalization suite passes 19/19 (after the round-2 review fixes); the full repository suite passes 1327 tests with one SyntaxWarning; the schema, paper-integrity, language-delta, compile and diff gates pass. Matched-window `D` results are 1.161688, 1.152630, 1.158414 for N=21,31,41, respectively. This is a numerical trend in generic standard AQUAL under the declared code-unit/node-volume convention, not a physical EFC `C` or a demonstrated continuum limit.
+The Native v2 source/field/observable chain has been changed and tested. In run 862, the focused normalization suite passes 23/23 (8 SciPy sparse-CSR efficiency warnings); the full repository suite passes 1327 tests with one non-failing SyntaxWarning; schema, paper-integrity, language-delta, compile and diff gates pass. The acceptance-probe rerun reproduces the saved boundary-sensitivity and farther-window numerical profiles. Matched-window `D` results are 1.161688, 1.152630, 1.158414 for N=21,31,41, respectively. This is a numerical trend in generic standard AQUAL under the declared code-unit/node-volume convention, not a physical EFC `C` or a demonstrated continuum limit.
 
-Independent review (round 1, `researcher`) returned **request changes** with three robustness/documentation findings (boundary treatment under-documented; silent source-mass shortfall at the boundary; ADR charter scope omission). All three were fixed in a round-2 pass: KT6 metadata and the ADR now state the spherical-margin-shell Dirichlet pin versus the graph-truncated outer cube faces; `reject_source_on_boundary` + `active_source_mass` guard the discrete mass measure in both solvers with RED→GREEN regression tests; the charter scope now includes `pipelines/README.md`. Re-review on the new exact head is pending. No merge/landing or production effect occurred.
+Independent review (round 1, `researcher`) returned **request changes** with three robustness/documentation findings (boundary treatment under-documented; silent source-mass shortfall at the boundary; ADR charter scope omission). All three were fixed in round 2. The round-2 reviewer (`researcher`, run 858) then requested the owner-added source-position, symmetry/margin-sensitivity, farther-window and status-reporting acceptance evidence; those items are now addressed by the run-862 tests/probes and this ADR update. A fresh independent review of the pushed exact head is still required. No merge/landing or production effect occurred.
+
+## Acceptance clarification results
+
+- Source-position contract: **Pass** — centered and interior-offset actual solves preserve the declared mass; near-shell support is rejected by the boundary guard. The actual solver now returns source-center provenance.
+- Boundary semantics/symmetry: **Pass** — spherical margin-shell pin and graph-truncated cube-face behavior are documented and symmetry is regression-tested.
+- Fixed-box boundary-margin sensitivity: **Pass** as generic numerical calibration, with preserved C(r), mean C, radial slope, counts/spread and timing in `kt6_acceptance_probes_20261116/kt6_acceptance_probes.json`.
+- Farther-radius Deep-MOND status: **Unresolved** — a real [9,13] probe was run and preserved, but its finite-box profile and positive acceleration slope do not establish an asymptote. No tuning was performed.
+- Review: round-2 requested changes are implemented; a fresh independent exact-head review remains required. PR #657 remains open/draft and unmerged.
 
 ## Residual questions
 

@@ -143,4 +143,5 @@ def solve_aqual(N, sources, G_eff, a0, r_source=2.0,
         'converged': converged, 'iterations': iteration + 1,
         'final_change': float(change),
         'active_source_mass': active_mass,
+        'source_centers': [list(np.asarray(center, dtype=float)) for center, _ in sources],
     }

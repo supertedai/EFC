@@ -26,3 +26,18 @@ Three findings, each independently reproduced against the code:
 3. Widened `00-charter.md` scope to include `pipelines/README.md`.
 
 Re-review pending on the new exact head; no self-approval.
+
+## Round 2 review (run 858) and disposition
+
+**Reviewer:** `researcher`, separate review profile/session. **Verdict:** changes requested; no implementation edits by the reviewer and no merge/landing.
+
+The reviewer verified the round-1 fixes, then identified the remaining owner-required acceptance evidence: (1) actual-solver centered, interior-offset and near-boundary source-position coverage; (2) fixed-box margin-sensitivity results with C(r), mean C, radial slope and symmetry evidence; (3) a farther-radius probe with C(r), acceleration slope and explicit Deep-MOND status; and (4) current Pass/Fail/Unresolved results in the ADR.
+
+**Disposition (implementer run 862):**
+
+- Added solver-level tests for centered and offset sources (active source mass equals declared M) and a near-shell source (rejected on boundary-mask overlap); the solver result records source-center provenance.
+- Added a boundary-mask symmetry regression for axis permutations/sign flips and ran a fixed-box N=21 margin sweep at 1.0/1.5/2.0. The measured mean C values are 1.160020/1.160807/1.160680; radial slopes are −1.239119/−1.240536/−1.241410. These are numerical-calibration diagnostics, not uncertainty on C-infinity.
+- Ran the farther [9,13] probe: C(r)=[1.092369,1.109629,1.398265,1.617244], acceleration slope +0.524303. Deep-MOND asymptotic status is **Unresolved**; no physical parameter was tuned.
+- Focused suite 23/23; full suite 1327 passed; repository validation gates passed (see `05-verification.md`).
+
+The changes are verified locally but were not yet committed/pushed at the time of this entry. Request a fresh independent review on the exact pushed PR head; do not self-approve or merge.
