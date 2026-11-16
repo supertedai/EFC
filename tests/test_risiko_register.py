@@ -296,7 +296,7 @@ def test_det_ekte_registeret_validerer():
     feil = vr.valider_innhold(register, eierregister, ROT)
     assert feil == [], feil
     linjer = [json.loads(x) for x in register.read_text(encoding="utf-8").splitlines() if x.strip()]
-    assert len(linjer) == 2
+    assert len(linjer) == 3
     assert {p["type"] for p in linjer} == {"HAZID", "BLAST_RADIUS"}
     for p in linjer:
         assert p["gate_required"] is True and p["gate_decision"] == "venter", \
