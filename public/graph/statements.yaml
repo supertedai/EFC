@@ -33,7 +33,9 @@ statements:
     type: explicit
     description: fσ₈(z) systematically ABOVE the ΛCDM curve at z < 1 would falsify
       the mu < 1 channel.
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: primary
 - statement_id: efc.h1.002
   text: 'DESI DR2: the background sector coupling parameter α collapsed from -1.00
     ± 0.46 (2.2σ) to -0.14 ± 0.21 (0.68σ) — the background signal is gone, and the
@@ -46,7 +48,11 @@ statements:
   - ev.efc.desidr2.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: primary
+  - page_id: validation-ledger
+    role: secondary
 - statement_id: efc.h1.003
   text: 'Variant H (the entropy-gradient growth mechanism) shows no data preference:
     DAIC = +4.05, S₀ = 0.21 ± 0.14 at 1.5σ — the signal may lie below current
@@ -59,7 +65,11 @@ statements:
   - ev.efc.desidr2.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: primary
+  - page_id: validation-ledger
+    role: secondary
 - statement_id: efc.h2.001
   text: 'EFC effects are regime-specific: L0 (CMB/linear) reduces to ΛCDM exactly,
     L1 (BAO/quasi-linear) has a small perturbative modification, L2 (galaxy/non-linear)
@@ -107,7 +117,11 @@ statements:
   - ev.efc.h4.001
   contradicts: []
   supersedes: null
-  appears_on: []
+  appears_on:
+  - page_id: atlas
+    role: primary
+  - page_id: white-paper-series
+    role: secondary
 - statement_id: efc.h5.001
   text: 'The EFC Lagrange-multiplier flow condition yields anisotropic stress without
     a standard Horndeski correspondence: mu < 1 AND Σ ≥ 1 at the same time — a regime

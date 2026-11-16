@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "generator": "manual seed (auto-retrieval foundation)",
+  "purpose": "Claim -> independent external sources, with lineage for the triangulation layer. This is the retrieval manifest: the bounded first step of auto-henting. Network fetching of fresh survey data is the follow-up.",
+  "claims": {
+    "P2": {
+      "statement": "f\u03c38(z=0.7)=0.430 (sealed, DOI 32013156)",
+      "kind": "scientific",
+      "risk": "high",
+      "sources": [
+        {
+          "external_id": "10.1093/mnras/boss_dr12",
+          "organization": "SDSS",
+          "authors": ["boss_collab"],
+          "data_lineage": ["sdss_dr12"],
+          "supports": true
+        },
+        {
+          "external_id": "10.1093/mnras/eboss_dr16",
+          "organization": "SDSS",
+          "authors": ["eboss_collab"],
+          "data_lineage": ["sdss_dr16"],
+          "supports": true
+        }
+      ],
+      "note": "BOSS + eBOSS share SDSS -> correlated -> escalated. DESI DR2 full-shape f\u03c38 withdrawn (arXiv:2607.27411)."
+    }
+  }
+}
