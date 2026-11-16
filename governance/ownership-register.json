@@ -279,6 +279,26 @@
         "maintain.log"
       ],
       "cadence": "continuous"
+    },
+    {
+      "id": "adr",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "adr/**"
+      ],
+      "cadence": "per_change"
+    },
+    {
+      "id": "wiki",
+      "kind": "dir",
+      "owner": "researcher",
+      "implementer": "researcher",
+      "coverage_glob": [
+        "wiki/**"
+      ],
+      "cadence": "per_change"
     }
   ],
   "_unntak": [
