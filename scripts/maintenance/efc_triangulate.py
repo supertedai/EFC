@@ -15,8 +15,14 @@ See ADR-EFC-TRIANGULATION-2026-11-16 for the full model.
 """
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import FrozenSet
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+RECORD_DIR = REPO_ROOT / "data" / "triangulation"
 
 
 @dataclass(frozen=True)
@@ -164,6 +170,31 @@ def validate_sources(sources) -> list[str]:
         if not has_provenance(s):
             problems.append(f"source[{i}]: missing provenance")
     return problems
+
+
+def write_record(claim: Claim, classification: dict) -> Path:
+    """Persist a claim's classification as an append-only record.
+
+    Writes data/triangulation/<claim_id>.json so the escalation digest can
+    report it. Idempotent: re-writing the same claim_id overwrites its record
+    (the record is per-claim state, not an event log).
+    """
+    RECORD_DIR.mkdir(parents=True, exist_ok=True)
+    record = {
+        "claim_id": claim.claim_id,
+        "statement": claim.statement,
+        "kind": claim.kind,
+        "risk": claim.risk,
+        **classification,
+        "sources": [
+            {"external_id": s.external_id, "supports": s.supports}
+            for s in claim.sources
+        ],
+        "written_at": datetime.now(timezone.utc).isoformat(),
+    }
+    path = RECORD_DIR / f"{claim.claim_id}.json"
+    path.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")
+    return path
 
 
 if __name__ == "__main__":
