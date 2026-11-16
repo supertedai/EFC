@@ -1,6 +1,6 @@
 # Closeout
 
-**Status:** Acceptance implementation and local verification are complete for run 862; the verified changes are still uncommitted in the isolated worktree. PR #657 remains open/draft at the prior remote head `76a0c4e6299b633f5bc65362c12913388675ec1d`; commit/push and exact-head independent re-review remain. No merge/landing or production effect.
+**Status:** Acceptance implementation and local verification are complete for run 862. Code/data commit `6960e31d3ba82e096acedb553438fb2d3bbd2fb3` is pushed to the existing branch/PR; its immediate readback was PR #657 OPEN/DRAFT with `verify=SUCCESS`, `mergeState=CLEAN`, `mergedAt=null`. A fresh independent review of the final exact PR head remains; no merge/landing or production effect.
 
 ## Baseline findings
 

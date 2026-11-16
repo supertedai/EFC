@@ -65,7 +65,7 @@ For each run: solver/model; commit; N/h/physical box; source support and discret
 
 ## Remaining gates
 
-- KT1/KT3/KT4/KT5 compatibility smoke checks have not been run. Delivery gates: commit and push the verified run-862 diff to the existing branch/PR, read back exact PR head and checks, obtain independent exact-head review and disposition, then final Kanban/ADR readback. `C_physical`, Lambda coupling, LambdaCDM limit, GR limit, EBE/RCMP operation and astrophysical validation remain outside what these results establish.
+- KT1/KT3/KT4/KT5 compatibility smoke checks have not been run; they remain residual checks outside this bounded normalization acceptance. The run-862 implementation/data commit `6960e31d3ba82e096acedb553438fb2d3bbd2fb3` was pushed to the existing branch and PR #657. Its immediate remote readback showed OPEN/DRAFT, `verify=SUCCESS`, `mergeState=CLEAN`, `mergedAt=null`. Obtain a fresh independent review on the final exact PR head, read back that head and checks after the ADR closeout update, then complete the Kanban/ADR handoff. `C_physical`, Lambda coupling, LambdaCDM limit, GR limit, EBE/RCMP operation and astrophysical validation remain outside what these results establish.
 
 ## Acceptance clarification measurements (round 3)
 

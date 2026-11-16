@@ -40,4 +40,4 @@ The reviewer verified the round-1 fixes, then identified the remaining owner-req
 - Ran the farther [9,13] probe: C(r)=[1.092369,1.109629,1.398265,1.617244], acceleration slope +0.524303. Deep-MOND asymptotic status is **Unresolved**; no physical parameter was tuned.
 - Focused suite 23/23; full suite 1327 passed; repository validation gates passed (see `05-verification.md`).
 
-The changes are verified locally but were not yet committed/pushed at the time of this entry. Request a fresh independent review on the exact pushed PR head; do not self-approve or merge.
+At the time of this entry, the changes were verified locally but not yet committed/pushed. The code/data commit `6960e31d3ba82e096acedb553438fb2d3bbd2fb3` has since been pushed; its immediate PR readback was OPEN/DRAFT with `verify=SUCCESS`, `mergeState=CLEAN`, and no merge. Request a fresh independent review on the final exact pushed PR head; do not self-approve or merge.
