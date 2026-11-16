@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
-"""efc_doi_impact_manifest.py — Komponent 1: DOI-impact-manifest.
+"""efc_doi_impact_manifest.py — Component 1: DOI impact manifest.
 
-Bygger `data/doi_impact_manifest.json`: for hver kjent DOI (kanonisk kilde
-`figshare/doi-map.json`), hvilke filer i repoet som refererer DOI-en.
+Builds `data/doi_impact_manifest.json`: for every known DOI (canonical source
+`figshare/doi-map.json`), the set of repo files that reference that DOI.
 
-Invarianten som gjør dekningen *av konstruksjon* i stedet for *av enumerering*:
+The invariant that makes coverage *by construction* instead of *by enumeration*:
 
-  *no-orphan* — hver DOI i doi-map.json må forekomme i minst én fil utenom
-  selve doi-map.json. En DOI som bare står i katalogen, men aldri er projisert
-  til en pakke- eller side-fil, er en «orphan» og feiler.
+  *no-orphan* — every DOI in doi-map.json must occur in at least one file other
+  than doi-map.json itself. A DOI that only appears in the catalog, but is never
+  projected into a package or page file, is an "orphan" and fails.
 
-Bruk:
-    python3 scripts/maintenance/efc_doi_impact_manifest.py           # skriv manifest
-    python3 scripts/maintenance/efc_doi_impact_manifest.py --check   # kun verifiser invariant
+Usage:
+    python3 scripts/maintenance/efc_doi_impact_manifest.py           # write manifest
+    python3 scripts/maintenance/efc_doi_impact_manifest.py --check   # verify invariant only
 
-Returnerer 0 hvis invarianten holder, 1 ellers (for CI-gate).
+Returns 0 if the invariant holds, 1 otherwise (for CI gating).
 """
 from __future__ import annotations
 
@@ -31,14 +31,14 @@ MANIFEST = REPO / "data" / "doi_impact_manifest.json"
 
 DOI_RE = re.compile(r"10\.6084/m9\.figshare\.\d+")
 
-# Filer som alltid hoppes over (binærfiler). rg hopper over .git, skjulte filer
-# og binære filer som standard; disse er ekstra sikkerhet for kjente binærtyper.
+# Files always skipped (binaries). rg skips .git, hidden files and binary files
+# by default; these are extra safety for known binary types.
 SKIP_GLOBS = ["!*.pdf", "!*.png", "!*.jpg", "!*.jpeg", "!*.gif",
               "!*.bin", "!*.gz", "!*.zip", "!*.woff", "!*.woff2", "!*.ttf"]
 
 
 def load_known_dois() -> dict[str, dict]:
-    """Les kanoniske DOI-er fra doi-map.json. Returnerer {doi: {title, paper_type, repo_dir}}."""
+    """Read canonical DOIs from doi-map.json. Returns {doi: {title, paper_type, repo_dir}}."""
     data = json.loads(DOI_MAP.read_text())
     out: dict[str, dict] = {}
     for p in data.get("papers", []):
@@ -54,20 +54,20 @@ def load_known_dois() -> dict[str, dict]:
 
 
 def scan_references() -> dict[str, set[str]]:
-    """Én rg-pass over repoet: DOI -> sett av filer (relative baner) som nevner den."""
+    """Single rg pass over the repo: DOI -> set of files (relative paths) that mention it."""
     args = ["rg", "-H", "-o", "-N", r"10\.6084/m9\.figshare\.\d+"]
     for g in SKIP_GLOBS:
         args += ["-g", g]
     args += ["."]
     proc = subprocess.run(args, cwd=REPO, capture_output=True, text=True)
     if proc.returncode not in (0, 1):
-        # rc=1 = ingen treff (rg); andre verdier = feil
+        # rc=1 = no matches (rg); other values = error
         if proc.returncode != 1:
             raise RuntimeError(f"rg failed rc={proc.returncode}: {proc.stderr[:400]}")
 
     refs: dict[str, set[str]] = {}
     for line in proc.stdout.splitlines():
-        # format: "sti:DOI" (med -H er filnavn alltid prefikset)
+        # format: "path:DOI" (with -H the filename is always prefixed)
         if ":" not in line:
             continue
         path, doi = line.rsplit(":", 1)
@@ -81,7 +81,7 @@ def scan_references() -> dict[str, set[str]]:
 
 
 def _detect_orphans(known: dict[str, dict], refs: dict[str, set[str]]) -> list[str]:
-    """DOI-er som bare står i doi-map.json (aldri projisert til en annen fil)."""
+    """DOIs that only appear in doi-map.json (never projected into another file)."""
     orphans: list[str] = []
     for doi in sorted(known):
         beyond_catalog = [f for f in refs.get(doi, set()) if f != "figshare/doi-map.json"]
@@ -127,21 +127,21 @@ def main() -> int:
 
     if check_only:
         if orphans:
-            print(f"FAIL: {len(orphans)} orphan DOI-er (kun i doi-map, aldri projisert):")
+            print(f"FAIL: {len(orphans)} orphan DOIs (only in doi-map, never projected):")
             for d in orphans:
                 print(f"  - {d}")
             return 1
-        print(f"OK: ingen orphan DOI-er ({manifest['totals']['known_dois']} kjente).")
+        print(f"OK: no orphan DOIs ({manifest['totals']['known_dois']} known).")
         return 0
 
     MANIFEST.parent.mkdir(parents=True, exist_ok=True)
     MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-    print(f"Manifest skrevet: {MANIFEST.relative_to(REPO)}")
-    print(f"  kjente DOI-er: {manifest['totals']['known_dois']}")
-    print(f"  orphan DOI-er: {manifest['totals']['orphan_dois']}")
-    print(f"  filer med DOI-ref: {manifest['totals']['files_referencing_dois']}")
+    print(f"Manifest written: {MANIFEST.relative_to(REPO)}")
+    print(f"  known DOIs: {manifest['totals']['known_dois']}")
+    print(f"  orphan DOIs: {manifest['totals']['orphan_dois']}")
+    print(f"  files with DOI refs: {manifest['totals']['files_referencing_dois']}")
     if orphans:
-        print("Orphan DOI-er:")
+        print("Orphan DOIs:")
         for d in orphans:
             print(f"  - {d}")
     return 0

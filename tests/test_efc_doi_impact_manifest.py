@@ -1,7 +1,7 @@
-"""Tests for scripts/maintenance/efc_doi_impact_manifest.py — no-orphan-invarianten.
+"""Tests for scripts/maintenance/efc_doi_impact_manifest.py — the no-orphan invariant.
 
-Hermetisk: tester kun de rene funksjonene (`_detect_orphans`, `build_manifest`)
-med injiserte dict-er, aldri live-scan av repoet.
+Hermetic: exercises only the pure functions (`_detect_orphans`, `build_manifest`)
+with injected dicts, never a live repo scan.
 """
 from __future__ import annotations
 
