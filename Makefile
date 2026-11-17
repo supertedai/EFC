@@ -63,3 +63,10 @@ node-check:
 # a non-zero exit would read as "script failed").
 self-heal:
 	$(PYTHON) scripts/maintenance/efc_selfheal.py --strict
+
+# PR-triage: classify open PRs; auto-act is ONLY the reversible CLOSE of
+# DEAD (stale point-in-time drafts) + SUPERSEDED (already merged elsewhere).
+# Everything else escalates (no auto-merge, per second opinion 0.94).
+# --torr reports (default); --utfoer performs the closes.
+pr-triage:
+	$(PYTHON) scripts/maintenance/efc_pr_triage.py
