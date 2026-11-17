@@ -323,3 +323,58 @@ class TestParserensGrenser:
             '[tool.pytest.ini_options]\n'
             'norecursedirs = ["a", "b", "c", "d", "e"]\n')
         assert d.get("norecursedirs") == ["a", "b", "c", "d", "e"], d
+
+
+class TestBroGatenKjoererISelv:
+    """The bridge gate must stand in CI itself — and must be triggered by the engine files.
+
+    Measured 2026-09-18 (t_dd5efeec): `tests/test_bro_konvensjon.py` existed,
+    was green locally, and was CLAIMED «registered in the efc-schema workflow»
+    both in the commit message (#504) and in `requirements.txt`. It was not in
+    the CI command. On top of that, `efc_inference/engine/**` was missing from
+    the trigger lists, so a change that touched ONLY an engine ran no
+    verification at all — that was the path by which a wrong `nivaa` block
+    could be committed silently.
+
+    Same shape as `TestVernetKjoererISelv` above: a gate that is not run is
+    documentation.
+    """
+
+    BRO_GATE = "tests/test_bro_konvensjon.py"
+    KONVENSJON = "scripts/maintenance/efc_bro_konvensjon.py"
+
+    def _workflow(self) -> dict:
+        pytest.importorskip("yaml")
+        import yaml
+        sti = REPO / ".github" / "workflows" / "efc-schema.yml"
+        return yaml.safe_load(sti.read_text(encoding="utf-8"))
+
+    def test_bro_gaten_staar_i_ci_kommandoen(self) -> None:
+        tekst = (REPO / ".github" / "workflows" / "efc-schema.yml").read_text(
+            encoding="utf-8")
+        m = re.search(r"python3 -m pytest ([^\n]+)", tekst)
+        assert m, "no pytest command found in efc-schema.yml"
+        kommand = m.group(1)
+        assert self.BRO_GATE in kommand, (
+            f"{self.BRO_GATE} is not run in CI:\n"
+            f"  CI runs: {kommand}\n"
+            f"There an engine can issue another nivaa than the atlas without "
+            f"any CI job saying so — and the error is committed silently.")
+
+    def test_motorfilene_trigget_jobben(self) -> None:
+        """Without `efc_inference/engine/**` in the path lists, a change that
+        only touches an engine runs NO verification — the gate does not see it."""
+        on = self._workflow()[True]
+        for hendelse in ("push", "pull_request"):
+            stier = on[hendelse]["paths"]
+            for sti in ("efc_inference/engine/**", self.BRO_GATE,
+                        self.KONVENSJON):
+                assert sti in stier, (
+                    f"`{sti}` is missing under {hendelse} — changes there do "
+                    f"not trigger the bridge gate")
+
+    def test_push_og_pr_vokter_samme_filer(self) -> None:
+        on = self._workflow()[True]
+        assert on["push"]["paths"] == on["pull_request"]["paths"], (
+            "push and pull_request must guard the same files — otherwise the "
+            "gate is blind in one of the two windows")
