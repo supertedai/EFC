@@ -14,15 +14,6 @@
         "prediksjon.jpl-sentry"
       ]
     },
-    "kosmos.exoplanet": {
-      "status": "ikke_dekket",
-      "meldinger": 0,
-      "noder": [],
-      "begrunnelse": "Maalt 2026-09-19: 63 meldinger over ett emne (observasjon.mast-caom), og ingen node navngir domenet — MAST/CAOM-andelen er ikke beskrevet. Domenet kom INN i maalingen mens kosmos.interstellart gikk UT av den; begge bærer observasjon.mast-caom, og kildens egen taksonomi skiller dem (exoplanet foer planetsystem). Vi leser den, vi lager den ikke. Et maalt hull: her mangler en node.",
-      "emner": [
-        "observasjon.mast-caom"
-      ]
-    },
     "kosmos.galakser": {
       "status": "dekket",
       "meldinger": 31,
@@ -215,7 +206,7 @@
       "noder": [
         "kosmos.stjerner"
       ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
+      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar. 0 meldinger i snapshoten (maalt 2026-11-17): subjectet observasjon.mast-caom utloep fra 24-t-retensjonen uten ny observasjon; domenet beholdes fordi noden kosmos.stjerner navngir det via buss_domene.",
       "emner": [
         "observasjon.mast-caom"
       ]
@@ -951,7 +942,6 @@
       "domener": [
         "kosmos.uklassifisert",
         "kosmos.hoper",
-        "kosmos.exoplanet",
         "kosmos.stjerner",
         "kosmos.planetsystem",
         "kosmos.galakser"
