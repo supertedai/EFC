@@ -46,3 +46,12 @@ runde:
 
 blast:
 	$(PYTHON) scripts/maintenance/blast_radius.py --diff origin/main --gate
+
+# Cross-node change picture (REPORTING, not a gate). exit 2 = drift found
+# (work to do, not an error); exit 3 = telemetry unavailable. Reads git
+# clones, kanban, arbeidsminne, figshare/ORCID — the stores full-check cannot
+# see (full-check only scans this working tree). Deliberately NOT in
+# full-check: drift here is often cross-door (another door's working memory)
+# and not this repo's to fix; it belongs in the report, not the gate.
+node-check:
+	$(PYTHON) scripts/maintenance/efc_node_triangulate.py
