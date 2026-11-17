@@ -49,6 +49,17 @@ CANONICAL_PREFIXES = (
 # A PR whose merge state is one of these cannot be merged as-is.
 DIRTY_STATES = ("DIRTY", "CONFLICTING", "UNSTABLE")
 
+# Title markers of truth-adjacent CONTENT. File paths alone were insufficient:
+# measured 2026-11-17, five PRs touching only "routine" paths (#441 engine,
+# #591 bridge, #599 eksperiment, #616 atlas, #499 menneskeord) were actually
+# canonical-adjacent and slipped past the path check. The title carries the
+# content signal the path list cannot.
+CANONICAL_TITLE_RE = re.compile(
+    r"\b(engine|menneskeord|bridge|bro|eksperiment|experiment|atlas|"
+    r"avgjorelse|settlement|falsif|claim|evidence|doi|verification)\b",
+    re.IGNORECASE,
+)
+
 CLASS_LABEL = {
     "close_dead": "CLOSE (stale point-in-time draft)",
     "close_superseded": "CLOSE (already merged elsewhere)",
@@ -84,6 +95,10 @@ def is_canonical(files: tuple[str, ...]) -> bool:
     )
 
 
+def is_canonical_title(title: str) -> bool:
+    return bool(CANONICAL_TITLE_RE.search(title))
+
+
 def classify(pr: PR, superseded: Optional[bool] = None) -> str:
     """Pure, deterministic classification. Returns a class key."""
     if superseded is True:
@@ -97,7 +112,7 @@ def classify(pr: PR, superseded: Optional[bool] = None) -> str:
         return "close_dead"
     if pr.merge_state in DIRTY_STATES:
         return "escalate_needs_rebase"
-    if is_canonical(pr.files):
+    if is_canonical(pr.files) or is_canonical_title(pr.title):
         return "escalate_canonical"
     if pr.merge_state == "CLEAN":
         return "escalate_routine"
