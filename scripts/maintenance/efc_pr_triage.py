@@ -158,6 +158,20 @@ def build_report(classifications: dict[int, str]) -> str:
     return "\n".join(lines)
 
 
+def close_pr(number: int, cls: str) -> str:
+    """Close a DEAD/SUPERSEDED PR with an auditable reason comment."""
+    reasons = {
+        "close_dead": "stale point-in-time draft (research-watch delta), superseded by later scans",
+        "close_superseded": "equivalent change already merged to main via another PR",
+    }
+    subprocess.run(
+        ["gh", "pr", "close", str(number),
+         "--comment", f"Auto-closed by efc_pr_triage: {reasons[cls]}."],
+        check=False, capture_output=True, text=True,
+    )
+    return f"closed #{number} ({cls})"
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--torr", action="store_true", default=True,
@@ -175,9 +189,15 @@ def main(argv: list[str]) -> int:
         return r.stdout
 
     prs = list_prs(gh)
-    classifications = {}
-    for pr in prs:
-        classifications[pr.number] = classify(pr)
+    classifications = {pr.number: classify(pr) for pr in prs}
+
+    if args.utfoer:
+        closed = []
+        for pr in prs:
+            cls = classifications[pr.number]
+            if is_close_class(cls):
+                closed.append(close_pr(pr.number, cls))
+        print("CLOSED: " + (", ".join(closed) if closed else "(none)"))
 
     print(build_report(classifications))
     return 0
