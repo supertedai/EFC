@@ -400,19 +400,239 @@ def test_an_unreadable_reference_is_a_finding_not_a_false_blame(tmp_path, capsys
 
 def test_baseline_generator_records_what_the_scan_finds(tmp_path, capsys):
     """--oppdater-baseline is the generator side of the ratchet. If it writes
-    anything other than what the scan found, the gate and the debt drift."""
-    root = _tree(tmp_path, {GUARDED: f"{WORD}\n{WORD}\n"}, None)
+    anything other than what the scan found, the gate and the debt drift.
+
+    The tree here is AT its record -- a translation landed, nothing grew -- so
+    the write is the reshaping the record is FOR: counts rewritten from the
+    scan, a file that fell away dropped, the declared residual kept with its
+    reason. A tree that grew is refused; that half is the next four tests.
+    """
+    record = {"files": {GUARDED: {"count": 2, "reason": "declared residual"},
+                        "scripts/maintenance/old.py": {"count": 9}}}
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n{WORD}\n"}, record)
     rc = gate.main(["--root", str(root), "--baseline",
                     str(root / "baseline.json"), "--oppdater-baseline"])
-    capsys.readouterr()
-    assert rc == 0
+    out = capsys.readouterr().out
+    assert rc == 0, out
     written = json.loads((root / "baseline.json").read_text(encoding="utf-8"))
-    assert written["files"] == {GUARDED: {"count": 2}}, written["files"]
+    assert written["files"] == {
+        GUARDED: {"count": 2, "reason": "declared residual"}}, written["files"]
     assert written["measured_scope"]["debt_recorded"] == 2
+    # The readback is the tool's own, and it says the drop out loud.
+    assert "0 grew, 0 new, 1 dropped" in out, out
     rc = gate.main(["--root", str(root), "--baseline",
                     str(root / "baseline.json")])
     capsys.readouterr()
     assert rc == 0, "the freshly written baseline must be green on its own tree"
+
+
+def test_the_generator_refuses_growth_and_leaves_the_record_byte_identical(
+        tmp_path, capsys):
+    """«Growth is never a baseline update» was prose; this is the enforcement.
+
+    Measured twice, and both would have gone in silently: 2026-09-18 a blind
+    regeneration of that day's tree would have written 337 hits in 18 files (11
+    the record had never seen, 7 that had grown, e.g. test_atlas_avgjorelse.py
+    26 -> 73, test_epistemikk_v2.py 33 -> 71); 2026-09-20, 2 files / +6 hits.
+    The readback that was supposed to catch it is satisfied BY DEFINITION once
+    the write lands, so the refusal has to live in the writer.
+    """
+    record = {"files": {GUARDED: {"count": 1},
+                        "scripts/maintenance/old.py": {"count": 4}}}
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n{WORD}\n"}, record)
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline",
+                    str(root / "baseline.json"), "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc != 0, out
+    assert (root / "baseline.json").read_bytes() == before, "the record was written"
+    assert GUARDED in out, "the file that would have grown is not named"
+    assert "1 -> 2" in out, out
+
+    # The machine view says the same thing, and --json is the only thing on
+    # stdout: a refusal that cannot be parsed is a refusal nobody can act on.
+    rc = gate.main(["--root", str(root), "--baseline",
+                    str(root / "baseline.json"), "--oppdater-baseline", "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 1, out
+    assert out["refused"] is True
+    assert out["blocking_files"] == [GUARDED], "only growth blocks"
+    assert out["record_readback"]["grew"] == [
+        {"file": GUARDED, "from": 1, "to": 2, "excess": 1}]
+    assert out["record_readback"]["dropped"] == [
+        {"file": "scripts/maintenance/old.py", "from": 4, "to": 0, "gone": True}]
+    assert (root / "baseline.json").read_bytes() == before
+
+
+def test_a_new_guarded_file_is_growth_the_generator_refuses(tmp_path, capsys):
+    """A file the record never saw has no previous count to compare against,
+    which is the same finding with a hole where the comparison should be."""
+    root = _tree(tmp_path, {GUARDED: f"one {WORD} line\n"}, {"files": {}})
+    rc = gate.main(["--root", str(root), "--baseline",
+                    str(root / "baseline.json"), "--oppdater-baseline", "--json"])
+    out = json.loads(capsys.readouterr().out)
+    assert rc == 1, out
+    assert out["blocking_files"] == [GUARDED]
+    assert out["record_readback"]["added"] == [{"file": GUARDED, "count": 1}]
+    assert json.loads((root / "baseline.json").read_text(
+        encoding="utf-8")) == {"files": {}}
+
+
+def test_a_tree_with_nothing_to_declare_writes_its_first_record(tmp_path, capsys):
+    """The bootstrap that IS allowed: no record, and a tree with no hits.
+
+    Nothing is being hidden, because there is nothing in it to hide. The same
+    state WITH hits is refused (the test above): otherwise `rm
+    spraak-baseline.json` plus one regeneration would launder the whole record,
+    which is the hole this closes.
+    """
+    root = _tree(tmp_path, {CLEAN: "all English here\n"}, None)
+    assert not (root / "baseline.json").exists()
+    rc = gate.main(["--root", str(root), "--baseline",
+                    str(root / "baseline.json"), "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc == 0, out
+    assert "0 grew, 0 new, 0 dropped" in out, out
+    assert "absent" in out, "a first record must say there was nothing behind it"
+    assert json.loads((root / "baseline.json").read_text(
+        encoding="utf-8"))["files"] == {}
+
+
+def test_the_named_acceptance_is_the_only_way_growth_is_written_in(tmp_path, capsys):
+    """--aksepter-vekst <file>:<reason> writes the exception onto the file's own
+    line, so a later reader sees a named decision and not an anonymous number."""
+    record = {"files": {GUARDED: {"count": 1}}}
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n{WORD}\n"}, record)
+    reason = "a rebase lost the translation; restored by hand (t_aa1e2437)"
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline", "--aksepter-vekst",
+                    f"{GUARDED}:{reason}"])
+    out = capsys.readouterr().out
+    assert rc == 0, out
+    written = json.loads((root / "baseline.json").read_text(encoding="utf-8"))
+    assert written["files"][GUARDED] == {"count": 2, "reason": reason}
+
+    # The write carries the exception, so the next regeneration is not a growth
+    # and the reason survives it.
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline"])
+    capsys.readouterr()
+    assert rc == 0
+    assert json.loads((root / "baseline.json").read_text(
+        encoding="utf-8"))["files"][GUARDED]["reason"] == reason
+
+    # An acceptance the tree did not earn is refused, not quietly ignored.
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline", "--aksepter-vekst",
+                    "scripts/maintenance/nope.py:because"])
+    out = capsys.readouterr().out
+    assert rc != 0, out
+    assert "scripts/maintenance/nope.py" in out, out
+    assert (root / "baseline.json").read_bytes() == before
+
+
+def test_a_malformed_acceptance_is_a_usage_error(tmp_path, capsys):
+    """Both halves are required: growth accepted without a reason is exactly the
+    anonymous number the rule forbids."""
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n"}, {"files": {GUARDED: {"count": 1}}})
+    for bad in ("scripts/maintenance/tool.py", "scripts/maintenance/tool.py:", ":a reason"):
+        with pytest.raises(SystemExit) as stop:
+            gate.main(["--root", str(root), "--baseline",
+                       str(root / "baseline.json"), "--oppdater-baseline",
+                       "--aksepter-vekst", bad])
+        assert stop.value.code == 2
+        capsys.readouterr()
+
+
+def test_a_corrupt_record_is_not_an_empty_one(tmp_path, capsys):
+    """An unreadable record must not be recreated from the tree: that is the
+    same whitewash one step earlier. Exit 2 -- could not measure -- and no
+    write."""
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n"}, None)
+    (root / "baseline.json").write_text("{ this is not json", encoding="utf-8")
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc == 2, out
+    assert "not readable" in out, out
+    assert (root / "baseline.json").read_bytes() == before
+
+
+@pytest.mark.parametrize("record", [
+    '["not", "a", "dict"]',
+    '{"files": ["a", "b"]}',
+    '{"files": "oops"}',
+])
+def test_valid_json_of_the_wrong_shape_is_not_readable(tmp_path, capsys, record):
+    """Valid JSON that is not a baseline record must be refused as unreadable
+    (exit 2, nothing written), never crash and never read as an empty record.
+
+    This is the crash the review caught: `previous.get("files")` and
+    `(...).items()` ran on whatever ``json.loads`` returned, so a top-level
+    array or a non-dict ``files`` raised an unhandled AttributeError -- masked
+    as exit 1, the refused-growth code. It must be the controlled exit 2.
+    """
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n"}, None)
+    (root / "baseline.json").write_text(record, encoding="utf-8")
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc == 2, out
+    assert "not readable" in out, out
+    assert (root / "baseline.json").read_bytes() == before
+
+
+def test_a_non_numeric_count_is_a_not_readable_record(tmp_path, capsys):
+    """A count that is not a number is a corrupt record, named as such -- not
+    masked as refused growth (exit 1) and not coerced to zero."""
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n"}, None)
+    (root / "baseline.json").write_text(
+        json.dumps({"files": {GUARDED: {"count": "abc"}}}), encoding="utf-8")
+    before = (root / "baseline.json").read_bytes()
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json"),
+                    "--oppdater-baseline"])
+    out = capsys.readouterr().out
+    assert rc == 2, out
+    assert "not readable" in out, out
+    assert "not a number" in out, out
+    assert (root / "baseline.json").read_bytes() == before
+
+
+def test_the_scan_reads_a_wrong_shaped_record_as_empty_not_as_a_crash(
+        tmp_path, capsys):
+    """The scan path shares the class: a wrong-shaped record is an empty
+    record (everything is then a finding), never an AttributeError traceback."""
+    root = _tree(tmp_path, {GUARDED: f"one {WORD} line\n"}, None)
+    (root / "baseline.json").write_text('["not", "a", "dict"]', encoding="utf-8")
+    rc, out = _scan(root, capsys)
+    assert rc == 1, out
+    assert out["new"][0]["file"] == GUARDED, "an unreadable record means every hit is new"
+
+
+def test_the_per_file_readback_is_in_the_default_report(tmp_path, capsys):
+    """The readback t_c3004b63 had to measure by hand («0 grew, 0 new, 83
+    dropped») comes from the tool now, in the default report and in --json. It
+    is the number that was the operator rule, so it stops being a memory."""
+    record = {"files": {GUARDED: {"count": 1},
+                        "scripts/maintenance/gone.py": {"count": 4}}}
+    root = _tree(tmp_path, {GUARDED: f"{WORD}\n{WORD}\n"}, record)
+    rc, out = _scan(root, capsys)
+    assert rc == 1, out                    # growth is a scan finding too
+    assert out["record_readback"] == {
+        "grew": [{"file": GUARDED, "from": 1, "to": 2, "excess": 1}],
+        "added": [],
+        "dropped": [{"file": "scripts/maintenance/gone.py", "from": 4, "to": 0,
+                     "gone": True}]}
+
+    rc = gate.main(["--root", str(root), "--baseline", str(root / "baseline.json")])
+    printed = capsys.readouterr().out
+    assert rc == 1
+    assert "1 grew, 0 new, 1 dropped" in printed, printed
+    assert f"GREW: {GUARDED} 1 -> 2 (+1)" in printed, printed
+    assert "DROPPED: scripts/maintenance/gone.py 4 -> 0 (gone)" in printed, printed
 
 
 def test_the_declared_limits_cover_the_guard_and_name_the_rest(tmp_path, capsys):
