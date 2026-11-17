@@ -7,7 +7,10 @@ overridden by the verifier). No numeric score in phase 1 — the score is
 calibrated against actual decisions once 20+ candidates exist.
 
 Usage: python3 scripts/maintenance/triage_insikt.py <candidate.yaml>
-Exit: 0 = valid candidate (triage written), 1 = invalid (needs-rework).
+Exit: 0 = valid candidate (triage written), 1 = invalid (needs-rework),
+2 = the triage COULD NOT RUN (a missing dependency, an unusable argument).
+Every exit code carries a readable answer on stdout: a caller must be able to
+tell "could not measure" from "approved"/"rejected" without reading stderr.
 """
 from __future__ import annotations
 
@@ -69,6 +72,9 @@ def triage(k: dict) -> tuple[str, list[str]]:
 def hoved() -> int:
     if len(sys.argv) != 2:
         print("usage: triage_insikt.py <kandidate.yaml>", file=sys.stderr)
+        print(json.dumps({"status": "not-measured", "measured": False,
+                          "grunn": "no candidate path given"},
+                         ensure_ascii=False, indent=1))
         return 2
     sti = Path(sys.argv[1])
     import yaml
@@ -99,7 +105,18 @@ def hoved() -> int:
     try:
         import jsonschema
     except ImportError:
+        # A dependency that cannot be imported is a NON-ANSWER, not a verdict,
+        # and it must be readable as one. Measured 2026-10-05 (t_e253357c): this
+        # branch wrote to stderr and returned 2 with NOTHING on stdout;
+        # verifier_bench.py read the empty stdout as {} and turned the non-zero
+        # exit into "detected" for three fixtures — a triage that could not run
+        # counted as a verifier that found the bug.
         print("jsonschema is missing — run `uv sync`", file=sys.stderr)
+        print(json.dumps({"status": "not-measured", "measured": False,
+                          "grunn": "jsonschema is missing — the schema check "
+                                   "could not run (run `uv sync`)",
+                          "interpreter": sys.executable},
+                         ensure_ascii=False, indent=1))
         return 2
     try:
         jsonschema.validate(k, json.loads(SKJEMA.read_text(encoding="utf-8")))

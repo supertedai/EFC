@@ -53,6 +53,30 @@ def _kjor(navn: str, skript: str, ekstra: list[str]) -> tuple[int, dict]:
         return r.returncode, {"raa": (r.stdout or "")[:200]}
 
 
+def _bench_funn(rc: int, ut: dict) -> list:
+    """Findings for verifier-bench. Two failure modes that must not merge.
+
+    Exit 1 IS the bench's finding channel: it measured and detected fewer
+    known bugs than it carries (a real gap). Exit 2 means it could NOT
+    measure — the triage cannot run in this interpreter (missing jsonschema),
+    or a fixture got no answer. Measured 2026-10-05 (t_e253357c): the old rule
+    read ANY non-zero exit as bench_gap, so a bench that said "not measured"
+    was filed as a detection gap — and the bench itself answered 4/4 or 3/4
+    depending on which interpreter started the round.
+
+    The interpreter is NOT pinned to a fixed path: the round must measure the
+    interpreter it is told to use (`make check PYTHON=<venv>`), and a check
+    whose dependencies are missing says so as a finding of its own instead of
+    pretending to have measured.
+    """
+    if rc == 0:
+        return []
+    if ut.get("maalt") is False:
+        return [{"type": "bench_not_measured", "rc": rc,
+                 "grunn": ut.get("grunn"), "interpreter": ut.get("interpreter")}]
+    return [{"type": "bench_gap"}]
+
+
 def _open_titles_from_list(raw: str) -> set[str] | None:
     """Open card titles from `hermes kanban list --json`, or None when the
     answer cannot be read.
@@ -161,7 +185,7 @@ def hoved() -> int:
         elif navn == "lenker":
             funn = (ut.get("harde") or []) + (ut.get("funn") or [])
         elif navn == "verifier-bench":
-            funn = [] if rc == 0 else [{"type": "bench_gap"}]
+            funn = _bench_funn(rc, ut)
         elif navn == "dataset-report-age":
             # The scanner answers read-only: whatever the report does not say
             # (no expiry, no reader, an unreadable date) plus every finding past
