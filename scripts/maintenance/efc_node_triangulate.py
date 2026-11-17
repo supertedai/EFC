@@ -62,6 +62,7 @@ LINIAGE: Dict[str, str] = {
     "working-memory": "working-memory",
     "publication": "publication",
     "public-surface": "public-surface",
+    "cron": "cron",
 }
 
 
@@ -249,6 +250,30 @@ def probe_doi() -> List[Observation]:
     return obs
 
 
+def probe_cron_health() -> List[Observation]:
+    """Open (unresolved) cron incidents. Healthy = 0.
+
+    The cron family is genuinely independent (executions/incidents are not
+    git-derived). Only OPEN incidents count: a resolved failure is history, not
+    drift. This catches delivery_failed / script-failed cron jobs that are still
+    broken.
+    """
+    db = "/home/morten/.hermes/profiles/researcher/cron/executions.db"
+    try:
+        c = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+        open_inc = c.execute(
+            "SELECT COUNT(*) FROM cron_incidents WHERE state NOT IN ('resolved','closed')"
+        ).fetchone()[0]
+        c.close()
+    except Exception:
+        return []
+    return [Observation(
+        family="cron", key="cron-helse",
+        value=str(open_inc), exact=True,
+        ts=f"{open_inc} open incidents",
+    )]
+
+
 # --------------------------------------------------------------------------
 # Picture assembly
 # --------------------------------------------------------------------------
@@ -287,6 +312,7 @@ def build_picture() -> Dict:
     add_threshold("working-memory-noise", "working-memory noise == 0 per door", probe_working_memory(), "0")
     add_threshold("kanban-unowned", "every active card has an owner", probe_kanban(), "0")
     add_consistency("doi-set", "repo DOI set == ORCID DOI set", probe_doi())
+    add_threshold("cron-helse", "no open (unresolved) cron incidents", probe_cron_health(), "0")
 
     buckets = {"ok": [], "drift": [], "unknown": []}
     for f in facts:
