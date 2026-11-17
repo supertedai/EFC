@@ -38,6 +38,26 @@ Nagle, frame buffering — is fine-tuned there; it is not duplicated here. A
 second implementation would be two truths about one interface, and one of
 them would fail silently.
 
+## The measurement is ONE step, not two
+
+`--maal` writes three things from one reading of the bus: the snapshot, the
+`domener` section of `schema/atlas_dekning.json`, and its `kilder` section —
+the source axis. The last one is a DERIVATION, not a separate chore: it needs
+the measurement and the names the nodes write, and both are here. It is
+nevertheless not re-implemented here; `scripts/atlas_kilder.py` owns that
+rule, and this module calls it.
+
+Measured 2026-11-17, while it was still a chore: `--maal` updated `domener`
+and the snapshot, whoever measured forgot `atlas_kilder.py --skriv`, and the
+source axis kept the message counts from an earlier measurement — ~40
+segments, silent, until a test said so, and then reconciled by hand. A step
+that has to be REMEMBERED is not a derivation; it is a habit, and it slipped.
+
+Everything is therefore derived BEFORE anything is written. A run that cannot
+derive the source axis (no `schema/regime_nodes.jsonld` in the working tree,
+say) writes NEITHER file: a new snapshot beside a stale source axis is the
+exact state this step exists to remove.
+
 ## Reading
 
 `hull()` sorts by SIZE, not alphabetically — that is the whole point. It
@@ -64,6 +84,17 @@ ROT = Path(__file__).resolve().parents[1]
 STANDARD_REF = "origin/main"
 SNAPSHOT_STI = "schema/nats_domener.snapshot.json"
 DEKNING_STI = "schema/atlas_dekning.json"
+NODER_STI = "schema/regime_nodes.jsonld"
+
+#: The source axis has ONE implementation, in `atlas_kilder`, and the
+#: measurement re-derives it (see `--maal`). Importing that module is what
+#: keeps it at one: a copy here would be two truths about one axis, and the
+#: copy that was not run would be the one that rotted.
+for _sti in (ROT / "scripts",):
+    if str(_sti) not in sys.path:
+        sys.path.insert(0, str(_sti))
+
+import atlas_kilder as ak  # noqa: E402
 
 #: The house's tool for the bus. The path can be pointed elsewhere with
 #: `VERDEN_MCP` — it lies outside the repository on purpose: the key is per
@@ -248,12 +279,18 @@ def _write_json(path: Path, data: dict) -> None:
                     encoding="utf-8")
 
 
-def skriv_snapshot(path: str | Path, domains: dict, *,
-                   lest_av: str, maalt: str | None = None) -> dict:
-    """Write the measurement. The provenance is data, not a comment."""
+def snapshot_data(domains: dict, *, lest_av: str,
+                  maalt: str | None = None) -> dict:
+    """The measurement in the shape of the file it is written to.
+
+    A BUILDER, not a writer: the same object is written to
+    `schema/nats_domener.snapshot.json` AND handed to the derivation of the
+    source axis. Two readings of one measurement must not exist — not even as
+    two dicts built a few lines apart.
+    """
     maalt = maalt or datetime.datetime.now(
         datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    data = {
+    return {
         "_proveniens": {
             "kilde": ("The NATS bus, verden_domener (MCP) — subjects and "
                       "message counts read from the JetStream streams' own "
@@ -271,7 +308,43 @@ def skriv_snapshot(path: str | Path, domains: dict, *,
         "domener": {name: {"emner": dict(sorted(subjects.items()))}
                     for name, subjects in sorted(domains.items())},
     }
+
+
+def skriv_snapshot(path: str | Path, domains: dict, *,
+                   lest_av: str, maalt: str | None = None) -> dict:
+    """Write the measurement. The provenance is data, not a comment."""
+    data = snapshot_data(domains, lest_av=lest_av, maalt=maalt)
     _write_json(Path(path), data)
+    return data
+
+
+def les_noder(repo: Path) -> dict:
+    """The node bank, read from the WORKING TREE — the same rule as the
+    declaration, and for the same reason: the source axis is derived from the
+    names the nodes write NOW, not from what a ref said when they were last
+    committed.
+
+    Raises rather than skipping the derivation. The alternative — measure the
+    domains and leave the sources as they stood — is the drift this step
+    exists to remove, and it is silent by construction: both files parse.
+    """
+    path = Path(repo) / NODER_STI
+    if not path.exists():
+        raise VolumFeil(
+            f"{path} does not exist — the source axis (`kilder`) is derived "
+            f"from the names the nodes write in lagdeling.kilde.kilde, and it "
+            f"cannot be derived without the bank. Nothing was written: a "
+            f"snapshot updated next to a stale source axis is the drift this "
+            f"step exists to remove.")
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as e:
+        raise VolumFeil(f"{path} is not valid JSON: {e}") from e
+    if not isinstance(data.get("nodes"), list):
+        raise VolumFeil(
+            f"{path} carries no `nodes` list — the bank cannot be read, and "
+            f"the source axis cannot be derived from a guess. Nothing was "
+            f"written.")
     return data
 
 
@@ -341,11 +414,12 @@ def hoved(argv: list[str] | None = None) -> int:
     ap.add_argument("--alle", action="store_true",
                     help="every domain, not only ikke_dekket")
     ap.add_argument("--maal", action="store_true",
-                    help="measure the bus and write the snapshot + "
-                         "coverage file")
+                    help="measure the bus and write the snapshot and BOTH "
+                         "axes of the coverage file (domains and sources) — "
+                         "one step, so the derivation cannot be forgotten")
     ap.add_argument("--torr", action="store_true",
                     help="with --maal: write nothing, show what would "
-                         "have been written")
+                         "have been written (and what would have tripped)")
     ap.add_argument("--repo", default=str(ROT))
     args = ap.parse_args(argv)
 
@@ -355,7 +429,10 @@ def hoved(argv: list[str] | None = None) -> int:
         # THE MEASUREMENT READS THE WORKING TREE, not the ref: it writes to
         # the working tree, and a pre-image from the ref would silently have
         # discarded uncommitted changes to the declaration. Reading the ref
-        # is for the one who ASKS; measuring is for the one who WRITES.
+        # is for the one who ASKS; measuring is for the one who WRITES. The
+        # node bank is read the same way, because the source axis is derived
+        # from the names the nodes write — and the names that matter are the
+        # ones standing in this tree.
         declaration_path = repo / DEKNING_STI
         if not declaration_path.exists():
             raise VolumFeil(f"{declaration_path} does not exist — it is the "
@@ -369,18 +446,41 @@ def hoved(argv: list[str] | None = None) -> int:
                 f"{declaration_path} is not valid JSON: {e}") from e
         measurement = maal_bussen()
         domains = measurement["domener"]
+        noder = les_noder(repo)
         lest_av = os.environ.get(
             "ATLAS_LEST_AV",
             f"{os.environ.get('HERMES_PROFILE', 'unknown')} "
             f"(scripts/atlas_volum.py)")
-        if not args.torr:
-            skriv_snapshot(repo / SNAPSHOT_STI, domains, lest_av=lest_av)
+        # EVERYTHING IS DERIVED BEFORE ANYTHING IS WRITTEN. A run that wrote
+        # the snapshot and then failed on the source axis would leave exactly
+        # the drift this step exists to remove: a fresh measurement beside a
+        # stale derivation, and both files parse.
+        snapshot = snapshot_data(domains, lest_av=lest_av)
         updated, report = oppdater_dekning(coverage, domains)
+        updated["kilder"] = ak.seksjon_fra_maaling(
+            snapshot, noder["nodes"], coverage.get("kilder") or {})
         if not args.torr:
+            _write_json(repo / SNAPSHOT_STI, snapshot)
             _write_json(declaration_path, updated)
         for domain, subjects in sorted(
                 domains.items(), key=lambda kv: -sum(kv[1].values())):
             print(f"{sum(subjects.values()):>10}  {domain}")
+        print(f"\nSOURCE AXIS: {len(updated['kilder'])} source segments "
+              f"re-derived from the same measurement — no separate `--skriv` "
+              f"step, because a step that has to be remembered is the reason "
+              f"they rotted")
+        # What the measurement CANNOT decide is named, not hidden: a `navn` is
+        # a person's collection, an `eier` is a position, and a shared source
+        # without an owner must carry its reason. The invariant trips until
+        # somebody takes it — the same rule as the undeclared domains above.
+        avvik = ak.avvik({"snapshot": snapshot, "dekning": updated,
+                          "noder": noder})
+        if avvik:
+            print(f"\nSOURCE AXIS: {len(avvik)} deviation(s) the measurement "
+                  f"cannot decide — a person must take a position, and the "
+                  f"invariant will trip until one is taken:")
+            for feil in avvik:
+                print(f"    {feil}")
         if report["nye_domener"]:
             print(f"\nNOT DECLARED ({len(report['nye_domener'])}) — carries "
                   f"messages, is not listed in {DEKNING_STI}. The atlas does "

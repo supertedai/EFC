@@ -37,6 +37,19 @@ inntak-dry:
 inntak:
 	$(PYTHON) scripts/maintenance/efc_inntak.py
 
+# The measurement, and everything DERIVED from it, as ONE step: the snapshot
+# and both axes of schema/atlas_dekning.json (domains and sources) come from
+# one reading of the bus. The check afterwards reads the WORKING TREE and
+# exits non-zero when the source axis still deviates — a position the
+# measurement cannot take (a new shared source without a reason, say) must
+# trip here rather than be discovered by CI later. Needs the bus key on the
+# door that runs it, and it is a READ of the bus: nothing is published.
+#   make maal            # measure, derive, verify
+#   make maal PYTHON=python3
+maal:
+	$(PYTHON) scripts/atlas_volum.py --maal
+	$(PYTHON) scripts/atlas_kilder.py --sjekk --ref .
+
 full-check: check
 	$(PYTHON) scripts/maintenance/validate_repo.py
 	$(PYTHON) scripts/maintenance/validate_links.py --maks-eksterne 15
