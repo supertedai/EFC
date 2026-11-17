@@ -112,6 +112,29 @@ def _log_decision(entry: dict) -> None:
         json.dump(log, f, indent=2, ensure_ascii=False)
 
 
+# ONLY these attributes are purely presentational — a diff confined to them (+ whitespace) is cosmetic.
+# EVERYTHING else is treated as load-bearing: visible text, ALL other attributes (data-*, title, aria-*,
+# alt, href, value, ...), tags, numbers, DOIs. This is the conservative inverse of an allowlist — a
+# word-valued semantic attribute like data-result="Planned"→"Falsified" is NOT presentational, so it survives
+# normalization and the full council runs. (Reviewer caught that token-extraction missed word-valued attrs.)
+_COSM_PRESENTATIONAL = re.compile(r"""\s(?:class|style|id)\s*=\s*("[^"]*"|'[^']*')""", re.IGNORECASE)
+
+
+def _normalize_noncosmetic(html: str) -> str:
+    """Strip ONLY presentational attributes (class/style/id) and collapse whitespace. Whatever remains is the
+    scientifically load-bearing content. If two fragments normalize equal, they differ ONLY cosmetically."""
+    h = _COSM_PRESENTATIONAL.sub("", html or "")
+    return re.sub(r"\s+", " ", h).strip()
+
+
+def _is_cosmetic(old_html: str, new_html: str) -> bool:
+    """COSMETIC iff the fragments are identical after removing ONLY class/style/id and normalizing whitespace.
+    ANY other difference — visible text, a data-result/title/aria/alt/href value, a tag, a number, a DOI —
+    survives normalization → not equal → False → the full gpt-5 council runs. Conservative by construction:
+    a word-valued semantic attribute flip is NEVER skipped (the reviewer's data-result Planned→Falsified case)."""
+    return _normalize_noncosmetic(old_html) == _normalize_noncosmetic(new_html)
+
+
 def council_validate_page_update(
     page_name: str,
     action: str,
@@ -144,6 +167,23 @@ def council_validate_page_update(
             "reason": reason,
         })
         return False, reason
+
+    # COST: a purely cosmetic change (markup/whitespace/attributes only — visible text byte-identical) alters
+    # NO scientific claim, DOI, number, or wording, so the gpt-5 scientific-integrity council adds nothing.
+    # Skip it (auto-approve). Conservative: any visible-text difference falls through to the full council.
+    if _is_cosmetic(old_html, new_html):
+        reason = "cosmetic change (visible text unchanged) — no scientific claim altered; council skipped"
+        print(f"[COUNCIL] APPROVED (cosmetic, no LLM call): {page_name}/{target_id}")
+        _log_decision({
+            "timestamp": timestamp,
+            "page": page_name,
+            "target": target_id,
+            "action": action,
+            "doi": paper_doi,
+            "verdict": "APPROVED_COSMETIC",
+            "reason": reason,
+        })
+        return True, reason
 
     # Build council prompt
     kc_text = ""
