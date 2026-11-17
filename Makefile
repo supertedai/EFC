@@ -55,3 +55,10 @@ blast:
 # and not this repo's to fix; it belongs in the report, not the gate.
 node-check:
 	$(PYTHON) scripts/maintenance/efc_node_triangulate.py
+
+# Autonomous self-validating loop (OBSERVE -> DECIDE -> ACT). Runs the picture,
+# auto-fixes ONLY own-clone lag (ff-only, verified, fail-closed), escalates the
+# rest. exit 0 = clean/all-fixed, exit 2 = drift escalated, exit 3 = unknown.
+# Silent on clean (watchdog pattern) — non-empty stdout only when there is work.
+self-heal:
+	$(PYTHON) scripts/maintenance/efc_selfheal.py
