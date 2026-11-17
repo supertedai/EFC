@@ -139,7 +139,7 @@ class TestEpistemiskStatus:
             assert "har_prediksjon" in t
             assert "har_oppgjoer" in t
 
-    def test_pending_oppgjoer_leses_ikke_som_settled(self, ekte_repo: Path) -> None:
+    def test_pending_settlement_is_not_read_as_settled(self, ekte_repo: Path) -> None:
         """A settlement awaiting an arbiter is pending, not settled.
 
         Regression for the bug where a node with a `settlement` record whose
@@ -171,7 +171,7 @@ class TestEpistemiskStatus:
                 assert treff[0]["oppgjoer_status"] == "settled", (
                     f"{sid}: a completed settlement must read 'settled'")
 
-    def test_oppgjoer_uten_utfall_er_ikke_settled(self) -> None:
+    def test_settlement_without_outcome_is_not_settled(self) -> None:
         """A settlement record with no outcome must not fall through to 'settled'.
 
         The classifier's else-branch once labeled an empty/missing outcome as
@@ -187,6 +187,151 @@ class TestEpistemiskStatus:
         assert atlas_lesing._oppgjoer_status(
             {"settlement": {"outcome": '{"air_temperature": 10.0}'}}
         ) == "settled"
+
+    def test_settlement_result_with_correlation_matching(self) -> None:
+        """The `settlement_result` layer must classify a landed verdict.
+
+        Four cases the fix is bound to, plus the fail-closed edges:
+
+          * a pending contract (no landed result) -> "pending";
+          * a confirmed result whose correlation matches -> "settled";
+          * a contradicted result whose correlation matches -> "settled"
+            (a negative result is still a landed result);
+          * missing, mismatched or unknown correlation / outcome / node ->
+            never "settled" (fail closed, no marker);
+          * a landed verdict supersedes a static "waiting for arbiter".
+
+        Correlation is the declared key and is compared strictly (no case
+        folding); `node` is defence-in-depth (if present it must match, if
+        absent the correlation alone settles).
+        """
+        base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
+
+        # 1. Pending: awaiting arbiter, no landed result.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement": {"correlation": "corr-1",
+                           "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+        }) == "pending"
+
+        # 2. Confirmed, matching correlation and node.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "confirmed"},
+        }) == "settled"
+
+        # 3. Contradicted, matching correlation and node.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "contradicted"},
+        }) == "settled"
+
+        # 4a. Missing correlation -> fail closed (no marker).
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "outcome": "confirmed"},
+        }) is None
+
+        # 4b. Mismatched correlation -> fail closed.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "correlation": "wrong-corr",
+                                  "outcome": "confirmed"},
+        }) is None
+
+        # 4c. Wrong node -> fail closed.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "other.node", "correlation": "corr-1",
+                                  "outcome": "confirmed"},
+        }) is None
+
+        # 4d. Unknown outcome token -> fail closed.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "inconclusive"},
+        }) is None
+
+        # 4e. A verdict without a `node` field still settles on correlation
+        #      alone (node is defence-in-depth, not a hard requirement).
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"correlation": "corr-1", "outcome": "confirmed"},
+        }) == "settled"
+
+        # 5. A landed verdict supersedes a static "waiting for arbiter".
+        assert atlas_lesing._oppgjoer_status({
+            "id": "efc.test",
+            "settlement": {"correlation": "corr-1",
+                           "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "contradicted"},
+        }) == "settled"
+
+        # 6. No static settlement -> a lone result cannot settle (correlation
+        #    is the declared key and it lives in the static contract).
+        assert atlas_lesing._oppgjoer_status({
+            "id": "efc.test",
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "confirmed"},
+        }) is None
+
+        # 7. A non-dict settlement_result is corrupt: it must not fall
+        #    through and read as "still awaiting".
+        assert atlas_lesing._oppgjoer_status({
+            "id": "efc.test",
+            "settlement": {"correlation": "corr-1",
+                           "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+            "settlement_result": "garbage",
+        }) is None
+
+        # 8. An empty settlement_result (the writer's unfilled container)
+        #    falls through to the static contract — still pending.
+        assert atlas_lesing._oppgjoer_status({
+            "id": "efc.test",
+            "settlement": {"correlation": "corr-1",
+                           "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+            "settlement_result": {},
+        }) == "pending"
+
+    def test_arbiter_correlation_matches_claim_node(self) -> None:
+        """Every arbiter's bridge correlation must equal its claim node's
+        declared settlement correlation.
+
+        The reader validates a landed verdict by exact correlation match. That
+        match is only safe if the writer's bridge and the claim node's contract
+        carry the SAME correlation string — a drift here would make a
+        legitimate verdict silently fail closed. Pin it for every arbiter.
+        """
+        bank = json.loads(
+            (REPO / "schema" / "regime_nodes.jsonld").read_text(encoding="utf-8"))
+        nodes = {n["id"]: n for n in bank["nodes"]}
+        arbiter_files = sorted((REPO / "schema").glob("*.arbiter.json"))
+        assert arbiter_files, "precondition: at least one arbiter declaration"
+        for arb_path in arbiter_files:
+            arb = json.loads(arb_path.read_text(encoding="utf-8"))
+            bro_path = arb_path.with_name(
+                arb_path.name.replace(".arbiter.json", ".bro.json"))
+            bro = json.loads(bro_path.read_text(encoding="utf-8"))
+            claim = nodes[arb["claim_node"]]
+            assert arb["claim_node"] == claim["id"]
+            assert bro["correlation"] == claim["settlement"]["correlation"], (
+                f"{arb_path.name}: bridge correlation {bro['correlation']!r} != "
+                f"{arb['claim_node']}.settlement.correlation "
+                f"{claim['settlement']['correlation']!r}")
+
+    def test_har_oppgjoer_counts_a_landed_result(self) -> None:
+        """A node with a landed result (or a non-empty contract) 'has
+        settlement'; an empty contract or nothing does not."""
+        assert atlas_lesing._har_oppgjoer(
+            {"id": "x", "settlement_result": {"outcome": "confirmed"}}) is True
+        assert atlas_lesing._har_oppgjoer(
+            {"id": "x", "settlement": {"correlation": "c"}}) is True
+        assert atlas_lesing._har_oppgjoer({"id": "x", "settlement": {}}) is False
+        assert atlas_lesing._har_oppgjoer({"id": "x"}) is False
 
     def test_falsifikator_telles_riktig(self, ekte_repo: Path) -> None:
         """The nodes with `ville_falsifisere` must be flagged — the others not."""

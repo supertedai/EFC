@@ -182,13 +182,56 @@ def _har_falsifikator(node: dict) -> bool:
 def _oppgjoer_status(node: dict) -> str | None:
     """The settlement status of a node: "pending" | "settled" | None.
 
-    A node can carry a `settlement` RECORD without being settled: when the
-    arbiter has not landed, the record's outcome is "waiting for arbiter: …".
-    Telling the reader "is settled" for that is a truthfulness bug — a pending
-    result is not a final one. Only an outcome that is NOT awaiting its arbiter
-    counts as settled.
+    Two sources of truth, in order:
+
+    1. A runtime arbiter verdict (`settlement_result`, written by
+       atlas_oppgjoer.py when the arbiter lands) counts as settled when its
+       outcome is one of the writer's two terminal tokens ("confirmed",
+       "contradicted" — measured from verdict()) and its correlation is
+       IDENTICAL to this node's declared settlement correlation. Correlation
+       is the declared key: necessary and sufficient. The verdict's `node`
+       field is defence-in-depth — when present it must name THIS node, but a
+       verdict without it still settles on correlation alone (a hand-authored
+       result must not silently under-claim). Identifiers are compared
+       strictly (strings, no case folding). A verdict that fails validation —
+       unknown token, missing or mismatched correlation, a `node` naming
+       someone else, or a non-dict `settlement_result` — is an integrity
+       anomaly: it reads no marker (None), never "settled", and not "pending"
+       either. An empty dict (the writer's unfilled container) is NOT a
+       verdict and falls through to the static contract.
+
+    2. Otherwise the static contract (`settlement`) decides: no outcome ->
+       None, an arbiter still awaited -> "pending", any other terminal
+       outcome -> "settled".
+
+    The vocabulary stays reconcilable with the fuller typed status in
+    PR #634 (none/pending/settled/record_only); this is the narrow reader fix.
     """
     s = node.get("settlement")
+    contract_corr = s.get("correlation") if isinstance(s, dict) else None
+
+    result = node.get("settlement_result")
+    if result is not None and not isinstance(result, dict):
+        # Present but not a dict: an integrity anomaly. It must not fall
+        # through and read as "still awaiting" — a corrupt result file is not
+        # a pending one.
+        return None
+    if isinstance(result, dict) and result:
+        res_outcome = str(result.get("outcome", "")).strip()
+        res_corr = result.get("correlation")
+        if (res_outcome in ("confirmed", "contradicted")
+                and isinstance(contract_corr, str) and contract_corr
+                and isinstance(res_corr, str)
+                and contract_corr == res_corr):
+            # `node` is defence-in-depth: a verdict that names a node must
+            # name THIS node; one without it still settles on correlation.
+            res_node = result.get("node")
+            if res_node is not None and res_node != node.get("id"):
+                return None
+            return "settled"
+        # A landed verdict that does not validate fails closed: no marker.
+        return None
+
     if not isinstance(s, dict) or not s:
         return None
     outcome = str(s.get("outcome", "")).strip()
@@ -198,6 +241,11 @@ def _oppgjoer_status(node: dict) -> str | None:
     if "waiting for arbiter" in outcome.lower() or "awaiting arbiter" in outcome.lower():
         return "pending"
     return "settled"
+
+
+def _har_oppgjoer(node: dict) -> bool:
+    """A node has settlement info when it carries a contract OR a landed result."""
+    return bool(node.get("settlement") or node.get("settlement_result"))
 
 
 # ---------------------------------------------------------------------------
@@ -519,7 +567,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "fase": n.get("phase"),
                 "buss_domene": n.get("buss_domene"),
                 "har_prediksjon": bool(n.get("prediction")),
-                "har_oppgjoer": bool(n.get("settlement")),
+                "har_oppgjoer": _har_oppgjoer(n),
                 "oppgjoer_status": _oppgjoer_status(n),
                 "har_falsifikator": _har_falsifikator(n),
             })
@@ -569,7 +617,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "fase": n.get("phase"),
             "buss_domene": n.get("buss_domene"),
             "har_prediksjon": bool(n.get("prediction")),
-            "har_oppgjoer": bool(n.get("settlement")),
+            "har_oppgjoer": bool(n.get("settlement") or n.get("settlement_result")),
             "oppgjoer_status": _oppgjoer_status(n),
             "har_falsifikator": _har_falsifikator(n),
         })
