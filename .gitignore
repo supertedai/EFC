@@ -53,3 +53,6 @@ src/*.egg-info/
 # bli installasjonsveien, hører låsen i git sammen med en CI-sjekk som holder
 # den fersk — ellers får vi en fjerde versjonskilde ingen validerer.
 uv.lock
+
+# Git→minne-synk-detektorens lokale markør (runtime-tilstand, aldri committet)
+.claude/efc_git_minne_synk.json
