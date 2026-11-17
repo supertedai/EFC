@@ -924,8 +924,7 @@
         "kosmos.hoper"
       ],
       "lesere": [
-        "kosmos.interstellart",
-        "kosmos.stjerner"
+        "kosmos.interstellart"
       ],
       "eiere": [],
       "begrunnelse": "Arkivobservasjoner (MAST/CAOM), seks domener, ingen node navngir den som sin kilde. To noder PAASTOD at den var GDELT — kosmos.interstellart og kosmos.stjerner — fordi oppslaget i scripts/maintenance/bygg_kildenoder.py valgte det alfabetisk foerste emneleddet og falt tilbake paa GDELT naar leddet ikke stod i kildetabellen. Rettet 2026-09-18: kilden utledes naa av de maalte emnene i domenet selv, og en ukjent kilde feller generatoren."
