@@ -56,6 +56,17 @@ def test_canonical_paths_escalate_even_if_clean():
     assert classify(pr) == "escalate_canonical"
 
 
+def test_canonical_title_escalates_even_if_routine_paths():
+    # The panel's materialized warning: a PR touching only routine paths can
+    # still be truth-adjacent if its TITLE names engine/atlas/experiment/etc.
+    for title in ("fix(engine): klima-bryteren feiler lukket",
+                  "feat(bridge): the declared non-bridge class",
+                  "atlas(eksperiment): the sealed blind test",
+                  "docs(notes): de fire frysene, lagt fram for menneskeord"):
+        pr = mk(merge_state="CLEAN", title=title, files=("tests/test_x.py",))
+        assert classify(pr) == "escalate_canonical", title
+
+
 def test_routine_clean_escalates_not_merges():
     # The panel's core correction: a green PR touching only "routine" paths
     # still escalates — there is NO auto-merge class.
