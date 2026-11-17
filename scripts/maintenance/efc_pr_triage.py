@@ -142,7 +142,7 @@ def check_superseded(number: int, head_branch: str) -> Optional[bool]:
 
 
 def build_report(classifications: dict[int, str]) -> str:
-    lines = ["# EFC PR-triage — tørrkjøring", ""]
+    lines = ["# EFC PR-triage — dry-run", ""]
     order = ("close_dead", "close_superseded", "escalate_needs_rebase",
              "escalate_canonical", "escalate_routine", "escalate_unknown")
     for cls in order:
@@ -153,8 +153,8 @@ def build_report(classifications: dict[int, str]) -> str:
         lines.append(", ".join(f"#{n}" for n in nums))
         lines.append("")
     closes = sorted(n for n, c in classifications.items() if is_close_class(c))
-    lines.append(f"## Auto-handling (kun med --utfoer): {len(closes)} lukkinger")
-    lines.append("Alt annet eskaleres.")
+    lines.append(f"## Auto-handling (only with --utfoer): {len(closes)} closings")
+    lines.append("Everything else is escalated.")
     return "\n".join(lines)
 
 
