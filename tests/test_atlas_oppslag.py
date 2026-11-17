@@ -171,6 +171,23 @@ class TestEpistemiskStatus:
                 assert treff[0]["oppgjoer_status"] == "settled", (
                     f"{sid}: a completed settlement must read 'settled'")
 
+    def test_oppgjoer_uten_utfall_er_ikke_settled(self) -> None:
+        """A settlement record with no outcome must not fall through to 'settled'.
+
+        The classifier's else-branch once labeled an empty/missing outcome as
+        settled. No outcome is not a final outcome.
+        """
+        assert atlas_lesing._oppgjoer_status({}) is None
+        assert atlas_lesing._oppgjoer_status({"settlement": {}}) is None
+        assert atlas_lesing._oppgjoer_status({"settlement": {"outcome": ""}}) is None
+        assert atlas_lesing._oppgjoer_status({"settlement": {"outcome": "   "}}) is None
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiter: DESI DR2 full-shape"}}
+        ) == "pending"
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": '{"air_temperature": 10.0}'}}
+        ) == "settled"
+
     def test_falsifikator_telles_riktig(self, ekte_repo: Path) -> None:
         """The nodes with `ville_falsifisere` must be flagged — the others not."""
         atlas = atlas_lesing.les_atlas(ekte_repo, ref="HEAD")

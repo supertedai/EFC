@@ -191,7 +191,10 @@ def _oppgjoer_status(node: dict) -> str | None:
     s = node.get("settlement")
     if not isinstance(s, dict) or not s:
         return None
-    outcome = str(s.get("outcome", ""))
+    outcome = str(s.get("outcome", "")).strip()
+    if not outcome:
+        # A settlement record with no outcome is not a final outcome — no marker.
+        return None
     if "waiting for arbiter" in outcome.lower() or "awaiting arbiter" in outcome.lower():
         return "pending"
     return "settled"
