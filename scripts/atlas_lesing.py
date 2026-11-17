@@ -179,6 +179,24 @@ def _har_falsifikator(node: dict) -> bool:
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
 
+def _oppgjoer_status(node: dict) -> str | None:
+    """The settlement status of a node: "pending" | "settled" | None.
+
+    A node can carry a `settlement` RECORD without being settled: when the
+    arbiter has not landed, the record's outcome is "waiting for arbiter: …".
+    Telling the reader "is settled" for that is a truthfulness bug — a pending
+    result is not a final one. Only an outcome that is NOT awaiting its arbiter
+    counts as settled.
+    """
+    s = node.get("settlement")
+    if not isinstance(s, dict) or not s:
+        return None
+    outcome = str(s.get("outcome", ""))
+    if "waiting for arbiter" in outcome.lower() or "awaiting arbiter" in outcome.lower():
+        return "pending"
+    return "settled"
+
+
 # ---------------------------------------------------------------------------
 # THE UNCERTAINTY LAYER — every number must be able to carry how certain it is
 #
@@ -499,6 +517,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "buss_domene": n.get("buss_domene"),
                 "har_prediksjon": bool(n.get("prediction")),
                 "har_oppgjoer": bool(n.get("settlement")),
+                "oppgjoer_status": _oppgjoer_status(n),
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
@@ -548,6 +567,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": n.get("buss_domene"),
             "har_prediksjon": bool(n.get("prediction")),
             "har_oppgjoer": bool(n.get("settlement")),
+            "oppgjoer_status": _oppgjoer_status(n),
             "har_falsifikator": _har_falsifikator(n),
         })
     # Registered concepts ALWAYS answer with the namespace hit — also when a
@@ -572,6 +592,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": None,
             "har_prediksjon": False,
             "har_oppgjoer": False,
+            "oppgjoer_status": None,
             "har_falsifikator": False,
             # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace hit
             # gave a non-empty hit list, and a reader (or a downstream call)
@@ -2246,8 +2267,10 @@ if __name__ == "__main__":
                 merker.append("can be felled")
             if t["har_prediksjon"]:
                 merker.append("has prediction")
-            if t["har_oppgjoer"]:
+            if t.get("oppgjoer_status") == "settled":
                 merker.append("is settled")
+            elif t.get("oppgjoer_status") == "pending":
+                merker.append("pending settlement (awaiting arbiter)")
             if t["buss_domene"]:
                 merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
