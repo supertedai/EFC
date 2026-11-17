@@ -84,8 +84,25 @@ the number of corrected keys is reported. Never silently.
 | `leser_b.py` | system B |
 | `evidenslag.json` | B's sidecar: uncertainty per numeric claim and explicit support/contradiction edges |
 | `scorer.py` | mechanical comparison against the key |
-| `test_eksperiment.py`, `test_leser_b.py` | self-tests |
+| `bank.py` | WHICH bank the measurement is about — the sealed commit, pinned |
+| `test_eksperiment.py`, `test_leser_b.py`, `test_repro.py` | self-tests |
+
+**Which bank is read.** `key.json` is a dated measurement, not a description of
+today's atlas. Both readers used to read `origin/main` at run time, which made
+every sealed answer a claim that the bank must never change — measured
+2026-09-19, 4 of 12 tests were red for that reason and nothing ran the path.
+`bank.py` therefore pins the measurement's input (the sealed commit plus the
+bank's sha256), and it is the readers' default.
 
 ```sh
-/opt/venvs/t_123ed6d9/bin/python -m pytest tests/ -q -k eksperiment -p no:randomly
+/opt/venvs/t_123ed6d9/bin/python -m pytest docs/efc-atlas/eksperiment -q   # 18 passed
+make eksperiment PYTHON=/opt/venvs/t_123ed6d9/bin/python
+
+# against the LIVING bank — a different question, and the answers ARE expected
+# to differ:
+/opt/venvs/t_123ed6d9/bin/python leser_b.py --ref origin/main
 ```
+
+What no longer reproduces against the living bank, and why, is in `RESULTAT.md`
+under "Reproducibility note".
+

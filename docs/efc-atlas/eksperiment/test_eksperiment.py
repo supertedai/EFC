@@ -1,17 +1,16 @@
 import hashlib
 import json
-import subprocess
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
 
-import leser_a
-import scorer
+import bank  # noqa: E402
+import leser_a  # noqa: E402
+import scorer  # noqa: E402
 
 KEY_PATH = HERE / "key.json"
-BANK_PATH = Path(__file__).parents[3] / "schema" / "regime_nodes.jsonld"
 # Pinned to the CORRECTED key (67938617). The previous pinning pointed at
 # d3fd75b6, which contained four counting errors found by two independent tracks.
 # The purpose is the same: a silent change of the key must fail here.
@@ -23,12 +22,10 @@ def load_key():
 
 
 def load_bank():
-    raw = subprocess.check_output(
-        ["git", "show", "origin/main:schema/regime_nodes.jsonld"],
-        cwd=HERE.parents[2],
-        text=True,
-    )
-    return json.loads(raw)
+    # The SEALED bank (bank.SEAL_COMMIT), not origin/main. The key was written
+    # and committed before the prototype existed; reading the living atlas here
+    # made the sealed answers depend on a bank that is still being edited.
+    return bank.load_sealed()
 
 
 def answers_by_id():

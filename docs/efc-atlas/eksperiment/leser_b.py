@@ -3,9 +3,15 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
+import sys
 from pathlib import Path
 from typing import Any
+
+# The reader is loaded by path (importlib) from the tests, and run by path from
+# the shell; neither guarantees this directory is importable.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import bank  # noqa: E402
 
 
 def _nodes(bank: dict[str, Any]) -> dict[str, dict[str, Any]]:
@@ -83,13 +89,19 @@ def svar(bank: dict, key: dict, evidens: dict) -> list[dict]:
 
 
 def _load_bank(ref: str) -> dict:
-    raw = subprocess.check_output(["git", "show", f"{ref}:schema/regime_nodes.jsonld"])
-    return json.loads(raw)
+    """Kept for callers that pass a ref explicitly; see bank.py for the pin."""
+    return bank.load(ref)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--ref", default="origin/main")
+    parser = argparse.ArgumentParser(
+        description="Answer the sealed experiment's questions against a node bank.")
+    parser.add_argument(
+        "--ref", default=bank.SEAL_COMMIT,
+        help="git ref to read schema/regime_nodes.jsonld from. The default is "
+             "the bank the key was sealed against (bank.SEAL_COMMIT), so a bare "
+             f"run reproduces key.json. Use `--ref {bank.LIVE_REF}` to ask the "
+             "living atlas, whose answers are expected to differ.")
     parser.add_argument("--json", action="store_true", dest="as_json")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent
