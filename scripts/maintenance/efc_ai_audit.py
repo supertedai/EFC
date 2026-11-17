@@ -246,7 +246,11 @@ def call_openai(prompt):
             import openai
             client = openai.OpenAI(api_key=api_key)
             resp = client.chat.completions.create(**payload)
-            return resp.choices[0].message.content
+            m = resp.choices[0].message
+            # Same reasoning-model fallback as the urllib path (BL-1212): prefer
+            # content, fall back to a `reasoning` attr if content is empty/None.
+            return (getattr(m, "content", None) or "").strip() \
+                or (getattr(m, "reasoning", None) or "").strip()
         except ImportError:
             pass
 
@@ -264,10 +268,17 @@ def call_openai(prompt):
         },
     )
     try:
-        with urllib.request.urlopen(req, context=ctx, timeout=180) as resp:
+        # BL-1212: 180s is too short for a local big-context model on the ~45k-token
+        # audit prompt (gpt-oss-120b timed out). Env-configurable; default 600s.
+        _timeout = int(os.environ.get("EFC_AUDIT_LLM_TIMEOUT", "600"))
+        with urllib.request.urlopen(req, context=ctx, timeout=_timeout) as resp:
             body = resp.read()
             data = json.loads(body)
-            return data["choices"][0]["message"]["content"]
+            msg = data["choices"][0]["message"]
+            # Reasoning models (e.g. gpt-oss-120b via LM Studio) sometimes put the
+            # answer in `reasoning` and leave `content` empty. Prefer content; fall
+            # back to reasoning so the audit is never silently blank. (BL-1212)
+            return (msg.get("content") or "").strip() or (msg.get("reasoning") or "").strip()
     except urllib.error.HTTPError as e:
         body = e.read().decode(errors="replace")
         print(f"[ERROR] LLM API HTTP {e.code}: {body[:500]}")
@@ -323,6 +334,16 @@ def main():
     # Call API
     result = call_openai(prompt)
 
+    # BL-1212 FAIL-CLOSED: an empty/too-short result means the model returned nothing
+    # usable (a reasoning model that emitted only hidden reasoning, a truncated ctx, a
+    # failed call). An empty audit that reports "all checks passed" is the worst failure
+    # mode for a quality gate — a false green. Never allow it: fail loudly instead.
+    MIN_AUDIT_CHARS = 200
+    if not result or len(result.strip()) < MIN_AUDIT_CHARS:
+        print(f"\n[AUDIT] FAIL — empty/too-short result ({len(result or '')} chars < "
+              f"{MIN_AUDIT_CHARS}). Model returned nothing usable; refusing to report green.")
+        return 1
+
     print("\n" + "=" * 70)
     print("AUDIT RESULT")
     print("=" * 70)
@@ -333,7 +354,7 @@ def main():
     with open(report_path, "w") as f:
         f.write(f"# EFC AI Consistency Audit Report\n\n")
         f.write(f"**Date:** {datetime.date.today().isoformat()}\n")
-        f.write(f"**Model:** {MODEL}\n")
+        f.write(f"**Model:** {LOCAL_MODEL if LOCAL_PROVIDER else MODEL}\n")
         f.write(f"**Paper directories:** {paper_count}\n\n")
         f.write("---\n\n")
         f.write(result)
