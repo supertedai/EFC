@@ -58,7 +58,8 @@ node-check:
 
 # Autonomous self-validating loop (OBSERVE -> DECIDE -> ACT). Runs the picture,
 # auto-fixes ONLY own-clone lag (ff-only, verified, fail-closed), escalates the
-# rest. exit 0 = clean/all-fixed, exit 2 = drift escalated, exit 3 = unknown.
-# Silent on clean (watchdog pattern) — non-empty stdout only when there is work.
+# rest. --strict makes it a gate (exit 2 = drift, exit 3 = unknown); without it
+# the script exits 0 and reports drift in stdout (for the no_agent cron, where
+# a non-zero exit would read as "script failed").
 self-heal:
-	$(PYTHON) scripts/maintenance/efc_selfheal.py
+	$(PYTHON) scripts/maintenance/efc_selfheal.py --strict

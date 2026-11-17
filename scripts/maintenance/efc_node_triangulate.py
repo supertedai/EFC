@@ -130,10 +130,10 @@ EFC_CLONES: List[Path] = [
 ]
 
 
-def _git_head(repo: Path) -> Optional[str]:
+def _git(rev: str, repo: Path) -> Optional[str]:
     try:
         out = subprocess.run(
-            ["git", "rev-parse", "HEAD"], cwd=repo,
+            ["git", "rev-parse", rev], cwd=repo,
             capture_output=True, text=True, timeout=10,
         )
         if out.returncode == 0:
@@ -144,14 +144,17 @@ def _git_head(repo: Path) -> Optional[str]:
 
 
 def probe_git_clones() -> List[Observation]:
-    """Each clone's HEAD. Disagreement across clones = replication lag (drift)."""
+    """Each clone's local main-branch tip. Disagreement = a clone's main is
+    stale (replication lag). HEAD is deliberately NOT used: a clone mid-work on
+    a feature branch has a different HEAD but a correct main, which is not drift.
+    """
     obs: List[Observation] = []
     for repo in EFC_CLONES:
-        head = _git_head(repo)
-        if head:
+        main = _git("main", repo)
+        if main:
             obs.append(Observation(
                 family="git-clone", key="efc-clone-head",
-                value=head, exact=True, ts=str(repo),
+                value=main, exact=True, ts=str(repo),
             ))
     return obs
 

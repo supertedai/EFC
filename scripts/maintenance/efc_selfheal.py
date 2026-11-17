@@ -12,9 +12,9 @@ opinion (gpt-5.6-luna, confidence 0.93). The panel's core correction:
 verifiable change to a known derived state, idempotent, recoverable". So the
 auto-fix whitelist holds exactly ONE entry (own clone lag); the rest escalates.
 
-Exit codes: 0 = no drift / all fixed, 2 = drift escalated (work for a human),
-3 = unknown (telemetry unavailable). stdout is silent on clean (watchdog
-pattern); non-empty only when something was fixed or escalated.
+Exit codes: 0 = the script ran (drift is in stdout, delivered verbatim by the
+no_agent cron — drift is NOT a script failure). --strict instead signals
+drift via exit (2 = escalated, 3 = unknown), for `make self-heal` as a gate.
 """
 from __future__ import annotations
 
@@ -57,13 +57,14 @@ def _origin_url(cwd: Path) -> Optional[str]:
 
 
 def _fix_own_clone_lag() -> Dict:
-    """Fast-forward my own clone to origin/main, verified. Fail-closed.
+    """Fast-forward my own clone's main to origin/main, verified. Fail-closed.
 
     Preconditions (all must hold, else fail-closed -> escalate):
     - clone is OWN_CLONE (owned by this agent)
     - origin is TRUSTED_ORIGIN (supertedai/EFC)
+    - clone is ON main (never touches a feature branch mid-work)
     - ff-only (never rewrites local history)
-    Postcondition verified by read-back of HEAD against origin/main.
+    Postcondition verified by read-back of main against origin/main.
     """
     if not OWN_CLONE.exists():
         return {"ok": False, "reason": "own clone missing"}
@@ -71,12 +72,22 @@ def _fix_own_clone_lag() -> Dict:
     if not origin or TRUSTED_ORIGIN not in origin:
         return {"ok": False, "reason": f"untrusted origin: {origin}"}
 
-    before = _git("HEAD", OWN_CLONE)
-    remote = _git("refs/remotes/origin/main", OWN_CLONE)
-    if before == remote:
-        return {"ok": True, "action": "already-current", "before": before}
+    head = _git("HEAD", OWN_CLONE)
+    main = _git("main", OWN_CLONE)
+    if not head or not main:
+        return {"ok": False, "reason": "cannot resolve HEAD/main"}
+    if head != main:
+        return {"ok": False, "reason": "clone not on main (feature branch / work in progress)"}
 
-    # Save the prior HEAD for rollback before moving.
+    remote = _git("refs/remotes/origin/main", OWN_CLONE)
+    if not remote:
+        return {"ok": False, "reason": "cannot resolve origin/main (not fetched?)"}
+    if main == remote:
+        # Own clone is already current; the drift is in ANOTHER clone, which is
+        # not this agent's to fix -> escalate.
+        return {"ok": False, "reason": "own clone already current; drift is another clone"}
+
+    # Save the prior main for rollback before moving.
     try:
         r = subprocess.run(
             ["git", "pull", "--ff-only", "origin", "main"], cwd=OWN_CLONE,
@@ -87,12 +98,12 @@ def _fix_own_clone_lag() -> Dict:
     if r.returncode != 0:
         return {"ok": False, "reason": f"pull non-ff/refused: {r.stderr.strip()[:120]}"}
 
-    # Independent read-back: HEAD must now equal origin/main.
-    after = _git("HEAD", OWN_CLONE)
+    # Independent read-back: main must now equal origin/main.
+    after = _git("main", OWN_CLONE)
     if after != remote:
-        return {"ok": False, "reason": f"post-verify failed: HEAD={after} != origin/main={remote}"}
+        return {"ok": False, "reason": f"post-verify failed: main={after} != origin/main={remote}"}
 
-    return {"ok": True, "action": "fast-forwarded", "before": before, "after": after}
+    return {"ok": True, "action": "fast-forwarded", "before": main, "after": after}
 
 
 # The whitelist: fact key -> fix function. One entry, by design.
@@ -111,12 +122,17 @@ def selfheal() -> Dict:
             continue
         if fact["key"] in AUTO_FIX:
             result = AUTO_FIX[fact["key"]]()
-            if result.get("ok"):
+            # Verify the POSTCONDITION independently: is the fact still drift?
+            still_drift = any(
+                f["key"] == fact["key"] and f["verdict"] == "drift"
+                for f in build_picture()["facts"]
+            )
+            if result.get("ok") and not still_drift:
                 fixed.append({"key": fact["key"], "detail": fact["detail"], **result})
             else:
                 escalated.append({
                     "key": fact["key"], "detail": fact["detail"],
-                    "reason": result.get("reason", "auto-fix failed"),
+                    "reason": result.get("reason", "still drift after auto-fix"),
                 })
         else:
             escalated.append({"key": fact["key"], "detail": fact["detail"]})
@@ -142,14 +158,16 @@ def main(argv: List[str]) -> int:
     elif lines:
         print("\n".join(lines))
 
-    if escalated:
-        return 2
-    # unknown facts are not drift; report them only if asked
-    unknowns = [f for f in result["picture"]["facts"] if f["verdict"] == "unknown"]
-    if unknowns and "--json" not in argv and lines:
-        print(f"UNKNOWN: {len(unknowns)} fact(s) unmeasured")
-    if unknowns and not fixed and not escalated:
-        return 3
+    # Exit 0 = the script RAN (the message is in stdout, delivered verbatim by
+    # the no_agent cron). Drift is NOT a script failure. A non-zero exit would
+    # make the cron report "script failed" every day there is drift — wrong.
+    # --strict (for `make self-heal` as a gate) instead signals drift via exit.
+    if "--strict" in argv:
+        unknowns = [f for f in result["picture"]["facts"] if f["verdict"] == "unknown"]
+        if escalated:
+            return 2
+        if unknowns:
+            return 3
     return 0
 
 
