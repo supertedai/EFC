@@ -8,12 +8,23 @@ derfor vertens hermes-tilgang. Idempotens: stabil kort-tittel per funnklasse
 
 Bruk: python3 scripts/maintenance/vedlikeholdsrunde.py [--dry-run]
 Exit: 0 = runde ferdig, 1 = sjekkfeil, 2 = write gate,
-3 = kanban list unreadable (no cards created).
+3 = kanban list unreadable (no cards created),
+4 = no canonical work surface resolved (no cards created).
+
+CARDS CARRY A WORK SURFACE. Every card is created with
+`--workspace worktree:<surface>`, where the surface is the board's canonical
+one: read from the flat-surface register through `flateopploser` -- the same
+resolver the creator port and the dispatch backstop read -- and, when the
+register cannot answer, measured as this repo's main clone with git. A card
+without a surface is never created: `scratch` is always empty, so the
+preflight rejects such a card as a code card in a scratch workspace, and no
+worker can ever pick it up (measured 2026-10-05, t_216d8d76).
 """
 from __future__ import annotations
 
 import argparse
 import fcntl
+import importlib.util
 import json
 import os
 import subprocess
@@ -27,6 +38,16 @@ BRETT = "energy-flow-cosmology"
 HERMES = "/home/morten/.hermes/hermes-agent/venv/bin/hermes"
 MAKS_KORT_PER_KJOERING = 5
 LAAS = Path("/tmp/efc-vedlikeholdsrunde.lock")
+
+#: Where the one path->surface resolver can live. Which surface a code card
+#: gets belongs to `flateopploser` -- the module the creator port
+#: (`kanban-skaper-porten`) and the dispatch backstop
+#: (`kanbanstyrer.forhaandssjekk`) share. This file never parses
+#: `flateregister.json` itself: one rule, one reader.
+FLATEOPPLOSER_KANDIDATER = (
+    "/home/morten/.hermes/hooks/flateopploser.py",
+    "/opt/hermes-opus/flateopploser.py",
+)
 
 SJEKKER = [
     ("statement-graf", "statement_graph_check.py", []),
@@ -87,13 +108,140 @@ def _apne_kort_titler() -> set[str] | None:
     return _open_titles_from_list(r.stdout)
 
 
-def _lag_kort(tittel: str, kropp: str, dry: bool) -> bool:
+#: This round's own file, at the same relative path inside a surface. A surface
+#: that does not carry the round cannot carry the round's cards either.
+EGEN_STI = Path(__file__).resolve().relative_to(ROT)
+
+
+def _er_kortflate(sti) -> bool:
+    """Can this surface carry the round's cards? Measured, never assumed.
+
+    Two demands, both read from the disk: it is the MAIN clone (`.git` is a
+    directory -- a linked worktree carries a `.git` file and belongs to one
+    card), and it carries this round at `EGEN_STI`. A surface missing either
+    one is not a surface for these cards.
+    """
+    if not isinstance(sti, str) or not sti:
+        return False
+    p = Path(sti)
+    return (p / ".git").is_dir() and (p / EGEN_STI).is_file()
+
+
+def _flateopploser():
+    """The resolver module, or None when it cannot be loaded.
+
+    An explicit pointer (`FLATEOPPLOSER_STI`) is the only candidate when set.
+    A module that will not import is not a rule: None, never a partial read.
+    """
+    kandidater = [os.environ.get("FLATEOPPLOSER_STI", "").strip()]
+    kandidater += list(FLATEOPPLOSER_KANDIDATER)
+    for sti in kandidater:
+        if not sti:
+            continue
+        fil = Path(sti)
+        if not fil.is_file():
+            continue
+        try:
+            spec = importlib.util.spec_from_file_location("efc_flateopploser", fil)
+            if spec is None or spec.loader is None:
+                continue
+            modul = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(modul)
+            return modul
+        except Exception:                                     # noqa: BLE001
+            continue
+    return None
+
+
+def _flate_fra_register() -> tuple[str | None, str]:
+    """The board's canonical surface, from the register, through the resolver.
+
+    `(surface, reason)`: one of the two is always empty. Every failure is a
+    reason, never a guess -- and `_kanonisk_flate` prints it, so a fallback is
+    never silent.
+    """
+    modul = _flateopploser()
+    if modul is None:
+        return None, "flateopploser.py not found in any candidate"
+    try:
+        dom = modul.opplos(BRETT)
+    except Exception as e:                                    # noqa: BLE001
+        return None, f"the resolver raised {type(e).__name__}"
+    if not isinstance(dom, dict):
+        return None, "the resolver answered a shape this file cannot read"
+    if dom.get("status") != "resolvert":
+        return None, (f"the register did not resolve the board `{BRETT}`: "
+                      f"{dom.get('status')}")
+    sti = dom.get("path")
+    if not _er_kortflate(sti):
+        return None, (f"the register points at {sti}, which does not carry "
+                      f"this round")
+    return sti, ""
+
+
+def _flate_fra_git(rot: Path = ROT) -> tuple[str | None, str]:
+    """This repo's main clone, measured with git.
+
+    `git rev-parse --git-common-dir` names the MAIN clone's `.git` also when
+    this round runs from a linked worktree, and the main clone is exactly what
+    the dispatcher anchors `<repo>/.worktrees/<card>` under.
+    """
+    try:
+        r = subprocess.run(["git", "-C", str(rot), "rev-parse",
+                            "--path-format=absolute", "--git-common-dir"],
+                           capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError) as e:
+        return None, f"git could not be run ({type(e).__name__})"
+    if r.returncode != 0:
+        return None, f"git answered rc={r.returncode} for {rot}"
+    svar = Path(r.stdout.strip())
+    kandidat = svar.parent if svar.name == ".git" else svar
+    if not _er_kortflate(str(kandidat)):
+        return None, f"the main clone {kandidat} does not carry this round"
+    return str(kandidat), ""
+
+
+def _kanonisk_flate(rot: Path = ROT) -> str | None:
+    """The surface the cards get, or None when no surface can be resolved.
+
+    The register answers first: it is the versioned, reviewed decision on where
+    this board's work lives. This repo's main clone is the fallback, so a round
+    still reaches a correct surface when the register cannot be read -- and the
+    reason is printed, so the fallback is never silent.
+    """
+    sti, grunn = _flate_fra_register()
+    if sti:
+        return sti
+    print(f"  surface: {grunn} -- measuring this repo's main clone",
+          file=sys.stderr)
+    sti, grunn = _flate_fra_git(rot)
+    if sti:
+        print(f"  surface: {sti} (main clone, measured with git)",
+              file=sys.stderr)
+        return sti
+    print(f"  surface: {grunn}", file=sys.stderr)
+    return None
+
+
+def _lag_kort(tittel: str, kropp: str, dry: bool, flate: str) -> bool:
+    """Create the card ON the board's canonical surface.
+
+    `--workspace worktree:<flate>` is the point: a card created without it gets
+    `scratch`, and scratch is always empty -- the preflight then rejects it as
+    a code card in a scratch workspace, and no worker can ever pick it up
+    (measured 2026-10-05, t_216d8d76). The dispatcher anchors
+    `<flate>/.worktrees/<card>`: one worktree per card, off the main clone.
+    """
+    if not flate:
+        print("  no surface to give the card; not creating it", file=sys.stderr)
+        return False
     miljo = {"HERMES_KANBAN_HOME": "/opt/hermes-tavle",
              "PATH": "/usr/local/bin:/usr/bin:/bin"}
     cmd = [HERMES, "kanban", "--board", BRETT, "create", tittel,
-           "--assignee", "researcher", "--priority", "50", "--body", kropp]
+           "--assignee", "researcher", "--priority", "50", "--body", kropp,
+           "--workspace", f"worktree:{flate}"]
     if dry:
-        print(f"  [dry-run] ville opprettet: {tittel}")
+        print(f"  [dry-run] ville opprettet: {tittel} (worktree:{flate})")
         return True
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=60, env=miljo)
     return r.returncode == 0
@@ -138,6 +286,16 @@ def hoved() -> int:
               file=sys.stderr)
         apne = set()
     print("vedlikeholdsrunde:")
+    # The surface, resolved ONCE before any card exists. A round that cannot
+    # resolve one creates no cards at all and exits 4: handing them `scratch`
+    # would make every card a blocked card (see the module docstring).
+    flate = None if kanban_unreadable else _kanonisk_flate()
+    flate_missing = not kanban_unreadable and flate is None
+    if flate_missing:
+        print("  no canonical work surface -- creating no cards this round",
+              file=sys.stderr)
+    elif flate:
+        print(f"  surface: {flate}")
     totalt_funn = 0
     opprettet = 0
     for navn, skript, ekstra in SJEKKER:
@@ -171,7 +329,8 @@ def hoved() -> int:
                 funn = [{"type": "scan_report_unreadable"}]
         print(f"  {navn}: rc={rc}, {len(funn)} funn")
         totalt_funn += len(funn)
-        if funn and not kanban_unreadable and opprettet < MAKS_KORT_PER_KJOERING:
+        if (funn and not kanban_unreadable and flate
+                and opprettet < MAKS_KORT_PER_KJOERING):
             # STABIL nøkkel: tittel uten antall, slik at ett åpent kort per
             # funnklasse er idempotens-nøkkelen (antall endres, klassen ikke).
             tittel = f"[vedlikehold] {navn}-funn"
@@ -183,12 +342,16 @@ def hoved() -> int:
                      f"Sjekk: scripts/maintenance/{skript}\n\n"
                      f"Funn:\n```json\n{json.dumps(funn[:40], ensure_ascii=False, indent=1)}\n```\n\n"
                      f"Fiks i branch → PR → CI → merge. Lukk kortet etter readback.")
-            if _lag_kort(tittel, kropp, a.dry_run):
+            if _lag_kort(tittel, kropp, a.dry_run, flate):
                 opprettet += 1
             else:
                 print(f"  → kortopprettelse feilet for {navn}; funnene står i loggen")
     print(f"  totalt: {totalt_funn} funn, {opprettet} kort opprettet")
-    return 3 if kanban_unreadable else 0
+    if kanban_unreadable:
+        return 3
+    if flate_missing:
+        return 4
+    return 0
 
 
 if __name__ == "__main__":
