@@ -1,0 +1,133 @@
+name: efc-testsuite
+
+# C14 — the WHOLE suite, collected from the repository root.
+#
+# MEASURED 2026-09-18 (card t_89eea983) on origin/main 9fd9ae4a: no CI job ran
+# the whole suite. Five workflows ran pytest and named THIRTEEN test files
+# between them (efc-risiko 3, efc-schema 7, efc-statement-graph 1,
+# efc-changelog-sync 1, efc-page-consistency 1), against a suite of 1161 tests.
+# `make full-check` runs scripts/maintenance/* — it does not run pytest at all.
+#
+# Main is therefore RED today, in two classes:
+#   1. a COLLECTION ERROR, and it is invisible to every existing job:
+#      tests/test_atlas_retain.py imports NODE_TERSKEL, bekreft and node_verdig
+#      from scripts/atlas_lesing.py, and PR #532 (9fd9ae4a) merged the test file
+#      without the code it imports. pytest interrupts the whole session on a
+#      collection error, so NOT ONE of the 1161 tests runs on main right now
+#      (measured on a clean checkout of origin/main: `1 error in 4.70s`,
+#      `Interrupted: 1 error during collection`). None of the thirteen named
+#      files is this one, so no job can see it.
+#   2. a FAILING TEST that only recently got a name in a command:
+#      tests/test_bro_konvensjon.py::test_hvert_skjema_felt_har_en_eier — the
+#      field `open_questions` is in schema/regime_node.schema.json (PR #555)
+#      with no owner in the bridge convention. It merged unwatched, and the
+#      file was added to the C10 command only three hours later, by #551
+#      (b77029e3, 2026-09-18T18:49Z). The efc-schema job has failed on main
+#      since — which is the point: coverage here is "whoever remembers to name
+#      the file", not "the suite runs".
+# With (1) set aside as a MEASUREMENT (never as a gate setting) the suite is
+#   1 failed, 1159 passed, 1 skipped in 50.94s
+# — that is, (1) is the only reason the suite cannot run at all, and (2) is the
+# only failure behind it.
+#
+# This job is RED the day it lands, for exactly those two reasons, and that is
+# the honest signal: it reports what no gate reported before it. The repair
+# order matters — (1), then (2), then this job is green. It deliberately
+# carries no ignore, no xfail and no allowlist for either: an exemption is how
+# a gate stops being a gate.
+#
+# THE COMMAND, and why it is not the short form:
+#   * `python3 -m pytest -q` from the root — not `pytest tests/`. From the root
+#     efc_inference/tests/ comes along (123 tests). `tests/` alone drops them in
+#     silence, which is exactly the trap
+#     tests/test_repo_konfigurasjon.py::TestIngenDekningForsvinner exists for.
+#     Measured on the previous base: `tests/` = 995 tests, the root = 1123.
+#   * `python3 -m pytest`, not `pytest`: only the `-m` form puts CWD on
+#     sys.path, so `import efc_inference` works without an install. Measured in
+#     a fresh venv: `pytest tests/test_cross_probe_s8.py` stopped with
+#     ModuleNotFoundError: efc_inference.
+#   * No `pip install -e .` and no `--ignore=tests/test_growth_friction.py`:
+#     pyproject.toml puts `src` on the path (`pythonpath = ["src"]`, added
+#     upstream on 2026-09-18), so tests/test_growth_friction.py is collected and
+#     RUNS. Measured with no package installed in the venv at all:
+#     `python3 -m pytest tests/test_growth_friction.py -q` → 3 passed in 0.69s.
+#     The ignore inherited from the card was an install artefact of a bare
+#     venv, not a property of the test — and the file is a regression guard for
+#     a real growth-ODE bug, so leaving it ungated is the drift this job exists
+#     to stop.
+#
+# MEASURED COST (3.11.15, requirements.txt, TMPDIR=/tmp, 2026-09-18): 50.94s of
+# pytest for the level-2 run above; CI adds checkout, Python setup and the
+# requirements install.
+#
+# MEASURED IN CI the same evening. First run (35383963611): 29s to the
+# collection error above — checkout and the requirements install are about 20s
+# of that, so the whole gate costs well under a minute. With (1) set aside in a
+# probe run (35384359541) the pytest step ran 31.53s and reported
+#   25 failed, 1136 passed, 1 skipped
+# — which is the number that matters for anyone planning to make this job
+# green: (2) is NOT the whole distance. Three of the failing files hard-code
+# the interpreter path `/opt/venvs/t_123ed6d9/bin/python`
+# (tests/test_atlas_lesbarhet.py, tests/test_atlas_navigasjon.py,
+# tests/test_efc_atlas_generator.py) — a path that exists only on the Hermes
+# host, so those tests pass there and cannot run anywhere else. That is a test
+# defect (the repair is `sys.executable`), it is reported as its own card, and
+# it is not patched inside a CI-policy change. One more file needs `origin/main`
+# to resolve; THIS job provides it, because comparing against the main revision
+# is deliberate in those tests (the atlas reader's own --ref default) and a job
+# that runs the suite has to hand it the revision.
+#
+# Environment sensitivity, measured the same day: the tests in
+# tests/test_repo_tre.py and tests/test_efc_*.py::Rigg assume TMPDIR sits
+# OUTSIDE a git tree. With TMPDIR=/opt/... (which is a git tree on the
+# measurement host) 15 of them fail on "[] is not None" in git_indeks. The
+# GitHub runner uses /tmp, which is not a git tree, so this job does not set
+# TMPDIR — and must not.
+#
+# No `paths:` filter, deliberately: a whole-suite gate must run for EVERY
+# change, since any file can break any test. That is why it was not added to
+# one of the filtered jobs (efc-schema.yml runs the schema-near files and would
+# never have seen test_bro_konvensjon).
+#
+# Schedule: the cron maintenance commits to main with GITHUB_TOKEN, and such
+# robot commits fire no workflow (cf. efc-verify.yml). Many tests read
+# docs/public/*.html and docs/validation-ledger/ — precisely the surfaces the
+# robot writes. A daily run catches that rot within a day.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "37 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testsuite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # The atlas tests read the revision they compare the tree against
+          # (`origin/main` is the atlas reader's own default ref), so the ref
+          # has to exist in the checkout. A PR checkout does not create it.
+          fetch-depth: 0
+
+      - name: Make origin/main resolvable for the tests that compare against it
+        run: git fetch --no-tags origin main
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: "Install the test dependencies (one source — requirements.txt)"
+        # Deliberately `-r requirements.txt` and not a list of its own: the test
+        # dependencies live in one place, and
+        # tests/test_repo_konfigurasjon.py::TestAvhengighetslisteneErISynk guards
+        # that it does not drift from the list in efc-schema.yml.
+        run: python3 -m pip install --quiet -r requirements.txt
+
+      - name: The whole suite from the root (tests/ and efc_inference/tests/)
+        run: python3 -m pytest -q
