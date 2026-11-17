@@ -5,6 +5,15 @@
   "period_days": 7,
   "changes": [
     {
+      "date": "2026-11-17",
+      "sha": "d540368543e5",
+      "summary": "atlas: regenerate the flat surfaces after the bus measurement moved (t_693dcc55)",
+      "categories": {
+        "ledger_data": 5
+      },
+      "id": "d540368543e5"
+    },
+    {
       "date": "2026-11-16",
       "sha": "461662149e46",
       "summary": "fix(public): anchor model-comparison perturbation-sector derivation to its DOI (32037990)",
@@ -531,7 +540,7 @@
     }
   ],
   "metadata": {
-    "last_processed_sha": "461662149e46c2417483ff89959f98bd617f0e74",
+    "last_processed_sha": "d540368543e58bb0fc29260860a27db298e5164c",
     "generated_at": "2026-09-17T12:53:30.886435+00:00"
   }
 }
