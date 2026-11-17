@@ -147,5 +147,12 @@ def test_falsifiseringsbetingelsen_er_dekket_ikke_bare_mulig():
                     .get("ikke_falsifiserbar_grunn"))]
     assert not uten, (
         f"{len(uten)} of {len(noder)} node(s) have not taken a position: {uten[:8]}")
-    assert len(noder) - len(uten) == 126, (
-        f"coverage must be 126 of 126 (the atlas grew from 113 on 2026-09-19; all 13 new nodes answered), is {len(noder) - len(uten)}")
+    # 126 -> 125 on 2026-11-17: PR #682 pruned kosmos.stjerner (the MAST/CAOM
+    # subject expired out of the bus retention window, so the node lost its
+    # source). The pin moves ON PURPOSE with a merged, reviewed decision — the
+    # coverage is still complete (125 of 125 answered), which is what this test
+    # measures. A pin that moves because the test stopped seeing would fail the
+    # `not uten` assertion above instead.
+    assert len(noder) - len(uten) == 125, (
+        f"coverage must be 125 of 125 (the atlas grew from 113 on 2026-09-19; all 13 new nodes "
+        f"answered; kosmos.stjerner pruned by PR #682), is {len(noder) - len(uten)}")
