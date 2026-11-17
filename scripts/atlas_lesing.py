@@ -64,6 +64,7 @@ from __future__ import annotations
 import json
 import collections
 import datetime
+import math
 import re
 import subprocess
 from pathlib import Path
@@ -177,6 +178,296 @@ def _har_falsifikator(node: dict) -> bool:
     to see the difference without reading the whole node.
     """
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
+
+
+def _oppgjoer_values(value):
+    """Yield scalar values from a structured outcome string or object."""
+    if isinstance(value, dict):
+        for item in value.values():
+            yield from _oppgjoer_values(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from _oppgjoer_values(item)
+    elif isinstance(value, str):
+        text = value.strip()
+        try:
+            parsed = json.loads(text)
+        except (json.JSONDecodeError, TypeError):
+            yield text
+        else:
+            if isinstance(parsed, (dict, list)):
+                yield from _oppgjoer_values(parsed)
+            elif isinstance(parsed, str):
+                yield parsed.strip()
+            else:
+                yield parsed
+    else:
+        yield value
+
+
+def _oppgjoer_normaliser_tilstand(value: str) -> str:
+    """Normalize punctuation/spacing before comparing lifecycle values."""
+    return " ".join(re.sub(r"[^a-z0-9]+", " ", value.casefold()).split())
+
+
+def _oppgjoer_venter(outcome) -> bool:
+    return any(
+        isinstance(value, str)
+        and _oppgjoer_normaliser_tilstand(value).startswith(
+            ("waiting for arbiter", "awaiting arbiter"))
+        for value in _oppgjoer_values(outcome)
+    )
+
+
+def _oppgjoer_uavklart(value: str) -> bool:
+    normalized = _oppgjoer_normaliser_tilstand(value)
+    first = normalized.split(" ", 1)[0] if normalized else ""
+    return (
+        normalized in {"unknown", "inconclusive", "pending", "unresolved",
+                       "unsettled", "open", "incomplete", "running"}
+        or first in {"unknown", "inconclusive", "pending", "unresolved",
+                     "unsettled", "open", "incomplete", "running", "waiting",
+                     "awaiting"}
+        or normalized.startswith(("not settled", "not completed"))
+    )
+
+
+_OPPGJOER_TERMINALE_TILSTANDER = {
+    "confirmed", "contradicted", "settled", "complete", "completed", "resolved",
+    "revised", "revidert", "excluded", "unchanged", "uendret", "motsagt",
+    "bekreftet", "utdypet", "ubesvart", "succeeded", "success", "failed", "failure",
+}
+_OPPGJOER_TILSTANDSFELT = {"status", "state", "outcome", "utfall", "result"}
+_OPPGJOER_BOOL_TERMINALE_FELT = {"settled", "complete", "completed"}
+_OPPGJOER_GENERISKE_FELT = {
+    "value", "values", "data", "result", "payload", "status", "state", "outcome",
+    "utfall", "settled", "pending", "complete", "completed", "timestamp", "time",
+    "source", "outcome_source", "outcome_time", "settlement_version", "unit", "units",
+    "correlation", "node", "id", "provenance", "schema_version", "version", "message",
+    "note", "description",
+}
+
+
+def _oppgjoer_dekode(value):
+    if isinstance(value, str):
+        text = value.strip()
+        try:
+            return json.loads(text)
+        except (json.JSONDecodeError, TypeError):
+            return text
+    return value
+
+
+def _oppgjoer_livssyklus(payload) -> tuple[bool, bool]:
+    """Return (has_explicit_terminal_state, has_unknown_or_open_state)."""
+    terminal = False
+    invalid = False
+
+    def walk(value) -> None:
+        nonlocal terminal, invalid
+        value = _oppgjoer_dekode(value)
+        if isinstance(value, dict):
+            for raw_key, raw_item in value.items():
+                key = str(raw_key).strip().casefold()
+                item = _oppgjoer_dekode(raw_item)
+                if key in _OPPGJOER_BOOL_TERMINALE_FELT:
+                    if item is True:
+                        terminal = True
+                    else:
+                        invalid = True
+                elif key == "pending":
+                    if item is True:
+                        invalid = True
+                    elif item is False:
+                        continue
+                    elif isinstance(item, str) and _oppgjoer_normaliser_tilstand(item) in {
+                        "false", "no",
+                    }:
+                        continue
+                    else:
+                        invalid = True
+                elif key in _OPPGJOER_TILSTANDSFELT:
+                    if isinstance(item, str):
+                        normalized = _oppgjoer_normaliser_tilstand(item)
+                        if _oppgjoer_uavklart(item):
+                            invalid = True
+                        elif normalized in _OPPGJOER_TERMINALE_TILSTANDER:
+                            terminal = True
+                        else:
+                            # A lifecycle field with an unfamiliar value is not
+                            # evidence of completion; fail closed.
+                            invalid = True
+                    elif isinstance(item, (dict, list)):
+                        walk(item)
+                    else:
+                        invalid = True
+                elif isinstance(item, (dict, list)):
+                    walk(item)
+        elif isinstance(value, list):
+            for item in value:
+                walk(item)
+
+    walk(payload)
+    return terminal, invalid
+
+
+def _oppgjoer_har_navnede_data(payload) -> bool:
+    """A static measurement needs named data, not a generic value wrapper."""
+    payload = _oppgjoer_dekode(payload)
+    if isinstance(payload, dict):
+        for raw_key, item in payload.items():
+            key = str(raw_key).strip().casefold()
+            item = _oppgjoer_dekode(item)
+            if key in _OPPGJOER_GENERISKE_FELT:
+                if isinstance(item, (dict, list)) and _oppgjoer_har_navnede_data(item):
+                    return True
+                continue
+            if isinstance(item, (dict, list)):
+                if _oppgjoer_har_navnede_data(item):
+                    return True
+            elif item is not None and (not isinstance(item, str) or bool(item.strip())):
+                return True
+    elif isinstance(payload, list):
+        return any(_oppgjoer_har_navnede_data(item) for item in payload)
+    return False
+
+
+def _oppgjoer_utfall_er_fullfort(outcome) -> bool:
+    """A static result needs a terminal state or named measurement data.
+
+    Generic wrappers (for example ``{"value": 0}``) and unfamiliar explicit
+    lifecycle values are not outcome evidence. Named measurement fields remain
+    valid for sources such as METAR, whose static settlement stores observations
+    rather than a pass/fail label.
+    """
+    if not isinstance(outcome, str) or not outcome.strip():
+        return False
+    text = outcome.strip()
+    normalized = _oppgjoer_normaliser_tilstand(text)
+    if normalized in _OPPGJOER_TERMINALE_TILSTANDER:
+        return True
+    try:
+        payload = json.loads(text)
+    except (json.JSONDecodeError, TypeError):
+        return False
+    if not isinstance(payload, (dict, list)) or not payload:
+        return False
+
+    values = list(_oppgjoer_values(payload))
+    if any(isinstance(value, str) and _oppgjoer_uavklart(value) for value in values):
+        return False
+    terminal, invalid = _oppgjoer_livssyklus(payload)
+    if invalid:
+        return False
+    return terminal or _oppgjoer_har_navnede_data(payload)
+
+
+def _oppgjoer_korrelasjon_matcher(node: dict, record: dict) -> bool:
+    correlation = record.get("correlation")
+    if not isinstance(correlation, str) or not correlation.strip():
+        return False
+    prediction = node.get("prediction")
+    settlement = node.get("settlement")
+    expected = [
+        value.strip()
+        for value in (
+            prediction.get("correlation") if isinstance(prediction, dict) else None,
+            settlement.get("correlation") if isinstance(settlement, dict) else None,
+        )
+        if isinstance(value, str) and value.strip()
+    ]
+    return bool(expected) and all(correlation.strip() == value for value in expected)
+
+
+def _oppgjoer_status(node: dict) -> str:
+    """Classify a settlement record without treating its presence as an outcome.
+
+    EFC result blocks must identify this node and match its prediction. Static
+    records need a correlated, populated outcome plus completion metadata;
+    unknown result forms remain non-settled.
+    """
+    result = node.get("settlement_result")
+    settlement = node.get("settlement")
+    has_result = bool(result)
+    has_settlement = bool(settlement)
+    if not has_result and not has_settlement:
+        return "none"
+
+    correlation_matches = False
+    if isinstance(result, dict) and result:
+        correlation_matches = _oppgjoer_korrelasjon_matcher(node, result)
+        _, result_lifecycle_invalid = _oppgjoer_livssyklus(result)
+        result_has_unresolved_text = any(
+            isinstance(value, str) and _oppgjoer_uavklart(value)
+            for value in _oppgjoer_values(result)
+        )
+        result_has_conflicting_lifecycle = (
+            result_lifecycle_invalid or result_has_unresolved_text
+        )
+
+        provenance = result.get("provenance")
+        sequence = provenance.get("seq") if isinstance(provenance, dict) else None
+        if isinstance(sequence, bool):
+            has_sequence = False
+        elif isinstance(sequence, int):
+            has_sequence = sequence > 0
+        elif isinstance(sequence, str):
+            digits = sequence.strip()
+            has_sequence = digits.isdigit() and bool(digits.lstrip("0"))
+        else:
+            has_sequence = False
+        message_id = provenance.get("Nats_Msg_Id") if isinstance(provenance, dict) else None
+        has_message_id = isinstance(message_id, str) and bool(message_id.strip())
+        gap = result.get("gap_sigma")
+        try:
+            has_finite_gap = (
+                isinstance(gap, (int, float))
+                and not isinstance(gap, bool)
+                and math.isfinite(gap)
+            )
+        except OverflowError:
+            has_finite_gap = False
+        outcome = result.get("outcome")
+        node_id = node.get("id")
+        if (
+            isinstance(node_id, str)
+            and node_id.strip()
+            and result.get("node") == node_id
+            and correlation_matches
+            and isinstance(outcome, str)
+            and outcome.strip().casefold() in {"confirmed", "contradicted"}
+            and not result_has_conflicting_lifecycle
+            and has_finite_gap
+            and (has_sequence or has_message_id)
+        ):
+            return "settled"
+
+    if isinstance(result, dict) and result:
+        node_id = node.get("id")
+        if (
+            isinstance(node_id, str)
+            and result.get("node") == node_id
+            and _oppgjoer_korrelasjon_matcher(node, result)
+            and _oppgjoer_venter(result.get("outcome"))
+        ):
+            return "pending"
+
+    if isinstance(settlement, dict):
+        settlement_matches = _oppgjoer_korrelasjon_matcher(node, settlement)
+        if settlement_matches and _oppgjoer_venter(settlement.get("outcome")):
+            return "pending"
+        if (
+            settlement_matches
+            and _oppgjoer_utfall_er_fullfort(settlement.get("outcome"))
+            and isinstance(settlement.get("outcome_time"), str)
+            and settlement["outcome_time"].strip()
+            and isinstance(settlement.get("settlement_version"), str)
+            and settlement["settlement_version"].strip()
+            and isinstance(settlement.get("outcome_source"), str)
+            and settlement["outcome_source"].strip()
+        ):
+            return "settled"
+    return "record_only"
 
 
 # ---------------------------------------------------------------------------
@@ -499,6 +790,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "buss_domene": n.get("buss_domene"),
                 "har_prediksjon": bool(n.get("prediction")),
                 "har_oppgjoer": bool(n.get("settlement")),
+                "oppgjoer_status": _oppgjoer_status(n),
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
@@ -548,6 +840,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": n.get("buss_domene"),
             "har_prediksjon": bool(n.get("prediction")),
             "har_oppgjoer": bool(n.get("settlement")),
+            "oppgjoer_status": _oppgjoer_status(n),
             "har_falsifikator": _har_falsifikator(n),
         })
     # Registered concepts ALWAYS answer with the namespace hit — also when a
@@ -572,6 +865,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": None,
             "har_prediksjon": False,
             "har_oppgjoer": False,
+            "oppgjoer_status": "none",
             "har_falsifikator": False,
             # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace hit
             # gave a non-empty hit list, and a reader (or a downstream call)
@@ -2247,7 +2541,15 @@ if __name__ == "__main__":
             if t["har_prediksjon"]:
                 merker.append("has prediction")
             if t["har_oppgjoer"]:
-                merker.append("is settled")
+                merker.append("has settlement contract")
+            else:
+                merker.append("no settlement contract")
+            if t["oppgjoer_status"] == "settled":
+                merker.append("settled outcome")
+            elif t["oppgjoer_status"] == "pending":
+                merker.append("settlement pending")
+            elif t["oppgjoer_status"] == "record_only":
+                merker.append("settlement record (completion unverified)")
             if t["buss_domene"]:
                 merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"

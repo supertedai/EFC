@@ -1,0 +1,3 @@
+# Rollback
+
+No runtime, bus, publisher, prediction, or external scientific state is changed. Before merge, rollback is closing the PR (if open) and dropping the isolated branch; after a commit exists, the exact code rollback is `git revert <commit>` on the task branch, followed by a push and remote-head readback. The task worktree is `/opt/agent-work/EFC/.worktrees/atlas-settlement-state-20261008`, based on `52ba3222dbd0672ceedb50c5dbec38f11a4b5168`. No rollback has been executed because no bad runtime state was created; verify any rollback with the focused lookup suite and record the PR/branch readback in closeout. Keep the ADR package as the audit record; do not remove the measured finding.
