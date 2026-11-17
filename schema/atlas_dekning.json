@@ -145,7 +145,6 @@
       ],
       "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar.",
       "emner": [
-        "observasjon.heasarc",
         "diskusjon.gcn"
       ]
     },
@@ -198,17 +197,6 @@
       "emner": [
         "tilstand.swpc-goes-xray",
         "hendelse.nasa-donki"
-      ]
-    },
-    "kosmos.stjerner": {
-      "status": "dekket",
-      "meldinger": 0,
-      "noder": [
-        "kosmos.stjerner"
-      ],
-      "begrunnelse": "1 node(r) navngir domenet via buss_domene. Bygget 2026-09-18 fra de maalte tallene i denne filen — kilden er institusjonell, andelslesningen er vaar. 0 meldinger i snapshoten (maalt 2026-11-17): subjectet observasjon.mast-caom utloep fra 24-t-retensjonen uten ny observasjon; domenet beholdes fordi noden kosmos.stjerner navngir det via buss_domene.",
-      "emner": [
-        "observasjon.mast-caom"
       ]
     },
     "kosmos.transienter": {
@@ -566,7 +554,7 @@
     "alerce": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 27324,
+      "meldinger": 31084,
       "domener": [
         "kosmos.transienter"
       ],
@@ -576,7 +564,7 @@
     "arxiv": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 289,
+      "meldinger": 557,
       "domener": [
         "kosmos.kosmologi"
       ],
@@ -586,7 +574,7 @@
     "arxiv-quant": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 3,
+      "meldinger": 32,
       "domener": [
         "verden.teknologi"
       ],
@@ -596,7 +584,7 @@
     "broer": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 52,
+      "meldinger": 1417,
       "domener": [
         "opus.dommekraft"
       ],
@@ -606,7 +594,7 @@
     "celestrak-katalog": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 13,
+      "meldinger": 70,
       "domener": [
         "kosmos.satellitter"
       ],
@@ -616,7 +604,7 @@
     "celestrak-stasjoner": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 261,
+      "meldinger": 1341,
       "domener": [
         "kosmos.satellitter"
       ],
@@ -636,7 +624,7 @@
     "ecb-data": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 120,
+      "meldinger": 461,
       "domener": [
         "verden.finans"
       ],
@@ -646,7 +634,7 @@
     "ecowitt": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 4995,
+      "meldinger": 26004,
       "domener": [
         "verden.vaer",
         "verden.miljo"
@@ -678,7 +666,7 @@
     "entsoe-dayahead": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 4896,
+      "meldinger": 37601,
       "domener": [
         "verden.energi"
       ],
@@ -688,7 +676,7 @@
     "eurostat": {
       "navn": "Eurostat",
       "status": "lest",
-      "meldinger": 4,
+      "meldinger": 8,
       "domener": [
         "verden.arbeid"
       ],
@@ -700,7 +688,7 @@
     "gbif-planter": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 2,
+      "meldinger": 25,
       "domener": [
         "verden.miljo"
       ],
@@ -710,7 +698,7 @@
     "gcn": {
       "navn": "GCN — Gamma-ray Coordinates Network",
       "status": "lest",
-      "meldinger": 219,
+      "meldinger": 331,
       "domener": [
         "kosmos.gammaglimt",
         "kosmos.roentgentransienter",
@@ -729,7 +717,7 @@
     "gdelt-export": {
       "navn": "GDELT GKG",
       "status": "lest",
-      "meldinger": 15484,
+      "meldinger": 8382,
       "domener": [
         "verden.geopolitikk",
         "verden.kommunikasjon",
@@ -741,8 +729,8 @@
         "verden.utdanning",
         "verden.helse",
         "verden.arbeid",
-        "verden.demografi",
         "verden.infrastruktur",
+        "verden.demografi",
         "verden.miljo"
       ],
       "lesere": [
@@ -812,16 +800,16 @@
     "gdelt-mentions": {
       "navn": "GDELT GKG",
       "status": "lest",
-      "meldinger": 16353,
+      "meldinger": 28440,
       "domener": [
-        "verden.geopolitikk",
-        "verden.kommunikasjon",
-        "verden.militaer",
-        "verden.oekonomi",
         "verden.politikk",
+        "verden.militaer",
         "verden.sikkerhet",
-        "verden.utdanning",
+        "verden.geopolitikk",
+        "verden.oekonomi",
+        "verden.kommunikasjon",
         "verden.lov",
+        "verden.utdanning",
         "verden.helse",
         "verden.arbeid",
         "verden.demografi",
@@ -850,19 +838,9 @@
     "handlingsledger": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 6765,
+      "meldinger": 11177,
       "domener": [
         "opus.dommekraft"
-      ],
-      "lesere": [],
-      "eiere": []
-    },
-    "heasarc": {
-      "navn": null,
-      "status": "unavngitt",
-      "meldinger": 44,
-      "domener": [
-        "kosmos.roentgentransienter"
       ],
       "lesere": [],
       "eiere": []
@@ -880,7 +858,7 @@
     "jpl-cneos": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 196,
+      "meldinger": 816,
       "domener": [
         "kosmos.asteroider"
       ],
@@ -890,7 +868,7 @@
     "jpl-horizons": {
       "navn": "JPL Horizons",
       "status": "lest",
-      "meldinger": 2792,
+      "meldinger": 14040,
       "domener": [
         "kosmos.planetsystem",
         "kosmos.maane"
@@ -905,7 +883,7 @@
     "jpl-sentry": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 43,
+      "meldinger": 83,
       "domener": [
         "kosmos.asteroider"
       ],
@@ -915,7 +893,7 @@
     "launch-library": {
       "navn": "Launch Library",
       "status": "lest",
-      "meldinger": 211,
+      "meldinger": 1013,
       "domener": [
         "kosmos.romfart"
       ],
@@ -938,13 +916,12 @@
     "mast-caom": {
       "navn": "MAST/CAOM",
       "status": "lest",
-      "meldinger": 1069,
+      "meldinger": 73,
       "domener": [
+        "kosmos.galakser",
         "kosmos.uklassifisert",
-        "kosmos.hoper",
-        "kosmos.stjerner",
         "kosmos.planetsystem",
-        "kosmos.galakser"
+        "kosmos.hoper"
       ],
       "lesere": [
         "kosmos.interstellart",
@@ -956,7 +933,7 @@
     "metar": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 28719,
+      "meldinger": 145254,
       "domener": [
         "verden.vaer"
       ],
@@ -966,7 +943,7 @@
     "metno": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 181023,
+      "meldinger": 952984,
       "domener": [
         "verden.vaer"
       ],
@@ -976,7 +953,7 @@
     "mgnify-mikrobiom": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 1,
+      "meldinger": 15,
       "domener": [
         "verden.miljo"
       ],
@@ -986,7 +963,7 @@
     "nasa-donki": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 28,
+      "meldinger": 16,
       "domener": [
         "kosmos.sol"
       ],
@@ -996,7 +973,7 @@
     "noaa-tides": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 20,
+      "meldinger": 740,
       "domener": [
         "verden.klima"
       ],
@@ -1006,7 +983,7 @@
     "swpc-goes-xray": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 4331,
+      "meldinger": 21333,
       "domener": [
         "kosmos.sol"
       ],
@@ -1016,7 +993,7 @@
     "swpc-kp": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 178,
+      "meldinger": 651,
       "domener": [
         "kosmos.romvaer"
       ],
@@ -1026,7 +1003,7 @@
     "tibber": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 1998,
+      "meldinger": 10500,
       "domener": [
         "verden.energi"
       ],
@@ -1036,7 +1013,7 @@
     "usgs-seismikk": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 2194,
+      "meldinger": 9199,
       "domener": [
         "kosmos.jord"
       ],
@@ -1046,7 +1023,7 @@
     "usgs-vulkan": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 1,
+      "meldinger": 3,
       "domener": [
         "kosmos.jord"
       ],
@@ -1056,7 +1033,7 @@
     "victron": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 1998,
+      "meldinger": 11768,
       "domener": [
         "verden.energi"
       ],
@@ -1066,7 +1043,7 @@
     "who-gho": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 36,
+      "meldinger": 48,
       "domener": [
         "verden.helse"
       ],
@@ -1076,18 +1053,18 @@
     "world-bank": {
       "navn": null,
       "status": "unavngitt",
-      "meldinger": 302,
+      "meldinger": 316,
       "domener": [
         "verden.demografi",
+        "verden.militaer",
+        "verden.teknologi",
         "verden.utdanning",
         "verden.arbeid",
         "verden.handel",
-        "verden.militaer",
         "verden.oekonomi",
-        "verden.teknologi",
-        "verden.infrastruktur",
         "verden.miljo",
         "verden.energi",
+        "verden.infrastruktur",
         "verden.kommunikasjon",
         "verden.transport",
         "verden.helse",
