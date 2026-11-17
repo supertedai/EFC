@@ -139,6 +139,38 @@ class TestEpistemiskStatus:
             assert "har_prediksjon" in t
             assert "har_oppgjoer" in t
 
+    def test_pending_oppgjoer_leses_ikke_som_settled(self, ekte_repo: Path) -> None:
+        """A settlement awaiting an arbiter is pending, not settled.
+
+        Regression for the bug where a node with a `settlement` record whose
+        outcome is "waiting for arbiter" was reported "is settled" — telling a
+        user a pending result is final. The settlement status must distinguish
+        the two.
+        """
+        atlas = atlas_lesing.les_atlas(ekte_repo, ref="HEAD")
+        pending = [n["id"] for n in atlas["noder"]
+                   if isinstance(n.get("settlement"), dict)
+                   and "waiting for arbiter" in str(n["settlement"].get("outcome", ""))]
+        settled = [n["id"] for n in atlas["noder"]
+                   if isinstance(n.get("settlement"), dict)
+                   and "waiting for arbiter" not in str(n["settlement"].get("outcome", ""))]
+        assert pending, "precondition: a pending settlement node must exist"
+        assert settled, "precondition: a settled settlement node must exist"
+
+        for pid in pending:
+            treff = [t for t in atlas_lesing.finn(ekte_repo, pid, ref="HEAD")["treff"]
+                     if t["id"] == pid]
+            assert treff, f"pending node {pid} not found by lookup"
+            assert treff[0]["oppgjoer_status"] == "pending", (
+                f"{pid}: a settlement awaiting its arbiter must read 'pending', "
+                "never 'is settled'")
+        for sid in settled:
+            treff = [t for t in atlas_lesing.finn(ekte_repo, sid, ref="HEAD")["treff"]
+                     if t["id"] == sid]
+            if treff:  # a settled node may not be topic-reachable by id
+                assert treff[0]["oppgjoer_status"] == "settled", (
+                    f"{sid}: a completed settlement must read 'settled'")
+
     def test_falsifikator_telles_riktig(self, ekte_repo: Path) -> None:
         """The nodes with `ville_falsifisere` must be flagged — the others not."""
         atlas = atlas_lesing.les_atlas(ekte_repo, ref="HEAD")
