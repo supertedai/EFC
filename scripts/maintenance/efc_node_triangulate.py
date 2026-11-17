@@ -24,6 +24,7 @@ classify() and the invariant checks are pure/hermetic; the probes do the I/O.
 from __future__ import annotations
 
 import json
+import os
 import sqlite3
 import subprocess
 import sys
@@ -274,6 +275,53 @@ def probe_cron_health() -> List[Observation]:
     )]
 
 
+def probe_bro_synk() -> List[Observation]:
+    """Motor <-> atlas drift (efc_bro_synk --json). Healthy = 0 avvik.
+
+    The "bro" here is the bridge between an ENGINE's self-description
+    (regime_node) and its derived ATLAS node — a real consistency axis. It is
+    NOT the NATS bus. bro_synk needs the engine deps (numpy), so it runs under
+    the canonical venv; if that is unavailable the probe reports unknown.
+    """
+    venv = os.environ.get("EFC_VENV", "/opt/venvs/t_123ed6d9/bin/python")
+    bro = REPO_ROOT / "scripts" / "maintenance" / "efc_bro_synk.py"
+    try:
+        r = subprocess.run(
+            [venv, str(bro), "--json"],
+            capture_output=True, text=True, timeout=120,
+        )
+        if r.returncode != 0:
+            return []
+        data = json.loads(r.stdout)
+        avvik = len(data) if isinstance(data, (dict, list)) else 0
+        return [Observation(
+            family="public-surface", key="motor-atlas-avvik",
+            value=str(avvik), exact=True, ts="bro-synk",
+        )]
+    except Exception:
+        return []
+
+
+def probe_bus_snapshot() -> List[Observation]:
+    """NATS bus snapshot freshness. Healthy = fresh.
+
+    The EFC repo does NOT live-connect to NATS; the bus enters as a git snapshot
+    (schema/nats_domener.snapshot.json). A stale snapshot means the bus is not
+    being reflected into the atlas. Live bus reading is the verden MCP, outside
+    this stdlib-only layer.
+    """
+    import time
+    p = REPO_ROOT / "schema" / "nats_domener.snapshot.json"
+    if not p.exists():
+        return []
+    age_days = (time.time() - p.stat().st_mtime) / 86400.0
+    status = "frisk" if age_days < 7 else "stale"
+    return [Observation(
+        family="publication", key="bus-snapshot",
+        value=status, exact=True, ts=f"{age_days:.0f}d old",
+    )]
+
+
 # --------------------------------------------------------------------------
 # Picture assembly
 # --------------------------------------------------------------------------
@@ -313,6 +361,8 @@ def build_picture() -> Dict:
     add_threshold("kanban-unowned", "every active card has an owner", probe_kanban(), "0")
     add_consistency("doi-set", "repo DOI set == ORCID DOI set", probe_doi())
     add_threshold("cron-helse", "no open (unresolved) cron incidents", probe_cron_health(), "0")
+    add_threshold("motor-atlas-avvik", "motor <-> atlas has no drift", probe_bro_synk(), "0")
+    add_threshold("bus-snapshot", "NATS bus snapshot is fresh", probe_bus_snapshot(), "frisk")
 
     buckets = {"ok": [], "drift": [], "unknown": []}
     for f in facts:
