@@ -333,6 +333,29 @@ class TestEpistemiskStatus:
         assert atlas_lesing._har_oppgjoer({"id": "x", "settlement": {}}) is False
         assert atlas_lesing._har_oppgjoer({"id": "x"}) is False
 
+    def test_settlement_correlations_are_globally_unique(self) -> None:
+        """No two nodes may share a settlement correlation.
+
+        The reader settles a verdict on correlation alone when the verdict
+        omits its `node` field. That is only safe while every settlement
+        correlation names exactly one node — a shared correlation would let a
+        verdict settle the wrong node. Pin the invariant so a future collision
+        fails here, not silently in the reader.
+        """
+        bank = json.loads(
+            (REPO / "schema" / "regime_nodes.jsonld").read_text(encoding="utf-8"))
+        seen: dict[str, str] = {}
+        for n in bank["nodes"]:
+            s = n.get("settlement")
+            if not isinstance(s, dict):
+                continue
+            c = s.get("correlation")
+            if not c:
+                continue
+            assert c not in seen, (
+                f"correlation {c!r} is shared by {seen[c]!r} and {n['id']!r}")
+            seen[c] = n["id"]
+
     def test_falsifikator_telles_riktig(self, ekte_repo: Path) -> None:
         """The nodes with `ville_falsifisere` must be flagged — the others not."""
         atlas = atlas_lesing.les_atlas(ekte_repo, ref="HEAD")
