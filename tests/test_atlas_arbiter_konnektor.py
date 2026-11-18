@@ -43,6 +43,7 @@ sys.path.insert(0, str(ROT / "scripts" / "maintenance"))
 
 import atlas_arbiter_konnektor as K  # noqa: E402
 import atlas_oppgjoer as O  # noqa: E402
+import atlas_lesing  # noqa: E402
 import arbiter_vakt_kjoer as V  # noqa: E402
 from efc_inference.arbiter.rapid_response import RapidResponseVakt  # noqa: E402
 from efc_inference.arbiter.sealed_fs8 import (  # noqa: E402
@@ -438,10 +439,39 @@ def test_the_flat_candidate_closes_the_loop_in_one_call(tmp_path, arb: dict) -> 
     assert land["provenance"]["reference"] == "DESI 2025 VI"
     assert land["measured_against"] == "DESI LRG"
 
+    # The reader must classify the written verdict as settled — this ties the
+    # writer's correlation form to the reader's exact match. If the two forms
+    # ever drift apart, this assertion fails before any reader mislabels it.
+    assert atlas_lesing._oppgjoer_status(node) == "settled"
+
     # The acceptance's guard: the landed bank in THIS repository is untouched.
     ekte = json.loads((ROT / "schema" / "regime_nodes.jsonld").read_text(encoding="utf-8"))
     ekte_node = next(n for n in ekte["nodes"] if n["id"] == arb["claim_node"])
     assert "settlement_result" not in ekte_node
+
+
+def test_reader_accepts_every_verdict_outcome() -> None:
+    """The reader's terminal tokens must stay in step with verdict().
+
+    Two copies of the same rule is how the two halves drift apart. Rather
+    than import the reader's token set, generate each outcome the writer can
+    emit and require the reader to classify it as settled. If verdict() ever
+    gains a third token, this test fails before a legitimate verdict silently
+    drops to None.
+    """
+    arb = {"tolerance_rule": "the measurement's own sigma"}
+    exp = {"fsigma8_efc": 0.430}
+    seen = set()
+    for fsigma8 in (0.430, 0.900):  # gap 0.0 -> confirmed; gap ~15.7 -> contradicted
+        v = O.verdict({"fsigma8": fsigma8, "fsigma8_sigma": 0.030}, exp, arb)
+        seen.add(v["outcome"])
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "c",
+                               "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+                "settlement_result": {"node": "efc.test", "correlation": "c",
+                                      "outcome": v["outcome"]}}
+        assert atlas_lesing._oppgjoer_status(node) == "settled", v["outcome"]
+    assert seen == {"confirmed", "contradicted"}
 
 
 # ---------------------------------------------------------------------------

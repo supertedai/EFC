@@ -179,6 +179,95 @@ def _har_falsifikator(node: dict) -> bool:
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
 
+def _oppgjoer_status(node: dict) -> str | None:
+    """The settlement status of a node: "pending" | "settled" | None.
+
+    Two sources of truth, in order:
+
+    1. A runtime arbiter verdict (`settlement_result`, written by
+       atlas_oppgjoer.py when the arbiter lands) counts as settled only when
+       it is a dict whose `outcome` is "confirmed" or "contradicted"
+       (case-insensitive), whose `node` names THIS node, and whose
+       `correlation` is identical to the declared contract correlation. A
+       present-but-invalid verdict (an explicit null, a non-dict value such
+       as a string, list, number or bool, or a dict with a missing or
+       mismatched node, correlation or outcome) fails closed to no marker —
+       never "settled", and never masked by the static contract below. An
+       absent `settlement_result`, or an empty dict `{}` (the writer's
+       unfilled container), is NOT a landed verdict and does not suppress the
+       static contract. (The reader does not re-derive the writer's gap_sigma
+       tolerance; that invariant belongs to the writer, whose verdict()
+       derives outcome and gap_sigma atomically.)
+
+    2. Otherwise the static contract (`settlement`) decides, as an allowlist:
+       an explicit pending phrase -> "pending"; the writer's terminal tokens
+       "confirmed"/"contradicted" -> "settled"; anything else (empty,
+       non-string, a structured payload, or an unknown token) -> None. A
+       structured payload such as {"kildens_ord": "blokkert"} is a record,
+       not a verdict — it must not read as settled, and gets its proper
+       marker from PR #634's record_only.
+
+    The vocabulary stays reconcilable with the fuller typed status in
+    PR #634 (none/pending/settled/record_only); this is the narrow reader fix.
+    """
+    # --- 1. runtime verdict (landed by the writer) ---
+    if "settlement_result" in node:
+        result = node.get("settlement_result")
+        if result is None or not isinstance(result, dict):
+            # An explicit null or a non-dict value is a malformed verdict —
+            # an integrity anomaly, never "absent" and never "settled".
+            return None
+        if result:
+            # A non-empty dict is a landed verdict: validate it.
+            s = node.get("settlement")
+            contract_corr = s.get("correlation") if isinstance(s, dict) else None
+            res_outcome = result.get("outcome")
+            res_corr = result.get("correlation")
+            res_node = result.get("node")
+            if not isinstance(res_outcome, str):
+                return None
+            res_outcome = res_outcome.strip().lower()
+            if res_outcome not in ("confirmed", "contradicted"):
+                return None
+            if not (isinstance(contract_corr, str) and contract_corr.strip()):
+                return None
+            if not (isinstance(res_corr, str) and res_corr == contract_corr):
+                return None
+            if not (isinstance(res_node, str) and res_node == node.get("id")):
+                return None
+            return "settled"
+        # result == {} — the writer's unfilled container — falls through.
+
+    # --- 2. static contract (allowlist) ---
+    s = node.get("settlement")
+    if not isinstance(s, dict) or not s:
+        return None
+    outcome = s.get("outcome")
+    if not isinstance(outcome, str):
+        return None
+    outcome = outcome.strip()
+    if not outcome:
+        # A settlement record with no outcome is not a final outcome — no marker.
+        return None
+    low = outcome.lower()
+    # A pending phrase must be followed by a separator (colon, whitespace) or
+    # end-of-string: "waiting for arbiter: …" is pending, but a longer word or
+    # stray punctuation ("arbiterial", "arbiter!garbage", "arbiter_foo") is not.
+    if re.match(r"^(?:waiting for arbiter|awaiting arbiter)(?:$|[\s:])", low):
+        return "pending"
+    if low in ("confirmed", "contradicted"):
+        return "settled"
+    return None
+
+
+def _har_oppgjoer(node: dict) -> bool:
+    """Presence, not judgment: the node carries a `settlement` field or a
+    `settlement_result` field (truthy). This is the structural "does this
+    node have settlement info" flag; `_oppgjoer_status` is the separate
+    judgment (pending/settled/None) of what that presence means."""
+    return bool(node.get("settlement") or node.get("settlement_result"))
+
+
 # ---------------------------------------------------------------------------
 # THE UNCERTAINTY LAYER — every number must be able to carry how certain it is
 #
@@ -498,7 +587,8 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "fase": n.get("phase"),
                 "buss_domene": n.get("buss_domene"),
                 "har_prediksjon": bool(n.get("prediction")),
-                "har_oppgjoer": bool(n.get("settlement")),
+                "har_oppgjoer": _har_oppgjoer(n),
+                "oppgjoer_status": _oppgjoer_status(n),
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
@@ -547,7 +637,8 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "fase": n.get("phase"),
             "buss_domene": n.get("buss_domene"),
             "har_prediksjon": bool(n.get("prediction")),
-            "har_oppgjoer": bool(n.get("settlement")),
+            "har_oppgjoer": _har_oppgjoer(n),
+            "oppgjoer_status": _oppgjoer_status(n),
             "har_falsifikator": _har_falsifikator(n),
         })
     # Registered concepts ALWAYS answer with the namespace hit — also when a
@@ -572,6 +663,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "buss_domene": None,
             "har_prediksjon": False,
             "har_oppgjoer": False,
+            "oppgjoer_status": None,
             "har_falsifikator": False,
             # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace hit
             # gave a non-empty hit list, and a reader (or a downstream call)
@@ -2246,8 +2338,10 @@ if __name__ == "__main__":
                 merker.append("can be felled")
             if t["har_prediksjon"]:
                 merker.append("has prediction")
-            if t["har_oppgjoer"]:
+            if t.get("oppgjoer_status") == "settled":
                 merker.append("is settled")
+            elif t.get("oppgjoer_status") == "pending":
+                merker.append("pending settlement (awaiting arbiter)")
             if t["buss_domene"]:
                 merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"
