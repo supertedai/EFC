@@ -1,8 +1,10 @@
 """
 Graph primitives: nodes, edges, geometry, neighbours.
 
-The graph is the fundamental object. Space is emergent from connectivity.
-No continuum assumptions — everything is discrete from the start.
+Connectivity is discrete; this builder also supplies a regular cubic coordinate
+embedding and spacing. The embedding alone does not define a physical node
+measure. The Native v2 continuum-calibrated solver declares its h-scaling and
+node-cell measure explicitly in the field/source layer.
 """
 import numpy as np
 

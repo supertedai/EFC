@@ -1,0 +1,568 @@
+{
+  "run_id": "kt6_fixed_box_20261116",
+  "status": "numerical calibration only; no physical EFC C claim",
+  "model": "generic standard AQUAL on continuum-calibrated Native v2 cubic graph; not Lambda-locked DGS",
+  "provenance": {
+    "repository": "supertedai/EFC",
+    "branch": "wt/t_bfded048",
+    "git_head_at_run": "e2e5a6c7fa244b6ec6182a3a4da7e46e45305c12",
+    "working_tree_was_dirty": true,
+    "note": "Runs were generated before the source API was split into rho and solver RHS, and before KT6 output-metadata additions. The numerical RHS is algebraically the same -4*pi*G*rho*h^2; the post-refactor focused suite passes. Boundary margin was the solver default 1.5 and is stated here from the invocation/source, not from the raw JSON. Boundary treatment: the Dirichlet pin is the spherical margin shell only; outer cube faces are graph-truncated (fewer neighbours) and not pinned (pre-existing solver behaviour)."
+  },
+  "parameters": {
+    "unit_system": "dimensionless code units; no SI mapping asserted",
+    "target_mass": 50.0,
+    "G_eff": 1.0,
+    "a0": 2.0,
+    "physical_box_side": 20.0,
+    "r_source": 2.0,
+    "source_center": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "source_mask_rule": "distance < r_source",
+    "boundary_condition": "Dirichlet Phi=0 pinned on the spherical margin shell (boundary_mask: r > r_max - boundary_margin*h); outer cube faces are graph-truncated (fewer neighbours) and are not Dirichlet-pinned; pre-existing solver behaviour",
+    "boundary_margin": 1.5,
+    "radial_window": [
+      5.0,
+      9.0
+    ],
+    "common_radial_bins": [
+      5.5,
+      6.5,
+      7.5,
+      8.5
+    ],
+    "Gauss_shell_radii": [
+      4.0,
+      6.0,
+      8.0,
+      10.0
+    ],
+    "field_equation": "div(mu(|grad Phi|/a0) grad Phi)=4*pi*G_eff*rho",
+    "gradient_and_flux": "centered physical node gradient; symmetric full-gradient face norm for mu; directional edge derivative DeltaPhi/h",
+    "acceleration": "g=-grad(Phi)",
+    "max_iter": 500,
+    "tolerance": 0.0001
+  },
+  "results": [
+    {
+      "N": 21,
+      "h": 1.0,
+      "box_side": 20.0,
+      "unsampled_node_mass_fraction": 0.8057218994027202,
+      "source_nodes": 27,
+      "radial_window": [
+        5.0,
+        9.0
+      ],
+      "sources": {
+        "unsampled_continuum_density": {
+          "input_mass": 40.28609497013601,
+          "represented_mass": 40.28609497013601,
+          "converged": true,
+          "iterations": 14,
+          "final_change": 7.419992954199837e-05,
+          "wall_time_s": 32.35822319984436,
+          "aqual_gauss_flux": {
+            "4.0": 506.13981193396944,
+            "6.0": 506.22985977140337,
+            "8.0": 506.2470817385835,
+            "10.0": 506.24904961413046
+          },
+          "variants": {
+            "A_legacy_source_legacy_observable": {
+              "C_mean": 2.0297794441568056,
+              "radial_bin_spread_not_uncertainty": 0.06645824833996072,
+              "C_by_bin": [
+                2.1354119706594323,
+                2.034254689265131,
+                1.989331651788507,
+                1.9601194649141527
+              ],
+              "log_slope": -1.1953407869786545,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                380,
+                440,
+                684,
+                860
+              ]
+            },
+            "C_legacy_source_corrected_observable": {
+              "C_mean": 1.0148897220784028,
+              "radial_bin_spread_not_uncertainty": 0.03322912416998036,
+              "C_by_bin": [
+                1.0677059853297162,
+                1.0171273446325655,
+                0.9946658258942535,
+                0.9800597324570763
+              ],
+              "log_slope": -1.1953407869786556,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                380,
+                440,
+                684,
+                860
+              ]
+            }
+          }
+        },
+        "node_volume_normalized": {
+          "input_mass": 50.0,
+          "represented_mass": 50.0,
+          "converged": true,
+          "iterations": 14,
+          "final_change": 6.996555293443965e-05,
+          "wall_time_s": 31.85082197189331,
+          "aqual_gauss_flux": {
+            "4.0": 628.1653018440511,
+            "6.0": 628.2748593651565,
+            "8.0": 628.3094193197668,
+            "10.0": 628.3135894925891
+          },
+          "variants": {
+            "B_normalized_source_legacy_observable": {
+              "C_mean": 2.3233760352560235,
+              "radial_bin_spread_not_uncertainty": 0.0943427486646568,
+              "C_by_bin": [
+                2.4725261328950983,
+                2.3317558965047573,
+                2.2655681456449126,
+                2.223653965979326
+              ],
+              "log_slope": -1.2425323960870278,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                380,
+                440,
+                684,
+                860
+              ]
+            },
+            "D_normalized_source_corrected_observable": {
+              "C_mean": 1.1616880176280118,
+              "radial_bin_spread_not_uncertainty": 0.0471713743323284,
+              "C_by_bin": [
+                1.2362630664475491,
+                1.1658779482523787,
+                1.1327840728224563,
+                1.111826982989663
+              ],
+              "log_slope": -1.2425323960870276,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                380,
+                440,
+                684,
+                860
+              ]
+            }
+          }
+        }
+      },
+      "newton": {
+        "log_slope": -1.958819346198044,
+        "r_bins": [
+          5.5,
+          6.5,
+          7.5,
+          8.5
+        ],
+        "g_over_g_newton": [
+          1.0195399437220487,
+          1.0172571467487843,
+          1.0230968385942014,
+          1.0390086850056641
+        ],
+        "mean_amplitude_ratio": 1.0247256535176748,
+        "counts": [
+          380,
+          440,
+          684,
+          860
+        ],
+        "gauss_flux_by_shell": {
+          "4.0": 628.3185307179581,
+          "6.0": 628.3185307179557,
+          "8.0": 628.318530717957,
+          "10.0": 628.3185307179559
+        }
+      }
+    },
+    {
+      "N": 31,
+      "h": 0.6666666666666666,
+      "box_side": 20.0,
+      "unsampled_node_mass_fraction": 0.9284038347027227,
+      "source_nodes": 105,
+      "radial_window": [
+        5.0,
+        9.0
+      ],
+      "sources": {
+        "unsampled_continuum_density": {
+          "input_mass": 46.420191735136136,
+          "represented_mass": 46.420191735136136,
+          "converged": true,
+          "iterations": 14,
+          "final_change": 6.616054089343494e-05,
+          "wall_time_s": 179.90658617019653,
+          "aqual_gauss_flux": {
+            "4.0": 583.2051354974593,
+            "6.0": 583.2976690136398,
+            "8.0": 583.3261507047689,
+            "10.0": 583.3301164410636
+          },
+          "variants": {
+            "A_legacy_source_legacy_observable": {
+              "C_mean": 2.199406614796885,
+              "radial_bin_spread_not_uncertainty": 0.08918309807080879,
+              "C_by_bin": [
+                2.3403818962371954,
+                2.2000316513720377,
+                2.1595479671217848,
+                2.0976649444565214
+              ],
+              "log_slope": -1.2419022853447634,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                1211,
+                1893,
+                2192,
+                3242
+              ]
+            },
+            "C_legacy_source_corrected_observable": {
+              "C_mean": 1.0997033073984426,
+              "radial_bin_spread_not_uncertainty": 0.044591549035404396,
+              "C_by_bin": [
+                1.1701909481185977,
+                1.1000158256860189,
+                1.0797739835608924,
+                1.0488324722282607
+              ],
+              "log_slope": -1.2419022853447639,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                1211,
+                1893,
+                2192,
+                3242
+              ]
+            }
+          }
+        },
+        "node_volume_normalized": {
+          "input_mass": 50.0,
+          "represented_mass": 50.0,
+          "converged": true,
+          "iterations": 14,
+          "final_change": 6.457643847346268e-05,
+          "wall_time_s": 178.12297773361206,
+          "aqual_gauss_flux": {
+            "4.0": 628.1744045768089,
+            "6.0": 628.2732522629468,
+            "8.0": 628.3084506906363,
+            "10.0": 628.3134291378278
+          },
+          "variants": {
+            "B_normalized_source_legacy_observable": {
+              "C_mean": 2.305259263440645,
+              "radial_bin_spread_not_uncertainty": 0.09985407150299229,
+              "C_by_bin": [
+                2.46300284530321,
+                2.3069478829068593,
+                2.2593672660023194,
+                2.19171905955019
+              ],
+              "log_slope": -1.2585451164046633,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                1211,
+                1893,
+                2192,
+                3242
+              ]
+            },
+            "D_normalized_source_corrected_observable": {
+              "C_mean": 1.1526296317203224,
+              "radial_bin_spread_not_uncertainty": 0.049927035751496145,
+              "C_by_bin": [
+                1.231501422651605,
+                1.1534739414534296,
+                1.1296836330011597,
+                1.095859529775095
+              ],
+              "log_slope": -1.2585451164046633,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                1211,
+                1893,
+                2192,
+                3242
+              ]
+            }
+          }
+        }
+      },
+      "newton": {
+        "log_slope": -1.9677144852815847,
+        "r_bins": [
+          5.5,
+          6.5,
+          7.5,
+          8.5
+        ],
+        "g_over_g_newton": [
+          1.0103320012012897,
+          0.9986101383273439,
+          1.0140268044067084,
+          1.022062250726605
+        ],
+        "mean_amplitude_ratio": 1.0112577986654867,
+        "counts": [
+          1211,
+          1893,
+          2192,
+          3242
+        ],
+        "gauss_flux_by_shell": {
+          "4.0": 628.3185307179566,
+          "6.0": 628.3185307179559,
+          "8.0": 628.3185307179469,
+          "10.0": 628.3185307179472
+        }
+      }
+    },
+    {
+      "N": 41,
+      "h": 0.5,
+      "box_side": 20.0,
+      "unsampled_node_mass_fraction": 0.9362786886577906,
+      "source_nodes": 251,
+      "radial_window": [
+        5.0,
+        9.0
+      ],
+      "sources": {
+        "unsampled_continuum_density": {
+          "input_mass": 46.81393443288953,
+          "represented_mass": 46.81393443288953,
+          "converged": true,
+          "iterations": 13,
+          "final_change": 8.641680104669253e-05,
+          "wall_time_s": 667.8958020210266,
+          "aqual_gauss_flux": {
+            "4.0": 588.0738250263611,
+            "6.0": 588.2119629079272,
+            "8.0": 588.2635894003157,
+            "10.0": 588.2703213487632
+          },
+          "variants": {
+            "A_legacy_source_legacy_observable": {
+              "C_mean": 2.2220783701179276,
+              "radial_bin_spread_not_uncertainty": 0.08986148546776558,
+              "C_by_bin": [
+                2.3622473352204802,
+                2.236103456834655,
+                2.161839600914393,
+                2.1281230875021815
+              ],
+              "log_slope": -1.2422918028373768,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                2954,
+                4306,
+                5558,
+                7226
+              ]
+            },
+            "C_legacy_source_corrected_observable": {
+              "C_mean": 1.1110391850589638,
+              "radial_bin_spread_not_uncertainty": 0.04493074273388279,
+              "C_by_bin": [
+                1.1811236676102401,
+                1.1180517284173275,
+                1.0809198004571965,
+                1.0640615437510907
+              ],
+              "log_slope": -1.242291802837378,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                2954,
+                4306,
+                5558,
+                7226
+              ]
+            }
+          }
+        },
+        "node_volume_normalized": {
+          "input_mass": 50.0,
+          "represented_mass": 50.0,
+          "converged": true,
+          "iterations": 13,
+          "final_change": 8.448894727229781e-05,
+          "wall_time_s": 677.9921245574951,
+          "aqual_gauss_flux": {
+            "4.0": 628.0908170159768,
+            "6.0": 628.2345207922272,
+            "8.0": 628.2956800691879,
+            "10.0": 628.3038234018492
+          },
+          "variants": {
+            "B_normalized_source_legacy_observable": {
+              "C_mean": 2.316827450404698,
+              "radial_bin_spread_not_uncertainty": 0.0994586587612531,
+              "C_by_bin": [
+                2.4719005366943976,
+                2.332430864033302,
+                2.250353674860309,
+                2.2126247260307843
+              ],
+              "log_slope": -1.2571662671098158,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                2954,
+                4306,
+                5558,
+                7226
+              ]
+            },
+            "D_normalized_source_corrected_observable": {
+              "C_mean": 1.158413725202349,
+              "radial_bin_spread_not_uncertainty": 0.04972932938062655,
+              "C_by_bin": [
+                1.2359502683471988,
+                1.166215432016651,
+                1.1251768374301545,
+                1.1063123630153922
+              ],
+              "log_slope": -1.257166267109817,
+              "r_bins": [
+                5.5,
+                6.5,
+                7.5,
+                8.5
+              ],
+              "counts": [
+                2954,
+                4306,
+                5558,
+                7226
+              ]
+            }
+          }
+        }
+      },
+      "newton": {
+        "log_slope": -1.9673611159204818,
+        "r_bins": [
+          5.5,
+          6.5,
+          7.5,
+          8.5
+        ],
+        "g_over_g_newton": [
+          1.0162146601909912,
+          1.0121673799915831,
+          1.0128357629159872,
+          1.0333803084463054
+        ],
+        "mean_amplitude_ratio": 1.0186495278862167,
+        "counts": [
+          2954,
+          4306,
+          5558,
+          7226
+        ],
+        "gauss_flux_by_shell": {
+          "4.0": 628.3185307179529,
+          "6.0": 628.318530717943,
+          "8.0": 628.3185307179402,
+          "10.0": 628.3185307179269
+        }
+      }
+    }
+  ],
+  "raw_files": [
+    {
+      "path": "kt6_N21_raw.json",
+      "bytes": 12345,
+      "sha256": "2bc9852190e3285890f9a74a685ac8ca08f00dccc1cef8c02d71b4a6e6f75a96"
+    },
+    {
+      "path": "kt6_N31_raw.json",
+      "bytes": 9173,
+      "sha256": "354dd1acee27fe1803b4fc9fa9a2fbf47b7f3c472d80af20406f818efc0551f0"
+    },
+    {
+      "path": "kt6_N41_raw.json",
+      "bytes": 9143,
+      "sha256": "da66230cc71cc024c6ced6e194e83ea3beaeb968ce39070d3a83afd25a79895b"
+    }
+  ],
+  "verification": {
+    "focused_normalization_suite": "16 passed, 4 existing SciPy CSR assignment warnings, 74.49 s",
+    "full_repo_suite": "1327 passed, 1 SyntaxWarning in tests/test_maintenance_chain_fixpoint.py (invalid escape sequence \\d), 122.04 s, exit 0",
+    "interpretation": "The N=21/31/41 D values are a closely grouped numerical trend under this declared generic-AQUAL scheme, not a continuum extrapolation proof or physical EFC C."
+  }
+}
