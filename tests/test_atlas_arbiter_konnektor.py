@@ -548,9 +548,10 @@ def test_the_cli_classifies_a_baseline_with_exit_0(tmp_path) -> None:
 def _mentions_subject(kart: str, subject: str) -> bool:
     r"""True when `subject` appears on a token boundary — not as a prefix of a
     longer subject like `…efc-fs8-arbiter`, `…efc-fs8.child` or `…efc-fs8.extra`.
-    The boundary is `[\w.-]`, so it survives prose or table formatting without
-    backticks (the same lesson as the separator regex on #686)."""
-    return re.search(r"(?<![\w.-])" + re.escape(subject) + r"(?![\w.-])", kart) is not None
+    The trailing boundary is `[\w-]` or a dot followed by a word character, so a
+    dot-suffixed sibling (`.child`, `.extra`) is rejected while a bare prose
+    mention ended by a lone full stop still matches."""
+    return re.search(r"(?<![\w.-])" + re.escape(subject) + r"(?![\w-]|\.\w)", kart) is not None
 
 
 def test_the_documentation_names_the_subject() -> None:
@@ -562,10 +563,10 @@ def test_the_documentation_names_the_subject() -> None:
     assert "atlas_arbiter_konnektor.py" in kart
 
 
-def test_the_documentation_match_rejects_any_longer_subject() -> None:
-    """The guard above must distinguish the measurement feed from any longer
-    subject of which it is a prefix: `…efc-fs8-arbiter`, `…efc-fs8.child` and
-    `…efc-fs8.extra` must all NOT satisfy the measurement-subject check."""
+def test_the_documentation_match_distinguishes_longer_subjects_from_sentence_ends() -> None:
+    """`…efc-fs8-arbiter`, `…efc-fs8.child` and `…efc-fs8.extra` are longer
+    subjects and must NOT satisfy the check; a bare prose mention ended by a
+    lone full stop is the measurement subject at a sentence end and must match."""
     verdict_only = (
         "| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | the arbiter's outcome |\n"
     )
@@ -573,3 +574,5 @@ def test_the_documentation_match_rejects_any_longer_subject() -> None:
     extra_only = "| `kosmos.kosmologi.oppgjoer.efc-fs8.extra` | not this feed |\n"
     for kart in (verdict_only, child_only, extra_only):
         assert not _mentions_subject(kart, MEASUREMENT_SUBJECT)
+    sentence_end = "the measurement is kosmos.kosmologi.oppgjoer.efc-fs8.\n"
+    assert _mentions_subject(sentence_end, MEASUREMENT_SUBJECT)
