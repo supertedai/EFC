@@ -168,11 +168,22 @@ class TestEpistemiskStatus:
                      if t["id"] == pid]
             assert treff, f"pending node {pid} not reachable through finn()"
             assert treff[0]["oppgjoer_status"] == "pending", (
-                f"{pid}: the render path must carry 'pending', never 'is settled'")
+                f"{pid}: the render path must carry 'pending', never 'is settled'. "
+                "If an arbiter has landed, update this expectation — "
+                "pending->settled is a legitimate change, not a regression.")
         for rid in recorded:
             assert atlas_lesing._oppgjoer_status(by_id[rid]) is None, (
                 f"{rid}: a structured payload is a record, not a verdict — "
                 "it must not read 'settled' (record_only is #634's job)")
+            # the render path: a structured payload must stay unmarked all
+            # the way through the lookup, not just at the classifier.
+            treff = [t for t in atlas_lesing.finn(ekte_repo, rid, ref="HEAD")["treff"]
+                     if t["id"] == rid]
+            assert treff, f"payload node {rid} not reachable through finn()"
+            assert treff[0]["oppgjoer_status"] is None, (
+                f"{rid}: the render path must not mark a payload 'settled'. "
+                "If record_only lands, update this expectation — do not delete "
+                "the assertion.")
 
     def test_settlement_without_outcome_is_not_settled(self) -> None:
         """A settlement record with no outcome must not fall through to 'settled'.
