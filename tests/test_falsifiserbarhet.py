@@ -151,7 +151,12 @@ class TestFalsifiserbarhet:
         avventer = sum(1 for n in off
                        if (n.get("falsifiserbarhet") or {}).get("status")
                        in ("stub", "terskel_ikke_fastsatt"))
-        assert len(off) == 116, f"the public set changed: {len(off)}"
+        # 116 -> 115 on 2026-11-17: PR #682 pruned kosmos.stjerner from the bank
+        # (its only source, observasjon.mast-caom, had expired out of the bus
+        # retention window). The public set is a ratchet on purpose; the pin
+        # moves with that merged decision, and `kan`/`avventer` below prove the
+        # remaining set is untouched.
+        assert len(off) == 115, f"the public set changed: {len(off)}"
         assert kan == 27, (
             f"can be felled: {kan} — expected 27. 19 was wrong: 2 stubs and 6 "
             f"framework nodes without a fixed threshold could not be felled")
