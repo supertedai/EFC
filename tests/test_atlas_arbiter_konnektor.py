@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -55,6 +56,10 @@ from efc_inference.arbiter.sealed_fs8 import (  # noqa: E402
 
 ARB = ROT / "schema" / "efc_fs8.arbiter.json"
 BRO = ROT / "schema" / "efc_fs8.bro.json"
+
+# The measurement feed subject, pinned here so the contract cannot move
+# silently: 3c926d1c4 set it to the verdict feed and collapsed the two feeds.
+MEASUREMENT_SUBJECT = "kosmos.kosmologi.oppgjoer.efc-fs8"
 
 
 @pytest.fixture(scope="module")
@@ -94,14 +99,14 @@ def _buss(**kw) -> dict:
 # ---------------------------------------------------------------------------
 # The declaration is the only copy of the rules
 # ---------------------------------------------------------------------------
-def test_the_subject_is_the_declarations_own(arb: dict) -> None:
-    """Read, not restated: the declaration names the subject this connector
-    publishes on, and the lag word is the one the streams capture."""
-    assert K.subject(arb) == arb["expected_topic"] == "kosmos.kosmologi.oppgjoer.efc-fs8"
-    # The lag word is the token the streams match on (docs/nats-koblingskart.md;
-    # measured in tests/test_arbiter_emne_kontrakt.py). The arbiter-VERDICT
-    # subject already lives on the same token, so the token is a measured fact and
-    # not an assumption about this one.
+def test_the_subject_carries_the_lag_word(arb: dict) -> None:
+    """The subject's lag word is the token the streams match on
+    (docs/nats-koblingskart.md; measured in tests/test_arbiter_emne_kontrakt.py).
+    Both feeds live on the same lag word, so the token is a measured fact, not
+    an assumption. The exact subject string is pinned by
+    test_measurement_and_verdict_feeds_cannot_collapse; `subject()` reads the
+    declaration directly, so asserting it equals the declaration here would be
+    tautological."""
     lag = K.subject(arb).split(".")[2]
     assert lag == V.OPPGJOER_EMNE.split(".")[2] == "oppgjoer"
 
@@ -111,7 +116,33 @@ def test_the_two_oppgjoer_subjects_are_two_feeds(arb: dict) -> None:
     not deliver one to a reader of the other: `efc-fs8-arbiter` is its own token."""
     assert K.subject(arb) != V.OPPGJOER_EMNE
     assert K.subject(arb).split(".")[:3] == V.OPPGJOER_EMNE.split(".")[:3]
+    # Two feeds, distinguished by the 4th token: the measurement is `efc-fs8`,
+    # the verdict is `efc-fs8-arbiter`. A collapse in either direction
+    # (3c926d1c4) must fail here.
     assert [e for e in K.subject(arb).split(".") if e.startswith("efc-fs8")] == ["efc-fs8"]
+    assert [e for e in V.OPPGJOER_EMNE.split(".") if e.startswith("efc-fs8")] == ["efc-fs8-arbiter"]
+
+
+def test_measurement_and_verdict_feeds_cannot_collapse(arb: dict) -> None:
+    """Regression for 3c926d1c4: the measurement feed is pinned by its exact
+    subject, and the verdict feed keeps its own token. That commit set both
+    schema fields to `-arbiter` and collapsed the two feeds; this fails here."""
+    assert arb["expected_topic"] == MEASUREMENT_SUBJECT
+    assert K.subject(arb) == MEASUREMENT_SUBJECT
+    assert MEASUREMENT_SUBJECT != V.OPPGJOER_EMNE
+    assert V.OPPGJOER_EMNE.endswith(".efc-fs8-arbiter")
+
+
+def test_the_bridge_pins_its_oppgjoer_topic_to_the_verdict_subject(bro: dict) -> None:
+    """`bro.json:topics.oppgjoer` is not read by any code today (only
+    `counts.oppgjoer` is read, as the settlement count). Its committed value is
+    the -arbiter subject — the arbiter's own verdict subject
+    (`arbiter_vakt_kjoer.OPPGJOER_EMNE`), not the measurement feed, which lives
+    in `arbiter.json:expected_topic` (unsuffixed). This pins today's measured,
+    unread state: if the topic is deliberately re-pointed, update this
+    expectation — do not delete the assertion."""
+    assert bro["topics"]["oppgjoer"] == V.OPPGJOER_EMNE
+    assert bro["topics"]["oppgjoer"] != MEASUREMENT_SUBJECT
 
 
 def test_the_window_is_the_declarations_and_inside_the_arbiters_own(arb: dict) -> None:
@@ -179,7 +210,8 @@ def test_the_log_says_why_a_run_published_nothing(tmp_path) -> None:
     assert linjer[1]["decision"] == "nothing_published" and linjer[1]["reason"]
     assert linjer[1]["counts"]["baseline"] == 1
     for linje in linjer:
-        assert linje["subject"] == "kosmos.kosmologi.oppgjoer.efc-fs8"
+        # the log records the published subject — the measurement feed
+        assert linje["subject"] == MEASUREMENT_SUBJECT
         assert linje["published"] == []
 
 
@@ -420,7 +452,8 @@ def test_the_flat_candidate_closes_the_loop_in_one_call(tmp_path, arb: dict) -> 
                    do_publish=True, flat_out=str(flat),
                    arb=K.read_json(rot / "schema" / "efc_fs8.arbiter.json"),
                    bro=K.read_json(rot / "schema" / "efc_fs8.bro.json"))
-    assert sendt == [arb["expected_topic"]]
+    assert sendt == [MEASUREMENT_SUBJECT]
+    assert V.OPPGJOER_EMNE not in sendt
     assert json.loads(flat.read_text(encoding="utf-8"))["fsigma8"] == 0.430
     assert record["settlement_command"] == K.settlement_command(flat)
 
@@ -512,10 +545,34 @@ def test_the_cli_classifies_a_baseline_with_exit_0(tmp_path) -> None:
 # ---------------------------------------------------------------------------
 # The map external readers use
 # ---------------------------------------------------------------------------
-def test_the_documentation_names_the_subject(arb: dict) -> None:
+def _mentions_subject(kart: str, subject: str) -> bool:
+    r"""True when `subject` appears on a token boundary — not as a prefix of a
+    longer subject like `…efc-fs8-arbiter`, `…efc-fs8.child` or `…efc-fs8.extra`.
+    The trailing boundary is `[\w-]` or a dot followed by a word character, so a
+    dot-suffixed sibling (`.child`, `.extra`) is rejected while a bare prose
+    mention ended by a lone full stop still matches."""
+    return re.search(r"(?<![\w.-])" + re.escape(subject) + r"(?![\w-]|\.\w)", kart) is not None
+
+
+def test_the_documentation_names_the_subject() -> None:
     """docs/nats-koblingskart.md is the contract external readers use, and the
     card that built this connector names the subject. A subject that is published
     on and documented nowhere is one nobody can subscribe to."""
     kart = (ROT / "docs" / "nats-koblingskart.md").read_text(encoding="utf-8")
-    assert arb["expected_topic"] in kart
+    assert _mentions_subject(kart, MEASUREMENT_SUBJECT)
     assert "atlas_arbiter_konnektor.py" in kart
+
+
+def test_the_documentation_match_distinguishes_longer_subjects_from_sentence_ends() -> None:
+    """`…efc-fs8-arbiter`, `…efc-fs8.child` and `…efc-fs8.extra` are longer
+    subjects and must NOT satisfy the check; a bare prose mention ended by a
+    lone full stop is the measurement subject at a sentence end and must match."""
+    verdict_only = (
+        "| `kosmos.kosmologi.oppgjoer.efc-fs8-arbiter` | the arbiter's outcome |\n"
+    )
+    child_only = "| `kosmos.kosmologi.oppgjoer.efc-fs8.child` | not this feed |\n"
+    extra_only = "| `kosmos.kosmologi.oppgjoer.efc-fs8.extra` | not this feed |\n"
+    for kart in (verdict_only, child_only, extra_only):
+        assert not _mentions_subject(kart, MEASUREMENT_SUBJECT)
+    sentence_end = "the measurement is kosmos.kosmologi.oppgjoer.efc-fs8.\n"
+    assert _mentions_subject(sentence_end, MEASUREMENT_SUBJECT)
