@@ -96,6 +96,20 @@ def test_the_verdict_uses_the_measurements_own_sigma(bro: dict, arb: dict) -> No
                      exp, arb)["outcome"] == "confirmed"
 
 
+def test_verdict_rounds_gap_sigma_but_derives_outcome_from_raw_gap(bro: dict, arb: dict) -> None:
+    """verdict() stores round(gap, 2) but derives outcome from the RAW gap.
+
+    gap = 1.004 -> outcome "contradicted" (raw |gap| > 1.0), yet the stored
+    gap_sigma is round(1.004, 2) == 1.0. This is why the reader must trust
+    `outcome` and NOT re-derive the tolerance from the rounded gap_sigma —
+    recomputing would flip this verdict to "confirmed".
+    """
+    exp = O.expected(bro)
+    v = O.verdict(_candidate(fsigma8=0.4802, fsigma8_sigma=0.05), exp, arb)
+    assert v["outcome"] == "contradicted"
+    assert v["gap_sigma"] == 1.0
+
+
 def test_the_landed_bank_has_no_settlement_yet(arb: dict) -> None:
     """If this fails, the loop was closed against something that is not the arbiter."""
     bank = O.read(O.ATLAS)

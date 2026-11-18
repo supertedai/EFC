@@ -185,62 +185,76 @@ def _oppgjoer_status(node: dict) -> str | None:
     Two sources of truth, in order:
 
     1. A runtime arbiter verdict (`settlement_result`, written by
-       atlas_oppgjoer.py when the arbiter lands) counts as settled when its
-       outcome is one of the writer's two terminal tokens ("confirmed",
-       "contradicted" — measured from verdict()) and its correlation is
-       IDENTICAL to this node's declared settlement correlation. Correlation
-       is the declared key: necessary and sufficient. The verdict's `node`
-       field is defence-in-depth — when present it must name THIS node, but a
-       verdict without it still settles on correlation alone (a hand-authored
-       result must not silently under-claim). Identifiers are compared
-       strictly (strings, no case folding). A verdict that fails validation —
-       unknown token, missing or mismatched correlation, a `node` naming
-       someone else, or a non-dict `settlement_result` — is an integrity
-       anomaly: it reads no marker (None), never "settled", and not "pending"
-       either. An empty dict (the writer's unfilled container) is NOT a
-       verdict and falls through to the static contract.
+       atlas_oppgjoer.py when the arbiter lands) counts as settled only when
+       it is a dict whose `outcome` is "confirmed" or "contradicted"
+       (case-insensitive), whose `node` names THIS node, and whose
+       `correlation` is identical to the declared contract correlation. A
+       present-but-invalid verdict (an explicit null, a non-dict value such
+       as a string, list, number or bool, or a dict with a missing or
+       mismatched node, correlation or outcome) fails closed to no marker —
+       never "settled", and never masked by the static contract below. An
+       absent `settlement_result`, or an empty dict `{}` (the writer's
+       unfilled container), is NOT a landed verdict and does not suppress the
+       static contract. (The reader does not re-derive the writer's gap_sigma
+       tolerance; that invariant belongs to the writer, whose verdict()
+       derives outcome and gap_sigma atomically.)
 
-    2. Otherwise the static contract (`settlement`) decides: no outcome ->
-       None, an arbiter still awaited -> "pending", any other terminal
-       outcome -> "settled".
+    2. Otherwise the static contract (`settlement`) decides, as an allowlist:
+       an explicit pending phrase -> "pending"; the writer's terminal tokens
+       "confirmed"/"contradicted" -> "settled"; anything else (empty,
+       non-string, a structured payload, or an unknown token) -> None. A
+       structured payload such as {"kildens_ord": "blokkert"} is a record,
+       not a verdict — it must not read as settled, and gets its proper
+       marker from PR #634's record_only.
 
     The vocabulary stays reconcilable with the fuller typed status in
     PR #634 (none/pending/settled/record_only); this is the narrow reader fix.
     """
-    s = node.get("settlement")
-    contract_corr = s.get("correlation") if isinstance(s, dict) else None
-
-    result = node.get("settlement_result")
-    if result is not None and not isinstance(result, dict):
-        # Present but not a dict: an integrity anomaly. It must not fall
-        # through and read as "still awaiting" — a corrupt result file is not
-        # a pending one.
-        return None
-    if isinstance(result, dict) and result:
-        res_outcome = str(result.get("outcome", "")).strip()
-        res_corr = result.get("correlation")
-        if (res_outcome in ("confirmed", "contradicted")
-                and isinstance(contract_corr, str) and contract_corr
-                and isinstance(res_corr, str)
-                and contract_corr == res_corr):
-            # `node` is defence-in-depth: a verdict that names a node must
-            # name THIS node; one without it still settles on correlation.
+    # --- 1. runtime verdict (landed by the writer) ---
+    if "settlement_result" in node:
+        result = node.get("settlement_result")
+        if result is None or not isinstance(result, dict):
+            # An explicit null or a non-dict value is a malformed verdict —
+            # an integrity anomaly, never "absent" and never "settled".
+            return None
+        if result:
+            # A non-empty dict is a landed verdict: validate it.
+            s = node.get("settlement")
+            contract_corr = s.get("correlation") if isinstance(s, dict) else None
+            res_outcome = result.get("outcome")
+            res_corr = result.get("correlation")
             res_node = result.get("node")
-            if res_node is not None and res_node != node.get("id"):
+            if not isinstance(res_outcome, str):
+                return None
+            res_outcome = res_outcome.strip().lower()
+            if res_outcome not in ("confirmed", "contradicted"):
+                return None
+            if not (isinstance(contract_corr, str) and contract_corr):
+                return None
+            if not (isinstance(res_corr, str) and res_corr == contract_corr):
+                return None
+            if not (isinstance(res_node, str) and res_node == node.get("id")):
                 return None
             return "settled"
-        # A landed verdict that does not validate fails closed: no marker.
-        return None
+        # result == {} — the writer's unfilled container — falls through.
 
+    # --- 2. static contract (allowlist) ---
+    s = node.get("settlement")
     if not isinstance(s, dict) or not s:
         return None
-    outcome = str(s.get("outcome", "")).strip()
+    outcome = s.get("outcome")
+    if not isinstance(outcome, str):
+        return None
+    outcome = outcome.strip()
     if not outcome:
         # A settlement record with no outcome is not a final outcome — no marker.
         return None
-    if "waiting for arbiter" in outcome.lower() or "awaiting arbiter" in outcome.lower():
+    low = outcome.lower()
+    if low.startswith("waiting for arbiter") or low.startswith("awaiting arbiter"):
         return "pending"
-    return "settled"
+    if low in ("confirmed", "contradicted"):
+        return "settled"
+    return None
 
 
 def _har_oppgjoer(node: dict) -> bool:
@@ -617,7 +631,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "fase": n.get("phase"),
             "buss_domene": n.get("buss_domene"),
             "har_prediksjon": bool(n.get("prediction")),
-            "har_oppgjoer": bool(n.get("settlement") or n.get("settlement_result")),
+            "har_oppgjoer": _har_oppgjoer(n),
             "oppgjoer_status": _oppgjoer_status(n),
             "har_falsifikator": _har_falsifikator(n),
         })
