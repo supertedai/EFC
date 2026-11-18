@@ -1,0 +1,138 @@
+name: EFC atlas consistency (internal)
+
+# The INTERNAL atlas — docs/efc-atlas/, generated from schema/regime_nodes.jsonld
+# by scripts/maintenance/efc_atlas_generator.py — had no gate.
+#
+# Measured 2026-11-18 at 56bbe317: 50 tests were red across 18 files and NO
+# workflow in .github/workflows named any of them. `atlas-verify.yml` looks like
+# an atlas gate but covers a DIFFERENT atlas (docs/public/EFC_Atlas.html, built
+# from atlas.json + ledger.json); it never touches docs/efc-atlas/ or the node
+# bank. So when PR #682 pruned a node and the bus measurement moved 39 -> 37
+# domains, the generator's code table and the generated surfaces fell behind and
+# nothing went red: the rot landed green and was found by hand.
+#
+# The whole family costs ~9 s (the 18 files) / ~82 s with every atlas test file —
+# it was not left out of CI for being expensive.
+#
+# This workflow is read-only: it never commits, pushes or regenerates on behalf
+# of a PR. If it fails on a PR, run `python3 scripts/maintenance/efc_atlas_generator.py`
+# locally and commit the result.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "schema/regime_nodes.jsonld"
+      - "schema/regime_node.schema.json"
+      - "schema/atlas_dekning.json"
+      - "schema/nats_domener.snapshot.json"
+      - "docs/efc-atlas/**"
+      - "docs/nats-koblingskart.md"
+      - "docs/validation-ledger/data/doi_coverage_matrix.json"
+      - "docs/validation-ledger/data/doi_coverage_pending.json"
+      - "docs/validation-ledger/data/doi_coverage_open_findings.json"
+      - "docs/validation-ledger/data/doi_provenance_chain.json"
+      - "docs/validation-ledger/data/doi_metadata_correction_proposals.json"
+      - "docs/validation-ledger/data/evidence-register.json"
+      - "docs/validation-ledger/data/atlas.json"
+      - "docs/validation-ledger/data/form_status_register.json"
+      - "figshare/doi-map.json"
+      - "docs/papers/efc/**/index.json"
+      - "scripts/maintenance/efc_atlas_generator.py"
+      - "scripts/maintenance/doi_*register.py"
+      - "scripts/atlas_*.py"
+      - "tests/test_atlas_*.py"
+      - "tests/test_efc_atlas_generator.py"
+      - "tests/test_epistemikk_v2.py"
+      - "tests/test_falsifiserbarhet.py"
+      - "tests/test_doi_*.py"
+      - "requirements.txt"
+      - ".github/workflows/efc-atlas-konsistens.yml"
+  pull_request:
+    paths:
+      - "schema/regime_nodes.jsonld"
+      - "schema/regime_node.schema.json"
+      - "schema/atlas_dekning.json"
+      - "schema/nats_domener.snapshot.json"
+      - "docs/efc-atlas/**"
+      - "docs/nats-koblingskart.md"
+      - "docs/validation-ledger/data/doi_coverage_matrix.json"
+      - "docs/validation-ledger/data/doi_coverage_pending.json"
+      - "docs/validation-ledger/data/doi_coverage_open_findings.json"
+      - "docs/validation-ledger/data/doi_provenance_chain.json"
+      - "docs/validation-ledger/data/doi_metadata_correction_proposals.json"
+      - "docs/validation-ledger/data/evidence-register.json"
+      - "docs/validation-ledger/data/atlas.json"
+      - "docs/validation-ledger/data/form_status_register.json"
+      - "figshare/doi-map.json"
+      - "docs/papers/efc/**/index.json"
+      - "scripts/maintenance/efc_atlas_generator.py"
+      - "scripts/maintenance/doi_*register.py"
+      - "scripts/atlas_*.py"
+      - "tests/test_atlas_*.py"
+      - "tests/test_efc_atlas_generator.py"
+      - "tests/test_epistemikk_v2.py"
+      - "tests/test_falsifiserbarhet.py"
+      - "tests/test_doi_*.py"
+      - "requirements.txt"
+      - ".github/workflows/efc-atlas-konsistens.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  konsistens:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Full history: the atlas readers resolve `--ref HEAD` and `git show`,
+          # and test_atlas_arbeidskoe / test_atlas_lesing walk commits. A shallow
+          # checkout would fail them for the wrong reason.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          # The generator ends in `node build.mjs` (docs/efc-atlas/atlas/).
+          # Without node the two generator tests fail on FileNotFoundError, not
+          # on the atlas — that is why the version is set here and printed below.
+          node-version: "20"
+
+      - name: Install test runner and validator (pinned ranges, same as requirements.txt)
+        run: |
+          python3 -m pip install --quiet "jsonschema>=4.18,<5" "rfc3339-validator>=0.1,<1" \
+            "pytest>=8,<9" "PyYAML>=6,<7" "emcee>=3,<4" "numpy>=1.22,<3" "scipy>=1.8,<2"
+
+      - name: Node and Python are the ones the gate expects
+        run: |
+          node --version
+          python3 --version
+
+      - name: The bank built the flat surfaces — no drift between source and mirror
+        run: |
+          python3 scripts/maintenance/efc_atlas_generator.py
+          if ! git diff --exit-code -- docs/efc-atlas/; then
+            echo "::error::docs/efc-atlas/ is out of sync with schema/regime_nodes.jsonld and the bus snapshot."
+            echo "::error::Run 'python3 scripts/maintenance/efc_atlas_generator.py' and commit the regenerated surfaces."
+            exit 1
+          fi
+          echo "The flat surfaces are generated from the bank, not hand-edited."
+
+      - name: The atlas family — every reader, register and generated surface agrees
+        # The glob, not a typed list of eighteen: a list rots the moment a
+        # nineteenth file is added, and that is exactly the hole this workflow
+        # closes. The named files are the non-`atlas_`-prefixed members.
+        run: |
+          python3 -m pytest \
+            tests/test_atlas_*.py \
+            tests/test_efc_atlas_generator.py \
+            tests/test_epistemikk_v2.py \
+            tests/test_falsifiserbarhet.py \
+            tests/test_doi_coverage_register.py \
+            tests/test_doi_provenance_register.py \
+            -q
