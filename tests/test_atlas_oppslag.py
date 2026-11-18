@@ -329,6 +329,8 @@ class TestEpistemiskStatus:
         # pending phrase
         assert atlas_lesing._oppgjoer_status(
             {"settlement": {"outcome": "waiting for arbiter: DESI DR2 full-shape"}}) == "pending"
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiter"}}) == "pending"
         # unknown / non-terminal tokens -> no marker
         assert atlas_lesing._oppgjoer_status({"settlement": {"outcome": "pending"}}) is None
         assert atlas_lesing._oppgjoer_status({"settlement": {"outcome": "inconclusive"}}) is None
@@ -348,6 +350,21 @@ class TestEpistemiskStatus:
             {"settlement": {"outcome": "waiting for arbitrator: DESI"}}) is None
         assert atlas_lesing._oppgjoer_status(
             {"settlement": {"outcome": "not waiting for arbiter: resolved"}}) is None
+        # near-misses: a pending phrase must be followed by a separator
+        # (colon, whitespace) or end-of-string — a longer word or stray
+        # punctuation is not the phrase.
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiterial"}}) is None
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiter2: not a valid marker"}}) is None
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "awaiting arbiters"}}) is None
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiter_foo"}}) is None
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiter!garbage"}}) is None
+        assert atlas_lesing._oppgjoer_status(
+            {"settlement": {"outcome": "waiting for arbiter-garbage"}}) is None
 
     def test_runtime_verdict_rejects_invalid(self) -> None:
         """The runtime path validates outcome, node and correlation strictly."""
@@ -475,6 +492,87 @@ class TestEpistemiskStatus:
         assert svar["emne"] == "finnesikke", (
             "a hole must name what was searched for — otherwise the reader "
             "cannot see whether the hole comes from the search or the atlas")
+
+
+class TestSettlementStatusMatrix:
+    """The settlement-status edges the panels asked to pin (Luna #9, DeepSeek
+    #4): the runtime branch is unexercised by live data (0 bank nodes carry
+    settlement_result), so its fail-closed edges are pinned here rather than
+    observed in the bank."""
+
+    def test_empty_result_falls_through_to_static_pending(self) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+                "settlement_result": {}}
+        assert atlas_lesing._oppgjoer_status(node) == "pending"
+
+    def test_empty_result_falls_through_to_static_terminal(self) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1", "outcome": "confirmed"},
+                "settlement_result": {}}
+        assert atlas_lesing._oppgjoer_status(node) == "settled"
+
+    def test_whitespace_contract_correlation_fails_closed(self) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "   "},
+                "settlement_result": {"node": "efc.test", "correlation": "   ",
+                                      "outcome": "confirmed"}}
+        assert atlas_lesing._oppgjoer_status(node) is None
+
+    def test_padded_correlation_is_not_an_exact_match(self) -> None:
+        # Correlation is an identifier compared exactly; only a blank value is
+        # rejected by .strip(). A padded value is not a match for the clean
+        # one, so it fails closed (the writer always writes clean values).
+        node = {"id": "efc.test",
+                "settlement": {"correlation": " c "},
+                "settlement_result": {"node": "efc.test", "correlation": "c",
+                                      "outcome": "confirmed"}}
+        assert atlas_lesing._oppgjoer_status(node) is None
+
+    def test_outcome_whitespace_is_stripped(self) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": " CONFIRMED "}}
+        assert atlas_lesing._oppgjoer_status(node) == "settled"
+
+    def test_valid_result_without_static_settlement_fails_closed(self) -> None:
+        node = {"id": "efc.test",
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": "confirmed"}}
+        assert atlas_lesing._oppgjoer_status(node) is None
+
+    def test_node_without_id_fails_closed(self) -> None:
+        node = {"settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": "confirmed"}}
+        assert atlas_lesing._oppgjoer_status(node) is None
+
+    @pytest.mark.parametrize("outcome", ["pending", "inconclusive", "maybe"])
+    def test_runtime_non_terminal_outcome_fails_closed(self, outcome: str) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": outcome}}
+        assert atlas_lesing._oppgjoer_status(node) is None
+
+    def test_har_oppgjoer_presence_not_judgment_on_malformed_result(self) -> None:
+        node = {"id": "efc.test", "settlement_result": "garbage"}
+        assert atlas_lesing._har_oppgjoer(node) is True
+        assert atlas_lesing._oppgjoer_status(node) is None
+
+    def test_bank_correlations_carry_no_whitespace(self) -> None:
+        bank = json.loads(
+            (REPO / "schema" / "regime_nodes.jsonld").read_text(encoding="utf-8"))
+        for n in bank["nodes"]:
+            s = n.get("settlement")
+            if not isinstance(s, dict):
+                continue
+            c = s.get("correlation")
+            if isinstance(c, str) and c:
+                assert c == c.strip(), (
+                    f"{n['id']}: correlation {c!r} carries whitespace")
 
 
 class TestFeilErIkkeStille:

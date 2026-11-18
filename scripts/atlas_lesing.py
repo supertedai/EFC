@@ -229,7 +229,7 @@ def _oppgjoer_status(node: dict) -> str | None:
             res_outcome = res_outcome.strip().lower()
             if res_outcome not in ("confirmed", "contradicted"):
                 return None
-            if not (isinstance(contract_corr, str) and contract_corr):
+            if not (isinstance(contract_corr, str) and contract_corr.strip()):
                 return None
             if not (isinstance(res_corr, str) and res_corr == contract_corr):
                 return None
@@ -250,7 +250,10 @@ def _oppgjoer_status(node: dict) -> str | None:
         # A settlement record with no outcome is not a final outcome — no marker.
         return None
     low = outcome.lower()
-    if low.startswith("waiting for arbiter") or low.startswith("awaiting arbiter"):
+    # A pending phrase must be followed by a separator (colon, whitespace) or
+    # end-of-string: "waiting for arbiter: …" is pending, but a longer word or
+    # stray punctuation ("arbiterial", "arbiter!garbage", "arbiter_foo") is not.
+    if re.match(r"^(?:waiting for arbiter|awaiting arbiter)(?:$|[\s:])", low):
         return "pending"
     if low in ("confirmed", "contradicted"):
         return "settled"
@@ -258,7 +261,10 @@ def _oppgjoer_status(node: dict) -> str | None:
 
 
 def _har_oppgjoer(node: dict) -> bool:
-    """A node has settlement info when it carries a contract OR a landed result."""
+    """Presence, not judgment: the node carries a `settlement` field or a
+    `settlement_result` field (truthy). This is the structural "does this
+    node have settlement info" flag; `_oppgjoer_status` is the separate
+    judgment (pending/settled/None) of what that presence means."""
     return bool(node.get("settlement") or node.get("settlement_result"))
 
 
