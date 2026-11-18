@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 
 ROT = Path(__file__).resolve().parents[1]
@@ -52,8 +53,22 @@ def expected(bro: dict) -> dict:
     return json.loads(v) if isinstance(v, str) else v
 
 
+def _finite(x) -> bool:
+    """math.isfinite raises OverflowError on an int too large for a float;
+    that value is refused rather than allowed to crash the gate."""
+    try:
+        return math.isfinite(x)
+    except (OverflowError, TypeError):
+        return False
+
+
 def gate(candidate: dict, arb: dict) -> list[str]:
-    """Every gate a candidate must pass. Returns the FAILURES (empty = passed)."""
+    """Every gate a candidate must pass. Returns the FAILURES (empty = passed).
+
+    Types are checked here, not just presence: a value that lands verbatim in
+    `settlement_result` must be a type the closed schema accepts, otherwise a
+    candidate that passes the gate still writes a schema-invalid bank — the
+    exact failure this path exists to prevent (t_1e7895c2)."""
     fails: list[str] = []
     must = arb["must_arrive"]
     for felt in must["required_fields"]:
@@ -61,24 +76,67 @@ def gate(candidate: dict, arb: dict) -> list[str]:
             fails.append(f"missing field {felt!r}")
     if candidate.get("observable") and candidate["observable"] != must["observable"]:
         fails.append(f"observable is {candidate['observable']!r}, not {must['observable']!r}")
-    lo, hi = must["z_window"]
-    z = candidate.get("z_eff")
-    if isinstance(z, (int, float)) and not (lo <= z <= hi):
-        fails.append(
-            f"z_eff = {z} is outside the window {must['z_window']} — the measurement "
-            f"is for another window and cannot settle this prediction")
-    if not candidate.get("seq") and not candidate.get("Nats_Msg_Id"):
-        fails.append("no provenance: seq or Nats_Msg_Id is missing")
+
+    f8 = candidate.get("fsigma8")
+    if f8 is not None:
+        if isinstance(f8, bool) or not isinstance(f8, (int, float)):
+            fails.append(f"fsigma8 must be a number, not {type(f8).__name__}")
+        elif not _finite(f8):
+            fails.append(f"fsigma8 must be finite, got {f8!r}")
+
     s = candidate.get("fsigma8_sigma")
-    if not isinstance(s, (int, float)) or s <= 0:
+    if isinstance(s, bool) or not isinstance(s, (int, float)) or s <= 0:
         fails.append("fsigma8_sigma must be a positive number — the tolerance is the "
                      "measurement's OWN sigma")
+    elif not _finite(s):
+        fails.append(f"fsigma8_sigma must be finite, got {s!r}")
+
+    # A non-number z_eff must be REFUSED, not silently skip the window check
+    # (bool is a subclass of int, so exclude it explicitly).
+    z = candidate.get("z_eff")
+    if isinstance(z, bool) or not isinstance(z, (int, float)):
+        fails.append(f"z_eff must be a number, not {type(z).__name__}")
+    elif not _finite(z):
+        fails.append(f"z_eff must be a finite number, not {z!r}")
+    else:
+        lo, hi = must["z_window"]
+        if not (lo <= z <= hi):
+            fails.append(
+                f"z_eff = {z} is outside the window {must['z_window']} — the measurement "
+                f"is for another window and cannot settle this prediction")
+
+    # Provenance lands verbatim in settlement_result; the schema types it.
+    seq = candidate.get("seq")
+    if seq is not None and (isinstance(seq, bool) or not isinstance(seq, (int, str))):
+        fails.append(f"seq must be an integer or its string form, not {type(seq).__name__}")
+    nid = candidate.get("Nats_Msg_Id")
+    if nid is not None and not isinstance(nid, str):
+        fails.append(f"Nats_Msg_Id must be a string, not {type(nid).__name__}")
+    # `seq == 0` reads as absent here. The gate requires seq OR Nats_Msg_Id, so
+    # a zero/absent seq is legitimate when the message id carries the
+    # provenance. Deliberate: do not "fix" this into `is None`, which would
+    # accept an empty provenance.
+    if not candidate.get("seq") and not candidate.get("Nats_Msg_Id"):
+        fails.append("no provenance: seq or Nats_Msg_Id is missing")
+
+    ref = candidate.get("referanse")
+    if ref is not None and not isinstance(ref, str):
+        fails.append(f"referanse must be a string, not {type(ref).__name__}")
+
     return fails
 
 
 def verdict(candidate: dict, exp: dict, arb: dict) -> dict:
     """The verdict, computed from the measurement's own sigma. Never a fixed band."""
     gap = (candidate["fsigma8"] - exp["fsigma8_efc"]) / candidate["fsigma8_sigma"]
+    # Finite inputs can still overflow the normalised gap (1e308 / 1e-308 = inf);
+    # a measurement that cannot be normalised is refused, never clamped. Any
+    # non-finite input also lands here, since it propagates to a non-finite gap.
+    if not _finite(gap):
+        raise ValueError(
+            f"the normalised gap is not finite ({gap!r}) — "
+            f"fsigma8={candidate['fsigma8']!r} against "
+            f"sigma={candidate['fsigma8_sigma']!r}")
     return {
         "gap_sigma": round(gap, 2),
         "formula": "(fsigma8 - fsigma8_efc) / fsigma8_sigma",
@@ -86,6 +144,31 @@ def verdict(candidate: dict, exp: dict, arb: dict) -> dict:
         "outcome": "confirmed" if abs(gap) <= 1.0 else "contradicted",
         "compared_with": f"{candidate.get('survey', '?')} {candidate.get('tracer', '')}".strip(),
     }
+
+
+def settlement_block(v: dict, candidate: dict, arb: dict, bro: dict) -> dict:
+    """The block the writer persists as `settlement_result` — one place, not
+    two. Extracted so the schema test can prove the REAL writer output
+    validates, instead of a hand-written copy of it."""
+    return {
+        "correlation": bro["correlation"],
+        "node": arb["claim_node"],
+        "outcome": v["outcome"],
+        "gap_sigma": v["gap_sigma"],
+        "measured_against": v["compared_with"],
+        "z_eff": candidate["z_eff"],
+        "provenance": {"seq": candidate.get("seq"),
+                       "Nats_Msg_Id": candidate.get("Nats_Msg_Id"),
+                       "reference": candidate.get("referanse")},
+        "criterion": arb["must_arrive"]["why"],
+    }
+
+
+def dump_bank(bank: dict) -> str:
+    """Serialise the bank for writing. `allow_nan=False` is the last line of
+    defence: JSON has no NaN/Infinity token, so a non-finite value must fail
+    here rather than be written in a form the format does not define."""
+    return json.dumps(bank, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
 
 
 def main() -> None:
@@ -125,21 +208,17 @@ def main() -> None:
             print(f"  - {x}")
         raise SystemExit(EXIT_REFUSED)
 
-    v = verdict(candidate, exp, arb)
-    block = {
-        "correlation": bro["correlation"],
-        "node": arb["claim_node"],
-        "outcome": v["outcome"],
-        "gap_sigma": v["gap_sigma"],
-        "measured_against": v["compared_with"],
-        "z_eff": candidate["z_eff"],
-        "provenance": {"seq": candidate.get("seq"),
-                       "Nats_Msg_Id": candidate.get("Nats_Msg_Id"),
-                       "reference": candidate.get("referanse")},
-        "criterion": arb["must_arrive"]["why"],
-    }
+    try:
+        v = verdict(candidate, exp, arb)
+    except ValueError as exc:
+        print(f"REFUSED — {exc}")
+        raise SystemExit(EXIT_REFUSED)
+    block = settlement_block(v, candidate, arb, bro)
     if a.json:
-        print(json.dumps({"verdict": v, "block": block}, ensure_ascii=False, indent=2))
+        # allow_nan=False cannot raise here: gate() and verdict() have already
+        # refused any non-finite value, so v and block are finite by construction.
+        print(json.dumps({"verdict": v, "block": block}, ensure_ascii=False,
+                         indent=2, allow_nan=False))
     else:
         print(f"THE ARBITER IS HERE — {v['compared_with']}")
         print(f"  measured:   fsigma8 = {candidate['fsigma8']} +- {candidate['fsigma8_sigma']} "
@@ -160,7 +239,11 @@ def main() -> None:
         raise SystemExit(EXIT_REFUSED)
     node.setdefault("settlement_result", {})
     node["settlement_result"].update(block)
-    ATLAS.write_text(json.dumps(bank, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    try:
+        ATLAS.write_text(dump_bank(bank), encoding="utf-8")
+    except ValueError as exc:
+        print(f"REFUSED — the bank cannot be serialised: {exc}")
+        raise SystemExit(EXIT_REFUSED)
     print(f"\nWROTE {arb['claim_node']}.settlement_result — "
           f"{v['outcome']} at {v['gap_sigma']:+.2f} sigma.")
 

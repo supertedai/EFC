@@ -13,6 +13,7 @@ Anchoring (the schema's canonical source):
 """
 from __future__ import annotations
 
+import copy
 import json
 import re
 import sys
@@ -29,6 +30,13 @@ _MAINT = _REPO / "scripts" / "maintenance"
 if str(_MAINT) not in sys.path:
     sys.path.insert(0, str(_MAINT))
 from _repo_tre import filer as _tre_filer  # noqa: E402
+
+# The settlement writer, so the schema test can validate the REAL block the
+# writer produces — not a hand-written copy of it.
+_SCRIPTS = _REPO / "scripts"
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+import atlas_oppgjoer as O  # noqa: E402
 
 SCHEMA_PATH = _REPO / "schema" / "regime_node.schema.json"
 INSTANCE_PATH = _REPO / "schema" / "regime_nodes.jsonld"
@@ -124,6 +132,153 @@ def test_schema_relation_predicates_include_transition_and_emergence():
     assert "TRANSITIONS_TO" in preds
     assert "EMERGES_FROM" in preds
     assert "COUPLED_TO" in preds
+
+
+# --------------------------------------------------------------------------
+# settlement_result — the runtime arbiter verdict (t_1e7895c2)
+# --------------------------------------------------------------------------
+
+# The writer's own block shape (scripts/atlas_oppgjoer.py), verbatim keys.
+FULL_VERDICT = {
+    "correlation": "efc-fs8.fsigma8.z0.7",
+    "node": "efc.growth_engine",
+    "outcome": "confirmed",
+    "gap_sigma": 0.0,
+    "measured_against": "DESI LRG+ELG",
+    "z_eff": 0.7,
+    "provenance": {"seq": 999, "Nats_Msg_Id": "efc-fs8.v1.DESI_DR2.LRG+ELG.0.7000.test",
+                   "reference": "DESI 2025 VI"},
+    "criterion": "must fall within ~1sigma of 0.430",
+}
+
+
+def _bank_with_verdict(verdict: dict) -> dict:
+    """The real bank with `settlement_result` written onto efc.growth_engine —
+    the exact state `atlas_oppgjoer.py --skriv` would leave behind."""
+    inst = copy.deepcopy(_instance())
+    node = next(n for n in inst["nodes"] if n["id"] == "efc.growth_engine")
+    node["settlement_result"] = verdict
+    return inst
+
+
+def _assert_valid(inst: dict) -> None:
+    """Validate against the schema. `requires_jsonschema` keeps pytest from
+    running this without the package; the assert narrows the optional import
+    for the type checker."""
+    assert jsonschema is not None
+    jsonschema.Draft202012Validator(_schema()).validate(inst)
+
+
+def _assert_rejected(inst: dict) -> None:
+    """The schema must reject this instance."""
+    assert jsonschema is not None
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.Draft202012Validator(_schema()).validate(inst)
+
+
+@requires_jsonschema
+def test_settlement_result_empty_container_is_valid():
+    """The writer's unfilled container — the reader falls through to the
+    static contract, so `{}` must be a valid persisted shape."""
+    _assert_valid(_bank_with_verdict({}))
+
+
+@requires_jsonschema
+def test_settlement_result_full_verdict_is_valid():
+    _assert_valid(_bank_with_verdict(FULL_VERDICT))
+
+
+@requires_jsonschema
+def test_settlement_result_null_provenance_is_valid():
+    """The writer copies provenance members with .get(), so a candidate that
+    carried only ONE provenance marker lands the other as null. Both shapes
+    below are gate-passing (the gate requires `seq` OR `Nats_Msg_Id`), so the
+    null is a real emitted value — not an unreachable all-null combination."""
+    seq_only = {**FULL_VERDICT,
+                "provenance": {"seq": 99001, "Nats_Msg_Id": None,
+                               "reference": "DESI 2025 VI"}}
+    _assert_valid(_bank_with_verdict(seq_only))
+    id_only = {**FULL_VERDICT,
+               "provenance": {"seq": None,
+                              "Nats_Msg_Id": "efc-fs8.v1.DESI_DR2.LRG.0.7000.test",
+                              "reference": "DESI 2025 VI"}}
+    _assert_valid(_bank_with_verdict(id_only))
+
+
+@requires_jsonschema
+def test_settlement_result_string_seq_is_valid():
+    """`seq` is provenance carried verbatim from the bus — an integer or its
+    string form. The gate accepts both; the schema mirrors it (t_1e7895c2)."""
+    _assert_valid(_bank_with_verdict(
+        {**FULL_VERDICT,
+         "provenance": {"seq": "99001", "Nats_Msg_Id": None,
+                        "reference": "DESI 2025 VI"}}))
+
+
+@requires_jsonschema
+def test_settlement_result_rejects_dict_seq():
+    """`seq` is an integer or its string form — never a nested structure. The
+    gate refuses a dict before writing; the schema must agree (t_1e7895c2)."""
+    _assert_rejected(_bank_with_verdict(
+        {**FULL_VERDICT,
+         "provenance": {"seq": {"nested": 1}, "Nats_Msg_Id": None,
+                        "reference": "DESI 2025 VI"}}))
+
+
+@requires_jsonschema
+def test_settlement_result_minimal_verdict_is_valid():
+    """The three core fields alone are a valid verdict — the evidence fields
+    are optional, so a writer that fills none of them still produces a
+    schema-valid bank. This is the guard against a future change making
+    `gap_sigma` or `provenance` required."""
+    _assert_valid(_bank_with_verdict(
+        {"correlation": "efc-fs8.fsigma8.z0.7",
+         "node": "efc.growth_engine",
+         "outcome": "confirmed"}))
+
+
+@requires_jsonschema
+def test_settlement_block_from_writer_is_schema_valid():
+    """The REAL writer output, not a hand-written copy, must validate.
+
+    `settlement_block()` is the function `atlas_oppgjoer.py` actually uses to
+    build the persisted `settlement_result`; the hand-written FULL_VERDICT
+    above could drift from it silently. This test ties the schema to the
+    writer's own block, so CI fails if the two ever disagree."""
+    arb = O.read(_REPO / "schema" / "efc_fs8.arbiter.json")
+    bro = O.read(_REPO / "schema" / "efc_fs8.bro.json")
+    exp = O.expected(bro)
+    cand = {"observable": "fsigma8", "survey": "DESI", "release": "DR2",
+            "analysis": "full-shape", "fsigma8": 0.43, "fsigma8_sigma": 0.05,
+            "z_eff": 0.7, "tracer": "LRG+ELG", "referanse": "DESI 2025 VI",
+            "seq": 999, "Nats_Msg_Id": "efc-fs8.v1.DESI_DR2.LRG+ELG.0.7000.test"}
+    assert O.gate(cand, arb) == [], "the candidate must pass the gate before the writer emits this block"
+    v = O.verdict(cand, exp, arb)
+    block = O.settlement_block(v, cand, arb, bro)
+    _assert_valid(_bank_with_verdict(block))
+
+
+@requires_jsonschema
+def test_settlement_result_rejects_unknown_outcome():
+    _assert_rejected(_bank_with_verdict({**FULL_VERDICT, "outcome": "pending"}))
+
+
+@requires_jsonschema
+def test_settlement_result_rejects_unexpected_property():
+    _assert_rejected(_bank_with_verdict({**FULL_VERDICT, "invented_key": "x"}))
+
+
+@requires_jsonschema
+@pytest.mark.parametrize("missing", ["correlation", "node", "outcome"])
+def test_settlement_result_rejects_a_verdict_missing_any_core_field(missing: str):
+    """Each core field the reader validates is required BY THE SCHEMA.
+
+    A single dict missing two fields at once hides the loss of one — measured
+    by mutation M4, which stayed green when `node` left `required` because
+    `correlation` was still absent and kept the rejection alive."""
+    verdict = {k: FULL_VERDICT[k]
+               for k in ("correlation", "node", "outcome") if k != missing}
+    _assert_rejected(_bank_with_verdict(verdict))
 
 
 # --------------------------------------------------------------------------

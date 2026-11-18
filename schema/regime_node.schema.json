@@ -839,6 +839,70 @@
             }
           }
         },
+        "settlement_result": {
+          "description": "The runtime arbiter verdict, written by atlas_oppgjoer.py when the arbiter lands. Absent while the prediction is armed. Either the writer's unfilled container (an empty object, which the reader falls through to the static contract) or a landed verdict whose three core fields the reader validates. The cross-field invariant that `node` equals the carrying node's `id`, and that `correlation` matches the prediction's own correlation, is enforced by the reader (atlas_lesing._oppgjoer_status) — JSON Schema cannot express that identity, so it is not claimed here.",
+          "oneOf": [
+            {
+              "type": "object",
+              "description": "The writer's unfilled container. Declared as a closed empty object (maxProperties 0) rather than a bare `{}` schema, because the C10 gate flags a bare `{}` as 'accepts anything' — an empty container must not be an open door.",
+              "maxProperties": 0,
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [
+                "correlation",
+                "node",
+                "outcome"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "correlation": {
+                  "type": "string"
+                },
+                "node": {
+                  "type": "string"
+                },
+                "outcome": {
+                  "type": "string",
+                  "enum": [
+                    "confirmed",
+                    "contradicted"
+                  ]
+                },
+                "gap_sigma": {
+                  "type": "number"
+                },
+                "measured_against": {
+                  "type": "string"
+                },
+                "z_eff": {
+                  "type": "number"
+                },
+                "provenance": {
+                  "type": "object",
+                  "description": "The measurement's own provenance. Members may be null when the candidate carried no such field — the writer copies them with .get().",
+                  "additionalProperties": false,
+                  "properties": {
+                    "seq": {
+                      "type": ["integer", "string", "null"],
+                      "description": "Carried verbatim from the bus: a sequence number (integer) or its string form; null when Nats_Msg_Id carries the provenance. The writer's gate enforces the type before writing (t_1e7895c2)."
+                    },
+                    "Nats_Msg_Id": {
+                      "type": ["string", "null"]
+                    },
+                    "reference": {
+                      "type": ["string", "null"]
+                    }
+                  }
+                },
+                "criterion": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        },
         "falsifiserbarhet": {
           "type": "object",
           "description": "Why a node can NOT be refuted. Distinguish from `ville_falsifisere`: a stub cannot be refuted because it computes — it is a state description, not a falsifier, and it shall not count as satisfied falsifiability.",

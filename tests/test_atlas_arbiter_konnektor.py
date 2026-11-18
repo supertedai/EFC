@@ -37,6 +37,11 @@ from pathlib import Path
 
 import pytest
 
+try:
+    import jsonschema
+except ImportError:  # pragma: no cover
+    jsonschema = None
+
 ROT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROT))
 sys.path.insert(0, str(ROT / "scripts"))
@@ -465,6 +470,12 @@ def test_the_flat_candidate_closes_the_loop_in_one_call(tmp_path, arb: dict) -> 
     assert "CONFIRMED" in r.stdout
 
     bank = json.loads((rot / "schema" / "regime_nodes.jsonld").read_text(encoding="utf-8"))
+    # The write must leave a schema-valid bank — the acceptance for t_1e7895c2:
+    # --skriv used to produce a bank the closed schema rejected at ['nodes', 42].
+    # The schema is read-only here, straight from the repository tree.
+    schema = json.loads((ROT / "schema" / "regime_node.schema.json").read_text(encoding="utf-8"))
+    assert jsonschema is not None, "jsonschema is required to validate the written bank"
+    jsonschema.Draft202012Validator(schema).validate(bank)
     node = next(n for n in bank["nodes"] if n["id"] == arb["claim_node"])
     land = node["settlement_result"]
     assert land["outcome"] == "confirmed" and land["gap_sigma"] == 0.0
@@ -472,9 +483,10 @@ def test_the_flat_candidate_closes_the_loop_in_one_call(tmp_path, arb: dict) -> 
     assert land["provenance"]["reference"] == "DESI 2025 VI"
     assert land["measured_against"] == "DESI LRG"
 
-    # The reader must classify the written verdict as settled — this ties the
-    # writer's correlation form to the reader's exact match. If the two forms
-    # ever drift apart, this assertion fails before any reader mislabels it.
+    # The write leaves the static expectation untouched while the runtime
+    # verdict reads "settled" — the runtime branch wins over the static
+    # "waiting for arbiter", and the armed declaration is not erased.
+    assert node["settlement"]["outcome"].startswith("waiting for arbiter")
     assert atlas_lesing._oppgjoer_status(node) == "settled"
 
     # The acceptance's guard: the landed bank in THIS repository is untouched.

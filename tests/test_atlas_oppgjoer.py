@@ -11,6 +11,8 @@ open, i.e. that nothing has settled it yet.
 from __future__ import annotations
 
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -78,6 +80,171 @@ def test_a_missing_required_field_is_refused(arb: dict) -> None:
 def test_a_wrong_observable_is_refused(arb: dict) -> None:
     fails = O.gate(_candidate(observable="sigma8"), arb)
     assert any("observable is" in f for f in fails), fails
+
+
+def test_a_measurement_with_a_string_z_eff_is_refused(arb: dict) -> None:
+    """A quoted redshift is not a number: the window guard must REFUSE it,
+    not silently skip the whole window check (t_1e7895c2)."""
+    fails = O.gate(_candidate(z_eff="0.7"), arb)
+    assert any("z_eff must be a number" in f for f in fails), fails
+
+
+def test_a_boolean_z_eff_is_refused_as_not_a_number(arb: dict) -> None:
+    """bool is a subclass of int in Python; a boolean redshift must not pass
+    as a number."""
+    fails = O.gate(_candidate(z_eff=True), arb)
+    assert any("z_eff must be a number" in f for f in fails), fails
+
+
+def test_a_string_fsigma8_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(fsigma8="0.43"), arb)
+    assert any("fsigma8 must be a number" in f for f in fails), fails
+
+
+def test_a_non_string_reference_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(referanse=123), arb)
+    assert any("referanse must be a string" in f for f in fails), fails
+
+
+def test_a_dict_seq_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(seq={}), arb)
+    assert any("seq must be an integer" in f for f in fails), fails
+
+
+def test_a_non_string_msg_id_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(Nats_Msg_Id=123), arb)
+    assert any("Nats_Msg_Id must be a string" in f for f in fails), fails
+
+
+def test_a_valid_candidate_still_passes_the_gate(arb: dict) -> None:
+    """The gate's own "empty = passed" contract, on a fully valid candidate."""
+    assert O.gate(_candidate(), arb) == []
+
+
+def test_a_string_seq_passes_the_gate(arb: dict) -> None:
+    """`seq` is provenance carried verbatim — a string sequence is accepted,
+    not rejected (t_1e7895c2)."""
+    assert O.gate(_candidate(seq="999"), arb) == []
+
+
+def test_a_nan_fsigma8_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(fsigma8=float("nan")), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_an_infinite_fsigma8_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(fsigma8=float("inf")), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_a_nan_sigma_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(fsigma8_sigma=float("nan")), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_an_infinite_sigma_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(fsigma8_sigma=float("inf")), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_a_nan_z_eff_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(z_eff=float("nan")), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_an_infinite_z_eff_is_refused(arb: dict) -> None:
+    fails = O.gate(_candidate(z_eff=float("inf")), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_an_integer_too_large_for_a_float_is_refused(arb: dict) -> None:
+    """math.isfinite overflows on ints beyond float range; _finite must catch
+    that and refuse, not crash the gate (t_1e7895c2)."""
+    fails = O.gate(_candidate(fsigma8=10 ** 400), arb)
+    assert any("finite" in f for f in fails), fails
+
+
+def test_dump_bank_refuses_a_non_finite_value() -> None:
+    """The decisive layer: JSON has no NaN/Infinity token, so `allow_nan=False`
+    makes the serialiser fail closed before write_text can touch the file."""
+    with pytest.raises(ValueError):
+        O.dump_bank({"gap_sigma": float("nan")})
+
+
+def test_dump_bank_reproduces_the_landed_bank_byte_for_byte() -> None:
+    """The writer's serialiser is the exact on-disk format: `--skriv` must not
+    produce a spurious diff on the untouched parts of the bank."""
+    raw = O.ATLAS.read_bytes()
+    assert O.dump_bank(json.loads(raw)).encode("utf-8") == raw
+
+
+def test_verdict_refuses_a_non_finite_gap(bro: dict, arb: dict) -> None:
+    """Two finite inputs can still overflow the normalised gap (1e308 / 1e-300).
+    The verdict must refuse — not emit `contradicted` with an infinite gap."""
+    exp = O.expected(bro)
+    with pytest.raises(ValueError):
+        O.verdict(_candidate(fsigma8=1e308, fsigma8_sigma=1e-300), exp, arb)
+
+
+def test_a_measurement_that_overflows_the_gap_is_refused(tmp_path) -> None:
+    """The wiring maps the verdict's ValueError to a REFUSED exit code before
+    any write. `--kandidat` without `--skriv` reads only bro/arb, never the bank."""
+    cand = _candidate(fsigma8=1e308, fsigma8_sigma=1e-300)
+    kfile = tmp_path / "candidate.json"
+    kfile.write_text(json.dumps(cand), encoding="utf-8")
+    env = {**os.environ}
+    env.pop("PYTHONPATH", None)
+    r = subprocess.run(
+        [sys.executable, str(ROT / "scripts" / "atlas_oppgjoer.py"),
+         "--kandidat", str(kfile)],
+        capture_output=True, text=True,
+        env=env)
+    assert r.returncode == O.EXIT_REFUSED, r.stdout
+    assert "REFUSED" in r.stdout, r.stdout
+
+
+def test_main_writes_through_dump_bank(tmp_path, monkeypatch) -> None:
+    """Nothing else pins that main() calls dump_bank: an inline
+    json.dumps(allow_nan=True) in the write path would survive the whole
+    suite. This fails loudly if the wiring is ever unpicked (t_1e7895c2)."""
+    sentinel = RuntimeError("dump_bank must be the writer's serialiser")
+    bank_copy = tmp_path / "regime_nodes.jsonld"
+    bank_copy.write_bytes(O.ATLAS.read_bytes())
+    monkeypatch.setattr(O, "ATLAS", bank_copy)
+
+    def boom(_bank: dict) -> str:
+        raise sentinel
+
+    monkeypatch.setattr(O, "dump_bank", boom)
+    flat = tmp_path / "candidate.json"
+    flat.write_text(json.dumps(_candidate()), encoding="utf-8")
+    monkeypatch.setattr(sys, "argv",
+                        ["atlas_oppgjoer.py", "--kandidat", str(flat), "--skriv"])
+    with pytest.raises(RuntimeError) as excinfo:
+        O.main()
+    assert excinfo.value is sentinel
+
+
+def test_a_serialisation_failure_is_a_controlled_refusal(tmp_path, monkeypatch) -> None:
+    """A ValueError from the serialiser is a controlled refusal (EXIT_REFUSED),
+    not a traceback — and nothing is written (t_1e7895c2)."""
+    bank_copy = tmp_path / "regime_nodes.jsonld"
+    bank_copy.write_bytes(O.ATLAS.read_bytes())
+    before = bank_copy.read_bytes()
+    monkeypatch.setattr(O, "ATLAS", bank_copy)
+
+    def boom(_bank: dict) -> str:
+        raise ValueError("non-finite value")
+
+    monkeypatch.setattr(O, "dump_bank", boom)
+    flat = tmp_path / "candidate.json"
+    flat.write_text(json.dumps(_candidate()), encoding="utf-8")
+    monkeypatch.setattr(sys, "argv",
+                        ["atlas_oppgjoer.py", "--kandidat", str(flat), "--skriv"])
+    with pytest.raises(SystemExit) as excinfo:
+        O.main()
+    assert excinfo.value.code == O.EXIT_REFUSED
+    assert bank_copy.read_bytes() == before
 
 
 def test_the_verdict_uses_the_measurements_own_sigma(bro: dict, arb: dict) -> None:
