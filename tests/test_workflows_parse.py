@@ -34,6 +34,10 @@ REQUIRED_SOURCES = (
     "schema/efc_fs8.*",
     "schema/regime_node.schema.json",
     "schema/regime_nodes.jsonld",
+    "schema/nats_domener.snapshot.json",
+    "docs/concepts.jsonld",
+    "docs/ontology.jsonld",
+    "docs/nats-koblingskart.md",
 )
 
 
