@@ -109,6 +109,9 @@ ATLAS_EIDE: tuple[str, ...] = (
     "/usikkerhet",
     "/prediction",
     "/settlement",
+    # The runtime arbiter verdict, written by the settlement path into the
+    # bank; no engine emits it, so the atlas carries it alone (like /settlement).
+    "/settlement_result",
 )
 
 #: Paths where the engine may emit a SUBSET of the atlas's list.
