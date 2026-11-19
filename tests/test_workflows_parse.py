@@ -14,6 +14,32 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# The measured read/import closure of the atlas reader and connector tests
+# that efc-schema.yml now runs (t_995a7134). The workflow must both RUN these
+# tests and WATCH these sources; otherwise a change to a watched file skips the
+# gate and "green CI" becomes "absence of check" again.
+REQUIRED_TESTS = ("tests/test_atlas_arbiter_konnektor.py",
+                  "tests/test_atlas_oppslag.py")
+REQUIRED_SOURCES = (
+    "scripts/atlas_lesing.py",
+    "scripts/atlas_oppgjoer.py",
+    "scripts/atlas_arbiter_konnektor.py",
+    "scripts/maintenance/arbiter_vakt_kjoer.py",
+    "scripts/maintenance/_repo_tre.py",
+    "efc_inference/arbiter/**",
+    "efc_inference/engine/**",
+    "efc_inference/core/cosmology_model.py",
+    "efc_inference/core/__init__.py",
+    "efc_inference/__init__.py",
+    "schema/efc_fs8.*",
+    "schema/regime_node.schema.json",
+    "schema/regime_nodes.jsonld",
+    "schema/nats_domener.snapshot.json",
+    "docs/concepts.jsonld",
+    "docs/ontology.jsonld",
+    "docs/nats-koblingskart.md",
+)
+
 
 class Workflows(unittest.TestCase):
     def test_alle_workflow_filer_parser_og_har_kjoerbare_steg(self):
@@ -54,6 +80,58 @@ class Triggere(unittest.TestCase):
         self.assertEqual(on["push"]["branches"], ["main"])
         self.assertEqual(on["push"]["paths"], on["pull_request"]["paths"], "push and pull_request must watch the same files")
         self.assertIn("**/*.jsonld", on["push"]["paths"])
+
+    def test_efc_schema_watches_sources_and_runs_atlas_tests(self):
+        """t_995a7134: the atlas reader and connector tests ran in no CI workflow
+        for five weeks, so green CI was absence of check, not validation. The
+        efc-schema workflow must both run them and watch their sources; a change
+        that breaks either must fail this test."""
+        doc = self._load("efc-schema.yml")
+        on = doc[True]
+        self.assertIn("workflow_dispatch", on)
+        push = on["push"]["paths"]
+        pr = on["pull_request"]["paths"]
+        self.assertEqual(set(push), set(pr),
+                         "push.paths and pull_request.paths must watch the same files")
+
+        # The pytest step is the one with `-m pytest`; `pip install` also
+        # contains the word "pytest" (the pinned range), so that substring is
+        # not enough.
+        runs = [s["run"] for s in doc["jobs"]["schema"]["steps"] if "run" in s]
+        pytest_runs = [r for r in runs if "-m pytest" in r]
+        self.assertEqual(len(pytest_runs), 1, "exactly one pytest step expected")
+        pytest_line = pytest_runs[0]
+
+        for t in REQUIRED_TESTS:
+            self.assertIn(t, pytest_line, f"{t} not in the pytest step")
+            self.assertIn(t, push, f"{t} missing from push.paths")
+            self.assertIn(t, pr, f"{t} missing from pull_request.paths")
+
+        for s in REQUIRED_SOURCES:
+            self.assertIn(s, push, f"{s} missing from push.paths")
+            self.assertIn(s, pr, f"{s} missing from pull_request.paths")
+
+        # Structural invariant (t_995a7134): no test may ever run unwatched.
+        # Every tests/test_*.py token in the pytest step must also be watched by
+        # both path blocks — the exact hole this card closes. This is a
+        # self-discovering rule, not a remembered list: a test added to the
+        # pytest step without a matching path fails here.
+        pytest_test_tokens = set(t for t in pytest_line.split()
+                                 if t.startswith("tests/test_"))
+        self.assertGreater(len(pytest_test_tokens), 0,
+                           "the pytest step names no tests")
+        for t in sorted(pytest_test_tokens):
+            self.assertIn(t, push,
+                          f"{t} in the pytest step but missing from push.paths")
+            self.assertIn(t, pr,
+                          f"{t} in the pytest step but missing from pull_request.paths")
+
+        # The schema gate and the bro-sync step are the point of this workflow;
+        # a rewrite must not swap them out for the reader tests.
+        self.assertTrue(any("efc_schema_check.py" in r for r in runs),
+                        "C10 step lost")
+        self.assertTrue(any("efc_bro_synk.py" in r for r in runs),
+                        "bro-sync step lost")
 
     def test_cron_owns_writes_and_maintenance_actions_are_absent(self):
         """The cron maintenance chain is the sole EFC writer.

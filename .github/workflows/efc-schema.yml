@@ -3,16 +3,29 @@ name: efc-schema
 # C10 — registered JSON Schema / instance pairs are valid and CLOSED.
 # Measured 2026-09-05: 16 workflows, none ran a schema validator; 0 of ~400
 # schemas closed. The registry lives in scripts/maintenance/efc_schema_check.py.
+#
+# Since t_995a7134 this workflow also runs the atlas reader and connector tests
+# (tests/test_atlas_oppslag.py, tests/test_atlas_arbiter_konnektor.py) and
+# watches the sources they read, so those tests are CI-enforced instead of run
+# by nobody.
 
 on:
   push:
     branches: [main]
     paths:
       - "efc_inference/engine/**"
+      - "efc_inference/arbiter/**"
+      - "efc_inference/core/cosmology_model.py"
+      - "efc_inference/core/__init__.py"
+      - "efc_inference/__init__.py"
       - "docs/likelihood-ledger/**"
       - "docs/evaluation-ledger/schema.json"
       - "docs/model-comparison/schema.json"
+      - "docs/concepts.jsonld"
+      - "docs/ontology.jsonld"
+      - "docs/nats-koblingskart.md"
       - "schema/framework_atlas.*"
+      - "schema/efc_fs8.*"
       - "schema/regime_node.schema.json"
       - "schema/regime_nodes.jsonld"
       - "scripts/maintenance/efc_schema_check.py"
@@ -20,14 +33,22 @@ on:
       - "scripts/maintenance/efc_bro_synk.py"
       - "scripts/maintenance/efc_bro_konvensjon.py"
       - "scripts/maintenance/bygg_kildenoder.py"
+      - "scripts/maintenance/arbiter_vakt_kjoer.py"
+      - "scripts/maintenance/_repo_tre.py"
       - "tests/test_efc_schema_check.py"
       - "tests/test_workflows_parse.py"
+      - "tests/test_repo_konfigurasjon.py"
       - "tests/test_regime_node_schema.py"
       - "tests/test_usikkerhetslag.py"
       - "scripts/atlas_lesing.py"
       - "scripts/atlas_kilder.py"
+      - "scripts/atlas_oppgjoer.py"
+      - "scripts/atlas_arbiter_konnektor.py"
       - "schema/atlas_dekning.json"
+      - "schema/nats_domener.snapshot.json"
       - "tests/test_atlas_kilder.py"
+      - "tests/test_atlas_arbiter_konnektor.py"
+      - "tests/test_atlas_oppslag.py"
       - "tests/test_efc_provenance.py"
       - "tests/test_bro_konvensjon.py"
       - "tests/test_holding_release_motorer.py"
@@ -38,10 +59,18 @@ on:
   pull_request:
     paths:
       - "efc_inference/engine/**"
+      - "efc_inference/arbiter/**"
+      - "efc_inference/core/cosmology_model.py"
+      - "efc_inference/core/__init__.py"
+      - "efc_inference/__init__.py"
       - "docs/likelihood-ledger/**"
       - "docs/evaluation-ledger/schema.json"
       - "docs/model-comparison/schema.json"
+      - "docs/concepts.jsonld"
+      - "docs/ontology.jsonld"
+      - "docs/nats-koblingskart.md"
       - "schema/framework_atlas.*"
+      - "schema/efc_fs8.*"
       - "schema/regime_node.schema.json"
       - "schema/regime_nodes.jsonld"
       - "scripts/maintenance/efc_schema_check.py"
@@ -49,14 +78,22 @@ on:
       - "scripts/maintenance/efc_bro_synk.py"
       - "scripts/maintenance/efc_bro_konvensjon.py"
       - "scripts/maintenance/bygg_kildenoder.py"
+      - "scripts/maintenance/arbiter_vakt_kjoer.py"
+      - "scripts/maintenance/_repo_tre.py"
       - "tests/test_efc_schema_check.py"
       - "tests/test_workflows_parse.py"
+      - "tests/test_repo_konfigurasjon.py"
       - "tests/test_regime_node_schema.py"
       - "tests/test_usikkerhetslag.py"
       - "scripts/atlas_lesing.py"
       - "scripts/atlas_kilder.py"
+      - "scripts/atlas_oppgjoer.py"
+      - "scripts/atlas_arbiter_konnektor.py"
       - "schema/atlas_dekning.json"
+      - "schema/nats_domener.snapshot.json"
       - "tests/test_atlas_kilder.py"
+      - "tests/test_atlas_arbiter_konnektor.py"
+      - "tests/test_atlas_oppslag.py"
       - "tests/test_efc_provenance.py"
       - "tests/test_bro_konvensjon.py"
       - "tests/test_holding_release_motorer.py"
@@ -88,5 +125,5 @@ jobs:
       - name: Motor↔atlas-broen — fila i deklarert format, ingen avvik
         run: python3 scripts/maintenance/efc_bro_synk.py --sjekk
 
-      - name: Unit tests for the gate, and every workflow file parses
-        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_usikkerhetslag.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py tests/test_bro_konvensjon.py tests/test_holding_release_motorer.py tests/test_atlas_kilder.py -q
+      - name: Unit tests for the schema gate, the atlas readers, and workflow parsing
+        run: python3 -m pytest tests/test_efc_schema_check.py tests/test_workflows_parse.py tests/test_regime_node_schema.py tests/test_usikkerhetslag.py tests/test_repo_konfigurasjon.py tests/test_efc_provenance.py tests/test_bro_konvensjon.py tests/test_holding_release_motorer.py tests/test_atlas_kilder.py tests/test_atlas_arbiter_konnektor.py tests/test_atlas_oppslag.py -q
