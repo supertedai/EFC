@@ -34,6 +34,14 @@ the only threshold here, and it follows from what a domain is.
     python3 scripts/atlas_kilder.py            # the whole source inventory
     python3 scripts/atlas_kilder.py --delt     # only those carried by several
     python3 scripts/atlas_kilder.py --sjekk    # declaration against measurement
+    python3 scripts/atlas_kilder.py --skriv    # rebuild the `kilder` section
+
+The derivation is NOT a step of its own: `scripts/atlas_volum.py --maal` runs
+it on the measurement it has just taken, so the snapshot and both axes of
+`schema/atlas_dekning.json` come from ONE reading of the bus. Measured
+2026-11-17: `--maal` wrote the snapshot and `domener` and left `kilder` with
+the numbers from an earlier measurement, because the second step had to be
+remembered — and it wasn't.
 
 Language: English only, per the repo-wide language gate
 (`scripts/maintenance/efc_spraakvakt.py`), which fails on any Norwegian this
@@ -302,19 +310,28 @@ def avvik(data: dict) -> list[str]:
     return feil
 
 
-def _skriv_seksjon(data: dict, gammel: dict | None = None) -> dict:
-    """Build the `kilder` section from the measurement, with the declared names.
+def seksjon_fra_maaling(snapshot: dict, noder: list[dict],
+                        gammel: dict | None = None) -> dict:
+    """Build the `kilder` section from a MEASUREMENT, with the declared names.
 
-    The names and the reasons are the only fields that cannot be derived --
+    The names and the reasons are the only fields that cannot be derived —
     everything else comes from the bus and from the bank, and the test derives
     it again. This function is therefore a BUILDER, not a decision: it does not
-    touch a name or a reason that already stands there, and it reads them from
-    the FILE it writes (otherwise a new run would have deleted them, since the
-    measurement comes from a ref without the section).
+    touch a name or a reason that already stands there, and it takes them from
+    the section it replaces (otherwise a new run would have deleted them, since
+    a measurement carries no names).
+
+    `snapshot` is the measurement in the shape the snapshot file has, `noder`
+    the bank's `nodes` list, and `gammel` the section as it stands in the file
+    being written.
+
+    This is the ONE derivation of the source axis. `atlas_volum.py --maal`
+    passes the measurement it just took, in memory, and `--skriv` here passes
+    one read from a ref; a second copy of this rule would be two truths about
+    one axis, and the copy that was not run would be the one that rotted.
     """
-    gammel = (data["dekning"].get("kilder") or {}) if gammel is None else gammel
-    inv = kildeinventar(data["snapshot"])
-    noder = data["noder"]["nodes"]
+    gammel = {} if gammel is None else gammel
+    inv = kildeinventar(snapshot)
     ut: dict[str, dict] = {}
     for ledd, maalt in inv.items():
         før = gammel.get(ledd) or {}
@@ -342,9 +359,12 @@ def main() -> int:
                     help="the declaration against the measurement; exit 1 on "
                          "deviations")
     ap.add_argument("--skriv", action="store_true",
-                    help="build the `kilder` section from the measurement and "
-                         "write the file (names and reasons already there are "
-                         "left untouched)")
+                    help="build the `kilder` section from a measurement read "
+                         "from --ref and write the file (names and reasons "
+                         "already there are left untouched). `atlas_volum.py "
+                         "--maal` runs the same derivation on its own fresh "
+                         "measurement; use this to repair a section whose "
+                         "snapshot is already committed")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
 
@@ -352,7 +372,9 @@ def main() -> int:
         data = les_fra_ref(ROT, a.ref, hent=a.hent)
         sti = ROT / DEKNING_STI
         naa = json.loads(sti.read_text(encoding="utf-8"))
-        naa["kilder"] = _skriv_seksjon(data, naa.get("kilder") or {})
+        naa["kilder"] = seksjon_fra_maaling(data["snapshot"],
+                                            data["noder"]["nodes"],
+                                            naa.get("kilder") or {})
         sti.write_text(json.dumps(naa, ensure_ascii=False, indent=2) + "\n",
                        encoding="utf-8")
         print(f"wrote {len(naa['kilder'])} source segments to {DEKNING_STI}")
