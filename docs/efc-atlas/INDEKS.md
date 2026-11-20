@@ -1,6 +1,6 @@
 # Atlas index
 
-> 116 published nodes · 52 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other) · 7 without evidence · 21 open questions
+> 115 published nodes · 52 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other) · 7 without evidence · 21 open questions
 
 Each row is generated from the same bank as the atlas.
 
@@ -58,8 +58,6 @@ Each row is generated from the same bank as the atlas.
 - **KR · kosmos.roentgentransienter** — alerts on transients in real time, from ground and space
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **RF · kosmos.romfart** — launch data — planned, flown and settled launches
-  perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
-- **ST · kosmos.stjerner** — archival observations — instrument-borne raw data from space…
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes
 - **UK · kosmos.uklassifisert** — alerts on transients in real time, from ground and space
   perspective=consensus · engine=not specified · bus=not specified · S-axis=not measured · questions=0 · group=yes

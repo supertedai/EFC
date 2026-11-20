@@ -44,7 +44,8 @@ def dekning() -> dict:
 
 def test_hver_akse_kan_roteres(atlas: dict) -> None:
     """En akse som tilbys skal svare — og svare like mange."""
-    assert len(atlas["noder"]) == 126
+    # 126 -> 125 on 2026-11-17: PR #682 pruned kosmos.stjerner from the bank.
+    assert len(atlas["noder"]) == 125
     dode = []
     for sti, (antall, _) in sorted(atlas_lesing.akser(atlas).items()):
         try:
@@ -103,7 +104,12 @@ def test_hvert_domene_kan_roteres(atlas: dict, dekning: dict) -> None:
 def test_alle_domener_er_provd(atlas: dict, dekning: dict) -> None:
     """Forutsetningen: dekningsfilen skal dekke hvert domene atlaset kjenner."""
     dom = set(dekning["domener"])
-    assert len(dom) == 39, f"forventet 39 domener, fant {len(dom)}"
+    # 39 -> 37 on 2026-11-17: the bus measurement moved (snapshot 2026-09-19 ->
+    # 2026-11-17) and two domains left it — kosmos.exoplanet and
+    # kosmos.stjerner, one subject each. The declaration followed in
+    # 26eaf248 and d5a94e95. This pin counts the DECLARATION, so it moves with
+    # the measurement, not with the atlas going quiet.
+    assert len(dom) == 37, f"forventet 37 domener, fant {len(dom)}"
     kjente = {n.get("buss_domene") for n in atlas["noder"]} - {None}
     udekket = kjente - dom
     assert not udekket, (
