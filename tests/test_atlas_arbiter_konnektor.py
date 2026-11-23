@@ -150,6 +150,27 @@ def test_the_bridge_pins_its_oppgjoer_topic_to_the_verdict_subject(bro: dict) ->
     assert bro["topics"]["oppgjoer"] != MEASUREMENT_SUBJECT
 
 
+def test_the_bridge_names_the_verdict_feed_and_the_declaration_the_measurement(
+        arb: dict, bro: dict) -> None:
+    """The two rows of docs/nats-koblingskart.md:94-95, bound to the two files.
+
+    Measured 2026-11-18 (t_1b58ca2f): `schema/efc_fs8.arbiter.json` said
+    `...oppgjoer.efc-fs8-arbiter` — the VERDICT subject — in the field that names
+    where this connector publishes the MEASUREMENT. Nothing read
+    `bro["topics"]["oppgjoer"]`, and nothing compared the two files, so the
+    mismatch was invisible: every reader of each file alone was self-consistent,
+    and only the pair disagreed. That is the same shape as the drift
+    tests/test_arbiter_emne_kontrakt.py was written about, one level up.
+
+    So the pair is asserted here: the bridge's `oppgjoer` is the subject the
+    verdict's own publisher names, and the declaration's `expected_topic` is the
+    other feed — never the same one.
+    """
+    assert bro["topics"]["oppgjoer"] == V.OPPGJOER_EMNE
+    assert bro["topics"]["oppgjoer"] != K.subject(arb)
+    assert bro["topics"]["oppgjoer"].split(".")[:3] == K.subject(arb).split(".")[:3]
+
+
 def test_the_window_is_the_declarations_and_inside_the_arbiters_own(arb: dict) -> None:
     """Two windows exist, and they are not the same size.
 
