@@ -47,10 +47,19 @@ otherwise a kanban/PR id found in the branch name (t_<hex>, pr<number>), otherwi
 source_change_id and requires a HUMAN-approved decision per gate entry:
 one approved entry does NOT cover another entry that still stands "venter".
 
+The base must be an ANCESTOR of HEAD. `git diff base` answers "what differs
+between base and the working tree", so when the base is AHEAD of HEAD the answer
+runs BACKWARDS: the commits the base gained after the fork point appear as
+deletions of "this change". A workflow file that main gained then scores as
+"gate-endring" — a blocking finding for a change nobody made (measured
+2026-11-23, t_8fa4b002: a host clone 5 commits behind origin/main measured 36
+files, F=4 x E=2 x P=2 x I=4 = 64, blokkerende, while HEAD held 0 commits the
+base lacked). A reversed range is therefore refused, not scored.
+
 Exit: 0 = report (without --gate), 1 = --gate rejected the change, 2 = tool error
-(unknown ref, missing/invalid ownership register, invalid risk register). An EMPTY
-diff is F=1 and "liten"; a FAILING git call is exit 2 — never "no
-changes".
+(unknown ref, base that is not an ancestor of HEAD, missing/invalid ownership
+register, invalid risk register). An EMPTY diff is F=1 and "liten"; a FAILING
+git call is exit 2 — never "no changes".
 """
 from __future__ import annotations
 
@@ -249,6 +258,34 @@ def _grennavn(rot: Path) -> str:
     return r.stdout.decode().strip() if r.returncode == 0 else ""
 
 
+def _krev_framover(base_sha: str, head_sha: str, rot: Path) -> None:
+    """Refuse a base that is not an ancestor of HEAD: that diff runs backwards.
+
+    The measurement is only a blast radius when the range is FORWARD. A stale
+    clone, or a branch behind main, gives the opposite: the commits the base
+    gained after the fork point show up as deletions of "this change", and a
+    gate file main touched after the fork fires «gate-endring» — a blocking
+    finding for a change nobody made. Fail-closed: a measurement that could not
+    be made is a tool error, never a quiet «no risk» and never a fabricated one.
+    """
+    r = _git(rot, "merge-base", "--is-ancestor", base_sha, head_sha)
+    if r.returncode == 0:
+        return
+    if r.returncode != 1:
+        raise VerktoyFeil(
+            f"git merge-base --is-ancestor «{base_sha[:12]}» «{head_sha[:12]}» failed: "
+            f"{r.stderr.decode('utf-8', 'replace').strip()[:200]}")
+    bak = _git(rot, "rev-list", "--count", f"{head_sha}..{base_sha}")
+    mb = _git(rot, "merge-base", base_sha, head_sha)
+    antall = bak.stdout.decode().strip() if bak.returncode == 0 else "?"
+    mb_sha = mb.stdout.decode().strip()[:12] if mb.returncode == 0 else "?"
+    raise VerktoyFeil(
+        f"base «{base_sha[:12]}» is not an ancestor of HEAD «{head_sha[:12]}»: the base "
+        f"is {antall} commit(s) ahead (merge-base {mb_sha}), so the diff would be a "
+        f"REVERSAL of changes HEAD never made. Fetch/rebase, or measure from the "
+        f"merge-base: --diff {mb_sha}")
+
+
 def finn_change_id(rot: Path, base: str, eksplisitt: str | None) -> str:
     if eksplisitt:
         return eksplisitt
@@ -334,7 +371,12 @@ def slaa_opp_gate(poster: list[dict], change_id: str) -> dict:
 
 def regn_ut(base: str, rot: Path, eierregister: Path, risikoregister: Path,
             change_id: str | None) -> dict:
-    filer = endrede_filer(base, rot)
+    # Pin both ends to SHAs, and refuse a range that does not run forward — the
+    # diff below is meaningless (a reversal) when the base is ahead of HEAD.
+    base_sha = _rev(rot, base)
+    head_sha = _rev(rot, "HEAD")
+    _krev_framover(base_sha, head_sha, rot)
+    filer = endrede_filer(base_sha, rot)
     reg = les_eierregister(eierregister)
     eiere, komponenter, ukjent = eiere_og_komponenter(filer, reg)
     f = f_faktor(len(filer))
@@ -361,7 +403,7 @@ def regn_ut(base: str, rot: Path, eierregister: Path, risikoregister: Path,
         })
     return {
         "diff_base": base,
-        "head": _rev(rot, "HEAD"),
+        "head": head_sha,
         "change_id": cid,
         "antall_filer": len(filer),
         "filer": filer,

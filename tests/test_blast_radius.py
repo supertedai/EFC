@@ -83,6 +83,16 @@ def _kall(rot: Path, *args: str) -> subprocess.CompletedProcess:
                           capture_output=True, text=True, env=miljo, timeout=120)
 
 
+def _git(rot: Path, *args: str) -> subprocess.CompletedProcess:
+    """git in the fixture repo, with the same scrubbed environment as above."""
+    return subprocess.run(GIT + list(args), cwd=rot, env=rent_gitmiljo(rot / "hjem"),
+                          capture_output=True, text=True, check=True)
+
+
+def _sha(rot: Path, ref: str = "HEAD") -> str:
+    return _git(rot, "rev-parse", ref).stdout.strip()
+
+
 # --- faktor for faktor ----------------------------------------------------
 
 def test_f_faktor_baand():
@@ -244,6 +254,50 @@ def test_cli_tom_diff_er_liten_men_ukjent_ref_er_verktoyfeil(tmp_path):
     r = _kall(rot, "--diff", "finnes-ikke-ref", "--json")
     assert r.returncode == 2, "a measurement that could not be made is not «no risk»"
     assert json.loads(r.stdout)["feil"][0]["type"] == "tool_error"
+
+
+def test_cli_base_som_ligger_foran_nektes_i_stedet_for_baklengs_maaling(tmp_path):
+    """A stale clone shall not be able to manufacture a gate change.
+
+    Measured 2026-11-23 (t_8fa4b002): a host clone 5 commits behind origin/main
+    measured main's OWN newer workflow change as a deletion of «this change» and
+    scored 36 files, F=4 x E=2 x P=2 x I=4 = 64, «blokkerende», trigger
+    «gate-endring» — while HEAD held zero commits the base lacked. The same
+    commit pair below is that trap in miniature: forward it is a real gate
+    change, backwards it is a finding nobody made.
+    """
+    rot = _git_rot(tmp_path, {"scripts/a.py": "x\n"})
+    forhald = _sha(rot)
+    (rot / ".github" / "workflows").mkdir(parents=True)
+    (rot / ".github" / "workflows" / "y.yml").write_text("on: push\n", encoding="utf-8")
+    _git(rot, "add", "-A")
+    _git(rot, "commit", "-qm", "framover")
+    framover = _sha(rot)
+
+    # Forward: the gate change is real, and it must still block.
+    ut = json.loads(_kall(rot, "--diff", forhald, "--json").stdout)
+    assert ut["triggere"] == ["gate-endring"] and ut["klasse"] == "blokkerende"
+
+    # The checkout is now BEHIND the base (a stale clone). Same pair, measured
+    # backwards: refuse — never score it.
+    _git(rot, "checkout", "-q", forhald)
+    r = _kall(rot, "--diff", framover, "--json")
+    assert r.returncode == 2, "a base ahead of HEAD is a measurement we cannot make"
+    feil = json.loads(r.stdout)["feil"]
+    assert feil[0]["type"] == "tool_error"
+    assert "not an ancestor" in feil[0]["msg"]
+    assert "REVERSAL" in feil[0]["msg"]
+    assert "1 commit(s) ahead" in feil[0]["msg"], feil[0]["msg"]
+
+
+def test_cli_gren_som_ligger_etter_main_nektes_ikke_naar_basen_er_forfar(tmp_path):
+    """A branch off an older main is not a reversal: only a base AHEAD is refused."""
+    rot = _git_rot(tmp_path, {"scripts/a.py": "x\n"})
+    forhald = _sha(rot)
+    (rot / "scripts" / "a.py").write_text("x2\n", encoding="utf-8")
+    _git(rot, "commit", "-qam", "grenas eget arbeid")
+    ut = json.loads(_kall(rot, "--diff", forhald, "--json").stdout)
+    assert ut["filer"] == ["scripts/a.py"] and ut["head"] == _sha(rot)
 
 
 def test_eiere_og_komponenter_oversetter_stier_til_ids():
