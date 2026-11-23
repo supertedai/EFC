@@ -116,11 +116,50 @@ class TestSorteringEtterBetydning(unittest.TestCase):
         # the length: a declared hull must be measured, and sorted by size.
         self.assertIsInstance(rader, list)
         self.assertTrue(all(r["status"] == "ikke_dekket" for r in rader))
-        nokler = [(-r["meldinger"], r["domene"]) for r in rader]
+        nokler = [(r["meldinger"] is None, -(r["meldinger"] or 0), r["domene"])
+                  for r in rader]
         self.assertEqual(nokler, sorted(nokler))
-        self.assertTrue(all(r["meldinger"] > 0 for r in rader),
-                        "a declared gap without measured messages is not "
-                        "measured — it is a number someone has written")
+        self.assertTrue(
+            all(r["meldinger"] is None or r["meldinger"] > 0 for r in rader),
+            "a declared gap with 0 messages is not a measured gap — the bus "
+            "builds its domains from the subjects that carry messages, so 0 is "
+            "not a number this measurement can produce")
+
+    def test_et_domene_utenfor_maalingen_leses_som_ukjent(self):
+        """The reading side of the same rule, and it is the one that made the
+        card: the declaration says 6941, the measurement does NOT carry the
+        domain. Answering 6941 would show a stream that has stopped answering
+        as unchanged — a measurement from before the silence, presented as now.
+        """
+        dekl = _dekl({"stille.stroem": ("delvis", 6941, ["tilstand.k"])})
+        snap = _snap({"annet.domene": {"tilstand.m": 3}})
+        rad = av.hull(dekl, snap, statuser=None)[0]
+        self.assertEqual(rad["domene"], "stille.stroem")
+        self.assertIsNone(
+            rad["meldinger"],
+            f"the reader answered {rad['meldinger']!r} for a domain the "
+            f"measurement does not carry — the declaration's own number is "
+            f"from an earlier measurement, and the silence is not visible in it")
+
+    def test_ukjent_volum_staar_sist_og_skrives_som_ukjent(self):
+        """A ranking by size cannot rank a number that was never measured.
+        The gap that was not measured stands last, by name, and its number
+        column says UKJENT — not the declaration's old number, and not 0.
+        """
+        dekl = _dekl({"maalt.tung": ("ikke_dekket", 500, ["a"]),
+                      "stille.stroem": ("ikke_dekket", 9, ["b"]),
+                      "maalt.lett": ("ikke_dekket", 5, ["a"])})
+        snap = _snap({"maalt.tung": {"a": 500}, "maalt.lett": {"a": 5}})
+        rader = av.hull(dekl, snap)
+        self.assertEqual([r["domene"] for r in rader],
+                         ["maalt.tung", "maalt.lett", "stille.stroem"])
+        tabell = av.format_table(rader)
+        linje = [l for l in tabell.splitlines() if "stille.stroem" in l][0]
+        self.assertTrue(linje.strip().startswith("UKJENT"),
+                        f"the row for a domain that was not measured does not "
+                        f"say UKJENT: {linje!r}")
+        self.assertNotIn("9", linje,
+                         f"the old number stands in the row: {linje!r}")
 
 
 class TestMaalingen(unittest.TestCase):
@@ -207,14 +246,30 @@ class TestSkrivingen(unittest.TestCase):
         self.assertNotIn("c.d", ny["domener"])
         self.assertNotIn("diskusion.ny", ny["domener"]["a.b"]["emner"])
 
-    def test_et_domene_ute_av_maalingen_faar_null_ikke_gammelt_tall(self):
-        """Retention can empty a domain. Then the old number is a
-        lie about now; zero is a measurement that it no longer carries anything."""
+    def test_et_domene_ute_av_maalingen_skrives_som_ukjent(self):
+        """A domain can leave the measurement: retention empties it, or the
+        stream stops answering. Neither gives a MEASURED volume. The old
+        number is a claim about now from a measurement that is gone, and 0 is
+        a claim that the source answered with nothing — a number the bus
+        cannot produce, because it builds its domains from the subjects that
+        CARRY messages. What is left is UKJENT, written as `null`.
+
+        The first version of this test asserted `0` and called it "a
+        measurement that it no longer carries anything". That is the same
+        shape as the defect ADR-043 records: a guard that asserts the wrong
+        value cements the defect it was written to catch.
+        """
         dekl = {"domener": {"borte.nå": {"status": "ikke_dekket", "noder": [],
                                          "begrunnelse": "x",
+                                         "meldinger": 6941,
                                          "emner": ["tilstand.k"]}}}
         ny, rapport = av.oppdater_dekning(dekl, {})
-        self.assertEqual(ny["domener"]["borte.nå"]["meldinger"], 0)
+        self.assertIsNone(
+            ny["domener"]["borte.nå"]["meldinger"],
+            f"the write line answered "
+            f"{ny['domener']['borte.nå']['meldinger']!r} for a domain that is "
+            f"not in the measurement — 0 is not a measured volume, and 6941 is "
+            f"not the volume now")
         self.assertEqual(rapport["borte"], ["borte.nå"])
 
     def test_snapshottet_baerer_proveniens_og_maalt_antall(self):
