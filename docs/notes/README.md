@@ -21,13 +21,30 @@ contain open questions, partial results, and provisional conclusions.
 ```
 docs/notes/
 ├── EFC_Content_Source_Policy_v1.0.md  # Source/content policy for external news + research (2026-08-19)
+├── EFC_H4-MIN-01_fire_frys_beslutningsnotat_2026-09-18.md  # The four freezes for H4-MIN-01, put to the owner's word
 ├── EFC_native_v2_graph_spec.md   # v2 graph kernel specification
 ├── growth_bug_2026.md            # Growth ODE friction correction + reproducer audit (2026-04-19)
 ├── bro-speilretning_klima-noden_t_6ec0b913.md  # Which side owns which field in an engine↔atlas bridge (2026-09-18)
+├── proposals/                    # proposals for atlas/schema changes, as patches (not applied)
 └── README.md                     # This file
 ```
 
 ## File Descriptions
+
+### EFC_H4-MIN-01_fire_frys_beslutningsnotat_2026-09-18.md
+
+**Full title**: H4-MIN-01 — de fire frysene lagt fram for menneskeord
+**Status**: Decision note, awaiting the owner's word (2026-09-18)
+
+Presents the four desktop decisions that must be made before the smallest
+pre-registered differential test (H4-MIN-01) can be run *as pre-registered*:
+the arbiter's exact artefact + version + hash (or an explicit deferral to
+2027–2028), the `data/models.json` nuisance register with freeze timestamp and
+hash, the holdout rule, and which α-freeze (−0.689 or −0.702) is the branch of
+record. Also proposes carrying the VAL-006 corrigendum's flag into the atlas
+node `efc.growth_engine`, as *patches* under `proposals/` — not as changes.
+No data is opened, no prediction is changed, and the human gate in
+`prereg_H4_PROP_01_v2_FINAL.json` (B1) stands unaltered.
 
 ### EFC_Content_Source_Policy_v1.0.md
 
