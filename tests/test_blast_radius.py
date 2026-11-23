@@ -301,13 +301,15 @@ def test_cli_gren_som_ligger_etter_main_nektes_ikke_naar_basen_er_forfar(tmp_pat
 
 
 def test_cli_gren_med_egne_commits_naar_basen_har_beveget_seg(tmp_path):
-    """The everyday stale-branch case: the report is refused, and the refusal is the finding.
+    """The everyday stale-branch case: the CLI refuses the range, and says why.
 
     A branch that has its own commit while the base has moved on cannot be scored
     against that base — the range is not forward, and the reversed diff would have
-    counted the base's own commits. Nothing lands unreported: the maintenance round
-    records `funn + feil`, so the tool error becomes the card. Once the branch sits
-    on the base again, the same change is measurable.
+    counted the base's own commits. The CLI therefore reports a tool error naming
+    the distance; what a caller does with that error is the caller's contract
+    (scripts/maintenance/vedlikeholdsrunde.py merges `funn` and `feil`), not
+    something this test proves. Once the branch sits on the base again, the same
+    change is measurable.
     """
     rot = _git_rot(tmp_path, {"scripts/a.py": "x\n"})
     basis = _sha(rot)
