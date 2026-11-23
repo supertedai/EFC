@@ -43,10 +43,24 @@ def main() -> int:
         return 0
     print(f"{len(claims)} escalated claim(s):")
     for c in claims:
-        why = c.get("support_status") or c.get("independence_status") or c.get("kind", "?")
+        support = c.get("support_status") or "?"
+        indep = c.get("independence_status") or "?"
         n = c.get("n_sources", 0)
+        ids = ", ".join(
+            str(s.get("external_id", "?"))
+            for s in c.get("sources", [])
+            if s.get("external_id")
+        ) or "-"
         print(f"  - {c.get('claim_id', '?')} [{c.get('kind', '?')}] "
-              f"{c.get('statement', '')[:80]} — {why} — {n} source(s)")
+              f"{c.get('statement', '')[:80]}")
+        # support_status alone is not a verdict: "replicated" says only that two
+        # or more external records agree. Printing it without independence_status
+        # made the digest read as "independently replicated" for a claim whose own
+        # record says the sources are correlated. Both axes are always shown, and
+        # the source identifiers are named so the reader can check them.
+        print(f"    support: {support} / independence: {indep} — {n} source(s): {ids}")
+        if c.get("note"):
+            print(f"    note: {c['note']}")
     return 0
 
 
