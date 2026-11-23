@@ -21,20 +21,23 @@ EFC is therefore presented here at two connected but distinct levels:
 
 A shared vocabulary does not by itself prove that the same physical mechanism operates in every domain. Each cross-domain connection needs its own definitions, mapping and evidence.
 
-## Start here
+## Where to start
 
-- [EFC as a meta-framework](EFC-as-a-Meta-Framework.md) — the overall architecture and its boundaries.
-- [First principles](First-Principles.md) — energy, entropy, information, gradients and flow.
-- [Formal architecture](Formal-Architecture.md) — the repository's S, D, R, H and C₀ model families.
-- [Cosmology and regimes](Cosmology-and-Regimes.md) — the physical research programme.
-- [Proxies and observables](Proxies-and-Observables.md) — how abstract constructs become measurable.
-- [Cross-domain bridges](Cross-Domain-Bridges.md) — cosmology, neural entropy and AI optimisation.
-- [ASI and Symbiose](ASI-and-Symbiose.md) — the AI-system extension and its open research questions.
-- [Consciousness and cognition](Consciousness-and-Cognition.md) — cognitive-field and consciousness-related models.
-- [Homo Fluxus and civilisation](Homo-Fluxus-and-Civilization.md) — human and civilizational synthesis.
-- [Evidence and falsification](Evidence-and-Falsification.md) — what is tested, what remains open, and what would count against EFC.
-- [Research map](Research-Map.md) — how the repository is organised.
-- [Glossary](Glossary.md) — shared terminology.
+This page is the only wiki page written so far. The list below is the reading order into the repository itself: every target exists today, and each is the authoritative place for its subject.
+
+1. [README](../README.md) — plain-English summary, core equations, regime architecture (L0–L3), validation status and publication list.
+2. [AI navigation guide](../llms.txt) — machine-readable map of the repository, including entry points by task.
+3. [Agent and provenance rules](../AGENTS.md) — binding rules on evidence layers, pre-registration and claim language.
+4. [Formal theory](../theory/formal/) — the S, D, R, H and C₀ model families, the formal specification and the notation.
+5. [Public master specification](../docs/public/EFC_Master_v1.1.html) — versioned standalone specification, v1.1.
+6. [Validation ledger](../docs/public/EFC_Validation_Ledger.html) — every test with its tier, DOI and status.
+7. [EFC papers and packages](../docs/papers/efc/) — the papers, their machine-readable packages and the paper index.
+8. [Meta-graph](../meta-graph/) — structural map of the meta-level modules: nodes, layers and relations.
+9. [Methodology](../methodology/) — research process, epistemology, reproducibility and symbiosis.
+
+## Scope of this wiki
+
+A wiki page is written only when there is a source artefact to explain — a specification, a paper, a ledger entry or a process document — and it is added to the list above in the same change that creates it. A topic without such an artefact has no page: a link to an unwritten title promises an explanation that does not exist, so this page carries no forward references. Until a page exists, read the artefact directly from the list above.
 
 ## The organising map
 
@@ -83,15 +86,3 @@ For technical or scientific decisions, use this order:
 4. This wiki as an explanatory guide.
 
 Repository-specific rules on provenance, evidence classes, pre-registration and claim language remain binding. In particular, external research may be described as *consistent with* or *overlapping with* an EFC prediction; it must not be described as confirming EFC merely because the result is compatible.
-
-## Repository entry points
-
-- [README](../README.md)
-- [AI navigation guide](../llms.txt)
-- [AI agent and provenance rules](../AGENTS.md)
-- [Formal theory](../theory/formal/)
-- [Public master specification](../docs/public/EFC_Master_v1.1.html)
-- [Validation ledger](../docs/public/EFC_Validation_Ledger.html)
-- [EFC papers and packages](../docs/papers/efc/)
-- [Meta-graph](../meta-graph/)
-- [Methodology](../methodology/)
