@@ -300,6 +300,43 @@ def test_cli_gren_som_ligger_etter_main_nektes_ikke_naar_basen_er_forfar(tmp_pat
     assert ut["filer"] == ["scripts/a.py"] and ut["head"] == _sha(rot)
 
 
+def test_cli_gren_med_egne_commits_naar_basen_har_beveget_seg(tmp_path):
+    """The everyday stale-branch case: the report is refused, and the refusal is the finding.
+
+    A branch that has its own commit while the base has moved on cannot be scored
+    against that base — the range is not forward, and the reversed diff would have
+    counted the base's own commits. Nothing lands unreported: the maintenance round
+    records `funn + feil`, so the tool error becomes the card. Once the branch sits
+    on the base again, the same change is measurable.
+    """
+    rot = _git_rot(tmp_path, {"scripts/a.py": "x\n"})
+    basis = _sha(rot)
+    (rot / "scripts" / "a.py").write_text("grenas arbeid\n", encoding="utf-8")
+    _git(rot, "commit", "-qam", "grenas eget arbeid")
+    gren = _sha(rot)
+
+    # The base moves on after the fork, exactly as main does.
+    _git(rot, "checkout", "-q", "-b", "hovedlinje", basis)
+    (rot / "tests").mkdir(exist_ok=True)
+    (rot / "tests" / "b.py").write_text("b\n", encoding="utf-8")
+    _git(rot, "add", "-A")
+    _git(rot, "commit", "-qm", "hovedlinjen beveger seg")
+    hoved = _sha(rot)
+
+    # Back on the branch's own tip: one own commit, base one commit ahead.
+    _git(rot, "checkout", "-q", "-b", "gren", gren)
+    r = _kall(rot, "--diff", hoved, "--json")
+    assert r.returncode == 2, "a base ahead is a measurement we cannot make"
+    feil = json.loads(r.stdout)["feil"]
+    assert feil[0]["type"] == "tool_error" and "1 commit(s) ahead" in feil[0]["msg"]
+
+    # Rebased onto the base: the same branch change is now measurable, and it is
+    # the branch's own file — not the base's, and not the base's as a deletion.
+    _git(rot, "rebase", "-q", "hovedlinje")
+    ut = json.loads(_kall(rot, "--diff", hoved, "--json").stdout)
+    assert ut["filer"] == ["scripts/a.py"], ut["filer"]
+
+
 def test_eiere_og_komponenter_oversetter_stier_til_ids():
     eiere, ider, ukjent = br.eiere_og_komponenter(["tests/a.py", "scripts/b.py"], EIERREGISTER)
     assert sorted(ider) == ["skript", "tester"] and ukjent is False
