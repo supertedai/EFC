@@ -47,7 +47,15 @@ BASELINE_MOTORER_TOTALT = 32
 BASELINE_MOTORER_NAADD = 17
 BASELINE_EMNER_NAADD = 34
 BASELINE_DOMENER_NAADD = 12
-BASELINE_EMNER_TOTALT = 118
+# 118 -> 115 on 2026-11-17: the bus measurement itself moved (snapshot
+# 2026-09-19 -> 2026-11-17). Measured against the two committed snapshots:
+# kosmos.exoplanet and kosmos.stjerner left with one subject each
+# (observasjon.mast-caom) and kosmos.roentgentransienter lost
+# observasjon.heasarc — 118 - 3 = 115 topics, 39 - 2 = 37 domains. That is a
+# measurement shrinking, not the navigation going blind: every remaining topic
+# is still seen, which is what test_dekningen_synker_ikke and the gap tests
+# below guard. The floor moves only with a measured bus change.
+BASELINE_EMNER_TOTALT = 115
 
 
 @pytest.fixture(scope="module")
@@ -402,7 +410,10 @@ class TestFalsifiserbarhetsSkillet:
         e = d["epistemisk"]
         assert "maaler_eller_observert" in e, "the instrument nodes are not named"
         n, t_ = e["maaler_eller_observert"]
-        assert n == t_ == 85, f"expected 80/80, got {n}/{t_}"
+        # 85 -> 84 on 2026-11-17: kosmos.stjerner was a published, non-EFC node,
+        # so it sat in this pair. PR #682 pruned it; the remaining 84 are all
+        # still counted, and `n == t_` is what proves nothing became invisible.
+        assert n == t_ == 84, f"expected 84/84, got {n}/{t_}"
 
 
 class TestMotornavnetErEntydig:

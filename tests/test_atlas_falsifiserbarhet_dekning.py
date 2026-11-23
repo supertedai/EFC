@@ -34,7 +34,11 @@ def _har_status(n: dict) -> bool:
 
 
 def test_alle_noder_har_falsifiserbarhetsavgjoerelse(noder: list[dict]) -> None:
-    """Avgjorelser skal dekke 126 av 126 noder, ikke bare feltkapasiteten."""
+    """Avgjorelser skal dekke 125 av 125 noder, ikke bare feltkapasiteten.
+
+    126 -> 125 on 2026-11-17: PR #682 pruned kosmos.stjerner from the bank.
+    The coverage claim is unchanged — every remaining node has answered.
+    """
     avgjort = [
         n for n in noder
         if _har_falsifikator(n)
@@ -42,7 +46,7 @@ def test_alle_noder_har_falsifiserbarhetsavgjoerelse(noder: list[dict]) -> None:
         or bool(((n.get("stipulasjoner") or {}).get("ikke_falsifiserbar_grunn") or "").strip())
     ]
     uten = [n["id"] for n in noder if n not in avgjort]
-    assert len(avgjort) == len(noder) == 126, (
+    assert len(avgjort) == len(noder) == 125, (
         f"{len(avgjort)}/{len(noder)} noder har falsifiserbarhetsavgjoerelse; "
         f"mangler: {uten[:8]}"
     )

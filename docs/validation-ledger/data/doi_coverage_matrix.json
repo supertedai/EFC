@@ -1,7 +1,7 @@
 {
  "name": "EFC DOI coverage and consistency matrix",
  "schema": "efc-doi-coverage-matrix/1",
- "input_digest": "74bcdefb5eadfcde9078bd207ce3008c4e9b9726f2a9766f2b0232b8ae8fa302",
+ "input_digest": "05f0c4f32458e9df972ceb9d51882a98f7e3cf274fddb72dab39ae6ee9d9dc69",
  "sources": {
   "inventory": "figshare/doi-map.json",
   "classification": "docs/validation-ledger/data/evidence-register.json",
@@ -12,14 +12,14 @@
  },
  "metric_note": "in_atlas_literal_url measures only whether the DOI appears as a literal Figshare URL in the two atlas surfaces. Absence is not proof of absence of representation (bare numeric ids, references, or indirect links are not counted).",
  "measured": {
-  "paper_entries": 174,
-  "unique_dois": 165,
+  "paper_entries": 175,
+  "unique_dois": 166,
   "duplicate_doi_groups": 7,
   "dirs_without_doi": 2,
   "atlas_union_literal_urls": 20,
   "empirical": 67,
   "methodological": 27,
-  "structural": 88,
+  "structural": 89,
   "atlas_scope": 67,
   "atlas_candidate_missing_from_atlas": 60
  },
@@ -2884,6 +2884,23 @@
     "structural"
    ],
    "category_overlap": true,
+   "class": "changelog",
+   "in_atlas_literal_url": false,
+   "disposition": "changelog_only"
+  },
+  {
+   "doi": "10.6084/m9.figshare.34003998",
+   "id8": "34003998",
+   "title": "Energy-Flow Cosmology (EFC): Model-Family Reconciliation, Claim Status and Preregistration Proposals",
+   "repo_dirs": [
+    "EFC_Model_Family_Reconciliation"
+   ],
+   "n_dirs": 1,
+   "duplicate_dir": false,
+   "categories": [
+    "structural"
+   ],
+   "category_overlap": false,
    "class": "changelog",
    "in_atlas_literal_url": false,
    "disposition": "changelog_only"

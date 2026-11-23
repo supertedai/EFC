@@ -111,10 +111,15 @@ def _grunn(n: dict) -> str | None:
 def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> None:
     """Every node answers: a falsifier, a fixed status — or a reason.
 
-    The population is ALL 126 nodes, not only the public ones. The numbers are
+    The population is ALL 125 nodes, not only the public ones. The numbers are
     pinned because both outcomes are real: a node that loses its falsifier, and
     a node that is reclassified, must be a choice someone has made — not
     something that happens while nobody looks.
+
+    126 -> 125 and 91 -> 90 on 2026-11-17: PR #682 pruned kosmos.stjerner from
+    the bank. That node carried a written reason ("instrument node … IS the
+    measurement"), so exactly one left the `maa` set. `kan` (31) and
+    `skylder` (4) are untouched — no remaining node lost its falsifier.
     """
     def avgjort(n: dict) -> bool:
         return bool(n.get("ville_falsifisere") or n.get("falsifiserbarhet")
@@ -127,14 +132,15 @@ def test_hver_node_har_tatt_stilling_til_falsifiserbarhet(nodes: list[dict]) -> 
     kan = [n["id"] for n in nodes if n.get("ville_falsifisere")]
     skylder = [n["id"] for n in nodes if n.get("falsifiserbarhet")]
     maa = [n["id"] for n in nodes if _grunn(n)]
-    assert len(nodes) == 126, f"the atlas changed size: {len(nodes)}"
+    # 126 -> 125 on 2026-11-17: PR #682 pruned kosmos.stjerner from the bank.
+    assert len(nodes) == 125, f"the atlas changed size: {len(nodes)}"
     assert len(kan) == 31, (
         f"falsifiable: {len(kan)} — expected 31 (27 public + 4 "
         f"internal). If the number fell, a node lost its falsifier")
     assert len(skylder) == 4, (
         f"with a falsifiability status: {len(skylder)} — expected 4")
-    assert len(maa) == 91, (
-        f"with a written reason: {len(maa)} — expected 91. If the number fell, "
+    assert len(maa) == 90, (
+        f"with a written reason: {len(maa)} — expected 90. If the number fell, "
         f"a node has been given a falsifier; someone must have decided that")
     assert len(kan) + len(skylder) + len(maa) == len(nodes), (
         "at least one node has answered twice — see test_atlas_motsigelse.py")
@@ -178,9 +184,12 @@ def test_grunnen_er_en_deklarert_klasse(nodes: list[dict]) -> None:
             f"{sett[nok]!r} / {t!r}")
         sett[nok] = t
 
+    # 63 -> 62 on 2026-11-17: the pruned node (kosmos.stjerner, PR #682) sat in
+    # the larger class, so exactly one member left it. 27 is untouched — the
+    # falsifiable set did not lose a node.
     klasse = sorted(len(ids) for ids in tekster.values() if len(ids) > 1)
-    assert klasse == [27, 63], (
-        f"the classes changed: {klasse} - expected [27, 63]. A node moved "
+    assert klasse == [27, 62], (
+        f"the classes changed: {klasse} - expected [27, 62]. A node moved "
         f"between classes; that is a decision someone must make")
 
 def test_grunnen_navngir_ikke_feltet_den_erstatter(nodes: list[dict]) -> None:

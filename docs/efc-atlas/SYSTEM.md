@@ -6,7 +6,7 @@ _Question status: **21 open · 0 resolved**._
 
 ## One paragraph
 
-Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 116 nodes, 19 engine nodes. The NATS bus: 39 domains, measured 2026-09-19 by default (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 17 workflow files). 52 of the 116 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
+Energy-Flow Cosmology: an entropic, structural atlas of the universe — from grid microphysics to society's energy flow. 115 nodes, 19 engine nodes. The NATS bus: 37 domains, measured 2026-11-17 by unknown (scripts/atlas_volum.py) — read by measurement code, and no schedule runs that measurement (0 of 20 workflow files). 52 of the 115 without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other).
 
 ## Decisions locked
 
@@ -23,13 +23,13 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 
 1. **Roots — time and self** — Chapter 1 of 9 — a few structures at a time. _(adds efc-l0)_
 2. **The grid — your published works** — Chapter 2 of 9 — a few structures at a time. _(adds efc-grid-higgs, efc-gr-qft-bro, efc-double-slit, efc-grid-mikrofysikk, efc-grid-mikro-engine, efc-sort-hull)_
-3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-stjerner, kosmos-uklassifisert, kosmos-galakser-mast, kosmos-romvaer-swpc, kosmos-sol-goes, kosmos-transienter-alerce, kosmos-kosmologi-desi-bao)_
+3. **Cosmos — engines on the bus** — Chapter 3 of 9 — a few structures at a time. _(adds efc-rotation-engine, efc-hubble-engine, efc-growth-engine, efc-lensing-engine, efc-cluster-engine, efc-mu-kz-engine, efc-romvaer-engine, efc-orbital-engine, efc-klima-engine, efc-tidevann-engine, efc-transient-engine, kosmos-gammaglimt, kosmos-interstellart, kosmos-maane, kosmos-noeytrinoer, kosmos-planetsystem, kosmos-roentgentransienter, kosmos-romfart, kosmos-uklassifisert, kosmos-galakser-mast, kosmos-romvaer-swpc, kosmos-sol-goes, kosmos-transienter-alerce, kosmos-kosmologi-desi-bao)_
 4. **Bridges — gap domains** — Chapter 4 of 9 — a few structures at a time. _(adds verden-hav, verden-biosfaere, kosmos-jord-vulkan, verden-vaer)_
 5. **Structures — H2O and chemistry** — Chapter 5 of 9 — a few structures at a time. _(adds efc-water-phase-engine, kjemi-periodesystemet)_
 6. **Society — energy flow** — Chapter 6 of 9 — a few structures at a time. _(adds efc-oekonomi-engine, efc-samfunn-engine, efc-enerflyt-engine, verden-arbeid, verden-demografi, verden-finans, verden-geopolitikk, verden-handel, verden-helse, verden-infrastruktur, verden-kommunikasjon, verden-lov, verden-militaer, verden-politikk, verden-sikkerhet, verden-teknologi, verden-transport, verden-utdanning, verden-klima-gdelt, verden-klima-worldbank, verden-miljo-mikrobiom, verden-miljo-gdelt, verden-oekonomi-worldbank, verden-oekonomi-imf, verden-oekonomi-gdelt, verden-klima-isbre)_
 7. **Epistemics** — Chapter 7 of 9 — a few structures at a time.
 8. **No group yet** — Chapter 8 of 9 — a few structures at a time. _(adds h2o-solid, h2o-liquid, h2o-gas, h2o-supercritical, h2o-triple-point, lys-sol, h2o-droplet, optikk-dispersjon, regnbue, regnbue-observator, efc-l1, efc-l2, efc-l3, obs-bao, obs-cmb-tt, obs-cmb-lensing, obs-bbn, obs-fsigma8, obs-s8, obs-eg, obs-isw, obs-ksz, obs-cluster-mass, obs-cluster-hmf, obs-rar, obs-bullet, obs-satellites, obs-jwst-ems, obs-gw-ct, obs-pta-gwb, obs-h0-tension, obs-w0wa, obs-cc, homo-fluxus, homo-homeostase-buffer, homo-feber-regime, homo-aksjonspotensial, homo-hjerte-syklus, homo-genregulering, homo-cellesyklus, homo-metabolisme, efc-solar-flare-engine, efc-jordskjelv-engine, homo-immunologi, homo-sovn-vaaken, homo-okologi, homo-evolusjon, kosmos-asteroider, efc-efc-background-engine, efc-lag-s, efc-lag-d, efc-lag-c0)_
-9. **The whole atlas** — Everything at once — 116 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.
+9. **The whole atlas** — Everything at once — 115 nodes, 52 of them without a group yet (20 observations, 18 regime nodes, 10 with an engine, 4 other), 79 relations.
 
 ## Structures
 
@@ -408,20 +408,6 @@ Energy-Flow Cosmology: an entropic, structural atlas of the universe — from gr
 1. **Perspective** — consensus
 2. **Epistemics** — stottet / direkte / institusjonell
 3. **Social mechanism** — Launch data are institutional and national; what is not announced is not counted
-
-#### ST · kosmos.stjerner
-
-**In one line.** archival observations — instrument-borne raw data from space… · perspective: consensus
-
-**What it does.** the space telescopes whose observations are archived; the subject carries the observation… — proxy chain: photons in -> calibrated and archived observation -> share per domain
-
-**How it's built.** Buffer role: MAST/CAOM is the buffer: it holds the state between updates. Epistemic: stottet / direkte / institusjonell.
-
-**Steps in execution.**
-
-1. **Perspective** — consensus
-2. **Epistemics** — stottet / direkte / institusjonell
-3. **Social mechanism** — Stellar data come from surveys each with its own selection; the proportion carries the survey's gaze
 
 #### UK · kosmos.uklassifisert
 
@@ -1807,9 +1793,9 @@ Reference by ID. ✓ resolved (with date) · otherwise open.
 
 ## Known holes
 
-**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 39 domains, measured 2026-09-19T08:23:30Z by default (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 17 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
+**The bus is read by code, not consumed in drift.** `scripts/atlas_volum.py --maal` reads the JetStream streams' `state.subjects` through the house's own `verden_domener` (MCP) and writes `schema/nats_domener.snapshot.json` with its own provenance: 37 domains, measured 2026-11-17T10:39:34Z by unknown (scripts/atlas_volum.py). No schedule runs that measurement: 0 of 20 workflow files in `.github/workflows` reference it, so the snapshot ages by itself. Until a door holding the bus key measures again, the only alarm is `tests/test_atlas_dekning.py::test_snapshottet_har_ikke_gaatt_ut_paa_dato` at 90 days — a stale measurement that still answers, which is the failure mode the atlas exists to name.
 
-**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 95 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
+**Bus routes in the node bank.** 21 of the published nodes name a bus route; the other 94 say nothing. A named route is a connection the bank has taken a position on, not traffic the atlas has seen.
 
 ## What the platform gives vs what we own
 
