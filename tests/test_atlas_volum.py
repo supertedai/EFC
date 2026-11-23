@@ -23,6 +23,7 @@ import ast
 import importlib.util
 import json
 import os
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -34,6 +35,9 @@ _spec = importlib.util.spec_from_file_location("atlas_volum", MODUL)
 assert _spec and _spec.loader
 av = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(av)
+
+sys.path.insert(0, str(ROT / "scripts"))
+import atlas_kilder as ak  # noqa: E402  the source axis's own invariant
 
 DEKNING = json.loads((ROT / "schema" / "atlas_dekning.json").read_text(
     encoding="utf-8"))
@@ -247,6 +251,12 @@ class TestSkrivingen(unittest.TestCase):
                             "begrunnelse": "ukommitert vurdering",
                             "emner": ["tilstand.k"]}}},
                     indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+            # The measurement also re-derives the source axis, and that
+            # derivation reads the node bank — so the throwaway repo must hold
+            # one. It is EMPTY on purpose: this test is about which tree the
+            # measurement reads, not about what a node names.
+            (rot / "schema" / "regime_nodes.jsonld").write_text(
+                json.dumps({"nodes": []}, indent=2) + "\n", encoding="utf-8")
             opprinnelig = av.maal_bussen
             setattr(av, "maal_bussen",
                     lambda *a, **k: {"domener": {"a.b": {"tilstand.k": 77}},
@@ -287,6 +297,126 @@ class TestSkrivingen(unittest.TestCase):
         self.assertIn("snapshot", lest)
         self.assertIn("dekning", lest)
         self.assertEqual(len(lest["commit"]), 40)
+
+
+class TestKildeaksenErEnDelAvMaalingen(unittest.TestCase):
+    """The source axis is DERIVED, and the derivation belongs to the measurement.
+
+    Measured 2026-11-17: `--maal` wrote the snapshot and the `domener` section,
+    but not `kilder`. Measured consequence: ~40 source segments kept the numbers
+    from an earlier measurement, `test_atlas_kilder.py` was the only thing that
+    said so, and the section was reconciled by hand afterwards. A step that must
+    be REMEMBERED is not a derivation — it is a habit, and it slipped once.
+    """
+
+    #: The measurement the tests below "read from the bus": one subject whose
+    #: last segment is the source, carried by one domain.
+    STUB = {"domener": {"a.b": {"tilstand.k": 77}}, "tomme_stroemmer": []}
+
+    def _repro(self, rot: Path, *, noder: bool = True) -> None:
+        """A throwaway repo with a STALE source axis and a node that names it."""
+        (rot / "schema").mkdir(parents=True)
+        (rot / "schema" / "atlas_dekning.json").write_text(
+            json.dumps({
+                "_form": "x",
+                "domener": {"a.b": {"status": "delvis", "meldinger": 5,
+                                    "noder": ["a.b"],
+                                    "begrunnelse": "assessed by a person",
+                                    "emner": ["tilstand.k"]}},
+                "kilder": {"k": {"navn": "src", "status": "unavngitt",
+                                 "meldinger": 5, "domener": ["a.b"],
+                                 "lesere": [], "eiere": []}},
+            }, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        if noder:
+            (rot / "schema" / "regime_nodes.jsonld").write_text(
+                json.dumps({"nodes": [{
+                    "id": "a.b", "buss_domene": "a.b",
+                    "lagdeling": {"kilde": {"kilde": "src"}}}]},
+                    indent=2) + "\n", encoding="utf-8")
+
+    def _maal(self, rot: Path, *flagg: str) -> int:
+        opprinnelig = av.maal_bussen
+        setattr(av, "maal_bussen", lambda *a, **k: dict(self.STUB))
+        try:
+            return av.hoved(["--maal", *flagg, "--repo", str(rot)])
+        finally:
+            setattr(av, "maal_bussen", opprinnelig)
+
+    def test_maal_re_derives_the_sources_from_the_same_measurement(self):
+        """The card's acceptance: no manual `--skriv` between the two steps.
+
+        The stale row says 5 messages, no readers and `unavngitt`; the
+        measurement says 77 over one domain and the bank says one node names it.
+        After ONE command the section must carry the measurement and the bank —
+        and `atlas_kilder.avvik` (the invariant `test_atlas_kilder.py` runs on
+        the committed files) must be empty for the result.
+        """
+        with tempfile.TemporaryDirectory() as d:
+            rot = Path(d)
+            self._repro(rot)
+            self.assertEqual(self._maal(rot), 0)
+            dekl = json.loads((rot / "schema" / "atlas_dekning.json")
+                              .read_text(encoding="utf-8"))
+            snap = json.loads((rot / "schema" / "nats_domener.snapshot.json")
+                              .read_text(encoding="utf-8"))
+            noder = json.loads((rot / "schema" / "regime_nodes.jsonld")
+                               .read_text(encoding="utf-8"))
+        rad = dekl["kilder"]["k"]
+        self.assertEqual(rad["meldinger"], 77,
+                         "the source axis still carries the old number — the "
+                         "measurement wrote `domener` and left `kilder` behind")
+        self.assertEqual(rad["domener"], ["a.b"])
+        self.assertEqual(rad["lesere"], ["a.b"],
+                         "the readers are derived from the bank, not written")
+        self.assertEqual(rad["navn"], "src",
+                         "the name is the human's; the measurement does not "
+                         "delete what it cannot derive")
+        self.assertEqual(rad["status"], "lest",
+                         "the status is derived from the bank — a stale "
+                         "`unavngitt` must not survive the measurement")
+        # The acceptance in the form the test suite itself uses: the section the
+        # measurement left behind must pass the source axis's own invariant.
+        self.assertEqual(ak.avvik({"snapshot": snap, "dekning": dekl,
+                                   "noder": noder}), [],
+                         "the source axis still deviates from the measurement "
+                         "that produced it")
+        self.assertEqual(dekl["domener"]["a.b"]["meldinger"], 77)
+
+    def test_maal_writes_nothing_when_the_sources_cannot_be_derived(self):
+        """Half a measurement is the drift this step exists to remove.
+
+        The `kilder` section is derived from `schema/regime_nodes.jsonld` (the
+        names the nodes write themselves). Without it the derivation cannot be
+        made — and then the measurement must write NEITHER file: a new snapshot
+        and a stale source axis is exactly the state the card measured.
+        """
+        with tempfile.TemporaryDirectory() as d:
+            rot = Path(d)
+            self._repro(rot, noder=False)
+            foer = (rot / "schema" / "atlas_dekning.json").read_bytes()
+            with self.assertRaises(av.VolumFeil) as ctx:
+                self._maal(rot)
+            self.assertIn("regime_nodes.jsonld", str(ctx.exception))
+            self.assertFalse((rot / "schema" / "nats_domener.snapshot.json")
+                             .exists(),
+                             "the snapshot was written before the source axis "
+                             "could be derived — then the two files disagree")
+            self.assertEqual(
+                (rot / "schema" / "atlas_dekning.json").read_bytes(), foer,
+                "the declaration was written although the derivation failed")
+
+    def test_maal_torr_skriver_ingen_av_filene(self):
+        """`--torr` shows what WOULD have been written. The new derivation must
+        not have opened a write path that the dry run does not know about."""
+        with tempfile.TemporaryDirectory() as d:
+            rot = Path(d)
+            self._repro(rot)
+            foer = (rot / "schema" / "atlas_dekning.json").read_bytes()
+            self.assertEqual(self._maal(rot, "--torr"), 0)
+            self.assertFalse((rot / "schema" / "nats_domener.snapshot.json")
+                             .exists())
+            self.assertEqual(
+                (rot / "schema" / "atlas_dekning.json").read_bytes(), foer)
 
 
 if __name__ == "__main__":
