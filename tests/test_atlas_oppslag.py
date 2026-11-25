@@ -36,6 +36,12 @@ sys.path.insert(0, str(REPO / "scripts"))
 
 import atlas_lesing  # noqa: E402
 
+#: The provenance every landed `settlement_result` carries: the writer's
+#: `gate()` refuses a candidate with neither `seq` nor `Nats_Msg_Id`, and the
+#: reader requires the same (panel F8). A fixture that expects "settled" must
+#: therefore carry it — otherwise it models a verdict the writer cannot write.
+PROVENANCE = {"seq": 99001, "Nats_Msg_Id": None, "reference": "DESI 2025 VI"}
+
 
 def _git(repo: Path, *args: str) -> str:
     p = subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True)
@@ -217,7 +223,10 @@ class TestEpistemiskStatus:
 
         Correlation is compared strictly (no case folding); `node` is
         mandatory — the writer always writes it, and a verdict without it
-        fails closed.
+        fails closed. `provenance` is mandatory for the same reason: gate()
+        refuses a candidate without seq or Nats_Msg_Id, so a settled fixture
+        must carry the writer's PROVENANCE (panel F8 — the edge cases live in
+        test_settlement_result_without_provenance_is_not_landed).
         """
         base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
 
@@ -228,18 +237,20 @@ class TestEpistemiskStatus:
                            "outcome": "waiting for arbiter: DESI DR2 full-shape"},
         }) == "pending"
 
-        # 2. Confirmed, matching correlation and node.
+        # 2. Confirmed, matching correlation and node, with provenance.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "efc.test", "correlation": "corr-1",
-                                  "outcome": "confirmed"},
+                                  "outcome": "confirmed",
+                                  "provenance": PROVENANCE},
         }) == "settled"
 
-        # 3. Contradicted, matching correlation and node.
+        # 3. Contradicted, matching correlation and node, with provenance.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "efc.test", "correlation": "corr-1",
-                                  "outcome": "contradicted"},
+                                  "outcome": "contradicted",
+                                  "provenance": PROVENANCE},
         }) == "settled"
 
         # 4a. Missing correlation -> fail closed (no marker).
@@ -282,7 +293,8 @@ class TestEpistemiskStatus:
             "settlement": {"correlation": "corr-1",
                            "outcome": "waiting for arbiter: DESI DR2 full-shape"},
             "settlement_result": {"node": "efc.test", "correlation": "corr-1",
-                                  "outcome": "contradicted"},
+                                  "outcome": "contradicted",
+                                  "provenance": PROVENANCE},
         }) == "settled"
 
         # 6. No static settlement -> a lone result cannot settle (correlation
@@ -310,6 +322,96 @@ class TestEpistemiskStatus:
                            "outcome": "waiting for arbiter: DESI DR2 full-shape"},
             "settlement_result": {},
         }) == "pending"
+
+    def test_settlement_result_without_provenance_is_not_landed(self) -> None:
+        """A verdict must carry the measurement's own provenance (panel F8).
+
+        The writer's `gate()` refuses a candidate with neither `seq` nor
+        `Nats_Msg_Id`, so every landed `settlement_result` carries a
+        non-empty `provenance`. The reader did not check it: a hand-written
+        or truncated verdict — one with no traceable bus message — read
+        "settled", and the reader had no way to tell that the writer never
+        wrote it. Mirroring the gate's rule here makes the reader, not the
+        writer, the last line.
+
+        The mirror is measured on both sides of the handoff, not asserted:
+        the same candidate is run through `gate()`/`settlement_block()` and
+        the resulting block through the reader.
+        """
+        base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
+
+        def node(**result) -> dict:
+            return {**base,
+                    "settlement_result": {"node": "efc.test",
+                                          "correlation": "corr-1",
+                                          "outcome": "confirmed",
+                                          **result}}
+
+        # The writer's own block -> settled. Either member is enough, exactly
+        # as in gate(); the writer fills all three keys with .get().
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance={"seq": 99001, "Nats_Msg_Id": None,
+                             "reference": "DESI 2025 VI"})) == "settled"
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance={"seq": "99001"})) == "settled"
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance={"seq": None, "Nats_Msg_Id": "abc"})) == "settled"
+
+        # Absent, empty, or all-null provenance -> fail closed (no marker).
+        assert atlas_lesing._oppgjoer_status(node()) is None
+        assert atlas_lesing._oppgjoer_status(node(provenance={})) is None
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance={"seq": None, "Nats_Msg_Id": None,
+                             "reference": "DESI 2025 VI"})) is None
+        # seq == 0 reads as absent, exactly as the gate's comment states.
+        assert atlas_lesing._oppgjoer_status(node(provenance={"seq": 0})) is None
+        # A non-dict provenance cannot carry a message id.
+        for bad in ("99001", 99001, [], None, True):
+            assert atlas_lesing._oppgjoer_status(node(provenance=bad)) is None
+        # Types are the gate's: seq is an int (not a bool) or a string; the
+        # message id is a string. Values gate() would refuse must not read
+        # "settled" here either — the reader's last line, not a second rule.
+        for bad_seq in (True, 3.5, [99001], {"n": 1}):
+            assert atlas_lesing._oppgjoer_status(
+                node(provenance={"seq": bad_seq})) is None
+        for bad_id in (99001, 0, True, ["abc"]):
+            assert atlas_lesing._oppgjoer_status(
+                node(provenance={"Nats_Msg_Id": bad_id})) is None
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance={"Nats_Msg_Id": ""})) is None
+        # "0" as a string is a legitimate bus seq string, as in gate().
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance={"seq": "0"})) == "settled"
+
+        # The mirror, measured through the writer: the candidate gate()
+        # refuses for lack of provenance yields a block the reader refuses.
+        import atlas_oppgjoer as oppgjoer  # noqa: PLC0415
+
+        arb = {"tolerance_rule": "the measurement's own sigma",
+               "claim_node": "efc.test",
+               "must_arrive": {"required_fields": ["fsigma8"],
+                               "observable": "fsigma8",
+                               "z_window": [0.5, 0.9],
+                               "why": "the declared criterion"}}
+        bro = {"correlation": "corr-1"}
+        exp = {"fsigma8_efc": 0.43}
+        cand = {"fsigma8": 0.43, "fsigma8_sigma": 0.03, "z_eff": 0.7}
+
+        fails = oppgjoer.gate(cand, arb)
+        assert any("no provenance" in f for f in fails), fails
+        block = oppgjoer.settlement_block(
+            oppgjoer.verdict(cand, exp, arb), cand, arb, bro)
+        assert block["provenance"] == {"seq": None, "Nats_Msg_Id": None,
+                                       "reference": None}
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance=block["provenance"])) is None
+
+        gated = {**cand, "seq": 99001}
+        assert not any("provenance" in f for f in oppgjoer.gate(gated, arb))
+        block = oppgjoer.settlement_block(
+            oppgjoer.verdict(gated, exp, arb), gated, arb, bro)
+        assert atlas_lesing._oppgjoer_status(
+            node(provenance=block["provenance"])) == "settled"
 
     def test_static_allowlist_rejects_nonterminal_outcomes(self) -> None:
         """Option A: the static path is an allowlist, not a blacklist.
@@ -367,7 +469,8 @@ class TestEpistemiskStatus:
             {"settlement": {"outcome": "waiting for arbiter-garbage"}}) is None
 
     def test_runtime_verdict_rejects_invalid(self) -> None:
-        """The runtime path validates outcome, node and correlation strictly."""
+        """The runtime path validates outcome, node, correlation and
+        provenance strictly."""
         base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
         # node: null is present-but-invalid, not absent.
         assert atlas_lesing._oppgjoer_status({
@@ -402,7 +505,8 @@ class TestEpistemiskStatus:
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "efc.test", "correlation": "corr-1",
-                                  "outcome": "Confirmed"},
+                                  "outcome": "Confirmed",
+                                  "provenance": PROVENANCE},
         }) == "settled"
         assert atlas_lesing._oppgjoer_status({
             **base,
@@ -534,7 +638,8 @@ class TestSettlementStatusMatrix:
         node = {"id": "efc.test",
                 "settlement": {"correlation": "corr-1"},
                 "settlement_result": {"node": "efc.test", "correlation": "corr-1",
-                                      "outcome": " CONFIRMED "}}
+                                      "outcome": " CONFIRMED ",
+                                      "provenance": PROVENANCE}}
         assert atlas_lesing._oppgjoer_status(node) == "settled"
 
     def test_valid_result_without_static_settlement_fails_closed(self) -> None:

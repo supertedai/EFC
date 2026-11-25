@@ -187,12 +187,16 @@ def _oppgjoer_status(node: dict) -> str | None:
     1. A runtime arbiter verdict (`settlement_result`, written by
        atlas_oppgjoer.py when the arbiter lands) counts as settled only when
        it is a dict whose `outcome` is "confirmed" or "contradicted"
-       (case-insensitive), whose `node` names THIS node, and whose
-       `correlation` is identical to the declared contract correlation. A
-       present-but-invalid verdict (an explicit null, a non-dict value such
-       as a string, list, number or bool, or a dict with a missing or
-       mismatched node, correlation or outcome) fails closed to no marker —
-       never "settled", and never masked by the static contract below. An
+       (case-insensitive), whose `node` names THIS node, whose `correlation`
+       is identical to the declared contract correlation, and whose
+       `provenance` carries a non-empty `seq` or `Nats_Msg_Id` — the same
+       rule the writer's gate() applies before it will write (panel F8: a
+       verdict that cannot be traced to a bus message cannot have come from
+       the writer). A present-but-invalid verdict (an explicit null, a
+       non-dict value such as a string, list, number or bool, or a dict with
+       a missing or mismatched node, correlation, outcome or provenance)
+       fails closed to no marker — never "settled", and never masked by the
+       static contract below. An
        absent `settlement_result`, or an empty dict `{}` (the writer's
        unfilled container), is NOT a landed verdict and does not suppress the
        static contract. (The reader does not re-derive the writer's gap_sigma
@@ -234,6 +238,20 @@ def _oppgjoer_status(node: dict) -> str | None:
             if not (isinstance(res_corr, str) and res_corr == contract_corr):
                 return None
             if not (isinstance(res_node, str) and res_node == node.get("id")):
+                return None
+            # F8: the verdict must carry the measurement's own provenance —
+            # gate()'s rule, verbatim: a seq (an int, not a bool, or its
+            # string form) OR a Nats_Msg_Id (a string), with a zero/empty
+            # value reading as absent. A verdict that cannot be traced to a
+            # bus message is not one the writer could have written.
+            prov = result.get("provenance")
+            prov = prov if isinstance(prov, dict) else {}
+            seq = prov.get("seq")
+            nid = prov.get("Nats_Msg_Id")
+            seq_ok = (bool(seq) and not isinstance(seq, bool)
+                      and isinstance(seq, (int, str)))
+            nid_ok = isinstance(nid, str) and bool(nid)
+            if not (seq_ok or nid_ok):
                 return None
             return "settled"
         # result == {} — the writer's unfilled container — falls through.
