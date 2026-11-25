@@ -1,0 +1,588 @@
+..FF...FF.FFFFFF.FFFFFFFFFFF..FFFFFFF                                    [100%]
+=================================== FAILURES ===================================
+____ TestEpistemiskStatus.test_settlement_result_with_correlation_matching _____
+
+self = <test_atlas_oppslag.TestEpistemiskStatus object at 0x7f088ac1b0b0>
+
+    def test_settlement_result_with_correlation_matching(self) -> None:
+        """The `settlement_result` layer must classify a landed verdict.
+    
+        Four cases the fix is bound to, plus the fail-closed edges:
+    
+          * a pending contract (no landed result) -> "pending";
+          * a confirmed result whose correlation matches -> "settled";
+          * a contradicted result whose correlation matches -> "settled"
+            (a negative result is still a landed result);
+          * missing, mismatched or unknown correlation / outcome / node ->
+            never "settled" and never "pending": a present-but-invalid verdict
+            gets its own marker, "invalid";
+          * a landed verdict supersedes a static "waiting for arbiter".
+    
+        Correlation is compared strictly (no case folding); `node` is
+        mandatory — the writer always writes it, and a verdict without it
+        fails closed.
+        """
+        base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
+    
+        # 1. Pending: awaiting arbiter, no landed result.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement": {"correlation": "corr-1",
+                           "outcome": "waiting for arbiter: DESI DR2 full-shape"},
+        }) == "pending"
+    
+        # 2. Confirmed, matching correlation and node.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "confirmed"},
+        }) == "settled"
+    
+        # 3. Contradicted, matching correlation and node.
+        assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                  "outcome": "contradicted"},
+        }) == "settled"
+    
+        # 4a. Missing correlation -> invalid (unverifiable, never pending).
+>       assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": "efc.test", "outcome": "confirmed"},
+        }) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1'}, 'settlement_result': {'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:247: AssertionError
+__________ TestEpistemiskStatus.test_runtime_verdict_rejects_invalid ___________
+
+self = <test_atlas_oppslag.TestEpistemiskStatus object at 0x7f088ac1b470>
+
+    def test_runtime_verdict_rejects_invalid(self) -> None:
+        """The runtime path validates outcome, node and correlation strictly.
+    
+        Every rejection carries the "invalid" marker: the verdict slot is
+        written, so an unverifiable value in it is an integrity anomaly — not
+        the absence of a verdict (None) and not "still awaiting" (pending).
+        """
+        base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
+        # node: null is present-but-invalid, not absent.
+>       assert atlas_lesing._oppgjoer_status({
+            **base,
+            "settlement_result": {"node": None, "correlation": "corr-1",
+                                  "outcome": "confirmed"},
+        }) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1'}, 'settlement_result': {'correlation': 'corr-1', 'node': None, 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:380: AssertionError
+__ TestSettlementStatusMatrix.test_whitespace_contract_correlation_is_invalid __
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac3c260>
+
+    def test_whitespace_contract_correlation_is_invalid(self) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "   "},
+                "settlement_result": {"node": "efc.test", "correlation": "   ",
+                                      "outcome": "confirmed"}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': '   '}, 'settlement_result': {'correlation': '   ', 'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:528: AssertionError
+___ TestSettlementStatusMatrix.test_padded_correlation_is_not_an_exact_match ___
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac3c440>
+
+    def test_padded_correlation_is_not_an_exact_match(self) -> None:
+        # Correlation is an identifier compared exactly; only a blank value is
+        # rejected by .strip(). A padded value is not a match for the clean
+        # one, so it reads "invalid" (the writer always writes clean values).
+        node = {"id": "efc.test",
+                "settlement": {"correlation": " c "},
+                "settlement_result": {"node": "efc.test", "correlation": "c",
+                                      "outcome": "confirmed"}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': ' c '}, 'settlement_result': {'correlation': 'c', 'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:538: AssertionError
+_ TestSettlementStatusMatrix.test_valid_result_without_static_settlement_is_invalid _
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac1bf20>
+
+    def test_valid_result_without_static_settlement_is_invalid(self) -> None:
+        node = {"id": "efc.test",
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": "confirmed"}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:551: AssertionError
+__________ TestSettlementStatusMatrix.test_node_without_id_is_invalid __________
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac1b920>
+
+    def test_node_without_id_is_invalid(self) -> None:
+        node = {"settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": "confirmed"}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'settlement': {'correlation': 'corr-1'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:557: AssertionError
+_ TestSettlementStatusMatrix.test_runtime_non_terminal_outcome_is_invalid[pending] _
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac1b6e0>
+outcome = 'pending'
+
+    @pytest.mark.parametrize("outcome", ["pending", "inconclusive", "maybe"])
+    def test_runtime_non_terminal_outcome_is_invalid(self, outcome: str) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": outcome}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'pending'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:565: AssertionError
+_ TestSettlementStatusMatrix.test_runtime_non_terminal_outcome_is_invalid[inconclusive] _
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac1af90>
+outcome = 'inconclusive'
+
+    @pytest.mark.parametrize("outcome", ["pending", "inconclusive", "maybe"])
+    def test_runtime_non_terminal_outcome_is_invalid(self, outcome: str) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": outcome}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'inconclusive'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:565: AssertionError
+_ TestSettlementStatusMatrix.test_runtime_non_terminal_outcome_is_invalid[maybe] _
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ac1ac00>
+outcome = 'maybe'
+
+    @pytest.mark.parametrize("outcome", ["pending", "inconclusive", "maybe"])
+    def test_runtime_non_terminal_outcome_is_invalid(self, outcome: str) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": outcome}}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'maybe'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:565: AssertionError
+_ TestSettlementStatusMatrix.test_har_oppgjoer_presence_not_judgment_on_malformed_result _
+
+self = <test_atlas_oppslag.TestSettlementStatusMatrix object at 0x7f088ad31ee0>
+
+    def test_har_oppgjoer_presence_not_judgment_on_malformed_result(self) -> None:
+        node = {"id": "efc.test", "settlement_result": "garbage"}
+        assert atlas_lesing._har_oppgjoer(node) is True
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement_result': 'garbage'})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:570: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[explicit-null] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3c200>
+result = None
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result (None) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': None})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[string] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3c9b0>
+result = 'garbage'
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ('garbage') must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': 'garbage'})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[empty-list] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3ca70>
+result = []
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ([]) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': []})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[zero] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3cb30>
+result = 0
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result (0) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': 0})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[empty-string] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3cbf0>
+result = ''
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ('') must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': ''})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[missing-correlation] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3ccb0>
+result = {'node': 'efc.test', 'outcome': 'confirmed'}
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ({'node': 'efc.test', 'outcome': 'confirmed'}) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': {'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[wrong-correlation] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3cd70>
+result = {'correlation': 'wrong', 'node': 'efc.test', 'outcome': 'confirmed'}
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ({'node': 'efc.test', 'correlation': 'wrong', 'outcome': 'confirmed'}) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': {'correlation': 'wrong', 'node': 'efc.test', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[wrong-node] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3ce30>
+result = {'correlation': 'corr-1', 'node': 'other.node', 'outcome': 'confirmed'}
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ({'node': 'other.node', 'correlation': 'corr-1', 'outcome': 'confirmed'}) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'other.node', 'outcome': 'confirmed'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[missing-outcome] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3cef0>
+result = {'correlation': 'corr-1', 'node': 'efc.test'}
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ({'node': 'efc.test', 'correlation': 'corr-1'}) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[unknown-outcome] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3cfb0>
+result = {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'inconclusive'}
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ({'node': 'efc.test', 'correlation': 'corr-1', 'outcome': 'inconclusive'}) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': 'inconclusive'}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+_ TestUgyldigSettlementResult.test_corrupt_verdict_is_named_not_silenced[null-outcome] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3d070>
+result = {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': None}
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+E       AssertionError: a present-but-invalid settlement_result ({'node': 'efc.test', 'correlation': 'corr-1', 'outcome': None}) must read 'invalid' — None is the absence answer and must not be borrowed
+E       assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': {'correlation': 'corr-1', 'node': 'efc.test', 'outcome': None}})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:625: AssertionError
+___ TestUgyldigSettlementResult.test_invalid_suppresses_the_static_contract ____
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3d4c0>
+
+    def test_invalid_suppresses_the_static_contract(self) -> None:
+        """Corruption must not be downgraded to 'pending' by the contract.
+    
+        The static contract still says "waiting for arbiter"; if the invalid
+        branch fell through, a corrupt verdict would read as merely awaiting —
+        the same masking the marker exists to prevent, one step later.
+        """
+        for static, masked in (
+            ({"correlation": "corr-1",
+              "outcome": "waiting for arbiter: DESI DR2"}, "pending"),
+            ({"correlation": "corr-1", "outcome": "confirmed"}, "settled"),
+        ):
+            node = {"id": "efc.test", "settlement": static,
+                    "settlement_result": "garbage"}
+>           assert atlas_lesing._oppgjoer_status(node) == "invalid", masked
+E           AssertionError: pending
+E           assert None == 'invalid'
+E            +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement': {'correlation': 'corr-1', 'outcome': 'waiting for arbiter: DESI DR2'}, 'settlement_result': 'garbage'})
+E            +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:664: AssertionError
+_ TestUgyldigSettlementResult.test_presence_flag_counts_a_written_verdict_slot[None] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3d6a0>
+presence = None
+
+    @pytest.mark.parametrize("presence", [None, "garbage", 0, []])
+    def test_presence_flag_counts_a_written_verdict_slot(self, presence) -> None:
+        """An explicit null or a non-dict is PRESENT: the anomaly must be
+        visible as presence + "invalid", not as "no settlement info"."""
+        node = {"id": "efc.test", "settlement_result": presence}
+        assert atlas_lesing._har_oppgjoer(node) is True
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement_result': None})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:672: AssertionError
+_ TestUgyldigSettlementResult.test_presence_flag_counts_a_written_verdict_slot[garbage] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3d8b0>
+presence = 'garbage'
+
+    @pytest.mark.parametrize("presence", [None, "garbage", 0, []])
+    def test_presence_flag_counts_a_written_verdict_slot(self, presence) -> None:
+        """An explicit null or a non-dict is PRESENT: the anomaly must be
+        visible as presence + "invalid", not as "no settlement info"."""
+        node = {"id": "efc.test", "settlement_result": presence}
+        assert atlas_lesing._har_oppgjoer(node) is True
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement_result': 'garbage'})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:672: AssertionError
+_ TestUgyldigSettlementResult.test_presence_flag_counts_a_written_verdict_slot[0] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3d970>
+presence = 0
+
+    @pytest.mark.parametrize("presence", [None, "garbage", 0, []])
+    def test_presence_flag_counts_a_written_verdict_slot(self, presence) -> None:
+        """An explicit null or a non-dict is PRESENT: the anomaly must be
+        visible as presence + "invalid", not as "no settlement info"."""
+        node = {"id": "efc.test", "settlement_result": presence}
+        assert atlas_lesing._har_oppgjoer(node) is True
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement_result': 0})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:672: AssertionError
+_ TestUgyldigSettlementResult.test_presence_flag_counts_a_written_verdict_slot[presence3] _
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3da30>
+presence = []
+
+    @pytest.mark.parametrize("presence", [None, "garbage", 0, []])
+    def test_presence_flag_counts_a_written_verdict_slot(self, presence) -> None:
+        """An explicit null or a non-dict is PRESENT: the anomaly must be
+        visible as presence + "invalid", not as "no settlement info"."""
+        node = {"id": "efc.test", "settlement_result": presence}
+        assert atlas_lesing._har_oppgjoer(node) is True
+>       assert atlas_lesing._oppgjoer_status(node) == "invalid"
+E       AssertionError: assert None == 'invalid'
+E        +  where None = <function _oppgjoer_status at 0x7f088aba3c40>({'id': 'efc.test', 'settlement_result': []})
+E        +    where <function _oppgjoer_status at 0x7f088aba3c40> = atlas_lesing._oppgjoer_status
+
+tests/test_atlas_oppslag.py:672: AssertionError
+__________ TestUgyldigSettlementResult.test_lookup_carries_the_marker __________
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3dbb0>
+tmp_path = PosixPath('/home/morten/.hermes/profiles/researcher/cache/scratch/pytest-of-morten/pytest-371/test_lookup_carries_the_marker0')
+
+    def test_lookup_carries_the_marker(self, tmp_path: Path) -> None:
+        """The marker must reach the hit dict the renderer consumes.
+    
+        A classifier that says "invalid" while the lookup still answers
+        "nothing" would leave the reader exactly where the panel found them.
+        """
+        repo = self._repo_with_invalid_result(tmp_path)
+        svar = atlas_lesing.finn(repo, "test.invalid", ref="HEAD")
+        treff = [t for t in svar["treff"] if t["id"] == "test.invalid"]
+        assert treff, "precondition: the invalid node must be reachable"
+>       assert treff[0]["oppgjoer_status"] == "invalid"
+E       AssertionError: assert None == 'invalid'
+
+tests/test_atlas_oppslag.py:703: AssertionError
+____________ TestUgyldigSettlementResult.test_cli_prints_the_marker ____________
+
+self = <test_atlas_oppslag.TestUgyldigSettlementResult object at 0x7f088ac3dd60>
+tmp_path = PosixPath('/home/morten/.hermes/profiles/researcher/cache/scratch/pytest-of-morten/pytest-371/test_cli_prints_the_marker0')
+
+    def test_cli_prints_the_marker(self, tmp_path: Path) -> None:
+        """The command line must SAY it, not silently omit a marker."""
+        repo = self._repo_with_invalid_result(tmp_path)
+        p = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(repo), "--emne", "test.invalid", "--ref", "HEAD"],
+            capture_output=True, text=True)
+        assert p.returncode == 0, p.stderr
+>       assert "INVALID" in p.stdout, p.stdout
+E       AssertionError: git:HEAD @ 9440f712 — 1 hit(s) on «test.invalid»
+E           test.invalid                       offentlig            
+E         
+E       assert 'INVALID' in 'git:HEAD @ 9440f712 — 1 hit(s) on «test.invalid»\n  test.invalid                       offentlig            \n'
+E        +  where 'git:HEAD @ 9440f712 — 1 hit(s) on «test.invalid»\n  test.invalid                       offentlig            \n' = CompletedProcess(args=['/opt/venvs/t_123ed6d9/bin/python', '/opt/agent-work/EFC/.worktrees/t_0d7802b1/scripts/atlas_le...HEAD @ 9440f712 — 1 hit(s) on «test.invalid»\n  test.invalid                       offentlig            \n', stderr='').stdout
+
+tests/test_atlas_oppslag.py:714: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_atlas_oppslag.py::TestEpistemiskStatus::test_settlement_result_with_correlation_matching
+FAILED tests/test_atlas_oppslag.py::TestEpistemiskStatus::test_runtime_verdict_rejects_invalid
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_whitespace_contract_correlation_is_invalid
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_padded_correlation_is_not_an_exact_match
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_valid_result_without_static_settlement_is_invalid
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_node_without_id_is_invalid
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_runtime_non_terminal_outcome_is_invalid[pending]
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_runtime_non_terminal_outcome_is_invalid[inconclusive]
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_runtime_non_terminal_outcome_is_invalid[maybe]
+FAILED tests/test_atlas_oppslag.py::TestSettlementStatusMatrix::test_har_oppgjoer_presence_not_judgment_on_malformed_result
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[explicit-null]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[string]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[empty-list]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[zero]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[empty-string]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[missing-correlation]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[wrong-correlation]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[wrong-node]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[missing-outcome]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[unknown-outcome]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_corrupt_verdict_is_named_not_silenced[null-outcome]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_invalid_suppresses_the_static_contract
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_presence_flag_counts_a_written_verdict_slot[None]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_presence_flag_counts_a_written_verdict_slot[garbage]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_presence_flag_counts_a_written_verdict_slot[0]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_presence_flag_counts_a_written_verdict_slot[presence3]
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_lookup_carries_the_marker
+FAILED tests/test_atlas_oppslag.py::TestUgyldigSettlementResult::test_cli_prints_the_marker
+28 failed, 9 passed, 45 deselected in 1.24s

@@ -180,7 +180,7 @@ def _har_falsifikator(node: dict) -> bool:
 
 
 def _oppgjoer_status(node: dict) -> str | None:
-    """The settlement status of a node: "pending" | "settled" | None.
+    """The settlement status of a node: "pending" | "settled" | "invalid" | None.
 
     Two sources of truth, in order:
 
@@ -191,13 +191,22 @@ def _oppgjoer_status(node: dict) -> str | None:
        `correlation` is identical to the declared contract correlation. A
        present-but-invalid verdict (an explicit null, a non-dict value such
        as a string, list, number or bool, or a dict with a missing or
-       mismatched node, correlation or outcome) fails closed to no marker —
-       never "settled", and never masked by the static contract below. An
-       absent `settlement_result`, or an empty dict `{}` (the writer's
-       unfilled container), is NOT a landed verdict and does not suppress the
-       static contract. (The reader does not re-derive the writer's gap_sigma
-       tolerance; that invariant belongs to the writer, whose verdict()
-       derives outcome and gap_sigma atomically.)
+       mismatched node, correlation or outcome) reads `"invalid"` — never
+       "settled", never "pending", and never masked by the static contract
+       below. `"invalid"` is an INTEGRITY marker, not a settlement state: it
+       says the writer's verdict slot holds something the reader cannot
+       verify. Measured 2026-11-18 (panel: confirmed as a BLOCK finding):
+       fail-closed-to-None made corruption answer with the SAME token as
+       "this node carries no settlement information" (None), so a broken
+       verdict reported as silence — absence read as a choice, the house's
+       oldest failure class. An absent `settlement_result`, or an empty dict
+       `{}` (the writer's unfilled container), is NOT a landed verdict and
+       does not suppress the static contract. The marker is kept OUT of the
+       settlement vocabulary proper (none/pending/settled/record_only, PR
+       #634): a caller that counts settled claims must not have to guess
+       whether a new token is a signed verdict. (The reader does not
+       re-derive the writer's gap_sigma tolerance; that invariant belongs to
+       the writer, whose verdict() derives outcome and gap_sigma atomically.)
 
     2. Otherwise the static contract (`settlement`) decides, as an allowlist:
        an explicit pending phrase -> "pending"; the writer's terminal tokens
@@ -215,8 +224,10 @@ def _oppgjoer_status(node: dict) -> str | None:
         result = node.get("settlement_result")
         if result is None or not isinstance(result, dict):
             # An explicit null or a non-dict value is a malformed verdict —
-            # an integrity anomaly, never "absent" and never "settled".
-            return None
+            # an integrity anomaly. It is NAMED, never read as absent:
+            # None is the answer for "no settlement information", and a
+            # corrupt verdict that borrows it reports as silence.
+            return "invalid"
         if result:
             # A non-empty dict is a landed verdict: validate it.
             s = node.get("settlement")
@@ -225,16 +236,16 @@ def _oppgjoer_status(node: dict) -> str | None:
             res_corr = result.get("correlation")
             res_node = result.get("node")
             if not isinstance(res_outcome, str):
-                return None
+                return "invalid"          # outcome missing / not a token
             res_outcome = res_outcome.strip().lower()
             if res_outcome not in ("confirmed", "contradicted"):
-                return None
+                return "invalid"          # unknown token — not a verdict
             if not (isinstance(contract_corr, str) and contract_corr.strip()):
-                return None
+                return "invalid"          # nothing to verify against
             if not (isinstance(res_corr, str) and res_corr == contract_corr):
-                return None
+                return "invalid"          # wrong correlation
             if not (isinstance(res_node, str) and res_node == node.get("id")):
-                return None
+                return "invalid"          # wrong node — not this claim
             return "settled"
         # result == {} — the writer's unfilled container — falls through.
 
@@ -262,10 +273,20 @@ def _oppgjoer_status(node: dict) -> str | None:
 
 def _har_oppgjoer(node: dict) -> bool:
     """Presence, not judgment: the node carries a `settlement` field or a
-    `settlement_result` field (truthy). This is the structural "does this
-    node have settlement info" flag; `_oppgjoer_status` is the separate
-    judgment (pending/settled/None) of what that presence means."""
-    return bool(node.get("settlement") or node.get("settlement_result"))
+    written `settlement_result` slot. This is the structural "does this node
+    have settlement info" flag; `_oppgjoer_status` is the separate judgment
+    (pending/settled/invalid/None) of what that presence means.
+
+    A written slot counts as presence for EVERY value except the writer's
+    unfilled container `{}` — an explicit null or a non-dict is something the
+    writer put there, and it must be visible as presence + "invalid" rather
+    than as absence. Measured 2026-11-18: the truthiness test read
+    `settlement_result: null` as "no settlement info at all", the same
+    collapse `_oppgjoer_status` was fixed for one field away.
+    """
+    if "settlement_result" in node and node["settlement_result"] != {}:
+        return True
+    return bool(node.get("settlement"))
 
 
 # ---------------------------------------------------------------------------
@@ -2338,10 +2359,17 @@ if __name__ == "__main__":
                 merker.append("can be felled")
             if t["har_prediksjon"]:
                 merker.append("has prediction")
-            if t.get("oppgjoer_status") == "settled":
+            oppgjoer = t.get("oppgjoer_status")
+            if oppgjoer == "settled":
                 merker.append("is settled")
-            elif t.get("oppgjoer_status") == "pending":
+            elif oppgjoer == "pending":
                 merker.append("pending settlement (awaiting arbiter)")
+            elif oppgjoer == "invalid":
+                # A corrupt verdict is an integrity anomaly, not a missing
+                # marker: print it, so the reader sees corruption instead of
+                # an empty space where a settlement should have been.
+                merker.append("SETTLEMENT RESULT INVALID "
+                              "(integrity anomaly — not a verdict)")
             if t["buss_domene"]:
                 merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"

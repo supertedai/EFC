@@ -212,7 +212,8 @@ class TestEpistemiskStatus:
           * a contradicted result whose correlation matches -> "settled"
             (a negative result is still a landed result);
           * missing, mismatched or unknown correlation / outcome / node ->
-            never "settled" (fail closed, no marker);
+            never "settled" and never "pending": a present-but-invalid verdict
+            gets its own marker, "invalid";
           * a landed verdict supersedes a static "waiting for arbiter".
 
         Correlation is compared strictly (no case folding); `node` is
@@ -242,39 +243,39 @@ class TestEpistemiskStatus:
                                   "outcome": "contradicted"},
         }) == "settled"
 
-        # 4a. Missing correlation -> fail closed (no marker).
+        # 4a. Missing correlation -> invalid (unverifiable, never pending).
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "efc.test", "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
 
-        # 4b. Mismatched correlation -> fail closed.
+        # 4b. Mismatched correlation -> invalid.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "efc.test", "correlation": "wrong-corr",
                                   "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
 
-        # 4c. Wrong node -> fail closed.
+        # 4c. Wrong node -> invalid.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "other.node", "correlation": "corr-1",
                                   "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
 
-        # 4d. Unknown outcome token -> fail closed.
+        # 4d. Unknown outcome token -> invalid.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": "efc.test", "correlation": "corr-1",
                                   "outcome": "inconclusive"},
-        }) is None
+        }) == "invalid"
 
-        # 4e. A verdict without a `node` field fails closed — node is now
+        # 4e. A verdict without a `node` field is invalid — node is now
         #      mandatory (the writer always writes it).
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"correlation": "corr-1", "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
 
         # 5. A landed verdict supersedes a static "waiting for arbiter".
         assert atlas_lesing._oppgjoer_status({
@@ -286,21 +287,22 @@ class TestEpistemiskStatus:
         }) == "settled"
 
         # 6. No static settlement -> a lone result cannot settle (correlation
-        #    is the declared key and it lives in the static contract).
+        #    is the declared key and it lives in the static contract) — and an
+        #    unverifiable verdict is invalid, not absent.
         assert atlas_lesing._oppgjoer_status({
             "id": "efc.test",
             "settlement_result": {"node": "efc.test", "correlation": "corr-1",
                                   "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
 
         # 7. A non-dict settlement_result is corrupt: it must not fall
-        #    through and read as "still awaiting".
+        #    through and read as "still awaiting" — it reads "invalid".
         assert atlas_lesing._oppgjoer_status({
             "id": "efc.test",
             "settlement": {"correlation": "corr-1",
                            "outcome": "waiting for arbiter: DESI DR2 full-shape"},
             "settlement_result": "garbage",
-        }) is None
+        }) == "invalid"
 
         # 8. An empty settlement_result (the writer's unfilled container)
         #    falls through to the static contract — still pending.
@@ -367,28 +369,33 @@ class TestEpistemiskStatus:
             {"settlement": {"outcome": "waiting for arbiter-garbage"}}) is None
 
     def test_runtime_verdict_rejects_invalid(self) -> None:
-        """The runtime path validates outcome, node and correlation strictly."""
+        """The runtime path validates outcome, node and correlation strictly.
+
+        Every rejection carries the "invalid" marker: the verdict slot is
+        written, so an unverifiable value in it is an integrity anomaly — not
+        the absence of a verdict (None) and not "still awaiting" (pending).
+        """
         base = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
         # node: null is present-but-invalid, not absent.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"node": None, "correlation": "corr-1",
                                   "outcome": "confirmed"},
-        }) is None
-        # absent node is now mandatory -> fail closed.
+        }) == "invalid"
+        # absent node is now mandatory -> invalid.
         assert atlas_lesing._oppgjoer_status({
             **base,
             "settlement_result": {"correlation": "corr-1", "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
         # explicit settlement_result: null is a value the writer never writes
         # (it setdefaults {}) and the closed schema does not define: an
-        # integrity anomaly, fail-closed to None — never "pending".
+        # integrity anomaly marked "invalid" — never absent, never "pending".
         assert atlas_lesing._oppgjoer_status({
             "id": "efc.test",
             "settlement": {"correlation": "corr-1",
                            "outcome": "waiting for arbiter: DESI DR2 full-shape"},
             "settlement_result": None,
-        }) is None
+        }) == "invalid"
         # non-dict verdicts (string, list, number, empty string) -> anomaly.
         for bad in ("garbage", [], 0, ""):
             assert atlas_lesing._oppgjoer_status({
@@ -396,7 +403,7 @@ class TestEpistemiskStatus:
                 "settlement": {"correlation": "corr-1",
                                "outcome": "waiting for arbiter: DESI DR2 full-shape"},
                 "settlement_result": bad,
-            }) is None
+            }) == "invalid"
         # outcome token is case-insensitive (a semantic label); the
         # correlation is strict (an identifier).
         assert atlas_lesing._oppgjoer_status({
@@ -408,7 +415,7 @@ class TestEpistemiskStatus:
             **base,
             "settlement_result": {"node": "efc.test", "correlation": "CORR-1",
                                   "outcome": "confirmed"},
-        }) is None
+        }) == "invalid"
 
     def test_arbiter_correlation_matches_claim_node(self) -> None:
         """Every arbiter's bridge correlation must equal its claim node's
@@ -513,22 +520,22 @@ class TestSettlementStatusMatrix:
                 "settlement_result": {}}
         assert atlas_lesing._oppgjoer_status(node) == "settled"
 
-    def test_whitespace_contract_correlation_fails_closed(self) -> None:
+    def test_whitespace_contract_correlation_is_invalid(self) -> None:
         node = {"id": "efc.test",
                 "settlement": {"correlation": "   "},
                 "settlement_result": {"node": "efc.test", "correlation": "   ",
                                       "outcome": "confirmed"}}
-        assert atlas_lesing._oppgjoer_status(node) is None
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
 
     def test_padded_correlation_is_not_an_exact_match(self) -> None:
         # Correlation is an identifier compared exactly; only a blank value is
         # rejected by .strip(). A padded value is not a match for the clean
-        # one, so it fails closed (the writer always writes clean values).
+        # one, so it reads "invalid" (the writer always writes clean values).
         node = {"id": "efc.test",
                 "settlement": {"correlation": " c "},
                 "settlement_result": {"node": "efc.test", "correlation": "c",
                                       "outcome": "confirmed"}}
-        assert atlas_lesing._oppgjoer_status(node) is None
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
 
     def test_outcome_whitespace_is_stripped(self) -> None:
         node = {"id": "efc.test",
@@ -537,30 +544,30 @@ class TestSettlementStatusMatrix:
                                       "outcome": " CONFIRMED "}}
         assert atlas_lesing._oppgjoer_status(node) == "settled"
 
-    def test_valid_result_without_static_settlement_fails_closed(self) -> None:
+    def test_valid_result_without_static_settlement_is_invalid(self) -> None:
         node = {"id": "efc.test",
                 "settlement_result": {"node": "efc.test", "correlation": "corr-1",
                                       "outcome": "confirmed"}}
-        assert atlas_lesing._oppgjoer_status(node) is None
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
 
-    def test_node_without_id_fails_closed(self) -> None:
+    def test_node_without_id_is_invalid(self) -> None:
         node = {"settlement": {"correlation": "corr-1"},
                 "settlement_result": {"node": "efc.test", "correlation": "corr-1",
                                       "outcome": "confirmed"}}
-        assert atlas_lesing._oppgjoer_status(node) is None
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
 
     @pytest.mark.parametrize("outcome", ["pending", "inconclusive", "maybe"])
-    def test_runtime_non_terminal_outcome_fails_closed(self, outcome: str) -> None:
+    def test_runtime_non_terminal_outcome_is_invalid(self, outcome: str) -> None:
         node = {"id": "efc.test",
                 "settlement": {"correlation": "corr-1"},
                 "settlement_result": {"node": "efc.test", "correlation": "corr-1",
                                       "outcome": outcome}}
-        assert atlas_lesing._oppgjoer_status(node) is None
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
 
     def test_har_oppgjoer_presence_not_judgment_on_malformed_result(self) -> None:
         node = {"id": "efc.test", "settlement_result": "garbage"}
         assert atlas_lesing._har_oppgjoer(node) is True
-        assert atlas_lesing._oppgjoer_status(node) is None
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
 
     def test_bank_correlations_carry_no_whitespace(self) -> None:
         bank = json.loads(
@@ -573,6 +580,138 @@ class TestSettlementStatusMatrix:
             if isinstance(c, str) and c:
                 assert c == c.strip(), (
                     f"{n['id']}: correlation {c!r} carries whitespace")
+
+
+class TestUgyldigSettlementResult:
+    """A corrupt verdict gets its OWN marker — never the absence answer.
+
+    Measured 2026-11-18 (panel: confirmed independently as a BLOCK finding):
+    `_oppgjoer_status` failed closed to None for a present-but-invalid
+    `settlement_result`. None is also the answer for "this node carries no
+    settlement information at all", so corruption collapsed into absence —
+    and a hit that says nothing reads as "nothing to report". The marker is
+    "invalid": a third state, distinct from absent (None), pending and
+    settled.
+    """
+
+    #: Every corruption class the reader must name. None of them may borrow
+    #: the absence answer.
+    UGYLDIGE = [
+        pytest.param(None, id="explicit-null"),
+        pytest.param("garbage", id="string"),
+        pytest.param([], id="empty-list"),
+        pytest.param(0, id="zero"),
+        pytest.param("", id="empty-string"),
+        pytest.param({"node": "efc.test", "outcome": "confirmed"},
+                     id="missing-correlation"),
+        pytest.param({"node": "efc.test", "correlation": "wrong",
+                      "outcome": "confirmed"}, id="wrong-correlation"),
+        pytest.param({"node": "other.node", "correlation": "corr-1",
+                      "outcome": "confirmed"}, id="wrong-node"),
+        pytest.param({"node": "efc.test", "correlation": "corr-1"},
+                     id="missing-outcome"),
+        pytest.param({"node": "efc.test", "correlation": "corr-1",
+                      "outcome": "inconclusive"}, id="unknown-outcome"),
+        pytest.param({"node": "efc.test", "correlation": "corr-1",
+                      "outcome": None}, id="null-outcome"),
+    ]
+
+    @pytest.mark.parametrize("result", UGYLDIGE)
+    def test_corrupt_verdict_is_named_not_silenced(self, result) -> None:
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": result}
+        assert atlas_lesing._oppgjoer_status(node) == "invalid", (
+            f"a present-but-invalid settlement_result ({result!r}) must read "
+            "'invalid' — None is the absence answer and must not be borrowed")
+
+    def test_absent_result_is_still_absent(self) -> None:
+        """The marker must not turn 'nothing written' into an anomaly."""
+        node = {"id": "efc.test", "settlement": {"correlation": "corr-1"}}
+        assert atlas_lesing._oppgjoer_status(node) is None
+        # the contract is present, the verdict is not: presence + no marker
+        assert atlas_lesing._har_oppgjoer(node) is True
+        assert atlas_lesing._oppgjoer_status({"id": "efc.test"}) is None
+        assert atlas_lesing._har_oppgjoer({"id": "efc.test"}) is False
+
+    def test_unfilled_container_is_not_invalid(self) -> None:
+        """`{}` is the writer's unfilled container, not corruption."""
+        node = {"id": "efc.test",
+                "settlement": {"correlation": "corr-1", "outcome": "confirmed"},
+                "settlement_result": {}}
+        assert atlas_lesing._oppgjoer_status(node) == "settled"
+        # the empty container is not settlement info on its own ...
+        assert atlas_lesing._har_oppgjoer({"id": "efc.test",
+                                           "settlement_result": {}}) is False
+        # ... and the non-empty contract still is.
+        assert atlas_lesing._har_oppgjoer(node) is True
+
+    def test_invalid_suppresses_the_static_contract(self) -> None:
+        """Corruption must not be downgraded to 'pending' by the contract.
+
+        The static contract still says "waiting for arbiter"; if the invalid
+        branch fell through, a corrupt verdict would read as merely awaiting —
+        the same masking the marker exists to prevent, one step later.
+        """
+        for static, masked in (
+            ({"correlation": "corr-1",
+              "outcome": "waiting for arbiter: DESI DR2"}, "pending"),
+            ({"correlation": "corr-1", "outcome": "confirmed"}, "settled"),
+        ):
+            node = {"id": "efc.test", "settlement": static,
+                    "settlement_result": "garbage"}
+            assert atlas_lesing._oppgjoer_status(node) == "invalid", masked
+
+    @pytest.mark.parametrize("presence", [None, "garbage", 0, []])
+    def test_presence_flag_counts_a_written_verdict_slot(self, presence) -> None:
+        """An explicit null or a non-dict is PRESENT: the anomaly must be
+        visible as presence + "invalid", not as "no settlement info"."""
+        node = {"id": "efc.test", "settlement_result": presence}
+        assert atlas_lesing._har_oppgjoer(node) is True
+        assert atlas_lesing._oppgjoer_status(node) == "invalid"
+
+    @staticmethod
+    def _repo_with_invalid_result(tmp_path: Path) -> Path:
+        repo = tmp_path / "repo"
+        repo.mkdir()
+        _git(repo, "init", "-q")
+        _git(repo, "config", "user.email", "t@t")
+        _git(repo, "config", "user.name", "t")
+        (repo / "schema").mkdir()
+        (repo / "schema" / "regime_nodes.jsonld").write_text(
+            json.dumps({"nodes": [{
+                "id": "test.invalid", "synlighet": "offentlig",
+                "settlement": {"correlation": "c-1",
+                               "outcome": "waiting for arbiter: DESI DR2"},
+                "settlement_result": None,
+            }]}), encoding="utf-8")
+        _git(repo, "add", "-A")
+        _git(repo, "commit", "-q", "-m", "x")
+        return repo
+
+    def test_lookup_carries_the_marker(self, tmp_path: Path) -> None:
+        """The marker must reach the hit dict the renderer consumes.
+
+        A classifier that says "invalid" while the lookup still answers
+        "nothing" would leave the reader exactly where the panel found them.
+        """
+        repo = self._repo_with_invalid_result(tmp_path)
+        svar = atlas_lesing.finn(repo, "test.invalid", ref="HEAD")
+        treff = [t for t in svar["treff"] if t["id"] == "test.invalid"]
+        assert treff, "precondition: the invalid node must be reachable"
+        assert treff[0]["oppgjoer_status"] == "invalid"
+        assert treff[0]["har_oppgjoer"] is True
+
+    def test_cli_prints_the_marker(self, tmp_path: Path) -> None:
+        """The command line must SAY it, not silently omit a marker."""
+        repo = self._repo_with_invalid_result(tmp_path)
+        p = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(repo), "--emne", "test.invalid", "--ref", "HEAD"],
+            capture_output=True, text=True)
+        assert p.returncode == 0, p.stderr
+        assert "INVALID" in p.stdout, p.stdout
 
 
 class TestFeilErIkkeStille:
