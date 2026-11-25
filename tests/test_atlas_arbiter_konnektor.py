@@ -504,17 +504,24 @@ def test_reader_accepts_every_verdict_outcome() -> None:
     gains a third token, this test fails before a legitimate verdict silently
     drops to None.
     """
-    arb = {"tolerance_rule": "the measurement's own sigma"}
+    arb = {"tolerance_rule": "the measurement's own sigma",
+           "claim_node": "efc.test",
+           "must_arrive": {"why": "the declared criterion"}}
+    bro = {"correlation": "c"}
     exp = {"fsigma8_efc": 0.430}
     seen = set()
     for fsigma8 in (0.430, 0.900):  # gap 0.0 -> confirmed; gap ~15.7 -> contradicted
-        v = O.verdict({"fsigma8": fsigma8, "fsigma8_sigma": 0.030}, exp, arb)
+        # The block is the writer's OWN output, provenance included: the
+        # reader requires provenance (panel F8), so a hand-copied verdict
+        # would test a shape the writer never produces.
+        cand = {"fsigma8": fsigma8, "fsigma8_sigma": 0.030, "z_eff": 0.7,
+                "seq": 99001, "referanse": "DESI 2025 VI"}
+        v = O.verdict(cand, exp, arb)
         seen.add(v["outcome"])
         node = {"id": "efc.test",
                 "settlement": {"correlation": "c",
                                "outcome": "waiting for arbiter: DESI DR2 full-shape"},
-                "settlement_result": {"node": "efc.test", "correlation": "c",
-                                      "outcome": v["outcome"]}}
+                "settlement_result": O.settlement_block(v, cand, arb, bro)}
         assert atlas_lesing._oppgjoer_status(node) == "settled", v["outcome"]
     assert seen == {"confirmed", "contradicted"}
 
