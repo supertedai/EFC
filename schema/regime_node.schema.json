@@ -840,7 +840,7 @@
           }
         },
         "settlement_result": {
-          "description": "The runtime arbiter verdict, written by atlas_oppgjoer.py when the arbiter lands. Absent while the prediction is armed. Either the writer's unfilled container (an empty object, which the reader falls through to the static contract) or a landed verdict whose three core fields the reader validates. The cross-field invariant that `node` equals the carrying node's `id`, and that `correlation` matches the prediction's own correlation, is enforced by the reader (atlas_lesing._oppgjoer_status) — JSON Schema cannot express that identity, so it is not claimed here.",
+          "description": "The runtime arbiter verdict, written by atlas_oppgjoer.py when the arbiter lands. Absent while the prediction is armed. Either the writer's unfilled container (an empty object, which the reader falls through to the static contract) or a landed verdict whose three core fields the reader validates. A present value that fails those checks — an explicit null, a non-dict, or a dict whose `node`, `correlation` or `outcome` does not match — is marked `invalid` by the reader: an integrity anomaly, never read as absent and never as pending. The cross-field invariant that `node` equals the carrying node's `id`, and that `correlation` matches the prediction's own correlation, is enforced by the reader (atlas_lesing._oppgjoer_status) — JSON Schema cannot express that identity, so it is not claimed here.",
           "oneOf": [
             {
               "type": "object",
