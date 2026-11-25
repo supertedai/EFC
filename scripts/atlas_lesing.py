@@ -179,8 +179,19 @@ def _har_falsifikator(node: dict) -> bool:
     return "ville_falsifisere" in json.dumps(node, ensure_ascii=False)
 
 
-def _oppgjoer_status(node: dict) -> str | None:
-    """The settlement status of a node: "pending" | "settled" | None.
+def _oppgjoer_dom(node: dict) -> tuple[str | None, str | None]:
+    """The settlement judgment of a node: (status, outcome), parsed ONCE.
+
+    `status` is "pending" | "settled" | None; `outcome` is "confirmed" |
+    "contradicted" | None. The two answers come from the same read so they
+    cannot drift: a node whose status is "settled" always names the way it
+    settled, which is what the render needs to say out loud (measured
+    2026-11-25: the render said "is settled" for a contradicted verdict too,
+    hiding the negative judgment — the bank carried the sign, the reading
+    dropped it).
+
+    Decision order and the allowlists are documented below; `_oppgjoer_status`
+    and `_oppgjoer_utfall` are projections of this function.
 
     Two sources of truth, in order:
 
@@ -216,7 +227,7 @@ def _oppgjoer_status(node: dict) -> str | None:
         if result is None or not isinstance(result, dict):
             # An explicit null or a non-dict value is a malformed verdict —
             # an integrity anomaly, never "absent" and never "settled".
-            return None
+            return None, None
         if result:
             # A non-empty dict is a landed verdict: validate it.
             s = node.get("settlement")
@@ -225,38 +236,86 @@ def _oppgjoer_status(node: dict) -> str | None:
             res_corr = result.get("correlation")
             res_node = result.get("node")
             if not isinstance(res_outcome, str):
-                return None
+                return None, None
             res_outcome = res_outcome.strip().lower()
             if res_outcome not in ("confirmed", "contradicted"):
-                return None
+                return None, None
             if not (isinstance(contract_corr, str) and contract_corr.strip()):
-                return None
+                return None, None
             if not (isinstance(res_corr, str) and res_corr == contract_corr):
-                return None
+                return None, None
             if not (isinstance(res_node, str) and res_node == node.get("id")):
-                return None
-            return "settled"
+                return None, None
+            # The verdict is terminal AND its sign is carried out of here: a
+            # contradicted result is a landed result, and the reader must be
+            # able to say which way it landed.
+            return "settled", res_outcome
         # result == {} — the writer's unfilled container — falls through.
 
     # --- 2. static contract (allowlist) ---
     s = node.get("settlement")
     if not isinstance(s, dict) or not s:
-        return None
+        return None, None
     outcome = s.get("outcome")
     if not isinstance(outcome, str):
-        return None
+        return None, None
     outcome = outcome.strip()
     if not outcome:
         # A settlement record with no outcome is not a final outcome — no marker.
-        return None
+        return None, None
     low = outcome.lower()
     # A pending phrase must be followed by a separator (colon, whitespace) or
     # end-of-string: "waiting for arbiter: …" is pending, but a longer word or
     # stray punctuation ("arbiterial", "arbiter!garbage", "arbiter_foo") is not.
     if re.match(r"^(?:waiting for arbiter|awaiting arbiter)(?:$|[\s:])", low):
-        return "pending"
+        return "pending", None
     if low in ("confirmed", "contradicted"):
-        return "settled"
+        return "settled", low
+    return None, None
+
+
+def _oppgjoer_status(node: dict) -> str | None:
+    """The settlement status of a node: "pending" | "settled" | None.
+
+    The status vocabulary is UNCHANGED (it is the machine-readable field callers
+    match on); the sign of a terminal verdict lives in `_oppgjoer_utfall`, and
+    the two are projected from the same parse (`_oppgjoer_dom`) so they cannot
+    disagree. A caller that needs to know whether a claim was confirmed or
+    felled must ask for the outcome — "settled" alone means only that the
+    verdict landed.
+    """
+    return _oppgjoer_dom(node)[0]
+
+
+def _oppgjoer_utfall(node: dict) -> str | None:
+    """The sign of a settled claim: "confirmed" | "contradicted" | None.
+
+    None for every node that is pending, unmarked, or carries a record rather
+    than a verdict. The token is case-folded (a semantic label), like the
+    status.
+    """
+    return _oppgjoer_dom(node)[1]
+
+
+def _oppgjoer_merke(t: dict) -> str | None:
+    """The marker a lookup hit prints for its settlement state — one place.
+
+    Measured 2026-11-25 on `main` (bbe78fc0): a bank node carrying a landed
+    `settlement_result.outcome = "contradicted"` rendered "is settled", the
+    same text as a confirmed verdict — the negative judgment was present in
+    the bank and dropped by the reading. A settled claim therefore names its
+    sign. If a caller hands the renderer a settled status with no readable
+    outcome, the marker says so instead of falling back to the bare text:
+    "settled" with the sign missing is an edge a reader must be able to see.
+    """
+    status = t.get("oppgjoer_status")
+    if status == "pending":
+        return "pending settlement (awaiting arbiter)"
+    if status == "settled":
+        utfall = t.get("oppgjoer_utfall")
+        if utfall in ("confirmed", "contradicted"):
+            return f"settled: {utfall}"
+        return "settled: outcome not stated"
     return None
 
 
@@ -589,6 +648,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
                 "har_prediksjon": bool(n.get("prediction")),
                 "har_oppgjoer": _har_oppgjoer(n),
                 "oppgjoer_status": _oppgjoer_status(n),
+                "oppgjoer_utfall": _oppgjoer_utfall(n),
                 "har_falsifikator": _har_falsifikator(n),
             })
         return {
@@ -639,6 +699,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_prediksjon": bool(n.get("prediction")),
             "har_oppgjoer": _har_oppgjoer(n),
             "oppgjoer_status": _oppgjoer_status(n),
+            "oppgjoer_utfall": _oppgjoer_utfall(n),
             "har_falsifikator": _har_falsifikator(n),
         })
     # Registered concepts ALWAYS answer with the namespace hit — also when a
@@ -664,6 +725,7 @@ def finn(repo: str | Path, emne: str, ref: str = STANDARD_REF, *,
             "har_prediksjon": False,
             "har_oppgjoer": False,
             "oppgjoer_status": None,
+            "oppgjoer_utfall": None,
             "har_falsifikator": False,
             # Machine-readable NON-COVERAGE. Review 2026-09-18: a namespace hit
             # gave a non-empty hit list, and a reader (or a downstream call)
@@ -2338,10 +2400,12 @@ if __name__ == "__main__":
                 merker.append("can be felled")
             if t["har_prediksjon"]:
                 merker.append("has prediction")
-            if t.get("oppgjoer_status") == "settled":
-                merker.append("is settled")
-            elif t.get("oppgjoer_status") == "pending":
-                merker.append("pending settlement (awaiting arbiter)")
+            # The settlement marker names the SIGN of a landed verdict: a
+            # contradicted claim and a confirmed one are not the same reading
+            # (measured 2026-11-25 — both rendered "is settled").
+            oppgjoer_merke = _oppgjoer_merke(t)
+            if oppgjoer_merke:
+                merker.append(oppgjoer_merke)
             if t["buss_domene"]:
                 merker.append(f"buss:{t['buss_domene']}")
             tt = "" if t["trefftype"] == "id" else f" ({t['trefftype']})"

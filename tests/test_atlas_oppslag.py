@@ -1012,3 +1012,190 @@ class TestStorrelsenPaaHullet:
         svar = atlas_lesing.finn(repo, "228", ref="HEAD")
         assert svar["kjent_hull"] is None, (
             "the number 228 is not a domain name")
+
+
+class TestOppgjoerRendring:
+    """The render must say WHICH WAY a claim settled — a verdict is not a verdict
+    without its sign.
+
+    Measured 2026-11-25 on `main` (bbe78fc0): a bank node with a landed
+    `settlement_result.outcome = "contradicted"` rendered "is settled" — the
+    same text as a confirmed verdict. The classifier was right (the claim IS
+    final) and still hid the only part a reader needs: the prediction was
+    felled. Same truthfulness class as the pending-reads-as-settled fix
+    (#686), one layer out: there the marker claimed finality that did not
+    exist, here it drops the sign of the finality that does.
+    """
+
+    @staticmethod
+    def _node(outcome: str) -> dict:
+        return {"id": "efc.test", "settlement": {"correlation": "corr-1"},
+                "settlement_result": {"node": "efc.test", "correlation": "corr-1",
+                                      "outcome": outcome}}
+
+    def test_utfall_names_the_terminal_token(self) -> None:
+        assert atlas_lesing._oppgjoer_utfall(self._node("contradicted")) == "contradicted"
+        assert atlas_lesing._oppgjoer_utfall(self._node("confirmed")) == "confirmed"
+        # the outcome token is a semantic label -> case-folded, like the status.
+        assert atlas_lesing._oppgjoer_utfall(self._node("CONTRADICTED")) == "contradicted"
+        # the static contract can carry a terminal verdict too.
+        assert atlas_lesing._oppgjoer_utfall(
+            {"settlement": {"outcome": "contradicted"}}) == "contradicted"
+        assert atlas_lesing._oppgjoer_utfall(
+            {"settlement": {"outcome": "confirmed"}}) == "confirmed"
+        # pending and every non-verdict payload name NO outcome.
+        for node in (
+            {"settlement": {"outcome": "waiting for arbiter: DESI DR2"}},
+            {"settlement": {"outcome": '{"utfall": "revidert"}'}},
+            {"settlement": {}},
+            {},
+            {"id": "x", "settlement_result": {"node": "x", "correlation": "corr-1",
+                                              "outcome": "inconclusive"}},
+        ):
+            assert atlas_lesing._oppgjoer_utfall(node) is None, (
+                f"a non-verdict must not name an outcome: {node}")
+
+    def test_utfall_and_status_come_from_one_parse(self) -> None:
+        """A settled status always names its outcome — no second parser to drift.
+
+        If the status says final, the outcome must say which way. A node that
+        reaches "settled" without a named outcome would render an
+        uninformative marker, and the reader could not tell an unfixed edge
+        from a bug.
+        """
+        for outcome in ("confirmed", "contradicted", "Confirmed", "Contradicted"):
+            node = self._node(outcome)
+            assert atlas_lesing._oppgjoer_status(node) == "settled"
+            assert atlas_lesing._oppgjoer_utfall(node) in ("confirmed", "contradicted")
+        for outcome in ("confirmed", "contradicted"):
+            node = {"settlement": {"outcome": outcome}}
+            assert atlas_lesing._oppgjoer_status(node) == "settled"
+            assert atlas_lesing._oppgjoer_utfall(node) == outcome
+
+    def test_the_render_marker_names_the_sign(self) -> None:
+        assert atlas_lesing._oppgjoer_merke(
+            {"oppgjoer_status": "settled", "oppgjoer_utfall": "contradicted"}
+        ) == "settled: contradicted"
+        assert atlas_lesing._oppgjoer_merke(
+            {"oppgjoer_status": "settled", "oppgjoer_utfall": "confirmed"}
+        ) == "settled: confirmed"
+        assert atlas_lesing._oppgjoer_merke(
+            {"oppgjoer_status": "pending"}
+        ) == "pending settlement (awaiting arbiter)"
+        assert atlas_lesing._oppgjoer_merke({"oppgjoer_status": None}) is None
+        assert atlas_lesing._oppgjoer_merke({}) is None
+
+    def test_the_render_marker_never_says_a_bare_is_settled(self) -> None:
+        """MUTANT KILL: the bare "is settled" text must be unreachable.
+
+        Every combination of status and outcome the renderer can be handed —
+        including an unnamed outcome and an unknown token — must render either
+        nothing or a marker that names the outcome. A marker that says only
+        "is settled" is the bug this card exists to close.
+        """
+        for status in ("settled", "pending", None, "record_only"):
+            for utfall in ("confirmed", "contradicted", None, "inconclusive", ""):
+                merke = atlas_lesing._oppgjoer_merke(
+                    {"oppgjoer_status": status, "oppgjoer_utfall": utfall})
+                assert merke != "is settled", (
+                    f"status={status!r} utfall={utfall!r} renders the bare "
+                    "'is settled' — the verdict's sign is hidden again")
+                if status == "settled":
+                    assert merke and "settled:" in merke
+
+    def test_settled_without_a_named_outcome_says_so(self) -> None:
+        """"Settled" with no derivable outcome is stated, not glossed over."""
+        assert atlas_lesing._oppgjoer_merke(
+            {"oppgjoer_status": "settled", "oppgjoer_utfall": None}
+        ) == "settled: outcome not stated"
+        assert atlas_lesing._oppgjoer_merke(
+            {"oppgjoer_status": "settled", "oppgjoer_utfall": "inconclusive"}
+        ) == "settled: outcome not stated", (
+            "an unknown outcome token must not be echoed as if it were a verdict")
+
+    def test_lookup_carries_the_verdict_to_the_renderer(self, ekte_repo: Path) -> None:
+        """The hit dicts the renderer consumes must carry the outcome.
+
+        The original bug lived in the rendering, not the classifier — so the
+        fix must be visible on the same path a caller reads: `finn()`'s hits.
+        """
+        svar = atlas_lesing.finn(ekte_repo, "h2o", ref="HEAD")
+        assert svar["treff"], "precondition: at least one hit"
+        for t in svar["treff"]:
+            assert "oppgjoer_utfall" in t, (
+                "a hit must carry the settlement outcome, not just its status — "
+                "otherwise the renderer cannot name the sign")
+            if t.get("oppgjoer_status") == "settled":
+                assert t["oppgjoer_utfall"] in ("confirmed", "contradicted"), (
+                    f"{t['id']}: a settled hit must name its outcome")
+
+    def test_every_settled_bank_node_names_its_outcome(self, ekte_repo: Path) -> None:
+        """Bank invariant: no node can render "settled: outcome not stated".
+
+        Today no bank node carries a terminal verdict, so this test is the one
+        that starts biting the day an arbiter lands: it fails if the writer
+        ever produces a settlement the renderer can only half-read.
+        """
+        bank = atlas_lesing.les_atlas(ekte_repo, ref="HEAD")
+        for n in bank["noder"]:
+            if atlas_lesing._oppgjoer_status(n) == "settled":
+                assert atlas_lesing._oppgjoer_utfall(n) in ("confirmed", "contradicted"), (
+                    f"{n['id']}: settled with no named outcome — the render "
+                    "would hide the verdict")
+
+    def test_cli_prints_the_sign_end_to_end(self, tmp_path: Path) -> None:
+        """MUTANT KILL: the CLI must print the verdict's sign, not "is settled".
+
+        The pure-marker tests pin the helper; this one pins that the CLI
+        actually calls it. A future edit that inlines a bare marker again
+        leaves every dict-shaped assertion green, so the guard has to be the
+        rendered line itself. Builds a minimal bank on a git ref (the reader
+        answers from the ref, never the working tree) with a landed
+        contradicted verdict and reads the CLI's own output.
+        """
+        repo = tmp_path / "repo"
+        repo.mkdir()
+        _git(repo, "init", "-q")
+        _git(repo, "config", "user.email", "t@t")
+        _git(repo, "config", "user.name", "t")
+        (repo / "schema").mkdir()
+        node = {
+            "id": "efc.contradicted_demo",
+            "synlighet": "offentlig",
+            "settlement": {"correlation": "demo-corr-1",
+                           "outcome": "waiting for arbiter: DEMO"},
+            "settlement_result": {"correlation": "demo-corr-1",
+                                  "node": "efc.contradicted_demo",
+                                  "outcome": "contradicted",
+                                  "gap_sigma": 3.4},
+        }
+        (repo / "schema" / "regime_nodes.jsonld").write_text(
+            json.dumps({"nodes": [node]}, ensure_ascii=False), encoding="utf-8")
+        _git(repo, "add", "-A")
+        _git(repo, "commit", "-q", "-m", "x")
+
+        p = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(repo), "--emne", "contradicted_demo", "--ref", "HEAD"],
+            capture_output=True, text=True)
+        assert p.returncode == 0, p.stderr
+        assert "efc.contradicted_demo" in p.stdout, p.stdout
+        assert "settled: contradicted" in p.stdout, (
+            "the CLI hid the negative verdict — a contradicted claim printed "
+            f"as something else:\n{p.stdout}")
+        assert "is settled" not in p.stdout, (
+            "the CLI still prints the sign-less marker:\n" + p.stdout)
+
+        # ...and the same node with a confirmed verdict must print the other
+        # sign — the guard is not satisfied by any fixed string.
+        node["settlement_result"]["outcome"] = "confirmed"
+        (repo / "schema" / "regime_nodes.jsonld").write_text(
+            json.dumps({"nodes": [node]}, ensure_ascii=False), encoding="utf-8")
+        _git(repo, "commit", "-q", "-a", "-m", "y")
+        p = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "atlas_lesing.py"),
+             str(repo), "--emne", "contradicted_demo", "--ref", "HEAD"],
+            capture_output=True, text=True)
+        assert p.returncode == 0, p.stderr
+        assert "settled: confirmed" in p.stdout, p.stdout
+        assert "settled: contradicted" not in p.stdout, p.stdout
